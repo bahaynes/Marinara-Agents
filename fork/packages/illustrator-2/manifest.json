@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "illustrator-2",
+  "name": "Illustrator 2",
+  "version": "1.0.0",
+  "description": "Illustrator tuned for local multi-reference edit models (FLUX.2 klein, Qwen-Image-Edit) on ComfyUI: one focused moment, short prose prompts, reference images bound by slot, only characters the tracker says are present, and optional workflow variables.",
+  "engine": {
+    "min": "2.3.3",
+    "maxExclusive": "4.0.0"
+  },
+  "kind": [
+    "agent"
+  ],
+  "entrypoints": {
+    "agents": "agents.json"
+  },
+  "files": [
+    {
+      "path": "agents.json",
+      "sha256": "df84a154259a17cf9c1531104e321f81c699558c38da8339c9d5de34191a67e8",
+      "bytes": 4905
+    }
+  ],
+  "permissions": [
+    "agent-runtime",
+    "chat-read",
+    "prompt-context",
+    "storage",
+    "ui"
+  ],
+  "restartRequired": false
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "timeline-anchor",
+  "name": "Timeline & Chronology Anchor",
+  "version": "1.0.0",
+  "description": "Grounds the story clock, relative milestone start times (e.g. yesterday vs months ago), and injects temporal constraints to prevent LLM timeline hallucinations.",
+  "engine": {
+    "min": "2.3.0",
+    "maxExclusive": "4.0.0"
+  },
+  "kind": [
+    "agent"
+  ],
+  "entrypoints": {
+    "agents": "agents.json"
+  },
+  "files": [
+    {
+      "path": "agents.json",
+      "sha256": "0338c40d5ad04844e9569733ffe8d293348d18033a49307ca8d9b46e50850945",
+      "bytes": 1969
+    }
+  ],
+  "permissions": [
+    "agent-runtime",
+    "chat-read",
+    "prompt-context",
+    "storage",
+    "ui"
+  ],
+  "restartRequired": false
+}
