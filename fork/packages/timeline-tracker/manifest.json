@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "timeline-tracker",
+  "name": "Timeline & Chronology Tracker",
+  "version": "1.0.0",
+  "description": "Tracks in-story time progression, total elapsed duration, and milestone start times to prevent models from forgetting when events and skill learning began. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
+  "engine": {
+    "min": "2.3.0",
+    "maxExclusive": "4.0.0"
+  },
+  "kind": [
+    "agent"
+  ],
+  "entrypoints": {
+    "agents": "agents.json"
+  },
+  "files": [
+    {
+      "path": "agents.json",
+      "sha256": "9abb164f22145d2d813e8be765e8f55acd65aee07eff0f498fdfe24147bc3a86",
+      "bytes": 2247
+    }
+  ],
+  "permissions": [
+    "agent-runtime",
+    "chat-read",
+    "prompt-context",
+    "storage",
+    "ui"
+  ],
+  "restartRequired": false
+}

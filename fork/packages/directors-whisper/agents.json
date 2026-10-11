@@ -1,0 +1,34 @@
+[
+  {
+    "id": "directors-whisper",
+    "name": "The Director's Whisper",
+    "description": "Pre-generation director that inspects the Foreshadow Vault. Injects payoff directives ONLY for seeds that are marked READY, remaining completely silent when all seeds are dormant.",
+    "phase": "pre_generation",
+    "enabledByDefault": false,
+    "category": "writer",
+    "modeAllowlist": [
+      "roleplay",
+      "game"
+    ],
+    "defaultTools": [],
+    "defaultSettings": {
+      "contextSize": 4,
+      "maxTokens": 256,
+      "contextSources": {
+        "chatHistory": true,
+        "trackerData": true,
+        "characters": false,
+        "persona": false,
+        "activatedLorebookEntries": false,
+        "chatSummary": false,
+        "authorNotes": false,
+        "recalledMemories": false,
+        "previousOutput": false
+      },
+      "resultType": "context_injection"
+    },
+    "defaultPromptTemplate": "You are the Story Director. You inspect the Foreshadow Vault before the story model generates its next reply.\n\n### Current Tracker Data:\n{{customTracker}}\n\n### Instructions:\n1. Look for the \"Foreshadow Vault\" entry in the tracker data.\n2. Filter for any seeds where status == \"ready\".\n3. If ANY seed has status == \"ready\":\n   Output a concise narrative directive for the storyteller model to incorporate this payoff:\n   [DIRECTOR'S NOTE — FORESHADOWING PAYOFF]\n   Bring this foreshadowed element into the scene:\n   - <concept>: <payoffPrompt>\n   Integrate this naturally into the ongoing action without forcing it awkwardly.\n4. If ALL seeds are \"dormant\", or if no seeds exist, or if the vault is empty:\n   OUTPUT ABSOLUTELY NOTHING. Return an empty string. Do not output spaces, headers, apologies, or explanations.",
+    "defaultInjectAsSection": true,
+    "author": "custom-mods"
+  }
+]
