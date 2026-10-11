@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "dnd5e-combat",
+  "name": "D&D 5.5e Combat Engine",
+  "version": "1.0.1",
+  "description": "Tabletop d20 combat engine for D&D 5.5e. Resolves ability-score modifiers (CHA/INT/WIS/STR/DEX), AC, spell attack rolls, saving throw DCs, cantrip scaling, martial extra attacks, rogue sneak attack, and HP. Add as an Agent in Chat Settings → Agents → Misc Agents for Roleplay and Game modes.",
+  "engine": {
+    "min": "2.3.0",
+    "maxExclusive": "4.0.0"
+  },
+  "kind": [
+    "agent"
+  ],
+  "entrypoints": {
+    "agents": "agents.json"
+  },
+  "files": [
+    {
+      "path": "agents.json",
+      "sha256": "7f6b59f54b75dc9744a6f145ad218d43850093889291d790689b9f5414999009",
+      "bytes": 4531
+    }
+  ],
+  "permissions": [
+    "agent-runtime",
+    "chat-read",
+    "prompt-context",
+    "storage",
+    "ui"
+  ],
+  "restartRequired": false
+}
