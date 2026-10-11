@@ -1,0 +1,18 @@
+[
+  {
+    "id": "timeline-tracker",
+    "name": "Timeline Tracker",
+    "description": "Tracks in-story time progression, total elapsed duration, and milestone start times to prevent models from forgetting when events and skill learning began. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
+    "phase": "post_processing",
+    "enabledByDefault": false,
+    "defaultInjectAsSection": true,
+    "category": "tracker",
+    "modeAllowlist": [
+      "roleplay",
+      "game"
+    ],
+    "defaultTools": [],
+    "author": "custom-mods",
+    "defaultPromptTemplate": "Track the in-story timeline, story clock, and episodic milestone start times after the latest assistant message. Current timeline state is in <current_timeline_state>. Respond ONLY with valid JSON.\nSchema:\n{\n  \"storyClock\": {\n    \"t_now\": 1440,\n    \"displayDay\": 2,\n    \"displayDate\": \"string (e.g. Tuesday, October 15)\",\n    \"displayTime\": \"string (e.g. 14:30 / 2:30 PM)\",\n    \"timePassedMin\": 15,\n    \"totalElapsedStr\": \"string (e.g. 1 day, 6 hours)\"\n  },\n  \"newOrUpdatedEvents\": [\n    [\n      120,\n      \"SK\",\n      \"string (subject: character name)\",\n      \"string (event: Started archery lessons with player)\",\n      \"string (meta: novice/beginner)\"\n    ]\n  ],\n  \"temporalDirectives\": [\n    \"string (e.g. Total story elapsed is 1 day; a character started archery yesterday; do not reference weeks/months)\"\n  ]\n}\nInstructions:\n1. Update storyClock based on in-story time progression or explicit time skips. t_now is total elapsed story minutes since story start (1440 min = 1 day).\n2. Add or update milestones when characters begin a skill, establish a relationship milestone, reach a major plot point, or change status.\n3. Categories: SK (skill/practice), REL (relationship/acquaintance), EV (major story event), ST (status/condition).\n4. Record t_start in minutes when the event first began. Keep existing t_start for ongoing activities so the engine knows exactly how many days have elapsed.\n5. Output concise temporalDirectives explicitly stating constraints (e.g. '<character> started learning yesterday; only 1 day has passed; do not claim weeks of practice')."
+  }
+]

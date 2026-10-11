@@ -1,0 +1,36 @@
+[
+  {
+    "id": "foreshadow-vault",
+    "name": "Foreshadow Vault",
+    "description": "Post-processing watcher that detects narrative seeds/Chekhov's guns, ticks countdowns, and stores dormant items hidden in the custom tracker until ready.",
+    "phase": "post_processing",
+    "enabledByDefault": false,
+    "category": "tracker",
+    "modeAllowlist": [
+      "roleplay",
+      "game"
+    ],
+    "defaultTools": [],
+    "defaultSettings": {
+      "contextSize": 8,
+      "maxTokens": 1024,
+      "contextSources": {
+        "chatHistory": true,
+        "trackerData": true,
+        "characters": false,
+        "persona": false,
+        "activatedLorebookEntries": false,
+        "chatSummary": false,
+        "authorNotes": false,
+        "recalledMemories": false,
+        "previousOutput": false
+      },
+      "customCapabilities": {
+        "edit_trackers": true
+      },
+      "resultType": "custom_tracker_update"
+    },
+    "defaultPromptTemplate": "You are a Narrative Continuity Supervisor tracking latent Chekhov's guns, foreshadowing hooks, and delayed narrative payoffs.\n\nYour job is to manage the hidden \"Foreshadow Vault\".\nEach item in the vault is a narrative seed waiting for its moment to trigger.\n\n### Current Tracker Data:\n{{customTracker}}\n\n### Instructions:\n1. REVIEW RECENT EVENTS:\n   - Read the latest turn.\n   - Parse the existing \"Foreshadow Vault\" custom tracker field (if present). It contains a JSON list of active seeds.\n\n2. TICK DOWN & EVALUATE EXISTING SEEDS:\n   For every seed currently in the vault:\n   - If status == \"dormant\":\n     - If triggerType == \"turn_countdown\": Decrement remainingTurns by 1.\n       If remainingTurns <= 0, change status to \"ready\".\n     - If triggerType == \"scene_condition\": Check if the current scene, location, or character actions satisfy condition.\n       If satisfied, change status to \"ready\".\n   - If status == \"ready\":\n     - Check if the latest response fulfilled or paid off this seed.\n     - If fulfilled, change status to \"fired\" (archive or remove it).\n     - If not yet paid off, keep status: \"ready\". If neglected for more than 2 turns, mark status: \"dud\".\n\n3. DETECT NEW SEEDS:\n   - Did the latest message introduce an interesting detail, curious item, strange noise, mysterious NPC remark, or unfulfilled promise that would make a great Chekhov's Gun?\n   - If yes (and no similar seed exists), plant a new seed:\n     - id: Short unique slug (e.g. \"silver_key_01\")\n     - concept: Short summary of what was planted (e.g. \"A tarnished brass key with a bird engraving\")\n     - status: \"dormant\"\n     - triggerType: \"turn_countdown\" (set remainingTurns between 3 and 7 turns) OR \"scene_condition\"\n     - condition: If scene_condition, description of the trigger event\n     - payoffPrompt: The exact whisper/directive for the storyteller when triggered (e.g. \"The locked drawer in the study has a bird emblem matching the tarnished key.\")\n\n4. OUTPUT FORMAT:\n   Return valid JSON with a single \"Foreshadow Vault\" field in fields:\n{\n  \"fields\": [\n    {\n      \"name\": \"Foreshadow Vault\",\n      \"value\": \"[{\\\"id\\\":\\\"seed_1\\\",\\\"concept\\\":\\\"...\\\",\\\"status\\\":\\\"dormant\\\",\\\"triggerType\\\":\\\"turn_countdown\\\",\\\"remainingTurns\\\":4,\\\"payoffPrompt\\\":\\\"...\\\"}]\"\n    }\n  ],\n  \"reasoning\": \"Brief explanation of updates\"\n}\n\nKeep the JSON inside value compact and strictly valid stringified JSON.",
+    "author": "custom-mods"
+  }
+]

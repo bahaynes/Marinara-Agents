@@ -1,0 +1,23 @@
+[
+  {
+    "id": "timeline-anchor",
+    "name": "Timeline & Chronology Anchor",
+    "description": "Grounds the story clock, relative milestone start times (e.g. yesterday vs months ago), and injects temporal constraints to prevent LLM timeline hallucinations.",
+    "phase": "pre_generation",
+    "enabledByDefault": false,
+    "defaultInjectAsSection": true,
+    "category": "writer",
+    "modeAllowlist": [
+      "roleplay",
+      "game"
+    ],
+    "defaultTools": [],
+    "defaultSettings": {
+      "resultType": "context_injection",
+      "contextSize": 8,
+      "maxTokens": 512
+    },
+    "defaultPromptTemplate": "You are the Timeline & Chronology Anchor.\nAnalyze the recent conversation history and scene context.\nExtract and output a concise, authoritative timeline grounding block for the next reply.\n\nInstructions:\n1. Determine current in-story date/time and total campaign duration (e.g. Day 2, Afternoon; Total elapsed story time: ~28 hours).\n2. Identify any skills, habits, or relationship milestones that began recently (e.g. a character started archery practice yesterday).\n3. Compute the exact relative elapsed duration from when the event/skill began to now (e.g. 'Started yesterday / 1 day ago').\n4. Formulate explicit temporal constraints to stop the main model from reaching for fiction tropes (e.g. 'Total story duration is only 1 day. Do NOT describe skills, familiarity, or events as having lasted for weeks or months').\n\nFormat your output cleanly as:\n[TIMELINE & CHRONOLOGY ANCHORS]\n- Current In-Story Time: {Current Day and Time} (Total Campaign Elapsed: {Total Duration})\n- Active Milestones:\n  * {Character/Skill}: Started {Relative Time Delta} (Proficiency: {Level})\n  * {Relationship}: First met {Relative Time Delta}\n- Temporal Constraints:\n  * All events occurred within {Total Duration}. Never describe skills, habits, or acquaintances as having lasted for weeks, months, or years.",
+    "author": "custom-mods"
+  }
+]

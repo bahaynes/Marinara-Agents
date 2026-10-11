@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "song-mood",
+  "name": "Song Mood",
+  "version": "1.0.0",
+  "description": "Reads the currently playing Spotify track and injects a one-line mood cue for the next reply - the inverse of the Music DJ agent. Defaults to a quick title/artist read; escalates to real lyrics via fetch_song_lyrics when unsure. Needs the Spotify integration and a fetch_song_lyrics custom tool on the instance.",
+  "engine": {
+    "min": "2.3.0",
+    "maxExclusive": "4.0.0"
+  },
+  "kind": [
+    "agent"
+  ],
+  "entrypoints": {
+    "agents": "agents.json"
+  },
+  "files": [
+    {
+      "path": "agents.json",
+      "sha256": "727d519ced2bfc2ab72a60e3cfc51fd9cf097306dd6e672fb165977f2e689adc",
+      "bytes": 2656
+    }
+  ],
+  "permissions": [
+    "agent-runtime",
+    "chat-read",
+    "prompt-context",
+    "storage",
+    "ui"
+  ],
+  "restartRequired": false
+}

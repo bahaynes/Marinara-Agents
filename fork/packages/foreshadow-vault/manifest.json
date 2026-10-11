@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "foreshadow-vault",
+  "name": "Foreshadow Vault",
+  "version": "1.0.0",
+  "description": "Post-processing watcher that detects narrative seeds/Chekhov's guns, ticks countdowns, and stores dormant items hidden in the custom tracker until ready.",
+  "engine": {
+    "min": "2.3.0",
+    "maxExclusive": "4.0.0"
+  },
+  "kind": [
+    "agent"
+  ],
+  "entrypoints": {
+    "agents": "agents.json"
+  },
+  "files": [
+    {
+      "path": "agents.json",
+      "sha256": "8d94b2b4e0e92da632c96230203ea9c821a30d3d85740eb1fc1212bb19d71429",
+      "bytes": 3535
+    }
+  ],
+  "permissions": [
+    "agent-runtime",
+    "chat-read",
+    "prompt-context",
+    "storage",
+    "ui"
+  ],
+  "restartRequired": false
+}
