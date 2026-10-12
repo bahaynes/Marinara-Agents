@@ -1,0 +1,2842 @@
+{
+  "schemaVersion": 1,
+  "id": "wasteland-special",
+  "version": 4,
+  "name": "Wasteland SPECIAL",
+  "edition": "A d20 take on SPECIAL for Fallout: New Vegas style play",
+  "coverage": {
+    "checks": true,
+    "saves": false,
+    "sheet": true,
+    "resources": true,
+    "rests": true,
+    "combat": true,
+    "summary": "d20 plus SPECIAL and skill against a difficulty, hit points, radiation, caps, guns with ammo and clips, and fights resolved by these rules on Classic or Tactical."
+  },
+  "resolution": {
+    "kind": "dice-sum",
+    "dice": {
+      "count": 1,
+      "sides": 20
+    },
+    "naturals": {
+      "check": "both",
+      "save": "none"
+    },
+    "abilityModifier": {
+      "op": "stepTable",
+      "table": [
+        [
+          1,
+          -3
+        ],
+        [
+          2,
+          -2
+        ],
+        [
+          3,
+          -1
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          10,
+          3
+        ]
+      ]
+    },
+    "proficiencyTiers": [
+      {
+        "id": "untrained",
+        "label": "Untrained"
+      },
+      {
+        "id": "trained",
+        "label": "Trained",
+        "flat": 5
+      },
+      {
+        "id": "expert",
+        "label": "Expert",
+        "flat": 8
+      }
+    ],
+    "advantage": true,
+    "difficultyLadder": [
+      {
+        "label": "Very Easy",
+        "dc": 5
+      },
+      {
+        "label": "Easy",
+        "dc": 10
+      },
+      {
+        "label": "Medium",
+        "dc": 15
+      },
+      {
+        "label": "Hard",
+        "dc": 20
+      },
+      {
+        "label": "Very Hard",
+        "dc": 25
+      },
+      {
+        "label": "Nearly Impossible",
+        "dc": 30
+      }
+    ]
+  },
+  "sheet": {
+    "version": 1,
+    "sections": [
+      {
+        "id": "about",
+        "label": "About"
+      },
+      {
+        "id": "special",
+        "label": "S.P.E.C.I.A.L."
+      },
+      {
+        "id": "skills",
+        "label": "Skills"
+      },
+      {
+        "id": "perks",
+        "label": "Perks"
+      }
+    ],
+    "abilities": [
+      {
+        "id": "strength",
+        "label": "Strength",
+        "short": "STR",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "section": "special"
+      },
+      {
+        "id": "perception",
+        "label": "Perception",
+        "short": "PER",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "section": "special"
+      },
+      {
+        "id": "endurance",
+        "label": "Endurance",
+        "short": "END",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "section": "special"
+      },
+      {
+        "id": "charisma",
+        "label": "Charisma",
+        "short": "CHA",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "section": "special"
+      },
+      {
+        "id": "intelligence",
+        "label": "Intelligence",
+        "short": "INT",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "section": "special"
+      },
+      {
+        "id": "agility",
+        "label": "Agility",
+        "short": "AGI",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "section": "special"
+      },
+      {
+        "id": "luck",
+        "label": "Luck",
+        "short": "LCK",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "section": "special"
+      }
+    ],
+    "skills": [
+      {
+        "id": "barter",
+        "label": "Barter",
+        "ability": "charisma",
+        "section": "skills",
+        "aliases": [
+          "Appraise",
+          "Trade",
+          "Haggle"
+        ]
+      },
+      {
+        "id": "chance",
+        "label": "Chance",
+        "ability": "luck",
+        "section": "skills",
+        "aliases": [
+          "Gambling"
+        ]
+      },
+      {
+        "id": "energy_weapons",
+        "label": "Energy Weapons",
+        "ability": "perception",
+        "section": "skills"
+      },
+      {
+        "id": "explosives",
+        "label": "Explosives",
+        "ability": "perception",
+        "section": "skills",
+        "aliases": [
+          "Demolitions",
+          "Traps"
+        ]
+      },
+      {
+        "id": "guns",
+        "label": "Guns",
+        "ability": "agility",
+        "section": "skills"
+      },
+      {
+        "id": "lockpick",
+        "label": "Lockpick",
+        "ability": "perception",
+        "section": "skills",
+        "aliases": [
+          "Sleight of Hand",
+          "Thieves' Tools",
+          "Open Lock",
+          "Disable Device"
+        ]
+      },
+      {
+        "id": "medicine",
+        "label": "Medicine",
+        "ability": "intelligence",
+        "section": "skills",
+        "aliases": [
+          "Heal",
+          "First Aid",
+          "Treat Wounds"
+        ]
+      },
+      {
+        "id": "melee",
+        "label": "Melee Weapons",
+        "ability": "strength",
+        "section": "skills",
+        "aliases": [
+          "Athletics",
+          "Melee"
+        ]
+      },
+      {
+        "id": "repair",
+        "label": "Repair",
+        "ability": "intelligence",
+        "section": "skills",
+        "aliases": [
+          "Craft",
+          "Engineering",
+          "Mechanics",
+          "Tinker"
+        ]
+      },
+      {
+        "id": "science",
+        "label": "Science",
+        "ability": "intelligence",
+        "section": "skills",
+        "aliases": [
+          "Investigation",
+          "Arcana",
+          "History",
+          "Knowledge",
+          "Computers",
+          "Hacking"
+        ]
+      },
+      {
+        "id": "sneak",
+        "label": "Sneak",
+        "ability": "agility",
+        "section": "skills",
+        "aliases": [
+          "Stealth",
+          "Hide",
+          "Move Silently"
+        ]
+      },
+      {
+        "id": "speech",
+        "label": "Speech",
+        "ability": "charisma",
+        "section": "skills",
+        "aliases": [
+          "Insight",
+          "Persuasion",
+          "Deception",
+          "Intimidation",
+          "Performance",
+          "Diplomacy",
+          "Bluff",
+          "Sense Motive"
+        ]
+      },
+      {
+        "id": "survival",
+        "label": "Survival",
+        "ability": "endurance",
+        "section": "skills",
+        "aliases": [
+          "Perception",
+          "Nature",
+          "Animal Handling",
+          "Tracking",
+          "Search",
+          "Spot"
+        ]
+      },
+      {
+        "id": "unarmed",
+        "label": "Unarmed",
+        "ability": "endurance",
+        "section": "skills",
+        "aliases": [
+          "Brawl",
+          "Brawling"
+        ]
+      }
+    ],
+    "fields": [
+      {
+        "id": "background",
+        "label": "Background",
+        "type": "text",
+        "maxLength": 80,
+        "section": "about"
+      },
+      {
+        "id": "level",
+        "label": "Level",
+        "type": "number",
+        "min": 1,
+        "max": 30,
+        "default": 1,
+        "section": "about"
+      }
+    ],
+    "derived": [
+      {
+        "id": "hp_from_end",
+        "label": "HP from Endurance",
+        "op": "scale",
+        "of": {
+          "abilityScore": "endurance"
+        },
+        "multiplier": 3,
+        "section": "about"
+      },
+      {
+        "id": "hp_from_level",
+        "label": "HP from level",
+        "op": "scale",
+        "of": {
+          "field": "level"
+        },
+        "multiplier": 3,
+        "section": "about"
+      },
+      {
+        "id": "hp_max",
+        "label": "Hit point maximum",
+        "op": "sum",
+        "section": "about",
+        "of": [
+          {
+            "const": 10
+          },
+          {
+            "derived": "hp_from_end"
+          },
+          {
+            "derived": "hp_from_level"
+          }
+        ]
+      },
+      {
+        "id": "defense",
+        "label": "Defense",
+        "op": "sum",
+        "section": "about",
+        "of": [
+          {
+            "const": 10
+          },
+          {
+            "abilityMod": "agility"
+          },
+          {
+            "itemStat": {
+              "stat": "defense",
+              "from": "worn",
+              "pick": "sum"
+            }
+          }
+        ]
+      },
+      {
+        "id": "speed_from_agi",
+        "label": "Speed from Agility",
+        "op": "scale",
+        "of": {
+          "abilityScore": "agility"
+        },
+        "multiplier": 1.5,
+        "section": "about"
+      },
+      {
+        "id": "speed",
+        "label": "Speed (m)",
+        "op": "sum",
+        "section": "about",
+        "of": [
+          {
+            "const": 6
+          },
+          {
+            "derived": "speed_from_agi"
+          }
+        ]
+      },
+      {
+        "id": "load_from_str",
+        "label": "Load from Strength",
+        "op": "scale",
+        "of": {
+          "abilityScore": "strength"
+        },
+        "multiplier": 3,
+        "section": "about"
+      },
+      {
+        "id": "load",
+        "label": "Carry comfortably",
+        "op": "sum",
+        "section": "about",
+        "of": [
+          {
+            "const": 10
+          },
+          {
+            "derived": "load_from_str"
+          }
+        ]
+      }
+    ],
+    "lists": [
+      {
+        "id": "perks",
+        "label": "Perks and traits",
+        "section": "perks",
+        "maxItems": 20,
+        "columns": [
+          {
+            "id": "name",
+            "label": "Name",
+            "type": "text",
+            "maxLength": 60,
+            "required": true
+          },
+          {
+            "id": "notes",
+            "label": "What it does",
+            "type": "text",
+            "maxLength": 200
+          }
+        ]
+      }
+    ],
+    "live": {
+      "pools": [
+        {
+          "id": "hp",
+          "label": "Hit points",
+          "max": {
+            "derived": "hp_max"
+          }
+        }
+      ],
+      "tracks": [
+        {
+          "id": "rads",
+          "label": "Radiation",
+          "min": 0,
+          "max": 8,
+          "default": 0,
+          "alwaysShow": true
+        }
+      ],
+      "conditions": [
+        {
+          "id": "crippled_leg",
+          "label": "Crippled leg"
+        },
+        {
+          "id": "crippled_arm",
+          "label": "Crippled arm"
+        },
+        {
+          "id": "stunned",
+          "label": "Stunned"
+        },
+        {
+          "id": "poisoned",
+          "label": "Poisoned"
+        },
+        {
+          "id": "bleeding",
+          "label": "Bleeding"
+        },
+        {
+          "id": "addicted",
+          "label": "Addicted"
+        }
+      ]
+    }
+  },
+  "rests": [
+    {
+      "id": "rest",
+      "label": "Sleep a night",
+      "restore": [
+        {
+          "pool": "hp",
+          "to": "max"
+        },
+        {
+          "track": "rads",
+          "by": {
+            "const": -1
+          }
+        }
+      ],
+      "clear": {
+        "conditions": [
+          "crippled_leg",
+          "crippled_arm",
+          "stunned"
+        ]
+      }
+    }
+  ],
+  "gm": {
+    "checkGuidance": "This game uses Wasteland SPECIAL, a d20 system for the Fallout setting. When the outcome of a risky or uncertain action is in doubt, call for a check with one skill on the sheet and pick a difficulty from the ladder: Barter, Speech and Chance for dealing and luck, Medicine and Science for knowledge, Repair, Lockpick and Sneak for craft and stealth, Survival for the wastes, and Guns, Energy Weapons, Melee Weapons, Unarmed and Explosives for violence outside a fight. The Engine rolls the d20 and adds the numbers from the sheet. Never write the result yourself.",
+    "sheetGuidance": "The character sheets below are authoritative. Hit points are the only health. Radiation is a track from 0 to 8: raise it for hot zones and tainted water or food, lower it when RadAway is used. A crippled limb is a condition, treated by a Doctor bag or a night's rest. Record Stimpaks, RadAway and other healing with the sheet commands, and record bottle caps as money. There is no VATS and no action points; a fight is one action and a move each turn. At the start of the game, give each character a starting kit from the Outfitter with the inventory command: one weapon that matches their best skill, a few rounds of matching ammunition or energy cells, one armor, a Stimpak or two, a canteen and some caps. Weapons only work in a fight while worn, and a gun needs ammunition tagged for it to reload. At 8 radiation a character is dying and dies without RadAway or a doctor.",
+    "worldGuidance": "Set in the Mojave Wasteland of 2281 as in Fallout: New Vegas: factions in conflict, scarce clean water and medicine, caps as money, ruins, creatures and radiation.",
+    "sheetSummary": {
+      "fields": [
+        "background"
+      ],
+      "derived": [
+        "hp_max",
+        "defense"
+      ],
+      "lists": [
+        {
+          "list": "perks",
+          "nameColumn": "name"
+        }
+      ]
+    }
+  },
+  "items": {
+    "categories": [
+      {
+        "id": "weapon",
+        "label": "Weapon"
+      },
+      {
+        "id": "armor",
+        "label": "Armor"
+      },
+      {
+        "id": "ammunition",
+        "label": "Ammunition"
+      },
+      {
+        "id": "aid",
+        "label": "Aid"
+      },
+      {
+        "id": "chem",
+        "label": "Chem"
+      },
+      {
+        "id": "gear",
+        "label": "Gear"
+      }
+    ],
+    "rarities": [
+      {
+        "id": "common",
+        "label": "Common"
+      },
+      {
+        "id": "uncommon",
+        "label": "Uncommon"
+      },
+      {
+        "id": "rare",
+        "label": "Rare"
+      }
+    ],
+    "tags": [
+      {
+        "id": "ranged",
+        "label": "Ranged"
+      },
+      {
+        "id": "two_handed",
+        "label": "Two-handed"
+      },
+      {
+        "id": "energy",
+        "label": "Energy weapon"
+      },
+      {
+        "id": "melee",
+        "label": "Melee"
+      },
+      {
+        "id": "bullet9",
+        "label": "9mm round"
+      },
+      {
+        "id": "bullet357",
+        "label": ".357 round"
+      },
+      {
+        "id": "bullet12",
+        "label": "12 gauge shell"
+      },
+      {
+        "id": "bullet556",
+        "label": "5.56mm round"
+      },
+      {
+        "id": "cell",
+        "label": "Energy cell"
+      },
+      {
+        "id": "rifle",
+        "label": "Rifle round"
+      }
+    ],
+    "stats": [
+      {
+        "id": "weight",
+        "label": "Weight",
+        "type": "number",
+        "min": 0,
+        "max": 40,
+        "default": 0
+      },
+      {
+        "id": "defense",
+        "label": "Defense",
+        "type": "number",
+        "min": 0,
+        "max": 6,
+        "default": 0
+      },
+      {
+        "id": "damage",
+        "label": "Damage",
+        "type": "dice",
+        "example": "1d8"
+      },
+      {
+        "id": "skill",
+        "label": "Skill",
+        "type": "enum",
+        "values": [
+          "barter",
+          "chance",
+          "energy_weapons",
+          "explosives",
+          "guns",
+          "lockpick",
+          "medicine",
+          "melee",
+          "repair",
+          "science",
+          "sneak",
+          "speech",
+          "survival",
+          "unarmed"
+        ],
+        "default": "guns"
+      },
+      {
+        "id": "aim",
+        "label": "Aims with",
+        "type": "enum",
+        "values": [
+          "strength",
+          "perception",
+          "endurance",
+          "charisma",
+          "intelligence",
+          "agility",
+          "luck"
+        ],
+        "default": "agility"
+      },
+      {
+        "id": "power",
+        "label": "Strength bonus",
+        "type": "enum",
+        "values": [
+          "strength",
+          "perception",
+          "endurance",
+          "charisma",
+          "intelligence",
+          "agility",
+          "luck"
+        ],
+        "default": "strength"
+      },
+      {
+        "id": "harm",
+        "label": "Kind of harm",
+        "type": "text",
+        "maxLength": 20
+      }
+    ],
+    "slots": [
+      {
+        "id": "body",
+        "label": "Body",
+        "count": 1
+      },
+      {
+        "id": "hands",
+        "label": "Hands",
+        "count": 2
+      }
+    ],
+    "carry": {
+      "stat": "weight",
+      "encumberedAbove": {
+        "derived": "load"
+      },
+      "limit": {
+        "const": 60
+      }
+    },
+    "rarityCaps": [
+      {
+        "rarity": "common",
+        "stats": {
+          "defense": 2
+        },
+        "bonus": 1
+      },
+      {
+        "rarity": "uncommon",
+        "stats": {
+          "defense": 3
+        },
+        "bonus": 1
+      },
+      {
+        "rarity": "rare",
+        "stats": {
+          "defense": 5
+        },
+        "bonus": 2
+      }
+    ],
+    "currencies": [
+      {
+        "id": "caps",
+        "label": "Bottle caps",
+        "perWeight": 200,
+        "units": [
+          {
+            "id": "cap",
+            "label": "caps",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "ncr",
+        "label": "NCR dollars",
+        "perWeight": 100,
+        "units": [
+          {
+            "id": "dollar",
+            "label": "dollars",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "legion",
+        "label": "Legion coin",
+        "perWeight": 50,
+        "units": [
+          {
+            "id": "denarius",
+            "label": "denarii",
+            "value": 1
+          },
+          {
+            "id": "aureus",
+            "label": "aurei",
+            "value": 25
+          }
+        ]
+      }
+    ]
+  },
+  "catalogs": [
+    {
+      "id": "perks",
+      "label": "Perks",
+      "feeds": [
+        "perks"
+      ],
+      "filters": [
+        {
+          "id": "theme",
+          "label": "Theme",
+          "type": "text"
+        }
+      ],
+      "entries": [
+        {
+          "id": "field-surgeon",
+          "label": "Field Surgeon",
+          "summary": "Treats injuries quickly in the field.",
+          "filters": {
+            "theme": "Medical"
+          },
+          "rows": [
+            {
+              "list": "perks",
+              "values": {
+                "name": "Field Surgeon",
+                "notes": "Medicine checks to treat crippled limbs and wounds are easier."
+              }
+            }
+          ]
+        },
+        {
+          "id": "cautious-nature",
+          "label": "Cautious Nature",
+          "summary": "Reads danger before it arrives.",
+          "filters": {
+            "theme": "Survival"
+          },
+          "rows": [
+            {
+              "list": "perks",
+              "values": {
+                "name": "Cautious Nature",
+                "notes": "Survival and Sneak checks to spot ambushes are easier."
+              }
+            }
+          ]
+        },
+        {
+          "id": "silver-tongue",
+          "label": "Silver Tongue",
+          "summary": "Talks his way out of trouble.",
+          "filters": {
+            "theme": "Social"
+          },
+          "rows": [
+            {
+              "list": "perks",
+              "values": {
+                "name": "Silver Tongue",
+                "notes": "Speech and Barter checks against strangers are easier."
+              }
+            }
+          ]
+        },
+        {
+          "id": "gunslinger",
+          "label": "Gunslinger",
+          "summary": "Quick on the draw.",
+          "filters": {
+            "theme": "Combat"
+          },
+          "rows": [
+            {
+              "list": "perks",
+              "values": {
+                "name": "Gunslinger",
+                "notes": "Wins ties on initiative; pistol shots are easier."
+              }
+            }
+          ]
+        },
+        {
+          "id": "tinkerer",
+          "label": "Tinkerer",
+          "summary": "Repairs and rigs anything.",
+          "filters": {
+            "theme": "Craft"
+          },
+          "rows": [
+            {
+              "list": "perks",
+              "values": {
+                "name": "Tinkerer",
+                "notes": "Repair and Science checks are easier."
+              }
+            }
+          ]
+        },
+        {
+          "id": "vault-raised",
+          "label": "Vault Raised",
+          "summary": "Educated but unseasoned.",
+          "filters": {
+            "theme": "Background"
+          },
+          "rows": [
+            {
+              "list": "perks",
+              "values": {
+                "name": "Vault Raised",
+                "notes": "Science and Medicine are easier; Survival and Barter on the surface are harder."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "outfitter",
+      "label": "Outfitter",
+      "holds": "items",
+      "entries": [
+        {
+          "id": "pistol-9mm",
+          "label": "9mm pistol",
+          "summary": "A reliable sidearm, the most common gun in the Mojave.",
+          "item": {
+            "category": "weapon",
+            "rarity": "common",
+            "tags": [
+              "ranged"
+            ],
+            "stats": {
+              "weight": 3,
+              "damage": "1d10",
+              "skill": "guns",
+              "aim": "agility",
+              "harm": "ballistic"
+            },
+            "slots": {
+              "hands": 1
+            },
+            "cost": {
+              "amount": 120,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                }
+              },
+              "range": {
+                "normal": 15,
+                "long": 30
+              },
+              "ammo": {
+                "tag": "bullet9"
+              },
+              "clip": {
+                "max": 12,
+                "reload": "action"
+              }
+            }
+          }
+        },
+        {
+          "id": "revolver-357",
+          "label": ".357 revolver",
+          "summary": "Heavy, slow to reload, hits hard.",
+          "item": {
+            "category": "weapon",
+            "rarity": "common",
+            "tags": [
+              "ranged"
+            ],
+            "stats": {
+              "weight": 4,
+              "damage": "2d6",
+              "skill": "guns",
+              "aim": "agility",
+              "harm": "ballistic"
+            },
+            "slots": {
+              "hands": 1
+            },
+            "cost": {
+              "amount": 200,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                }
+              },
+              "range": {
+                "normal": 18,
+                "long": 36
+              },
+              "ammo": {
+                "tag": "bullet357"
+              },
+              "clip": {
+                "max": 6,
+                "reload": "action"
+              }
+            }
+          }
+        },
+        {
+          "id": "hunting-rifle",
+          "label": "Hunting rifle",
+          "summary": "Bolt-action, accurate, favoured by scavengers.",
+          "item": {
+            "category": "weapon",
+            "rarity": "common",
+            "tags": [
+              "ranged",
+              "two_handed"
+            ],
+            "stats": {
+              "weight": 6,
+              "damage": "2d8",
+              "skill": "guns",
+              "aim": "perception",
+              "harm": "ballistic"
+            },
+            "slots": {
+              "hands": 2
+            },
+            "cost": {
+              "amount": 260,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                }
+              },
+              "range": {
+                "normal": 30,
+                "long": 60
+              },
+              "ammo": {
+                "tag": "rifle"
+              },
+              "clip": {
+                "max": 5,
+                "reload": "action"
+              }
+            }
+          }
+        },
+        {
+          "id": "cowboy-repeater",
+          "label": "Cowboy repeater",
+          "summary": "A lever-action rifle in .357.",
+          "item": {
+            "category": "weapon",
+            "rarity": "common",
+            "tags": [
+              "ranged",
+              "two_handed"
+            ],
+            "stats": {
+              "weight": 6,
+              "damage": "2d6",
+              "skill": "guns",
+              "aim": "agility",
+              "harm": "ballistic"
+            },
+            "slots": {
+              "hands": 2
+            },
+            "cost": {
+              "amount": 220,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                }
+              },
+              "range": {
+                "normal": 24,
+                "long": 48
+              },
+              "ammo": {
+                "tag": "bullet357"
+              },
+              "clip": {
+                "max": 8,
+                "reload": "action"
+              }
+            }
+          }
+        },
+        {
+          "id": "combat-shotgun",
+          "label": "Combat shotgun",
+          "summary": "Devastating up close.",
+          "item": {
+            "category": "weapon",
+            "rarity": "common",
+            "tags": [
+              "ranged",
+              "two_handed"
+            ],
+            "stats": {
+              "weight": 8,
+              "damage": "3d6",
+              "skill": "guns",
+              "aim": "agility",
+              "harm": "ballistic"
+            },
+            "slots": {
+              "hands": 2
+            },
+            "cost": {
+              "amount": 300,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                }
+              },
+              "range": {
+                "normal": 9,
+                "long": 18
+              },
+              "ammo": {
+                "tag": "bullet12"
+              },
+              "clip": {
+                "max": 6,
+                "reload": "action"
+              }
+            }
+          }
+        },
+        {
+          "id": "service-rifle",
+          "label": "NCR service rifle",
+          "summary": "Standard NCR infantry rifle.",
+          "item": {
+            "category": "weapon",
+            "rarity": "uncommon",
+            "tags": [
+              "ranged",
+              "two_handed"
+            ],
+            "stats": {
+              "weight": 7,
+              "damage": "2d8",
+              "skill": "guns",
+              "aim": "agility",
+              "harm": "ballistic"
+            },
+            "slots": {
+              "hands": 2
+            },
+            "cost": {
+              "amount": 350,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                }
+              },
+              "range": {
+                "normal": 30,
+                "long": 60
+              },
+              "ammo": {
+                "tag": "bullet556"
+              },
+              "clip": {
+                "max": 10,
+                "reload": "action"
+              }
+            }
+          }
+        },
+        {
+          "id": "laser-pistol",
+          "label": "Laser pistol",
+          "summary": "Clean, quiet, hard to find.",
+          "item": {
+            "category": "weapon",
+            "rarity": "uncommon",
+            "tags": [
+              "ranged",
+              "energy"
+            ],
+            "stats": {
+              "weight": 3,
+              "damage": "2d6",
+              "skill": "energy_weapons",
+              "aim": "perception",
+              "harm": "energy"
+            },
+            "slots": {
+              "hands": 1
+            },
+            "cost": {
+              "amount": 400,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                }
+              },
+              "range": {
+                "normal": 18,
+                "long": 36
+              },
+              "ammo": {
+                "tag": "cell"
+              },
+              "clip": {
+                "max": 12,
+                "reload": "action"
+              }
+            }
+          }
+        },
+        {
+          "id": "laser-rifle",
+          "label": "Laser rifle",
+          "summary": "A long-range energy rifle.",
+          "item": {
+            "category": "weapon",
+            "rarity": "rare",
+            "tags": [
+              "ranged",
+              "two_handed",
+              "energy"
+            ],
+            "stats": {
+              "weight": 6,
+              "damage": "3d6",
+              "skill": "energy_weapons",
+              "aim": "perception",
+              "harm": "energy"
+            },
+            "slots": {
+              "hands": 2
+            },
+            "cost": {
+              "amount": 700,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                }
+              },
+              "range": {
+                "normal": 36,
+                "long": 72
+              },
+              "ammo": {
+                "tag": "cell"
+              },
+              "clip": {
+                "max": 12,
+                "reload": "action"
+              }
+            }
+          }
+        },
+        {
+          "id": "combat-knife",
+          "label": "Combat knife",
+          "summary": "Short, sharp, easy to hide.",
+          "item": {
+            "category": "weapon",
+            "rarity": "common",
+            "tags": [
+              "melee"
+            ],
+            "stats": {
+              "weight": 1,
+              "damage": "1d8",
+              "skill": "melee",
+              "aim": "strength",
+              "harm": "melee"
+            },
+            "slots": {
+              "hands": 1
+            },
+            "cost": {
+              "amount": 40,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                },
+                "abilities": {
+                  "stat": "power"
+                }
+              },
+              "reach": 3
+            }
+          }
+        },
+        {
+          "id": "machete",
+          "label": "Machete",
+          "summary": "A Legion favourite.",
+          "item": {
+            "category": "weapon",
+            "rarity": "common",
+            "tags": [
+              "melee"
+            ],
+            "stats": {
+              "weight": 2,
+              "damage": "1d10",
+              "skill": "melee",
+              "aim": "strength",
+              "harm": "melee"
+            },
+            "slots": {
+              "hands": 1
+            },
+            "cost": {
+              "amount": 70,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                },
+                "abilities": {
+                  "stat": "power"
+                }
+              },
+              "reach": 3
+            }
+          }
+        },
+        {
+          "id": "sledgehammer",
+          "label": "Sledgehammer",
+          "summary": "Ugly and effective.",
+          "item": {
+            "category": "weapon",
+            "rarity": "common",
+            "tags": [
+              "melee",
+              "two_handed"
+            ],
+            "stats": {
+              "weight": 9,
+              "damage": "2d8",
+              "skill": "melee",
+              "aim": "strength",
+              "harm": "melee"
+            },
+            "slots": {
+              "hands": 2
+            },
+            "cost": {
+              "amount": 150,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                },
+                "abilities": {
+                  "stat": "power"
+                }
+              },
+              "reach": 3
+            }
+          }
+        },
+        {
+          "id": "brass-knuckles",
+          "label": "Brass knuckles",
+          "summary": "For closer arguments.",
+          "item": {
+            "category": "weapon",
+            "rarity": "common",
+            "tags": [
+              "melee"
+            ],
+            "stats": {
+              "weight": 1,
+              "damage": "1d6",
+              "skill": "unarmed",
+              "aim": "agility",
+              "harm": "melee"
+            },
+            "slots": {
+              "hands": 1
+            },
+            "cost": {
+              "amount": 30,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                },
+                "abilities": {
+                  "stat": "power"
+                }
+              },
+              "reach": 3
+            }
+          }
+        },
+        {
+          "id": "leather-armor",
+          "label": "Leather armor",
+          "summary": "Light, quiet and common.",
+          "item": {
+            "category": "armor",
+            "rarity": "common",
+            "stats": {
+              "weight": 6,
+              "defense": 1
+            },
+            "slots": {
+              "body": 1
+            },
+            "cost": {
+              "amount": 80,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "raider-armor",
+          "label": "Raider armor",
+          "summary": "Scrap plates over leather.",
+          "item": {
+            "category": "armor",
+            "rarity": "common",
+            "stats": {
+              "weight": 10,
+              "defense": 2
+            },
+            "slots": {
+              "body": 1
+            },
+            "cost": {
+              "amount": 150,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "metal-armor",
+          "label": "Metal armor",
+          "summary": "Stamped plates; heavy.",
+          "item": {
+            "category": "armor",
+            "rarity": "uncommon",
+            "stats": {
+              "weight": 18,
+              "defense": 3
+            },
+            "slots": {
+              "body": 1
+            },
+            "cost": {
+              "amount": 300,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "combat-armor",
+          "label": "Combat armor",
+          "summary": "Military issue; the NCR Rangers wear it.",
+          "item": {
+            "category": "armor",
+            "rarity": "rare",
+            "stats": {
+              "weight": 12,
+              "defense": 4
+            },
+            "slots": {
+              "body": 1
+            },
+            "cost": {
+              "amount": 600,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "ammo-9mm",
+          "label": "9mm rounds",
+          "summary": "A handful of 9mm.",
+          "item": {
+            "category": "ammunition",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 8,
+              "unit": "cap"
+            },
+            "tags": [
+              "bullet9"
+            ]
+          }
+        },
+        {
+          "id": "ammo-357",
+          "label": ".357 rounds",
+          "summary": "A handful of .357.",
+          "item": {
+            "category": "ammunition",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 12,
+              "unit": "cap"
+            },
+            "tags": [
+              "bullet357"
+            ]
+          }
+        },
+        {
+          "id": "ammo-12ga",
+          "label": "12 gauge shells",
+          "summary": "A box of shells.",
+          "item": {
+            "category": "ammunition",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 12,
+              "unit": "cap"
+            },
+            "tags": [
+              "bullet12"
+            ]
+          }
+        },
+        {
+          "id": "ammo-556",
+          "label": "5.56mm rounds",
+          "summary": "NCR issue rifle rounds.",
+          "item": {
+            "category": "ammunition",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 12,
+              "unit": "cap"
+            },
+            "tags": [
+              "bullet556"
+            ]
+          }
+        },
+        {
+          "id": "ammo-rifle",
+          "label": "Rifle rounds",
+          "summary": ".308 and similar.",
+          "item": {
+            "category": "ammunition",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 14,
+              "unit": "cap"
+            },
+            "tags": [
+              "rifle"
+            ]
+          }
+        },
+        {
+          "id": "energy-cell",
+          "label": "Microfusion cell",
+          "summary": "Power for laser weapons.",
+          "item": {
+            "category": "ammunition",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 20,
+              "unit": "cap"
+            },
+            "tags": [
+              "cell"
+            ]
+          }
+        },
+        {
+          "id": "stimpak",
+          "label": "Stimpak",
+          "summary": "Boosts healing; heals about 10 hit points when used.",
+          "item": {
+            "category": "aid",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 60,
+              "unit": "cap"
+            },
+            "use": {
+              "kind": "heal",
+              "budget": "action",
+              "range": 0,
+              "targets": "ally",
+              "amount": {
+                "dice": "2d6",
+                "flat": 3
+              },
+              "consumes": true
+            }
+          }
+        },
+        {
+          "id": "doctors-bag",
+          "label": "Doctor's bag",
+          "summary": "Mends crippled limbs and treats injuries; three uses between rests.",
+          "item": {
+            "category": "aid",
+            "rarity": "common",
+            "stats": {
+              "weight": 2
+            },
+            "cost": {
+              "amount": 90,
+              "unit": "cap"
+            },
+            "stack": 1,
+            "charges": {
+              "max": 3,
+              "recharge": {
+                "rests": [
+                  "rest"
+                ],
+                "amount": "max"
+              }
+            },
+            "use": {
+              "kind": "heal",
+              "budget": "action",
+              "range": 0,
+              "targets": "ally",
+              "amount": {
+                "dice": "2d4",
+                "flat": 2
+              },
+              "charges": 1
+            }
+          }
+        },
+        {
+          "id": "radaway",
+          "label": "RadAway",
+          "summary": "Flushes radiation: lower radiation by 2.",
+          "item": {
+            "category": "aid",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 50,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "rad-x",
+          "label": "Rad-X",
+          "summary": "Taken before exposure; resist radiation for an hour.",
+          "item": {
+            "category": "aid",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 40,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "anti-venom",
+          "label": "Anti-venom",
+          "summary": "Cures poison from cazadores and scorpions.",
+          "item": {
+            "category": "aid",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 70,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "surgical-kit",
+          "label": "Surgical kit",
+          "summary": "Sterile tools for operations.",
+          "item": {
+            "category": "gear",
+            "rarity": "common",
+            "stats": {
+              "weight": 2
+            },
+            "cost": {
+              "amount": 120,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "med-x",
+          "label": "Med-X",
+          "summary": "A powerful painkiller.",
+          "item": {
+            "category": "chem",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 50,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "jet",
+          "label": "Jet",
+          "summary": "Fast, short high; addictive.",
+          "item": {
+            "category": "chem",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 40,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "purified-water",
+          "label": "Purified water",
+          "summary": "Safe to drink.",
+          "item": {
+            "category": "gear",
+            "rarity": "common",
+            "stats": {
+              "weight": 1
+            },
+            "cost": {
+              "amount": 15,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "canteen",
+          "label": "Canteen",
+          "summary": "Holds water.",
+          "item": {
+            "category": "gear",
+            "rarity": "common",
+            "stats": {
+              "weight": 1
+            },
+            "cost": {
+              "amount": 10,
+              "unit": "cap"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wasteland",
+      "label": "Wasteland threats",
+      "holds": "creatures",
+      "filters": [
+        {
+          "id": "tier",
+          "label": "Tier",
+          "type": "text"
+        },
+        {
+          "id": "habitat",
+          "label": "Habitat",
+          "type": "text"
+        }
+      ],
+      "entries": [
+        {
+          "id": "gecko",
+          "label": "Gecko",
+          "summary": "Dog-sized lizard.",
+          "filters": {
+            "tier": "Scavenger",
+            "habitat": "Desert"
+          },
+          "creature": {
+            "health": {
+              "dice": "2d6"
+            },
+            "defense": 11,
+            "initiativeModifier": 1,
+            "speed": 9,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "scavenger",
+            "actions": [
+              {
+                "id": "bite",
+                "name": "Bite",
+                "budget": "action",
+                "toHit": 1,
+                "damage": {
+                  "dice": "1d4",
+                  "type": "melee"
+                },
+                "reach": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "radscorpion",
+          "label": "Radscorpion",
+          "summary": "Giant scorpion with potent venom.",
+          "filters": {
+            "tier": "Beast",
+            "habitat": "Desert"
+          },
+          "creature": {
+            "health": {
+              "dice": "3d8"
+            },
+            "defense": 12,
+            "initiativeModifier": 0,
+            "speed": 6,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "beast",
+            "actions": [
+              {
+                "id": "sting",
+                "name": "Sting",
+                "budget": "action",
+                "toHit": 3,
+                "damage": {
+                  "dice": "1d8",
+                  "type": "melee"
+                },
+                "reach": 3,
+                "applies": [
+                  {
+                    "condition": "poisoned",
+                    "duration": {
+                      "rounds": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "cazador",
+          "label": "Cazador",
+          "summary": "Mutated tarantula hawk. Erratic, fast, lethal venom.",
+          "filters": {
+            "tier": "Beast",
+            "habitat": "Mountains"
+          },
+          "creature": {
+            "health": {
+              "dice": "2d8"
+            },
+            "defense": 13,
+            "initiativeModifier": 3,
+            "speed": 18,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "beast",
+            "actions": [
+              {
+                "id": "sting",
+                "name": "Sting",
+                "budget": "action",
+                "toHit": 4,
+                "damage": {
+                  "dice": "1d6",
+                  "type": "melee"
+                },
+                "reach": 3,
+                "applies": [
+                  {
+                    "condition": "poisoned",
+                    "duration": {
+                      "rounds": 4
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "night-stalker",
+          "label": "Night stalker",
+          "summary": "Rattlesnake-coyote hybrid, hunts in packs.",
+          "filters": {
+            "tier": "Beast",
+            "habitat": "Night"
+          },
+          "creature": {
+            "health": {
+              "dice": "2d8"
+            },
+            "defense": 12,
+            "initiativeModifier": 2,
+            "speed": 12,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "beast",
+            "actions": [
+              {
+                "id": "bite",
+                "name": "Bite",
+                "budget": "action",
+                "toHit": 3,
+                "damage": {
+                  "dice": "1d8",
+                  "type": "melee"
+                },
+                "reach": 3,
+                "applies": [
+                  {
+                    "condition": "poisoned",
+                    "duration": {
+                      "rounds": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "feral-ghoul",
+          "label": "Feral ghoul",
+          "summary": "Mindless, fast, radioactive.",
+          "filters": {
+            "tier": "Scavenger",
+            "habitat": "Ruins"
+          },
+          "creature": {
+            "health": {
+              "dice": "2d8"
+            },
+            "defense": 11,
+            "initiativeModifier": 0,
+            "speed": 9,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "scavenger",
+            "actions": [
+              {
+                "id": "claw",
+                "name": "Claw",
+                "budget": "action",
+                "toHit": 1,
+                "damage": {
+                  "dice": "1d6",
+                  "type": "melee"
+                },
+                "reach": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "viper-gunslinger",
+          "label": "Viper gunslinger",
+          "summary": "A Viper ambusher with an old rifle or pistol.",
+          "filters": {
+            "tier": "Raider",
+            "habitat": "Roads"
+          },
+          "creature": {
+            "health": {
+              "dice": "2d8"
+            },
+            "defense": 12,
+            "initiativeModifier": 2,
+            "speed": 9,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "raider",
+            "actions": [
+              {
+                "id": "shot",
+                "name": "Shoot",
+                "budget": "action",
+                "toHit": 1,
+                "damage": {
+                  "dice": "1d8",
+                  "type": "ballistic"
+                },
+                "range": {
+                  "normal": 15,
+                  "long": 30
+                }
+              },
+              {
+                "id": "knife",
+                "name": "Knife",
+                "budget": "action",
+                "toHit": 1,
+                "damage": {
+                  "dice": "1d6",
+                  "type": "melee"
+                },
+                "reach": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "fiend",
+          "label": "Fiend",
+          "summary": "Chem-crazed raider with a scavenged gun or blade.",
+          "filters": {
+            "tier": "Raider",
+            "habitat": "Ruins"
+          },
+          "creature": {
+            "health": {
+              "dice": "2d8"
+            },
+            "defense": 11,
+            "initiativeModifier": 1,
+            "speed": 10,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "raider",
+            "actions": [
+              {
+                "id": "blast",
+                "name": "Shoot",
+                "budget": "action",
+                "toHit": 1,
+                "damage": {
+                  "dice": "1d10",
+                  "type": "ballistic"
+                },
+                "range": {
+                  "normal": 12,
+                  "long": 24
+                }
+              },
+              {
+                "id": "hack",
+                "name": "Hack",
+                "budget": "action",
+                "toHit": 1,
+                "damage": {
+                  "dice": "1d8",
+                  "type": "melee"
+                },
+                "reach": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "powder-ganger",
+          "label": "Powder Ganger",
+          "summary": "Escaped convict with dynamite and a pistol.",
+          "filters": {
+            "tier": "Raider",
+            "habitat": "Roads"
+          },
+          "creature": {
+            "health": {
+              "dice": "2d8"
+            },
+            "defense": 11,
+            "initiativeModifier": 0,
+            "speed": 9,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "raider",
+            "actions": [
+              {
+                "id": "shot",
+                "name": "Shoot",
+                "budget": "action",
+                "toHit": 0,
+                "damage": {
+                  "dice": "1d8",
+                  "type": "ballistic"
+                },
+                "range": {
+                  "normal": 15,
+                  "long": 30
+                }
+              },
+              {
+                "id": "blast",
+                "name": "Dynamite",
+                "budget": "action",
+                "toHit": 0,
+                "damage": {
+                  "dice": "2d6",
+                  "type": "explosive"
+                },
+                "range": {
+                  "normal": 12,
+                  "long": 18
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "rattler-cole",
+          "label": "Rattler Cole",
+          "summary": "Viper leader. Cunning, wants clean chems.",
+          "filters": {
+            "tier": "Elite",
+            "habitat": "Roads"
+          },
+          "creature": {
+            "health": {
+              "dice": "5d8"
+            },
+            "defense": 14,
+            "initiativeModifier": 3,
+            "speed": 10,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "elite",
+            "actions": [
+              {
+                "id": "shot",
+                "name": "Shoot",
+                "budget": "action",
+                "toHit": 4,
+                "damage": {
+                  "dice": "1d12",
+                  "type": "ballistic"
+                },
+                "range": {
+                  "normal": 18,
+                  "long": 36
+                }
+              },
+              {
+                "id": "knife",
+                "name": "Poisoned knife",
+                "budget": "action",
+                "toHit": 4,
+                "damage": {
+                  "dice": "1d6",
+                  "type": "melee"
+                },
+                "reach": 3,
+                "applies": [
+                  {
+                    "condition": "poisoned",
+                    "duration": {
+                      "rounds": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "super-mutant",
+          "label": "Super mutant",
+          "summary": "Huge and tough.",
+          "filters": {
+            "tier": "Elite",
+            "habitat": "Mountains"
+          },
+          "creature": {
+            "health": {
+              "dice": "6d8"
+            },
+            "defense": 13,
+            "initiativeModifier": 0,
+            "speed": 9,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "elite",
+            "actions": [
+              {
+                "id": "club",
+                "name": "Club",
+                "budget": "action",
+                "toHit": 4,
+                "damage": {
+                  "dice": "2d8",
+                  "type": "melee"
+                },
+                "reach": 3
+              },
+              {
+                "id": "rifle",
+                "name": "Rifle",
+                "budget": "action",
+                "toHit": 3,
+                "damage": {
+                  "dice": "1d12",
+                  "type": "ballistic"
+                },
+                "range": {
+                  "normal": 20,
+                  "long": 40
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "young-deathclaw",
+          "label": "Young deathclaw",
+          "summary": "Fast, armoured, relentless. Run.",
+          "filters": {
+            "tier": "Apex",
+            "habitat": "Quarries"
+          },
+          "creature": {
+            "health": {
+              "dice": "10d10"
+            },
+            "defense": 15,
+            "initiativeModifier": 2,
+            "speed": 18,
+            "abilities": {
+              "strength": 0,
+              "perception": 0,
+              "endurance": 0,
+              "charisma": 0,
+              "intelligence": 0,
+              "agility": 0,
+              "luck": 0
+            },
+            "tier": "apex",
+            "actions": [
+              {
+                "id": "claw",
+                "name": "Claw",
+                "budget": "action",
+                "toHit": 8,
+                "damage": {
+                  "dice": "2d10",
+                  "type": "melee"
+                },
+                "reach": 3
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "battle": {
+    "health": {
+      "pool": "hp"
+    }
+  },
+  "combat": {
+    "kind": "attack-vs-defense",
+    "health": {
+      "pool": "hp"
+    },
+    "defense": {
+      "derived": "defense"
+    },
+    "initiative": {
+      "dice": {
+        "count": 1,
+        "sides": 20
+      },
+      "modifier": {
+        "abilityMod": "perception"
+      }
+    },
+    "attackRoll": {
+      "dice": {
+        "count": 1,
+        "sides": 20
+      },
+      "advantage": true,
+      "naturals": {
+        "max": "critical",
+        "min": "miss"
+      },
+      "critical": "double-dice"
+    },
+    "economy": {
+      "budgets": [
+        {
+          "id": "action",
+          "label": "Action",
+          "per": "turn",
+          "count": 1
+        }
+      ],
+      "movement": {
+        "derived": "speed"
+      }
+    },
+    "distance": {
+      "label": "m",
+      "perCell": 3
+    },
+    "ranged": {
+      "long": "disadvantage",
+      "adjacentFoe": "disadvantage"
+    },
+    "cover": {
+      "bonus": 2
+    },
+    "standard": [
+      "dash",
+      "disengage",
+      "dodge",
+      "help"
+    ],
+    "damageTypes": [
+      "ballistic",
+      "energy",
+      "melee",
+      "explosive",
+      "poison",
+      "radiation"
+    ],
+    "conditions": [
+      {
+        "condition": "crippled_leg",
+        "modifiers": [
+          {
+            "to": "speed",
+            "times": 0.5
+          },
+          {
+            "to": "defense",
+            "flat": -1
+          }
+        ]
+      },
+      {
+        "condition": "crippled_arm",
+        "modifiers": [
+          {
+            "to": "attacks",
+            "flat": -2
+          }
+        ]
+      },
+      {
+        "condition": "stunned",
+        "effects": [
+          "cannot-act"
+        ]
+      },
+      {
+        "condition": "poisoned",
+        "modifiers": [
+          {
+            "to": "attacks",
+            "flat": -1
+          },
+          {
+            "to": "checks",
+            "flat": -1
+          }
+        ]
+      }
+    ],
+    "levels": [
+      {
+        "track": "rads",
+        "at": 2,
+        "modifiers": [
+          {
+            "to": "checks",
+            "flat": -1
+          }
+        ]
+      },
+      {
+        "track": "rads",
+        "at": 4,
+        "modifiers": [
+          {
+            "to": "checks",
+            "flat": -1
+          },
+          {
+            "to": "attacks",
+            "flat": -1
+          }
+        ]
+      },
+      {
+        "track": "rads",
+        "at": 6,
+        "modifiers": [
+          {
+            "to": "checks",
+            "flat": -1
+          },
+          {
+            "to": "attacks",
+            "flat": -1
+          },
+          {
+            "to": "speed",
+            "times": 0.5
+          }
+        ]
+      }
+    ],
+    "threat": {
+      "tiers": [
+        {
+          "id": "scavenger",
+          "label": "Scavenger",
+          "health": [
+            6,
+            12
+          ],
+          "defense": 11,
+          "toHit": 1,
+          "damagePerRound": [
+            2,
+            4
+          ],
+          "saveDifficulty": 0
+        },
+        {
+          "id": "beast",
+          "label": "Beast",
+          "health": [
+            12,
+            28
+          ],
+          "defense": 12,
+          "toHit": 3,
+          "damagePerRound": [
+            4,
+            8
+          ],
+          "saveDifficulty": 0
+        },
+        {
+          "id": "raider",
+          "label": "Raider",
+          "health": [
+            8,
+            16
+          ],
+          "defense": 12,
+          "toHit": 1,
+          "damagePerRound": [
+            3,
+            5
+          ],
+          "saveDifficulty": 0
+        },
+        {
+          "id": "elite",
+          "label": "Elite",
+          "health": [
+            20,
+            45
+          ],
+          "defense": 14,
+          "toHit": 4,
+          "damagePerRound": [
+            6,
+            10
+          ],
+          "saveDifficulty": 0
+        },
+        {
+          "id": "apex",
+          "label": "Apex",
+          "health": [
+            60,
+            120
+          ],
+          "defense": 15,
+          "toHit": 8,
+          "damagePerRound": [
+            14,
+            24
+          ],
+          "saveDifficulty": 0
+        }
+      ]
+    }
+  },
+  "layers": [
+    {
+      "id": "hardcore",
+      "label": "Hardcore",
+      "summary": "Water, food and sleep matter. Healing is slower and checks are a little harder.",
+      "gm": {
+        "guidance": "Hardcore is on. Track thirst, hunger and sleep in the narration: a character who ignores them suffers a penalty on checks until they drink, eat or rest. Stimpaks and clean water are scarce, so make the party ration them, and a crippled limb needs a Doctor bag or a night's rest.",
+        "worldGuidance": "Hardcore is on. Clean water, food and medicine are scarce; make the journey itself a hazard."
+      },
+      "difficultyLadder": [
+        {
+          "label": "Very Easy",
+          "dc": 6
+        },
+        {
+          "label": "Easy",
+          "dc": 11
+        },
+        {
+          "label": "Medium",
+          "dc": 16
+        },
+        {
+          "label": "Hard",
+          "dc": 21
+        },
+        {
+          "label": "Very Hard",
+          "dc": 26
+        },
+        {
+          "label": "Nearly Impossible",
+          "dc": 31
+        }
+      ]
+    }
+  ]
+}
