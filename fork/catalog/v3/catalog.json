@@ -2632,7 +2632,7 @@
         },
         "id": "long-term-memory",
         "name": "Long-Term Memory",
-        "version": "1.4.23",
+        "version": "1.4.28",
         "description": "Remembers important things from your chat summaries, characters, and lorebooks, and brings them back when they matter. Enable it per chat from Chat Settings → Agents → Long-Term Memory. In Roleplay and Game, you can also add it from Chat Settings → Agents → Misc Agents.",
         "engine": {
           "min": "2.4.1",
@@ -2664,13 +2664,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "e57ff38ed2cc65d9880b5429c19a84d9346b82689151e4523570f2a5d3cda399",
-            "bytes": 466092
+            "sha256": "ba123963bec02b84997356e39a10dce0f7f354076906b78a4cfddbb47829d368",
+            "bytes": 466725
           },
           {
             "path": "client.js",
-            "sha256": "51983b72ef5e8ac37872f4c7ee0549ed2966d555259e53a3667d9ffbe48f1bff",
-            "bytes": 1000671
+            "sha256": "0a37b3208f487e9418b6427045ddff8d92acc95fa7a0e0ee6b158420844e75f9",
+            "bytes": 1014754
           }
         ],
         "permissions": [
@@ -2686,9 +2686,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/long-term-memory.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/long-term-memory-1.4.23.zip",
-        "sha256": "d0baa9e716c477dae461378cf94658d8c6c673e7bf9b401e66ca9afb5c1c27b6",
-        "bytes": 1469263
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/long-term-memory-1.4.28.zip",
+        "sha256": "e7f6c104642ace6c169f3d90128a4a1dce15c36f53a09345ba046b1ab4e70fda",
+        "bytes": 1483979
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents#long-term-memory"
     },
@@ -3697,7 +3697,7 @@
         },
         "id": "slurp2",
         "name": "Slurp",
-        "version": "0.3.20",
+        "version": "0.3.28",
         "description": "A private social app for your characters. Turn characters and personas into Creators, post public or locked photos, and watch a simulated audience follow, subscribe, unlock, comment, and message them. By default, it is tuned for an adult experience. Install it, restart Marinara Engine when prompted, then open Home → Slurp.",
         "localizations": {
           "de": {
@@ -3764,13 +3764,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "66fe0c9ed63fc30622986b3017611445d2e9c6d04435da86c19a485272f54b6c",
-            "bytes": 3375042
+            "sha256": "66c06b38ab7fd2c7d716367547bac3fed66ac8b9b283aaec56f9a30f82bd49de",
+            "bytes": 3391389
           },
           {
             "path": "client.js",
-            "sha256": "06834cd2c2dd9ada56dafc1de87b26fbc10f74de2c629bac0a972819f24d8048",
-            "bytes": 4536458
+            "sha256": "873696258619fd5f7567f8c29374d382fb5b7ec24c728a0b0b7ca6c1a53cc916",
+            "bytes": 4563848
           },
           {
             "path": "slurp2-logo.png",
@@ -3784,18 +3784,18 @@
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/de.json",
-            "sha256": "cf977fc706f2f68ad1a21fc3660d7d0f40f05e491638c26a105d53701fc89709",
-            "bytes": 211731
+            "sha256": "9cdd3915ea57211d64dcf6cfa1e40e7740245344af7128d4e9bd96cfd6c4a6dd",
+            "bytes": 215468
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/ko.json",
-            "sha256": "a1b3d54d7cc1d166b1a7ebe41cadb230be38527b11b719440751b974f1ea99e7",
-            "bytes": 307725
+            "sha256": "b437fa576fc84b44d7aa10d22251a8e6b21aa1968b5312a6529f6e536d72f0a0",
+            "bytes": 311689
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/pl.json",
-            "sha256": "b2af31e5766f5b375173442285e987c059b638a81facfa1b57c4c698133a94dc",
-            "bytes": 213451
+            "sha256": "9d746a64e4b5d5caf116aed0022b301add3ee0eaed7e61e01908d8acbb4f68ec",
+            "bytes": 217233
           }
         ],
         "permissions": [
@@ -3813,9 +3813,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/slurp2.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/slurp2-0.3.20.zip",
-        "sha256": "c2c702b753c76bfa6350fcdc736ed37ec79522610e2a5f709598ddcd223d4bd7",
-        "bytes": 8802618
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/slurp2-0.3.28.zip",
+        "sha256": "0cced77c1123f30377737adca47a70e63fd1be3a0252129856fb96c8f71f1f51",
+        "bytes": 8857838
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/slurp2/README.md"
     },
