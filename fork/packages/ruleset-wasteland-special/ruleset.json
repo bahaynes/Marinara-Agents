@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "wasteland-special",
-  "version": 4,
+  "version": 5,
   "name": "Wasteland SPECIAL",
   "edition": "A d20 take on SPECIAL for Fallout: New Vegas style play",
   "coverage": {
@@ -563,8 +563,8 @@
   ],
   "gm": {
     "checkGuidance": "This game uses Wasteland SPECIAL, a d20 system for the Fallout setting. When the outcome of a risky or uncertain action is in doubt, call for a check with one skill on the sheet and pick a difficulty from the ladder: Barter, Speech and Chance for dealing and luck, Medicine and Science for knowledge, Repair, Lockpick and Sneak for craft and stealth, Survival for the wastes, and Guns, Energy Weapons, Melee Weapons, Unarmed and Explosives for violence outside a fight. The Engine rolls the d20 and adds the numbers from the sheet. Never write the result yourself.",
-    "sheetGuidance": "The character sheets below are authoritative. Hit points are the only health. Radiation is a track from 0 to 8: raise it for hot zones and tainted water or food, lower it when RadAway is used. A crippled limb is a condition, treated by a Doctor bag or a night's rest. Record Stimpaks, RadAway and other healing with the sheet commands, and record bottle caps as money. There is no VATS and no action points; a fight is one action and a move each turn. At the start of the game, give each character a starting kit from the Outfitter with the inventory command: one weapon that matches their best skill, a few rounds of matching ammunition or energy cells, one armor, a Stimpak or two, a canteen and some caps. Weapons only work in a fight while worn, and a gun needs ammunition tagged for it to reload. At 8 radiation a character is dying and dies without RadAway or a doctor.",
-    "worldGuidance": "Set in the Mojave Wasteland of 2281 as in Fallout: New Vegas: factions in conflict, scarce clean water and medicine, caps as money, ruins, creatures and radiation.",
+    "sheetGuidance": "The character sheets below are authoritative. Hit points are the only health. Radiation is a track from 0 to 8: raise it for hot zones and tainted water or food, lower it when RadAway is used. A crippled limb is a condition, treated by a Doctor bag or a night's rest. Record Stimpaks, RadAway and other healing with the sheet commands, and record bottle caps as money. There is no VATS and no action points; a fight is one action and a move each turn. At the start of the game, give each character, companions included, a starting kit from the Outfitter with the inventory command: one weapon that matches their best skill, matching ammunition or energy cells, one armor, a Stimpak or two and some caps, plus Trail supplies for the party. Weapons, armor and ammunition always come from the Outfitter so they can be equipped and fired; invent only gear and keepsakes. Never use up a player character's items without asking first. At 8 radiation a character is dying and dies without RadAway or a doctor.",
+    "worldGuidance": "Set in the Mojave Wasteland of 2281 as in Fallout: New Vegas: factions in conflict, scarce clean water and medicine, caps as money, ruins, creatures and radiation. Settlements are where the party rests, trades and restocks: before the party leaves one, give the player a beat to prepare and wait for them to say they are ready. Most trouble can be talked down, snuck past, bought off or fled; let the player choose to fight. Roll loot with the raider, beast and cache tables.",
     "sheetSummary": {
       "fields": [
         "background"
@@ -638,6 +638,10 @@
       {
         "id": "melee",
         "label": "Melee"
+      },
+      {
+        "id": "bullet10",
+        "label": "10mm round"
       },
       {
         "id": "bullet9",
@@ -832,6 +836,105 @@
           }
         ]
       }
+    ],
+    "lootTables": [
+      {
+        "id": "raider",
+        "label": "Raider pockets",
+        "rolls": "1d3",
+        "entries": [
+          {
+            "coins": "cap",
+            "weight": 4,
+            "count": "2d10"
+          },
+          {
+            "filter": {
+              "category": "ammunition"
+            },
+            "weight": 4,
+            "count": "2d6"
+          },
+          {
+            "item": "outfitter/jet",
+            "weight": 2
+          },
+          {
+            "item": "outfitter/med-x",
+            "weight": 1
+          },
+          {
+            "item": "outfitter/stimpak",
+            "weight": 1
+          },
+          {
+            "item": "outfitter/scrap",
+            "weight": 2
+          },
+          {
+            "item": "outfitter/trail-supplies",
+            "weight": 1
+          }
+        ]
+      },
+      {
+        "id": "beast",
+        "label": "Beast parts",
+        "rolls": 1,
+        "entries": [
+          {
+            "item": "outfitter/creature-parts",
+            "weight": 1,
+            "count": "1d2"
+          }
+        ]
+      },
+      {
+        "id": "cache",
+        "label": "Pre-war cache",
+        "rolls": "1d4",
+        "entries": [
+          {
+            "item": "outfitter/trail-supplies",
+            "weight": 3,
+            "count": "1d2"
+          },
+          {
+            "item": "outfitter/purified-water",
+            "weight": 3,
+            "count": "1d3"
+          },
+          {
+            "item": "outfitter/scrap",
+            "weight": 3,
+            "count": "1d3"
+          },
+          {
+            "filter": {
+              "category": "ammunition"
+            },
+            "weight": 2,
+            "count": "2d6"
+          },
+          {
+            "item": "outfitter/stimpak",
+            "weight": 2
+          },
+          {
+            "item": "outfitter/radaway",
+            "weight": 1
+          },
+          {
+            "item": "outfitter/doctors-bag",
+            "weight": 1
+          },
+          {
+            "coins": "cap",
+            "weight": 2,
+            "count": "3d10"
+          }
+        ]
+      }
     ]
   },
   "catalogs": [
@@ -1006,6 +1109,62 @@
               },
               "ammo": {
                 "tag": "bullet9"
+              },
+              "clip": {
+                "max": 12,
+                "reload": "action"
+              }
+            }
+          }
+        },
+        {
+          "id": "pistol-10mm",
+          "label": "10mm pistol",
+          "summary": "A heavy, dependable pre-war sidearm, a courier's first gun.",
+          "item": {
+            "category": "weapon",
+            "rarity": "common",
+            "tags": [
+              "ranged"
+            ],
+            "stats": {
+              "weight": 3,
+              "damage": "2d6",
+              "skill": "guns",
+              "aim": "agility",
+              "harm": "ballistic"
+            },
+            "slots": {
+              "hands": 1
+            },
+            "cost": {
+              "amount": 150,
+              "unit": "cap"
+            },
+            "attack": {
+              "budget": "action",
+              "toHit": {
+                "skill": {
+                  "stat": "skill"
+                },
+                "abilities": {
+                  "stat": "aim"
+                }
+              },
+              "damage": {
+                "dice": {
+                  "stat": "damage"
+                },
+                "type": {
+                  "stat": "harm"
+                }
+              },
+              "range": {
+                "normal": 15,
+                "long": 30
+              },
+              "ammo": {
+                "tag": "bullet10"
               },
               "clip": {
                 "max": 12,
@@ -1710,6 +1869,25 @@
           }
         },
         {
+          "id": "ammo-10mm",
+          "label": "10mm rounds",
+          "summary": "A handful of 10mm.",
+          "item": {
+            "category": "ammunition",
+            "rarity": "common",
+            "stats": {
+              "weight": 0
+            },
+            "cost": {
+              "amount": 10,
+              "unit": "cap"
+            },
+            "tags": [
+              "bullet10"
+            ]
+          }
+        },
+        {
           "id": "ammo-357",
           "label": ".357 rounds",
           "summary": "A handful of .357.",
@@ -1834,7 +2012,7 @@
         {
           "id": "doctors-bag",
           "label": "Doctor's bag",
-          "summary": "Mends crippled limbs and treats injuries; three uses between rests.",
+          "summary": "Mends crippled limbs and treats injuries. Three uses of clean kit; restocks after a night's sleep at a camp with a fire and water to boil.",
           "item": {
             "category": "aid",
             "rarity": "common",
@@ -1995,6 +2173,54 @@
               "unit": "cap"
             }
           }
+        },
+        {
+          "id": "trail-supplies",
+          "label": "Trail supplies",
+          "summary": "One day of food and drinkable water for the whole party. A day on the road uses one.",
+          "item": {
+            "category": "gear",
+            "rarity": "common",
+            "stats": {
+              "weight": 2
+            },
+            "cost": {
+              "amount": 40,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "creature-parts",
+          "label": "Creature parts",
+          "summary": "Glands, hide and meat from a wasteland beast; traders and cooks buy them.",
+          "item": {
+            "category": "gear",
+            "rarity": "common",
+            "stats": {
+              "weight": 1
+            },
+            "cost": {
+              "amount": 15,
+              "unit": "cap"
+            }
+          }
+        },
+        {
+          "id": "scrap",
+          "label": "Salvage",
+          "summary": "Pre-war scrap worth trading: wire, sensor modules, fission batteries, cigarettes.",
+          "item": {
+            "category": "gear",
+            "rarity": "common",
+            "stats": {
+              "weight": 1
+            },
+            "cost": {
+              "amount": 10,
+              "unit": "cap"
+            }
+          }
         }
       ]
     },
@@ -2100,7 +2326,8 @@
                   }
                 ]
               }
-            ]
+            ],
+            "loot": "beast"
           }
         },
         {
@@ -2148,7 +2375,8 @@
                   }
                 ]
               }
-            ]
+            ],
+            "loot": "beast"
           }
         },
         {
@@ -2196,7 +2424,8 @@
                   }
                 ]
               }
-            ]
+            ],
+            "loot": "beast"
           }
         },
         {
@@ -2290,7 +2519,8 @@
                 },
                 "reach": 3
               }
-            ]
+            ],
+            "loot": "raider"
           }
         },
         {
@@ -2344,7 +2574,8 @@
                 },
                 "reach": 3
               }
-            ]
+            ],
+            "loot": "raider"
           }
         },
         {
@@ -2401,7 +2632,8 @@
                   "long": 18
                 }
               }
-            ]
+            ],
+            "loot": "raider"
           }
         },
         {
@@ -2463,7 +2695,8 @@
                   }
                 ]
               }
-            ]
+            ],
+            "loot": "raider"
           }
         },
         {
@@ -2517,7 +2750,8 @@
                   "long": 40
                 }
               }
-            ]
+            ],
+            "loot": "raider"
           }
         },
         {
@@ -2557,7 +2791,8 @@
                 },
                 "reach": 3
               }
-            ]
+            ],
+            "loot": "beast"
           }
         }
       ]
@@ -2806,10 +3041,10 @@
     {
       "id": "hardcore",
       "label": "Hardcore",
-      "summary": "Water, food and sleep matter. Healing is slower and checks are a little harder.",
+      "summary": "Supplies, medicine and sleep matter. Healing is slower and checks are a little harder.",
       "gm": {
-        "guidance": "Hardcore is on. Track thirst, hunger and sleep in the narration: a character who ignores them suffers a penalty on checks until they drink, eat or rest. Stimpaks and clean water are scarce, so make the party ration them, and a crippled limb needs a Doctor bag or a night's rest.",
-        "worldGuidance": "Hardcore is on. Clean water, food and medicine are scarce; make the journey itself a hazard."
+        "guidance": "Hardcore is on. Food and water are one count, Trail supplies in the party's inventory: each day of travel uses one, removed with the inventory command. Characters eat and drink sensibly while any remain; do not track thirst or hunger in the narration. Warn the player a day before supplies run out. With none left, every check is one step harder until the party restocks at a settlement, a spring or a cache. Stimpaks are scarce, so make the party ration them, and a crippled limb needs a Doctor bag or a night's rest.",
+        "worldGuidance": "Hardcore is on. Clean water, food and medicine are scarce; the length of the road and where to restock are the journey's real decisions."
       },
       "difficultyLadder": [
         {
