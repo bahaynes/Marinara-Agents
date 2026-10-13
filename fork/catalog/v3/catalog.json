@@ -4175,7 +4175,7 @@
         },
         "id": "ruleset-wasteland-special",
         "name": "Wasteland SPECIAL",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "description": "Fallout-inspired SPECIAL ruleset with tactical combat: SPECIAL stats and 14 skills on d20 + modifier vs a ladder, HP and radiation tracks, caps currency, guns with ammo/clips, Stimpaks, doctor's bag, and tactical battlemap combat. After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
         "engine": {
           "min": "2.5.0",
@@ -4195,8 +4195,8 @@
         "files": [
           {
             "path": "ruleset.json",
-            "sha256": "47465763e10f93d6ec1f04066450c444e6e1e79a29191903cca7e5b5a4ef12a8",
-            "bytes": 66567
+            "sha256": "1f274d239a120595ff7bee90bdce865dbe2ac0706ebf7a86f46529756f9d29cb",
+            "bytes": 73054
           }
         ],
         "permissions": [],
@@ -4204,9 +4204,9 @@
       },
       "category": "misc",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/ruleset-wasteland-special-1.0.0.zip",
-        "sha256": "b42afccc5e6023c8b02d1eef4c035ae282c8a3629fc2a3b7e379e26b527c263d",
-        "bytes": 67860
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/ruleset-wasteland-special-1.1.0.zip",
+        "sha256": "49de91f9c72727e79d582d8bf854db231e6b821976db996b538a774566afd22c",
+        "bytes": 74347
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/ruleset-wasteland-special/README.md"
     },
