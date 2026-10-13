@@ -10,7 +10,7 @@
   },
   "id": "ruleset-wasteland-special",
   "name": "Wasteland SPECIAL",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Fallout-inspired SPECIAL ruleset with tactical combat: SPECIAL stats and 14 skills on d20 + modifier vs a ladder, HP and radiation tracks, caps currency, guns with ammo/clips, Stimpaks, doctor's bag, and tactical battlemap combat. After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
   "engine": {
     "min": "2.5.0",
@@ -30,8 +30,8 @@
   "files": [
     {
       "path": "ruleset.json",
-      "sha256": "47465763e10f93d6ec1f04066450c444e6e1e79a29191903cca7e5b5a4ef12a8",
-      "bytes": 66567
+      "sha256": "1f274d239a120595ff7bee90bdce865dbe2ac0706ebf7a86f46529756f9d29cb",
+      "bytes": 73054
     }
   ],
   "permissions": [],
