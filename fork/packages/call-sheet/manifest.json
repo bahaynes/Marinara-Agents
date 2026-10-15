@@ -10,7 +10,7 @@
   },
   "id": "call-sheet",
   "name": "Call Sheet",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scene-by-scene story play for Roleplay chats. The main model proposes each scene (where, who is present, what it is for); you edit, reroll or accept it before play. The scene plan and frozen summaries of earlier scenes go into every turn's prompt, and finished scenes leave the chat history. Scenes end only when you say so, with Next scene in the Tracker Panel. Add the Agent in Chat Settings → Agents, then open the Tracker Panel.",
   "engine": {
     "min": "2.5.0",
@@ -30,7 +30,6 @@
     ]
   },
   "permissions": [
-    "agent-runtime",
     "chat-read",
     "prompt-context",
     "routes",
@@ -51,13 +50,13 @@
     },
     {
       "path": "server.mjs",
-      "sha256": "4634a16ff043043c8b192413848474711f2cd861d1a7c2d83f12b36591e0bafe",
-      "bytes": 10704
+      "sha256": "83e15b7388d4ce23e516daf81a32c20b4be278fe8857f2ce48a1718767b28c92",
+      "bytes": 11407
     },
     {
       "path": "sheet.mjs",
-      "sha256": "368d0e93dea95ba32d1ca58eb2e8e268ebd9b0476c67921e7be8f4acbe3d6dfe",
-      "bytes": 7539
+      "sha256": "da7ef75a127419049480006303c9e353da61630c1744d37e8ecd31e602906fcf",
+      "bytes": 8594
     }
   ]
 }

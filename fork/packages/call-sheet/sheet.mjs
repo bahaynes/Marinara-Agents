@@ -55,10 +55,15 @@ export function sceneMessages(scene, messages) {
   return messages.slice(startIndex, endIndex >= 0 ? endIndex + 1 : messages.length);
 }
 
-/** Ids to take out of the prompt when a new scene starts: every message up to and including the anchor. */
-export function idsBefore(messages, anchorId) {
-  const index = messages.findIndex((m) => m.id === anchorId);
-  return index < 0 ? [] : messages.slice(0, index + 1).map((m) => m.id);
+/**
+ * Ids to take out of the prompt when a new scene starts: every message after the first scene's anchor.
+ * Anything before Call Sheet started stays. A null anchor means the chat was empty, so every message is
+ * a scene's; a deleted anchor hides nothing rather than risk hiding older history.
+ */
+export function idsSince(messages, firstAnchorId) {
+  if (firstAnchorId === null) return messages.map((m) => m.id);
+  const index = messages.findIndex((m) => m.id === firstAnchorId);
+  return index < 0 ? [] : messages.slice(index + 1).map((m) => m.id);
 }
 
 const bullets = (items) => items.map((item) => `- ${item}`).join("\n");
@@ -100,16 +105,28 @@ export function sheetContext(sheet) {
   return parts.join("\n\n");
 }
 
-/** Plain transcript lines for the planner and summarizer. */
-export function transcript(messages, names) {
-  return messages
+/**
+ * Plain transcript for the planner and summarizer. With `maxChars`, the oldest turns are dropped until
+ * the rest fits, so a long scene still fits a small model's context.
+ */
+export function transcript(messages, names, maxChars = Infinity) {
+  const lines = messages
     .filter((m) => m.role === "user" || m.role === "assistant" || m.role === "narrator")
     .map((m) => {
       const who = m.role === "user" ? names.persona : names.characters.get(m.characterId) || "Narrator";
       return `${who}: ${String(m.agentContent ?? m.content ?? "").trim()}`;
-    })
-    .join("\n\n");
+    });
+  let size = lines.reduce((sum, line) => sum + line.length + 2, 0);
+  let dropped = 0;
+  while (size > maxChars && dropped < lines.length - 1) size -= lines[dropped++].length + 2;
+  const kept = lines.slice(dropped).join("\n\n");
+  return dropped ? `[The first ${dropped} turns of this scene are left out for length.]\n\n${kept}` : kept;
 }
+
+// ponytail: about 3 characters per token, with room for the instructions and the answer. Good enough to
+// stay under a context window; a tokenizer from the host would be exact.
+export const transcriptBudget = (maxContext, answerTokens) =>
+  maxContext ? Math.max(4000, (maxContext - answerTokens - 1500) * 3) : Infinity;
 
 const PLAN_SHAPE =
   '{"title": "short scene title", "location": "where it happens", "cast": ["name — why they are here"], ' +
