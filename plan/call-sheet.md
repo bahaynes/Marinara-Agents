@@ -158,8 +158,12 @@ The transcript is a normal Engine chat; the package owns everything else.
   built on it.
 - **The package adds** a scene panel for the current plan and the review step, and the input
   controls for turn and scene instructions.
-- **The package builds the narrator's prompt** for chats bound to it, through a fork hook (below).
-  This is the main open risk: whether the package API can already do this has not been checked.
+- **The Engine still writes every reply and impersonate.** The package's sheet (story, frozen
+  summaries, current plan) goes into the system prompt through `registerPromptContext`, which runs
+  on every generation, impersonate included. Finished scenes leave the prompt through the Engine's
+  existing hide-from-AI flag (`PATCH /api/chats/:id/messages/bulk-hidden`), and a turn instruction
+  is the Engine's impersonate, whose direction is the text in the input box. So v1 needs no Engine
+  change. Checked against `custom-mods` on 2026-10-15.
 
 ## Data model
 
@@ -279,9 +283,6 @@ they also stand a chance upstream, but nothing waits on that.
   exactly.
 - **Cache usage reporting.** `CapabilityLanguageModelCompletion.usage` has prompt, completion,
   reasoning and total tokens, but no cache reads or writes. Add both, or KPI 1 cannot be measured.
-- **Narrator prompt hook.** Let the package supply the prompt for generation in chats bound to it
-  (see [Where it lives](#where-it-lives)). Check first whether an existing capability already
-  covers this.
 - **Later, for combat:** whatever UI and state hooks a ported combat map needs. Gacha Forge already
   runs its own battle simulation and screens inside its package, so a package-owned combat UI is
   feasible; the exact hooks are decided when combat is ported.
@@ -316,13 +317,16 @@ The commit-by-commit map is in the [appendix](#appendix-fork-commit-map).
 ## Delivery order
 
 1. **This document**, then approval.
-2. **Engine changes in `custom-mods`**: cache marks, TTL, cache usage, narrator prompt hook.
-3. **Call Sheet v1** (scope below), using the package's own d20 checks.
-4. **Cut-over** once the success measures hold: new stories start in Call Sheet; drop the story
+2. **Call Sheet v0.1** (`fork/packages/call-sheet`): the scene loop on the Engine's own generation,
+   with no Engine change. Play it and measure caching with `chat_cache_report.py`.
+3. **Engine changes in `custom-mods`**, only where that measurement shows they are needed: cache
+   marks, TTL, cache usage.
+4. **Call Sheet v1** (scope below), using the package's own d20 checks.
+5. **Cut-over** once the success measures hold: new stories start in Call Sheet; drop the story
    and memory commits.
-5. **Port mechanics**: combat and skill systems into the package; drop those commits as each
+6. **Port mechanics**: combat and skill systems into the package; drop those commits as each
    reaches parity.
-6. **Upstream infrastructure fixes** as PRs, independently of the above.
+7. **Upstream infrastructure fixes** as PRs, independently of the above.
 
 ## v1 scope
 
@@ -357,8 +361,6 @@ Out, for later rounds:
    persona's turn is then not a separate message the player can reroll on its own.
 4. **Lorebooks.** Which world lore belongs in the fixed head, and is keyword-triggered lore needed at
    all once the scene plan names the facts in play?
-5. **Narrator prompt hook.** Can an existing capability already supply a chat's prompt, or is the
-   hook new fork code?
 
 ## Appendix: fork commit map
 
