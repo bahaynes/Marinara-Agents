@@ -8,18 +8,20 @@ import {
   cleanPlan,
   cleanSpine,
   emptySheet,
-  idsBefore,
+  idsSince,
   openScene,
   proposalPrompt,
   sceneMessages,
   sheetContext,
   summaryPrompt,
   transcript,
+  transcriptBudget,
 } from "./sheet.mjs";
 
 export const PACKAGE_ID = "call-sheet";
 const DOC_KIND = "call-sheet";
 const LAST_SCENE_TAIL = 6;
+const SUMMARY_TOKENS = 1500;
 const CAST_NOTE_LIMIT = 300;
 
 const docId = (chatId) => `${PACKAGE_ID}:${chatId}`;
@@ -171,17 +173,30 @@ export async function endScene(runtime, store, chatId) {
   let summary = "Nothing happened in this scene.";
   let outcomes = scene.plan.goals.map((goal) => ({ goal, status: "open" }));
   if (played.length) {
-    const config = await runtime.getAgentConfig?.();
-    const model = await runtime.languageModels.resolveForRequest({
-      connectionId: config?.connectionId ?? null,
-      chatConnectionId: chat.connectionId,
-    });
-    const parsed = await completeJson(
-      runtime,
-      model,
-      summaryPrompt({ plan: scene.plan, sceneText: transcript(played, names) }),
-      1500,
-    );
+    const summarize = (model) =>
+      completeJson(
+        runtime,
+        model,
+        summaryPrompt({
+          plan: scene.plan,
+          sceneText: transcript(played, names, transcriptBudget(model.maxContext, SUMMARY_TOKENS)),
+        }),
+        SUMMARY_TOKENS,
+      );
+    let parsed;
+    try {
+      const config = await runtime.getAgentConfig?.();
+      parsed = await summarize(
+        await runtime.languageModels.resolveForRequest({
+          connectionId: config?.connectionId ?? null,
+          chatConnectionId: chat.connectionId,
+        }),
+      );
+    } catch (error) {
+      // A scene that cannot be summarized could never end, so the main model takes over.
+      runtime.logger?.warn?.("Call Sheet summary on the agent model failed, using the main model: %s", error?.message);
+      parsed = await summarize(await runtime.languageModels.resolve(chat.connectionId));
+    }
     summary = String(parsed.summary ?? "").trim() || summary;
     outcomes = cleanOutcomes(parsed.goals, scene.plan.goals);
   }
@@ -193,15 +208,17 @@ export async function endScene(runtime, store, chatId) {
 }
 
 /**
- * Start the edited proposal as the new scene. Returns the ids of every earlier message so the client can
- * take them out of the prompt; the frozen summaries stand in for them from now on.
+ * Start the edited proposal as the new scene. Returns the ids of the messages played since the first
+ * scene began, so the client can take them out of the prompt; the frozen summaries stand in for them.
+ * History from before Call Sheet was turned on is left alone.
  */
 export async function acceptScene(runtime, store, chatId, rawPlan) {
   await chatOrFail(runtime.persistence, chatId);
   const messages = await runtime.persistence.listMessages(chatId);
   const anchor = messages[messages.length - 1]?.id ?? null;
-  const sheet = await store.update(chatId, (fresh) => {
+  return store.update(chatId, (fresh) => {
     if (openScene(fresh)) throw new SheetError(409, "End the current scene before starting a new one.");
+    const hideMessageIds = fresh.scenes.length ? idsSince(messages, fresh.scenes[0].startAfterMessageId) : [];
     fresh.scenes.push({
       id: `scene-${fresh.scenes.length + 1}-${Date.now().toString(36)}`,
       plan: cleanPlan(rawPlan),
@@ -213,8 +230,8 @@ export async function acceptScene(runtime, store, chatId, rawPlan) {
       endMessageId: null,
     });
     fresh.proposal = null;
+    return { sheet: fresh, hideMessageIds };
   });
-  return { sheet, hideMessageIds: anchor ? idsBefore(messages, anchor) : [] };
 }
 
 export function updateSpine(store, chatId, rawSpine) {

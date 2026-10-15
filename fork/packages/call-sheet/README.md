@@ -15,11 +15,17 @@ each turn's system prompt:
 2. **Plan scene**, with an optional direction ("a few hours later, everyone meets to debrief"). The
    chat's main model proposes the scene.
 3. Edit any field, **Reroll** for another version (earlier versions stay selectable), or **Accept**.
-   Accepting hides every earlier message from the AI (they stay visible); the summaries stand in.
+   From the second scene on, accepting hides the finished scenes' messages from the AI (they stay
+   visible); the summaries stand in. History from before the first scene is never hidden.
 4. Play the scene. Turn instructions are the Engine's impersonate: type what the persona does and
    press Impersonate, then send.
 5. **End scene & plan next** when you decide the scene is over. The agent model summarizes the scene
    once (and marks its goals met, failed or open), then the main model proposes the next one.
+
+## Known limits
+
+- Turn Advanced Memory off in Call Sheet chats: it also decides which messages are hidden.
+- The chat may show newly hidden messages as hidden only after a reload.
 
 ## Models
 
