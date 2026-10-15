@@ -1,9 +1,14 @@
-# Scene Forge: cache-first scene-graph story play
+# Call Sheet: cache-first, scene-by-scene story play
 
 ## Status
 
-Fork-only concept, drafted 2026-10-15 on `custom-mods`. Not yet approved for implementation.
-"Scene Forge" is a working name.
+Fork-only concept, drafted 2026-10-15 on `custom-mods`, revised the same day with the maintainer's
+answers to the pre-implementation questions. Not yet approved for implementation.
+
+The name comes from film: a call sheet says which scene is shot, where, which cast is called, and
+what the scene is for. That is the scene plan, and the plan's core idea is that those facts are
+decided once, not guessed each turn. (Earlier working name: Scene Forge, dropped because it reads
+as a Gacha Forge sequel.)
 
 ## Goals
 
@@ -11,11 +16,12 @@ Fork-only concept, drafted 2026-10-15 on `custom-mods`. Not yet approved for imp
    second. Every request is laid out so that most of it was already sent, unchanged, on the
    previous request.
 2. **A smaller fork.** Behavior that the `custom-mods` Engine fork carries today moves into this
-   package, so less Engine code has to be rebased onto upstream. A fork commit is only dropped once
-   nothing still uses its old path (see [Fork reduction](#fork-reduction)).
+   package. One small, general Engine commit (see [Engine dependencies](#engine-dependencies))
+   replaces many specific ones. A fork commit is only dropped once nothing still uses its old path
+   (see [Fork reduction](#fork-reduction)).
 
-Non-goal: replacing Roleplay or Game mode upstream. This is a separate mode, shipped as a package
-like Gacha Forge.
+Non-goal: replacing Roleplay or Game mode. This is a separate mode, shipped as a package like Gacha
+Forge.
 
 ## Why
 
@@ -40,6 +46,21 @@ Evidence gathered on 2026-10-15 on the `marinara` instance:
 The pattern behind all of it: the facts that matter (who is here, where, what is true, what the
 scene is for) should be data the package owns and checks, decided once, not re-derived each turn.
 
+## Models
+
+There are two tiers, and they are independent connections:
+
+- **Main**: the user's default main model. Often Claude, and the only tier that costs money, so
+  the cache layout below is tuned for it.
+- **Agent**: the user's default agent model. Here that is Gemma 4 12B on the local llama-server,
+  which is free. Its cost is latency, so its calls reuse the same prefix too: llama-server keeps the
+  processed prompt and only processes what changed.
+
+There is no separate "strong" tier. Planning runs on main.
+
+Prompt caches belong to one model, so main and agent calls never read each other's cache. That is
+fine: agent calls are free, and every main-model call shares one prefix.
+
 ## Play loop
 
 ```
@@ -48,19 +69,64 @@ spine ──► scene proposal ──► review (edit / reroll / accept) ──�
   └──────────── summary + next proposal (spine revised only if needed) ◄──────┘
 ```
 
-1. **Spine.** At story start a strong model plans a light spine: the premise, soft goals, open
-   threads and secrets. Goals are targets, not an ordered list of gates. The spine is revised only
-   when a scene ends somewhere it did not foresee.
-2. **Scene proposal.** A strong model proposes the next scene: location, cast present, the scene's
-   goal, the facts in play, and exit gates.
+1. **Spine.** At story start the main model plans a light spine: the premise, soft goals, open
+   threads and secrets. Goals are targets, not an ordered list of checkpoints. The spine is revised
+   only when a scene ends somewhere it did not foresee.
+2. **Scene proposal.** The main model proposes the next scene: location, cast present, the scene's
+   goals, and the facts in play.
 3. **Review.** The proposal is shown before play. The player can edit any field, reroll it, or
    accept it. An edited proposal becomes the scene plan as written.
-4. **Turns.** The scene is played in either input mode (below). After each reply, the gate checker
-   reports which exit gates passed.
-5. **Scene end.** A scene ends when an exit gate passes, or when the player ends it. Ending
-   "wrong" is not a failure: it is just the input to the next proposal. There are no rails to leave
-   because the plan is only ever one scene deep.
+4. **Turns.** The scene is played in either input mode (below). After each reply, the goal checker
+   marks each scene goal `open`, `met` or `failed` (can no longer happen), quoting the line that
+   shows it.
+5. **Scene end.** See [How a scene ends](#how-a-scene-ends). Ending "wrong" is not a failure: it is
+   just the input to the next proposal. There are no rails to leave because the plan is only ever
+   one scene deep.
 6. **Summary.** The finished scene is summarized once and frozen. It is never edited again.
+
+## How a scene ends
+
+### What ends scenes today
+
+From the `marinara` instance on 2026-10-15: 11 Roleplay chats with 339 stored Advanced Memory
+scenes (190 unique boundaries after removing rerolls and repeat detections), and all 4,141 player
+messages in Roleplay and Game chats.
+
+- **Advanced Memory found boundaries after the fact.** A model read back over the transcript for a
+  location change, a time skip, a move into combat, or a resolved episode. All 339 stored scenes
+  are titled "Scene", so scene names were never kept as a signal.
+- **What happened at each boundary** (rough pattern matching, so the counts are loose): the player
+  wrote an explicit cue (37), the persona left, followed someone or arrived somewhere (38), the
+  narration opened at a new time (17), unclear (98). Many unclear ones look like false cuts in the
+  middle of a conversation, in the same room.
+- **The player ends scenes, and usually says what comes next.** 113 player messages carry a
+  bracketed scene cue. The best read like a scene plan:
+  - "Next scene: a few hours later, Chandra, T'Sha, Medli, Marianne, and Hera all together to
+    debrief, plan over food, and gossip." (time, cast, purpose)
+  - "Next scene, feel free to jump to the statement. We can assume Lena and Kara had a beautiful
+    domestic morning." (skip to the goal)
+  - "Next scene of the story. Come up with a cohesive set of beats leading up to the wedding."
+    (a request for a plan)
+- **Scenes end a beat after their point is reached, on a transition.** Game mode choices show the
+  shape: "Slip out clean and bring the slate numbers to Rennika tonight", "Stay the night in her
+  narrow bed…". The goal is reached, then there is a wind-down or a departure.
+- **Goal completion has never been recorded.** The 30 Game chats have 0 quests in their journals,
+  and their story arcs are prose. History cannot tell us how reliable goal checking is; it has to
+  be tested (see [Delivery order](#delivery-order)).
+- **Scene length:** a median of 15 messages, 90% at 62 or fewer, the longest 112.
+
+### The rule
+
+1. **A met goal arms the scene; it does not end it.** Once every required goal is `met` (or one is
+   `failed`), the narrator's tail gets one line: "The scene's goal is met; bring it to a close." This
+   only changes block 5, so the cache is unaffected.
+2. **An armed scene ends at the next transition:** the persona leaves, time skips, or the player
+   ends it. The goal checker reports the transition with the goal results.
+3. **The player can always end a scene.** "Next scene: …" is a built-in command. It ends the scene
+   whether or not it is armed, and its text is passed to the scene planner as the starting point
+   for the next proposal, so most of the review step is already done.
+4. **A wrong call is undone like any turn.** Goal results live on the turn, so rerolling or deleting
+   the turn clears them, and the player can un-mark a goal from the scene panel.
 
 ## Input modes
 
@@ -73,28 +139,40 @@ Both are first class.
   per-story toggle, because it costs a round trip.
 
 The intent line is stored with the turn, not discarded. It is the clearest record of what the
-player meant, so the gate checker and the scene summarizer read it before the prose.
+player meant, so the goal checker and the scene summarizer read it before the prose.
+
+## Where it lives
+
+The transcript is a normal Engine chat; the package owns everything else.
+
+- **The chat keeps** messages, rerolls, editing, streaming, TTS, and the Illustrator and other
+  agents. Rebuilding those in a package would be most of the v1 effort.
+- **The package stores** the spine, scene plans, summaries, intent lines and goal results in its
+  own documents. Each one links to message ids, so deleting or rerolling a message rewinds what was
+  built on it.
+- **The package adds** a scene panel for the current plan and the review step.
+- **The package builds the narrator's prompt** for chats bound to it, through a fork hook (below).
+  This is the main open risk: whether the package API can already do this has not been checked.
 
 ## Data model
 
 Stored by the package. Field names are illustrative.
 
-- **Story**: id, persona, connection settings per job, cache TTL, the spine.
+- **Story**: id, chat id, persona, cache TTL, the spine.
 - **Spine**: premise, goals (each `open | met | abandoned`), threads, secrets with who knows each.
   Versioned: a revision is a new row, so a scene can always show the spine it was planned against.
-- **Scene plan**: location; cast present, with planned entrances and exits; the goal; facts in play;
-  secrets in play with who knows them; exit gates; optional checks (a skill and a difficulty).
-  Rerolls keep earlier proposals until one is accepted.
-- **Turn**: speaker, input mode, intent line (intent mode), prose, gate results with the quoted line
-  that passed each gate, check results.
+- **Scene plan**: location; cast present, with planned entrances and exits; goals, each marked
+  required or optional; facts in play; secrets in play with who knows them; optional checks (a
+  skill and a difficulty). Rerolls keep earlier proposals until one is accepted.
+- **Turn**: message id, speaker, input mode, intent line (intent mode), goal results with the
+  quoted line for each, transition flag, check results.
 - **Scene summary**: the frozen text, the scene it covers, written once.
 
 Presence is a field of the scene plan, not a tracker guess. A character joins or leaves only by an
 explicit event recorded on a turn. The speaker picker, the illustrator and the prompt all read the
 same cast list.
 
-Turns, summaries and plans are tied to their scene, so deleting or rerolling a turn rewinds
-everything derived from it. Nothing is stored as a single unversioned value per story.
+Nothing is stored as a single unversioned value per story.
 
 ## Agents
 
@@ -102,18 +180,18 @@ Jobs that can be agents are agents, following the Marinara paradigm.
 
 | Agent            | Job                                                          | Model             | Runs                              |
 | ---------------- | ------------------------------------------------------------ | ----------------- | --------------------------------- |
-| Spine planner    | Plan and revise the spine                                    | strong            | story start; rarely after a scene |
-| Scene planner    | Propose the next scene; reroll on request                    | strong            | scene end                         |
+| Spine planner    | Plan and revise the spine                                    | main              | story start; rarely after a scene |
+| Scene planner    | Propose the next scene; reroll on request                    | main              | scene end                         |
 | Narrator         | Write the non-player turns                                   | main              | each turn                         |
 | Intent expander  | Turn an intent line into persona prose                       | main              | each intent-mode turn             |
-| Gate checker     | Report passed gates, quoting the line                        | cheap             | after each reply                  |
-| Scene summarizer | Write the frozen scene summary                               | cheap             | scene end                         |
+| Goal checker     | Mark goals open, met or failed; flag a transition; quote it  | agent             | after each reply                  |
+| Scene summarizer | Write the frozen scene summary                               | agent             | scene end                         |
 | Rules referee    | Resolve checks; later, combat                                | code, not a model | when a check is called            |
 | Illustrator      | Existing agent, given the plan's cast, location and clothing | existing          | as configured                     |
 
-The narrator, intent expander, gate checker, summarizer and scene planner all send the same prompt
-prefix with a different final instruction (see the next section), so each reads the cache the
-previous call wrote.
+All jobs send the same blocks 1 to 4 with a different block 5 (see the next section). On main,
+each call reads the cache the previous main call wrote; on the agent model, llama-server reuses the
+processed prefix.
 
 ## Prompt and cache layout
 
@@ -129,20 +207,20 @@ Blocks, in order, with when each one changes:
 
 Every job is the same blocks 1 to 4 with a different block 5:
 
-| Job                 | Block 5                                                         |
-| ------------------- | --------------------------------------------------------------- |
-| Narrator turn       | "Write the next turn for <character>"                           |
-| Intent expansion    | "Write <persona>'s turn from this intent: …"                    |
-| Gate check          | "Which of these gates did the last reply pass? Quote the line." |
-| Scene summary       | "Summarize this scene."                                         |
-| Next scene proposal | "Propose the next scene."                                       |
+| Job                 | Block 5                                                                               |
+| ------------------- | ------------------------------------------------------------------------------------- |
+| Narrator turn       | "Write the next turn for <character>" (plus "bring it to a close" when armed)         |
+| Intent expansion    | "Write <persona>'s turn from this intent: …"                                          |
+| Goal check          | "Mark each goal open, met or failed, and say if the last reply left. Quote the line." |
+| Scene summary       | "Summarize this scene."                                                               |
+| Next scene proposal | "Propose the next scene." (plus the player's "Next scene: …" text, if any)            |
 
 **Within a scene,** each request rewrites only the newest turn and the tail.
 
 **At a scene change,** the new summary is appended to block 2, and the finished scene's history
-(block 4) is dropped. Blocks 1 and every earlier summary are unchanged, so they stay cached. The
-writes are the new summary, the new plan and the first turn. The summary and the proposal are both
-generated as tails on the finished scene's full prefix, so they read the cache the last turn wrote.
+(block 4) is dropped. Block 1 and every earlier summary are unchanged, so they stay cached. The
+writes are the new summary, the new plan and the first turn. The proposal is generated as a tail on
+the finished scene's full prefix, so it reads the cache the last turn wrote.
 
 **Review is cheap.** A reroll is another tail on the same prefix. Editing a proposal changes only
 block 3, which has not been sent for the new scene yet.
@@ -152,18 +230,38 @@ What a character does not know is stated as a note in the tail ("Hermione did no
 scene"), not by filtering history per character. Knowledge is less strictly enforced; in exchange
 every reply reuses the same cache.
 
+**Long scenes.** 90% of scenes run 62 messages or fewer, so v1 does not cut mid-scene. The
+agent model's context window is the real limit, because the goal checker reads the whole scene.
+
 **TTL.** Replies in practice arrive about 10 minutes apart, plus up to 3 minutes of post-processing,
 so the default is the 1-hour cache. The layout keeps prompt-change misses rare; a longer TTL cannot
 fix those, but it does cover the gaps.
 
-**Measuring it.** The target per turn is close to the best case: `0.1 x (blocks 1-4 except the
-newest turn) + 2 x (newest turn + tail)` on the 1-hour cache. Use the fork's
-`fix-caching-issues` skill and `chat_cache_report.py` to compare measured cost with that.
+## Success measures
+
+Cut-over (new stories start in Call Sheet) happens when both hold over at least three stories:
+
+1. **Cache (KPI 1).** On main-model calls, the share of prompt tokens read from cache, and the cost
+   per turn measured against the best case: `0.1 x (blocks 1-4 except the newest turn) + 2 x
+(newest turn + tail)` on the 1-hour cache. The baselines to beat are about 180k token-equivalents
+   over 8 turns with caching and 140k without. Use the fork's `fix-caching-issues` skill and
+   `chat_cache_report.py` alongside the package's own cache report.
+2. **Play quality (KPI 2).** Subjective, so measured with proxies that already have a Roleplay
+   baseline (`marinara`, 2026-10-15):
+   - **Reroll rate:** 10% of Roleplay AI replies are rerolled (367 of 3,526). Game mode shows
+     almost none, likely because it stores rerolls differently, so only the Roleplay figure is a
+     baseline.
+   - **OOC corrections:** 0.7% of Roleplay player turns (23 of 3,136). One example is the narrator
+     admitting it "re-ran a scene you'd already played and contradicted things already
+     established", the failure this design targets.
+   - **Scene rating:** a one-tap 1 to 5 rating at scene end, asked during the review step.
+
+   The bar: reroll and OOC rates no worse than Roleplay, and an average scene rating of at least 4.
 
 ## Engine dependencies
 
-The package needs one Engine change before the cache layout can work, and it must go upstream.
-A fork-only API would only trade old fork commits for new ones.
+These go straight into `custom-mods`, which is this project's base. They are small and general, so
+they also stand a chance upstream, but nothing waits on that.
 
 - **Cache control for package model calls.** `CapabilityLanguageModelCompletionOptions`
   (`packages/shared/src/types/capability-runtime.ts`) has temperature, max tokens, reasoning effort,
@@ -171,9 +269,13 @@ A fork-only API would only trade old fork commits for new ones.
   subscription path matches cached content in whole blocks, not arbitrary prefixes, so the package
   must be able to mark the ends of blocks 1 to 4 and choose the TTL. Proposed: an optional
   per-message cache mark and an optional `promptCacheTtl` (`"5m" | "1h"`), ignored by providers
-  without caching.
-- **Usage reporting.** Completions already return usage; confirm it includes cache reads and writes
-  for every provider the package targets, so the package can show its own cache report.
+  without caching. Anthropic allows at most 4 breakpoints per request, which blocks 1 to 4 use
+  exactly.
+- **Cache usage reporting.** `CapabilityLanguageModelCompletion.usage` has prompt, completion,
+  reasoning and total tokens, but no cache reads or writes. Add both, or KPI 1 cannot be measured.
+- **Narrator prompt hook.** Let the package supply the prompt for generation in chats bound to it
+  (see [Where it lives](#where-it-lives)). Check first whether an existing capability already
+  covers this.
 - **Later, for combat:** whatever UI and state hooks a ported combat map needs. Gacha Forge already
   runs its own battle simulation and screens inside its package, so a package-owned combat UI is
   feasible; the exact hooks are decided when combat is ported.
@@ -198,8 +300,8 @@ Rules for dropping a commit:
 
 - A commit is dropped only when nothing still in use depends on it. While Roleplay mode is still
   played with Advanced Memory, its fork tweaks stay.
-- The story and memory commits drop together at the cut-over: when new stories start in Scene Forge
-  instead of Roleplay mode.
+- The story and memory commits drop together at the cut-over: when new stories start in Call Sheet
+  instead of Roleplay mode (see [Success measures](#success-measures)).
 - A mechanics commit drops when the package's port reaches parity for the games still played with
   it, including Game mode sessions that are not migrated.
 
@@ -208,24 +310,31 @@ The commit-by-commit map is in the [appendix](#appendix-fork-commit-map).
 ## Delivery order
 
 1. **This document**, then approval.
-2. **Engine API change upstream**: cache marks and TTL for package model calls.
-3. **Scene Forge v1** (scope below), using the package's own d20 checks.
-4. **Cut-over**: new stories start in Scene Forge; drop the story and memory commits.
-5. **Port mechanics**: combat and skill systems into the package; drop those commits as each
+2. **Goal-checker test, offline.** Take about 20 finished scenes from `marinara`. Have the main
+   model write the goal each scene appears to have had, then run the agent model as goal checker
+   over each scene, turn by turn, and compare the turn it marks `met` with where the scene really
+   turned. If a 12B model cannot do this, the goal checker moves to main (at a cost) or exits
+   become player-only.
+3. **Engine changes in `custom-mods`**: cache marks, TTL, cache usage, narrator prompt hook.
+4. **Call Sheet v1** (scope below), using the package's own d20 checks.
+5. **Cut-over** once the success measures hold: new stories start in Call Sheet; drop the story
+   and memory commits.
+6. **Port mechanics**: combat and skill systems into the package; drop those commits as each
    reaches parity.
-6. **Upstream infrastructure fixes** as PRs, independently of the above.
+7. **Upstream infrastructure fixes** as PRs, independently of the above.
 
 ## v1 scope
 
 In:
 
-- Spine planner, scene planner with the review step (edit, reroll, accept), exit gates and the gate
-  checker.
+- Spine planner, scene planner with the review step (edit, reroll, accept), scene goals and the
+  goal checker, the armed-scene rule, and the "Next scene: …" command.
 - Both input modes, with stored intents.
-- Frozen scene summaries and the cache layout above, with a per-story cache report.
+- Frozen scene summaries and the cache layout above, with a per-story cache report and the scene
+  rating.
 - Explicit cast entrances and exits.
-- d20 skill checks as one kind of gate, resolved by the rules referee.
-- Connections per job (strong, main, cheap), like Gacha Forge.
+- d20 skill checks, resolved by the rules referee.
+- Main and agent connections per job, defaulting to the user's defaults.
 
 Out, for later rounds:
 
@@ -233,19 +342,18 @@ Out, for later rounds:
 - Illustrator integration beyond passing the plan's cast and location.
 - Trackers beyond what the scene plan already holds (presence, location, goals).
 - Importing existing Roleplay or Game chats.
+- Mid-scene cuts for very long scenes.
 
 ## Open questions
 
-1. **Who decides a scene is over** when no exit gate fires but the conversation has clearly moved
-   on? The player, the gate checker suggesting it, or both?
-2. **How large can block 4 grow** in one long scene before it needs a mid-scene cut, and where does
-   that cut go so it costs one rewrite rather than one per turn?
-3. **Secrets in one shared prompt.** Is a tail note ("Hermione does not know X") strict enough, or do
+1. **Secrets in one shared prompt.** Is a tail note ("Hermione does not know X") strict enough, or do
    some stories need a separate prompt for a character with a secret, at a cache cost?
-4. **Multiple characters per turn.** Does the narrator write one character per reply, or a whole
+2. **Multiple characters per turn.** Does the narrator write one character per reply, or a whole
    beat with several speakers? One beat per reply halves the requests.
-5. **Lorebooks.** Which world lore belongs in the fixed head, and is keyword-triggered lore needed at
+3. **Lorebooks.** Which world lore belongs in the fixed head, and is keyword-triggered lore needed at
    all once the scene plan names the facts in play?
+4. **Narrator prompt hook.** Can an existing capability already supply a chat's prompt, or is the
+   hook new fork code?
 
 ## Appendix: fork commit map
 
