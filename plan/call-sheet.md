@@ -3,7 +3,8 @@
 ## Status
 
 Fork-only concept, drafted 2026-10-15 on `custom-mods`, revised the same day with the maintainer's
-answers to the pre-implementation questions. Not yet approved for implementation.
+answers to the pre-implementation questions, then again after both players agreed that scenes end
+manually and that play is driven by instructions. Not yet approved for implementation.
 
 The name comes from film: a call sheet says which scene is shot, where, which cast is called, and
 what the scene is for. That is the scene plan, and the plan's core idea is that those facts are
@@ -76,13 +77,14 @@ spine ──► scene proposal ──► review (edit / reroll / accept) ──�
    goals, and the facts in play.
 3. **Review.** The proposal is shown before play. The player can edit any field, reroll it, or
    accept it. An edited proposal becomes the scene plan as written.
-4. **Turns.** The scene is played in either input mode (below). After each reply, the goal checker
-   marks each scene goal `open`, `met` or `failed` (can no longer happen), quoting the line that
-   shows it.
-5. **Scene end.** See [How a scene ends](#how-a-scene-ends). Ending "wrong" is not a failure: it is
-   just the input to the next proposal. There are no rails to leave because the plan is only ever
-   one scene deep.
-6. **Summary.** The finished scene is summarized once and frozen. It is never edited again.
+4. **Turns.** The player gives instructions (see [Instructions](#instructions)). Each one is
+   written up as the persona's turn, and the scene continues.
+5. **Scene end.** The player ends the scene with a scene instruction. See
+   [How a scene ends](#how-a-scene-ends). Ending "wrong" is not a failure: it is just the input to
+   the next proposal. There are no rails to leave because the plan is only ever one scene deep.
+6. **Summary.** The finished scene is summarized once and frozen. It is never edited again. The
+   summary also records each scene goal as `met`, `failed` or `open`, which feeds the spine and the
+   next proposal.
 
 ## How a scene ends
 
@@ -111,35 +113,40 @@ messages in Roleplay and Game chats.
   shape: "Slip out clean and bring the slate numbers to Rennika tonight", "Stay the night in her
   narrow bed…". The goal is reached, then there is a wind-down or a departure.
 - **Goal completion has never been recorded.** The 30 Game chats have 0 quests in their journals,
-  and their story arcs are prose. History cannot tell us how reliable goal checking is; it has to
-  be tested (see [Delivery order](#delivery-order)).
+  and their story arcs are prose.
 - **Scene length:** a median of 15 messages, 90% at 62 or fewer, the longest 112.
 
 ### The rule
 
-1. **A met goal arms the scene; it does not end it.** Once every required goal is `met` (or one is
-   `failed`), the narrator's tail gets one line: "The scene's goal is met; bring it to a close." This
-   only changes block 5, so the cache is unaffected.
-2. **An armed scene ends at the next transition:** the persona leaves, time skips, or the player
-   ends it. The goal checker reports the transition with the goal results.
-3. **The player can always end a scene.** "Next scene: …" is a built-in command. It ends the scene
-   whether or not it is armed, and its text is passed to the scene planner as the starting point
-   for the next proposal, so most of the review step is already done.
-4. **A wrong call is undone like any turn.** Goal results live on the turn, so rerolling or deleting
-   the turn clears them, and the player can un-mark a goal from the scene panel.
+Scenes end manually. Both players agreed (2026-10-15) that this is fine and probably preferred, and
+the data above shows they already do it.
 
-## Input modes
+1. **A scene ends only on a scene instruction** from the player. No model decides that a scene is
+   over, so there is no per-turn goal checker and nothing to get wrong between turns.
+2. **The scene instruction goes to the scene planner,** not the narrator. "A few hours later,
+   Chandra, T'Sha, Medli, Marianne and Hera debrief over food" becomes the starting point for the
+   next proposal, so most of the review step is already done. An empty scene instruction means
+   "propose what comes next".
+3. **Scene goals are direction, not exits.** They tell the narrator what the scene is for. The
+   summarizer marks them `met`, `failed` or `open` once, at scene end.
 
-Both are first class.
+## Instructions
 
-- **Persona mode.** The player writes the persona's turn, as in Roleplay mode.
-- **Intent mode.** The player writes a short intent, such as "pushes the clerk on the register,
-  suspects he is covering for someone". The intent expander writes it as the persona's prose in the
-  persona's voice, then the scene continues. Reviewing the expansion before it is committed is a
-  per-story toggle, because it costs a round trip.
+Every player input is an instruction, and where it goes is the player's explicit choice, never a
+model's guess:
 
-The intent line is stored with the turn, not discarded. It is the clearest record of what the
-player meant, so the goal checker and the scene summarizer read it before the prose.
+- **Turn instruction** (the main flow). A short note on what the persona does, such as "pushes the
+  clerk on the register, suspects he is covering for someone". The persona's turn is written from
+  it in the persona's voice (an impersonate), then the scene continues. Reviewing the written turn
+  before it is committed is a per-story toggle, because it costs a round trip.
+- **Scene instruction.** Sent with a separate control (a "Next scene" button, or a `Next scene:`
+  prefix matched in code). It ends the scene and goes to the scene planner (see
+  [The rule](#the-rule)).
+- **Written turn.** The player can still write the persona's prose directly, as in Roleplay mode.
+  It is a fallback, not the main path.
+
+The instruction is stored with the turn, not discarded. It is the clearest record of what the player
+meant, so the scene summarizer reads it before the prose.
 
 ## Where it lives
 
@@ -147,10 +154,10 @@ The transcript is a normal Engine chat; the package owns everything else.
 
 - **The chat keeps** messages, rerolls, editing, streaming, TTS, and the Illustrator and other
   agents. Rebuilding those in a package would be most of the v1 effort.
-- **The package stores** the spine, scene plans, summaries, intent lines and goal results in its
-  own documents. Each one links to message ids, so deleting or rerolling a message rewinds what was
+- **The package stores** the spine, scene plans, summaries and instructions in its own documents. Each one links to message ids, so deleting or rerolling a message rewinds what was
   built on it.
-- **The package adds** a scene panel for the current plan and the review step.
+- **The package adds** a scene panel for the current plan and the review step, and the input
+  controls for turn and scene instructions.
 - **The package builds the narrator's prompt** for chats bound to it, through a fork hook (below).
   This is the main open risk: whether the package API can already do this has not been checked.
 
@@ -161,12 +168,12 @@ Stored by the package. Field names are illustrative.
 - **Story**: id, chat id, persona, cache TTL, the spine.
 - **Spine**: premise, goals (each `open | met | abandoned`), threads, secrets with who knows each.
   Versioned: a revision is a new row, so a scene can always show the spine it was planned against.
-- **Scene plan**: location; cast present, with planned entrances and exits; goals, each marked
-  required or optional; facts in play; secrets in play with who knows them; optional checks (a
-  skill and a difficulty). Rerolls keep earlier proposals until one is accepted.
-- **Turn**: message id, speaker, input mode, intent line (intent mode), goal results with the
-  quoted line for each, transition flag, check results.
-- **Scene summary**: the frozen text, the scene it covers, written once.
+- **Scene plan**: location; cast present, with planned entrances and exits; goals; facts in play;
+  secrets in play with who knows them; optional checks (a skill and a difficulty); the scene
+  instruction that started it, if any. Rerolls keep earlier proposals until one is accepted.
+- **Turn**: message id, speaker, input kind (turn instruction or written turn), the instruction,
+  check results.
+- **Scene summary**: the frozen text, the scene it covers, each goal's outcome, written once.
 
 Presence is a field of the scene plan, not a tracker guess. A character joins or leaves only by an
 explicit event recorded on a turn. The speaker picker, the illustrator and the prompt all read the
@@ -181,11 +188,10 @@ Jobs that can be agents are agents, following the Marinara paradigm.
 | Agent            | Job                                                          | Model             | Runs                              |
 | ---------------- | ------------------------------------------------------------ | ----------------- | --------------------------------- |
 | Spine planner    | Plan and revise the spine                                    | main              | story start; rarely after a scene |
-| Scene planner    | Propose the next scene; reroll on request                    | main              | scene end                         |
+| Scene planner    | Propose the next scene from the scene instruction; reroll    | main              | scene end                         |
 | Narrator         | Write the non-player turns                                   | main              | each turn                         |
-| Intent expander  | Turn an intent line into persona prose                       | main              | each intent-mode turn             |
-| Goal checker     | Mark goals open, met or failed; flag a transition; quote it  | agent             | after each reply                  |
-| Scene summarizer | Write the frozen scene summary                               | agent             | scene end                         |
+| Impersonator     | Write the persona's turn from a turn instruction             | main              | each turn instruction             |
+| Scene summarizer | Write the frozen scene summary and mark the goals            | agent             | scene end                         |
 | Rules referee    | Resolve checks; later, combat                                | code, not a model | when a check is called            |
 | Illustrator      | Existing agent, given the plan's cast, location and clothing | existing          | as configured                     |
 
@@ -207,13 +213,12 @@ Blocks, in order, with when each one changes:
 
 Every job is the same blocks 1 to 4 with a different block 5:
 
-| Job                 | Block 5                                                                               |
-| ------------------- | ------------------------------------------------------------------------------------- |
-| Narrator turn       | "Write the next turn for <character>" (plus "bring it to a close" when armed)         |
-| Intent expansion    | "Write <persona>'s turn from this intent: …"                                          |
-| Goal check          | "Mark each goal open, met or failed, and say if the last reply left. Quote the line." |
-| Scene summary       | "Summarize this scene."                                                               |
-| Next scene proposal | "Propose the next scene." (plus the player's "Next scene: …" text, if any)            |
+| Job                 | Block 5                                                        |
+| ------------------- | -------------------------------------------------------------- |
+| Narrator turn       | "Write the next turn for <character>"                          |
+| Impersonate         | "Write <persona>'s turn from this instruction: …"              |
+| Scene summary       | "Summarize this scene and mark each goal met, failed or open." |
+| Next scene proposal | "Propose the next scene from this instruction: …" (or no text) |
 
 **Within a scene,** each request rewrites only the newest turn and the tail.
 
@@ -231,7 +236,8 @@ scene"), not by filtering history per character. Knowledge is less strictly enfo
 every reply reuses the same cache.
 
 **Long scenes.** 90% of scenes run 62 messages or fewer, so v1 does not cut mid-scene. The
-agent model's context window is the real limit, because the goal checker reads the whole scene.
+agent model's context window is the real limit, because the summarizer reads the whole scene once
+at its end.
 
 **TTL.** Replies in practice arrive about 10 minutes apart, plus up to 3 minutes of post-processing,
 so the default is the 1-hour cache. The layout keeps prompt-change misses rare; a longer TTL cannot
@@ -310,26 +316,22 @@ The commit-by-commit map is in the [appendix](#appendix-fork-commit-map).
 ## Delivery order
 
 1. **This document**, then approval.
-2. **Goal-checker test, offline.** Take about 20 finished scenes from `marinara`. Have the main
-   model write the goal each scene appears to have had, then run the agent model as goal checker
-   over each scene, turn by turn, and compare the turn it marks `met` with where the scene really
-   turned. If a 12B model cannot do this, the goal checker moves to main (at a cost) or exits
-   become player-only.
-3. **Engine changes in `custom-mods`**: cache marks, TTL, cache usage, narrator prompt hook.
-4. **Call Sheet v1** (scope below), using the package's own d20 checks.
-5. **Cut-over** once the success measures hold: new stories start in Call Sheet; drop the story
+2. **Engine changes in `custom-mods`**: cache marks, TTL, cache usage, narrator prompt hook.
+3. **Call Sheet v1** (scope below), using the package's own d20 checks.
+4. **Cut-over** once the success measures hold: new stories start in Call Sheet; drop the story
    and memory commits.
-6. **Port mechanics**: combat and skill systems into the package; drop those commits as each
+5. **Port mechanics**: combat and skill systems into the package; drop those commits as each
    reaches parity.
-7. **Upstream infrastructure fixes** as PRs, independently of the above.
+6. **Upstream infrastructure fixes** as PRs, independently of the above.
 
 ## v1 scope
 
 In:
 
-- Spine planner, scene planner with the review step (edit, reroll, accept), scene goals and the
-  goal checker, the armed-scene rule, and the "Next scene: …" command.
-- Both input modes, with stored intents.
+- Spine planner, scene planner with the review step (edit, reroll, accept), and scene goals marked
+  at scene end.
+- Turn instructions (impersonate) and scene instructions as separate controls, with stored
+  instructions; written turns as a fallback.
 - Frozen scene summaries and the cache layout above, with a per-story cache report and the scene
   rating.
 - Explicit cast entrances and exits.
@@ -350,9 +352,12 @@ Out, for later rounds:
    some stories need a separate prompt for a character with a secret, at a cache cost?
 2. **Multiple characters per turn.** Does the narrator write one character per reply, or a whole
    beat with several speakers? One beat per reply halves the requests.
-3. **Lorebooks.** Which world lore belongs in the fixed head, and is keyword-triggered lore needed at
+3. **One call or two per instruction.** With review off, can one main-model call write the
+   persona's turn and the narrator's reply together? That halves the requests again, but the
+   persona's turn is then not a separate message the player can reroll on its own.
+4. **Lorebooks.** Which world lore belongs in the fixed head, and is keyword-triggered lore needed at
    all once the scene plan names the facts in play?
-4. **Narrator prompt hook.** Can an existing capability already supply a chat's prompt, or is the
+5. **Narrator prompt hook.** Can an existing capability already supply a chat's prompt, or is the
    hook new fork code?
 
 ## Appendix: fork commit map
