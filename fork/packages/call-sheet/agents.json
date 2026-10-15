@@ -1,0 +1,17 @@
+[
+  {
+    "id": "call-sheet",
+    "name": "Call Sheet",
+    "description": "Plays the story one scene at a time: each scene's plan and the summaries of earlier scenes go into every turn's prompt. Plan, end and start scenes from the Tracker Panel.",
+    "author": "custom-mods",
+    "phase": "pre_generation",
+    "enabledByDefault": false,
+    "category": "misc",
+    "runtimeDisabled": true,
+    "modeAllowlist": ["roleplay"],
+    "defaultTools": [],
+    "defaultSettings": {},
+    "defaultPromptTemplate": "",
+    "execution": "feature"
+  }
+]
