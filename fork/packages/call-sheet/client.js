@@ -21,13 +21,14 @@
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;");
 
-  /** Paragraphs, with *italics* and **bold**, after escaping. */
+  /** Paragraphs, with quoted dialogue marked, *italics* and **bold**, after escaping. */
   const prose = (value) =>
     escapeHtml(value)
       .split(/\n{2,}/u)
       .map(
         (para) =>
           `<p>${para
+            .replace(/(&quot;[^<]*?&quot;|“[^”<]*”)/gu, '<span class="say">$1</span>')
             .replace(/\*\*([^*\n]+)\*\*/gu, "<b>$1</b>")
             .replace(/\*([^*\n]+)\*/gu, "<i>$1</i>")
             .replaceAll("\n", "<br>")}</p>`,
@@ -78,6 +79,26 @@
     throw new Error("The connection closed before the reply finished.");
   }
 
+  // Display choices are per browser: they change how the page looks, never what the story sends.
+  const DISPLAY_KEY = "marinara.call-sheet.display";
+  const DISPLAY_DEFAULTS = Object.freeze({ size: "m", dialogue: true, boxes: true, width: "narrow" });
+
+  function loadDisplay() {
+    try {
+      return { ...DISPLAY_DEFAULTS, ...JSON.parse(globalThis.localStorage?.getItem(DISPLAY_KEY) || "{}") };
+    } catch {
+      return { ...DISPLAY_DEFAULTS };
+    }
+  }
+
+  function saveDisplay(display) {
+    try {
+      globalThis.localStorage?.setItem(DISPLAY_KEY, JSON.stringify(display));
+    } catch {
+      // Blocked storage: the choice lasts for this page.
+    }
+  }
+
   const NON_TEXT_PROVIDERS = new Set(["image_generation", "video_generation", "audio_generation", "decision"]);
 
   /** The Engine's text-model connections, for the story model picker. */
@@ -87,13 +108,20 @@
     const list = await response.json().catch(() => []);
     return (Array.isArray(list) ? list : [])
       .filter((c) => !NON_TEXT_PROVIDERS.has(c.provider) && !c.embeddingModel)
-      .map((c) => ({ id: c.id, name: c.name, isDefault: c.isDefault === true || c.isDefault === "true" }));
+      .map((c) => ({
+        id: c.id,
+        name: c.name,
+        isDefault: c.isDefault === true || c.isDefault === "true",
+        isAgentDefault: c.defaultForAgents === true || c.defaultForAgents === "true",
+      }));
   }
 
   const STYLE = `
     :host { display: block; height: 100%; font: inherit; color: inherit; }
     * { box-sizing: border-box; }
-    .page { height: 100%; display: flex; flex-direction: column; min-height: 0; }
+    .page { height: 100%; display: flex; flex-direction: column; min-height: 0; position: relative;
+      --text: 15.5px; --say: color-mix(in srgb, #f5b84b 80%, currentColor); --you: #60a5fa; }
+    .size-s { --text: 14px; } .size-l { --text: 17.5px; }
     header { display: flex; align-items: center; gap: 8px; padding: 10px 14px;
       border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
     header h1 { margin: 0; font-size: 16px; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -103,7 +131,8 @@
       border-left: 1px solid color-mix(in srgb, currentColor 15%, transparent); display: grid; gap: 10px; align-content: start;
       font-size: 13px; }
     .scroll { flex: 1; overflow-y: auto; padding: 14px 18px; }
-    .center { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
+    .center { max-width: 720px; margin: 0 auto; display: grid; gap: 14px; }
+    .wide .center { max-width: 1000px; }
     h2 { margin: 0; font-size: 14px; font-weight: 600; }
     h3 { margin: 0; font-size: 13px; font-weight: 600; }
     h4 { margin: 4px 0 0; font-size: 12px; font-weight: 600; opacity: 0.8; }
@@ -132,12 +161,37 @@
       border: 1px solid color-mix(in srgb, currentColor 15%, transparent); border-radius: 8px; }
     .cast-picker label { display: flex; gap: 6px; align-items: center; font-size: 13px; }
     .cast-picker input { width: auto; }
-    .scene-head { text-align: center; padding: 10px 0 2px; }
-    .scene-head h3 { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.85; }
-    .turn { line-height: 1.6; font-size: 15px; display: grid; gap: 4px; }
-    .turn .who { font-size: 12px; font-weight: 600; opacity: 0.7; display: flex; gap: 6px; align-items: center; }
-    .turn.persona { padding-left: 12px; border-left: 3px solid color-mix(in srgb, #60a5fa 55%, transparent); }
-    .turn .tools { display: flex; gap: 4px; flex-wrap: wrap; opacity: 0; transition: opacity 0.15s; }
+    .scene-head { text-align: center; padding: 18px 0 4px; display: grid; gap: 2px; }
+    .scene-head h3 { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85;
+      display: flex; align-items: center; gap: 12px; }
+    .scene-head h3::before, .scene-head h3::after { content: ""; flex: 1; height: 1px;
+      background: color-mix(in srgb, currentColor 20%, transparent); }
+    .turn { line-height: 1.75; font-size: var(--text); display: grid; gap: 6px; }
+    .turn { position: relative; }
+    .turn p { margin: 0 0 0.9em; } .turn p:last-child { margin-bottom: 0; }
+    .turn .who { font-size: 12px; font-weight: 600; display: flex; gap: 8px; align-items: center; opacity: 0.85; }
+    .avatar { width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; font-size: 11px;
+      background: color-mix(in srgb, currentColor 14%, transparent); }
+    .turn.persona .avatar { background: color-mix(in srgb, var(--you) 40%, transparent); }
+    .turn.persona { padding-left: 14px; border-left: 3px solid color-mix(in srgb, var(--you) 60%, transparent); }
+    .boxes .turn { padding: 12px 16px; border-radius: 12px; background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 9%, transparent); }
+    .boxes .turn.persona { background: color-mix(in srgb, var(--you) 9%, transparent);
+      border-color: color-mix(in srgb, var(--you) 28%, transparent); border-left: 3px solid color-mix(in srgb, var(--you) 65%, transparent); }
+    .dialogue .say { color: var(--say); }
+    .overlay { position: absolute; inset: 0; z-index: 5; display: flex; justify-content: flex-end;
+      background: color-mix(in srgb, #000 45%, transparent); }
+    .drawer { width: min(440px, 100%); height: 100%; overflow-y: auto; padding: 14px 16px; display: grid; gap: 14px;
+      align-content: start; background: var(--card, var(--background, #18181b)); font-size: 13px;
+      border-left: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
+    .drawer section { display: grid; gap: 8px; }
+    .segmented { display: flex; gap: 4px; }
+    .segmented button.on { background: color-mix(in srgb, #34d399 32%, transparent); border-color: color-mix(in srgb, #34d399 60%, transparent); }
+    .check { display: flex; gap: 8px; align-items: center; font-size: 13px; }
+    .check input { width: auto; }
+    select.compact { width: auto; max-width: 220px; font-size: 12px; padding: 4px 6px; margin-left: auto; }
+    .hint { font-size: 12px; opacity: 0.7; }
+    .turn .tools { display: flex; gap: 4px; position: absolute; top: 8px; right: 10px; opacity: 0; transition: opacity 0.15s; }
     .turn:hover .tools, .turn:focus-within .tools { opacity: 1; }
     .instruction { font-size: 12px; opacity: 0.6; font-style: italic; }
     .frozen { opacity: 0.75; }
@@ -174,11 +228,14 @@
         castFilter: "",
         writing: null,
         connections: [],
+        display: loadDisplay(),
+        settingsOpen: false,
       };
       this._props = null;
       this._token = 0;
       this.shadowRoot.addEventListener("click", (event) => this.onClick(event));
       this.shadowRoot.addEventListener("input", (event) => this.onInput(event));
+      this.shadowRoot.addEventListener("change", (event) => this.onChange(event));
     }
 
     set capabilityProps(value) {
@@ -404,10 +461,10 @@
       await this.loadList();
     }
 
-    modelOptions(selected) {
-      const fallback = this.state.connections.find((c) => c.isDefault)?.name;
+    modelOptions(selected, agent = false) {
+      const fallback = this.state.connections.find((c) => (agent ? c.isAgentDefault : c.isDefault))?.name;
       return [
-        `<option value="">Default main connection${fallback ? ` (${escapeHtml(fallback)})` : ""}</option>`,
+        `<option value="">Default ${agent ? "agent" : "main"} connection${fallback ? ` (${escapeHtml(fallback)})` : ""}</option>`,
         ...this.state.connections.map(
           (c) =>
             `<option value="${escapeHtml(c.id)}" ${c.id === selected ? "selected" : ""}>${escapeHtml(c.name)}</option>`,
@@ -415,14 +472,28 @@
       ].join("");
     }
 
-    onInput(event) {
-      if (event.target.matches("[data-model]")) {
-        const mainConnectionId = event.target.value || null;
+    /** Story settings save when a field changes; display choices apply at once and stay in this browser. */
+    onChange(event) {
+      const target = event.target;
+      const key = target.dataset.set;
+      if (key) {
+        const value = target.type === "checkbox" ? target.checked : target.value || null;
+        if (key === "title" && !value) return;
         void this.run("Saving…", async () =>
-          this.apply(await call(this.storyPath("/model"), "PUT", { mainConnectionId })),
+          this.apply(await call(this.storyPath("/settings"), "PUT", { [key]: value })),
         );
-        return;
+      } else if (target.dataset.display) {
+        this.setDisplay(target.dataset.display, target.checked);
       }
+    }
+
+    setDisplay(key, value) {
+      this.state.display = { ...this.state.display, [key]: value };
+      saveDisplay(this.state.display);
+      this.render();
+    }
+
+    onInput(event) {
       const target = event.target;
       if (target.matches("[data-input]")) this.state.input = target.value;
       else if (target.matches("[data-scene-input]")) this.state.sceneInput = target.value;
@@ -440,7 +511,12 @@
       if (!target || target.disabled) return;
       const { action, id, index, kind } = target.dataset;
       const proposal = this.state.data?.story?.sheet?.proposal;
-      if (action === "home") {
+      if (action === "settings") this.set({ settingsOpen: !this.state.settingsOpen });
+      else if (action === "close-settings" && (event.target === target || target.tagName === "BUTTON"))
+        this.set({ settingsOpen: false });
+      else if (action === "close-settings") return;
+      else if (action === "display") this.setDisplay(target.dataset.key, target.dataset.value);
+      else if (action === "home") {
         this._token += 1; // A reply still on its way belongs to the story being left.
         this.set({ view: "list", data: null, busy: "" });
         void this.loadList();
@@ -537,7 +613,7 @@
              <button data-action="cancel-edit" data-id="${turn.id}">Cancel</button></div>`
           : `<div>${prose(text)}</div>`;
       return `<div class="turn ${persona ? "persona" : "narrator"} ${live ? "" : "frozen"}">
-        <div class="who">${escapeHtml(who)} ${versions}</div>
+        <div class="who"><span class="avatar">${escapeHtml(who.slice(0, 1))}</span>${escapeHtml(who)} ${versions}</div>
         ${turn.instruction ? `<div class="instruction">From: ${escapeHtml(turn.instruction)}</div>` : ""}
         ${body}${tools}
       </div>`;
@@ -554,7 +630,7 @@
     renderWriting() {
       const { speaker, text } = this.state.writing;
       return `<div class="turn ${speaker === "persona" ? "persona" : "narrator"} writing">
-        <div class="who">${escapeHtml(speaker === "persona" ? this.personaName() : "Narrator")}</div>
+        <div class="who"><span class="avatar">${escapeHtml((speaker === "persona" ? this.personaName() : "N").slice(0, 1))}</span>${escapeHtml(speaker === "persona" ? this.personaName() : "Narrator")}</div>
         <div data-writing>${text ? prose(text) : `<p class="muted">Writing…</p>`}</div>
       </div>`;
     }
@@ -564,7 +640,7 @@
       const scenes = story.sheet.scenes;
       if (!scenes.length) {
         return `<p class="muted">No scenes yet. Plan the first scene in the panel${
-          story.sheet.spine.premise ? "" : ", or describe the story first under Story"
+          story.sheet.spine.premise ? "" : ", or describe the story first in Settings"
         }.</p>`;
       }
       return scenes
@@ -649,26 +725,78 @@
               <textarea data-scene-input rows="2" placeholder="A few hours later, everyone meets to debrief…">${escapeHtml(this.state.sceneInput)}</textarea></label>
             <div class="row"><button class="primary" data-action="next">${scene ? "End scene & plan next" : "Plan scene"}</button></div>
           </div>`;
-      return `${current}${next}
-        <details class="card"><summary>Story</summary>
-          <label>Story model<select data-model>${this.modelOptions(this.state.data.story.mainConnectionId)}</select></label>
-          <label>Premise<textarea data-spine="premise" rows="4">${escapeHtml(sheet.spine.premise)}</textarea></label>
-          <label>Story goals<textarea data-spine="goals" rows="2">${escapeHtml(sheet.spine.goals)}</textarea></label>
-          <div class="row"><button data-action="spine">Save story</button><button class="danger" data-action="delete-story">Delete story</button></div>
-        </details>`;
+      return `${current}${next}`;
+    }
+
+    renderSettings() {
+      const { display, data, view } = this.state;
+      const story = view === "story" ? data?.story : null;
+      const settings = story?.settings ?? {};
+      const segment = (key, options) =>
+        `<div class="segmented">${options
+          .map(
+            ([value, label]) =>
+              `<button class="icon ${display[key] === value ? "on" : ""}" data-action="display" data-key="${key}" data-value="${value}" aria-pressed="${
+                display[key] === value
+              }">${label}</button>`,
+          )
+          .join("")}</div>`;
+      const storySection = story
+        ? `<section><h2>Story</h2>
+            <label>Title<input data-set="title" value="${escapeHtml(story.title)}"></label>
+            <label>Story model (narrator, your turns, scene planner)<select data-set="mainConnectionId">${this.modelOptions(story.mainConnectionId)}</select></label>
+            <label>Scene summaries<select data-set="agentConnectionId">${this.modelOptions(story.agentConnectionId, true)}</select></label>
+            <label>Turn length<select data-set="replyLength">${[
+              ["short", "Short (1–2 paragraphs)"],
+              ["medium", "Medium (3–4 paragraphs)"],
+              ["long", "Long"],
+            ]
+              .map(([v, l]) => `<option value="${v}" ${settings.replyLength === v ? "selected" : ""}>${l}</option>`)
+              .join("")}</select></label>
+            <label class="check"><input type="checkbox" data-set="reviewTurns" ${settings.reviewTurns ? "checked" : ""}>
+              Review my turn before the story answers</label>
+            <p class="hint">With review on, Act writes only your turn. Edit or reroll it, then press Continue.</p>
+            <label>Premise<textarea data-spine="premise" rows="4">${escapeHtml(story.sheet.spine.premise)}</textarea></label>
+            <label>Story goals<textarea data-spine="goals" rows="2">${escapeHtml(story.sheet.spine.goals)}</textarea></label>
+            <div class="row"><button data-action="spine">Save premise &amp; goals</button>
+              <button class="danger" data-action="delete-story">Delete story</button></div>
+          </section>`
+        : "";
+      return `<div class="overlay" data-action="close-settings"><div class="drawer">
+        <div class="row"><h2 style="flex:1">Settings</h2><button data-action="close-settings">Done</button></div>
+        ${storySection}
+        <section><h2>Display</h2><p class="hint">Saved in this browser.</p>
+          <label>Text size</label>${segment("size", [
+            ["s", "Small"],
+            ["m", "Medium"],
+            ["l", "Large"],
+          ])}
+          <label>Reading width</label>${segment("width", [
+            ["narrow", "Narrow"],
+            ["wide", "Wide"],
+          ])}
+          <label class="check"><input type="checkbox" data-display="boxes" ${display.boxes ? "checked" : ""}> Put each turn in a box</label>
+          <label class="check"><input type="checkbox" data-display="dialogue" ${display.dialogue ? "checked" : ""}> Highlight dialogue</label>
+        </section>
+      </div></div>`;
     }
 
     renderStory() {
       if (!this.state.data) return `<div class="scroll"><p class="muted">Loading…</p></div>`;
       const live = Boolean(this.openScene()) && !this.state.data.story.sheet.proposal;
       const name = escapeHtml(this.personaName());
+      const story = this.state.data.story;
+      const openTurns = this.state.data.turns[this.openScene()?.id] ?? [];
+      const awaitingReply = openTurns.at(-1)?.speaker === "persona";
       const composer = live
         ? `<div class="composer"><div class="center">
+            ${awaitingReply ? `<p class="hint">Your turn is written. Edit or reroll it, or press Continue for the story's reply.</p>` : ""}
             <textarea data-input rows="2" placeholder="What does ${name} do? A short note is enough.">${escapeHtml(this.state.input)}</textarea>
             <div class="row">
               <button class="primary" data-action="play" data-kind="instruction" title="Your note becomes ${name}'s turn, then the story answers">Act</button>
               <button data-action="play" data-kind="written" title="Use your text as written">Send as written</button>
               <button data-action="play" data-kind="continue" title="Let the story go on">Continue</button>
+              <select class="compact" data-set="mainConnectionId" title="Story model">${this.modelOptions(story.mainConnectionId)}</select>
             </div></div></div>`
         : "";
       return `<div class="body">
@@ -682,19 +810,23 @@
       const title = view === "story" && data ? data.story.title : view === "new" ? "New story" : "Call Sheet";
       const content = view === "story" ? this.renderStory() : view === "new" ? this.renderNew() : this.renderList();
       const scrollTop = this.shadowRoot.querySelector(".main .scroll")?.scrollTop;
-      this.shadowRoot.innerHTML = `<style>${STYLE}</style><div class="page">
+      const d = this.state.display;
+      const classes = ["page", `size-${d.size}`, d.width, d.boxes ? "boxes" : "", d.dialogue ? "dialogue" : ""];
+      this.shadowRoot.innerHTML = `<style>${STYLE}</style><div class="${classes.join(" ")}">
         <header>
           ${view === "list" ? "" : `<button data-action="home">Stories</button>`}
           <h1>${escapeHtml(title)}</h1>
           ${busy ? `<span class="muted">${escapeHtml(busy)}</span>` : ""}
           ${error ? `<span class="error">${escapeHtml(error)}</span>` : ""}
+          <button data-action="settings">Settings</button>
           ${this._props?.onClose ? `<button data-action="close">Close</button>` : ""}
         </header>
         ${content}
+        ${this.state.settingsOpen ? this.renderSettings() : ""}
       </div>`;
       if (busy) {
         for (const button of this.shadowRoot.querySelectorAll(
-          "button:not([data-action=home]):not([data-action=close])",
+          "button:not([data-action=home]):not([data-action=close]):not([data-action=settings]):not([data-action=close-settings]):not([data-action=display])",
         )) {
           button.disabled = true;
         }
