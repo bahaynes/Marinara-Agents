@@ -82,9 +82,10 @@
         fontSize: Number(state.chatFontSize) > 0 ? Number(state.chatFontSize) : 16,
         fontColor: solidColor(state.chatFontColor),
         boldDialogue: state.boldDialogue !== false,
+        defaultDialogueColor: solidColor(state.defaultDialogueColor) || "#f5c542",
       };
     } catch {
-      return { fontSize: 16, fontColor: "", boldDialogue: true };
+      return { fontSize: 16, fontColor: "", boldDialogue: true, defaultDialogueColor: "#f5c542" };
     }
   }
 
@@ -96,11 +97,12 @@
   function storyText(value, colors, prefs) {
     const tag = prefs.boldDialogue ? "strong" : "span";
     const quotes = (escaped, color) =>
-      escaped.replace(/(&quot;[^\n]*?&quot;|“[^”\n]*”)/gu, (quote) =>
-        color
-          ? `<${tag} style="color:${color}">${quote}</${tag}>`
-          : `<${tag} class="text-[var(--foreground)]">${quote}</${tag}>`,
-      );
+      escaped.replace(/(&quot;[^\n]*?&quot;|“[^”\n]*”)/gu, (quote) => {
+        const c = color || prefs.defaultDialogueColor;
+        return c
+          ? `<${tag} style="color:${c}">${quote}</${tag}>`
+          : `<${tag} class="text-[var(--foreground)]">${quote}</${tag}>`;
+      });
     const segments = [];
     const re = /<speaker="([^"]*)">([\s\S]*?)(?:<\/speaker>|$)/gu;
     let last = 0;
@@ -298,13 +300,26 @@
     dialogueColors() {
       const story = this.state.data?.story;
       const colors = new Map();
+      const prefs = engineTextPrefs();
       for (const c of this.state.library?.characters ?? []) {
-        if (story?.characterIds?.includes(c.id) && solidColor(c.dialogueColor)) {
-          colors.set(c.name.toLowerCase(), solidColor(c.dialogueColor));
+        if (story?.characterIds?.includes(c.id)) {
+          const color = solidColor(c.dialogueColor) || prefs.defaultDialogueColor;
+          if (color) {
+            colors.set(c.name.toLowerCase(), color);
+            const first = c.name.split(/\s+/)[0]?.toLowerCase();
+            if (first) colors.set(first, color);
+          }
         }
       }
       const persona = this.persona();
-      if (solidColor(persona.dialogueColor)) colors.set(persona.name.toLowerCase(), solidColor(persona.dialogueColor));
+      if (persona?.name) {
+        const color = solidColor(persona.dialogueColor) || prefs.defaultDialogueColor;
+        if (color) {
+          colors.set(persona.name.toLowerCase(), color);
+          const first = persona.name.split(/\s+/)[0]?.toLowerCase();
+          if (first) colors.set(first, color);
+        }
+      }
       return colors;
     }
 
@@ -323,16 +338,23 @@
 
     async createStory() {
       const value = (name) => this.$(`[name="${name}"]`)?.value ?? "";
+      const title = value("title");
+      const personaId = value("persona") || null;
+      const mainConnectionId = value("model") || null;
+      const premise = value("premise");
+      const goals = value("goals");
+      const reviewTurns = this.$("[name=reviewTurns]") ? this.$("[name=reviewTurns]").checked : true;
       const characterIds = [...this.querySelectorAll("[name=cast]:checked")].map((box) => box.value);
       let created;
       await this.run("Creating…", async () => {
         created = await call("/stories", "POST", {
-          title: value("title"),
-          personaId: value("persona") || null,
-          mainConnectionId: value("model") || null,
+          title,
+          personaId,
+          mainConnectionId,
           characterIds,
-          premise: value("premise"),
-          goals: value("goals"),
+          premise,
+          goals,
+          settings: { reviewTurns },
         });
       });
       if (created) {
@@ -559,6 +581,8 @@
         <div class="max-h-72 overflow-y-auto rounded-lg ring-1 ring-[var(--border)]">${cast || `<p class="${MUTED} p-2">No characters in the library.</p>`}</div>
         <label class="${LABEL}">Premise<textarea class="${FIELD} resize-y" name="premise" rows="4" placeholder="What the story is about, the world, the situation at the start."></textarea></label>
         <label class="${LABEL}">Story goals<textarea class="${FIELD} resize-y" name="goals" rows="2" placeholder="Where the story is heading. Targets, not a script."></textarea></label>
+        <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="reviewTurns" checked>
+          Review my turn before the story answers</label>
         <div class="flex gap-2"><button type="button" class="${BTN_PRIMARY}" data-action="create">Create story</button>
           <button type="button" class="${BTN}" data-action="home">Cancel</button></div>
       </div>`;
@@ -598,7 +622,6 @@
       if (!persona) {
         return `<div class="mari-message mari-message-narrator cs-turn mb-4 px-2">
           <div class="mari-message-bubble mari-chat-style-surface relative rounded-xl border border-amber-500/25 bg-black/25 px-5 py-4">
-            <div class="cs-rule mb-1 text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-amber-400">Narrator</div>
             ${body}${tools}
           </div></div>`;
       }
@@ -745,7 +768,7 @@
       if (!story) return "";
       const settings = story.settings ?? {};
       return `<div class="absolute inset-0 z-40 flex justify-end bg-black/25" data-action="close-settings">
-        <div class="cs-drawer h-full w-full max-w-md space-y-3 overflow-y-auto bg-[var(--card)] p-4">
+        <div class="cs-drawer h-full w-full max-w-md space-y-3 overflow-y-auto bg-[var(--background)] p-4">
           <div class="flex items-center justify-between"><h2 class="text-lg font-semibold">Story settings</h2>
             <button type="button" class="${BTN}" data-action="close-settings">Done</button></div>
           <label class="${LABEL}">Title<input class="${FIELD}" data-set="title" value="${escapeHtml(story.title)}"></label>
