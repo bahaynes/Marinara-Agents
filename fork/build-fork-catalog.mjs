@@ -9,6 +9,7 @@
 //
 // Upstream files are never touched; rerun after every rebase onto upstream/staging.
 
+import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, readdir, writeFile, access } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
@@ -77,6 +78,24 @@ for (const id of (await readdir(forkPackagesDir, { withFileTypes: true }))
     files: payload.map((path) => ({ path, sha256: sha256(buffers.get(path)), bytes: buffers.get(path).byteLength })),
   };
   await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+  for (const entrypoint of [manifest.entrypoints?.server, manifest.entrypoints?.client].filter(Boolean)) {
+    const syntax = spawnSync(process.execPath, ["--check", join(dir, entrypoint)], { encoding: "utf8" });
+    if (syntax.status !== 0) {
+      throw new Error(`Invalid syntax in fork package ${id} entrypoint ${entrypoint}:\n${syntax.stderr || syntax.stdout}`);
+    }
+  }
+  const testsDir = join(dir, "tests");
+  if (await exists(testsDir)) {
+    const testFiles = (await readdir(testsDir))
+      .filter((f) => f.endsWith(".test.mjs"))
+      .map((f) => join(testsDir, f));
+    if (testFiles.length > 0) {
+      const testResult = spawnSync(process.execPath, ["--test", ...testFiles], { encoding: "utf8" });
+      if (testResult.status !== 0) {
+        throw new Error(`Tests failed for fork package ${id}:\n${testResult.stderr || testResult.stdout}`);
+      }
+    }
+  }
   const manifestBuffer = Buffer.from(`${JSON.stringify(manifest, null, 2)}\n`);
   const zip = createDeterministicZip([
     { name: "manifest.json", data: manifestBuffer },
