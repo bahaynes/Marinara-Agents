@@ -14,6 +14,7 @@ import {
   propose,
   rerollTurn,
   storyView,
+  updateSettings,
 } from "../server.mjs";
 
 /** A fake host. `replies` is a queue: an object is returned as JSON, a string as text, an Error is thrown. */
@@ -54,7 +55,12 @@ function fakeRuntime(replies, { agentFails = false } = {}) {
     maxContext: null,
     fitContext: (messages) => ({ messages }),
     async chatComplete(messages, options = {}) {
-      calls.push({ name, messages: structuredClone(messages), cache: options.promptCache });
+      calls.push({
+        name,
+        messages: structuredClone(messages),
+        cache: options.promptCache,
+        maxTokens: options.maxTokens,
+      });
       if (name === "agent" && agentFails) throw new Error("agent timed out");
       const next = replies.shift();
       if (next instanceof Error) throw next;
@@ -283,4 +289,27 @@ test("plans and outcomes are cleaned; history alternates; long transcripts are t
   assert.match(cut, /^\[The first \d+ turns of this scene are left out for length\.\]/u);
   assert.match(cut, /turn 9/u, "the newest turns are kept");
   assert.equal(transcriptBudget(null, 1500), Infinity);
+});
+
+test("settings: turn length shapes the prompt and budget; review stops after the player's turn", async () => {
+  const { runtime, store, calls, storyId } = await startedStory(["Your turn, written.", "The reply."]);
+  const updated = await updateSettings(store, storyId, { replyLength: "short", reviewTurns: true, title: "Renamed" });
+  assert.equal(updated.title, "Renamed");
+  assert.deepEqual(updated.settings, { replyLength: "short", reviewTurns: true });
+  const kept = await updateSettings(store, storyId, { mainConnectionId: "claude-sub" });
+  assert.deepEqual(kept.settings, { replyLength: "short", reviewTurns: true }, "other settings are kept");
+
+  const reviewed = await playTurn(runtime, store, storyId, { kind: "instruction", text: "waves" });
+  assert.deepEqual(
+    reviewed.turns.map((t) => t.speaker),
+    ["persona"],
+    "with review on, only the player's turn is written",
+  );
+  assert.equal(calls.at(-1).maxTokens, 700);
+  assert.match(calls.at(-1).messages[0].content, /Keep each turn short: one or two paragraphs\./u);
+  const answered = await playTurn(runtime, store, storyId, { kind: "continue" });
+  assert.deepEqual(
+    answered.turns.map((t) => t.speaker),
+    ["persona", "narrator"],
+  );
 });

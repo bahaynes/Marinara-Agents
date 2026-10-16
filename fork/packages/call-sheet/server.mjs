@@ -5,9 +5,11 @@
 // scene summarizer. Scenes end only when the player says so.
 
 import {
+  REPLY_LENGTHS,
   cacheStats,
   castCard,
   cleanOutcomes,
+  cleanSettings,
   cleanUsage,
   cleanPlan,
   cleanSpine,
@@ -27,7 +29,6 @@ const STORY_KIND = "story";
 const TURNS_KIND = "scene-turns";
 const LAST_SCENE_TAIL = 6;
 const SUMMARY_TOKENS = 1500;
-const TURN_TOKENS = 1500;
 const MAX_SWIPES = 8;
 // Scene jobs repeat the previous request, so they ask for the long cache: replies arrive minutes apart.
 const SCENE_CACHE = Object.freeze({ ttl: "1h", depth: 1 });
@@ -76,7 +77,12 @@ export function createStore(documents) {
   async function loadStory(storyId) {
     const doc = await read(storyDocId(storyId));
     if (!doc) throw new SheetError(404, "Story not found.");
-    return { story: { ...doc.data, sheet: { ...emptySheet(), ...doc.data.sheet } }, revision: doc.revision };
+    const story = {
+      ...doc.data,
+      settings: cleanSettings(doc.data.settings),
+      sheet: { ...emptySheet(), ...doc.data.sheet },
+    };
+    return { story, revision: doc.revision };
   }
 
   async function loadTurns(storyId, sceneId) {
@@ -177,11 +183,11 @@ async function agentModel(runtime, story) {
  * One scene turn on the main model. `emit` gets `{type: "start", speaker}` and then each streamed chunk as
  * `{type: "token", text}`; an Engine without streaming simply sends no chunks.
  */
-async function completeText(model, messages, emit, speaker) {
-  const fitted = model.fitContext ? model.fitContext(messages, { maxTokens: TURN_TOKENS }).messages : messages;
+async function completeText(model, messages, emit, speaker, maxTokens) {
+  const fitted = model.fitContext ? model.fitContext(messages, { maxTokens }).messages : messages;
   emit({ type: "start", speaker });
   const result = await model.chatComplete(fitted, {
-    maxTokens: TURN_TOKENS,
+    maxTokens,
     promptCache: SCENE_CACHE,
     onToken: (text) => emit({ type: "token", text }),
   });
@@ -210,7 +216,8 @@ export async function createStory(runtime, store, body) {
     personaId: body.personaId ? String(body.personaId) : null,
     characterIds,
     mainConnectionId: connectionId(body.mainConnectionId),
-    agentConnectionId: null,
+    agentConnectionId: connectionId(body.agentConnectionId),
+    settings: cleanSettings(body),
     createdAt: new Date().toISOString(),
     sheet: { ...emptySheet(), spine: cleanSpine(body) },
   };
@@ -284,6 +291,16 @@ export async function endScene(runtime, store, storyId) {
   });
 }
 
+/** Change any of: title, story model, summary model, reply length, review-before-reply. */
+export function updateSettings(store, storyId, body) {
+  return store.updateStory(storyId, (story) => {
+    if (typeof body.title === "string" && body.title.trim()) story.title = body.title.trim().slice(0, 120);
+    if ("mainConnectionId" in body) story.mainConnectionId = connectionId(body.mainConnectionId);
+    if ("agentConnectionId" in body) story.agentConnectionId = connectionId(body.agentConnectionId);
+    story.settings = cleanSettings({ ...cleanSettings(story.settings), ...body });
+  });
+}
+
 export function acceptScene(store, storyId, rawPlan) {
   return store.updateStory(storyId, (story) => {
     if (openScene(story.sheet)) throw new SheetError(409, "End the current scene before starting a new one.");
@@ -309,7 +326,19 @@ async function sceneContext(runtime, store, storyId) {
   if (!scene) throw new SheetError(409, "Start a scene first.");
   const { cast, persona } = await storyCast(runtime, story);
   const { turns, revision } = await store.loadTurns(storyId, scene.id);
-  return { story, scene, cast, persona, turns, revision };
+  const settings = cleanSettings(story.settings);
+  const args = { sheet: story.sheet, cast, persona, settings };
+  return {
+    story,
+    scene,
+    cast,
+    persona,
+    turns,
+    revision,
+    settings,
+    args,
+    tokens: REPLY_LENGTHS[settings.replyLength].tokens,
+  };
 }
 
 /**
@@ -325,12 +354,18 @@ export function playTurn(runtime, store, storyId, body, emit = silent) {
     const ctx = await sceneContext(runtime, store, storyId);
     const model = await mainModel(runtime, ctx.story);
     const turns = [...ctx.turns];
-    const args = { sheet: ctx.story.sheet, cast: ctx.cast, persona: ctx.persona };
+    const { args, tokens } = ctx;
     let revision = ctx.revision;
     if (kind !== "continue") {
       const written =
         kind === "instruction"
-          ? await completeText(model, impersonatePrompt({ ...args, turns, instruction: input }), emit, "persona")
+          ? await completeText(
+              model,
+              impersonatePrompt({ ...args, turns, instruction: input }),
+              emit,
+              "persona",
+              tokens,
+            )
           : { content: input, usage: null };
       turns.push(
         newTurn("persona", written.content, {
@@ -341,8 +376,10 @@ export function playTurn(runtime, store, storyId, body, emit = silent) {
       );
       // Saved before the narrator runs, so a failed reply never loses the player's turn.
       revision = await store.saveTurns(storyId, ctx.scene.id, turns, revision);
+      // With review on, the player checks the written turn first and asks for the reply with Continue.
+      if (kind === "instruction" && ctx.settings.reviewTurns) return sceneResult(ctx.scene.id, turns);
     }
-    const reply = await completeText(model, narratorPrompt({ ...args, turns }), emit, "narrator");
+    const reply = await completeText(model, narratorPrompt({ ...args, turns }), emit, "narrator", tokens);
     turns.push(newTurn("narrator", reply.content, { kind: "reply", usage: reply.usage }));
     await store.saveTurns(storyId, ctx.scene.id, turns, revision);
     return sceneResult(ctx.scene.id, turns);
@@ -357,7 +394,7 @@ export function rerollTurn(runtime, store, storyId, turnId, emit = silent) {
     const turn = turns[turns.length - 1];
     if (!turn || turn.id !== turnId) throw new SheetError(409, "Only the newest turn can be rerolled.");
     const before = turns.slice(0, -1);
-    const args = { sheet: ctx.story.sheet, cast: ctx.cast, persona: ctx.persona, turns: before };
+    const args = { ...ctx.args, turns: before };
     const model = await mainModel(runtime, ctx.story);
     const prompt =
       turn.speaker === "persona" && turn.instruction
@@ -366,7 +403,7 @@ export function rerollTurn(runtime, store, storyId, turnId, emit = silent) {
           ? narratorPrompt(args)
           : null;
     if (!prompt) throw new SheetError(400, "A turn you wrote yourself can be edited, not rerolled.");
-    const version = await completeText(model, prompt, emit, turn.speaker);
+    const version = await completeText(model, prompt, emit, turn.speaker, ctx.tokens);
     const usage = turn.swipes.map((_, i) => turn.usage?.[i] ?? null);
     turn.swipes = [...turn.swipes, version.content].slice(-MAX_SWIPES);
     turn.usage = [...usage, version.usage].slice(-MAX_SWIPES);
@@ -462,12 +499,8 @@ export async function activate(context) {
         handle(async ({ storyId }) => (await store.removeStory(storyId), { ok: true })),
       );
       routes.put(
-        "/stories/:storyId/model",
-        handle(({ storyId }, body) =>
-          store.updateStory(storyId, (story) => {
-            story.mainConnectionId = connectionId(body.mainConnectionId);
-          }),
-        ),
+        "/stories/:storyId/settings",
+        handle(({ storyId }, body) => updateSettings(store, storyId, body)),
       );
       routes.put(
         "/stories/:storyId/spine",
