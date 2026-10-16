@@ -232,6 +232,7 @@
         this.state.draftIndex = this.lastProposalIndex();
       } else if (result?.sceneId) {
         this.state.data.turns[result.sceneId] = result.turns;
+        this.state.data.stats = { ...this.state.data.stats, [result.sceneId]: result.stats };
       }
     }
 
@@ -555,6 +556,15 @@
         ${plan.facts?.length ? `<h4>Facts</h4>${list(plan.facts)}` : ""}`;
     }
 
+    /** The scene's prompt-cache measure (KPI 1), once a call has reported usage. */
+    renderStats(stats) {
+      if (!stats?.calls) return "";
+      const k = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n));
+      return `<p class="muted" title="Cache reads ${k(stats.read)}, writes ${k(stats.write)}, uncached ${k(stats.input)}, output ${k(stats.output)}">
+        Prompt cache: ${Math.round(stats.readShare * 100)}% read over ${stats.calls} call${stats.calls === 1 ? "" : "s"} ·
+        ${k(stats.equivalents)} token-equivalents</p>`;
+    }
+
     renderReview(proposal) {
       const plans = proposal.plans;
       const index = Math.max(0, Math.min(this.state.draftIndex, plans.length - 1));
@@ -590,7 +600,9 @@
       const sheet = this.state.data.story.sheet;
       const scene = this.openScene();
       const current = scene
-        ? `<div class="card"><h3>Scene ${sheet.scenes.length}: ${escapeHtml(scene.plan.title)}</h3>${this.renderPlan(scene.plan)}</div>`
+        ? `<div class="card"><h3>Scene ${sheet.scenes.length}: ${escapeHtml(scene.plan.title)}</h3>${this.renderPlan(
+            scene.plan,
+          )}${this.renderStats(this.state.data.stats?.[scene.id])}</div>`
         : "";
       const next = sheet.proposal
         ? this.renderReview(sheet.proposal)
