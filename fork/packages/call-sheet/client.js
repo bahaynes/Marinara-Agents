@@ -78,6 +78,18 @@
     throw new Error("The connection closed before the reply finished.");
   }
 
+  const NON_TEXT_PROVIDERS = new Set(["image_generation", "video_generation", "audio_generation", "decision"]);
+
+  /** The Engine's text-model connections, for the story model picker. */
+  async function textConnections() {
+    const response = await fetch("/api/connections");
+    if (!response.ok) return [];
+    const list = await response.json().catch(() => []);
+    return (Array.isArray(list) ? list : [])
+      .filter((c) => !NON_TEXT_PROVIDERS.has(c.provider) && !c.embeddingModel)
+      .map((c) => ({ id: c.id, name: c.name, isDefault: c.isDefault === true || c.isDefault === "true" }));
+  }
+
   const STYLE = `
     :host { display: block; height: 100%; font: inherit; color: inherit; }
     * { box-sizing: border-box; }
@@ -161,6 +173,7 @@
         sceneInput: "",
         castFilter: "",
         writing: null,
+        connections: [],
       };
       this._props = null;
       this._token = 0;
@@ -204,9 +217,14 @@
 
     async loadList() {
       await this.run("", async () => {
-        const [stories, library] = await Promise.all([call("/stories"), this.state.library ?? call("/library")]);
+        const [stories, library, connections] = await Promise.all([
+          call("/stories"),
+          this.state.library ?? call("/library"),
+          this.state.connections.length ? this.state.connections : textConnections(),
+        ]);
         this.state.stories = stories;
         this.state.library = library;
+        this.state.connections = connections;
       });
     }
 
@@ -269,6 +287,7 @@
         created = await call("/stories", "POST", {
           title: value("title"),
           personaId: value("persona") || null,
+          mainConnectionId: value("model") || null,
           characterIds,
           premise: value("premise"),
           goals: value("goals"),
@@ -385,7 +404,25 @@
       await this.loadList();
     }
 
+    modelOptions(selected) {
+      const fallback = this.state.connections.find((c) => c.isDefault)?.name;
+      return [
+        `<option value="">Default main connection${fallback ? ` (${escapeHtml(fallback)})` : ""}</option>`,
+        ...this.state.connections.map(
+          (c) =>
+            `<option value="${escapeHtml(c.id)}" ${c.id === selected ? "selected" : ""}>${escapeHtml(c.name)}</option>`,
+        ),
+      ].join("");
+    }
+
     onInput(event) {
+      if (event.target.matches("[data-model]")) {
+        const mainConnectionId = event.target.value || null;
+        void this.run("Saving…", async () =>
+          this.apply(await call(this.storyPath("/model"), "PUT", { mainConnectionId })),
+        );
+        return;
+      }
       const target = event.target;
       if (target.matches("[data-input]")) this.state.input = target.value;
       else if (target.matches("[data-scene-input]")) this.state.sceneInput = target.value;
@@ -460,6 +497,7 @@
       return `<div class="scroll"><div class="center">
         <h2>New story</h2>
         <label>Title<input name="title"></label>
+        <label>Story model (narrator, your turns, scene planner)<select name="model">${this.modelOptions(null)}</select></label>
         <label>You play<select name="persona"><option value="">(no persona)</option>${personas}</select></label>
         <label>Cast<input data-cast-filter placeholder="Filter characters…" value="${escapeHtml(this.state.castFilter)}"></label>
         <div class="cast-picker">${cast || `<span class="muted">No characters in the library.</span>`}</div>
@@ -613,6 +651,7 @@
           </div>`;
       return `${current}${next}
         <details class="card"><summary>Story</summary>
+          <label>Story model<select data-model>${this.modelOptions(this.state.data.story.mainConnectionId)}</select></label>
           <label>Premise<textarea data-spine="premise" rows="4">${escapeHtml(sheet.spine.premise)}</textarea></label>
           <label>Story goals<textarea data-spine="goals" rows="2">${escapeHtml(sheet.spine.goals)}</textarea></label>
           <div class="row"><button data-action="spine">Save story</button><button class="danger" data-action="delete-story">Delete story</button></div>
