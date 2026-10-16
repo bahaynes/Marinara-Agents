@@ -1,36 +1,39 @@
 # Call Sheet
 
-Scene-by-scene story play for Roleplay chats. Design: `plan/call-sheet.md`.
+Scene-by-scene story play on its own Home page. Design: `plan/call-sheet.md`.
 
-The Engine still writes every reply and impersonate. Call Sheet keeps a per-chat sheet and adds it to
-each turn's system prompt:
-
-- the story (premise and goals, edited by the player);
-- a frozen summary of every finished scene;
-- the current scene plan: location, who is present, what the scene is for, facts in play.
+Call Sheet builds every prompt itself, so no chat preset, memory agent or lorebook applies. It reads
+the Engine's character and persona library for the cast and stores its own stories.
 
 ## Play
 
-1. Add the **Call Sheet** agent in Chat Settings → Agents, then open the Tracker Panel.
+1. Open **Home → Call Sheet** and create a story: who you play, the cast, the premise and story goals.
 2. **Plan scene**, with an optional direction ("a few hours later, everyone meets to debrief"). The
-   chat's main model proposes the scene.
+   main model proposes the scene: where, who is present, what it is for, facts in play.
 3. Edit any field, **Reroll** for another version (earlier versions stay selectable), or **Accept**.
-   From the second scene on, accepting hides the finished scenes' messages from the AI (they stay
-   visible); the summaries stand in. History from before the first scene is never hidden.
-4. Play the scene. Turn instructions are the Engine's impersonate: type what the persona does and
-   press Impersonate, then send.
-5. **End scene & plan next** when you decide the scene is over. The agent model summarizes the scene
-   once (and marks its goals met, failed or open), then the main model proposes the next one.
+   The opening is written straight away.
+4. Play. **Act** turns a short note ("asks the keeper about the road") into your character's turn,
+   then the story answers. **Send as written** uses your text as is. **Continue** lets the story go on.
+   The newest turn can be rerolled; any turn in the open scene can be edited or deleted.
+5. **End scene & plan next** when you decide the scene is over. The agent model writes a frozen
+   summary (and marks each scene goal met, failed or open); it replaces the scene in later prompts.
 
-## Known limits
+## Prompt layout
 
-- Turn Advanced Memory off in Call Sheet chats: it also decides which messages are hidden.
-- The chat may show newly hidden messages as hidden only after a reload.
+Every scene job sends: the fixed head (rules, cast cards, persona, story), the frozen summaries, the
+current scene plan, the scene's turns, then the job's own ending. Only the newest turn and the ending
+change from one request to the next, and scene turns ask for the one-hour prompt cache.
 
 ## Models
 
-- Scene planner: the chat's own connection (main).
-- Scene summarizer: the connection set on the Call Sheet agent, else the default agent connection.
+- Narrator, your turns and the scene planner: the default main connection.
+- Scene summarizer: the default agent connection, falling back to main if it fails.
+
+## Engine support
+
+Streaming and the prompt-cache request need the `custom-mods` Engine change "prompt caching and
+streaming for package model calls". On an Engine without it, replies arrive whole and caching follows
+the provider's defaults; everything else works.
 
 ## Tests
 

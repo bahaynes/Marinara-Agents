@@ -280,18 +280,21 @@ general, so they also stand a chance upstream, but nothing waits on that. Becaus
 whole prompt, cache control is required, not optional: without it the layout is right but nothing
 marks the blocks for the cache.
 
-- **Cache control for package model calls.** `CapabilityLanguageModelCompletionOptions`
-  (`packages/shared/src/types/capability-runtime.ts`) has temperature, max tokens, reasoning effort,
-  verbosity, signal and response format, but no cache breakpoints and no TTL. The Claude
-  subscription path matches cached content in whole blocks, not arbitrary prefixes, so the package
-  must be able to mark the ends of blocks 1 to 4 and choose the TTL. Proposed: an optional
-  per-message cache mark and an optional `promptCacheTtl` (`"5m" | "1h"`), ignored by providers
-  without caching. Anthropic allows at most 4 breakpoints per request, which blocks 1 to 4 use
-  exactly.
-- **Streaming for package model calls.** `chatComplete` returns the whole reply. A streaming variant
-  (or an `onDelta` callback option) lets the page show the reply as it is written, like a chat.
-- **Cache usage reporting.** `CapabilityLanguageModelCompletion.usage` has prompt, completion,
-  reasoning and total tokens, but no cache reads or writes. Add both, or KPI 1 cannot be measured.
+- **Cache control for package model calls.** The providers already do prompt caching
+  (`enableCaching`, a 1-hour TTL, a breakpoint `cachingAtDepth` from the newest message, and the
+  system prompt's end), and the Claude Subscription path places its own breakpoints through the CLI
+  and only needs the TTL. So the package API needs no per-message marks: a
+  `promptCache: { ttl, depth }` option maps onto those. With blocks 1 to 3 in the system prompt and
+  block 4 as messages, the system breakpoint covers blocks 1 to 3 and a depth-1 breakpoint covers
+  block 4 up to the newest turn. A scene change re-writes the system prompt once per scene.
+- **Streaming for package model calls.** An `onToken` option on `chatComplete`, mapped onto the
+  providers' existing token callback.
+- **Cache usage reporting.** Providers already report cache reads and writes; the package API's
+  usage type names them (`cachedPromptTokens`, `cacheWritePromptTokens`).
+
+Done locally on `custom-mods` on 2026-10-15 ("prompt caching and streaming for package model
+calls"); Call Sheet 0.3.0 uses it and still works without it.
+
 - **Later, for combat:** whatever UI and state hooks a ported combat map needs. Gacha Forge already
   runs its own battle simulation and screens inside its package, so a package-owned combat UI is
   feasible; the exact hooks are decided when combat is ported.
