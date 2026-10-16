@@ -1,10 +1,16 @@
 "use strict";
 
-// Call Sheet's Home page: the story list, and for one story the transcript, the input bar and the scene
+// Call Sheet's Home page: the story list, and for one story the transcript, the chat box and the scene
 // panel (current plan, Next scene, and the review step for a proposed scene).
+//
+// It renders in the page itself (no shadow root) and is drawn with Marinara's own visual language: the
+// theme tokens, the safelisted utility classes, the `mari-chrome-control` buttons and the Roleplay
+// message classes. The only CSS here is layout. Text size, text color and bold dialogue follow the
+// player's Roleplay settings, and dialogue takes each character's card colors.
 (() => {
   const TAG_NAME = "marinara-capability-call-sheet";
   const API = "/api/call-sheet/v1";
+  const ENGINE_UI_KEY = "marinara-engine-ui";
   const PLAN_FIELDS = [
     ["title", "Title", "input"],
     ["location", "Location", "input"],
@@ -13,6 +19,47 @@
     ["facts", "Facts in play (one per line)", "list"],
     ["opening", "Opening", "text"],
   ];
+  const NON_TEXT_PROVIDERS = new Set(["image_generation", "video_generation", "audio_generation", "decision"]);
+
+  // Shared class strings, all from Marinara's package safelist.
+  const BTN = "mari-chrome-control mari-chrome-control--small px-3";
+  const BTN_PRIMARY = `${BTN} mari-chrome-control--primary`;
+  const BTN_DANGER = `${BTN} mari-chrome-control--danger`;
+  const FIELD =
+    "w-full rounded-lg bg-[var(--secondary)] px-3 py-2 text-sm text-[var(--foreground)] ring-1 ring-[var(--border)] outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]";
+  const CARD = "rounded-xl border border-[var(--border)] bg-[var(--card)] p-3 space-y-2";
+  const LABEL = "grid gap-1 text-xs text-[var(--muted-foreground)]";
+  const MUTED = "text-xs text-[var(--muted-foreground)]";
+
+  // Layout only. Everything visual comes from the host's classes above.
+  const LAYOUT_CSS = `
+    marinara-capability-call-sheet { display: block; height: 100%; }
+    .cs-root { height: 100%; display: flex; flex-direction: column; min-height: 0; position: relative; }
+    .cs-body { flex: 1; min-height: 0; display: grid; grid-template-columns: 15rem minmax(0, 1fr) 22rem; }
+    .cs-body.cs-solo { grid-template-columns: minmax(0, 1fr); }
+    .cs-col { min-height: 0; overflow-y: auto; }
+    .cs-stories, .cs-side { border-color: var(--border); }
+    .cs-stories { border-right-width: 1px; border-right-style: solid; }
+    .cs-side { border-left-width: 1px; border-left-style: solid; }
+    .cs-main { display: flex; flex-direction: column; min-height: 0; }
+    .cs-text { overflow-wrap: break-word; }
+    .cs-turn .cs-tools { opacity: 0; transition: opacity 150ms ease; }
+    .cs-turn:hover .cs-tools, .cs-turn:focus-within .cs-tools { opacity: 1; }
+    .cs-rule { display: flex; align-items: center; gap: 0.5rem; }
+    .cs-rule::before, .cs-rule::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.3; }
+    .cs-drawer { border-left: 1px solid var(--border); }
+    .cs-active { outline: 1px solid var(--primary); }
+    @media (max-width: 1100px) {
+      .cs-body { grid-template-columns: minmax(0, 1fr) 20rem; }
+      .cs-stories { display: none; }
+    }
+    @media (max-width: 820px) {
+      .cs-body, .cs-body.cs-solo { display: block; overflow-y: auto; }
+      .cs-main { height: calc(100% - 4px); min-height: 26rem; }
+      .cs-side { border-left: none; border-top: 1px solid var(--border); }
+      .cs-turn .cs-tools { opacity: 1; }
+    }
+  `;
 
   const escapeHtml = (value) =>
     String(value ?? "")
@@ -21,19 +68,55 @@
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;");
 
-  /** Paragraphs, with quoted dialogue marked, *italics* and **bold**, after escaping. */
-  const prose = (value) =>
-    escapeHtml(value)
-      .split(/\n{2,}/u)
-      .map(
-        (para) =>
-          `<p>${para
-            .replace(/(&quot;[^<]*?&quot;|“[^”<]*”)/gu, '<span class="say">$1</span>')
-            .replace(/\*\*([^*\n]+)\*\*/gu, "<b>$1</b>")
-            .replace(/\*([^*\n]+)\*/gu, "<i>$1</i>")
-            .replaceAll("\n", "<br>")}</p>`,
-      )
-      .join("");
+  /** A card color the page can use as `color` (Marinara also allows gradients, which text color cannot take). */
+  const solidColor = (value) => {
+    const color = String(value ?? "").trim();
+    return color && !/gradient\(/iu.test(color) && /^[#a-z0-9(),.%\s-]+$/iu.test(color) ? color : "";
+  };
+
+  /** The player's Roleplay text settings, as the Engine saved them; defaults if they cannot be read. */
+  function engineTextPrefs() {
+    try {
+      const state = JSON.parse(globalThis.localStorage?.getItem(ENGINE_UI_KEY) || "{}").state ?? {};
+      return {
+        fontSize: Number(state.chatFontSize) > 0 ? Number(state.chatFontSize) : 16,
+        fontColor: solidColor(state.chatFontColor),
+        boldDialogue: state.boldDialogue !== false,
+      };
+    } catch {
+      return { fontSize: 16, fontColor: "", boldDialogue: true };
+    }
+  }
+
+  /**
+   * A turn's text, drawn the way Roleplay draws a message: quoted dialogue stands out (bold when the
+   * player keeps bold dialogue on) in the speaking character's dialogue color, taken from
+   * <speaker="Name"> tags; *italics* and **bold** apply.
+   */
+  function storyText(value, colors, prefs) {
+    const tag = prefs.boldDialogue ? "strong" : "span";
+    const quotes = (escaped, color) =>
+      escaped.replace(/(&quot;[^\n]*?&quot;|“[^”\n]*”)/gu, (quote) =>
+        color
+          ? `<${tag} style="color:${color}">${quote}</${tag}>`
+          : `<${tag} class="text-[var(--foreground)]">${quote}</${tag}>`,
+      );
+    const segments = [];
+    const re = /<speaker="([^"]*)">([\s\S]*?)(?:<\/speaker>|$)/gu;
+    let last = 0;
+    let match;
+    const raw = String(value ?? "");
+    while ((match = re.exec(raw)) !== null) {
+      segments.push(quotes(escapeHtml(raw.slice(last, match.index)), ""));
+      segments.push(quotes(escapeHtml(match[2]), colors.get(match[1].trim().toLowerCase()) ?? ""));
+      last = match.index + match[0].length;
+    }
+    segments.push(quotes(escapeHtml(raw.slice(last).replace(/<\/?speaker[^>]*>?/gu, "")), ""));
+    return segments
+      .join("")
+      .replace(/\*\*([^*\n]+)\*\*/gu, "<b>$1</b>")
+      .replace(/\*([^*\n]+)\*/gu, "<i>$1</i>");
+  }
 
   async function call(path, method = "GET", body) {
     const response = await fetch(`${API}${path}`, {
@@ -79,29 +162,7 @@
     throw new Error("The connection closed before the reply finished.");
   }
 
-  // Display choices are per browser: they change how the page looks, never what the story sends.
-  const DISPLAY_KEY = "marinara.call-sheet.display";
-  const DISPLAY_DEFAULTS = Object.freeze({ size: "m", dialogue: true, boxes: true, width: "narrow" });
-
-  function loadDisplay() {
-    try {
-      return { ...DISPLAY_DEFAULTS, ...JSON.parse(globalThis.localStorage?.getItem(DISPLAY_KEY) || "{}") };
-    } catch {
-      return { ...DISPLAY_DEFAULTS };
-    }
-  }
-
-  function saveDisplay(display) {
-    try {
-      globalThis.localStorage?.setItem(DISPLAY_KEY, JSON.stringify(display));
-    } catch {
-      // Blocked storage: the choice lasts for this page.
-    }
-  }
-
-  const NON_TEXT_PROVIDERS = new Set(["image_generation", "video_generation", "audio_generation", "decision"]);
-
-  /** The Engine's text-model connections, for the story model picker. */
+  /** The Engine's text-model connections, for the story model pickers. */
   async function textConnections() {
     const response = await fetch("/api/connections");
     if (!response.ok) return [];
@@ -116,103 +177,9 @@
       }));
   }
 
-  const STYLE = `
-    :host { display: block; height: 100%; font: inherit; color: inherit; }
-    * { box-sizing: border-box; }
-    .page { height: 100%; display: flex; flex-direction: column; min-height: 0; position: relative;
-      --text: 15.5px; --say: color-mix(in srgb, #f5b84b 80%, currentColor); --you: #60a5fa; }
-    .size-s { --text: 14px; } .size-l { --text: 17.5px; }
-    header { display: flex; align-items: center; gap: 8px; padding: 10px 14px;
-      border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
-    header h1 { margin: 0; font-size: 16px; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .body { flex: 1; min-height: 0; display: flex; }
-    .main { flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; }
-    .side { width: 340px; flex-shrink: 0; overflow-y: auto; padding: 12px 14px;
-      border-left: 1px solid color-mix(in srgb, currentColor 15%, transparent); display: grid; gap: 10px; align-content: start;
-      font-size: 13px; }
-    .scroll { flex: 1; overflow-y: auto; padding: 14px 18px; }
-    .center { max-width: 720px; margin: 0 auto; display: grid; gap: 14px; }
-    .wide .center { max-width: 1000px; }
-    h2 { margin: 0; font-size: 14px; font-weight: 600; }
-    h3 { margin: 0; font-size: 13px; font-weight: 600; }
-    h4 { margin: 4px 0 0; font-size: 12px; font-weight: 600; opacity: 0.8; }
-    p { margin: 0 0 0.6em; } p:last-child { margin-bottom: 0; }
-    ul { margin: 0; padding-left: 18px; }
-    .muted { opacity: 0.65; font-size: 12px; }
-    .error { color: #fb7185; font-size: 12px; }
-    .row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-    label { display: grid; gap: 3px; font-size: 12px; }
-    input, textarea, select { font: inherit; font-size: 13px; color: inherit; width: 100%;
-      background: color-mix(in srgb, currentColor 6%, transparent);
-      border: 1px solid color-mix(in srgb, currentColor 22%, transparent); border-radius: 8px; padding: 6px 8px; }
-    textarea { resize: vertical; min-height: 44px; line-height: 1.4; }
-    select option { color: #111; }
-    button { font: inherit; font-size: 12px; color: inherit; cursor: pointer; border-radius: 8px; padding: 5px 12px;
-      background: color-mix(in srgb, currentColor 9%, transparent); border: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
-    button:hover:not(:disabled) { background: color-mix(in srgb, currentColor 16%, transparent); }
-    button.primary { background: color-mix(in srgb, #34d399 32%, transparent); border-color: color-mix(in srgb, #34d399 60%, transparent); }
-    button.danger { color: #fb7185; }
-    button.icon { padding: 2px 7px; font-size: 11px; }
-    button:disabled { opacity: 0.45; cursor: default; }
-    .card { border: 1px solid color-mix(in srgb, currentColor 14%, transparent); border-radius: 10px; padding: 10px 12px;
-      background: color-mix(in srgb, currentColor 3%, transparent); display: grid; gap: 6px; }
-    .story-item { cursor: pointer; } .story-item:hover { background: color-mix(in srgb, currentColor 7%, transparent); }
-    .cast-picker { max-height: 180px; overflow-y: auto; display: grid; gap: 2px; padding: 4px;
-      border: 1px solid color-mix(in srgb, currentColor 15%, transparent); border-radius: 8px; }
-    .cast-picker label { display: flex; gap: 6px; align-items: center; font-size: 13px; }
-    .cast-picker input { width: auto; }
-    .scene-head { text-align: center; padding: 18px 0 4px; display: grid; gap: 2px; }
-    .scene-head h3 { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85;
-      display: flex; align-items: center; gap: 12px; }
-    .scene-head h3::before, .scene-head h3::after { content: ""; flex: 1; height: 1px;
-      background: color-mix(in srgb, currentColor 20%, transparent); }
-    .turn { line-height: 1.75; font-size: var(--text); display: grid; gap: 6px; }
-    .turn { position: relative; }
-    .turn p { margin: 0 0 0.9em; } .turn p:last-child { margin-bottom: 0; }
-    .turn .who { font-size: 12px; font-weight: 600; display: flex; gap: 8px; align-items: center; opacity: 0.85; }
-    .avatar { width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; font-size: 11px;
-      background: color-mix(in srgb, currentColor 14%, transparent); }
-    .turn.persona .avatar { background: color-mix(in srgb, var(--you) 40%, transparent); }
-    .turn.persona { padding-left: 14px; border-left: 3px solid color-mix(in srgb, var(--you) 60%, transparent); }
-    .boxes .turn { padding: 12px 16px; border-radius: 12px; background: color-mix(in srgb, currentColor 4%, transparent);
-      border: 1px solid color-mix(in srgb, currentColor 9%, transparent); }
-    .boxes .turn.persona { background: color-mix(in srgb, var(--you) 9%, transparent);
-      border-color: color-mix(in srgb, var(--you) 28%, transparent); border-left: 3px solid color-mix(in srgb, var(--you) 65%, transparent); }
-    .dialogue .say { color: var(--say); }
-    .overlay { position: absolute; inset: 0; z-index: 5; display: flex; justify-content: flex-end;
-      background: color-mix(in srgb, #000 45%, transparent); }
-    .drawer { width: min(440px, 100%); height: 100%; overflow-y: auto; padding: 14px 16px; display: grid; gap: 14px;
-      align-content: start; background: var(--card, var(--background, #18181b)); font-size: 13px;
-      border-left: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
-    .drawer section { display: grid; gap: 8px; }
-    .segmented { display: flex; gap: 4px; }
-    .segmented button.on { background: color-mix(in srgb, #34d399 32%, transparent); border-color: color-mix(in srgb, #34d399 60%, transparent); }
-    .check { display: flex; gap: 8px; align-items: center; font-size: 13px; }
-    .check input { width: auto; }
-    select.compact { width: auto; max-width: 220px; font-size: 12px; padding: 4px 6px; margin-left: auto; }
-    .hint { font-size: 12px; opacity: 0.7; }
-    .turn .tools { display: flex; gap: 4px; position: absolute; top: 8px; right: 10px; opacity: 0; transition: opacity 0.15s; }
-    .turn:hover .tools, .turn:focus-within .tools { opacity: 1; }
-    .instruction { font-size: 12px; opacity: 0.6; font-style: italic; }
-    .frozen { opacity: 0.75; }
-    .writing { opacity: 0.85; }
-    .composer { border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); padding: 10px 18px; }
-    .composer .center { gap: 6px; }
-    .goal-met { color: #34d399; } .goal-failed { color: #fb7185; }
-    details summary { cursor: pointer; font-size: 12px; opacity: 0.85; }
-    @media (max-width: 820px) {
-      .body { flex-direction: column; overflow-y: auto; }
-      .side { width: auto; border-left: none; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
-      .main { flex: none; height: calc(100% - 8px); min-height: 420px; }
-      .scroll { padding: 12px 14px; }
-      .turn .tools { opacity: 1; }
-    }
-  `;
-
   class CallSheetElement extends HTMLElement {
     constructor() {
       super();
-      this.attachShadow({ mode: "open" });
       this.state = {
         view: "list",
         stories: null,
@@ -228,14 +195,13 @@
         castFilter: "",
         writing: null,
         connections: [],
-        display: loadDisplay(),
         settingsOpen: false,
       };
       this._props = null;
       this._token = 0;
-      this.shadowRoot.addEventListener("click", (event) => this.onClick(event));
-      this.shadowRoot.addEventListener("input", (event) => this.onInput(event));
-      this.shadowRoot.addEventListener("change", (event) => this.onChange(event));
+      this.addEventListener("click", (event) => this.onClick(event));
+      this.addEventListener("input", (event) => this.onInput(event));
+      this.addEventListener("change", (event) => this.onChange(event));
     }
 
     set capabilityProps(value) {
@@ -286,7 +252,7 @@
     }
 
     async openStory(storyId) {
-      this.set({ view: "story", storyId, data: null, editing: null, input: "", sceneInput: "" });
+      this.set({ view: "story", storyId, data: null, editing: null, input: "", sceneInput: "", settingsOpen: false });
       await this.run("", async () => {
         this.state.data = await call(`/stories/${encodeURIComponent(storyId)}`);
         this.state.draftIndex = this.lastProposalIndex();
@@ -305,6 +271,8 @@
       if (result?.sheet) {
         this.state.data.story = result;
         this.state.draftIndex = this.lastProposalIndex();
+        const listed = this.state.stories?.find((s) => s.id === result.id);
+        if (listed) Object.assign(listed, { title: result.title, scenes: result.sheet.scenes.length });
       } else if (result?.sceneId) {
         this.state.data.turns[result.sceneId] = result.turns;
         this.state.data.stats = { ...this.state.data.stats, [result.sceneId]: result.stats };
@@ -321,14 +289,32 @@
       return last && last.summary === null ? last : null;
     }
 
-    personaName() {
+    persona() {
       const id = this.state.data?.story?.personaId;
-      return this.state.library?.personas.find((p) => p.id === id)?.name ?? "You";
+      return this.state.library?.personas.find((p) => p.id === id) ?? { name: "You" };
+    }
+
+    /** Lower-cased name → dialogue color, for the story's cast and persona. */
+    dialogueColors() {
+      const story = this.state.data?.story;
+      const colors = new Map();
+      for (const c of this.state.library?.characters ?? []) {
+        if (story?.characterIds?.includes(c.id) && solidColor(c.dialogueColor)) {
+          colors.set(c.name.toLowerCase(), solidColor(c.dialogueColor));
+        }
+      }
+      const persona = this.persona();
+      if (solidColor(persona.dialogueColor)) colors.set(persona.name.toLowerCase(), solidColor(persona.dialogueColor));
+      return colors;
+    }
+
+    $(selector) {
+      return this.querySelector(selector);
     }
 
     scrollToEnd() {
       requestAnimationFrame(() => {
-        const scroll = this.shadowRoot.querySelector(".main .scroll");
+        const scroll = this.$("[data-transcript]");
         if (scroll) scroll.scrollTop = scroll.scrollHeight;
       });
     }
@@ -336,9 +322,8 @@
     // ── Actions ──
 
     async createStory() {
-      const root = this.shadowRoot;
-      const value = (name) => root.querySelector(`[name="${name}"]`)?.value ?? "";
-      const characterIds = [...root.querySelectorAll("[name=cast]:checked")].map((box) => box.value);
+      const value = (name) => this.$(`[name="${name}"]`)?.value ?? "";
+      const characterIds = [...this.querySelectorAll("[name=cast]:checked")].map((box) => box.value);
       let created;
       await this.run("Creating…", async () => {
         created = await call("/stories", "POST", {
@@ -350,7 +335,10 @@
           goals: value("goals"),
         });
       });
-      if (created) await this.openStory(created.id);
+      if (created) {
+        await this.loadList();
+        await this.openStory(created.id);
+      }
     }
 
     async play(kind) {
@@ -378,8 +366,8 @@
             this.scrollToEnd();
           } else if (event.type === "token" && this.state.writing) {
             this.state.writing.text += event.text;
-            const node = this.shadowRoot.querySelector("[data-writing]");
-            if (node) node.innerHTML = prose(this.state.writing.text);
+            const node = this.$("[data-writing]");
+            if (node) node.innerHTML = storyText(this.state.writing.text, this.dialogueColors(), engineTextPrefs());
             this.scrollToEnd();
           }
         });
@@ -401,7 +389,7 @@
     readPlan() {
       const plan = {};
       for (const [key, , kind] of PLAN_FIELDS) {
-        const value = this.shadowRoot.querySelector(`[data-field="${key}"]`)?.value ?? "";
+        const value = this.$(`[data-field="${key}"]`)?.value ?? "";
         plan[key] =
           kind === "list"
             ? value
@@ -434,7 +422,7 @@
       } else if (action === "edit") this.set({ editing: turnId });
       else if (action === "cancel-edit") this.set({ editing: null });
       else if (action === "save-edit") {
-        const text = this.shadowRoot.querySelector("[data-edit]")?.value ?? "";
+        const text = this.$("[data-edit]")?.value ?? "";
         await this.run("", async () => {
           this.apply(await call(path, "PUT", { text }));
           this.state.editing = null;
@@ -443,10 +431,9 @@
     }
 
     async saveSpine() {
-      const root = this.shadowRoot;
       const spine = {
-        premise: root.querySelector("[data-spine=premise]")?.value ?? "",
-        goals: root.querySelector("[data-spine=goals]")?.value ?? "",
+        premise: this.$("[data-spine=premise]")?.value ?? "",
+        goals: this.$("[data-spine=goals]")?.value ?? "",
       };
       await this.run("Saving…", async () => this.apply(await call(this.storyPath("/spine"), "PUT", spine)));
     }
@@ -455,8 +442,7 @@
       if (!confirm("Delete this story for good?")) return;
       await this.run("Deleting…", async () => {
         await call(this.storyPath(), "DELETE");
-        this.state.view = "list";
-        this.state.data = null;
+        Object.assign(this.state, { view: "list", data: null, settingsOpen: false });
       });
       await this.loadList();
     }
@@ -472,25 +458,16 @@
       ].join("");
     }
 
-    /** Story settings save when a field changes; display choices apply at once and stay in this browser. */
+    /** Story settings save when a field changes. */
     onChange(event) {
       const target = event.target;
-      const key = target.dataset.set;
-      if (key) {
-        const value = target.type === "checkbox" ? target.checked : target.value || null;
-        if (key === "title" && !value) return;
-        void this.run("Saving…", async () =>
-          this.apply(await call(this.storyPath("/settings"), "PUT", { [key]: value })),
-        );
-      } else if (target.dataset.display) {
-        this.setDisplay(target.dataset.display, target.checked);
-      }
-    }
-
-    setDisplay(key, value) {
-      this.state.display = { ...this.state.display, [key]: value };
-      saveDisplay(this.state.display);
-      this.render();
+      const key = target.dataset?.set;
+      if (!key) return;
+      const value = target.type === "checkbox" ? target.checked : target.value || null;
+      if (key === "title" && !value) return;
+      void this.run("Saving…", async () =>
+        this.apply(await call(this.storyPath("/settings"), "PUT", { [key]: value })),
+      );
     }
 
     onInput(event) {
@@ -500,7 +477,7 @@
       else if (target.matches("[data-cast-filter]")) {
         this.state.castFilter = target.value;
         const needle = target.value.trim().toLowerCase();
-        for (const row of this.shadowRoot.querySelectorAll(".cast-picker label")) {
+        for (const row of this.querySelectorAll("[data-cast-row]")) {
           row.hidden = Boolean(needle) && !row.textContent.toLowerCase().includes(needle);
         }
       }
@@ -508,20 +485,19 @@
 
     onClick(event) {
       const target = event.target.closest("[data-action]");
-      if (!target || target.disabled) return;
+      if (!target || target.disabled || !this.contains(target)) return;
       const { action, id, index, kind } = target.dataset;
       const proposal = this.state.data?.story?.sheet?.proposal;
       if (action === "settings") this.set({ settingsOpen: !this.state.settingsOpen });
-      else if (action === "close-settings" && (event.target === target || target.tagName === "BUTTON"))
-        this.set({ settingsOpen: false });
-      else if (action === "close-settings") return;
-      else if (action === "display") this.setDisplay(target.dataset.key, target.dataset.value);
-      else if (action === "home") {
+      else if (action === "close-settings") {
+        // The backdrop closes the drawer only when it is clicked itself, not through the drawer.
+        if (event.target === target || target.tagName === "BUTTON") this.set({ settingsOpen: false });
+      } else if (action === "home") {
         this._token += 1; // A reply still on its way belongs to the story being left.
-        this.set({ view: "list", data: null, busy: "" });
+        this.set({ view: "list", data: null, busy: "", settingsOpen: false });
         void this.loadList();
       } else if (action === "close") this._props?.onClose?.();
-      else if (action === "new") this.set({ view: "new" });
+      else if (action === "new") this.set({ view: "new", settingsOpen: false });
       else if (action === "create") void this.createStory();
       else if (action === "open") void this.openStory(id);
       else if (action === "play") void this.play(kind);
@@ -545,19 +521,20 @@
 
     // ── Views ──
 
-    renderList() {
-      const { stories } = this.state;
+    renderStoryList(compact) {
+      const { stories, storyId, view } = this.state;
       const items = (stories ?? [])
         .map(
-          (s) => `<div class="card story-item" data-action="open" data-id="${escapeHtml(s.id)}">
-            <h2>${escapeHtml(s.title)}</h2>
-            <span class="muted">${s.scenes} scene${s.scenes === 1 ? "" : "s"}</span></div>`,
+          (s) => `<button type="button" data-action="open" data-id="${escapeHtml(s.id)}"
+            class="${CARD} block w-full text-left hover:bg-[var(--accent)] ${view === "story" && s.id === storyId ? "cs-active" : ""}">
+            <div class="truncate text-sm font-semibold">${escapeHtml(s.title)}</div>
+            <div class="${MUTED}">${s.scenes} scene${s.scenes === 1 ? "" : "s"}</div></button>`,
         )
         .join("");
-      return `<div class="scroll"><div class="center">
-        <div class="row"><button class="primary" data-action="new">New story</button></div>
-        ${stories === null ? `<p class="muted">Loading…</p>` : items || `<p class="muted">No stories yet.</p>`}
-      </div></div>`;
+      return `<div class="${compact ? "p-3" : "mx-auto max-w-3xl p-4"} space-y-2">
+        <button type="button" class="${BTN_PRIMARY} w-full" data-action="new">New story</button>
+        ${stories === null ? `<p class="${MUTED}">Loading…</p>` : items || `<p class="${MUTED}">No stories yet.</p>`}
+      </div>`;
     }
 
     renderNew() {
@@ -567,94 +544,127 @@
         .join("");
       const cast = library.characters
         .map(
-          (c) => `<label><input type="checkbox" name="cast" value="${escapeHtml(c.id)}"> ${escapeHtml(c.name)}</label>`,
+          (c) => `<label data-cast-row class="flex items-center gap-2 px-2 py-1 text-sm">
+            <input type="checkbox" name="cast" value="${escapeHtml(c.id)}">
+            <span ${solidColor(c.nameColor) ? `style="color:${solidColor(c.nameColor)}"` : ""}>${escapeHtml(c.name)}</span></label>`,
         )
         .join("");
-      return `<div class="scroll"><div class="center">
-        <h2>New story</h2>
-        <label>Title<input name="title"></label>
-        <label>Story model (narrator, your turns, scene planner)<select name="model">${this.modelOptions(null)}</select></label>
-        <label>You play<select name="persona"><option value="">(no persona)</option>${personas}</select></label>
-        <label>Cast<input data-cast-filter placeholder="Filter characters…" value="${escapeHtml(this.state.castFilter)}"></label>
-        <div class="cast-picker">${cast || `<span class="muted">No characters in the library.</span>`}</div>
-        <label>Premise<textarea name="premise" rows="4" placeholder="What the story is about, the world, the situation at the start."></textarea></label>
-        <label>Story goals<textarea name="goals" rows="2" placeholder="Where the story is heading. Targets, not a script."></textarea></label>
-        <div class="row"><button class="primary" data-action="create">Create story</button><button data-action="home">Cancel</button></div>
-      </div></div>`;
+      return `<div class="mx-auto max-w-3xl space-y-3 p-4">
+        <h2 class="text-lg font-semibold">New story</h2>
+        <label class="${LABEL}">Title<input class="${FIELD}" name="title"></label>
+        <label class="${LABEL}">Story model (narrator, your turns, scene planner)
+          <select class="${FIELD}" name="model">${this.modelOptions(null)}</select></label>
+        <label class="${LABEL}">You play<select class="${FIELD}" name="persona"><option value="">(no persona)</option>${personas}</select></label>
+        <label class="${LABEL}">Cast<input class="${FIELD}" data-cast-filter placeholder="Filter characters…" value="${escapeHtml(this.state.castFilter)}"></label>
+        <div class="max-h-72 overflow-y-auto rounded-lg ring-1 ring-[var(--border)]">${cast || `<p class="${MUTED} p-2">No characters in the library.</p>`}</div>
+        <label class="${LABEL}">Premise<textarea class="${FIELD} resize-y" name="premise" rows="4" placeholder="What the story is about, the world, the situation at the start."></textarea></label>
+        <label class="${LABEL}">Story goals<textarea class="${FIELD} resize-y" name="goals" rows="2" placeholder="Where the story is heading. Targets, not a script."></textarea></label>
+        <div class="flex gap-2"><button type="button" class="${BTN_PRIMARY}" data-action="create">Create story</button>
+          <button type="button" class="${BTN}" data-action="home">Cancel</button></div>
+      </div>`;
     }
 
-    renderTurn(turn, live, isLast) {
+    /** One turn, in Roleplay's message shapes: the narrator's ruled bubble, or the persona with avatar. */
+    renderTurn(turn, live, isLast, prefs, colors) {
       const persona = turn.speaker === "persona";
-      const who = persona ? this.personaName() : "Narrator";
+      const who = this.persona();
+      const text = turn.swipes[turn.active] ?? "";
+      const textStyle = `font-size:${prefs.fontSize}px;line-height:1.5;${prefs.fontColor ? `color:${prefs.fontColor};` : ""}`;
       const versions =
         turn.swipes.length > 1
-          ? `<span class="row">${turn.swipes
+          ? turn.swipes
               .map(
                 (_, i) =>
-                  `<button class="icon" data-action="swipe" data-id="${turn.id}" data-index="${i}" ${
-                    i === turn.active || !live ? "disabled" : ""
-                  }>${i + 1}</button>`,
+                  `<button type="button" class="${BTN}" data-action="swipe" data-id="${turn.id}" data-index="${i}"
+                    aria-pressed="${i === turn.active}" ${!live ? "disabled" : ""}>${i + 1}</button>`,
               )
-              .join("")}</span>`
+              .join("")
           : "";
       const canReroll = live && isLast && (!persona || turn.instruction);
       const tools = live
-        ? `<div class="tools">
-            ${canReroll ? `<button class="icon" data-action="reroll" data-id="${turn.id}">Reroll</button>` : ""}
-            <button class="icon" data-action="edit" data-id="${turn.id}">Edit</button>
-            <button class="icon danger" data-action="delete" data-id="${turn.id}">Delete</button>
+        ? `<div class="cs-tools mt-2 flex flex-wrap justify-end gap-1">
+            ${versions}
+            ${canReroll ? `<button type="button" class="${BTN}" data-action="reroll" data-id="${turn.id}">Reroll</button>` : ""}
+            <button type="button" class="${BTN}" data-action="edit" data-id="${turn.id}">Edit</button>
+            <button type="button" class="${BTN_DANGER}" data-action="delete" data-id="${turn.id}">Delete</button>
           </div>`
         : "";
-      const text = turn.swipes[turn.active] ?? "";
       const body =
         this.state.editing === turn.id
-          ? `<textarea data-edit rows="8">${escapeHtml(text)}</textarea>
-             <div class="row"><button class="primary" data-action="save-edit" data-id="${turn.id}">Save</button>
-             <button data-action="cancel-edit" data-id="${turn.id}">Cancel</button></div>`
-          : `<div>${prose(text)}</div>`;
-      return `<div class="turn ${persona ? "persona" : "narrator"} ${live ? "" : "frozen"}">
-        <div class="who"><span class="avatar">${escapeHtml(who.slice(0, 1))}</span>${escapeHtml(who)} ${versions}</div>
-        ${turn.instruction ? `<div class="instruction">From: ${escapeHtml(turn.instruction)}</div>` : ""}
-        ${body}${tools}
-      </div>`;
+          ? `<textarea class="${FIELD} resize-y" data-edit rows="8">${escapeHtml(text)}</textarea>
+             <div class="mt-2 flex gap-2"><button type="button" class="${BTN_PRIMARY}" data-action="save-edit" data-id="${turn.id}">Save</button>
+             <button type="button" class="${BTN}" data-action="cancel-edit" data-id="${turn.id}">Cancel</button></div>`
+          : `<div class="mari-message-content whitespace-pre-wrap cs-text" style="${textStyle}">${storyText(text, colors, prefs)}</div>`;
+      if (!persona) {
+        return `<div class="mari-message mari-message-narrator cs-turn mb-4 px-2">
+          <div class="mari-message-bubble mari-chat-style-surface relative rounded-xl border border-amber-500/25 bg-black/25 px-5 py-4">
+            <div class="cs-rule mb-1 text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-amber-400">Narrator</div>
+            ${body}${tools}
+          </div></div>`;
+      }
+      const avatar = who.avatarPath
+        ? `<img class="h-8 w-8 shrink-0 rounded-full object-cover" src="${escapeHtml(who.avatarPath)}" alt="">`
+        : `<span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--primary)]/15 text-xs font-semibold">${escapeHtml(who.name.slice(0, 1))}</span>`;
+      const nameStyle = solidColor(who.nameColor) ? `style="color:${solidColor(who.nameColor)}"` : "";
+      return `<div class="mari-message mari-message-user cs-turn mb-4 flex gap-3 px-2">
+        ${avatar}
+        <div class="min-w-0 flex-1">
+          <div class="mb-1 flex items-baseline gap-2 px-1">
+            <span class="text-xs font-semibold" ${nameStyle}>${escapeHtml(who.name)}</span>
+            ${turn.instruction ? `<span class="${MUTED} truncate">from: ${escapeHtml(turn.instruction)}</span>` : ""}
+          </div>
+          <div class="mari-message-bubble mari-chat-style-surface rounded-xl border border-[var(--border)] bg-[var(--primary)]/10 px-4 py-3">
+            ${body}${tools}
+          </div>
+        </div></div>`;
+    }
+
+    renderWriting(prefs, colors) {
+      const { speaker, text } = this.state.writing;
+      const preview = { id: "writing", speaker, swipes: [text], active: 0, instruction: "" };
+      const html = this.renderTurn(preview, false, false, prefs, colors);
+      // The streamed text is filled in place by streamTurn.
+      return html.replace(
+        /<div class="mari-message-content([^"]*)" style="([^"]*)">[\s\S]*?<\/div>/u,
+        `<div class="mari-message-content$1" style="$2" data-writing>${text ? storyText(text, colors, prefs) : "…"}</div>`,
+      );
     }
 
     renderOutcomes(scene) {
       return scene.outcomes?.length
-        ? `<ul>${scene.outcomes
-            .map((o) => `<li class="goal-${o.status}">${escapeHtml(o.goal)} (${o.status})</li>`)
+        ? `<ul class="list-disc pl-4 text-xs">${scene.outcomes
+            .map(
+              (o) =>
+                `<li class="${o.status === "met" ? "text-emerald-300" : o.status === "failed" ? "text-red-300" : ""}">${escapeHtml(o.goal)} (${o.status})</li>`,
+            )
             .join("")}</ul>`
         : "";
-    }
-
-    renderWriting() {
-      const { speaker, text } = this.state.writing;
-      return `<div class="turn ${speaker === "persona" ? "persona" : "narrator"} writing">
-        <div class="who"><span class="avatar">${escapeHtml((speaker === "persona" ? this.personaName() : "N").slice(0, 1))}</span>${escapeHtml(speaker === "persona" ? this.personaName() : "Narrator")}</div>
-        <div data-writing>${text ? prose(text) : `<p class="muted">Writing…</p>`}</div>
-      </div>`;
     }
 
     renderTranscript() {
       const { story, turns } = this.state.data;
       const scenes = story.sheet.scenes;
       if (!scenes.length) {
-        return `<p class="muted">No scenes yet. Plan the first scene in the panel${
+        return `<p class="${MUTED} p-4">No scenes yet. Plan the first scene in the panel${
           story.sheet.spine.premise ? "" : ", or describe the story first in Settings"
         }.</p>`;
       }
+      const prefs = engineTextPrefs();
+      const colors = this.dialogueColors();
       return scenes
         .map((scene, i) => {
           const live = scene.summary === null;
           const sceneTurns = turns[scene.id] ?? [];
-          return `<div class="scene-head"><h3>Scene ${i + 1}: ${escapeHtml(scene.plan.title)}</h3>
-              ${scene.plan.location ? `<span class="muted">${escapeHtml(scene.plan.location)}</span>` : ""}</div>
-            ${sceneTurns.map((t, j) => this.renderTurn(t, live, j === sceneTurns.length - 1)).join("")}
-            ${live && this.state.writing ? this.renderWriting() : ""}
+          return `<div class="mb-3 mt-5 text-center">
+              <div class="cs-rule text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-[var(--muted-foreground)]">Scene ${i + 1}: ${escapeHtml(scene.plan.title)}</div>
+              ${scene.plan.location ? `<div class="${MUTED} mt-1">${escapeHtml(scene.plan.location)}</div>` : ""}</div>
+            ${sceneTurns.map((t, j) => this.renderTurn(t, live, j === sceneTurns.length - 1, prefs, colors)).join("")}
+            ${live && this.state.writing ? this.renderWriting(prefs, colors) : ""}
             ${
               live
                 ? ""
-                : `<details class="card"><summary>Scene summary</summary><p>${escapeHtml(scene.summary)}</p>${this.renderOutcomes(scene)}</details>`
+                : `<details class="${CARD} mb-4"><summary class="${MUTED} cursor-pointer">Scene summary</summary>
+                    <p class="text-sm leading-relaxed">${escapeHtml(scene.summary)}</p>${this.renderOutcomes(scene)}</details>`
             }`;
         })
         .join("");
@@ -662,19 +672,22 @@
 
     renderPlan(plan) {
       const list = (items) =>
-        items?.length ? `<ul>${items.map((i) => `<li>${escapeHtml(i)}</li>`).join("")}</ul>` : "";
-      return `
-        ${plan.location ? `<p><b>Where:</b> ${escapeHtml(plan.location)}</p>` : ""}
-        ${plan.cast?.length ? `<h4>Present</h4>${list(plan.cast)}` : ""}
-        ${plan.goals?.length ? `<h4>For</h4>${list(plan.goals)}` : ""}
-        ${plan.facts?.length ? `<h4>Facts</h4>${list(plan.facts)}` : ""}`;
+        items?.length
+          ? `<ul class="list-disc pl-4">${items.map((i) => `<li>${escapeHtml(i)}</li>`).join("")}</ul>`
+          : "";
+      const head = (label) => `<div class="mt-2 text-xs font-semibold text-[var(--muted-foreground)]">${label}</div>`;
+      return `<div class="text-sm">
+        ${plan.location ? `<p>${escapeHtml(plan.location)}</p>` : ""}
+        ${plan.cast?.length ? `${head("Present")}${list(plan.cast)}` : ""}
+        ${plan.goals?.length ? `${head("For")}${list(plan.goals)}` : ""}
+        ${plan.facts?.length ? `${head("Facts")}${list(plan.facts)}` : ""}</div>`;
     }
 
     /** The scene's prompt-cache measure (KPI 1), once a call has reported usage. */
     renderStats(stats) {
       if (!stats?.calls) return "";
       const k = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n));
-      return `<p class="muted" title="Cache reads ${k(stats.read)}, writes ${k(stats.write)}, uncached ${k(stats.input)}, output ${k(stats.output)}">
+      return `<p class="${MUTED}" title="Cache reads ${k(stats.read)}, writes ${k(stats.write)}, uncached ${k(stats.input)}, output ${k(stats.output)}">
         Prompt cache: ${Math.round(stats.readShare * 100)}% read over ${stats.calls} call${stats.calls === 1 ? "" : "s"} ·
         ${k(stats.equivalents)} token-equivalents</p>`;
     }
@@ -686,27 +699,27 @@
       const field = ([key, label, kind]) => {
         const value = kind === "list" ? (plan[key] ?? []).join("\n") : (plan[key] ?? "");
         return kind === "input"
-          ? `<label>${label}<input data-field="${key}" value="${escapeHtml(value)}"></label>`
-          : `<label>${label}<textarea data-field="${key}" rows="${kind === "list" ? 3 : 2}">${escapeHtml(value)}</textarea></label>`;
+          ? `<label class="${LABEL}">${label}<input class="${FIELD}" data-field="${key}" value="${escapeHtml(value)}"></label>`
+          : `<label class="${LABEL}">${label}<textarea class="${FIELD} resize-y" data-field="${key}" rows="${kind === "list" ? 3 : 2}">${escapeHtml(value)}</textarea></label>`;
       };
       const versions =
         plans.length > 1
-          ? `<div class="row">${plans
+          ? `<div class="flex flex-wrap gap-1">${plans
               .map(
                 (_, i) =>
-                  `<button class="icon" data-action="version" data-index="${i}" ${i === index ? "disabled" : ""}>v${i + 1}</button>`,
+                  `<button type="button" class="${BTN}" data-action="version" data-index="${i}" aria-pressed="${i === index}">v${i + 1}</button>`,
               )
               .join("")}</div>`
           : "";
-      return `<div class="card">
-        <h3>Proposed scene</h3>
-        ${proposal.instruction ? `<p class="muted">From: ${escapeHtml(proposal.instruction)}</p>` : ""}
+      return `<div class="${CARD}">
+        <h3 class="text-sm font-semibold">Proposed scene</h3>
+        ${proposal.instruction ? `<p class="${MUTED}">From: ${escapeHtml(proposal.instruction)}</p>` : ""}
         ${versions}
         ${PLAN_FIELDS.map(field).join("")}
-        <div class="row">
-          <button class="primary" data-action="accept">Accept</button>
-          <button data-action="reroll-plan">Reroll</button>
-          <button data-action="discard-plan">Discard</button>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="${BTN_PRIMARY}" data-action="accept">Accept</button>
+          <button type="button" class="${BTN}" data-action="reroll-plan">Reroll</button>
+          <button type="button" class="${BTN}" data-action="discard-plan">Discard</button>
         </div></div>`;
     }
 
@@ -714,126 +727,122 @@
       const sheet = this.state.data.story.sheet;
       const scene = this.openScene();
       const current = scene
-        ? `<div class="card"><h3>Scene ${sheet.scenes.length}: ${escapeHtml(scene.plan.title)}</h3>${this.renderPlan(
-            scene.plan,
-          )}${this.renderStats(this.state.data.stats?.[scene.id])}</div>`
+        ? `<div class="${CARD}"><h3 class="text-sm font-semibold">Scene ${sheet.scenes.length}: ${escapeHtml(scene.plan.title)}</h3>
+            ${this.renderPlan(scene.plan)}${this.renderStats(this.state.data.stats?.[scene.id])}</div>`
         : "";
       const next = sheet.proposal
         ? this.renderReview(sheet.proposal)
-        : `<div class="card">
-            <label>${sheet.scenes.length ? "Next scene" : "First scene"} (optional direction)
-              <textarea data-scene-input rows="2" placeholder="A few hours later, everyone meets to debrief…">${escapeHtml(this.state.sceneInput)}</textarea></label>
-            <div class="row"><button class="primary" data-action="next">${scene ? "End scene & plan next" : "Plan scene"}</button></div>
+        : `<div class="${CARD}">
+            <label class="${LABEL}">${sheet.scenes.length ? "Next scene" : "First scene"} (optional direction)
+              <textarea class="${FIELD} resize-y" data-scene-input rows="2" placeholder="A few hours later, everyone meets to debrief…">${escapeHtml(this.state.sceneInput)}</textarea></label>
+            <button type="button" class="${BTN_PRIMARY}" data-action="next">${scene ? "End scene & plan next" : "Plan scene"}</button>
           </div>`;
-      return `${current}${next}`;
+      return `<div class="space-y-3 p-3">${current}${next}</div>`;
     }
 
     renderSettings() {
-      const { display, data, view } = this.state;
-      const story = view === "story" ? data?.story : null;
-      const settings = story?.settings ?? {};
-      const segment = (key, options) =>
-        `<div class="segmented">${options
-          .map(
-            ([value, label]) =>
-              `<button class="icon ${display[key] === value ? "on" : ""}" data-action="display" data-key="${key}" data-value="${value}" aria-pressed="${
-                display[key] === value
-              }">${label}</button>`,
-          )
-          .join("")}</div>`;
-      const storySection = story
-        ? `<section><h2>Story</h2>
-            <label>Title<input data-set="title" value="${escapeHtml(story.title)}"></label>
-            <label>Story model (narrator, your turns, scene planner)<select data-set="mainConnectionId">${this.modelOptions(story.mainConnectionId)}</select></label>
-            <label>Scene summaries<select data-set="agentConnectionId">${this.modelOptions(story.agentConnectionId, true)}</select></label>
-            <label>Turn length<select data-set="replyLength">${[
-              ["short", "Short (1–2 paragraphs)"],
-              ["medium", "Medium (3–4 paragraphs)"],
-              ["long", "Long"],
-            ]
-              .map(([v, l]) => `<option value="${v}" ${settings.replyLength === v ? "selected" : ""}>${l}</option>`)
-              .join("")}</select></label>
-            <label class="check"><input type="checkbox" data-set="reviewTurns" ${settings.reviewTurns ? "checked" : ""}>
-              Review my turn before the story answers</label>
-            <p class="hint">With review on, Act writes only your turn. Edit or reroll it, then press Continue.</p>
-            <label>Premise<textarea data-spine="premise" rows="4">${escapeHtml(story.sheet.spine.premise)}</textarea></label>
-            <label>Story goals<textarea data-spine="goals" rows="2">${escapeHtml(story.sheet.spine.goals)}</textarea></label>
-            <div class="row"><button data-action="spine">Save premise &amp; goals</button>
-              <button class="danger" data-action="delete-story">Delete story</button></div>
-          </section>`
-        : "";
-      return `<div class="overlay" data-action="close-settings"><div class="drawer">
-        <div class="row"><h2 style="flex:1">Settings</h2><button data-action="close-settings">Done</button></div>
-        ${storySection}
-        <section><h2>Display</h2><p class="hint">Saved in this browser.</p>
-          <label>Text size</label>${segment("size", [
-            ["s", "Small"],
-            ["m", "Medium"],
-            ["l", "Large"],
-          ])}
-          <label>Reading width</label>${segment("width", [
-            ["narrow", "Narrow"],
-            ["wide", "Wide"],
-          ])}
-          <label class="check"><input type="checkbox" data-display="boxes" ${display.boxes ? "checked" : ""}> Put each turn in a box</label>
-          <label class="check"><input type="checkbox" data-display="dialogue" ${display.dialogue ? "checked" : ""}> Highlight dialogue</label>
-        </section>
-      </div></div>`;
+      const story = this.state.view === "story" ? this.state.data?.story : null;
+      if (!story) return "";
+      const settings = story.settings ?? {};
+      return `<div class="absolute inset-0 z-40 flex justify-end bg-black/25" data-action="close-settings">
+        <div class="cs-drawer h-full w-full max-w-md space-y-3 overflow-y-auto bg-[var(--card)] p-4">
+          <div class="flex items-center justify-between"><h2 class="text-lg font-semibold">Story settings</h2>
+            <button type="button" class="${BTN}" data-action="close-settings">Done</button></div>
+          <label class="${LABEL}">Title<input class="${FIELD}" data-set="title" value="${escapeHtml(story.title)}"></label>
+          <label class="${LABEL}">Story model (narrator, your turns, scene planner)
+            <select class="${FIELD}" data-set="mainConnectionId">${this.modelOptions(story.mainConnectionId)}</select></label>
+          <label class="${LABEL}">Scene summaries
+            <select class="${FIELD}" data-set="agentConnectionId">${this.modelOptions(story.agentConnectionId, true)}</select></label>
+          <label class="${LABEL}">Turn length<select class="${FIELD}" data-set="replyLength">${[
+            ["short", "Short (1–2 paragraphs)"],
+            ["medium", "Medium (3–4 paragraphs)"],
+            ["long", "Long"],
+          ]
+            .map(([v, l]) => `<option value="${v}" ${settings.replyLength === v ? "selected" : ""}>${l}</option>`)
+            .join("")}</select></label>
+          <label class="flex items-center gap-2 text-sm"><input type="checkbox" data-set="reviewTurns" ${settings.reviewTurns ? "checked" : ""}>
+            Review my turn before the story answers</label>
+          <p class="${MUTED}">With review on, Act writes only your turn. Edit or reroll it, then press Continue.
+            Text size, text color and bold dialogue follow your Roleplay settings.</p>
+          <label class="${LABEL}">Premise<textarea class="${FIELD} resize-y" data-spine="premise" rows="4">${escapeHtml(story.sheet.spine.premise)}</textarea></label>
+          <label class="${LABEL}">Story goals<textarea class="${FIELD} resize-y" data-spine="goals" rows="2">${escapeHtml(story.sheet.spine.goals)}</textarea></label>
+          <div class="flex flex-wrap gap-2"><button type="button" class="${BTN}" data-action="spine">Save premise &amp; goals</button>
+            <button type="button" class="${BTN_DANGER}" data-action="delete-story">Delete story</button></div>
+        </div></div>`;
+    }
+
+    renderComposer() {
+      const story = this.state.data.story;
+      const live = Boolean(this.openScene()) && !story.sheet.proposal;
+      if (!live) return "";
+      const name = escapeHtml(this.persona().name);
+      const openTurns = this.state.data.turns[this.openScene().id] ?? [];
+      const awaitingReply = openTurns.at(-1)?.speaker === "persona";
+      return `<div class="border-t border-[var(--border)] px-4 py-3">
+        <div class="mx-auto max-w-3xl space-y-2">
+          ${awaitingReply ? `<p class="${MUTED}">Your turn is written. Edit or reroll it, or press Continue for the story's reply.</p>` : ""}
+          <div class="rounded-xl border border-[var(--border)] bg-[var(--card)] px-3 py-2">
+            <textarea data-input rows="2" placeholder="What does ${name} do? A short note is enough."
+              class="mari-chat-input-textarea max-h-[12.5rem] w-full resize-none bg-transparent text-sm text-[var(--foreground)] placeholder:text-foreground/30 outline-none">${escapeHtml(this.state.input)}</textarea>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" class="${BTN_PRIMARY}" data-action="play" data-kind="instruction" title="Your note becomes ${name}'s turn, then the story answers">Act</button>
+            <button type="button" class="${BTN}" data-action="play" data-kind="written" title="Use your text as written">Send as written</button>
+            <button type="button" class="${BTN}" data-action="play" data-kind="continue" title="Let the story go on">Continue</button>
+            <select class="ml-auto max-w-xs rounded-lg bg-[var(--secondary)] px-2 py-1 text-xs ring-1 ring-[var(--border)]" data-set="mainConnectionId" title="Story model">${this.modelOptions(story.mainConnectionId)}</select>
+          </div>
+        </div></div>`;
     }
 
     renderStory() {
-      if (!this.state.data) return `<div class="scroll"><p class="muted">Loading…</p></div>`;
-      const live = Boolean(this.openScene()) && !this.state.data.story.sheet.proposal;
-      const name = escapeHtml(this.personaName());
-      const story = this.state.data.story;
-      const openTurns = this.state.data.turns[this.openScene()?.id] ?? [];
-      const awaitingReply = openTurns.at(-1)?.speaker === "persona";
-      const composer = live
-        ? `<div class="composer"><div class="center">
-            ${awaitingReply ? `<p class="hint">Your turn is written. Edit or reroll it, or press Continue for the story's reply.</p>` : ""}
-            <textarea data-input rows="2" placeholder="What does ${name} do? A short note is enough.">${escapeHtml(this.state.input)}</textarea>
-            <div class="row">
-              <button class="primary" data-action="play" data-kind="instruction" title="Your note becomes ${name}'s turn, then the story answers">Act</button>
-              <button data-action="play" data-kind="written" title="Use your text as written">Send as written</button>
-              <button data-action="play" data-kind="continue" title="Let the story go on">Continue</button>
-              <select class="compact" data-set="mainConnectionId" title="Story model">${this.modelOptions(story.mainConnectionId)}</select>
-            </div></div></div>`
-        : "";
-      return `<div class="body">
-        <div class="main"><div class="scroll"><div class="center">${this.renderTranscript()}</div></div>${composer}</div>
-        <aside class="side">${this.renderSide()}</aside>
+      if (!this.state.data) return `<div class="cs-body cs-solo"><p class="${MUTED} p-4">Loading…</p></div>`;
+      return `<div class="cs-body">
+        <aside class="cs-col cs-stories">${this.renderStoryList(true)}</aside>
+        <main class="cs-main"><div class="cs-col flex-1 px-2 py-2" data-transcript><div class="mx-auto max-w-3xl">${this.renderTranscript()}</div></div>
+          ${this.renderComposer()}</main>
+        <aside class="cs-col cs-side">${this.renderSide()}</aside>
       </div>`;
     }
 
     render() {
       const { view, busy, error, data } = this.state;
       const title = view === "story" && data ? data.story.title : view === "new" ? "New story" : "Call Sheet";
-      const content = view === "story" ? this.renderStory() : view === "new" ? this.renderNew() : this.renderList();
-      const scrollTop = this.shadowRoot.querySelector(".main .scroll")?.scrollTop;
-      const d = this.state.display;
-      const classes = ["page", `size-${d.size}`, d.width, d.boxes ? "boxes" : "", d.dialogue ? "dialogue" : ""];
-      this.shadowRoot.innerHTML = `<style>${STYLE}</style><div class="${classes.join(" ")}">
-        <header>
-          ${view === "list" ? "" : `<button data-action="home">Stories</button>`}
-          <h1>${escapeHtml(title)}</h1>
-          ${busy ? `<span class="muted">${escapeHtml(busy)}</span>` : ""}
-          ${error ? `<span class="error">${escapeHtml(error)}</span>` : ""}
-          <button data-action="settings">Settings</button>
-          ${this._props?.onClose ? `<button data-action="close">Close</button>` : ""}
+      const content =
+        view === "story"
+          ? this.renderStory()
+          : `<div class="cs-body cs-solo"><div class="cs-col">${view === "new" ? this.renderNew() : this.renderStoryList(false)}</div></div>`;
+      const scrollTop = this.$("[data-transcript]")?.scrollTop;
+      const focusedKey =
+        document.activeElement && this.contains(document.activeElement) ? focusKey(document.activeElement) : null;
+      this.innerHTML = `<style>${LAYOUT_CSS}</style><div class="cs-root text-[var(--foreground)]">
+        <header class="flex items-center gap-2 border-b border-[var(--border)] px-4 py-2">
+          ${view === "list" ? "" : `<button type="button" class="${BTN}" data-action="home">Stories</button>`}
+          <h1 class="min-w-0 flex-1 truncate text-base font-semibold">${escapeHtml(title)}</h1>
+          ${busy ? `<span class="${MUTED}">${escapeHtml(busy)}</span>` : ""}
+          ${error ? `<span class="text-xs text-red-300">${escapeHtml(error)}</span>` : ""}
+          ${view === "story" && data ? `<button type="button" class="${BTN}" data-action="settings">Settings</button>` : ""}
+          ${this._props?.onClose ? `<button type="button" class="${BTN}" data-action="close">Close</button>` : ""}
         </header>
         ${content}
         ${this.state.settingsOpen ? this.renderSettings() : ""}
       </div>`;
       if (busy) {
-        for (const button of this.shadowRoot.querySelectorAll(
-          "button:not([data-action=home]):not([data-action=close]):not([data-action=settings]):not([data-action=close-settings]):not([data-action=display])",
-        )) {
-          button.disabled = true;
+        for (const button of this.querySelectorAll("button")) {
+          if (!["home", "close", "settings", "close-settings"].includes(button.dataset.action)) button.disabled = true;
         }
       }
-      const scroll = this.shadowRoot.querySelector(".main .scroll");
+      const scroll = this.$("[data-transcript]");
       if (scroll && scrollTop !== undefined) scroll.scrollTop = scrollTop;
+      if (focusedKey) this.$(focusedKey)?.focus();
     }
+  }
+
+  /** A selector that finds the same field after a re-render, so typing keeps its focus. */
+  function focusKey(element) {
+    for (const attribute of ["data-input", "data-scene-input", "data-cast-filter", "data-edit"]) {
+      if (element.hasAttribute(attribute)) return `[${attribute}]`;
+    }
+    return null;
   }
 
   if (!customElements.get(TAG_NAME)) customElements.define(TAG_NAME, CallSheetElement);

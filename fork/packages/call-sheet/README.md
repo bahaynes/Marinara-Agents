@@ -25,7 +25,11 @@ the Engine's character and persona library for the cast and stores its own stori
 - Story: title, story model (also in the chat box), scene-summary model, turn length (short, medium,
   long: the narrator's length rule and token budget), and "Review my turn before the story answers"
   (Act writes only your turn; Continue asks for the reply). Premise, story goals, delete.
-- Display, saved in this browser: text size, reading width, a box per turn, dialogue highlighting.
+
+The page uses Marinara's own look: theme colors, the package-safelisted classes, `mari-chrome-control`
+buttons and the Roleplay message shapes (narrator bubble, persona with avatar). Text size, text color
+and bold dialogue follow the player's Roleplay settings; dialogue takes each character's card
+dialogue color through `<speaker="Name">` tags, the Engine's group-chat convention.
 
 ## Prompt layout
 
