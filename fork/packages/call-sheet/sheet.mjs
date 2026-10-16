@@ -73,8 +73,45 @@ export function newTurn(speaker, content, extra = {}) {
     kind: extra.kind ?? null,
     instruction: extra.instruction ?? "",
     swipes: [content],
+    // One entry per version: the main-model call that wrote it (null for a turn the player wrote).
+    usage: [extra.usage ?? null],
     active: 0,
     createdAt: new Date().toISOString(),
+  };
+}
+
+/** A provider's usage, reduced to the counts the cache measure needs. */
+export function cleanUsage(usage) {
+  if (!usage || typeof usage !== "object") return null;
+  const n = (value) => (Number.isFinite(value) ? value : 0);
+  return {
+    input: n(usage.promptTokens),
+    read: n(usage.cachedPromptTokens),
+    write: n(usage.cacheWritePromptTokens),
+    output: n(usage.completionTokens),
+  };
+}
+
+/**
+ * KPI 1 for a scene: every recorded call, every version included (rerolls cost too). Token-equivalents
+ * follow the plan: uncached input 1x, cache reads 0.1x, cache writes 2x.
+ * ponytail: assumes Anthropic-style counts, where input excludes cache reads and writes. Providers that
+ * count cached tokens inside input overstate the uncached share; per-provider normalization fixes that.
+ */
+export function cacheStats(turns) {
+  const total = { calls: 0, input: 0, read: 0, write: 0, output: 0 };
+  for (const turn of turns) {
+    for (const usage of turn.usage ?? []) {
+      if (!usage) continue;
+      total.calls += 1;
+      for (const key of ["input", "read", "write", "output"]) total[key] += usage[key];
+    }
+  }
+  const prompt = total.input + total.read + total.write;
+  return {
+    ...total,
+    readShare: prompt ? total.read / prompt : 0,
+    equivalents: Math.round(total.input + total.read * 0.1 + total.write * 2),
   };
 }
 
