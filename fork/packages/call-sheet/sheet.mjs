@@ -180,7 +180,9 @@ export function headBlock({ sheet, cast, persona, settings }) {
       `The player plays ${persona.name}. You write everything else: the world, and every other character's ` +
       `actions and words. Never write ${persona.name}'s words, actions, thoughts or decisions unless you are ` +
       `explicitly asked to write ${persona.name}'s turn. Write vivid, grounded prose in the third person and ` +
-      "past tense. End each turn at a point where the player can respond. " +
+      "past tense. Wrap each character's spoken lines in speaker tags, inline with the narration: " +
+      '<speaker="Name">"Spoken words,"</speaker> followed by the action beat. ' +
+      "End each turn at a point where the player can respond. " +
       REPLY_LENGTHS[cleanSettings(settings).replyLength].hint,
     sheet.spine.premise && `## Story\n${sheet.spine.premise}`,
     sheet.spine.goals && `## Story goals\n${sheet.spine.goals}`,
