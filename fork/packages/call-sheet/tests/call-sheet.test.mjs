@@ -59,7 +59,10 @@ function fakeRuntime(replies, { agentFails = false } = {}) {
       if (next instanceof Error) throw next;
       const content = typeof next === "string" ? next : JSON.stringify(next);
       if (options.onToken) for (const word of content.split(/(?<= )/u)) await options.onToken(word);
-      return { content };
+      return {
+        content,
+        usage: { promptTokens: 100, cachedPromptTokens: 900, cacheWritePromptTokens: 0, completionTokens: 50 },
+      };
     },
   });
   const runtime = {
@@ -128,6 +131,17 @@ test("every job in a scene shares one prefix; the player's instruction becomes t
     "both turns stream",
   );
   assert.deepEqual(calls.at(-1).cache, { ttl: "1h", depth: 1 }, "scene turns ask for the long cache");
+  assert.deepEqual(turns[1].usage, [{ input: 100, read: 900, write: 0, output: 50 }], "each call's usage is kept");
+  const { stats } = await storyView(store, storyId);
+  assert.deepEqual(Object.values(stats)[0], {
+    calls: 3,
+    input: 300,
+    read: 2700,
+    write: 0,
+    output: 150,
+    readShare: 0.9,
+    equivalents: 570,
+  });
   assert.deepEqual(
     turns.map((t) => [t.speaker, t.swipes[0]]),
     [
@@ -187,6 +201,8 @@ test("reroll keeps earlier versions; edit, version pick and delete rewrite the o
   const id = first.turns[0].id;
   let result = await rerollTurn(runtime, store, storyId, id);
   assert.deepEqual(result.turns[0].swipes, ["One.", "Two."]);
+  assert.equal(result.turns[0].usage.length, 2, "a reroll's cost is counted too");
+  assert.equal(result.stats.calls, 2);
   assert.equal(result.turns[0].active, 1);
   result = await editTurn(runtime, store, storyId, id, { active: 0 });
   assert.equal(result.turns[0].active, 0);
