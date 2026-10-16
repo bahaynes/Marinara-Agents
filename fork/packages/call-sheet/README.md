@@ -18,6 +18,15 @@ the Engine's character and persona library for the cast and stores its own stori
 5. **End scene & plan next** when you decide the scene is over. The agent model writes a frozen
    summary (and marks each scene goal met, failed or open); it replaces the scene in later prompts.
 
+## Settings
+
+**Settings** in the header:
+
+- Story: title, story model (also in the chat box), scene-summary model, turn length (short, medium,
+  long: the narrator's length rule and token budget), and "Review my turn before the story answers"
+  (Act writes only your turn; Continue asks for the reply). Premise, story goals, delete.
+- Display, saved in this browser: text size, reading width, a box per turn, dialogue highlighting.
+
 ## Prompt layout
 
 Every scene job sends: the fixed head (rules, cast cards, persona, story), the frozen summaries, the
