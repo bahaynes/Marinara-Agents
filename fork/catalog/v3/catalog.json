@@ -384,8 +384,8 @@
           },
           {
             "path": "client.js",
-            "sha256": "ad1e9bc0cae979f4085d2b6e530470c61296fbaa074a7abfb66a73cfcda53248",
-            "bytes": 41820
+            "sha256": "1b06c220b138d994bbb250e13d16032617ca6ecc4de71f5a82ffedb34947991e",
+            "bytes": 42796
           },
           {
             "path": "server.mjs",
@@ -400,10 +400,11 @@
         ]
       },
       "category": "misc",
+      "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artwork/call-sheet.png",
       "artifact": {
         "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/call-sheet-0.5.1.zip",
-        "sha256": "1ee9ccab71e28ca53acf38cf62a3cbe7f69a56444e428f70f0f4ae5a05a3fef9",
-        "bytes": 81661
+        "sha256": "7f0157dfc37f39862f24e27856e2ca1f05349e67c9d8471c7e10e7b4b967eaec",
+        "bytes": 82637
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/call-sheet/README.md"
     },
