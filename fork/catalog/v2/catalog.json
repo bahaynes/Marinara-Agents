@@ -347,7 +347,7 @@
         },
         "id": "call-sheet",
         "name": "Call Sheet",
-        "version": "0.5.1",
+        "version": "0.5.2",
         "description": "Scene-by-scene story play on its own page. Pick a persona and a cast from your library, describe the story, and play it one scene at a time: the main model proposes each scene (where, who is present, what it is for) and you edit, reroll or accept it; you give short instructions and the story writes your character's turn and the reply; scenes end only when you say so, and a frozen summary carries each one forward. Call Sheet builds every prompt itself, so no chat preset or setting applies. Install it, restart Marinara Engine when prompted, then open Home → Call Sheet.",
         "engine": {
           "min": "2.5.0",
@@ -384,8 +384,8 @@
           },
           {
             "path": "client.js",
-            "sha256": "1b06c220b138d994bbb250e13d16032617ca6ecc4de71f5a82ffedb34947991e",
-            "bytes": 42796
+            "sha256": "a2a27fb6bc3db7195bc184a1954cfb41eb90132604440d66015d36102c6e654f",
+            "bytes": 54830
           },
           {
             "path": "server.mjs",
@@ -402,9 +402,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artwork/call-sheet.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/call-sheet-0.5.1.zip",
-        "sha256": "7f0157dfc37f39862f24e27856e2ca1f05349e67c9d8471c7e10e7b4b967eaec",
-        "bytes": 82637
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/call-sheet-0.5.2.zip",
+        "sha256": "08cbab0325dae4b155611e73954b205d1f81f8fbbbe6be3db21b781fe8aa6d8b",
+        "bytes": 94671
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/call-sheet/README.md"
     },
