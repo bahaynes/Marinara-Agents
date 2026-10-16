@@ -20,6 +20,7 @@ import {
 function fakeRuntime(replies, { agentFails = false } = {}) {
   const docs = new Map();
   const calls = [];
+  const resolved = [];
   const documents = {
     async list(_pkg, kind) {
       return [...docs.values()].filter((d) => d.kind === kind);
@@ -73,12 +74,15 @@ function fakeRuntime(replies, { agentFails = false } = {}) {
       ],
       listPersonas: async () => [{ id: "p1", data: { name: "Traveler", description: "A tired courier." } }],
     },
-    languageModels: { resolve: async () => model("main"), resolveForRequest: async () => model("agent") },
+    languageModels: {
+      resolve: async (id) => (resolved.push(id), model("main")),
+      resolveForRequest: async () => model("agent"),
+    },
     getAgentConfig: async () => null,
     json: { parseJsonish: (raw) => JSON.parse(raw) },
     logger: {},
   };
-  return { runtime, calls, store: createStore(documents) };
+  return { runtime, calls, resolved, store: createStore(documents) };
 }
 
 async function startedStory(replies, options) {
@@ -96,6 +100,15 @@ async function startedStory(replies, options) {
   await acceptScene(host.store, story.id, proposed.sheet.proposal.plans[0]);
   return { ...host, storyId: story.id };
 }
+
+test("a story runs on the connection chosen for it, else the default", async () => {
+  const { runtime, store, resolved } = fakeRuntime([{ title: "A" }, { title: "B" }]);
+  const story = await createStory(runtime, store, { title: "T", mainConnectionId: "claude-sub" });
+  await propose(runtime, store, story.id, "");
+  const plain = await createStory(runtime, store, { title: "U", mainConnectionId: " " });
+  await propose(runtime, store, plain.id, "");
+  assert.deepEqual(resolved, ["claude-sub", null]);
+});
 
 test("library lists the Engine's characters and personas by name", async () => {
   const { runtime } = fakeRuntime([]);
