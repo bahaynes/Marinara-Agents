@@ -10,7 +10,7 @@
   },
   "id": "call-sheet",
   "name": "Call Sheet",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Scene-by-scene story play on its own page. Pick a persona and a cast from your library, describe the story, and play it one scene at a time: the main model proposes each scene (where, who is present, what it is for) and you edit, reroll or accept it; you give short instructions and the story writes your character's turn and the reply; scenes end only when you say so, and a frozen summary carries each one forward. Call Sheet builds every prompt itself, so no chat preset or setting applies. Install it, restart Marinara Engine when prompted, then open Home → Call Sheet.",
   "engine": {
     "min": "2.5.0",
@@ -47,8 +47,8 @@
     },
     {
       "path": "client.js",
-      "sha256": "94537656a54200920dd39eab072e7c0f01194912d745ce993dd982030201a584",
-      "bytes": 40921
+      "sha256": "ad1e9bc0cae979f4085d2b6e530470c61296fbaa074a7abfb66a73cfcda53248",
+      "bytes": 41820
     },
     {
       "path": "server.mjs",
