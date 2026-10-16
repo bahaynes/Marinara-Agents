@@ -5,8 +5,10 @@
 // scene summarizer. Scenes end only when the player says so.
 
 import {
+  cacheStats,
   castCard,
   cleanOutcomes,
+  cleanUsage,
   cleanPlan,
   cleanSpine,
   emptySheet,
@@ -182,7 +184,7 @@ async function completeText(model, messages, emit, speaker) {
   });
   const content = String(result.content ?? "").trim();
   if (!content) throw new SheetError(502, "The model returned an empty reply.");
-  return content;
+  return { content, usage: cleanUsage(result.usage) };
 }
 
 async function completeJson(runtime, model, messages, maxTokens) {
@@ -216,8 +218,12 @@ export async function createStory(runtime, store, body) {
 export async function storyView(store, storyId) {
   const { story } = await store.loadStory(storyId);
   const turns = {};
-  for (const scene of story.sheet.scenes) turns[scene.id] = (await store.loadTurns(storyId, scene.id)).turns;
-  return { story, turns };
+  const stats = {};
+  for (const scene of story.sheet.scenes) {
+    turns[scene.id] = (await store.loadTurns(storyId, scene.id)).turns;
+    stats[scene.id] = cacheStats(turns[scene.id]);
+  }
+  return { story, turns, stats };
 }
 
 // ── Scenes ──
@@ -292,6 +298,8 @@ export function acceptScene(store, storyId, rawPlan) {
 
 // ── Turns ──
 
+const sceneResult = (sceneId, turns) => ({ sceneId, turns, stats: cacheStats(turns) });
+
 async function sceneContext(runtime, store, storyId) {
   const { story } = await store.loadStory(storyId);
   const scene = openScene(story.sheet);
@@ -317,18 +325,24 @@ export function playTurn(runtime, store, storyId, body, emit = silent) {
     const args = { sheet: ctx.story.sheet, cast: ctx.cast, persona: ctx.persona };
     let revision = ctx.revision;
     if (kind !== "continue") {
-      const prose =
+      const written =
         kind === "instruction"
           ? await completeText(model, impersonatePrompt({ ...args, turns, instruction: input }), emit, "persona")
-          : input;
-      turns.push(newTurn("persona", prose, { kind, instruction: kind === "instruction" ? input : "" }));
+          : { content: input, usage: null };
+      turns.push(
+        newTurn("persona", written.content, {
+          kind,
+          instruction: kind === "instruction" ? input : "",
+          usage: written.usage,
+        }),
+      );
       // Saved before the narrator runs, so a failed reply never loses the player's turn.
       revision = await store.saveTurns(storyId, ctx.scene.id, turns, revision);
     }
     const reply = await completeText(model, narratorPrompt({ ...args, turns }), emit, "narrator");
-    turns.push(newTurn("narrator", reply, { kind: "reply" }));
+    turns.push(newTurn("narrator", reply.content, { kind: "reply", usage: reply.usage }));
     await store.saveTurns(storyId, ctx.scene.id, turns, revision);
-    return { sceneId: ctx.scene.id, turns };
+    return sceneResult(ctx.scene.id, turns);
   });
 }
 
@@ -349,10 +363,13 @@ export function rerollTurn(runtime, store, storyId, turnId, emit = silent) {
           ? narratorPrompt(args)
           : null;
     if (!prompt) throw new SheetError(400, "A turn you wrote yourself can be edited, not rerolled.");
-    turn.swipes = [...turn.swipes, await completeText(model, prompt, emit, turn.speaker)].slice(-MAX_SWIPES);
+    const version = await completeText(model, prompt, emit, turn.speaker);
+    const usage = turn.swipes.map((_, i) => turn.usage?.[i] ?? null);
+    turn.swipes = [...turn.swipes, version.content].slice(-MAX_SWIPES);
+    turn.usage = [...usage, version.usage].slice(-MAX_SWIPES);
     turn.active = turn.swipes.length - 1;
     await store.saveTurns(storyId, ctx.scene.id, turns, ctx.revision);
-    return { sceneId: ctx.scene.id, turns };
+    return sceneResult(ctx.scene.id, turns);
   });
 }
 
@@ -367,7 +384,7 @@ export function editTurn(runtime, store, storyId, turnId, body) {
       turn.active = body.active;
     if (typeof body.text === "string" && body.text.trim()) turn.swipes[turn.active] = body.text.trim();
     await store.saveTurns(storyId, ctx.scene.id, turns, ctx.revision);
-    return { sceneId: ctx.scene.id, turns };
+    return sceneResult(ctx.scene.id, turns);
   });
 }
 
@@ -379,7 +396,7 @@ export function deleteTurn(runtime, store, storyId, turnId) {
     if (index < 0) throw new SheetError(404, "Turn not found.");
     const turns = ctx.turns.slice(0, index);
     await store.saveTurns(storyId, ctx.scene.id, turns, ctx.revision);
-    return { sceneId: ctx.scene.id, turns };
+    return sceneResult(ctx.scene.id, turns);
   });
 }
 

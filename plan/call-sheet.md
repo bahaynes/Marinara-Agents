@@ -234,7 +234,9 @@ Every job is the same blocks 1 to 4 with a different block 5:
 **At a scene change,** the new summary is appended to block 2, and the finished scene's history
 (block 4) is dropped. Block 1 and every earlier summary are unchanged, so they stay cached. The
 writes are the new summary, the new plan and the first turn. The proposal is generated as a tail on
-the finished scene's full prefix, so it reads the cache the last turn wrote.
+the finished scene's full prefix, so it reads the cache the last turn wrote. (Call Sheet 0.3 still
+builds the proposal from its own short prompt: one uncached main-model call per scene. Moving it onto
+the shared prefix is a later step.)
 
 **Review is cheap.** A reroll is another tail on the same prefix. Editing a proposal changes only
 block 3, which has not been sent for the new scene yet.
@@ -293,7 +295,7 @@ marks the blocks for the cache.
   usage type names them (`cachedPromptTokens`, `cacheWritePromptTokens`).
 
 Done locally on `custom-mods` on 2026-10-15 ("prompt caching and streaming for package model
-calls"); Call Sheet 0.3.0 uses it and still works without it.
+calls"); Call Sheet 0.3 uses it and still works without it.
 
 - **Later, for combat:** whatever UI and state hooks a ported combat map needs. Gacha Forge already
   runs its own battle simulation and screens inside its package, so a package-owned combat UI is
