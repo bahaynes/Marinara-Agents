@@ -1,11 +1,11 @@
 "use strict";
 
-// Call Sheet's Tracker Panel section: the current scene plan, Next scene, and the review step
-// (edit, reroll, accept) for the proposed scene.
+// Call Sheet's Home page: the story list, and for one story the transcript, the input bar and the scene
+// panel (current plan, Next scene, and the review step for a proposed scene).
 (() => {
   const TAG_NAME = "marinara-capability-call-sheet";
-  const API = "/api/call-sheet/v1/chats";
-  const FIELDS = [
+  const API = "/api/call-sheet/v1";
+  const PLAN_FIELDS = [
     ["title", "Title", "input"],
     ["location", "Location", "input"],
     ["cast", "Present (one per line)", "list"],
@@ -21,8 +21,21 @@
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;");
 
+  /** Paragraphs, with *italics* and **bold**, after escaping. */
+  const prose = (value) =>
+    escapeHtml(value)
+      .split(/\n{2,}/u)
+      .map(
+        (para) =>
+          `<p>${para
+            .replace(/\*\*([^*\n]+)\*\*/gu, "<b>$1</b>")
+            .replace(/\*([^*\n]+)\*/gu, "<i>$1</i>")
+            .replaceAll("\n", "<br>")}</p>`,
+      )
+      .join("");
+
   async function call(path, method = "GET", body) {
-    const response = await fetch(`${API}/${path}`, {
+    const response = await fetch(`${API}${path}`, {
       method,
       headers: body ? { "Content-Type": "application/json" } : undefined,
       body: body ? JSON.stringify(body) : undefined,
@@ -33,44 +46,95 @@
   }
 
   const STYLE = `
-    :host { display: block; font: inherit; color: inherit; }
-    .cs { display: grid; gap: 8px; padding: 8px 10px; font-size: 13px; }
-    h3 { margin: 0; font-size: 13px; font-weight: 600; display: flex; justify-content: space-between; gap: 8px; }
+    :host { display: block; height: 100%; font: inherit; color: inherit; }
+    * { box-sizing: border-box; }
+    .page { height: 100%; display: flex; flex-direction: column; min-height: 0; }
+    header { display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+      border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
+    header h1 { margin: 0; font-size: 16px; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .body { flex: 1; min-height: 0; display: flex; }
+    .main { flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; }
+    .side { width: 340px; flex-shrink: 0; overflow-y: auto; padding: 12px 14px;
+      border-left: 1px solid color-mix(in srgb, currentColor 15%, transparent); display: grid; gap: 10px; align-content: start;
+      font-size: 13px; }
+    .scroll { flex: 1; overflow-y: auto; padding: 14px 18px; }
+    .center { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
+    h2 { margin: 0; font-size: 14px; font-weight: 600; }
+    h3 { margin: 0; font-size: 13px; font-weight: 600; }
     h4 { margin: 4px 0 0; font-size: 12px; font-weight: 600; opacity: 0.8; }
+    p { margin: 0 0 0.6em; } p:last-child { margin-bottom: 0; }
     ul { margin: 0; padding-left: 18px; }
-    p { margin: 0; }
     .muted { opacity: 0.65; font-size: 12px; }
     .error { color: #fb7185; font-size: 12px; }
-    .row { display: flex; flex-wrap: wrap; gap: 6px; }
-    label { display: grid; gap: 2px; font-size: 12px; }
-    input, textarea { font: inherit; color: inherit; background: color-mix(in srgb, currentColor 6%, transparent);
-      border: 1px solid color-mix(in srgb, currentColor 25%, transparent); border-radius: 6px; padding: 4px 6px; }
-    textarea { resize: vertical; min-height: 44px; }
-    button { font: inherit; font-size: 12px; color: inherit; cursor: pointer; border-radius: 6px; padding: 4px 10px;
-      background: color-mix(in srgb, currentColor 10%, transparent); border: 1px solid color-mix(in srgb, currentColor 30%, transparent); }
-    button.primary { background: color-mix(in srgb, #34d399 30%, transparent); }
-    button:disabled { opacity: 0.5; cursor: default; }
-    details summary { cursor: pointer; font-size: 12px; opacity: 0.8; }
+    .row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    label { display: grid; gap: 3px; font-size: 12px; }
+    input, textarea, select { font: inherit; font-size: 13px; color: inherit; width: 100%;
+      background: color-mix(in srgb, currentColor 6%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 22%, transparent); border-radius: 8px; padding: 6px 8px; }
+    textarea { resize: vertical; min-height: 44px; line-height: 1.4; }
+    select option { color: #111; }
+    button { font: inherit; font-size: 12px; color: inherit; cursor: pointer; border-radius: 8px; padding: 5px 12px;
+      background: color-mix(in srgb, currentColor 9%, transparent); border: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
+    button:hover:not(:disabled) { background: color-mix(in srgb, currentColor 16%, transparent); }
+    button.primary { background: color-mix(in srgb, #34d399 32%, transparent); border-color: color-mix(in srgb, #34d399 60%, transparent); }
+    button.danger { color: #fb7185; }
+    button.icon { padding: 2px 7px; font-size: 11px; }
+    button:disabled { opacity: 0.45; cursor: default; }
+    .card { border: 1px solid color-mix(in srgb, currentColor 14%, transparent); border-radius: 10px; padding: 10px 12px;
+      background: color-mix(in srgb, currentColor 3%, transparent); display: grid; gap: 6px; }
+    .story-item { cursor: pointer; } .story-item:hover { background: color-mix(in srgb, currentColor 7%, transparent); }
+    .cast-picker { max-height: 180px; overflow-y: auto; display: grid; gap: 2px; padding: 4px;
+      border: 1px solid color-mix(in srgb, currentColor 15%, transparent); border-radius: 8px; }
+    .cast-picker label { display: flex; gap: 6px; align-items: center; font-size: 13px; }
+    .cast-picker input { width: auto; }
+    .scene-head { text-align: center; padding: 10px 0 2px; }
+    .scene-head h3 { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.85; }
+    .turn { line-height: 1.6; font-size: 15px; display: grid; gap: 4px; }
+    .turn .who { font-size: 12px; font-weight: 600; opacity: 0.7; display: flex; gap: 6px; align-items: center; }
+    .turn.persona { padding-left: 12px; border-left: 3px solid color-mix(in srgb, #60a5fa 55%, transparent); }
+    .turn .tools { display: flex; gap: 4px; flex-wrap: wrap; opacity: 0; transition: opacity 0.15s; }
+    .turn:hover .tools, .turn:focus-within .tools { opacity: 1; }
+    .instruction { font-size: 12px; opacity: 0.6; font-style: italic; }
+    .frozen { opacity: 0.75; }
+    .composer { border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); padding: 10px 18px; }
+    .composer .center { gap: 6px; }
     .goal-met { color: #34d399; } .goal-failed { color: #fb7185; }
+    details summary { cursor: pointer; font-size: 12px; opacity: 0.85; }
+    @media (max-width: 820px) {
+      .body { flex-direction: column; overflow-y: auto; }
+      .side { width: auto; border-left: none; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
+      .main { flex: none; height: calc(100% - 8px); min-height: 420px; }
+      .scroll { padding: 12px 14px; }
+      .turn .tools { opacity: 1; }
+    }
   `;
 
   class CallSheetElement extends HTMLElement {
     constructor() {
       super();
       this.attachShadow({ mode: "open" });
+      this.state = {
+        view: "list",
+        stories: null,
+        library: null,
+        storyId: null,
+        data: null,
+        busy: "",
+        error: "",
+        draftIndex: -1,
+        editing: null,
+        input: "",
+        sceneInput: "",
+        castFilter: "",
+      };
       this._props = null;
-      this._chatId = null;
-      this._sheet = null;
-      this._busy = "";
-      this._error = "";
-      this._draftIndex = -1;
       this._token = 0;
-      this.onCapabilityProps = () => this.sync();
+      this.shadowRoot.addEventListener("click", (event) => this.onClick(event));
+      this.shadowRoot.addEventListener("input", (event) => this.onInput(event));
     }
 
     set capabilityProps(value) {
       this._props = value;
-      if (this.isConnected) this.sync();
     }
 
     get capabilityProps() {
@@ -78,61 +142,134 @@
     }
 
     connectedCallback() {
-      this.addEventListener("marinara-capability-props", this.onCapabilityProps);
-      this.sync();
+      this.render();
+      void this.loadList();
     }
 
     disconnectedCallback() {
-      this.removeEventListener("marinara-capability-props", this.onCapabilityProps);
       this._token += 1;
     }
 
-    sync() {
-      const chatId = typeof this._props?.chatId === "string" ? this._props.chatId : null;
-      if (chatId === this._chatId) return;
-      this._chatId = chatId;
-      this._sheet = null;
-      this._error = "";
+    set(patch) {
+      Object.assign(this.state, patch);
       this.render();
-      if (chatId) this.run("", () => call(encodeURIComponent(chatId)));
     }
 
-    /** Run one request; the panel shows `label` while it is in flight and ignores answers for an old chat. */
+    /** Run one request; ignore its answer if the player has moved on. */
     async run(label, work) {
       const token = ++this._token;
-      const chatId = this._chatId;
-      this._busy = label;
-      this._error = "";
-      this.render();
+      this.set({ busy: label, error: "" });
       try {
-        const sheet = await work();
-        if (token !== this._token || chatId !== this._chatId) return;
-        if (sheet && Array.isArray(sheet.scenes)) this._sheet = sheet;
+        await work();
       } catch (error) {
-        if (token === this._token) this._error = error.message;
+        if (token === this._token) this.state.error = error.message;
       }
-      if (token === this._token) {
-        this._busy = "";
-        this._draftIndex = this._sheet?.proposal ? this._sheet.proposal.plans.length - 1 : -1;
-        this.render();
+      if (token === this._token) this.set({ busy: "" });
+    }
+
+    async loadList() {
+      await this.run("", async () => {
+        const [stories, library] = await Promise.all([call("/stories"), this.state.library ?? call("/library")]);
+        this.state.stories = stories;
+        this.state.library = library;
+      });
+    }
+
+    async openStory(storyId) {
+      this.set({ view: "story", storyId, data: null, editing: null, input: "", sceneInput: "" });
+      await this.run("", async () => {
+        this.state.data = await call(`/stories/${encodeURIComponent(storyId)}`);
+        this.state.draftIndex = this.lastProposalIndex();
+      });
+      this.scrollToEnd();
+    }
+
+    lastProposalIndex() {
+      const proposal = this.state.data?.story?.sheet?.proposal;
+      return proposal ? proposal.plans.length - 1 : -1;
+    }
+
+    /** Apply a route's answer: a whole story, or one scene's turns. */
+    apply(result) {
+      if (!this.state.data) return;
+      if (result?.sheet) {
+        this.state.data.story = result;
+        this.state.draftIndex = this.lastProposalIndex();
+      } else if (result?.sceneId) {
+        this.state.data.turns[result.sceneId] = result.turns;
       }
     }
 
-    path(suffix) {
-      return `${encodeURIComponent(this._chatId)}${suffix}`;
+    storyPath(suffix = "") {
+      return `/stories/${encodeURIComponent(this.state.storyId)}${suffix}`;
     }
 
     openScene() {
-      const scenes = this._sheet?.scenes ?? [];
+      const scenes = this.state.data?.story?.sheet?.scenes ?? [];
       const last = scenes[scenes.length - 1];
       return last && last.summary === null ? last : null;
     }
 
-    readPlan() {
+    personaName() {
+      const id = this.state.data?.story?.personaId;
+      return this.state.library?.personas.find((p) => p.id === id)?.name ?? "You";
+    }
+
+    scrollToEnd() {
+      requestAnimationFrame(() => {
+        const scroll = this.shadowRoot.querySelector(".main .scroll");
+        if (scroll) scroll.scrollTop = scroll.scrollHeight;
+      });
+    }
+
+    // ── Actions ──
+
+    async createStory() {
       const root = this.shadowRoot;
+      const value = (name) => root.querySelector(`[name="${name}"]`)?.value ?? "";
+      const characterIds = [...root.querySelectorAll("[name=cast]:checked")].map((box) => box.value);
+      let created;
+      await this.run("Creating…", async () => {
+        created = await call("/stories", "POST", {
+          title: value("title"),
+          personaId: value("persona") || null,
+          characterIds,
+          premise: value("premise"),
+          goals: value("goals"),
+        });
+      });
+      if (created) await this.openStory(created.id);
+    }
+
+    async play(kind) {
+      const text = this.state.input.trim();
+      if (kind !== "continue" && !text) return;
+      const labels = {
+        instruction: "Writing your turn, then the reply…",
+        written: "Writing the reply…",
+        continue: "Writing…",
+      };
+      await this.run(labels[kind], async () => {
+        this.apply(await call(this.storyPath("/turns"), "POST", { kind, text }));
+        this.state.input = "";
+      });
+      this.scrollToEnd();
+    }
+
+    async nextScene() {
+      const instruction = this.state.sceneInput;
+      await this.run("Summarizing the scene…", async () => {
+        if (this.openScene()) this.apply(await call(this.storyPath("/end"), "POST", {}));
+        this.set({ busy: "Planning the next scene…" });
+        this.apply(await call(this.storyPath("/propose"), "POST", { instruction }));
+        this.state.sceneInput = "";
+      });
+    }
+
+    readPlan() {
       const plan = {};
-      for (const [key, , kind] of FIELDS) {
-        const value = root.querySelector(`[data-field="${key}"]`)?.value ?? "";
+      for (const [key, , kind] of PLAN_FIELDS) {
+        const value = this.shadowRoot.querySelector(`[data-field="${key}"]`)?.value ?? "";
         plan[key] =
           kind === "list"
             ? value
@@ -144,36 +281,33 @@
       return plan;
     }
 
-    async nextScene() {
-      const instruction = this.shadowRoot.querySelector("[data-instruction]")?.value ?? "";
-      await this.run("Summarizing the scene…", async () => {
-        if (this.openScene()) await call(this.path("/end"), "POST", {});
-        this._busy = "Planning the next scene…";
-        this.render();
-        return call(this.path("/propose"), "POST", { instruction });
-      });
-    }
-
-    async reroll() {
-      const instruction = this._sheet?.proposal?.instruction ?? "";
-      await this.run("Planning another version…", () => call(this.path("/propose"), "POST", { instruction }));
-    }
-
     async accept() {
       const plan = this.readPlan();
       await this.run("Starting the scene…", async () => {
-        const { sheet, hideMessageIds } = await call(this.path("/accept"), "POST", { plan });
-        // Finished scenes leave the prompt; their frozen summaries stand in for them. They stay visible.
-        if (hideMessageIds.length) {
-          const response = await fetch(`/api/chats/${encodeURIComponent(this._chatId)}/messages/bulk-hidden`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ messageIds: hideMessageIds, hidden: true }),
-          });
-          if (!response.ok) throw new Error("The scene started, but earlier messages could not be hidden from the AI.");
-        }
-        return sheet;
+        this.apply(await call(this.storyPath("/accept"), "POST", { plan }));
+        this.state.data.turns[this.openScene().id] = [];
+        this.set({ busy: "Writing the opening…" });
+        this.apply(await call(this.storyPath("/turns"), "POST", { kind: "continue" }));
       });
+      this.scrollToEnd();
+    }
+
+    async turnAction(action, turnId) {
+      const path = this.storyPath(`/turns/${encodeURIComponent(turnId)}`);
+      if (action === "reroll") {
+        await this.run("Writing another version…", async () => this.apply(await call(`${path}/reroll`, "POST", {})));
+      } else if (action === "delete") {
+        if (!confirm("Delete this turn and everything after it?")) return;
+        await this.run("", async () => this.apply(await call(path, "DELETE")));
+      } else if (action === "edit") this.set({ editing: turnId });
+      else if (action === "cancel-edit") this.set({ editing: null });
+      else if (action === "save-edit") {
+        const text = this.shadowRoot.querySelector("[data-edit]")?.value ?? "";
+        await this.run("", async () => {
+          this.apply(await call(path, "PUT", { text }));
+          this.state.editing = null;
+        });
+      }
     }
 
     async saveSpine() {
@@ -182,7 +316,169 @@
         premise: root.querySelector("[data-spine=premise]")?.value ?? "",
         goals: root.querySelector("[data-spine=goals]")?.value ?? "",
       };
-      await this.run("Saving…", () => call(this.path("/spine"), "PUT", spine));
+      await this.run("Saving…", async () => this.apply(await call(this.storyPath("/spine"), "PUT", spine)));
+    }
+
+    async deleteStory() {
+      if (!confirm("Delete this story for good?")) return;
+      await this.run("Deleting…", async () => {
+        await call(this.storyPath(), "DELETE");
+        this.state.view = "list";
+        this.state.data = null;
+      });
+      await this.loadList();
+    }
+
+    onInput(event) {
+      const target = event.target;
+      if (target.matches("[data-input]")) this.state.input = target.value;
+      else if (target.matches("[data-scene-input]")) this.state.sceneInput = target.value;
+      else if (target.matches("[data-cast-filter]")) {
+        this.state.castFilter = target.value;
+        const needle = target.value.trim().toLowerCase();
+        for (const row of this.shadowRoot.querySelectorAll(".cast-picker label")) {
+          row.hidden = Boolean(needle) && !row.textContent.toLowerCase().includes(needle);
+        }
+      }
+    }
+
+    onClick(event) {
+      const target = event.target.closest("[data-action]");
+      if (!target || target.disabled) return;
+      const { action, id, index, kind } = target.dataset;
+      const proposal = this.state.data?.story?.sheet?.proposal;
+      if (action === "home") {
+        this._token += 1; // A reply still on its way belongs to the story being left.
+        this.set({ view: "list", data: null, busy: "" });
+        void this.loadList();
+      } else if (action === "close") this._props?.onClose?.();
+      else if (action === "new") this.set({ view: "new" });
+      else if (action === "create") void this.createStory();
+      else if (action === "open") void this.openStory(id);
+      else if (action === "play") void this.play(kind);
+      else if (action === "next") void this.nextScene();
+      else if (action === "reroll-plan")
+        void this.run("Planning another version…", async () =>
+          this.apply(await call(this.storyPath("/propose"), "POST", { instruction: proposal?.instruction ?? "" })),
+        );
+      else if (action === "discard-plan")
+        void this.run("", async () => this.apply(await call(this.storyPath("/proposal"), "DELETE")));
+      else if (action === "accept") void this.accept();
+      else if (action === "version") this.set({ draftIndex: Number(index) });
+      else if (action === "swipe")
+        void this.run("", async () =>
+          this.apply(await call(this.storyPath(`/turns/${encodeURIComponent(id)}`), "PUT", { active: Number(index) })),
+        );
+      else if (action === "spine") void this.saveSpine();
+      else if (action === "delete-story") void this.deleteStory();
+      else void this.turnAction(action, id);
+    }
+
+    // ── Views ──
+
+    renderList() {
+      const { stories } = this.state;
+      const items = (stories ?? [])
+        .map(
+          (s) => `<div class="card story-item" data-action="open" data-id="${escapeHtml(s.id)}">
+            <h2>${escapeHtml(s.title)}</h2>
+            <span class="muted">${s.scenes} scene${s.scenes === 1 ? "" : "s"}</span></div>`,
+        )
+        .join("");
+      return `<div class="scroll"><div class="center">
+        <div class="row"><button class="primary" data-action="new">New story</button></div>
+        ${stories === null ? `<p class="muted">Loading…</p>` : items || `<p class="muted">No stories yet.</p>`}
+      </div></div>`;
+    }
+
+    renderNew() {
+      const library = this.state.library ?? { personas: [], characters: [] };
+      const personas = library.personas
+        .map((p) => `<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`)
+        .join("");
+      const cast = library.characters
+        .map(
+          (c) => `<label><input type="checkbox" name="cast" value="${escapeHtml(c.id)}"> ${escapeHtml(c.name)}</label>`,
+        )
+        .join("");
+      return `<div class="scroll"><div class="center">
+        <h2>New story</h2>
+        <label>Title<input name="title"></label>
+        <label>You play<select name="persona"><option value="">(no persona)</option>${personas}</select></label>
+        <label>Cast<input data-cast-filter placeholder="Filter characters…" value="${escapeHtml(this.state.castFilter)}"></label>
+        <div class="cast-picker">${cast || `<span class="muted">No characters in the library.</span>`}</div>
+        <label>Premise<textarea name="premise" rows="4" placeholder="What the story is about, the world, the situation at the start."></textarea></label>
+        <label>Story goals<textarea name="goals" rows="2" placeholder="Where the story is heading. Targets, not a script."></textarea></label>
+        <div class="row"><button class="primary" data-action="create">Create story</button><button data-action="home">Cancel</button></div>
+      </div></div>`;
+    }
+
+    renderTurn(turn, live, isLast) {
+      const persona = turn.speaker === "persona";
+      const who = persona ? this.personaName() : "Narrator";
+      const versions =
+        turn.swipes.length > 1
+          ? `<span class="row">${turn.swipes
+              .map(
+                (_, i) =>
+                  `<button class="icon" data-action="swipe" data-id="${turn.id}" data-index="${i}" ${
+                    i === turn.active || !live ? "disabled" : ""
+                  }>${i + 1}</button>`,
+              )
+              .join("")}</span>`
+          : "";
+      const canReroll = live && isLast && (!persona || turn.instruction);
+      const tools = live
+        ? `<div class="tools">
+            ${canReroll ? `<button class="icon" data-action="reroll" data-id="${turn.id}">Reroll</button>` : ""}
+            <button class="icon" data-action="edit" data-id="${turn.id}">Edit</button>
+            <button class="icon danger" data-action="delete" data-id="${turn.id}">Delete</button>
+          </div>`
+        : "";
+      const text = turn.swipes[turn.active] ?? "";
+      const body =
+        this.state.editing === turn.id
+          ? `<textarea data-edit rows="8">${escapeHtml(text)}</textarea>
+             <div class="row"><button class="primary" data-action="save-edit" data-id="${turn.id}">Save</button>
+             <button data-action="cancel-edit" data-id="${turn.id}">Cancel</button></div>`
+          : `<div>${prose(text)}</div>`;
+      return `<div class="turn ${persona ? "persona" : "narrator"} ${live ? "" : "frozen"}">
+        <div class="who">${escapeHtml(who)} ${versions}</div>
+        ${turn.instruction ? `<div class="instruction">From: ${escapeHtml(turn.instruction)}</div>` : ""}
+        ${body}${tools}
+      </div>`;
+    }
+
+    renderOutcomes(scene) {
+      return scene.outcomes?.length
+        ? `<ul>${scene.outcomes
+            .map((o) => `<li class="goal-${o.status}">${escapeHtml(o.goal)} (${o.status})</li>`)
+            .join("")}</ul>`
+        : "";
+    }
+
+    renderTranscript() {
+      const { story, turns } = this.state.data;
+      const scenes = story.sheet.scenes;
+      if (!scenes.length) {
+        return `<p class="muted">No scenes yet. Plan the first scene in the panel${
+          story.sheet.spine.premise ? "" : ", or describe the story first under Story"
+        }.</p>`;
+      }
+      return scenes
+        .map((scene, i) => {
+          const live = scene.summary === null;
+          const sceneTurns = turns[scene.id] ?? [];
+          return `<div class="scene-head"><h3>Scene ${i + 1}: ${escapeHtml(scene.plan.title)}</h3>
+              ${scene.plan.location ? `<span class="muted">${escapeHtml(scene.plan.location)}</span>` : ""}</div>
+            ${sceneTurns.map((t, j) => this.renderTurn(t, live, j === sceneTurns.length - 1)).join("")}
+            ${
+              live
+                ? ""
+                : `<details class="card"><summary>Scene summary</summary><p>${escapeHtml(scene.summary)}</p>${this.renderOutcomes(scene)}</details>`
+            }`;
+        })
+        .join("");
     }
 
     renderPlan(plan) {
@@ -192,13 +488,13 @@
         ${plan.location ? `<p><b>Where:</b> ${escapeHtml(plan.location)}</p>` : ""}
         ${plan.cast?.length ? `<h4>Present</h4>${list(plan.cast)}` : ""}
         ${plan.goals?.length ? `<h4>For</h4>${list(plan.goals)}` : ""}
-        ${plan.facts?.length ? `<h4>Facts</h4>${list(plan.facts)}` : ""}
-        ${plan.opening ? `<p class="muted">${escapeHtml(plan.opening)}</p>` : ""}`;
+        ${plan.facts?.length ? `<h4>Facts</h4>${list(plan.facts)}` : ""}`;
     }
 
     renderReview(proposal) {
       const plans = proposal.plans;
-      const plan = plans[Math.max(0, Math.min(this._draftIndex, plans.length - 1))];
+      const index = Math.max(0, Math.min(this.state.draftIndex, plans.length - 1));
+      const plan = plans[index];
       const field = ([key, label, kind]) => {
         const value = kind === "list" ? (plan[key] ?? []).join("\n") : (plan[key] ?? "");
         return kind === "input"
@@ -209,79 +505,87 @@
         plans.length > 1
           ? `<div class="row">${plans
               .map(
-                (_, i) => `<button data-version="${i}" ${i === this._draftIndex ? "disabled" : ""}>v${i + 1}</button>`,
+                (_, i) =>
+                  `<button class="icon" data-action="version" data-index="${i}" ${i === index ? "disabled" : ""}>v${i + 1}</button>`,
               )
               .join("")}</div>`
           : "";
-      return `
+      return `<div class="card">
         <h3>Proposed scene</h3>
         ${proposal.instruction ? `<p class="muted">From: ${escapeHtml(proposal.instruction)}</p>` : ""}
         ${versions}
-        ${FIELDS.map(field).join("")}
+        ${PLAN_FIELDS.map(field).join("")}
         <div class="row">
           <button class="primary" data-action="accept">Accept</button>
-          <button data-action="reroll">Reroll</button>
-          <button data-action="discard">Discard</button>
-        </div>`;
+          <button data-action="reroll-plan">Reroll</button>
+          <button data-action="discard-plan">Discard</button>
+        </div></div>`;
+    }
+
+    renderSide() {
+      const sheet = this.state.data.story.sheet;
+      const scene = this.openScene();
+      const current = scene
+        ? `<div class="card"><h3>Scene ${sheet.scenes.length}: ${escapeHtml(scene.plan.title)}</h3>${this.renderPlan(scene.plan)}</div>`
+        : "";
+      const next = sheet.proposal
+        ? this.renderReview(sheet.proposal)
+        : `<div class="card">
+            <label>${sheet.scenes.length ? "Next scene" : "First scene"} (optional direction)
+              <textarea data-scene-input rows="2" placeholder="A few hours later, everyone meets to debrief…">${escapeHtml(this.state.sceneInput)}</textarea></label>
+            <div class="row"><button class="primary" data-action="next">${scene ? "End scene & plan next" : "Plan scene"}</button></div>
+          </div>`;
+      return `${current}${next}
+        <details class="card"><summary>Story</summary>
+          <label>Premise<textarea data-spine="premise" rows="4">${escapeHtml(sheet.spine.premise)}</textarea></label>
+          <label>Story goals<textarea data-spine="goals" rows="2">${escapeHtml(sheet.spine.goals)}</textarea></label>
+          <div class="row"><button data-action="spine">Save story</button><button class="danger" data-action="delete-story">Delete story</button></div>
+        </details>`;
+    }
+
+    renderStory() {
+      if (!this.state.data) return `<div class="scroll"><p class="muted">Loading…</p></div>`;
+      const live = Boolean(this.openScene()) && !this.state.data.story.sheet.proposal;
+      const name = escapeHtml(this.personaName());
+      const composer = live
+        ? `<div class="composer"><div class="center">
+            <textarea data-input rows="2" placeholder="What does ${name} do? A short note is enough.">${escapeHtml(this.state.input)}</textarea>
+            <div class="row">
+              <button class="primary" data-action="play" data-kind="instruction" title="Your note becomes ${name}'s turn, then the story answers">Act</button>
+              <button data-action="play" data-kind="written" title="Use your text as written">Send as written</button>
+              <button data-action="play" data-kind="continue" title="Let the story go on">Continue</button>
+            </div></div></div>`
+        : "";
+      return `<div class="body">
+        <div class="main"><div class="scroll"><div class="center">${this.renderTranscript()}</div></div>${composer}</div>
+        <aside class="side">${this.renderSide()}</aside>
+      </div>`;
     }
 
     render() {
-      const sheet = this._sheet;
-      let body;
-      if (!this._chatId) body = `<p class="muted">Open a Roleplay chat.</p>`;
-      else if (!sheet) body = `<p class="muted">Loading…</p>`;
-      else if (sheet.proposal) body = this.renderReview(sheet.proposal);
-      else {
-        const scene = this.openScene();
-        const done = sheet.scenes.filter((s) => s.summary !== null);
-        const last = done[done.length - 1];
-        body = `
-          ${
-            scene
-              ? `<h3><span>Scene ${sheet.scenes.length}: ${escapeHtml(scene.plan.title)}</span></h3>${this.renderPlan(scene.plan)}`
-              : `<p class="muted">${sheet.scenes.length ? "Between scenes." : "No scene yet. Describe the first one, or leave it empty and let the model pick."}</p>`
-          }
-          <label>${scene ? "Next scene" : "First scene"} (optional direction)
-            <textarea data-instruction rows="2" placeholder="A few hours later, everyone meets to debrief…"></textarea></label>
-          <div class="row"><button class="primary" data-action="next">${scene ? "End scene & plan next" : "Plan scene"}</button></div>
-          ${
-            last
-              ? `<details><summary>Last scene: ${escapeHtml(last.plan.title)}</summary><p>${escapeHtml(last.summary)}</p>${
-                  last.outcomes?.length
-                    ? `<ul>${last.outcomes.map((o) => `<li class="goal-${o.status}">${escapeHtml(o.goal)} — ${o.status}</li>`).join("")}</ul>`
-                    : ""
-                }</details>`
-              : ""
-          }
-          <details><summary>Story</summary>
-            <label>Premise<textarea data-spine="premise" rows="3">${escapeHtml(sheet.spine.premise)}</textarea></label>
-            <label>Story goals<textarea data-spine="goals" rows="2">${escapeHtml(sheet.spine.goals)}</textarea></label>
-            <div class="row"><button data-action="spine">Save story</button></div>
-          </details>`;
-      }
-      this.shadowRoot.innerHTML = `<style>${STYLE}</style><div class="cs">
-        ${body}
-        ${this._busy ? `<p class="muted">${escapeHtml(this._busy)}</p>` : ""}
-        ${this._error ? `<p class="error">${escapeHtml(this._error)}</p>` : ""}
+      const { view, busy, error, data } = this.state;
+      const title = view === "story" && data ? data.story.title : view === "new" ? "New story" : "Call Sheet";
+      const content = view === "story" ? this.renderStory() : view === "new" ? this.renderNew() : this.renderList();
+      const scrollTop = this.shadowRoot.querySelector(".main .scroll")?.scrollTop;
+      this.shadowRoot.innerHTML = `<style>${STYLE}</style><div class="page">
+        <header>
+          ${view === "list" ? "" : `<button data-action="home">Stories</button>`}
+          <h1>${escapeHtml(title)}</h1>
+          ${busy ? `<span class="muted">${escapeHtml(busy)}</span>` : ""}
+          ${error ? `<span class="error">${escapeHtml(error)}</span>` : ""}
+          ${this._props?.onClose ? `<button data-action="close">Close</button>` : ""}
+        </header>
+        ${content}
       </div>`;
-      for (const button of this.shadowRoot.querySelectorAll("button")) {
-        if (this._busy) button.disabled = true;
-        button.addEventListener("click", () => this.onClick(button));
+      if (busy) {
+        for (const button of this.shadowRoot.querySelectorAll(
+          "button:not([data-action=home]):not([data-action=close])",
+        )) {
+          button.disabled = true;
+        }
       }
-    }
-
-    onClick(button) {
-      if (button.dataset.version !== undefined) {
-        this._draftIndex = Number(button.dataset.version);
-        this.render();
-        return;
-      }
-      const action = button.dataset.action;
-      if (action === "next") void this.nextScene();
-      else if (action === "reroll") void this.reroll();
-      else if (action === "accept") void this.accept();
-      else if (action === "spine") void this.saveSpine();
-      else if (action === "discard") void this.run("", () => call(this.path("/proposal"), "DELETE"));
+      const scroll = this.shadowRoot.querySelector(".main .scroll");
+      if (scroll && scrollTop !== undefined) scroll.scrollTop = scrollTop;
     }
   }
 

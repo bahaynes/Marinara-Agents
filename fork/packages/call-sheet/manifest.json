@@ -10,8 +10,8 @@
   },
   "id": "call-sheet",
   "name": "Call Sheet",
-  "version": "0.1.1",
-  "description": "Scene-by-scene story play for Roleplay chats. The main model proposes each scene (where, who is present, what it is for); you edit, reroll or accept it before play. The scene plan and frozen summaries of earlier scenes go into every turn's prompt, and finished scenes leave the chat history. Scenes end only when you say so, with Next scene in the Tracker Panel. Add the Agent in Chat Settings → Agents, then open the Tracker Panel.",
+  "version": "0.2.0",
+  "description": "Scene-by-scene story play on its own page. Pick a persona and a cast from your library, describe the story, and play it one scene at a time: the main model proposes each scene (where, who is present, what it is for) and you edit, reroll or accept it; you give short instructions and the story writes your character's turn and the reply; scenes end only when you say so, and a frozen summary carries each one forward. Call Sheet builds every prompt itself, so no chat preset or setting applies. Install it, restart Marinara Engine when prompted, then open Home → Call Sheet.",
   "engine": {
     "min": "2.5.0",
     "maxExclusive": "4.0.0"
@@ -26,12 +26,14 @@
   },
   "contributions": {
     "slots": [
-      "tracker-panel"
-    ]
+      "home-browser-tab"
+    ],
+    "homeBrowserTab": {
+      "label": "Call Sheet",
+      "ariaLabel": "Open Call Sheet"
+    }
   },
   "permissions": [
-    "chat-read",
-    "prompt-context",
     "routes",
     "storage",
     "ui"
@@ -40,23 +42,23 @@
   "files": [
     {
       "path": "agents.json",
-      "sha256": "0a688fea517233c150ceeb2f197dc320a72e691caacf20c250168a237f3971fd",
-      "bytes": 557
+      "sha256": "e5dde29cc251fe54a8811891cecfde2309bd31906a7b87b3b7a365d76a19d19a",
+      "bytes": 545
     },
     {
       "path": "client.js",
-      "sha256": "c65a2fa1c880a8b5010e16eab6145c9107387d141153d0ae0432b65547332fca",
-      "bytes": 11899
+      "sha256": "6a9d95520706a88e69cf87fed8715723a69f925b5cf7815d4b9c5fefdc670b4a",
+      "bytes": 26477
     },
     {
       "path": "server.mjs",
-      "sha256": "83e15b7388d4ce23e516daf81a32c20b4be278fe8857f2ce48a1718767b28c92",
-      "bytes": 11407
+      "sha256": "9363f897f5db658232853dc9f272476887f6e35493a58a69bb9b12783dcafb7e",
+      "bytes": 18259
     },
     {
       "path": "sheet.mjs",
-      "sha256": "da7ef75a127419049480006303c9e353da61630c1744d37e8ecd31e602906fcf",
-      "bytes": 8594
+      "sha256": "8958180bb8faa278ea672669cd0b9be83c40d837e607d151c63d465aa2e3d6ca",
+      "bytes": 11607
     }
   ]
 }
