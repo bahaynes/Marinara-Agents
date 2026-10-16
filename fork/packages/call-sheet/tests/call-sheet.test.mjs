@@ -76,9 +76,22 @@ function fakeRuntime(replies, { agentFails = false } = {}) {
     persistence: { documents },
     resources: {
       listCharacters: async () => [
-        { id: "c1", data: { name: "Keeper", description: "Runs the inn.", personality: "Gruff." } },
+        {
+          id: "c1",
+          data: {
+            name: "Keeper",
+            description: "Runs the inn.",
+            personality: "Gruff.",
+            extensions: { nameColor: "#aa0000", dialogueColor: "#ffcc00" },
+          },
+        },
       ],
-      listPersonas: async () => [{ id: "p1", data: { name: "Traveler", description: "A tired courier." } }],
+      listPersonas: async () => [
+        {
+          id: "p1",
+          data: { name: "Traveler", description: "A tired courier.", avatarPath: "/api/avatars/file/p1.webp" },
+        },
+      ],
     },
     languageModels: {
       resolve: async (id) => (resolved.push(id), model("main")),
@@ -119,8 +132,10 @@ test("a story runs on the connection chosen for it, else the default", async () 
 test("library lists the Engine's characters and personas by name", async () => {
   const { runtime } = fakeRuntime([]);
   assert.deepEqual(await library(runtime), {
-    characters: [{ id: "c1", name: "Keeper" }],
-    personas: [{ id: "p1", name: "Traveler" }],
+    characters: [{ id: "c1", name: "Keeper", nameColor: "#aa0000", dialogueColor: "#ffcc00" }],
+    personas: [
+      { id: "p1", name: "Traveler", nameColor: "", dialogueColor: "", avatarPath: "/api/avatars/file/p1.webp" },
+    ],
   });
 });
 

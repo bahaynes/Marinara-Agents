@@ -144,17 +144,38 @@ const parseRecord = (value) => {
   }
 };
 
+/**
+ * The Engine's characters and personas for the story form, with the card colors and avatar the page uses
+ * to draw them the way Roleplay does. Character cards keep their colors under `extensions`.
+ */
 export async function library(runtime) {
   const [characters, personas] = await Promise.all([
     runtime.resources.listCharacters(),
     runtime.resources.listPersonas(),
   ]);
-  const named = (records) =>
-    records
-      .map((r) => ({ id: r.id, name: String(parseRecord(r.data).name ?? "").trim() }))
-      .filter((r) => r.name)
-      .sort((a, b) => a.name.localeCompare(b.name));
-  return { characters: named(characters), personas: named(personas) };
+  const text = (value) => (typeof value === "string" ? value.trim().slice(0, 300) : "");
+  const entry = (id, data, colors) => ({
+    id,
+    name: text(data.name),
+    nameColor: text(colors.nameColor),
+    dialogueColor: text(colors.dialogueColor),
+  });
+  const sorted = (list) => list.filter((r) => r.name).sort((a, b) => a.name.localeCompare(b.name));
+  return {
+    characters: sorted(
+      characters.map((r) => {
+        const data = parseRecord(r.data);
+        return entry(r.id, data, parseRecord(data.extensions));
+      }),
+    ),
+    personas: sorted(
+      personas.map((r) => {
+        const data = parseRecord(r.data);
+        const avatarPath = text(data.avatarPath);
+        return { ...entry(r.id, data, data), avatarPath: avatarPath.startsWith("/api/") ? avatarPath : "" };
+      }),
+    ),
+  };
 }
 
 async function storyCast(runtime, story) {
