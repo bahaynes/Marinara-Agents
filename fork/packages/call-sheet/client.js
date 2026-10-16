@@ -1012,7 +1012,7 @@
           ${view === "list" ? "" : `<button type="button" class="${BTN}" data-action="home">Stories</button>`}
           <h1 class="min-w-0 flex-1 truncate text-base font-semibold">${escapeHtml(title)}</h1>
           ${busy ? `<span class="${MUTED} flex items-center gap-1.5"><svg class="h-3 w-3 animate-spin text-[var(--primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>${escapeHtml(busy)}</span>` : ""}
-          ${error ? `<span class="text-xs text-red-300">${escapeHtml(error)}</span>` : ""}`
+          ${error ? `<span class="text-xs text-red-300">${escapeHtml(error)}</span>` : ""}
           ${view === "story" && data ? `<button type="button" class="${BTN}" data-action="settings">Settings</button>` : ""}
           ${this._props?.onClose ? `<button type="button" class="${BTN}" data-action="close">Close</button>` : ""}
         </header>
