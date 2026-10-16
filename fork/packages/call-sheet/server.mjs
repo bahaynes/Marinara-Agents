@@ -1,31 +1,130 @@
-// Call Sheet: scene-by-scene story play on top of a normal Roleplay chat. The Engine still writes every
-// reply and impersonate; this package keeps the sheet (story, frozen scene summaries, current scene plan),
-// adds it to each turn's system prompt, and runs the two scene-boundary jobs: the scene planner (main
-// model) and the scene summarizer (agent model). Scenes end only when the player says so.
+// Call Sheet: its own Home page for scene-by-scene story play. It owns its stories and builds every
+// prompt itself (see the layout in sheet.mjs), so no Engine chat preset, memory agent or lorebook
+// shapes it. The Engine's character and persona library is read for the cast; the Engine's model API
+// runs the jobs: main model for the narrator, impersonate and scene planner, agent model for the
+// scene summarizer. Scenes end only when the player says so.
 
 import {
+  castCard,
   cleanOutcomes,
   cleanPlan,
   cleanSpine,
   emptySheet,
-  idsSince,
+  impersonatePrompt,
+  narratorPrompt,
+  newTurn,
   openScene,
   proposalPrompt,
-  sceneMessages,
-  sheetContext,
   summaryPrompt,
   transcript,
   transcriptBudget,
 } from "./sheet.mjs";
 
 export const PACKAGE_ID = "call-sheet";
-const DOC_KIND = "call-sheet";
+const STORY_KIND = "story";
+const TURNS_KIND = "scene-turns";
 const LAST_SCENE_TAIL = 6;
 const SUMMARY_TOKENS = 1500;
-const CAST_NOTE_LIMIT = 300;
+const TURN_TOKENS = 1500;
+const MAX_SWIPES = 8;
 
-const docId = (chatId) => `${PACKAGE_ID}:${chatId}`;
-const parseMeta = (value) => {
+const storyDocId = (storyId) => `${PACKAGE_ID}:story:${storyId}`;
+const turnsDocId = (storyId, sceneId) => `${PACKAGE_ID}:turns:${storyId}:${sceneId}`;
+
+export class SheetError extends Error {
+  constructor(statusCode, message) {
+    super(message);
+    this.statusCode = statusCode;
+  }
+}
+
+/** One write at a time per story, so two clicks cannot interleave. */
+function createLocks() {
+  const tails = new Map();
+  return (key, work) => {
+    const run = (tails.get(key) ?? Promise.resolve()).then(work, work);
+    const tail = run.catch(() => {});
+    tails.set(key, tail);
+    void tail.then(() => tails.get(key) === tail && tails.delete(key));
+    return run;
+  };
+}
+
+export function createStore(documents) {
+  const lock = createLocks();
+
+  async function read(id) {
+    return documents.getById(PACKAGE_ID, id);
+  }
+
+  async function write(id, kind, name, data, revision) {
+    const now = new Date().toISOString();
+    const base = { id, packageId: PACKAGE_ID, name, description: "", data };
+    if (revision) {
+      const updated = await documents.update({ ...base, expectedRevision: revision, updatedAt: now });
+      if (!updated) throw new SheetError(409, "This story changed in another window. Reload and try again.");
+      return updated;
+    }
+    return documents.create({ ...base, kind, createdAt: now, updatedAt: now });
+  }
+
+  async function loadStory(storyId) {
+    const doc = await read(storyDocId(storyId));
+    if (!doc) throw new SheetError(404, "Story not found.");
+    return { story: { ...doc.data, sheet: { ...emptySheet(), ...doc.data.sheet } }, revision: doc.revision };
+  }
+
+  async function loadTurns(storyId, sceneId) {
+    const doc = await read(turnsDocId(storyId, sceneId));
+    return { turns: doc?.data?.turns ?? [], revision: doc?.revision ?? 0 };
+  }
+
+  return {
+    lock,
+    loadStory,
+    loadTurns,
+    async listStories() {
+      const docs = await documents.list(PACKAGE_ID, STORY_KIND);
+      return docs
+        .map((doc) => ({
+          id: doc.data.id,
+          title: doc.data.title,
+          scenes: doc.data.sheet?.scenes?.length ?? 0,
+          updatedAt: doc.updatedAt ?? doc.data.createdAt,
+        }))
+        .sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)));
+    },
+    async createStory(story) {
+      await write(storyDocId(story.id), STORY_KIND, story.title, story, 0);
+      return story;
+    },
+    /** Read, change and write a story under its lock. `change` may return a value to hand back. */
+    updateStory(storyId, change) {
+      return lock(storyId, async () => {
+        const { story, revision } = await loadStory(storyId);
+        const result = await change(story);
+        await write(storyDocId(storyId), STORY_KIND, story.title, story, revision);
+        return result ?? story;
+      });
+    },
+    /** Returns the new revision, for a second save in the same request. */
+    async saveTurns(storyId, sceneId, turns, revision) {
+      return (await write(turnsDocId(storyId, sceneId), TURNS_KIND, `Scene ${sceneId}`, { turns }, revision)).revision;
+    },
+    async removeStory(storyId) {
+      const { story, revision } = await loadStory(storyId);
+      for (const scene of story.sheet.scenes) {
+        const doc = await read(turnsDocId(storyId, scene.id));
+        if (doc) await documents.remove(PACKAGE_ID, doc.id, doc.revision);
+      }
+      await documents.remove(PACKAGE_ID, storyDocId(storyId), revision);
+    },
+  };
+}
+
+// ── Library and models ──
+
+const parseRecord = (value) => {
   if (value && typeof value === "object") return value;
   try {
     return JSON.parse(value || "{}");
@@ -34,95 +133,44 @@ const parseMeta = (value) => {
   }
 };
 
-export function isEnabled(meta, mode) {
-  return (
-    mode === "roleplay" &&
-    meta?.enableAgents === true &&
-    Array.isArray(meta.activeAgentIds) &&
-    meta.activeAgentIds.includes(PACKAGE_ID)
-  );
+export async function library(runtime) {
+  const [characters, personas] = await Promise.all([
+    runtime.resources.listCharacters(),
+    runtime.resources.listPersonas(),
+  ]);
+  const named = (records) =>
+    records
+      .map((r) => ({ id: r.id, name: String(parseRecord(r.data).name ?? "").trim() }))
+      .filter((r) => r.name)
+      .sort((a, b) => a.name.localeCompare(b.name));
+  return { characters: named(characters), personas: named(personas) };
 }
 
-class SheetError extends Error {
-  constructor(statusCode, message) {
-    super(message);
-    this.statusCode = statusCode;
-  }
+async function storyCast(runtime, story) {
+  const [characters, personas] = await Promise.all([
+    story.characterIds.length ? runtime.resources.listCharacters(story.characterIds) : [],
+    story.personaId ? runtime.resources.listPersonas([story.personaId]) : [],
+  ]);
+  const cast = characters.map((r) => castCard(parseRecord(r.data))).filter(Boolean);
+  const persona = castCard(parseRecord(personas[0]?.data)) ?? { name: "The player character", description: "" };
+  return { cast, persona };
 }
 
-export function createStore(persistence) {
-  const { documents } = persistence;
+const mainModel = (runtime, story) => runtime.languageModels.resolve(story.mainConnectionId ?? null);
 
-  async function load(chatId) {
-    const doc = await documents.getById(PACKAGE_ID, docId(chatId));
-    return doc
-      ? { sheet: { ...emptySheet(), ...doc.data }, revision: doc.revision }
-      : { sheet: emptySheet(), revision: 0 };
-  }
-
-  async function save(chatId, sheet, revision) {
-    const now = new Date().toISOString();
-    const base = {
-      id: docId(chatId),
-      packageId: PACKAGE_ID,
-      name: `Call Sheet ${chatId}`,
-      description: "",
-      data: sheet,
-    };
-    if (revision) {
-      const updated = await documents.update({ ...base, expectedRevision: revision, updatedAt: now });
-      if (!updated) throw new SheetError(409, "The call sheet changed in another window. Reload and try again.");
-      return updated;
-    }
-    return documents.create({ ...base, kind: DOC_KIND, createdAt: now, updatedAt: now });
-  }
-
-  /** Read, change and write the sheet under the chat's lock, so two clicks cannot interleave. */
-  function update(chatId, change) {
-    return persistence.withChatLock(chatId, async () => {
-      const { sheet, revision } = await load(chatId);
-      const result = await change(sheet);
-      await save(chatId, sheet, revision);
-      return result ?? sheet;
-    });
-  }
-
-  return { load, update };
+async function agentModel(runtime, story) {
+  const config = await runtime.getAgentConfig?.();
+  return runtime.languageModels.resolveForRequest({
+    connectionId: story.agentConnectionId ?? config?.connectionId ?? null,
+  });
 }
 
-async function chatOrFail(persistence, chatId) {
-  const chat = await persistence.getChat(chatId);
-  if (!chat) throw new SheetError(404, "Chat not found.");
-  if (chat.mode !== "roleplay") throw new SheetError(400, "Call Sheet runs in Roleplay chats.");
-  return chat;
-}
-
-async function castNames(runtime, chat) {
-  const characters = new Map();
-  const cast = [];
-  let persona = "the player character";
-  const resources = runtime.resources;
-  try {
-    for (const record of (await resources?.listCharacters?.(chat.characterIds)) ?? []) {
-      const data = parseMeta(record.data);
-      const name = String(data.name ?? "").trim();
-      if (!name) continue;
-      characters.set(record.id, name);
-      const note = String(data.description ?? "")
-        .replace(/\s+/gu, " ")
-        .trim()
-        .slice(0, CAST_NOTE_LIMIT);
-      cast.push(note ? `- ${name}: ${note}` : `- ${name}`);
-    }
-    if (chat.personaId) {
-      const [record] = (await resources?.listPersonas?.([chat.personaId])) ?? [];
-      const name = String(parseMeta(record?.data).name ?? "").trim();
-      if (name) persona = name;
-    }
-  } catch (error) {
-    runtime.logger?.warn?.("Call Sheet could not read the cast: %s", error?.message);
-  }
-  return { characters, persona, cast: cast.join("\n") };
+async function completeText(model, messages) {
+  const fitted = model.fitContext ? model.fitContext(messages, { maxTokens: TURN_TOKENS }).messages : messages;
+  const result = await model.chatComplete(fitted, { maxTokens: TURN_TOKENS });
+  const content = String(result.content ?? "").trim();
+  if (!content) throw new SheetError(502, "The model returned an empty reply.");
+  return content;
 }
 
 async function completeJson(runtime, model, messages, maxTokens) {
@@ -132,184 +180,282 @@ async function completeJson(runtime, model, messages, maxTokens) {
   return parsed;
 }
 
-/** Scene planner: always the main model, the one the chat itself replies with. */
-export async function propose(runtime, store, chatId, instruction) {
-  const chat = await chatOrFail(runtime.persistence, chatId);
-  const [{ sheet }, messages, names] = await Promise.all([
-    store.load(chatId),
-    runtime.persistence.listMessages(chatId),
-    castNames(runtime, chat),
-  ]);
+// ── Stories ──
+
+export async function createStory(runtime, store, body) {
+  const characterIds = Array.isArray(body.characterIds) ? body.characterIds.map(String).slice(0, 24) : [];
+  const story = {
+    id: `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`,
+    title:
+      String(body.title ?? "")
+        .trim()
+        .slice(0, 120) || "Untitled story",
+    personaId: body.personaId ? String(body.personaId) : null,
+    characterIds,
+    mainConnectionId: null,
+    agentConnectionId: null,
+    createdAt: new Date().toISOString(),
+    sheet: { ...emptySheet(), spine: cleanSpine(body) },
+  };
+  return store.createStory(story);
+}
+
+/** The story with every scene's turns, for the page. */
+export async function storyView(store, storyId) {
+  const { story } = await store.loadStory(storyId);
+  const turns = {};
+  for (const scene of story.sheet.scenes) turns[scene.id] = (await store.loadTurns(storyId, scene.id)).turns;
+  return { story, turns };
+}
+
+// ── Scenes ──
+
+/** Scene planner: the main model. Rerolls keep earlier proposals until one is accepted. */
+export async function propose(runtime, store, storyId, rawInstruction) {
+  const instruction = String(rawInstruction ?? "").trim();
+  const { story } = await store.loadStory(storyId);
+  const { cast, persona } = await storyCast(runtime, story);
+  const sheet = story.sheet;
   const last = openScene(sheet) ?? sheet.scenes[sheet.scenes.length - 1];
-  const tail = last ? sceneMessages(last, messages).slice(-LAST_SCENE_TAIL) : messages.slice(-LAST_SCENE_TAIL);
-  const model = await runtime.languageModels.resolve(chat.connectionId);
-  const prompt = proposalPrompt({
-    sheet,
-    cast: names.cast,
-    persona: names.persona,
-    lastScene: transcript(tail, names),
-    instruction: String(instruction ?? "").trim(),
-  });
-  const plan = cleanPlan(await completeJson(runtime, model, prompt, 1200));
-  return store.update(chatId, (fresh) => {
-    // Rerolls keep earlier proposals until one is accepted.
-    const earlier = fresh.proposal?.instruction === String(instruction ?? "").trim() ? fresh.proposal.plans : [];
-    fresh.proposal = { instruction: String(instruction ?? "").trim(), plans: [...earlier, plan].slice(-5) };
+  const tail = last ? (await store.loadTurns(storyId, last.id)).turns.slice(-LAST_SCENE_TAIL) : [];
+  const prompt = proposalPrompt({ sheet, cast, persona, lastScene: transcript(tail, persona), instruction });
+  const plan = cleanPlan(await completeJson(runtime, await mainModel(runtime, story), prompt, 1200));
+  return store.updateStory(storyId, (fresh) => {
+    const earlier = fresh.sheet.proposal?.instruction === instruction ? fresh.sheet.proposal.plans : [];
+    fresh.sheet.proposal = { instruction, plans: [...earlier, plan].slice(-5) };
   });
 }
 
-/** Scene summarizer: the agent model. Freezes the open scene; it is never edited again. */
-export async function endScene(runtime, store, chatId) {
-  const chat = await chatOrFail(runtime.persistence, chatId);
-  const [{ sheet }, messages, names] = await Promise.all([
-    store.load(chatId),
-    runtime.persistence.listMessages(chatId),
-    castNames(runtime, chat),
-  ]);
-  const scene = openScene(sheet);
+/** Scene summarizer: the agent model, falling back to main so a scene can always end. */
+export async function endScene(runtime, store, storyId) {
+  const { story } = await store.loadStory(storyId);
+  const scene = openScene(story.sheet);
   if (!scene) throw new SheetError(409, "There is no scene in play to end.");
-  const played = sceneMessages(scene, messages);
-  const endMessageId = played[played.length - 1]?.id ?? scene.startAfterMessageId;
+  const { turns } = await store.loadTurns(storyId, scene.id);
   let summary = "Nothing happened in this scene.";
   let outcomes = scene.plan.goals.map((goal) => ({ goal, status: "open" }));
-  if (played.length) {
-    const summarize = (model) =>
+  if (turns.length) {
+    const { persona } = await storyCast(runtime, story);
+    const summarize = async (model) =>
       completeJson(
         runtime,
         model,
         summaryPrompt({
           plan: scene.plan,
-          sceneText: transcript(played, names, transcriptBudget(model.maxContext, SUMMARY_TOKENS)),
+          sceneText: transcript(turns, persona, transcriptBudget(model.maxContext, SUMMARY_TOKENS)),
         }),
         SUMMARY_TOKENS,
       );
     let parsed;
     try {
-      const config = await runtime.getAgentConfig?.();
-      parsed = await summarize(
-        await runtime.languageModels.resolveForRequest({
-          connectionId: config?.connectionId ?? null,
-          chatConnectionId: chat.connectionId,
-        }),
-      );
+      parsed = await summarize(await agentModel(runtime, story));
     } catch (error) {
-      // A scene that cannot be summarized could never end, so the main model takes over.
       runtime.logger?.warn?.("Call Sheet summary on the agent model failed, using the main model: %s", error?.message);
-      parsed = await summarize(await runtime.languageModels.resolve(chat.connectionId));
+      parsed = await summarize(await mainModel(runtime, story));
     }
     summary = String(parsed.summary ?? "").trim() || summary;
     outcomes = cleanOutcomes(parsed.goals, scene.plan.goals);
   }
-  return store.update(chatId, (fresh) => {
-    const open = openScene(fresh);
+  return store.updateStory(storyId, (fresh) => {
+    const open = openScene(fresh.sheet);
     if (!open || open.id !== scene.id) throw new SheetError(409, "The scene changed while it was being summarized.");
-    Object.assign(open, { summary, outcomes, endMessageId, endedAt: new Date().toISOString() });
+    Object.assign(open, { summary, outcomes, endedAt: new Date().toISOString() });
   });
 }
 
-/**
- * Start the edited proposal as the new scene. Returns the ids of the messages played since the first
- * scene began, so the client can take them out of the prompt; the frozen summaries stand in for them.
- * History from before Call Sheet was turned on is left alone.
- */
-export async function acceptScene(runtime, store, chatId, rawPlan) {
-  await chatOrFail(runtime.persistence, chatId);
-  const messages = await runtime.persistence.listMessages(chatId);
-  const anchor = messages[messages.length - 1]?.id ?? null;
-  return store.update(chatId, (fresh) => {
-    if (openScene(fresh)) throw new SheetError(409, "End the current scene before starting a new one.");
-    const hideMessageIds = fresh.scenes.length ? idsSince(messages, fresh.scenes[0].startAfterMessageId) : [];
-    fresh.scenes.push({
-      id: `scene-${fresh.scenes.length + 1}-${Date.now().toString(36)}`,
+export function acceptScene(store, storyId, rawPlan) {
+  return store.updateStory(storyId, (story) => {
+    if (openScene(story.sheet)) throw new SheetError(409, "End the current scene before starting a new one.");
+    story.sheet.scenes.push({
+      id: `s${story.sheet.scenes.length + 1}-${Date.now().toString(36)}`,
       plan: cleanPlan(rawPlan),
-      instruction: fresh.proposal?.instruction ?? "",
-      startAfterMessageId: anchor,
+      instruction: story.sheet.proposal?.instruction ?? "",
       startedAt: new Date().toISOString(),
       summary: null,
       outcomes: null,
-      endMessageId: null,
     });
-    fresh.proposal = null;
-    return { sheet: fresh, hideMessageIds };
+    story.sheet.proposal = null;
   });
 }
 
-export function updateSpine(store, chatId, rawSpine) {
-  return store.update(chatId, (sheet) => {
-    sheet.spine = cleanSpine(rawSpine);
+// ── Turns ──
+
+async function sceneContext(runtime, store, storyId) {
+  const { story } = await store.loadStory(storyId);
+  const scene = openScene(story.sheet);
+  if (!scene) throw new SheetError(409, "Start a scene first.");
+  const { cast, persona } = await storyCast(runtime, story);
+  const { turns, revision } = await store.loadTurns(storyId, scene.id);
+  return { story, scene, cast, persona, turns, revision };
+}
+
+/**
+ * Play one turn. `instruction`: the persona's turn is written from the player's note (impersonate), then
+ * the narrator answers. `written`: the player's text is the persona's turn. `continue`: the narrator goes on.
+ */
+export function playTurn(runtime, store, storyId, body) {
+  const kind = body.kind;
+  const input = String(body.text ?? "").trim();
+  if (!["instruction", "written", "continue"].includes(kind)) throw new SheetError(400, "Unknown turn kind.");
+  if (kind !== "continue" && !input) throw new SheetError(400, "Write something first.");
+  return store.lock(`turns:${storyId}`, async () => {
+    const ctx = await sceneContext(runtime, store, storyId);
+    const model = await mainModel(runtime, ctx.story);
+    const turns = [...ctx.turns];
+    const args = { sheet: ctx.story.sheet, cast: ctx.cast, persona: ctx.persona };
+    let revision = ctx.revision;
+    if (kind !== "continue") {
+      const prose =
+        kind === "instruction"
+          ? await completeText(model, impersonatePrompt({ ...args, turns, instruction: input }))
+          : input;
+      turns.push(newTurn("persona", prose, { kind, instruction: kind === "instruction" ? input : "" }));
+      // Saved before the narrator runs, so a failed reply never loses the player's turn.
+      revision = await store.saveTurns(storyId, ctx.scene.id, turns, revision);
+    }
+    turns.push(newTurn("narrator", await completeText(model, narratorPrompt({ ...args, turns })), { kind: "reply" }));
+    await store.saveTurns(storyId, ctx.scene.id, turns, revision);
+    return { sceneId: ctx.scene.id, turns };
   });
 }
 
-export function discardProposal(store, chatId) {
-  return store.update(chatId, (sheet) => {
-    sheet.proposal = null;
+/** Write a new version of the newest turn. Earlier versions stay selectable. */
+export function rerollTurn(runtime, store, storyId, turnId) {
+  return store.lock(`turns:${storyId}`, async () => {
+    const ctx = await sceneContext(runtime, store, storyId);
+    const turns = structuredClone(ctx.turns);
+    const turn = turns[turns.length - 1];
+    if (!turn || turn.id !== turnId) throw new SheetError(409, "Only the newest turn can be rerolled.");
+    const before = turns.slice(0, -1);
+    const args = { sheet: ctx.story.sheet, cast: ctx.cast, persona: ctx.persona, turns: before };
+    const model = await mainModel(runtime, ctx.story);
+    const prompt =
+      turn.speaker === "persona" && turn.instruction
+        ? impersonatePrompt({ ...args, instruction: turn.instruction })
+        : turn.speaker === "narrator"
+          ? narratorPrompt(args)
+          : null;
+    if (!prompt) throw new SheetError(400, "A turn you wrote yourself can be edited, not rerolled.");
+    turn.swipes = [...turn.swipes, await completeText(model, prompt)].slice(-MAX_SWIPES);
+    turn.active = turn.swipes.length - 1;
+    await store.saveTurns(storyId, ctx.scene.id, turns, ctx.revision);
+    return { sceneId: ctx.scene.id, turns };
   });
 }
 
-export function promptContributor(store) {
-  return async (request) => {
-    if (!isEnabled(request.chatMeta, request.mode)) return null;
-    const { sheet } = await store.load(request.chatId);
-    return sheetContext(sheet);
-  };
+/** Edit a turn's text, or pick which version is shown (`active`). */
+export function editTurn(runtime, store, storyId, turnId, body) {
+  return store.lock(`turns:${storyId}`, async () => {
+    const ctx = await sceneContext(runtime, store, storyId);
+    const turns = structuredClone(ctx.turns);
+    const turn = turns.find((t) => t.id === turnId);
+    if (!turn) throw new SheetError(404, "Turn not found.");
+    if (Number.isInteger(body.active) && body.active >= 0 && body.active < turn.swipes.length)
+      turn.active = body.active;
+    if (typeof body.text === "string" && body.text.trim()) turn.swipes[turn.active] = body.text.trim();
+    await store.saveTurns(storyId, ctx.scene.id, turns, ctx.revision);
+    return { sceneId: ctx.scene.id, turns };
+  });
 }
+
+/** Delete a turn and every turn after it. Finished scenes are frozen and cannot be changed. */
+export function deleteTurn(runtime, store, storyId, turnId) {
+  return store.lock(`turns:${storyId}`, async () => {
+    const ctx = await sceneContext(runtime, store, storyId);
+    const index = ctx.turns.findIndex((t) => t.id === turnId);
+    if (index < 0) throw new SheetError(404, "Turn not found.");
+    const turns = ctx.turns.slice(0, index);
+    await store.saveTurns(storyId, ctx.scene.id, turns, ctx.revision);
+    return { sceneId: ctx.scene.id, turns };
+  });
+}
+
+// ── Activation ──
 
 export async function activate(context) {
   const runtime = context.api.runtime;
-  const store = createStore(runtime.persistence);
-  const fail = (reply, error) => {
-    const status = error instanceof SheetError ? error.statusCode : 500;
-    if (status >= 500) runtime.logger?.error?.(error, "Call Sheet request failed");
-    return reply
-      .status(status)
-      .send({ error: error instanceof SheetError ? error.message : "Call Sheet request failed." });
-  };
+  const store = createStore(runtime.persistence.documents);
   const handle = (work) => async (request, reply) => {
     try {
-      return reply.send(await work(request.params.chatId, request.body ?? {}));
+      return reply.send(await work(request.params ?? {}, request.body ?? {}));
     } catch (error) {
-      return fail(reply, error);
+      const status = error instanceof SheetError ? error.statusCode : 500;
+      if (status >= 500) runtime.logger?.error?.(error, "Call Sheet request failed");
+      return reply
+        .status(status)
+        .send({ error: error instanceof SheetError ? error.message : "Call Sheet request failed." });
     }
   };
-  const releases = [];
-  try {
-    releases.push(context.api.registerPromptContext(promptContributor(store)));
-    releases.push(
-      await context.api.registerPrivilegedRoutes(
-        async (routes) => {
-          routes.get(
-            "/chats/:chatId",
-            handle(async (chatId) => (await store.load(chatId)).sheet),
-          );
-          routes.put(
-            "/chats/:chatId/spine",
-            handle((chatId, body) => updateSpine(store, chatId, body)),
-          );
-          routes.post(
-            "/chats/:chatId/propose",
-            handle((chatId, body) => propose(runtime, store, chatId, body.instruction)),
-          );
-          routes.delete(
-            "/chats/:chatId/proposal",
-            handle((chatId) => discardProposal(store, chatId)),
-          );
-          routes.post(
-            "/chats/:chatId/end",
-            handle((chatId) => endScene(runtime, store, chatId)),
-          );
-          routes.post(
-            "/chats/:chatId/accept",
-            handle((chatId, body) => acceptScene(runtime, store, chatId, body.plan)),
-          );
-        },
-        { prefix: `/api/${PACKAGE_ID}/v1` },
-      ),
-    );
-  } catch (error) {
-    for (const release of releases.reverse()) await release();
-    throw error;
-  }
+  const release = await context.api.registerPrivilegedRoutes(
+    async (routes) => {
+      routes.get(
+        "/library",
+        handle(() => library(runtime)),
+      );
+      routes.get(
+        "/stories",
+        handle(() => store.listStories()),
+      );
+      routes.post(
+        "/stories",
+        handle((_p, body) => createStory(runtime, store, body)),
+      );
+      routes.get(
+        "/stories/:storyId",
+        handle(({ storyId }) => storyView(store, storyId)),
+      );
+      routes.delete(
+        "/stories/:storyId",
+        handle(async ({ storyId }) => (await store.removeStory(storyId), { ok: true })),
+      );
+      routes.put(
+        "/stories/:storyId/spine",
+        handle(({ storyId }, body) =>
+          store.updateStory(storyId, (story) => {
+            story.sheet.spine = cleanSpine(body);
+          }),
+        ),
+      );
+      routes.post(
+        "/stories/:storyId/propose",
+        handle(({ storyId }, body) => propose(runtime, store, storyId, body.instruction)),
+      );
+      routes.delete(
+        "/stories/:storyId/proposal",
+        handle(({ storyId }) =>
+          store.updateStory(storyId, (story) => {
+            story.sheet.proposal = null;
+          }),
+        ),
+      );
+      routes.post(
+        "/stories/:storyId/end",
+        handle(({ storyId }) => endScene(runtime, store, storyId)),
+      );
+      routes.post(
+        "/stories/:storyId/accept",
+        handle(({ storyId }, body) => acceptScene(store, storyId, body.plan)),
+      );
+      routes.post(
+        "/stories/:storyId/turns",
+        handle(({ storyId }, body) => playTurn(runtime, store, storyId, body)),
+      );
+      routes.post(
+        "/stories/:storyId/turns/:turnId/reroll",
+        handle(({ storyId, turnId }) => rerollTurn(runtime, store, storyId, turnId)),
+      );
+      routes.put(
+        "/stories/:storyId/turns/:turnId",
+        handle(({ storyId, turnId }, body) => editTurn(runtime, store, storyId, turnId, body)),
+      );
+      routes.delete(
+        "/stories/:storyId/turns/:turnId",
+        handle(({ storyId, turnId }) => deleteTurn(runtime, store, storyId, turnId)),
+      );
+    },
+    { prefix: `/api/${PACKAGE_ID}/v1` },
+  );
   return async () => {
-    for (const release of releases.reverse()) await release();
+    await release();
   };
 }

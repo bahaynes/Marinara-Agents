@@ -1,10 +1,16 @@
-// Call Sheet's pure logic: the per-chat sheet (spine, scenes, pending proposal), the prompt block the
-// Engine adds to every turn, and the model prompts for the scene planner and summarizer. No host calls
-// here, so the tests can run it directly.
+// Call Sheet's pure logic: the story sheet (spine, scenes, pending proposal), the prompts for every job,
+// and the cache layout they share. No host calls here, so the tests can run it directly.
+//
+// Every main-model job is the same prompt with a different ending:
+//   system:  1 fixed head (rules, cast cards, persona, story)  2 frozen scene summaries  3 current scene
+//   then:    4 the current scene's turns
+//   last:    5 the job's own instruction
+// Blocks 1-3 change only at a scene boundary and block 4 only grows, so each request repeats the last one.
 
-export const SHEET_VERSION = 1;
+export const SHEET_VERSION = 2;
 const MAX_FIELD = 4000;
 const MAX_LIST = 12;
+const CARD_FIELD_LIMIT = 3000;
 
 export function emptySheet() {
   return { version: SHEET_VERSION, spine: { premise: "", goals: "" }, scenes: [], proposal: null };
@@ -44,27 +50,63 @@ export function openScene(sheet) {
   return last && last.summary === null ? last : null;
 }
 
-/**
- * Messages that belong to a scene: everything after the message that was newest when the scene was
- * accepted, up to its end (or the chat's end while it is open). A missing anchor (the message was
- * deleted) falls back to the whole chat rather than to nothing.
- */
-export function sceneMessages(scene, messages) {
-  const startIndex = scene.startAfterMessageId ? messages.findIndex((m) => m.id === scene.startAfterMessageId) + 1 : 0;
-  const endIndex = scene.endMessageId ? messages.findIndex((m) => m.id === scene.endMessageId) : -1;
-  return messages.slice(startIndex, endIndex >= 0 ? endIndex + 1 : messages.length);
+/** One outcome per planned goal, matched by text, else by position (models reword goals). */
+export function cleanOutcomes(raw, goals) {
+  const marks = (Array.isArray(raw) ? raw : []).map((o) => ({
+    goal: text(o?.goal, 400),
+    status: ["met", "failed"].includes(o?.status) ? o.status : "open",
+  }));
+  return goals.map((goal, i) => ({
+    goal,
+    status: (marks.find((m) => m.goal === goal) ?? marks[i])?.status ?? "open",
+  }));
 }
 
-/**
- * Ids to take out of the prompt when a new scene starts: every message after the first scene's anchor.
- * Anything before Call Sheet started stays. A null anchor means the chat was empty, so every message is
- * a scene's; a deleted anchor hides nothing rather than risk hiding older history.
- */
-export function idsSince(messages, firstAnchorId) {
-  if (firstAnchorId === null) return messages.map((m) => m.id);
-  const index = messages.findIndex((m) => m.id === firstAnchorId);
-  return index < 0 ? [] : messages.slice(index + 1).map((m) => m.id);
+// ── Turns ──
+
+export const turnText = (turn) => turn.swipes[turn.active] ?? "";
+
+export function newTurn(speaker, content, extra = {}) {
+  return {
+    id: `t-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+    speaker,
+    kind: extra.kind ?? null,
+    instruction: extra.instruction ?? "",
+    swipes: [content],
+    active: 0,
+    createdAt: new Date().toISOString(),
+  };
 }
+
+// ── Cast ──
+
+const field = (value) => text(value, CARD_FIELD_LIMIT);
+
+/** A character card from the Engine library, reduced to what a story prompt needs. */
+export function castCard(data) {
+  const card = data && typeof data === "object" ? data : {};
+  const name = text(card.name, 120);
+  if (!name) return null;
+  return {
+    name,
+    description: field(card.description),
+    personality: field(card.personality),
+    scenario: field(card.scenario),
+  };
+}
+
+function cardText(card) {
+  return [
+    `### ${card.name}`,
+    card.description,
+    card.personality && `Personality: ${card.personality}`,
+    card.scenario && `Background: ${card.scenario}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+// ── Prompt blocks ──
 
 const bullets = (items) => items.map((item) => `- ${item}`).join("\n");
 
@@ -78,44 +120,99 @@ function planLines(plan) {
   return lines;
 }
 
-/**
- * The block the Engine appends to the system prompt on every turn. It changes only when a scene starts
- * or ends, so it must be byte-identical between turns: no clocks, no ids, fixed order.
- */
-export function sheetContext(sheet) {
-  const scene = openScene(sheet);
-  if (!scene) return null;
-  const parts = ["<call_sheet>"];
-  if (sheet.spine.premise) parts.push(`## Story\n${sheet.spine.premise}`);
-  if (sheet.spine.goals) parts.push(`## Story goals\n${sheet.spine.goals}`);
+/** Block 1. Changes only when the story itself is edited. */
+export function headBlock({ sheet, cast, persona }) {
+  return [
+    "You are the narrator of an interactive story played one scene at a time. " +
+      `The player plays ${persona.name}. You write everything else: the world, and every other character's ` +
+      `actions and words. Never write ${persona.name}'s words, actions, thoughts or decisions unless you are ` +
+      `explicitly asked to write ${persona.name}'s turn. Write vivid, grounded prose in the third person and ` +
+      "past tense. End each turn at a point where the player can respond.",
+    sheet.spine.premise && `## Story\n${sheet.spine.premise}`,
+    sheet.spine.goals && `## Story goals\n${sheet.spine.goals}`,
+    cast.length && `## Characters\n${cast.map(cardText).join("\n\n")}`,
+    `## The player character\n${cardText(persona)}`,
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+}
+
+/** Block 2. One summary is appended per finished scene; earlier ones never change. */
+export function summaryBlock(sheet) {
   const done = sheet.scenes.filter((s) => s.summary !== null);
-  if (done.length) {
-    parts.push(
-      "## Earlier scenes\n" + done.map((s, i) => `### Scene ${i + 1}: ${s.plan.title}\n${s.summary}`).join("\n\n"),
-    );
-  }
-  parts.push(`## Current scene: ${scene.plan.title}\n` + planLines(scene.plan).join("\n"));
-  parts.push(
-    "## Scene rules\n" +
-      "- Play only this scene. Only the characters listed as present act or speak, unless the player's turn brings someone in.\n" +
-      "- Work toward what the scene is for, but let the player's choices lead.\n" +
-      "- Never end the scene, cut away or skip time on your own. The player decides when the scene ends.",
+  if (!done.length) return "";
+  return "## Earlier scenes\n" + done.map((s, i) => `### Scene ${i + 1}: ${s.plan.title}\n${s.summary}`).join("\n\n");
+}
+
+/** Block 3. Fixed for the length of a scene. */
+export function sceneBlock(scene, index) {
+  return (
+    `## Current scene (${index + 1}): ${scene.plan.title}\n${planLines(scene.plan).join("\n")}\n\n` +
+    "Scene rules:\n" +
+    "- Play only this scene. Only the characters listed as present act or speak, unless the player brings someone in.\n" +
+    "- Work toward what the scene is for, but let the player's choices lead.\n" +
+    "- Never end the scene, cut away or skip time on your own. The player decides when the scene ends."
   );
-  parts.push("</call_sheet>");
-  return parts.join("\n\n");
+}
+
+const SCENE_START = "(The scene begins.)";
+
+/**
+ * Block 4: the scene's turns as alternating user (persona) and assistant (narrator) messages. A leading
+ * user message keeps the order valid for providers that require one; consecutive turns by the same
+ * speaker are joined, which only ever changes the newest message.
+ */
+export function historyMessages(turns, persona) {
+  const messages = [{ role: "user", content: SCENE_START }];
+  for (const turn of turns) {
+    const role = turn.speaker === "persona" ? "user" : "assistant";
+    const content = role === "user" ? `${persona.name}: ${turnText(turn)}` : turnText(turn);
+    const last = messages[messages.length - 1];
+    if (last.role === role) last.content += `\n\n${content}`;
+    else messages.push({ role, content });
+  }
+  return messages;
+}
+
+/** Blocks 1 to 4, shared by every job in a scene. */
+export function scenePrefix({ sheet, cast, persona, turns }) {
+  const scene = openScene(sheet);
+  if (!scene) throw new Error("There is no scene in play.");
+  const system = [headBlock({ sheet, cast, persona }), summaryBlock(sheet), sceneBlock(scene, sheet.scenes.length - 1)]
+    .filter(Boolean)
+    .join("\n\n");
+  return [{ role: "system", content: system }, ...historyMessages(turns, persona)];
+}
+
+/** Narrator turn: the newest persona turn is already the last message; otherwise ask to continue. */
+export function narratorPrompt(args) {
+  const messages = scenePrefix(args);
+  if (messages[messages.length - 1].role === "assistant") {
+    messages.push({ role: "user", content: "(Continue the scene.)" });
+  }
+  return messages;
+}
+
+/** Impersonate: write the persona's turn from the player's instruction. */
+export function impersonatePrompt({ instruction, ...args }) {
+  const messages = scenePrefix(args);
+  const name = args.persona.name;
+  const ask =
+    `(Write ${name}'s next turn from the player's instruction: ${instruction.trim()}\n` +
+    `Write only what ${name} says and does, in ${name}'s voice and the story's style. ` +
+    "Do not write anyone else's reaction. Reply with the turn only.)";
+  const last = messages[messages.length - 1];
+  if (last.role === "user") last.content += `\n\n${ask}`;
+  else messages.push({ role: "user", content: ask });
+  return messages;
 }
 
 /**
  * Plain transcript for the planner and summarizer. With `maxChars`, the oldest turns are dropped until
  * the rest fits, so a long scene still fits a small model's context.
  */
-export function transcript(messages, names, maxChars = Infinity) {
-  const lines = messages
-    .filter((m) => m.role === "user" || m.role === "assistant" || m.role === "narrator")
-    .map((m) => {
-      const who = m.role === "user" ? names.persona : names.characters.get(m.characterId) || "Narrator";
-      return `${who}: ${String(m.agentContent ?? m.content ?? "").trim()}`;
-    });
+export function transcript(turns, persona, maxChars = Infinity) {
+  const lines = turns.map((t) => `${t.speaker === "persona" ? persona.name : "Narrator"}: ${turnText(t).trim()}`);
   let size = lines.reduce((sum, line) => sum + line.length + 2, 0);
   let dropped = 0;
   while (size > maxChars && dropped < lines.length - 1) size -= lines[dropped++].length + 2;
@@ -137,8 +234,8 @@ const PLAN_SHAPE =
 export function proposalPrompt({ sheet, cast, persona, lastScene, instruction }) {
   const done = sheet.scenes.filter((s) => s.summary !== null);
   const sections = [
-    `Player character: ${persona}`,
-    `Cast:\n${cast || "(none listed)"}`,
+    `Player character: ${persona.name}`,
+    `Cast:\n${cast.map((c) => `- ${c.name}: ${c.description.slice(0, 300)}`).join("\n") || "(none listed)"}`,
     sheet.spine.premise ? `Story: ${sheet.spine.premise}` : "",
     sheet.spine.goals ? `Story goals: ${sheet.spine.goals}` : "",
     done.length ? "Scenes so far:\n" + done.map((s, i) => `${i + 1}. ${s.plan.title}: ${s.summary}`).join("\n") : "",
@@ -175,16 +272,4 @@ export function summaryPrompt({ plan, sceneText }) {
       content: `Scene: ${plan.title}\nGoals:\n${bullets(plan.goals) || "(none)"}\n\nTranscript:\n${sceneText}`,
     },
   ];
-}
-
-/** One outcome per planned goal, matched by text, else by position (models reword goals). */
-export function cleanOutcomes(raw, goals) {
-  const marks = (Array.isArray(raw) ? raw : []).map((o) => ({
-    goal: text(o?.goal, 400),
-    status: ["met", "failed"].includes(o?.status) ? o.status : "open",
-  }));
-  return goals.map((goal, i) => ({
-    goal,
-    status: (marks.find((m) => m.goal === goal) ?? marks[i])?.status ?? "open",
-  }));
 }
