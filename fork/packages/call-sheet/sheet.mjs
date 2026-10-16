@@ -39,6 +39,22 @@ export function cleanPlan(raw) {
   };
 }
 
+/** How long a turn may run: the model's token budget, and the matching line in the narrator's rules. */
+export const REPLY_LENGTHS = Object.freeze({
+  short: { tokens: 700, hint: "Keep each turn short: one or two paragraphs." },
+  medium: { tokens: 1200, hint: "Keep each turn to about three or four paragraphs." },
+  long: { tokens: 2000, hint: "A turn may run long when the moment calls for it." },
+});
+
+/** A story's settings, with defaults for anything missing or unknown. */
+export function cleanSettings(raw) {
+  const settings = raw && typeof raw === "object" ? raw : {};
+  return {
+    replyLength: Object.hasOwn(REPLY_LENGTHS, settings.replyLength) ? settings.replyLength : "medium",
+    reviewTurns: settings.reviewTurns === true,
+  };
+}
+
 export function cleanSpine(raw) {
   const spine = raw && typeof raw === "object" ? raw : {};
   return { premise: text(spine.premise), goals: text(spine.goals) };
@@ -158,13 +174,14 @@ function planLines(plan) {
 }
 
 /** Block 1. Changes only when the story itself is edited. */
-export function headBlock({ sheet, cast, persona }) {
+export function headBlock({ sheet, cast, persona, settings }) {
   return [
     "You are the narrator of an interactive story played one scene at a time. " +
       `The player plays ${persona.name}. You write everything else: the world, and every other character's ` +
       `actions and words. Never write ${persona.name}'s words, actions, thoughts or decisions unless you are ` +
       `explicitly asked to write ${persona.name}'s turn. Write vivid, grounded prose in the third person and ` +
-      "past tense. End each turn at a point where the player can respond.",
+      "past tense. End each turn at a point where the player can respond. " +
+      REPLY_LENGTHS[cleanSettings(settings).replyLength].hint,
     sheet.spine.premise && `## Story\n${sheet.spine.premise}`,
     sheet.spine.goals && `## Story goals\n${sheet.spine.goals}`,
     cast.length && `## Characters\n${cast.map(cardText).join("\n\n")}`,
@@ -212,10 +229,14 @@ export function historyMessages(turns, persona) {
 }
 
 /** Blocks 1 to 4, shared by every job in a scene. */
-export function scenePrefix({ sheet, cast, persona, turns }) {
+export function scenePrefix({ sheet, cast, persona, turns, settings }) {
   const scene = openScene(sheet);
   if (!scene) throw new Error("There is no scene in play.");
-  const system = [headBlock({ sheet, cast, persona }), summaryBlock(sheet), sceneBlock(scene, sheet.scenes.length - 1)]
+  const system = [
+    headBlock({ sheet, cast, persona, settings }),
+    summaryBlock(sheet),
+    sceneBlock(scene, sheet.scenes.length - 1),
+  ]
     .filter(Boolean)
     .join("\n\n");
   return [{ role: "system", content: system }, ...historyMessages(turns, persona)];
