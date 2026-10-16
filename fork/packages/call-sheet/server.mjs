@@ -161,6 +161,9 @@ async function storyCast(runtime, story) {
   return { cast, persona };
 }
 
+/** A connection id from the page, or null for the user's default main connection. */
+const connectionId = (value) => (typeof value === "string" && value.trim() ? value.trim().slice(0, 120) : null);
+
 const mainModel = (runtime, story) => runtime.languageModels.resolve(story.mainConnectionId ?? null);
 
 async function agentModel(runtime, story) {
@@ -206,7 +209,7 @@ export async function createStory(runtime, store, body) {
         .slice(0, 120) || "Untitled story",
     personaId: body.personaId ? String(body.personaId) : null,
     characterIds,
-    mainConnectionId: null,
+    mainConnectionId: connectionId(body.mainConnectionId),
     agentConnectionId: null,
     createdAt: new Date().toISOString(),
     sheet: { ...emptySheet(), spine: cleanSpine(body) },
@@ -457,6 +460,14 @@ export async function activate(context) {
       routes.delete(
         "/stories/:storyId",
         handle(async ({ storyId }) => (await store.removeStory(storyId), { ok: true })),
+      );
+      routes.put(
+        "/stories/:storyId/model",
+        handle(({ storyId }, body) =>
+          store.updateStory(storyId, (story) => {
+            story.mainConnectionId = connectionId(body.mainConnectionId);
+          }),
+        ),
       );
       routes.put(
         "/stories/:storyId/spine",
