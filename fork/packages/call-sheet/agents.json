@@ -9,7 +9,11 @@
     "category": "misc",
     "runtimeDisabled": true,
     "libraryHidden": true,
-    "modeAllowlist": ["conversation", "roleplay", "game"],
+    "modeAllowlist": [
+      "conversation",
+      "roleplay",
+      "game"
+    ],
     "defaultTools": [],
     "defaultSettings": {},
     "defaultPromptTemplate": "",
