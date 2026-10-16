@@ -150,33 +150,38 @@ meant, so the scene summarizer reads it before the prose.
 
 ## Where it lives
 
-The transcript is a normal Engine chat; the package owns everything else.
+Call Sheet is its own page: a Home tab, like Gacha Forge. It does not run inside an Engine chat.
 
-- **The chat keeps** messages, rerolls, editing, streaming, TTS, and the Illustrator and other
-  agents. Rebuilding those in a package would be most of the v1 effort.
-- **The package stores** the spine, scene plans, summaries and instructions in its own documents. Each one links to message ids, so deleting or rerolling a message rewinds what was
-  built on it.
-- **The package adds** a scene panel for the current plan and the review step, and the input
-  controls for turn and scene instructions.
-- **The Engine still writes every reply and impersonate.** The package's sheet (story, frozen
-  summaries, current plan) goes into the system prompt through `registerPromptContext`, which runs
-  on every generation, impersonate included. Finished scenes leave the prompt through the Engine's
-  existing hide-from-AI flag (`PATCH /api/chats/:id/messages/bulk-hidden`), and a turn instruction
-  is the Engine's impersonate, whose direction is the text in the input box. So v1 needs no Engine
-  change. Checked against `custom-mods` on 2026-10-15.
+- **No Engine chat settings apply.** Presets, memory agents, lorebook triggers and per-chat options
+  never touch a Call Sheet prompt. That removes the "every chat is configured differently" problem
+  instead of working around it.
+- **The package builds every prompt itself,** in the block order below, and calls the main and agent
+  models through the Engine's package model API. The cache layout is enforced by code, not hoped for.
+- **The package stores its own stories:** the sheet (spine, scene plans, summaries) and each scene's
+  turns, as package documents. The Engine's character and persona library is reused read-only for
+  the cast and the player character.
+- **Presentation is package code:** the transcript, the scene panel and the review step now, and
+  dice cards and combat later. That is what lets the fork's mechanics commits move out of the Engine.
+- **The cost:** chat features are rebuilt as needed (reroll, edit and delete first; the Illustrator
+  and TTS later), and replies arrive whole until the Engine can stream package model calls.
+
+0.1.1 tried the other route (the Engine writes replies; Call Sheet adds a prompt block and hides
+finished scenes). It works without Engine changes, but presets and chat settings still shape every
+prompt and the mechanics stay Engine code, so it misses both goals. It was replaced on 2026-10-15.
 
 ## Data model
 
 Stored by the package. Field names are illustrative.
 
-- **Story**: id, chat id, persona, cache TTL, the spine.
+- **Story**: id, title, persona id and cast character ids (from the Engine library), cache TTL, the
+  spine.
 - **Spine**: premise, goals (each `open | met | abandoned`), threads, secrets with who knows each.
   Versioned: a revision is a new row, so a scene can always show the spine it was planned against.
 - **Scene plan**: location; cast present, with planned entrances and exits; goals; facts in play;
   secrets in play with who knows them; optional checks (a skill and a difficulty); the scene
   instruction that started it, if any. Rerolls keep earlier proposals until one is accepted.
-- **Turn**: message id, speaker, input kind (turn instruction or written turn), the instruction,
-  check results.
+- **Turn**: id, speaker (persona or narrator), the text with its rerolls, input kind (turn
+  instruction or written turn), the instruction, check results.
 - **Scene summary**: the frozen text, the scene it covers, each goal's outcome, written once.
 
 Presence is a field of the scene plan, not a tracker guess. A character joins or leaves only by an
@@ -270,8 +275,10 @@ Cut-over (new stories start in Call Sheet) happens when both hold over at least 
 
 ## Engine dependencies
 
-These go straight into `custom-mods`, which is this project's base. They are small and general, so
-they also stand a chance upstream, but nothing waits on that.
+These go straight into `custom-mods`, which is this project's base, as one small commit. They are
+general, so they also stand a chance upstream, but nothing waits on that. Because the page builds the
+whole prompt, cache control is required, not optional: without it the layout is right but nothing
+marks the blocks for the cache.
 
 - **Cache control for package model calls.** `CapabilityLanguageModelCompletionOptions`
   (`packages/shared/src/types/capability-runtime.ts`) has temperature, max tokens, reasoning effort,
@@ -281,6 +288,8 @@ they also stand a chance upstream, but nothing waits on that.
   per-message cache mark and an optional `promptCacheTtl` (`"5m" | "1h"`), ignored by providers
   without caching. Anthropic allows at most 4 breakpoints per request, which blocks 1 to 4 use
   exactly.
+- **Streaming for package model calls.** `chatComplete` returns the whole reply. A streaming variant
+  (or an `onDelta` callback option) lets the page show the reply as it is written, like a chat.
 - **Cache usage reporting.** `CapabilityLanguageModelCompletion.usage` has prompt, completion,
   reasoning and total tokens, but no cache reads or writes. Add both, or KPI 1 cannot be measured.
 - **Later, for combat:** whatever UI and state hooks a ported combat map needs. Gacha Forge already
@@ -317,10 +326,10 @@ The commit-by-commit map is in the [appendix](#appendix-fork-commit-map).
 ## Delivery order
 
 1. **This document**, then approval.
-2. **Call Sheet v0.1** (`fork/packages/call-sheet`): the scene loop on the Engine's own generation,
-   with no Engine change. Play it and measure caching with `chat_cache_report.py`.
-3. **Engine changes in `custom-mods`**, only where that measurement shows they are needed: cache
-   marks, TTL, cache usage.
+2. **Call Sheet page, v0.2** (`fork/packages/call-sheet`): stories, the scene loop, turns with
+   reroll, edit and delete, on the package model API as it is (replies arrive whole).
+3. **Engine change in `custom-mods`**, in parallel: streaming, cache marks, TTL and cache usage for
+   package model calls. Then the page adopts them and the cache is measured.
 4. **Call Sheet v1** (scope below), using the package's own d20 checks.
 5. **Cut-over** once the success measures hold: new stories start in Call Sheet; drop the story
    and memory commits.
@@ -341,11 +350,13 @@ In:
 - Explicit cast entrances and exits.
 - d20 skill checks, resolved by the rules referee.
 - Main and agent connections per job, defaulting to the user's defaults.
+- The page itself: a story list, the transcript with reroll, edit and delete, and streamed replies.
 
 Out, for later rounds:
 
 - Combat. v1 stories avoid it or resolve it as a check.
-- Illustrator integration beyond passing the plan's cast and location.
+- The Illustrator and TTS on the page.
+- Dice cards and other presentation beyond plain prose.
 - Trackers beyond what the scene plan already holds (presence, location, goals).
 - Importing existing Roleplay or Game chats.
 - Mid-scene cuts for very long scenes.
