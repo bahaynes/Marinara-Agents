@@ -21,6 +21,19 @@
   ];
   const NON_TEXT_PROVIDERS = new Set(["image_generation", "video_generation", "audio_generation", "decision"]);
 
+  const SVG_ATTRS = 'fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+  const ICON_COPY = `<svg class="h-3.5 w-3.5" ${SVG_ATTRS}><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+  const ICON_CHECK = `<svg class="h-3.5 w-3.5 text-emerald-500" ${SVG_ATTRS}><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+  const ICON_EDIT = `<svg class="h-3.5 w-3.5" ${SVG_ATTRS}><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>`;
+  const ICON_REROLL = `<svg class="h-3.5 w-3.5" ${SVG_ATTRS}><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>`;
+  const ICON_DELETE = `<svg class="h-3.5 w-3.5" ${SVG_ATTRS}><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
+  const ICON_PREV = `<svg class="h-3 w-3" ${SVG_ATTRS}><polyline points="15 18 9 12 15 6"></polyline></svg>`;
+  const ICON_NEXT = `<svg class="h-3 w-3" ${SVG_ATTRS}><polyline points="9 18 15 12 9 6"></polyline></svg>`;
+  const ICON_MODEL = `<svg class="h-3.5 w-3.5 opacity-60" ${SVG_ATTRS}><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`;
+  const ICON_CHEVRON = `<svg class="h-3 w-3 opacity-40" ${SVG_ATTRS}><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+  const ICON_SPARKLE = `<svg class="h-3.5 w-3.5" ${SVG_ATTRS}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>`;
+  const ICON_PLAY = `<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
+
   // Shared class strings, all from Marinara's package safelist.
   const BTN = "mari-chrome-control mari-chrome-control--small px-3";
   const BTN_PRIMARY = `${BTN} mari-chrome-control--primary`;
@@ -204,6 +217,7 @@
       this.addEventListener("click", (event) => this.onClick(event));
       this.addEventListener("input", (event) => this.onInput(event));
       this.addEventListener("change", (event) => this.onChange(event));
+      this.addEventListener("keydown", (event) => this.onKeydown(event));
     }
 
     set capabilityProps(value) {
@@ -494,14 +508,66 @@
 
     onInput(event) {
       const target = event.target;
-      if (target.matches("[data-input]")) this.state.input = target.value;
-      else if (target.matches("[data-scene-input]")) this.state.sceneInput = target.value;
+      if (target.matches("[data-input]")) {
+        this.state.input = target.value;
+        target.style.height = "auto";
+        target.style.height = `${Math.min(target.scrollHeight, 220)}px`;
+        this.updateComposerActions();
+      } else if (target.matches("[data-scene-input]")) this.state.sceneInput = target.value;
       else if (target.matches("[data-cast-filter]")) {
         this.state.castFilter = target.value;
         const needle = target.value.trim().toLowerCase();
         for (const row of this.querySelectorAll("[data-cast-row]")) {
           row.hidden = Boolean(needle) && !row.textContent.toLowerCase().includes(needle);
         }
+      }
+    }
+
+    onKeydown(event) {
+      if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+        const input = this.$("[data-input]");
+        if (input && (document.activeElement === input || this.contains(document.activeElement))) {
+          event.preventDefault();
+          const text = this.state.input.trim();
+          if (text) void this.play("instruction");
+          else void this.play("continue");
+        }
+      }
+    }
+
+    updateComposerActions() {
+      const actions = this.$("[data-composer-actions]");
+      if (!actions) return;
+      const scene = this.openScene();
+      const openTurns = scene ? (this.state.data?.turns[scene.id] ?? []) : [];
+      const awaitingReply = openTurns.at(-1)?.speaker === "persona";
+      const hasInput = Boolean(this.state.input.trim());
+      const name = escapeHtml(this.persona().name);
+
+      if (hasInput) {
+        actions.innerHTML = `
+          <button type="button" class="mari-chrome-control mari-chrome-control--primary rounded-full px-3 py-1 text-xs flex items-center gap-1.5 transition-all shadow-sm active:scale-95" data-action="play" data-kind="instruction" title="Your note becomes ${name}'s turn (Ctrl+Enter)">
+            ${ICON_SPARKLE}
+            <span class="font-medium">Act</span>
+          </button>
+          <button type="button" class="rounded-full px-2.5 py-1 text-xs text-foreground/60 hover:text-foreground hover:bg-foreground/10 transition-colors" data-action="play" data-kind="written" title="Send text directly as written">
+            Send as written
+          </button>`;
+      } else if (awaitingReply) {
+        actions.innerHTML = `
+          <button type="button" class="mari-chrome-control mari-chrome-control--primary rounded-full px-3.5 py-1 text-xs flex items-center gap-1.5 transition-all shadow-sm active:scale-95" data-action="play" data-kind="continue" title="Continue the story's reply (Ctrl+Enter)">
+            ${ICON_PLAY}
+            <span class="font-medium">Continue</span>
+          </button>`;
+      } else {
+        actions.innerHTML = `
+          <button type="button" class="rounded-full px-3 py-1 text-xs text-foreground/25 bg-foreground/5 ring-1 ring-foreground/5 cursor-not-allowed" disabled title="Type what ${name} does, or press Continue">
+            Act
+          </button>
+          <button type="button" class="rounded-full px-2.5 py-1 text-xs text-foreground/60 hover:text-foreground hover:bg-foreground/10 transition-colors flex items-center gap-1" data-action="play" data-kind="continue" title="Let the story go on">
+            ${ICON_PLAY}
+            <span>Continue</span>
+          </button>`;
       }
     }
 
@@ -536,7 +602,32 @@
         void this.run("", async () =>
           this.apply(await call(this.storyPath(`/turns/${encodeURIComponent(id)}`), "PUT", { active: Number(index) })),
         );
-      else if (action === "spine") void this.saveSpine();
+      else if (action === "swipe-prev" || action === "swipe-next") {
+        const scene = this.openScene();
+        const turns = scene ? (this.state.data?.turns[scene.id] ?? []) : [];
+        const turn = turns.find((t) => t.id === id);
+        if (turn && turn.swipes?.length) {
+          const nextIndex = action === "swipe-prev" ? turn.active - 1 : turn.active + 1;
+          if (nextIndex >= 0 && nextIndex < turn.swipes.length) {
+            void this.run("", async () =>
+              this.apply(await call(this.storyPath(`/turns/${encodeURIComponent(id)}`), "PUT", { active: nextIndex })),
+            );
+          }
+        }
+      } else if (action === "copy-turn") {
+        const scene = this.openScene();
+        const turns = scene ? (this.state.data?.turns[scene.id] ?? []) : [];
+        const turn = turns.find((t) => t.id === id);
+        const text = turn ? (turn.swipes?.[turn.active] ?? "") : "";
+        if (text) {
+          void navigator.clipboard?.writeText(text);
+          const original = target.innerHTML;
+          target.innerHTML = ICON_CHECK;
+          setTimeout(() => {
+            target.innerHTML = original;
+          }, 1500);
+        }
+      } else if (action === "spine") void this.saveSpine();
       else if (action === "delete-story") void this.deleteStory();
       else if (action === "copy-id") {
         const text = target.dataset.copy || this.state.data?.story?.id;
@@ -604,25 +695,25 @@
       const who = this.persona();
       const text = turn.swipes[turn.active] ?? "";
       const textStyle = `font-size:${prefs.fontSize}px;line-height:1.5;${prefs.fontColor ? `color:${prefs.fontColor};` : ""}`;
-      const versions =
-        turn.swipes.length > 1
-          ? turn.swipes
-              .map(
-                (_, i) =>
-                  `<button type="button" class="${BTN}" data-action="swipe" data-id="${turn.id}" data-index="${i}"
-                    aria-pressed="${i === turn.active}" ${!live ? "disabled" : ""}>${i + 1}</button>`,
-              )
-              .join("")
-          : "";
       const canReroll = live && isLast && (!persona || turn.instruction);
-      const tools = live
-        ? `<div class="cs-tools mt-2 flex flex-wrap justify-end gap-1">
-            ${versions}
-            ${canReroll ? `<button type="button" class="${BTN}" data-action="reroll" data-id="${turn.id}">Reroll</button>` : ""}
-            <button type="button" class="${BTN}" data-action="edit" data-id="${turn.id}">Edit</button>
-            <button type="button" class="${BTN_DANGER}" data-action="delete" data-id="${turn.id}">Delete</button>
+      const hasSwipes = turn.swipes && turn.swipes.length > 1;
+      const swipePager = hasSwipes
+        ? `<div class="flex items-center gap-0.5 rounded px-1 text-xs text-foreground/60 mr-1 bg-foreground/5">
+            <button type="button" class="p-0.5 hover:bg-foreground/10 rounded text-foreground/70 disabled:opacity-30 disabled:pointer-events-none" data-action="swipe-prev" data-id="${turn.id}" ${turn.active <= 0 ? "disabled" : ""} title="Previous version">${ICON_PREV}</button>
+            <span class="text-[0.6875rem] font-mono px-1 select-none">${turn.active + 1}/${turn.swipes.length}</span>
+            <button type="button" class="p-0.5 hover:bg-foreground/10 rounded text-foreground/70 disabled:opacity-30 disabled:pointer-events-none" data-action="swipe-next" data-id="${turn.id}" ${turn.active >= turn.swipes.length - 1 ? "disabled" : ""} title="Next version">${ICON_NEXT}</button>
           </div>`
         : "";
+      const tools =
+        live && this.state.editing !== turn.id
+          ? `<div class="cs-tools mt-2 pt-1 border-t border-foreground/5 flex flex-wrap items-center justify-end gap-1">
+              ${swipePager}
+              <button type="button" class="p-1 hover:bg-foreground/10 rounded text-foreground/50 hover:text-foreground transition-colors" data-action="copy-turn" data-id="${turn.id}" title="Copy turn text">${ICON_COPY}</button>
+              ${canReroll ? `<button type="button" class="p-1 hover:bg-foreground/10 rounded text-foreground/50 hover:text-foreground transition-colors" data-action="reroll" data-id="${turn.id}" title="Reroll another version">${ICON_REROLL}</button>` : ""}
+              <button type="button" class="p-1 hover:bg-foreground/10 rounded text-foreground/50 hover:text-foreground transition-colors" data-action="edit" data-id="${turn.id}" title="Edit turn">${ICON_EDIT}</button>
+              <button type="button" class="p-1 hover:bg-red-500/10 rounded text-foreground/40 hover:text-red-400 transition-colors" data-action="delete" data-id="${turn.id}" title="Delete this turn and everything after it">${ICON_DELETE}</button>
+            </div>`
+          : "";
       const body =
         this.state.editing === turn.id
           ? `<textarea class="${FIELD} resize-y" data-edit rows="8">${escapeHtml(text)}</textarea>
@@ -630,7 +721,7 @@
              <button type="button" class="${BTN}" data-action="cancel-edit" data-id="${turn.id}">Cancel</button></div>`
           : `<div class="mari-message-content whitespace-pre-wrap cs-text" style="${textStyle}">${storyText(text, colors, prefs)}</div>`;
       if (!persona) {
-        return `<div class="mari-message mari-message-narrator cs-turn mb-4 px-2">
+        return `<div class="mari-message mari-message-narrator cs-turn group relative mb-4 px-2">
           <div class="mari-message-bubble mari-chat-style-surface relative rounded-xl border border-amber-500/25 bg-black/25 px-5 py-4">
             ${body}${tools}
           </div></div>`;
@@ -639,14 +730,14 @@
         ? `<img class="h-8 w-8 shrink-0 rounded-full object-cover" src="${escapeHtml(who.avatarPath)}" alt="">`
         : `<span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--primary)]/15 text-xs font-semibold">${escapeHtml(who.name.slice(0, 1))}</span>`;
       const nameStyle = solidColor(who.nameColor) ? `style="color:${solidColor(who.nameColor)}"` : "";
-      return `<div class="mari-message mari-message-user cs-turn mb-4 flex gap-3 px-2">
+      return `<div class="mari-message mari-message-user cs-turn group relative mb-4 flex gap-3 px-2">
         ${avatar}
         <div class="min-w-0 flex-1">
           <div class="mb-1 flex items-baseline gap-2 px-1">
             <span class="text-xs font-semibold" ${nameStyle}>${escapeHtml(who.name)}</span>
             ${turn.instruction ? `<span class="${MUTED} truncate">from: ${escapeHtml(turn.instruction)}</span>` : ""}
           </div>
-          <div class="mari-message-bubble mari-chat-style-surface rounded-xl border border-[var(--border)] bg-[var(--primary)]/10 px-4 py-3">
+          <div class="mari-message-bubble mari-chat-style-surface relative rounded-xl border border-[var(--border)] bg-[var(--primary)]/10 px-4 py-3">
             ${body}${tools}
           </div>
         </div></div>`;
@@ -818,18 +909,80 @@
       const name = escapeHtml(this.persona().name);
       const openTurns = this.state.data.turns[this.openScene().id] ?? [];
       const awaitingReply = openTurns.at(-1)?.speaker === "persona";
-      return `<div class="border-t border-[var(--border)] px-4 py-3">
+      const hasInput = Boolean(this.state.input.trim());
+
+      const currentModelId = story.mainConnectionId;
+      const currentConn = this.state.connections.find((c) => c.id === currentModelId);
+      const defaultConn = this.state.connections.find((c) => c.isDefault);
+      const modelDisplayName = currentConn ? currentConn.name : (defaultConn ? `Default (${defaultConn.name})` : "Default model");
+
+      const currentLength = story.settings?.replyLength || "medium";
+      const lengthLabels = { short: "Short (1–2 ¶)", medium: "Medium (3–4 ¶)", long: "Long" };
+      const lengthDisplayName = lengthLabels[currentLength] || "Medium";
+
+      return `<div class="border-t border-[var(--border)] px-4 py-3 bg-[var(--background)]">
         <div class="mx-auto max-w-3xl space-y-2">
-          ${awaitingReply ? `<p class="${MUTED}">Your turn is written. Edit or reroll it, or press Continue for the story's reply.</p>` : ""}
-          <div class="rounded-xl border border-[var(--border)] bg-[var(--card)] px-3 py-2">
-            <textarea data-input rows="2" placeholder="What does ${name} do? A short note is enough."
+          ${
+            awaitingReply
+              ? `<div class="flex items-center justify-between text-xs text-amber-400/90 bg-amber-500/10 border border-amber-500/20 rounded-lg px-3 py-1.5">
+                  <span><strong>${name}'s turn is written.</strong> Review, edit, or reroll it above, then press <strong>Continue</strong> for the story's reply.</span>
+                </div>`
+              : ""
+          }
+          <div class="marinara-chat-input-shell rounded-2xl border border-[var(--border)] bg-[var(--card)] p-2.5 shadow-sm transition-all focus-within:border-[var(--primary)]/50 focus-within:ring-2 focus-within:ring-[var(--primary)]/10">
+            <textarea data-input rows="2" placeholder="What does ${name} do? Short note is enough (Ctrl+Enter to Act)…"
               class="mari-chat-input-textarea max-h-[12.5rem] w-full resize-none bg-transparent text-sm text-[var(--foreground)] placeholder:text-foreground/30 outline-none">${escapeHtml(this.state.input)}</textarea>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button type="button" class="${BTN_PRIMARY}" data-action="play" data-kind="instruction" title="Your note becomes ${name}'s turn, then the story answers">Act</button>
-            <button type="button" class="${BTN}" data-action="play" data-kind="written" title="Use your text as written">Send as written</button>
-            <button type="button" class="${BTN}" data-action="play" data-kind="continue" title="Let the story go on">Continue</button>
-            <select class="ml-auto max-w-xs rounded-lg bg-[var(--secondary)] px-2 py-1 text-xs ring-1 ring-[var(--border)]" data-set="mainConnectionId" title="Story model">${this.modelOptions(story.mainConnectionId)}</select>
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[var(--border)]/40 mt-1">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <label class="relative inline-flex items-center cursor-pointer group" title="Story model: ${escapeHtml(modelDisplayName)}">
+                  <select class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10" data-set="mainConnectionId">
+                    ${this.modelOptions(story.mainConnectionId)}
+                  </select>
+                  <span class="inline-flex items-center gap-1.5 rounded-full bg-foreground/5 group-hover:bg-foreground/10 px-2.5 py-1 text-xs text-foreground/75 ring-1 ring-foreground/10 transition-colors">
+                    ${ICON_MODEL}
+                    <span class="max-w-[9rem] truncate font-medium">${escapeHtml(modelDisplayName)}</span>
+                    ${ICON_CHEVRON}
+                  </span>
+                </label>
+                <label class="relative inline-flex items-center cursor-pointer group" title="Turn length: ${escapeHtml(lengthDisplayName)}">
+                  <select class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10" data-set="replyLength">
+                    ${[
+                      ["short", "Short (1–2 paragraphs)"],
+                      ["medium", "Medium (3–4 paragraphs)"],
+                      ["long", "Long"],
+                    ].map(([v, l]) => `<option value="${v}" ${currentLength === v ? "selected" : ""}>${l}</option>`).join("")}
+                  </select>
+                  <span class="inline-flex items-center gap-1.5 rounded-full bg-foreground/5 group-hover:bg-foreground/10 px-2.5 py-1 text-xs text-foreground/75 ring-1 ring-foreground/10 transition-colors">
+                    <span class="font-medium">${escapeHtml(lengthDisplayName)}</span>
+                    ${ICON_CHEVRON}
+                  </span>
+                </label>
+              </div>
+              <div class="flex items-center gap-1.5 ml-auto" data-composer-actions>
+                ${
+                  hasInput
+                    ? `<button type="button" class="mari-chrome-control mari-chrome-control--primary rounded-full px-3 py-1 text-xs flex items-center gap-1.5 transition-all shadow-sm active:scale-95" data-action="play" data-kind="instruction" title="Your note becomes ${name}'s turn (Ctrl+Enter)">
+                        ${ICON_SPARKLE}
+                        <span class="font-medium">Act</span>
+                      </button>
+                      <button type="button" class="rounded-full px-2.5 py-1 text-xs text-foreground/60 hover:text-foreground hover:bg-foreground/10 transition-colors" data-action="play" data-kind="written" title="Send text directly as written">
+                        Send as written
+                      </button>`
+                    : awaitingReply
+                      ? `<button type="button" class="mari-chrome-control mari-chrome-control--primary rounded-full px-3.5 py-1 text-xs flex items-center gap-1.5 transition-all shadow-sm active:scale-95" data-action="play" data-kind="continue" title="Continue the story's reply (Ctrl+Enter)">
+                          ${ICON_PLAY}
+                          <span class="font-medium">Continue</span>
+                        </button>`
+                      : `<button type="button" class="rounded-full px-3 py-1 text-xs text-foreground/25 bg-foreground/5 ring-1 ring-foreground/5 cursor-not-allowed" disabled title="Type what ${name} does, or press Continue">
+                          Act
+                        </button>
+                        <button type="button" class="rounded-full px-2.5 py-1 text-xs text-foreground/60 hover:text-foreground hover:bg-foreground/10 transition-colors flex items-center gap-1" data-action="play" data-kind="continue" title="Let the story go on">
+                          ${ICON_PLAY}
+                          <span>Continue</span>
+                        </button>`
+                }
+              </div>
+            </div>
           </div>
         </div></div>`;
     }
@@ -858,8 +1011,8 @@
         <header class="flex items-center gap-2 border-b border-[var(--border)] px-4 py-2">
           ${view === "list" ? "" : `<button type="button" class="${BTN}" data-action="home">Stories</button>`}
           <h1 class="min-w-0 flex-1 truncate text-base font-semibold">${escapeHtml(title)}</h1>
-          ${busy ? `<span class="${MUTED}">${escapeHtml(busy)}</span>` : ""}
-          ${error ? `<span class="text-xs text-red-300">${escapeHtml(error)}</span>` : ""}
+          ${busy ? `<span class="${MUTED} flex items-center gap-1.5"><svg class="h-3 w-3 animate-spin text-[var(--primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>${escapeHtml(busy)}</span>` : ""}
+          ${error ? `<span class="text-xs text-red-300">${escapeHtml(error)}</span>` : ""}`
           ${view === "story" && data ? `<button type="button" class="${BTN}" data-action="settings">Settings</button>` : ""}
           ${this._props?.onClose ? `<button type="button" class="${BTN}" data-action="close">Close</button>` : ""}
         </header>
