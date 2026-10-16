@@ -538,7 +538,17 @@
         );
       else if (action === "spine") void this.saveSpine();
       else if (action === "delete-story") void this.deleteStory();
-      else void this.turnAction(action, id);
+      else if (action === "copy-id") {
+        const text = target.dataset.copy || this.state.data?.story?.id;
+        if (text) {
+          void navigator.clipboard?.writeText(text);
+          const original = target.textContent;
+          target.textContent = "Copied!";
+          setTimeout(() => {
+            target.textContent = original;
+          }, 1500);
+        }
+      } else void this.turnAction(action, id);
     }
 
     // ── Views ──
@@ -772,6 +782,13 @@
           <div class="flex items-center justify-between"><h2 class="text-lg font-semibold">Story settings</h2>
             <button type="button" class="${BTN}" data-action="close-settings">Done</button></div>
           <label class="${LABEL}">Title<input class="${FIELD}" data-set="title" value="${escapeHtml(story.title)}"></label>
+          <label class="${LABEL}">Story ID
+            <div class="flex items-center gap-2">
+              <input class="${FIELD} font-mono text-xs select-all" readonly value="${escapeHtml(story.id)}">
+              <button type="button" class="${BTN}" data-action="copy-id" data-copy="${escapeHtml(story.id)}" title="Copy story ID">Copy</button>
+            </div>
+            <p class="text-[0.6875rem] ${MUTED} mt-1">mari CLI: <code class="select-all font-mono text-[0.625rem]">mari db select capability_documents --where "row.id.includes('${escapeHtml(story.id)}')</code></p>
+          </label>
           <label class="${LABEL}">Story model (narrator, your turns, scene planner)
             <select class="${FIELD}" data-set="mainConnectionId">${this.modelOptions(story.mainConnectionId)}</select></label>
           <label class="${LABEL}">Scene summaries
