@@ -45,6 +45,39 @@
     return data;
   }
 
+  /**
+   * POST a turn route as a server-sent event stream: `onEvent` sees each start/token event; the route's
+   * result is returned. An Engine that cannot stream sends only the final event.
+   */
+  async function callStream(path, body, onEvent) {
+    const response = await fetch(`${API}${path}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
+      body: JSON.stringify(body),
+    });
+    if (!response.ok || !response.body) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.error || `Request failed (${response.status})`);
+    }
+    const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+    let buffer = "";
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buffer += value;
+      let end;
+      while ((end = buffer.indexOf("\n\n")) >= 0) {
+        const line = buffer.slice(0, end).replace(/^data: /u, "");
+        buffer = buffer.slice(end + 2);
+        const event = JSON.parse(line);
+        if (event.type === "done") return event.result;
+        if (event.type === "error") throw new Error(event.error);
+        onEvent(event);
+      }
+    }
+    throw new Error("The connection closed before the reply finished.");
+  }
+
   const STYLE = `
     :host { display: block; height: 100%; font: inherit; color: inherit; }
     * { box-sizing: border-box; }
@@ -96,6 +129,7 @@
     .turn:hover .tools, .turn:focus-within .tools { opacity: 1; }
     .instruction { font-size: 12px; opacity: 0.6; font-style: italic; }
     .frozen { opacity: 0.75; }
+    .writing { opacity: 0.85; }
     .composer { border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); padding: 10px 18px; }
     .composer .center { gap: 6px; }
     .goal-met { color: #34d399; } .goal-failed { color: #fb7185; }
@@ -126,6 +160,7 @@
         input: "",
         sceneInput: "",
         castFilter: "",
+        writing: null,
       };
       this._props = null;
       this._token = 0;
@@ -250,10 +285,30 @@
         continue: "Writing…",
       };
       await this.run(labels[kind], async () => {
-        this.apply(await call(this.storyPath("/turns"), "POST", { kind, text }));
+        this.apply(await this.streamTurn(this.storyPath("/turns"), { kind, text }));
         this.state.input = "";
       });
       this.scrollToEnd();
+    }
+
+    /** Run a turn route, showing the reply as it is written. */
+    async streamTurn(path, body) {
+      try {
+        return await callStream(path, body, (event) => {
+          if (event.type === "start") {
+            this.state.writing = { speaker: event.speaker, text: "" };
+            this.render();
+            this.scrollToEnd();
+          } else if (event.type === "token" && this.state.writing) {
+            this.state.writing.text += event.text;
+            const node = this.shadowRoot.querySelector("[data-writing]");
+            if (node) node.innerHTML = prose(this.state.writing.text);
+            this.scrollToEnd();
+          }
+        });
+      } finally {
+        this.state.writing = null;
+      }
     }
 
     async nextScene() {
@@ -287,7 +342,7 @@
         this.apply(await call(this.storyPath("/accept"), "POST", { plan }));
         this.state.data.turns[this.openScene().id] = [];
         this.set({ busy: "Writing the opening…" });
-        this.apply(await call(this.storyPath("/turns"), "POST", { kind: "continue" }));
+        this.apply(await this.streamTurn(this.storyPath("/turns"), { kind: "continue" }));
       });
       this.scrollToEnd();
     }
@@ -295,7 +350,7 @@
     async turnAction(action, turnId) {
       const path = this.storyPath(`/turns/${encodeURIComponent(turnId)}`);
       if (action === "reroll") {
-        await this.run("Writing another version…", async () => this.apply(await call(`${path}/reroll`, "POST", {})));
+        await this.run("Writing another version…", async () => this.apply(await this.streamTurn(`${path}/reroll`, {})));
       } else if (action === "delete") {
         if (!confirm("Delete this turn and everything after it?")) return;
         await this.run("", async () => this.apply(await call(path, "DELETE")));
@@ -457,6 +512,14 @@
         : "";
     }
 
+    renderWriting() {
+      const { speaker, text } = this.state.writing;
+      return `<div class="turn ${speaker === "persona" ? "persona" : "narrator"} writing">
+        <div class="who">${escapeHtml(speaker === "persona" ? this.personaName() : "Narrator")}</div>
+        <div data-writing>${text ? prose(text) : `<p class="muted">Writing…</p>`}</div>
+      </div>`;
+    }
+
     renderTranscript() {
       const { story, turns } = this.state.data;
       const scenes = story.sheet.scenes;
@@ -472,6 +535,7 @@
           return `<div class="scene-head"><h3>Scene ${i + 1}: ${escapeHtml(scene.plan.title)}</h3>
               ${scene.plan.location ? `<span class="muted">${escapeHtml(scene.plan.location)}</span>` : ""}</div>
             ${sceneTurns.map((t, j) => this.renderTurn(t, live, j === sceneTurns.length - 1)).join("")}
+            ${live && this.state.writing ? this.renderWriting() : ""}
             ${
               live
                 ? ""

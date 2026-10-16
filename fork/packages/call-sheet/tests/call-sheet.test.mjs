@@ -52,12 +52,14 @@ function fakeRuntime(replies, { agentFails = false } = {}) {
   const model = (name) => ({
     maxContext: null,
     fitContext: (messages) => ({ messages }),
-    async chatComplete(messages) {
-      calls.push({ name, messages: structuredClone(messages) });
+    async chatComplete(messages, options = {}) {
+      calls.push({ name, messages: structuredClone(messages), cache: options.promptCache });
       if (name === "agent" && agentFails) throw new Error("agent timed out");
       const next = replies.shift();
       if (next instanceof Error) throw next;
-      return { content: typeof next === "string" ? next : JSON.stringify(next) };
+      const content = typeof next === "string" ? next : JSON.stringify(next);
+      if (options.onToken) for (const word of content.split(/(?<= )/u)) await options.onToken(word);
+      return { content };
     },
   });
   const runtime = {
@@ -109,7 +111,23 @@ test("every job in a scene shares one prefix; the player's instruction becomes t
   assert.match(calls[0].messages[1].content, /They arrive at dusk/u, "the planner gets the direction");
 
   await playTurn(runtime, store, storyId, { kind: "continue" });
-  const { turns } = await playTurn(runtime, store, storyId, { kind: "instruction", text: "asks for a room" });
+  const events = [];
+  const { turns } = await playTurn(runtime, store, storyId, { kind: "instruction", text: "asks for a room" }, (e) =>
+    events.push(e),
+  );
+  assert.deepEqual(
+    events.filter((e) => e.type === "start").map((e) => e.speaker),
+    ["persona", "narrator"],
+  );
+  assert.equal(
+    events
+      .filter((e) => e.type === "token")
+      .map((e) => e.text)
+      .join(""),
+    "Traveler asks for a room.The keeper hands over a key.",
+    "both turns stream",
+  );
+  assert.deepEqual(calls.at(-1).cache, { ttl: "1h", depth: 1 }, "scene turns ask for the long cache");
   assert.deepEqual(
     turns.map((t) => [t.speaker, t.swipes[0]]),
     [
