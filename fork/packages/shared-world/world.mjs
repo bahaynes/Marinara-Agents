@@ -113,12 +113,16 @@ const hashOf = (entries) => createHash("sha256").update(JSON.stringify(entries))
 
 /**
  * One session's Game Master replies that carry world entries, each marked `settled` when it can no longer
- * be swiped in normal play: a later player message exists, or the session has concluded.
+ * be swiped in normal play: a later player message exists, or the session has concluded. Replies up to the
+ * link point (`sharedWorld.since`) never settle, so linking a chat in progress shares only what comes after;
+ * they stay listed so a relink never retracts what was already published.
  */
 export function sessionReplies(messages, meta = {}) {
   const concluded = meta.gameSessionStatus === "concluded";
   const startsAfter = typeof meta.gameWorldStartsAfter === "string" ? meta.gameWorldStartsAfter : null;
   let started = !startsAfter || !messages.some((message) => message.id === startsAfter);
+  const since = sharedLink(meta)?.since;
+  const sinceIndex = since ? messages.findIndex((message) => message.id === since) : -1;
   const replies = [];
   let lastUser = -1;
   messages.forEach((message, index) => {
@@ -137,7 +141,7 @@ export function sessionReplies(messages, meta = {}) {
       entries,
       hash: hashOf(entries),
       note: noteOf(message.content),
-      settled: concluded || index < lastUser,
+      settled: index > sinceIndex && (concluded || index < lastUser),
     });
   });
   return replies;

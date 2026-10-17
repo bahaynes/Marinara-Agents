@@ -13,7 +13,7 @@ metadata. On a stock Engine the package installs, but linked chats do not see an
    day** sets the calendar: 1 means one in-world day passes per real day.
 2. Add the players.
 3. Under **Game chats**, pick a player for a Game mode chat and **Link** it. Any game chat can join,
-   new or in progress.
+   new or in progress; it shares only what happens after the link.
 
 That is all. Play as usual.
 
