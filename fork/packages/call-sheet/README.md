@@ -10,26 +10,33 @@ the Engine's character and persona library for the cast and stores its own stori
 1. Open **Home → Call Sheet** and create a story: who you play, the cast, the premise and story goals.
 2. **Plan scene**, with an optional direction ("a few hours later, everyone meets to debrief"). The
    main model proposes the scene: where, who is present, what it is for, facts in play.
-3. Edit any field, **Reroll** for another version (earlier versions stay selectable), or **Accept**.
-   The opening is written straight away.
-4. Play. **Act** turns a short note ("asks the keeper about the road") into your character's turn,
-   then the story answers. **Send as written** uses your text as is. **Continue** lets the story go on.
-   The newest turn can be rerolled; any turn in the open scene can be edited or deleted.
+3. Edit any field, use the **quick-toggle cast chips** to bring characters in or out, **Reroll** for
+   another version (earlier versions and your edits stay selectable), or **Accept & start**. The
+   opening is written straight away.
+4. Play. **Act** (`Ctrl+Enter`) turns a short note ("asks the keeper about the road") into your
+   character's turn, then the story answers. **Send as written** (`Shift+Ctrl+Enter`) uses your text
+   as is. **Continue** lets the story go on, and **Stop** (`Esc`) cancels an in-flight stream without
+   losing an already-written player turn. The newest turn can be rerolled; any turn in the open scene
+   can be edited (`Ctrl+Enter` to save) or deleted.
 5. **End scene & plan next** when you decide the scene is over. The agent model writes a frozen
-   summary (and marks each scene goal met, failed or open); it replaces the scene in later prompts.
+   summary (and marks each scene goal met, failed or open), and you can rate the finished scene 1–5
+   stars; the frozen summary replaces the scene in later prompts.
 
-## Settings
+## Workspace & Settings
 
-**Settings** in the header:
-
-- Story: title, story model (also in the chat box), scene-summary model, turn length (short, medium,
-  long: the narrator's length rule and token budget), and "Review my turn before the story answers"
-  (Act writes only your turn; Continue asks for the reply). Premise, story goals, delete.
+- **Top Scene HUD**: shows the active scene title, location, present cast badges (with character card
+  avatars and colors), goal count, live prompt-cache read share / token-equivalents, and the
+  **Scene Sheet** drawer toggle.
+- **Composer bar**: model connection pill, turn length pill, and **Review: On/Off** pill ("Review my
+  turn before the story answers"), plus **Stories ▾** and **Settings** in the header.
+- **Settings drawer**: title, story ID & `mari` CLI query helper, story model, scene-summary model,
+  turn length, review toggle, premise, story goals, and delete.
 
 The page uses Marinara's own look: theme colors, the package-safelisted classes, `mari-chrome-control`
-buttons and the Roleplay message shapes (narrator bubble, persona with avatar). Text size, text color
-and bold dialogue follow the player's Roleplay settings; dialogue takes each character's card
-dialogue color through `<speaker="Name">` tags, the Engine's group-chat convention.
+buttons and the Roleplay message shapes (narrator bubble with speaking character avatar chips, persona
+with avatar). Text size, text color and bold dialogue follow the player's Roleplay settings; dialogue
+takes each character's card dialogue color through `<speaker="Name">` tags, the Engine's group-chat
+convention.
 
 ## Prompt layout
 
