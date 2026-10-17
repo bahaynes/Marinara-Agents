@@ -23,6 +23,10 @@ import {
   transcript,
   transcriptBudget,
 } from "./sheet.mjs";
+import {
+  analyzePromptPolicy,
+  optimizePresetForCaching,
+} from "./prompt-policy.mjs";
 
 export const PACKAGE_ID = "call-sheet";
 const STORY_KIND = "story";
@@ -165,7 +169,10 @@ export async function library(runtime) {
     characters: sorted(
       characters.map((r) => {
         const data = parseRecord(r.data);
-        return entry(r.id, data, parseRecord(data.extensions));
+        return {
+          ...entry(r.id, data, parseRecord(data.extensions)),
+          avatarPath: `/api/characters/${encodeURIComponent(r.id)}/avatar`,
+        };
       }),
     ),
     personas: sorted(
@@ -204,13 +211,14 @@ async function agentModel(runtime, story) {
  * One scene turn on the main model. `emit` gets `{type: "start", speaker}` and then each streamed chunk as
  * `{type: "token", text}`; an Engine without streaming simply sends no chunks.
  */
-async function completeText(model, messages, emit, speaker, maxTokens) {
+async function completeText(model, messages, emit, speaker, maxTokens, signal) {
   const fitted = model.fitContext ? model.fitContext(messages, { maxTokens }).messages : messages;
   emit({ type: "start", speaker });
   const result = await model.chatComplete(fitted, {
     maxTokens,
     promptCache: SCENE_CACHE,
     onToken: (text) => emit({ type: "token", text }),
+    ...(signal ? { signal } : {}),
   });
   const content = String(result.content ?? "").trim();
   if (!content) throw new SheetError(502, "The model returned an empty reply.");
@@ -312,6 +320,19 @@ export async function endScene(runtime, store, storyId) {
   });
 }
 
+/** Record a 1-5 player rating on a finished scene (KPI 2). */
+export function rateScene(store, storyId, sceneId, rawRating) {
+  const rating = rawRating === null ? null : Number(rawRating);
+  if (rating !== null && (!Number.isInteger(rating) || rating < 1 || rating > 5)) {
+    throw new SheetError(400, "Scene rating must be an integer from 1 to 5.");
+  }
+  return store.updateStory(storyId, (story) => {
+    const scene = story.sheet.scenes.find((s) => s.id === sceneId);
+    if (!scene) throw new SheetError(404, "Scene not found.");
+    scene.rating = rating;
+  });
+}
+
 /** Change any of: title, story model, summary model, reply length, review-before-reply. */
 export function updateSettings(store, storyId, body) {
   return store.updateStory(storyId, (story) => {
@@ -366,7 +387,7 @@ async function sceneContext(runtime, store, storyId) {
  * Play one turn. `instruction`: the persona's turn is written from the player's note (impersonate), then
  * the narrator answers. `written`: the player's text is the persona's turn. `continue`: the narrator goes on.
  */
-export function playTurn(runtime, store, storyId, body, emit = silent) {
+export function playTurn(runtime, store, storyId, body, emit = silent, signal) {
   const kind = body.kind;
   const input = String(body.text ?? "").trim();
   if (!["instruction", "written", "continue"].includes(kind)) throw new SheetError(400, "Unknown turn kind.");
@@ -386,6 +407,7 @@ export function playTurn(runtime, store, storyId, body, emit = silent) {
               emit,
               "persona",
               tokens,
+              signal,
             )
           : { content: input, usage: null };
       turns.push(
@@ -400,7 +422,7 @@ export function playTurn(runtime, store, storyId, body, emit = silent) {
       // With review on, the player checks the written turn first and asks for the reply with Continue.
       if (kind === "instruction" && ctx.settings.reviewTurns) return sceneResult(ctx.scene.id, turns);
     }
-    const reply = await completeText(model, narratorPrompt({ ...args, turns }), emit, "narrator", tokens);
+    const reply = await completeText(model, narratorPrompt({ ...args, turns }), emit, "narrator", tokens, signal);
     turns.push(newTurn("narrator", reply.content, { kind: "reply", usage: reply.usage }));
     await store.saveTurns(storyId, ctx.scene.id, turns, revision);
     return sceneResult(ctx.scene.id, turns);
@@ -408,7 +430,7 @@ export function playTurn(runtime, store, storyId, body, emit = silent) {
 }
 
 /** Write a new version of the newest turn. Earlier versions stay selectable. */
-export function rerollTurn(runtime, store, storyId, turnId, emit = silent) {
+export function rerollTurn(runtime, store, storyId, turnId, emit = silent, signal) {
   return store.lock(`turns:${storyId}`, async () => {
     const ctx = await sceneContext(runtime, store, storyId);
     const turns = structuredClone(ctx.turns);
@@ -424,7 +446,7 @@ export function rerollTurn(runtime, store, storyId, turnId, emit = silent) {
           ? narratorPrompt(args)
           : null;
     if (!prompt) throw new SheetError(400, "A turn you wrote yourself can be edited, not rerolled.");
-    const version = await completeText(model, prompt, emit, turn.speaker, ctx.tokens);
+    const version = await completeText(model, prompt, emit, turn.speaker, ctx.tokens, signal);
     const usage = turn.swipes.map((_, i) => turn.usage?.[i] ?? null);
     turn.swipes = [...turn.swipes, version.content].slice(-MAX_SWIPES);
     turn.usage = [...usage, version.usage].slice(-MAX_SWIPES);
@@ -480,7 +502,7 @@ export async function activate(context) {
   // Turn routes stream as server-sent events when asked: start/token events, then one done or error event.
   const stream = (work) => async (request, reply) => {
     if (!String(request.headers?.accept ?? "").includes("text/event-stream")) {
-      return handle((params, body) => work(params, body, silent))(request, reply);
+      return handle((params, body) => work(params, body, silent, undefined))(request, reply);
     }
     reply.hijack();
     reply.raw.writeHead(200, {
@@ -488,14 +510,25 @@ export async function activate(context) {
       "Cache-Control": "no-cache",
       "X-Accel-Buffering": "no",
     });
-    const send = (event) => reply.raw.write(`data: ${JSON.stringify(event)}\n\n`);
+    const ac = new AbortController();
+    const onClose = () => ac.abort();
+    request.raw?.on?.("close", onClose);
+    reply.raw?.on?.("close", onClose);
+    const send = (event) => {
+      if (!ac.signal.aborted) reply.raw.write(`data: ${JSON.stringify(event)}\n\n`);
+    };
     try {
-      send({ type: "done", result: await work(request.params ?? {}, request.body ?? {}, send) });
+      send({ type: "done", result: await work(request.params ?? {}, request.body ?? {}, send, ac.signal) });
     } catch (error) {
-      if (!(error instanceof SheetError)) runtime.logger?.error?.(error, "Call Sheet turn failed");
-      send({ type: "error", error: error instanceof SheetError ? error.message : "Call Sheet request failed." });
+      if (!ac.signal.aborted) {
+        if (!(error instanceof SheetError)) runtime.logger?.error?.(error, "Call Sheet turn failed");
+        send({ type: "error", error: error instanceof SheetError ? error.message : "Call Sheet request failed." });
+      }
+    } finally {
+      request.raw?.off?.("close", onClose);
+      reply.raw?.off?.("close", onClose);
     }
-    reply.raw.end();
+    if (!reply.raw.writableEnded) reply.raw.end();
   };
   const release = await context.api.registerPrivilegedRoutes(
     async (routes) => {
@@ -547,17 +580,21 @@ export async function activate(context) {
         "/stories/:storyId/end",
         handle(({ storyId }) => endScene(runtime, store, storyId)),
       );
+      routes.put(
+        "/stories/:storyId/scenes/:sceneId/rating",
+        handle(({ storyId, sceneId }, body) => rateScene(store, storyId, sceneId, body.rating)),
+      );
       routes.post(
         "/stories/:storyId/accept",
         handle(({ storyId }, body) => acceptScene(store, storyId, body.plan)),
       );
       routes.post(
         "/stories/:storyId/turns",
-        stream(({ storyId }, body, emit) => playTurn(runtime, store, storyId, body, emit)),
+        stream(({ storyId }, body, emit, signal) => playTurn(runtime, store, storyId, body, emit, signal)),
       );
       routes.post(
         "/stories/:storyId/turns/:turnId/reroll",
-        stream(({ storyId, turnId }, _body, emit) => rerollTurn(runtime, store, storyId, turnId, emit)),
+        stream(({ storyId, turnId }, _body, emit, signal) => rerollTurn(runtime, store, storyId, turnId, emit, signal)),
       );
       routes.put(
         "/stories/:storyId/turns/:turnId",
@@ -567,6 +604,18 @@ export async function activate(context) {
         "/stories/:storyId/turns/:turnId",
         handle(({ storyId, turnId }) => deleteTurn(runtime, store, storyId, turnId)),
       );
+      routes.post(
+        "/stories/:storyId/policy/analyze",
+        handle(async (_p, body) => analyzePromptPolicy(body?.preset, { provider: body?.provider || "anthropic" })),
+      );
+      routes.post(
+        "/stories/:storyId/policy/optimize",
+        handle(async (_p, body) => {
+          const optimized = optimizePresetForCaching(body?.preset);
+          const analysis = analyzePromptPolicy(optimized, { provider: body?.provider || "anthropic" });
+          return { preset: optimized, analysis };
+        }),
+      );
     },
     { prefix: `/api/${PACKAGE_ID}/v1` },
   );
@@ -574,3 +623,5 @@ export async function activate(context) {
     await release();
   };
 }
+
+export { analyzePromptPolicy, optimizePresetForCaching };

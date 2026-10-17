@@ -347,7 +347,7 @@
         },
         "id": "call-sheet",
         "name": "Call Sheet",
-        "version": "0.5.3",
+        "version": "0.6.0",
         "description": "Scene-by-scene story play on its own page. Pick a persona and a cast from your library, describe the story, and play it one scene at a time: the main model proposes each scene (where, who is present, what it is for) and you edit, reroll or accept it; you give short instructions and the story writes your character's turn and the reply; scenes end only when you say so, and a frozen summary carries each one forward. Call Sheet builds every prompt itself, so no chat preset or setting applies. Install it, restart Marinara Engine when prompted, then open Home → Call Sheet.",
         "engine": {
           "min": "2.5.0",
@@ -392,27 +392,32 @@
           },
           {
             "path": "client.js",
-            "sha256": "d3d6ab4f56fb6a69b9a37b7ce6723755950288616ec9d5ded3c2c790a926b7eb",
-            "bytes": 54829
+            "sha256": "96e1ac3be80f6d64b0008a254ab5eb002b6664078ae2e818fd8a8921e47d68b3",
+            "bytes": 80224
+          },
+          {
+            "path": "prompt-policy.mjs",
+            "sha256": "ab1bff2367d5ab966478847f9ff2d650dc9c50fdedd1da569a44359223ec765f",
+            "bytes": 10136
           },
           {
             "path": "server.mjs",
-            "sha256": "c9c7af85636caacd4f72ed2df25557d96d1eafbf7a09c2557c8dd27db712c341",
-            "bytes": 22745
+            "sha256": "830531c9c70a02e2c91c93cf1b2f305bf7fae3ad379b9bdf39f79518ed9ec036",
+            "bytes": 24800
           },
           {
             "path": "sheet.mjs",
-            "sha256": "4ed40910a6c5cf43d9c0b88b14fe7352401edf4a005c52f9b9cfec70d2c57fe6",
-            "bytes": 14121
+            "sha256": "c7621b26f73d6f85d06e976df9063bf3c4e6690f3a73304003a0a6fc4bdcb3fe",
+            "bytes": 14175
           }
         ]
       },
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artwork/call-sheet.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/call-sheet-0.5.3.zip",
-        "sha256": "1c494b83fc4ce7d036fdc6323a934f016bc7c26fed966098e6385192e71ae128",
-        "bytes": 135564
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/call-sheet-0.6.0.zip",
+        "sha256": "debd40316394694a44f6a38364cbeb59783ebf914e9960290cd9a56bafbdeca5",
+        "bytes": 173467
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/call-sheet/README.md"
     },
