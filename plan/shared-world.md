@@ -4,7 +4,7 @@ Working name: **Shared World** (package id `shared-world`). It is regular Game m
 
 ## Status
 
-Plan only. Nothing is built yet. Phase 0 is a set of spikes that confirm the Engine seams below, run on flash (cost stated before each run).
+Phase 1 is built: `fork/packages/shared-world` 0.1.0 (commit `a17a657c3`), with 9 unit tests passing and no live run yet. A live run needs the Engine seam (`52a06ec2f` on the local Engine branch `shared-world-seam`, not pushed) on `custom-mods` and deployed. Unlink keeps the day floor so a chat's calendar never runs back. Phase 0 is a set of spikes that confirm the Engine seams below, run on flash (cost stated before each run).
 
 ## Goals
 
@@ -201,6 +201,7 @@ In-chat, nothing new is needed: the GM learns of foreign changes through the nat
 
 - Package with `chat-read`, `chat-write`, `storage`, `ui`, `prompt-context`. The publisher is the prompt-context contributor (code, no model call, returns no text). It reads `[world:]` tags and bails unless `mode === "game"` and the chat is linked.
 - Commit point, publish to package storage, read back into a *second chat on the same Engine*. This proves the fold, retractions and the feed without any network.
+- Built (0.1.0): one game doc per shared game (revision-checked writes), background sync from the contributor plus **Sync now**, link and unlink from the Home page, and a linear port of the Engine's tag scanner. Still to do: the live test on the seam Engine.
 
 **Phase 2: sidecar, two Engines**
 
