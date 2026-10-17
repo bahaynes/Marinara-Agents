@@ -3937,7 +3937,7 @@
         },
         "id": "shared-world",
         "name": "Shared World",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "One world for several Game mode adventures. Create a shared game, add its players, and link each Game mode chat to it: every deed a Game Master reply records (a hold taken, a faction angered, a fact learned) is shared once you answer that reply, and every other linked chat sees it as news and as part of its world, with who did it. A shared calendar keeps every party's day at or past the real days since the game began. Needs the custom-mods Marinara Engine with the shared-world seam. Install it, restart Marinara Engine when prompted, then open Home → Shared World.",
         "engine": {
           "min": "2.5.0",
@@ -3982,21 +3982,21 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "9b242f479d1257a1bd2ad3f16d0b6e3c601cffe6976b18af09c3ca0c2b7d808d",
-            "bytes": 11335
+            "sha256": "71e4d624527d2fbc0a512a7274456e20a66d23062cf4f4c82b5fac788dd07fc3",
+            "bytes": 11668
           },
           {
             "path": "world.mjs",
-            "sha256": "8e0b4db9dee4d77bd382fa58d5c6057f95391da4cad1a5f7b1ed148525ea54df",
-            "bytes": 9480
+            "sha256": "d0f5b1d69d6ab5fe5e3951d3044ad1a027ac570cfa3f91d7e5cd681f528eb3cf",
+            "bytes": 9837
           }
         ]
       },
       "category": "misc",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/shared-world-0.1.0.zip",
-        "sha256": "e595238b77e69c4affe4dc27eb56ac8de308adc37440051f36c73c65dcecc916",
-        "bytes": 35046
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/shared-world-0.1.1.zip",
+        "sha256": "887e0caa0dc3aa93c7d031f4c806710817a91e903531f22c1ba2e572ff213bd9",
+        "bytes": 35736
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/shared-world/README.md"
     },
