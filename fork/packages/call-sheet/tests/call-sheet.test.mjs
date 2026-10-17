@@ -1,7 +1,16 @@
 // node --test fork/packages/call-sheet/tests/*.test.mjs
 import assert from "node:assert/strict";
 import test from "node:test";
-import { cleanOutcomes, cleanPlan, historyMessages, newTurn, transcript, transcriptBudget } from "../sheet.mjs";
+import {
+  cacheStats,
+  cleanOutcomes,
+  cleanPlan,
+  cleanUsage,
+  historyMessages,
+  newTurn,
+  transcript,
+  transcriptBudget,
+} from "../sheet.mjs";
 import {
   acceptScene,
   createStore,
@@ -12,6 +21,7 @@ import {
   library,
   playTurn,
   propose,
+  rateScene,
   rerollTurn,
   storyView,
   updateSettings,
@@ -60,12 +70,20 @@ function fakeRuntime(replies, { agentFails = false } = {}) {
         messages: structuredClone(messages),
         cache: options.promptCache,
         maxTokens: options.maxTokens,
+        signal: options.signal,
       });
+      if (options.signal?.aborted) throw new Error("Request aborted");
       if (name === "agent" && agentFails) throw new Error("agent timed out");
       const next = replies.shift();
+      if (typeof next === "function") return next(messages, options);
       if (next instanceof Error) throw next;
       const content = typeof next === "string" ? next : JSON.stringify(next);
-      if (options.onToken) for (const word of content.split(/(?<= )/u)) await options.onToken(word);
+      if (options.onToken) {
+        for (const word of content.split(/(?<= )/u)) {
+          if (options.signal?.aborted) throw new Error("Request aborted");
+          await options.onToken(word);
+        }
+      }
       return {
         content,
         usage: { promptTokens: 100, cachedPromptTokens: 900, cacheWritePromptTokens: 0, completionTokens: 50 },
@@ -129,10 +147,18 @@ test("a story runs on the connection chosen for it, else the default", async () 
   assert.deepEqual(resolved, ["claude-sub", null]);
 });
 
-test("library lists the Engine's characters and personas by name", async () => {
+test("library lists the Engine's characters and personas by name with avatar paths", async () => {
   const { runtime } = fakeRuntime([]);
   assert.deepEqual(await library(runtime), {
-    characters: [{ id: "c1", name: "Keeper", nameColor: "#aa0000", dialogueColor: "#ffcc00" }],
+    characters: [
+      {
+        id: "c1",
+        name: "Keeper",
+        nameColor: "#aa0000",
+        dialogueColor: "#ffcc00",
+        avatarPath: "/api/characters/c1/avatar",
+      },
+    ],
     personas: [
       { id: "p1", name: "Traveler", nameColor: "", dialogueColor: "", avatarPath: "/api/avatars/file/p1.webp" },
     ],
@@ -175,6 +201,7 @@ test("every job in a scene shares one prefix; the player's instruction becomes t
     output: 150,
     readShare: 0.9,
     equivalents: 570,
+    warming: false,
   });
   assert.deepEqual(
     turns.map((t) => [t.speaker, t.swipes[0]]),
@@ -203,7 +230,7 @@ test("every job in a scene shares one prefix; the player's instruction becomes t
   assert.deepEqual(reply.at(-1), { role: "user", content: "Traveler: Traveler asks for a room." });
 });
 
-test("a finished scene leaves the prompt; its frozen summary stands in", async () => {
+test("a finished scene leaves the prompt; its frozen summary stands in and can be rated", async () => {
   const { runtime, store, calls, storyId } = await startedStory([
     "The inn is warm.",
     { summary: "The courier took a room.", goals: [{ goal: "reworded", status: "met" }] },
@@ -214,6 +241,10 @@ test("a finished scene leaves the prompt; its frozen summary stands in", async (
   const ended = await endScene(runtime, store, storyId);
   assert.equal(calls.at(-1).name, "agent");
   assert.deepEqual(ended.sheet.scenes[0].outcomes, [{ goal: "Get a room", status: "met" }]);
+
+  const rated = await rateScene(store, storyId, ended.sheet.scenes[0].id, 5);
+  assert.equal(rated.sheet.scenes[0].rating, 5);
+  assert.throws(() => rateScene(store, storyId, ended.sheet.scenes[0].id, 6), /integer from 1 to 5/u);
 
   const next = await propose(runtime, store, storyId, "");
   assert.match(calls.at(-1).messages[1].content, /End of the last scene:\nNarrator: The inn is warm\./u);
@@ -246,15 +277,30 @@ test("reroll keeps earlier versions; edit, version pick and delete rewrite the o
   assert.deepEqual(result.turns, []);
 });
 
-test("failures never lose work and never trap a scene", async () => {
-  const { runtime, store, storyId } = await startedStory(["Hello.", new Error("provider down")]);
+test("failures and aborts never lose work and never trap a scene", async () => {
+  const ac = new AbortController();
+  const { runtime, store, storyId } = await startedStory([
+    "Hello.",
+    "Traveler steps forward.",
+    async (_messages, options) => {
+      ac.abort();
+      if (options.signal?.aborted) throw new Error("Aborted by user");
+      return { content: "Never reached" };
+    },
+  ]);
   await playTurn(runtime, store, storyId, { kind: "continue" });
-  await assert.rejects(playTurn(runtime, store, storyId, { kind: "written", text: "I sit down." }), /provider down/u);
+  await assert.rejects(
+    playTurn(runtime, store, storyId, { kind: "instruction", text: "steps forward" }, undefined, ac.signal),
+    /Aborted by user/u,
+  );
   const { turns } = await storyView(store, storyId);
   assert.deepEqual(
-    Object.values(turns)[0].map((t) => t.swipes[0]),
-    ["Hello.", "I sit down."],
-    "the player's turn was saved before the reply failed",
+    Object.values(turns)[0].map((t) => [t.speaker, t.swipes[0]]),
+    [
+      ["narrator", "Hello."],
+      ["persona", "Traveler steps forward."],
+    ],
+    "when aborted during narrator reply, the impersonated persona turn stays saved",
   );
 
   const fallback = await startedStory(["Hello.", { summary: "Done.", goals: [] }], { agentFails: true });
@@ -273,7 +319,7 @@ test("failures never lose work and never trap a scene", async () => {
   );
 });
 
-test("plans and outcomes are cleaned; history alternates; long transcripts are trimmed", () => {
+test("plans, outcomes and cache usage are cleaned; history alternates; long transcripts are trimmed", () => {
   assert.deepEqual(cleanPlan({ title: " ", cast: "A\nB", evil: 1 }), {
     title: "Untitled scene",
     location: "",
@@ -283,6 +329,19 @@ test("plans and outcomes are cleaned; history alternates; long transcripts are t
     opening: "",
   });
   assert.deepEqual(cleanOutcomes([{ goal: "x", status: "bogus" }], ["x"]), [{ goal: "x", status: "open" }]);
+
+  assert.deepEqual(
+    cleanUsage({
+      promptTokens: 1000,
+      cachedPromptTokens: 800,
+      cacheWritePromptTokens: 50,
+      completionTokens: 40,
+      promptTokensIncludesCache: true,
+    }),
+    { input: 150, read: 800, write: 50, output: 40 },
+  );
+  const warmingStats = cacheStats([{ usage: [{ input: 450, read: 0, write: 0, output: 80 }] }]);
+  assert.equal(warmingStats.warming, true);
 
   const persona = { name: "P" };
   const history = historyMessages(
@@ -328,3 +387,29 @@ test("settings: turn length shapes the prompt and budget; review stops after the
     ["persona", "narrator"],
   );
 });
+
+test("client helpers: extractSpeakers, storyText dialogue coloring, and BUSY_ALLOWED_ACTIONS guardrails", async () => {
+  globalThis.HTMLElement = class {};
+  await import("../client.js");
+  const { extractSpeakers, storyText, BUSY_ALLOWED_ACTIONS } = globalThis.__callSheetHelpers;
+
+  assert.ok(BUSY_ALLOWED_ACTIONS.has("stop"), "Stop button must stay enabled while busy/streaming");
+  assert.ok(BUSY_ALLOWED_ACTIONS.has("toggle-drawer"), "Scene Sheet drawer toggle must stay enabled while busy");
+
+  const sample =
+    'Rain falls. <speaker="Keeper">"Rooms are two silver,"</speaker> he says. ' +
+    '<speaker="Mira">"Too steep,"</speaker> Mira replies. <speaker="keeper">"Take it or leave it."</speaker>';
+  assert.deepEqual(extractSpeakers(sample), ["Keeper", "Mira"], "speakers are deduplicated case-insensitively");
+
+  const colors = new Map([
+    ["keeper", "#ffcc00"],
+    ["mira", "#66ccff"],
+  ]);
+  const prefs = { fontSize: 16, fontColor: "", boldDialogue: true, defaultDialogueColor: "#f5c542" };
+  const html = storyText(sample, colors, prefs);
+  assert.match(html, /<strong style="color:#ffcc00">&quot;Rooms are two silver,&quot;<\/strong>/u);
+  assert.match(html, /<strong style="color:#66ccff">&quot;Too steep,&quot;<\/strong>/u);
+  assert.doesNotMatch(html, /<speaker/u, "speaker tags are stripped from rendered HTML");
+});
+
+
