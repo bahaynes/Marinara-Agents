@@ -2827,7 +2827,7 @@
         },
         "id": "long-term-memory",
         "name": "Long-Term Memory",
-        "version": "1.4.41",
+        "version": "1.4.48",
         "description": "Remembers important things from your chat summaries, characters, and lorebooks, and brings them back when they matter. Enable it per chat from Chat Settings → Agents → Long-Term Memory. In Roleplay and Game, you can also add it from Chat Settings → Agents → Misc Agents.",
         "engine": {
           "min": "2.4.1",
@@ -2859,13 +2859,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "b1aa0202747c85202758ae133082e7bc99cb7f8d066b68b0b629d52aae8d55f4",
-            "bytes": 470366
+            "sha256": "4a960da83d68d2891505629472cbdbb947997959a509dd4737a060853d028a18",
+            "bytes": 471781
           },
           {
             "path": "client.js",
-            "sha256": "98a530895c5e99c93f5e5ce2dac1424769f348ea1c5be6fd33d21d05592ec93c",
-            "bytes": 994678
+            "sha256": "012ba0aecb1c54e2e878212024957d340b7bca9a0d2cbcbc97dc08976fa14b8b",
+            "bytes": 980443
           }
         ],
         "permissions": [
@@ -2881,9 +2881,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/long-term-memory.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/long-term-memory-1.4.41.zip",
-        "sha256": "1c6b90f4eb5e2776565a618125a7915503f3bf57fefb7aca78c27d9f0ce5d2e7",
-        "bytes": 1467543
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/long-term-memory-1.4.48.zip",
+        "sha256": "fc07eb5ce3081ea0bbde3bf6fdca87c75f19dd3a5d29efc1fdc9af67a339ed75",
+        "bytes": 1454723
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents#long-term-memory"
     },
@@ -3531,7 +3531,7 @@
         },
         "id": "quartermaster",
         "name": "Quartermaster",
-        "version": "0.1.25",
+        "version": "0.1.28",
         "description": "An RPG character sheet and inventory for Roleplay: equip gear around your persona's portrait, save outfits, get AI art for items, and let it keep everything in step with the story. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay mode.",
         "engine": {
           "min": "2.4.6",
@@ -3554,18 +3554,18 @@
         "files": [
           {
             "path": "agents.json",
-            "sha256": "fcd8b64b649650c5635ff28ab6071647a67695bb6ff4a2cbbe65bfd465b7ae93",
-            "bytes": 5197
+            "sha256": "d34b7423cf36f935d8aab1bd76355a6d6bc14a97eca058fe5b4755322a0e42da",
+            "bytes": 6277
           },
           {
             "path": "client.js",
-            "sha256": "fa049362091dfca61dc55fea73240078182d1e09d993ba4777cdebca436c2ea3",
-            "bytes": 296044
+            "sha256": "acc3b1778a802799f9822aecb2077e138f8e04f5ca4a9d7802587450c1b8e43a",
+            "bytes": 306535
           },
           {
             "path": "server.mjs",
-            "sha256": "a11b890e47422ff5ba7f4b6d10a0a18d1f7695b52b0dbaebda95d4717eb2f8e5",
-            "bytes": 129363
+            "sha256": "8a6b260e52068d0654723a75f98e95c84053491c3d9e3b812a5ab97ef3f073b1",
+            "bytes": 131685
           },
           {
             "path": "icons/armor_legs.webp",
@@ -3589,18 +3589,23 @@
           },
           {
             "path": "icons/clothing_legs.webp",
-            "sha256": "ebad0f719c4d0ed7efdf0b69b01076eed74c4561c64d2e94683b3d5892e326c8",
-            "bytes": 1246
+            "sha256": "090e970a6026a114013ca30464a85fe09097621a45b255f40e66413442e83fa5",
+            "bytes": 1004
           },
           {
             "path": "icons/clothing_torso.webp",
-            "sha256": "aff20911dcb06507c87a9f6e5387d72b6e5aa67a27e8c3397da152dea1cea799",
-            "bytes": 1542
+            "sha256": "bca1d91c3beb44e70686566596476f30c3613eba766c4e8e10b40717a925cbd1",
+            "bytes": 1424
           },
           {
             "path": "icons/ears.webp",
             "sha256": "071253ea4c8f8a0b6e6e412ca3276a41d9ddd7a39fc02402d09c51493a952c30",
             "bytes": 1314
+          },
+          {
+            "path": "icons/extra_wearable.webp",
+            "sha256": "54f8ee6beacff3f9e9774a2fe0cf76d6c870de3d7f3cd51f62502a59a7214409",
+            "bytes": 1834
           },
           {
             "path": "icons/eyes.webp",
@@ -3623,9 +3628,34 @@
             "bytes": 822
           },
           {
+            "path": "icons/midlayer_legs.webp",
+            "sha256": "549c87da174d8edea1b552ecdde92b4405e12b45be290f063313e9b41e8fa1c3",
+            "bytes": 1360
+          },
+          {
+            "path": "icons/midlayer_torso.webp",
+            "sha256": "bcc2327091aaf34a071cb6218c8a4d795db585bc6724abfa6b95be4a93a1e14b",
+            "bytes": 1250
+          },
+          {
             "path": "icons/neck.webp",
             "sha256": "bfbc19de3fb432c6b6eb045309daf8fcc42a5fc741aa77b189f5a93dcc600853",
             "bytes": 1592
+          },
+          {
+            "path": "icons/outerwear_legs.webp",
+            "sha256": "b3681825e6407ce785576dcd2221c231c063437b0f744ddbd34eede280a39a57",
+            "bytes": 2672
+          },
+          {
+            "path": "icons/outerwear_torso.webp",
+            "sha256": "5754dad27bf23eccbdc79ff2eee4219b0e875f4120b8af957fd95493c8425ad8",
+            "bytes": 1478
+          },
+          {
+            "path": "icons/socks.webp",
+            "sha256": "b19dd2a31e53988aad93af103baad0dd5fd39081fd84e2591d40d92de7682f8c",
+            "bytes": 1172
           },
           {
             "path": "icons/underwear_bottom.webp",
@@ -3659,9 +3689,9 @@
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/quartermaster.png",
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/quartermaster/README.md",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/quartermaster-0.1.25.zip",
-        "sha256": "1de011e60bb102c28b8614e937b22f169effe1c8e86132484d50882d8bd6abca",
-        "bytes": 457712
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/quartermaster-0.1.28.zip",
+        "sha256": "6eb40478ea7339318e6582b66a308f11547d35100c8c766851ced50fb3679a4e",
+        "bytes": 482700
       }
     },
     {
@@ -3899,6 +3929,82 @@
         "schemaVersion": 2,
         "capabilityApi": {
           "major": 1,
+          "minor": 19
+        },
+        "builtAgainst": {
+          "engineVersion": "2.5.0",
+          "engineCommit": "9052b4d0a4d6bfe06dc2192ea81e74d45577ad68"
+        },
+        "id": "shared-world",
+        "name": "Shared World",
+        "version": "0.1.0",
+        "description": "One world for several Game mode adventures. Create a shared game, add its players, and link each Game mode chat to it: every deed a Game Master reply records (a hold taken, a faction angered, a fact learned) is shared once you answer that reply, and every other linked chat sees it as news and as part of its world, with who did it. A shared calendar keeps every party's day at or past the real days since the game began. Needs the custom-mods Marinara Engine with the shared-world seam. Install it, restart Marinara Engine when prompted, then open Home → Shared World.",
+        "engine": {
+          "min": "2.5.0",
+          "maxExclusive": "4.0.0"
+        },
+        "kind": [
+          "agent"
+        ],
+        "entrypoints": {
+          "agents": "agents.json",
+          "client": "client.js",
+          "server": "server.mjs"
+        },
+        "contributions": {
+          "slots": [
+            "home-browser-tab"
+          ],
+          "homeBrowserTab": {
+            "label": "Shared World",
+            "ariaLabel": "Open Shared World"
+          }
+        },
+        "permissions": [
+          "chat-read",
+          "chat-write",
+          "prompt-context",
+          "routes",
+          "storage",
+          "ui"
+        ],
+        "restartRequired": true,
+        "files": [
+          {
+            "path": "agents.json",
+            "sha256": "5a69227fc08a380815809813fdf607f50cd9238da69bd244ca1a75aa7d16c3c2",
+            "bytes": 500
+          },
+          {
+            "path": "client.js",
+            "sha256": "31145c79d65c3f205a74f36a94ed9f8092d7f9ef2834c15fc2619824c0924fa0",
+            "bytes": 11241
+          },
+          {
+            "path": "server.mjs",
+            "sha256": "9b242f479d1257a1bd2ad3f16d0b6e3c601cffe6976b18af09c3ca0c2b7d808d",
+            "bytes": 11335
+          },
+          {
+            "path": "world.mjs",
+            "sha256": "8e0b4db9dee4d77bd382fa58d5c6057f95391da4cad1a5f7b1ed148525ea54df",
+            "bytes": 9480
+          }
+        ]
+      },
+      "category": "misc",
+      "artifact": {
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/shared-world-0.1.0.zip",
+        "sha256": "e595238b77e69c4affe4dc27eb56ac8de308adc37440051f36c73c65dcecc916",
+        "bytes": 35046
+      },
+      "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/shared-world/README.md"
+    },
+    {
+      "manifest": {
+        "schemaVersion": 2,
+        "capabilityApi": {
+          "major": 1,
           "minor": 66
         },
         "builtAgainst": {
@@ -3907,7 +4013,7 @@
         },
         "id": "slurp2",
         "name": "Slurp",
-        "version": "0.3.46",
+        "version": "0.3.47",
         "description": "A private social app for your characters. Turn characters and personas into Creators, post public or locked photos, and watch a simulated audience follow, subscribe, unlock, comment, and message them. By default, it is tuned for an adult experience. Install it, restart Marinara Engine when prompted, then open Home → Slurp.",
         "localizations": {
           "de": {
@@ -3974,13 +4080,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "922454d93e51a631f8647e8744c07e3a6232db44e676a5bc546c708e5ae3e144",
-            "bytes": 3529386
+            "sha256": "6db4e4bc4c6c83f2af1070142180cc7dbbc8210cff983141502ccb1d6cbf60e0",
+            "bytes": 3530318
           },
           {
             "path": "client.js",
-            "sha256": "aa54fa49df69d4709627ddf2bbcec0642af79a9e655e457bc000bad2011fe347",
-            "bytes": 4764095
+            "sha256": "d8cae4af7e9ad086a8e3019a56ad618226676b88441455d55af7b6dfcb2d4e50",
+            "bytes": 4767231
           },
           {
             "path": "slurp2-logo.png",
@@ -4038,9 +4144,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/slurp2.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/slurp2-0.3.46.zip",
-        "sha256": "784f65af758adcfb085c7d07d5d1a16bae27e177962e50919aa0c3709498a9cd",
-        "bytes": 9207726
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/slurp2-0.3.47.zip",
+        "sha256": "066909068085ba5e4de068aa7cc3b07ce72bbf3e7b9eb7436543b843faa1d55b",
+        "bytes": 9211794
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/slurp2/README.md"
     },
