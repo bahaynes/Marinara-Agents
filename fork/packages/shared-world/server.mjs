@@ -141,10 +141,13 @@ export async function syncGame(runtime, store, gameId, now = Date.now()) {
     return records.length ? appendRecords(current, records, new Date(now).toISOString()) : current;
   });
   let written = 0;
+  const players = new Set((game.players ?? []).map((player) => player.id));
   for (const { chat } of chats) {
     const changed = await writeShared(persistence, chat.id, (meta) => {
       const link = sharedLink(meta);
-      return link?.gameId === gameId ? { ...meta, ...readerKeys(game, link.playerId, meta, now) } : meta;
+      return link?.gameId === gameId && players.has(link.playerId)
+        ? { ...meta, ...readerKeys(game, link.playerId, meta, now) }
+        : meta;
     });
     if (changed) written += 1;
   }
@@ -230,7 +233,12 @@ async function linkChat(runtime, store, body) {
   const chatId = String(body.chatId ?? "");
   const chat = await runtime.persistence.getChat(chatId);
   if (!isGameChat(chat)) throw new WorldError(400, "Only Game mode chats can join a shared world.");
-  await writeShared(runtime.persistence, chatId, (meta) => ({ ...meta, sharedWorld: { gameId: game.id, playerId } }));
+  // Only what happens after the link is shared: the chat's latest message is the link point.
+  const since = (await runtime.persistence.listMessages(chatId)).at(-1)?.id;
+  await writeShared(runtime.persistence, chatId, (meta) => ({
+    ...meta,
+    sharedWorld: { gameId: game.id, playerId, ...(since ? { since } : {}) },
+  }));
   return syncGame(runtime, store, game.id).then(() => ({ ok: true }));
 }
 

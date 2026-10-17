@@ -195,9 +195,41 @@ test("a player outside the game, or an unlinked chat, never publishes or reads",
     world.say(chat, "g1", "assistant", HOLD);
     world.say(chat, "u2", "user", "Next.");
   }
+  world.say("a1", "u1", "user", "Go.");
+  world.say("a1", "g1", "assistant", HOLD);
+  world.say("a1", "u2", "user", "Next.");
   await sync();
-  assert.equal((await log()).records.length, 0);
+  assert.equal((await log()).records.length, 1, "only Alice publishes");
   assert.equal(world.meta("n1").gameLedgerForeign, undefined);
+  assert.equal(world.meta("x1").gameLedgerForeign, undefined, "a stranger reads nothing");
+});
+
+test("a chat linked in progress shares only what comes after the link, and a relink retracts nothing", async () => {
+  const { world, sync, log, game } = await setup();
+  world.say("a1", "u0", "user", "Before.");
+  world.say("a1", "g0", "assistant", ANGER);
+  world.say("a1", "u1", "user", "Link here.");
+  world.chats.get("a1").metadata.sharedWorld.since = "u1";
+  world.say("a1", "g1", "assistant", HOLD);
+  world.say("a1", "u2", "user", "Next.");
+  await sync();
+  assert.deepEqual(world.meta("b1").gameLedgerForeign, [{ deed: "hold-taken", place: "Goodsprings", by: "Alice" }]);
+  world.chats.get("a1").metadata.sharedWorld = { gameId: game.id, playerId: "p-alice", since: "u2" };
+  await sync();
+  assert.equal((await log()).records.length, 1);
+});
+
+test("an Engine write-back from a copy read before the sync is healed by the next sync", async () => {
+  const { world, sync } = await setup();
+  const stale = structuredClone(world.meta("b1"));
+  world.say("a1", "u1", "user", "Go.");
+  world.say("a1", "g1", "assistant", HOLD);
+  world.say("a1", "u2", "user", "Next.");
+  await sync();
+  world.chats.get("b1").metadata = { ...stale, gameMap: "moved" };
+  await sync();
+  assert.equal(world.meta("b1").gameLedgerForeign.length, 1);
+  assert.equal(world.meta("b1").gameMap, "moved", "the Engine's own write is kept");
 });
 
 test("party turns and replies without answered tags publish nothing", () => {
