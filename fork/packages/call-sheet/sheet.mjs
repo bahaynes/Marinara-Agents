@@ -99,11 +99,15 @@ export function newTurn(speaker, content, extra = {}) {
 /** A provider's usage, reduced to the counts the cache measure needs. */
 export function cleanUsage(usage) {
   if (!usage || typeof usage !== "object") return null;
-  const n = (value) => (Number.isFinite(value) ? value : 0);
+  const n = (value) => (Number.isFinite(value) && value > 0 ? value : 0);
+  const rawInput = n(usage.promptTokens);
+  const read = n(usage.cachedPromptTokens);
+  const write = n(usage.cacheWritePromptTokens);
+  const input = usage.promptTokensIncludesCache ? Math.max(0, rawInput - read - write) : rawInput;
   return {
-    input: n(usage.promptTokens),
-    read: n(usage.cachedPromptTokens),
-    write: n(usage.cacheWritePromptTokens),
+    input,
+    read,
+    write,
     output: n(usage.completionTokens),
   };
 }
@@ -111,8 +115,6 @@ export function cleanUsage(usage) {
 /**
  * KPI 1 for a scene: every recorded call, every version included (rerolls cost too). Token-equivalents
  * follow the plan: uncached input 1x, cache reads 0.1x, cache writes 2x.
- * ponytail: assumes Anthropic-style counts, where input excludes cache reads and writes. Providers that
- * count cached tokens inside input overstate the uncached share; per-provider normalization fixes that.
  */
 export function cacheStats(turns) {
   const total = { calls: 0, input: 0, read: 0, write: 0, output: 0 };
@@ -128,6 +130,7 @@ export function cacheStats(turns) {
     ...total,
     readShare: prompt ? total.read / prompt : 0,
     equivalents: Math.round(total.input + total.read * 0.1 + total.write * 2),
+    warming: total.calls > 0 && total.read === 0 && total.write === 0 && prompt < total.calls * 1024,
   };
 }
 
