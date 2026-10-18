@@ -2,20 +2,17 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { activate, createStore, syncGame } from "../server.mjs";
-import { calendarDay, foreignLedger, readWorldEntries, sessionReplies } from "../world.mjs";
-
-const DAY = 86_400_000;
-const START = Date.parse("2026-10-01T00:00:00Z");
 
 function fakeDocuments() {
   const docs = new Map();
-  return {
+  const store = {
     docs,
+    updates: 0,
     async list(packageId, kind) {
       return [...docs.values()].filter((doc) => doc.packageId === packageId && doc.kind === kind);
     },
     async getById(_packageId, id) {
-      return docs.get(id) ?? null;
+      return structuredClone(docs.get(id) ?? null);
     },
     async create(doc) {
       const stored = { ...structuredClone(doc), revision: 1 };
@@ -25,16 +22,19 @@ function fakeDocuments() {
     async update({ id, expectedRevision, ...fields }) {
       const current = docs.get(id);
       if (!current || current.revision !== expectedRevision) return null;
+      store.updates += 1;
       const stored = { ...current, ...structuredClone(fields), revision: current.revision + 1 };
       docs.set(id, stored);
       return stored;
     },
   };
+  return store;
 }
 
 function fakeRuntime() {
   const chats = new Map();
   const messages = new Map();
+  let created = 0;
   const persistence = {
     documents: fakeDocuments(),
     metadataWrites: 0,
@@ -56,200 +56,95 @@ function fakeRuntime() {
   };
   return {
     runtime: { persistence, logger: {} },
-    chats,
-    messages,
+    persistence,
     meta: (chatId) => chats.get(chatId).metadata,
+    /** An Engine write: the whole metadata, as the Engine holds it. */
+    engineWrite(chatId, change) {
+      const chat = chats.get(chatId);
+      chat.metadata = change(structuredClone(chat.metadata));
+    },
     addChat(id, metadata = {}, groupId = id) {
-      chats.set(id, { id, name: id, mode: "game", groupId, metadata });
+      created += 1;
+      chats.set(id, {
+        id,
+        name: id,
+        mode: "game",
+        groupId,
+        createdAt: `2026-10-0${created}T00:00:00Z`,
+        metadata: structuredClone(metadata),
+      });
       messages.set(id, []);
     },
-    say(chatId, id, role, content) {
+    say(chatId, id, role, content = "") {
       messages.get(chatId).push({ id, chatId, role, content });
     },
   };
 }
 
-const HOLD = '[world: deed="hold-taken" place="Goodsprings" days="2" result="ok"]';
-const ANGER = '[world: deed="angered" group="Powder Gangers" result="ok"]';
+const npc = (id, name, extra = {}) => ({
+  id,
+  name,
+  emoji: "🙂",
+  description: `${name} of the Mojave`,
+  location: "Goodsprings",
+  reputation: 0,
+  notes: [],
+  ...extra,
+});
+
+function aliceWorld() {
+  const map = {
+    type: "node",
+    id: "mojave",
+    name: "Mojave",
+    description: "The wasteland",
+    nodes: [
+      { id: "goodsprings", emoji: "🏘️", label: "Goodsprings", x: 10, y: 10, discovered: true },
+      { id: "primm", emoji: "🎰", label: "Primm", x: 30, y: 40, discovered: false },
+    ],
+    edges: [{ from: "goodsprings", to: "primm" }],
+    partyPosition: "goodsprings",
+  };
+  return {
+    gameNpcs: [
+      npc("benny", "Benny"),
+      npc("victor", "Victor", {
+        reputation: 30,
+        notes: ["Rolls on one wheel", "[helped] reputation +30 → 30 (Friendly)"],
+      }),
+    ],
+    gameMap: map,
+    gameMaps: [map],
+    activeGameMapId: "mojave",
+    gameInventedItems: [{ id: "platinum-chip", name: "Platinum Chip", summary: "A poker chip", item: {} }],
+    gameWorldOverview: "The Mojave after the war.",
+    gameStoryArc: "Alice's arc",
+  };
+}
+
+function bobWorld() {
+  const map = {
+    type: "node",
+    id: "region_1",
+    name: "Somewhere",
+    nodes: [{ id: "region_1", label: "Shack", x: 0, y: 0, discovered: true }],
+    edges: [],
+    partyPosition: "region_1",
+  };
+  return {
+    gameNpcs: [npc("joe", "Old Joe")],
+    gameMap: map,
+    gameMaps: [map],
+    activeGameMapId: "region_1",
+    gameStoryArc: "Bob's arc",
+  };
+}
 
 async function setup() {
   const world = fakeRuntime();
-  const store = createStore(world.runtime.persistence.documents);
-  const game = await store.create({ name: "Mojave", now: new Date(START).toISOString() });
-  const alice = { id: "p-alice", name: "Alice" };
-  const bob = { id: "p-bob", name: "Bob" };
-  await store.update(game.id, (current) => ({ ...current, players: [alice, bob] }));
-  world.addChat("a1", { sharedWorld: { gameId: game.id, playerId: alice.id } });
-  world.addChat("b1", { sharedWorld: { gameId: game.id, playerId: bob.id } });
-  const sync = (now = START + DAY / 2) => syncGame(world.runtime, store, game.id, now);
-  const log = async () => (await store.load(game.id)).game;
-  return { world, store, game, sync, log };
-}
-
-test("tags parse like the Engine's ledger: only answered world tags, without time or holds", () => {
-  const entries = readWorldEntries(
-    `They take the town. ${HOLD} [place: name="Primm" result="ok"] [world: fact="weather" value="dust storm"]` +
-      ` [world: event="Caravan   burns" at="dusk" result = ok] [world: deed= place="Primm" result="ok"]`,
-  );
-  assert.deepEqual(entries, [
-    { deed: "hold-taken", place: "Goodsprings" },
-    { event: "Caravan burns" },
-  ]);
-});
-
-test("a reply publishes once it is answered, and a second sync writes nothing", async () => {
-  const { world, sync, log } = await setup();
-  world.say("a1", "u1", "user", "We go to Goodsprings.");
-  world.say("a1", "g1", "assistant", `You drive them out. ${HOLD}`);
-  await sync();
-  assert.equal((await log()).records.length, 0, "the latest reply can still be swiped");
-  assert.deepEqual(world.meta("b1").gameLedgerForeign, []);
-
-  world.say("a1", "u2", "user", "We rest.");
-  await sync();
-  assert.equal((await log()).records.length, 1);
-  assert.deepEqual(world.meta("b1").gameLedgerForeign, [{ deed: "hold-taken", place: "Goodsprings", by: "Alice" }]);
-  assert.deepEqual(world.meta("a1").gameLedgerForeign, [], "your own deeds stay in your own ledger");
-
-  const writes = world.runtime.persistence.metadataWrites;
-  const before = await log();
-  await sync();
-  assert.deepEqual(await log(), before);
-  assert.equal(world.runtime.persistence.metadataWrites, writes);
-});
-
-test("a swiped or edited reply is retracted, and its replacement publishes once answered", async () => {
-  const { world, sync, log } = await setup();
-  world.say("a1", "u1", "user", "Go.");
-  world.say("a1", "g1", "assistant", HOLD);
-  world.say("a1", "u2", "user", "Next.");
-  await sync();
-
-  // Delete the last player message, then swipe the reply into a different outcome.
-  world.messages.get("a1").pop();
-  await sync();
-  assert.equal((await log()).records.length, 1, "deleting your own message does not churn the log");
-  world.messages.get("a1")[1].content = ANGER;
-  await sync();
-  assert.deepEqual(world.meta("b1").gameLedgerForeign, [], "the swiped deed is retracted");
-  assert.deepEqual(
-    (await log()).records.map((record) => Boolean(record.retract)),
-    [false, true],
-  );
-
-  world.say("a1", "u3", "user", "Run.");
-  await sync();
-  assert.deepEqual(world.meta("b1").gameLedgerForeign, [{ deed: "angered", group: "Powder Gangers", by: "Alice" }]);
-
-  // A deleted reply is retracted too.
-  world.messages.get("a1").splice(1, 1);
-  await sync();
-  assert.deepEqual(world.meta("b1").gameLedgerForeign, []);
-});
-
-test("a concluded session publishes its last reply; replies before the world start never publish", async () => {
-  const { world, sync } = await setup();
-  world.say("a1", "g0", "assistant", `Setup notes. ${ANGER}`);
-  world.say("a1", "u1", "user", "Start.");
-  world.say("a1", "g1", "assistant", HOLD);
-  world.chats.get("a1").metadata.gameWorldStartsAfter = "g0";
-  await sync();
-  assert.deepEqual(world.meta("b1").gameLedgerForeign, []);
-  world.chats.get("a1").metadata.gameSessionStatus = "concluded";
-  await sync();
-  assert.deepEqual(world.meta("b1").gameLedgerForeign, [{ deed: "hold-taken", place: "Goodsprings", by: "Alice" }]);
-});
-
-test("a party's own newer deed on the same place supersedes the other party's older one", async () => {
-  const { world, sync } = await setup();
-  world.say("b1", "bu1", "user", "Take Goodsprings.");
-  world.say("b1", "bg1", "assistant", HOLD);
-  world.say("b1", "bu2", "user", "Hold it.");
-  await sync();
-  assert.equal(world.meta("a1").gameLedgerForeign.length, 1);
-  world.say("a1", "au1", "user", "Retake Goodsprings.");
-  world.say("a1", "ag1", "assistant", '[world: deed="hold-lost" place="goodsprings" result="ok"]');
-  world.say("a1", "au2", "user", "Onward.");
-  await sync();
-  assert.deepEqual(world.meta("a1").gameLedgerForeign, [], "Alice's later deed holds for Alice");
-  assert.deepEqual(world.meta("b1").gameLedgerForeign, [{ deed: "hold-lost", place: "goodsprings", by: "Alice" }]);
-});
-
-test("the shared calendar floor follows real days and never moves back", async () => {
-  const { world, sync, game } = await setup();
-  assert.equal(calendarDay(game, START + 3.5 * DAY), 3);
-  assert.equal(calendarDay({ ...game, ratio: 2 }, START + 3.5 * DAY), 7);
-  await sync(START + 3.5 * DAY);
-  assert.equal(world.meta("a1").gameWorldDayFloor, 3);
-  world.chats.get("a1").metadata.gameWorldDayFloor = 10;
-  await sync(START + 4 * DAY);
-  assert.equal(world.meta("a1").gameWorldDayFloor, 10);
-});
-
-test("a player outside the game, or an unlinked chat, never publishes or reads", async () => {
-  const { world, sync, game, log } = await setup();
-  world.addChat("x1", { sharedWorld: { gameId: game.id, playerId: "p-stranger" } });
-  world.addChat("n1", {});
-  for (const chat of ["x1", "n1"]) {
-    world.say(chat, "u1", "user", "Go.");
-    world.say(chat, "g1", "assistant", HOLD);
-    world.say(chat, "u2", "user", "Next.");
-  }
-  world.say("a1", "u1", "user", "Go.");
-  world.say("a1", "g1", "assistant", HOLD);
-  world.say("a1", "u2", "user", "Next.");
-  await sync();
-  assert.equal((await log()).records.length, 1, "only Alice publishes");
-  assert.equal(world.meta("n1").gameLedgerForeign, undefined);
-  assert.equal(world.meta("x1").gameLedgerForeign, undefined, "a stranger reads nothing");
-});
-
-test("a chat linked in progress shares only what comes after the link, and a relink retracts nothing", async () => {
-  const { world, sync, log, game } = await setup();
-  world.say("a1", "u0", "user", "Before.");
-  world.say("a1", "g0", "assistant", ANGER);
-  world.say("a1", "u1", "user", "Link here.");
-  world.chats.get("a1").metadata.sharedWorld.since = "u1";
-  world.say("a1", "g1", "assistant", HOLD);
-  world.say("a1", "u2", "user", "Next.");
-  await sync();
-  assert.deepEqual(world.meta("b1").gameLedgerForeign, [{ deed: "hold-taken", place: "Goodsprings", by: "Alice" }]);
-  world.chats.get("a1").metadata.sharedWorld = { gameId: game.id, playerId: "p-alice", since: "u2" };
-  await sync();
-  assert.equal((await log()).records.length, 1);
-});
-
-test("an Engine write-back from a copy read before the sync is healed by the next sync", async () => {
-  const { world, sync } = await setup();
-  const stale = structuredClone(world.meta("b1"));
-  world.say("a1", "u1", "user", "Go.");
-  world.say("a1", "g1", "assistant", HOLD);
-  world.say("a1", "u2", "user", "Next.");
-  await sync();
-  world.chats.get("b1").metadata = { ...stale, gameMap: "moved" };
-  await sync();
-  assert.equal(world.meta("b1").gameLedgerForeign.length, 1);
-  assert.equal(world.meta("b1").gameMap, "moved", "the Engine's own write is kept");
-});
-
-test("party turns and replies without answered tags publish nothing", () => {
-  const replies = sessionReplies([
-    { id: "g1", role: "assistant", content: `[party-turn] ${HOLD}` },
-    { id: "g2", role: "assistant", content: "Quiet night." },
-    { id: "u1", role: "user", content: "ok" },
-  ]);
-  assert.deepEqual(replies, []);
-  assert.deepEqual(foreignLedger({ records: [], players: [] }, "p"), []);
-});
-
-test("the prompt contributor only starts a background sync for linked Game chats", async () => {
-  const { world, game, log } = await setup();
-  world.say("a1", "u1", "user", "Go.");
-  world.say("a1", "g1", "assistant", HOLD);
-  world.say("a1", "u2", "user", "Next.");
   let contributor;
   const routes = new Map();
-  await activate({
+  const release = await activate({
     api: {
       runtime: world.runtime,
       registerPromptContext: (fn) => ((contributor = fn), () => {}),
@@ -260,13 +155,244 @@ test("the prompt contributor only starts a background sync for linked Game chats
       },
     },
   });
-  assert.equal(await contributor({ mode: "roleplay", chatMeta: world.meta("a1") }), null);
-  assert.equal(await contributor({ mode: "game", chatMeta: {} }), null);
-  assert.equal(await contributor({ mode: "game", chatMeta: world.meta("a1") }), null);
-  // The sync it started runs behind the generation; the route waits on the same queue.
   const reply = { status: () => reply, send: (body) => body };
-  const view = await routes.get("POST /games/:gameId/sync")({ params: { gameId: game.id }, body: {} }, reply);
-  assert.equal(view.feed.length, 1);
-  assert.equal((await log()).records.length, 1);
-  assert.ok(routes.has("POST /link") && routes.has("POST /unlink") && routes.has("GET /chats"));
+  const route = (key, body = {}, params = {}) => routes.get(key)({ params, body }, reply);
+  const store = createStore(world.persistence.documents);
+  const game = await route("POST /games", { name: "Mojave" });
+  const alice = await route("POST /games/:gameId/players", { name: "Alice" }, { gameId: game.id });
+  const bob = await route("POST /games/:gameId/players", { name: "Bob" }, { gameId: game.id });
+  world.addChat("a1", aliceWorld());
+  world.addChat("b1", bobWorld());
+  const link = (chatId, player) => route("POST /link", { chatId, gameId: game.id, playerId: player.id });
+  const sync = () => syncGame(world.runtime, store, game.id);
+  const load = async () => (await store.load(game.id)).game;
+  const news = (chatId) => contributor({ chatId, mode: "game", chatMeta: world.meta(chatId) });
+  await release();
+  return { world, route, game, alice, bob, link, sync, load, news, contributor };
+}
+
+const byId = (list, id) => list.find((entry) => entry.id === id);
+
+async function linkedPair() {
+  const ctx = await setup();
+  assert.deepEqual(await ctx.link("a1", ctx.alice), { ok: true });
+  assert.deepEqual(await ctx.link("b1", ctx.bob), { ok: true });
+  return ctx;
+}
+
+test("the first chat seeds the world and a later one joins it: its cast and map become the shared ones", async () => {
+  const { world, load } = await linkedPair();
+  const b = world.meta("b1");
+  assert.deepEqual(
+    b.gameNpcs.map((entry) => entry.id),
+    ["benny", "victor"],
+  );
+  const victor = byId(b.gameNpcs, "victor");
+  assert.equal(victor.reputation, 0);
+  assert.deepEqual(victor.notes, ["Rolls on one wheel"]);
+  assert.equal(b.activeGameMapId, "mojave");
+  assert.equal(b.gameMap.id, "mojave");
+  assert.equal(b.gameMap.partyPosition, "goodsprings");
+  assert.equal(b.lastMapPosition, "goodsprings");
+  assert.deepEqual(b.gameMaps.map((map) => map.id), ["mojave"]);
+  assert.deepEqual(b.gameMap.edges, [{ from: "goodsprings", to: "primm" }]);
+  assert.equal(b.gameWorldOverview, "The Mojave after the war.");
+  assert.deepEqual(b.gameInventedItems.map((item) => item.id), ["platinum-chip"]);
+  assert.equal(b.gameStoryArc, "Bob's arc");
+  // Alice keeps her own reputation and history.
+  const aliceVictor = byId(world.meta("a1").gameNpcs, "victor");
+  assert.equal(aliceVictor.reputation, 30);
+  assert.equal(aliceVictor.notes.length, 2);
+  const hub = (await load()).hub;
+  assert.equal(hub.world["npc:joe"], undefined);
+  assert.deepEqual(hub.world["npc:victor"].fields.notes.v, ["Rolls on one wheel"]);
+  assert.equal(hub.world["npc:victor"].fields.reputation, undefined);
+});
+
+test("a second sync with nothing new writes nothing", async () => {
+  const { world, sync } = await linkedPair();
+  await sync();
+  const writes = world.persistence.metadataWrites;
+  const updates = world.persistence.documents.updates;
+  assert.equal((await sync()).written, 0);
+  assert.equal(world.persistence.metadataWrites, writes);
+  assert.equal(world.persistence.documents.updates, updates);
+});
+
+test("each chat's changes merge field by field, and reputation and the reputation log stay the party's", async () => {
+  const { world, sync, load } = await linkedPair();
+  world.engineWrite("a1", (meta) => {
+    byId(meta.gameNpcs, "benny").location = "The Tops";
+    return meta;
+  });
+  world.engineWrite("b1", (meta) => {
+    const victor = byId(meta.gameNpcs, "victor");
+    victor.description = "A Securitron with a cowboy face";
+    victor.reputation = -10;
+    victor.notes.push("[insulted] reputation -10 → -10 (Unfriendly)", "Works for House");
+    return meta;
+  });
+  await sync();
+  for (const chatId of ["a1", "b1"]) {
+    const npcs = world.meta(chatId).gameNpcs;
+    assert.equal(byId(npcs, "benny").location, "The Tops", chatId);
+    assert.equal(byId(npcs, "victor").description, "A Securitron with a cowboy face", chatId);
+    assert.ok(byId(npcs, "victor").notes.includes("Works for House"), chatId);
+  }
+  assert.equal(byId(world.meta("a1").gameNpcs, "victor").reputation, 30);
+  assert.equal(byId(world.meta("b1").gameNpcs, "victor").reputation, -10);
+  assert.ok(!byId(world.meta("a1").gameNpcs, "victor").notes.some((note) => note.includes("insulted")));
+  assert.ok(!(await load()).hub.world["npc:victor"].fields.notes.v.some((note) => note.includes("insulted")));
+});
+
+test("a record a chat lost comes back, and a stale write-back is undone rather than shared", async () => {
+  const { world, sync, load } = await linkedPair();
+  world.engineWrite("b1", (meta) => {
+    byId(meta.gameNpcs, "benny").location = "Primm";
+    return meta;
+  });
+  await sync();
+  assert.equal(byId(world.meta("a1").gameNpcs, "benny").location, "Primm");
+  const seq = (await load()).hub.seq;
+  // The Engine finishes a turn from the copy it read before the sync: Benny is back in Goodsprings and Victor
+  // is gone.
+  world.engineWrite("a1", (meta) => {
+    byId(meta.gameNpcs, "benny").location = "Goodsprings";
+    meta.gameNpcs = meta.gameNpcs.filter((entry) => entry.id !== "victor");
+    return meta;
+  });
+  await sync();
+  const npcs = world.meta("a1").gameNpcs;
+  assert.equal(byId(npcs, "benny").location, "Primm");
+  assert.equal(byId(npcs, "victor").description, "Victor of the Mojave", "the lost record comes back from the hub");
+  assert.equal((await load()).hub.seq, seq);
+  assert.equal(byId(world.meta("b1").gameNpcs, "benny").location, "Primm");
+});
+
+test("a discovered place stays discovered, and new places and paths reach the other map", async () => {
+  const { world, sync } = await linkedPair();
+  world.engineWrite("b1", (meta) => {
+    meta.gameMap.nodes.find((node) => node.id === "primm").discovered = true;
+    meta.gameMap.nodes.push({ id: "nipton", label: "Nipton", x: 50, y: 60, discovered: true });
+    meta.gameMap.edges.push({ from: "nipton", to: "primm" });
+    meta.gameMaps = [meta.gameMap];
+    return meta;
+  });
+  await sync();
+  world.engineWrite("a1", (meta) => {
+    meta.gameMap.nodes.find((node) => node.id === "primm").discovered = false;
+    meta.gameMaps = [meta.gameMap];
+    return meta;
+  });
+  await sync();
+  const map = world.meta("a1").gameMap;
+  assert.equal(map.nodes.find((node) => node.id === "primm").discovered, true);
+  assert.ok(map.nodes.some((node) => node.id === "nipton"));
+  assert.ok(map.edges.some((edge) => edge.from === "nipton" && edge.to === "primm"));
+  assert.equal(map.partyPosition, "goodsprings");
+  assert.deepEqual(world.meta("a1").gameMaps[0], map);
+});
+
+test("a character both Game Masters made between syncs, under different ids, is one shared character", async () => {
+  const { world, sync, load } = await linkedPair();
+  world.engineWrite("a1", (meta) => {
+    meta.gameNpcs.push(npc("cass", "Cass", { description: "A caravaneer" }));
+    return meta;
+  });
+  world.engineWrite("b1", (meta) => {
+    meta.gameNpcs.push(npc("cass_2", "cass", { description: "Drinks whiskey" }));
+    return meta;
+  });
+  await sync();
+  const hub = (await load()).hub;
+  assert.equal(Object.keys(hub.world).filter((key) => key.startsWith("npc:")).length, 3);
+  assert.ok(world.meta("b1").gameNpcs.some((entry) => entry.id === "cass_2"));
+  assert.ok(!world.meta("b1").gameNpcs.some((entry) => entry.id === "cass"));
+  assert.ok(!world.meta("a1").gameNpcs.some((entry) => entry.id === "cass_2"));
+  // Later changes go through the alias.
+  world.engineWrite("b1", (meta) => {
+    byId(meta.gameNpcs, "cass_2").location = "Novac";
+    return meta;
+  });
+  await sync();
+  assert.equal(byId(world.meta("a1").gameNpcs, "cass").location, "Novac");
+  assert.equal(byId(world.meta("b1").gameNpcs, "cass_2").location, "Novac");
+});
+
+test("the same place id on two maps keeps to its own map", async () => {
+  const { world, sync } = await linkedPair();
+  const cave = (id, name) => ({
+    type: "node",
+    id,
+    name,
+    nodes: [{ id: "entrance", label: "Entrance", x: 1, y: 1, discovered: true }],
+    edges: [],
+    partyPosition: "entrance",
+  });
+  world.engineWrite("a1", (meta) => {
+    meta.gameMaps = [...meta.gameMaps, cave("vault-19", "Vault 19"), cave("vault-22", "Vault 22")];
+    return meta;
+  });
+  await sync();
+  world.engineWrite("b1", (meta) => {
+    for (const map of meta.gameMaps) if (map.id === "vault-22") map.nodes[0].description = "Overgrown";
+    return meta;
+  });
+  await sync();
+  const maps = world.meta("a1").gameMaps;
+  assert.equal(byId(maps, "vault-22").nodes[0].description, "Overgrown");
+  assert.equal(byId(maps, "vault-19").nodes[0].description, undefined);
+});
+
+test("Next Session keeps syncing from the same base: the new session chat is the one that syncs", async () => {
+  const { world, sync, load } = await linkedPair();
+  const carried = structuredClone(world.meta("a1"));
+  world.addChat("a2", { ...carried, gameSessionStatus: "ready" }, "a1");
+  world.engineWrite("a2", (meta) => {
+    meta.gameNpcs.push(npc("cass", "Cass"));
+    return meta;
+  });
+  await sync();
+  assert.ok(world.meta("b1").gameNpcs.some((entry) => entry.id === "cass"));
+  assert.equal(byId(world.meta("a2").gameNpcs, "victor").reputation, 30);
+  assert.deepEqual(Object.keys((await load()).bases).sort(), ["a1", "b1"]);
+});
+
+test("news reaches the other party's Game Master, survives a swipe, and clears on their next message", async () => {
+  const { world, sync, news, contributor } = await linkedPair();
+  assert.equal(await contributor({ chatId: "a1", mode: "roleplay", chatMeta: world.meta("a1") }), null);
+  world.say("a1", "u1", "user", "Look around.");
+  world.engineWrite("b1", (meta) => {
+    meta.gameNpcs.push(npc("cass", "Cass", { description: "A caravaneer" }));
+    byId(meta.gameNpcs, "benny").location = "The Tops";
+    return meta;
+  });
+  await sync();
+  const first = await news("a1");
+  assert.match(first, /New character: Cass \(A caravaneer\) \(Bob\)/);
+  assert.match(first, /Benny is now at The Tops \(Bob\)/);
+  assert.equal(await news("b1"), null, "Bob's own changes are not news to him");
+  assert.equal(await news("a1"), first, "a swipe of the same turn sees it again");
+  world.say("a1", "g1", "assistant", "You see Cass.");
+  world.say("a1", "u2", "user", "Talk to Cass.");
+  assert.equal(await news("a1"), null);
+});
+
+test("a chat must be a set-up Game chat, and unlinking keeps its world", async () => {
+  const { world, route, game, alice, link } = await linkedPair();
+  world.addChat("c1", {});
+  assert.match((await link("c1", alice)).error, /Finish the game's setup/);
+  const other = await route("POST /games", { name: "Other" });
+  assert.match((await route("POST /link", { chatId: "a1", gameId: other.id, playerId: alice.id })).error, /Pick a player/);
+  const carol = await route("POST /games/:gameId/players", { name: "Carol" }, { gameId: other.id });
+  assert.match((await route("POST /link", { chatId: "a1", gameId: other.id, playerId: carol.id })).error, /Unlink/);
+  world.engineWrite("a1", (meta) => ({ ...meta, gameLedgerForeign: [], gameWorldDayFloor: 3 }));
+  await route("POST /unlink", { chatId: "a1" });
+  const meta = world.meta("a1");
+  assert.equal(meta.sharedWorld, undefined);
+  assert.equal(meta.gameLedgerForeign, undefined);
+  assert.equal(meta.gameWorldDayFloor, undefined);
+  assert.equal(meta.gameNpcs.length, 2);
+  const view = await route("GET /games/:gameId", {}, { gameId: game.id });
+  assert.ok(view.feed.some((item) => item.text === "New character: Benny (Benny of the Mojave)"));
 });
