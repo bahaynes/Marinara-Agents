@@ -3992,16 +3992,16 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "647a9387b16af6d2c0a2c204a4fc3e8f67f43092bd15498262fb3b5f2e1d67b4",
-            "bytes": 15060
+            "sha256": "8dd0e58713d006efc1241c91b220c5780270f93d78375f189071e3eb4db125a5",
+            "bytes": 15287
           }
         ]
       },
       "category": "misc",
       "artifact": {
         "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/shared-world-0.2.0.zip",
-        "sha256": "daf11dfd15e3cb93309e61350284d65304284ff1c9105b066763e2ae21089b8e",
-        "bytes": 49258
+        "sha256": "c7a0bd077a79c30d264c0cee5c945a33afe16877b16ee75701a1eeeae29b2c91",
+        "bytes": 49485
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/shared-world/README.md"
     },

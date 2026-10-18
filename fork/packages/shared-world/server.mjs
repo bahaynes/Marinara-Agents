@@ -119,6 +119,9 @@ async function syncChat(persistence, store, gameId, chatId, { join = false } = {
       written = null;
       if (!hasPlayer(game, link.playerId)) return game;
       const base = game.bases?.[localGameId];
+      // Only linking creates a base. A linked chat without one (an old v0.1 link, lost storage) waits for a
+      // relink rather than merging an in-progress world into the hub unasked.
+      if (!base && !join) return game;
       const result = syncWorld({
         meta,
         hub: game.hub,
