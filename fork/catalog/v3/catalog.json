@@ -4015,7 +4015,7 @@
         },
         "id": "shared-world",
         "name": "Shared World",
-        "version": "0.2.4",
+        "version": "0.2.5",
         "description": "One world for several Game mode adventures, each played at its own pace. Create a shared game, add its players, and link each player's Game mode chat to it right after setup: the first chat seeds the world and later ones join it. Characters, maps, discovered places, invented items and the world overview stay in sync between the linked chats; chat history, reputation, the story arc and the party's position stay each player's own. Each Game Master hears what the other parties changed as news. Works on a stock Marinara Engine. Install it, restart Marinara Engine when prompted, then open Home → Shared World.",
         "engine": {
           "min": "2.5.0",
@@ -4039,6 +4039,7 @@
           }
         },
         "permissions": [
+          "agent-runtime",
           "chat-read",
           "chat-write",
           "prompt-context",
@@ -4055,8 +4056,8 @@
           },
           {
             "path": "client.js",
-            "sha256": "d0fd80bbdc1d0706b23fbe7c5273c7db1c444502a5c81af0dec164c98143409e",
-            "bytes": 11449
+            "sha256": "c134e8f0fa57b9dee1dcf1f2f95fb66a01e0afc510bbe4d6b2084c24d048854b",
+            "bytes": 17943
           },
           {
             "path": "merge.mjs",
@@ -4064,17 +4065,22 @@
             "bytes": 22569
           },
           {
+            "path": "scene.mjs",
+            "sha256": "0443e3001926c2ede9a0529f16e9c544013300bb780c9764fd46fee64365f082",
+            "bytes": 5204
+          },
+          {
             "path": "server.mjs",
-            "sha256": "631b9601a97c26db54d6ce8c05f7b0d000febb2e28697034ef9cca1880e8f167",
-            "bytes": 17454
+            "sha256": "3965f6f9ae89e13c5028afb96ccb4512b0f5c434e45ee4c69a0fe5cd6580683c",
+            "bytes": 23453
           }
         ]
       },
       "category": "misc",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/shared-world-0.2.4.zip",
-        "sha256": "7d6030e3b84abca63625a3f7c77eafa33375f0d914fd421ecb0663bb4859f1a1",
-        "bytes": 54505
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/shared-world-0.2.5.zip",
+        "sha256": "28e348a8c1428c877f43953d0d0c0dc8f567cc9770b38ae022cd05b80ffe96ca",
+        "bytes": 72461
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/shared-world/README.md"
     },

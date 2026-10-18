@@ -8,6 +8,7 @@
 // Game Master as news, held until the player's next message so a swipe sees it too.
 
 import { randomUUID } from "node:crypto";
+import { claimRound, endRound, narrationMessages, reopenRound, sceneView, SceneError, startScene, submitAction, transcript } from "./scene.mjs";
 import { changesSince, emptyHub, newsBlock, parseMeta, partiesTogether, presenceBlock, sharedLink, syncWorld } from "./merge.mjs";
 
 export const PACKAGE_ID = "shared-world";
@@ -242,6 +243,112 @@ export async function deliverNews(persistence, store, gameId, chatId) {
   return [newsBlock(shown, names), presence].filter(Boolean).join("\n\n") || null;
 }
 
+// ── Scene ──
+
+const toWorldError = (error) => (error instanceof SceneError ? new WorldError(error.statusCode, error.message) : error);
+
+/** The newest chat of a local game, the one a scene writes into. */
+async function chatOfLocalGame(persistence, gameId, localKey) {
+  const entries = (await linkedChats(persistence, gameId)).filter(({ chat, meta }) => gameIdOf(chat, meta) === localKey);
+  return entries.sort((a, b) => String(b.chat.createdAt ?? "").localeCompare(String(a.chat.createdAt ?? "")))[0]?.chat ?? null;
+}
+
+async function openScene(runtime, store, gameId, playerId) {
+  const persistence = runtime.persistence;
+  const { game } = await store.load(gameId);
+  if (game.scene?.status === "open") throw new WorldError(409, "A scene is already open.");
+  const group = partiesTogether(game.hub ?? emptyHub(), game.bases).find((entry) =>
+    entry.members.some((member) => member.playerId === playerId),
+  );
+  if (!group) throw new WorldError(409, "Your party is not at the same place as another party.");
+  const names = new Map((game.players ?? []).map((player) => [player.id, player.name]));
+  const members = [];
+  for (const member of group.members) {
+    if (members.some((held) => held.playerId === member.playerId)) continue;
+    const chat = await chatOfLocalGame(persistence, gameId, member.key);
+    if (chat) members.push({ playerId: member.playerId, chatId: chat.id, name: names.get(member.playerId) || "Another party" });
+  }
+  let scene;
+  try {
+    scene = startScene({ id: randomUUID(), members, place: group.place, at: new Date().toISOString() });
+  } catch (error) {
+    throw toWorldError(error);
+  }
+  await store.update(gameId, (current) => {
+    if (current.scene?.status === "open") throw new WorldError(409, "A scene is already open.");
+    return { ...current, scene };
+  });
+  return scene;
+}
+
+/** One neutral narration for the round, from the first member's connection. */
+async function narrate(runtime, scene, overview) {
+  const chat = await runtime.persistence.getChat(scene.members[0].chatId);
+  const model = await runtime.languageModels.resolveForRequest({ chatConnectionId: chat?.connectionId ?? null });
+  const result = await model.chatComplete(narrationMessages(scene, overview), { maxTokens: 700, temperature: 0.9 });
+  const text = String(result?.content ?? "").trim();
+  if (!text) throw new WorldError(502, "The narrator returned nothing. Your actions are kept; try again.");
+  return text;
+}
+
+/** Append the round to every member's chat as one Game Master message. */
+async function appendRound(persistence, scene, narration) {
+  const now = new Date().toISOString();
+  for (const member of scene.members) {
+    await persistence.createMessageWithSwipe({
+      id: randomUUID(),
+      swipeId: randomUUID(),
+      chatId: member.chatId,
+      role: "assistant",
+      characterId: null,
+      content: transcript(scene, narration),
+      extra: { sharedWorldScene: scene.id, round: scene.round },
+      createdAt: now,
+    });
+    await persistence.updateChatActivity({ chatId: member.chatId, lastMessageAt: now, updatedAt: now });
+  }
+}
+
+/** Narrate a claimed round, write it into every chat and close it; on failure the round is given back. */
+async function resolveRound(runtime, store, gameId, claimed) {
+  try {
+    const meta = parseMeta((await runtime.persistence.getChat(claimed.members[0].chatId))?.metadata);
+    const narration = await narrate(runtime, claimed, meta.gameWorldOverview);
+    await appendRound(runtime.persistence, claimed, narration);
+    await store.update(gameId, (current) => ({ ...current, scene: endRound(current.scene, narration, new Date().toISOString()) }));
+  } catch (error) {
+    await store.update(gameId, (current) => (current.scene ? { ...current, scene: reopenRound(current.scene) } : current));
+    throw error;
+  }
+}
+
+async function actInScene(runtime, store, gameId, playerId, text) {
+  let claimed = null;
+  try {
+    await store.update(gameId, (game) => {
+      const { scene, everyone } = submitAction(game.scene, playerId, text);
+      claimed = everyone ? scene : null;
+      return { ...game, scene };
+    });
+  } catch (error) {
+    throw toWorldError(error);
+  }
+  if (claimed) await resolveRound(runtime, store, gameId, claimed);
+}
+
+async function retryRound(runtime, store, gameId) {
+  let claimed = null;
+  try {
+    await store.update(gameId, (game) => {
+      claimed = claimRound(game.scene);
+      return { ...game, scene: claimed };
+    });
+  } catch (error) {
+    throw toWorldError(error);
+  }
+  await resolveRound(runtime, store, gameId, claimed);
+}
+
 // ── Routes ──
 
 const cleanName = (value, fallback) => String(value ?? "").trim().slice(0, 80) || fallback;
@@ -264,6 +371,7 @@ function gameView(game) {
   const together = partiesTogether(game.hub ?? emptyHub(), game.bases).map((entry) => ({
     place: entry.place,
     players: [...new Set(entry.members.map((member) => names.get(member.playerId) || "Another party"))],
+    playerIds: [...new Set(entry.members.map((member) => member.playerId))],
   }));
   return { ...gameSummary(game), feed, together };
 }
@@ -413,6 +521,35 @@ export async function activate(context) {
         handle(async ({ gameId }) => {
           await sync(gameId);
           return gameView((await store.load(gameId)).game);
+        }),
+      );
+      routes.post(
+        "/games/:gameId/scene/start",
+        handle(async ({ gameId }, body) => ({ scene: sceneView(await openScene(runtime, store, gameId, body.playerId), body.playerId) })),
+      );
+      routes.post(
+        "/games/:gameId/scene/state",
+        handle(async ({ gameId }, body) => ({ scene: sceneView((await store.load(gameId)).game.scene, body.playerId) })),
+      );
+      routes.post(
+        "/games/:gameId/scene/act",
+        handle(async ({ gameId }, body) => {
+          await actInScene(runtime, store, gameId, body.playerId, body.text);
+          return { scene: sceneView((await store.load(gameId)).game.scene, body.playerId) };
+        }),
+      );
+      routes.post(
+        "/games/:gameId/scene/retry",
+        handle(async ({ gameId }, body) => {
+          await retryRound(runtime, store, gameId);
+          return { scene: sceneView((await store.load(gameId)).game.scene, body.playerId) };
+        }),
+      );
+      routes.post(
+        "/games/:gameId/scene/end",
+        handle(async ({ gameId }) => {
+          await store.update(gameId, (game) => (game.scene ? { ...game, scene: null } : game));
+          return { scene: null };
         }),
       );
       routes.get(
