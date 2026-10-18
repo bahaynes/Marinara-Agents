@@ -202,6 +202,13 @@ function createSyncQueue(run) {
  * The news for this chat's Game Master, or null. News stays held for the player's whole turn (a swipe or a
  * second prompt in the same turn gets it again) and is dropped once they send their next message.
  */
+/** Whether an assistant message after the user message `turnId` was created after `since`. */
+function repliedSince(messages, turnId, since) {
+  const start = messages.findIndex((message) => message.id === turnId);
+  if (start < 0 || !since) return true;
+  return messages.slice(start + 1).some((message) => message.role === "assistant" && String(message.createdAt ?? "") > since);
+}
+
 export async function deliverNews(persistence, store, gameId, chatId) {
   const chat = await persistence.getChat(chatId);
   if (!isGameChat(chat)) return null;
@@ -215,11 +222,20 @@ export async function deliverNews(persistence, store, gameId, chatId) {
       shown = [];
       return current;
     }
-    const held = base.deliveredFor === turn ? (base.news ?? []) : (base.news ?? []).filter((item) => !item.delivered);
+    // Delivered news is dropped once the Game Master has replied after it went out. Peek Prompt runs this
+    // too, so a delivery for an earlier turn that nothing answered yet still counts as unread.
+    const sameTurn = base.deliveredFor === turn;
+    const answered = !sameTurn && repliedSince(messages, base.deliveredFor, base.deliveredAt);
+    const held = answered ? (base.news ?? []).filter((item) => !item.delivered) : (base.news ?? []);
     shown = held;
     const news = held.map((item) => (item.delivered ? item : { ...item, delivered: true }));
-    if (base.deliveredFor === turn && same(news, base.news)) return current;
-    return { ...current, bases: { ...current.bases, [localGameId]: { ...base, news, deliveredFor: turn } } };
+    if (sameTurn && same(news, base.news)) return current;
+    // A swipe keeps the first delivery time, so its reply (the same message row) still counts as an answer.
+    const deliveredAt = sameTurn && base.deliveredAt ? base.deliveredAt : new Date().toISOString();
+    return {
+      ...current,
+      bases: { ...current.bases, [localGameId]: { ...base, news, deliveredFor: turn, deliveredAt } },
+    };
   });
   const names = new Map((game.players ?? []).map((player) => [player.id, player.name]));
   return newsBlock(shown, names);
