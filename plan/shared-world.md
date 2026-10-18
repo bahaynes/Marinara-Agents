@@ -8,6 +8,7 @@ Working name: **Shared World** (package id `shared-world`). Two people each play
 - **This plan replaces it** with a sync of Classic game metadata. The two checks below were answered by reading code, with no generations or deploys.
 - **The Overworld seam is reverted** (`dd28c8f33` on the Engine's `custom-mods`, reverting `52a06ec2f`). The Classic sync needs no Engine change, and that keeps the fork minimal (memory: *engine-fork-minimal*).
 - **One instance may be the whole solution (2026-10-18).** If two chats on `marinara` sync well, she plays her chat on that instance and there's no sidecar at all. See *One instance first*.
+- **v0.2.0 is built (2026-10-18):** the Classic sync, one instance, package storage as the hub. Code is `fork/packages/shared-world/merge.mjs` (pure merge) and `server.mjs` (store, sync, news, routes), with 10 unit tests. It needs no Engine change. The play test on `marinara` is next. Where the build differs from the design below, *Phase 0 findings* wins.
 - **Rejected alternatives:** upstream multiplayer rooms (one host-owned chat, the model doesn't answer both players, synchronous, not fun) and one Engine with two personas (not two independent threads).
 
 ## Goals
@@ -150,6 +151,23 @@ Package routes are admin-gated (`requirePrivilegedAccess`), so the two Engines c
 - **Next Session:** `sharedWorld` survives it, because the new session's metadata spreads every unlisted key (`...carryMeta`, `game.routes.ts` ~7932). The link's `since` message id won't exist in the new chat. Linking is by `gameId`, and a missing `since` means "from the start of this chat".
 - **Replaced:** `world.mjs` (world-ledger tags) becomes `merge.mjs`. `gameLedgerForeign` and `gameWorldDayFloor` go away.
 - **Fixed in passing:** v0.1 accepted chats with no world, silently. v1 validates against Classic game keys.
+
+## Phase 0 findings (2026-10-18, from a read-only dump of Fallout Duo)
+
+These change the design above:
+
+- **No dead field.** `GameNpc` has no alive/dead flag (`id, name, emoji, description, descriptionSource, gender, pronouns, location, reputation, notes[], avatarUrl, worldId?, role?`). A death lives in description and notes, so "dead stays dead" is just add-only notes. The sticky field is the map node's `discovered`.
+- **Notes are split.** Reputation-log notes (`[action] reputation +N → R (tier)` and `🏛️ Milestone: …`) stay per player, like `reputation`. Every other note is shared, as a union.
+- **Story arc and plot twists stay per player.** Two GMs steering one arc fight each other. The world overview is shared, last writer wins.
+- **`spatialContext` is not shared.** Its revision is tied to the Engine's snapshot rows. A shared `spatialLocationId` that the chat's own `spatialContext` doesn't know is dropped or kept as the chat's own.
+- **Maps:** `gameMap` is the active map and overrides its `gameMaps` entry. Node ids are label slugs, and edges are undirected. Only node maps are shared; grid maps stay per chat.
+- **`sharedWorld` carries over on Next Session.** `carryMeta` copies it into the new session chat, which has the same `groupId`. The base is keyed by local game id, and only the newest session chat of a game syncs.
+- **Missing records come back.** The design said a locally missing record is not re-added. The build re-adds it from the hub, because a stale Engine write or a swipe loses records far more often than a hand edit does. Hand deletion doesn't stick (a known limit).
+- **The regression guard** stores, per field, the hash Shared World wrote and the hash it replaced. A chat that writes back the replaced value is treated as stale: re-applied, not pushed.
+- **Join seeds.** The first linked chat seeds the hub. A later chat that links with a non-empty hub takes on the hub's cast, maps, items and overview, with its own reputation reset, and its party starts at the first party's start position. Link right after setup, before the first turn.
+- **Name matching** applies only to new records against hub records nobody in this chat has claimed: maps by name, then nodes by label within a matched map, then NPCs by name. A match is kept in a per-chat alias map, so local ids never change.
+- **News delivery:** the prompt contributor returns the other parties' changes since this chat's last delivery. It holds them for the whole turn (the latest user message), so swipes see them too, and drops them on the next user message.
+- **Sync timing:** after each generation's prompt is built (in the background) and every 60 s.
 
 ## Phases
 
