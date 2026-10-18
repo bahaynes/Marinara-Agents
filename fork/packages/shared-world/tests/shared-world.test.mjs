@@ -393,7 +393,14 @@ test("a chat must be a set-up Game chat, and unlinking keeps its world", async (
   assert.equal(meta.gameLedgerForeign, undefined);
   assert.equal(meta.gameWorldDayFloor, undefined);
   assert.equal(meta.gameNpcs.length, 2);
+  world.engineWrite("b1", (meta) => {
+    byId(meta.gameNpcs, "benny").location = "The Tops";
+    return meta;
+  });
+  await route("POST /games/:gameId/sync", {}, { gameId: game.id });
   const view = await route("GET /games/:gameId", {}, { gameId: game.id });
+  assert.equal(view.feed[0].text, "Benny is now at The Tops");
+  assert.equal(view.feed[0].player, "Bob");
   assert.ok(view.feed.some((item) => item.text === "New character: Benny (Benny of the Mojave)"));
 });
 
