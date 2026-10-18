@@ -238,7 +238,6 @@
       const log = scene.log
         .map(
           (entry) => `<div class="space-y-1 border-t border-[var(--border)] pt-2">
-            ${entry.actions.map((a) => `<div class="text-sm"><b style="color:${color(a.name)}">${escapeHtml(a.name)}</b> ${escapeHtml(a.text)}</div>`).join("")}
             <div class="whitespace-pre-wrap text-sm italic">${escapeHtml(entry.narration)}</div></div>`,
         )
         .join("");
