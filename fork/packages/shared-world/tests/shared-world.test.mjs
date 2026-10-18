@@ -396,3 +396,14 @@ test("a chat must be a set-up Game chat, and unlinking keeps its world", async (
   const view = await route("GET /games/:gameId", {}, { gameId: game.id });
   assert.ok(view.feed.some((item) => item.text === "New character: Benny (Benny of the Mojave)"));
 });
+
+test("a chat linked without a base (an old v0.1 link) is left alone until it is relinked", async () => {
+  const { world, game, bob, sync, load } = await linkedPair();
+  world.addChat("c1", { ...bobWorld(), sharedWorld: { gameId: game.id, playerId: bob.id } });
+  const before = structuredClone(world.meta("c1"));
+  const writes = world.persistence.metadataWrites;
+  await sync();
+  assert.deepEqual(world.meta("c1"), before);
+  assert.equal(world.persistence.metadataWrites, writes);
+  assert.equal((await load()).hub.world["npc:joe"], undefined);
+});
