@@ -4015,7 +4015,7 @@
         },
         "id": "shared-world",
         "name": "Shared World",
-        "version": "0.2.6",
+        "version": "0.2.7",
         "description": "One world for several Game mode adventures, each played at its own pace. Create a shared game, add its players, and link each player's Game mode chat to it right after setup: the first chat seeds the world and later ones join it. Characters, maps, discovered places, invented items and the world overview stay in sync between the linked chats; chat history, reputation, the story arc and the party's position stay each player's own. Each Game Master hears what the other parties changed as news. Works on a stock Marinara Engine. Install it, restart Marinara Engine when prompted, then open Home → Shared World.",
         "engine": {
           "min": "2.5.0",
@@ -4071,16 +4071,16 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "3965f6f9ae89e13c5028afb96ccb4512b0f5c434e45ee4c69a0fe5cd6580683c",
-            "bytes": 23453
+            "sha256": "bb3c86c1e9fb13c10c9331338b646976e22a8c5fbcffb21f710c0dbe2ef4230d",
+            "bytes": 23639
           }
         ]
       },
       "category": "misc",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/shared-world-0.2.6.zip",
-        "sha256": "f6e86d3a15c629dc122d07989d6b4d0f25e728ba06f69b12a19468810c70b9b9",
-        "bytes": 72490
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/shared-world-0.2.7.zip",
+        "sha256": "c9234f0b56288fdf6eda54daa57ac71a53c56c3f8e3771447959ea0451218757",
+        "bytes": 72676
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/shared-world/README.md"
     },
