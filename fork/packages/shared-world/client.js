@@ -1,7 +1,7 @@
 "use strict";
 
-// Shared World's Home page: the shared games, and for one game its calendar, players, the Game mode chats
-// linked to it (link and unlink), and the feed of what each party has done to the world.
+// Shared World's Home page: the shared games, and for one game its players, the Game mode chats linked to it
+// (link and unlink), and the feed of what each party changed in the world.
 //
 // Drawn with Marinara's theme tokens, safelisted utility classes and `mari-chrome-control` buttons; the only
 // CSS here is layout.
@@ -29,12 +29,6 @@
       .replaceAll("<", "&lt;")
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;");
-
-  /** One world entry as a short line: "deed hold-taken · place Goodsprings". */
-  const entryLine = (entry) =>
-    Object.entries(entry)
-      .map(([key, value]) => `${key} ${value}`)
-      .join(" · ");
 
   async function call(path, method = "GET", body) {
     const response = await fetch(`${API}${path}`, {
@@ -108,9 +102,8 @@
       if (action === "open") return void this.run("Loading", () => this.openGame(id));
       if (action === "create") {
         const name = this.$("[data-new-name]")?.value;
-        const ratio = this.$("[data-new-ratio]")?.value;
         return void this.run("Creating", async () => {
-          const created = await call("/games", "POST", { name, ratio });
+          const created = await call("/games", "POST", { name });
           await this.openGame(created.id);
         });
       }
@@ -148,11 +141,9 @@
       return `<div class="mx-auto max-w-3xl space-y-3 p-4">
         <div class="${CARD}">
           <h2 class="text-sm font-semibold">New shared game</h2>
-          <p class="${MUTED}">Every Game mode chat you link to it publishes its world deeds here, and sees everyone else's.</p>
+          <p class="${MUTED}">Game mode chats linked to it share one world (its characters, maps, items and overview) and each keep their own story.</p>
           <div class="flex flex-wrap gap-2">
             <input class="${FIELD} flex-1" data-new-name placeholder="Fallout: New Vegas" />
-            <label class="${MUTED} flex items-center gap-1">Days per real day
-              <input class="${FIELD} w-20" data-new-ratio type="number" min="0.1" step="0.1" value="1" /></label>
             <button type="button" class="${BTN_PRIMARY}" data-action="create">Create</button>
           </div>
         </div>
@@ -160,7 +151,7 @@
           .map(
             (game) => `<button type="button" class="${CARD} w-full text-left" data-action="open" data-id="${escapeHtml(game.id)}">
               <div class="text-sm font-semibold">${escapeHtml(game.name)}</div>
-              <div class="${MUTED}">Day ${game.day} · ${game.players.length} players · ${game.published} deeds shared</div>
+              <div class="${MUTED}">${game.players.length} players · ${game.records} shared records</div>
             </button>`,
           )
           .join("")}
@@ -182,7 +173,7 @@
                <button type="button" class="${BTN}" data-action="unlink" data-id="${escapeHtml(chat.id)}">Unlink</button>`
             : players.length
               ? `<select class="${FIELD} py-1" data-player-for="${escapeHtml(chat.id)}">${options}</select>
-                 <button type="button" class="${BTN}" data-action="link" data-id="${escapeHtml(chat.id)}">Link</button>`
+                 <button type="button" class="${BTN}" data-action="link" data-id="${escapeHtml(chat.id)}"${chat.setUp ? "" : " disabled title=\"Finish its setup first\""}>Link</button>`
               : `<span class="${MUTED}">Add a player first</span>`;
           return `<li class="flex items-center gap-2">
             <span class="min-w-0 flex-1 truncate text-sm">${escapeHtml(chat.name || "Untitled game")}${chat.status ? ` <span class="${MUTED}">${escapeHtml(chat.status)}</span>` : ""}</span>
@@ -193,15 +184,14 @@
         .map(
           (record) => `<li class="${CARD}">
             <div class="${MUTED}">#${record.seq} · ${escapeHtml(record.player)} · ${escapeHtml(new Date(record.at).toLocaleString())}</div>
-            ${record.note ? `<div class="text-sm">${escapeHtml(record.note)}</div>` : ""}
-            <ul class="${MUTED}">${record.entries.map((entry) => `<li>${escapeHtml(entryLine(entry))}</li>`).join("")}</ul>
+            <div class="text-sm">${escapeHtml(record.text)}</div>
           </li>`,
         )
         .join("");
       return `<div class="mx-auto max-w-5xl space-y-3 p-4">
         <div class="${CARD} flex flex-wrap items-center gap-3">
-          <div class="flex-1"><div class="text-lg font-semibold">Day ${game.day}</div>
-            <div class="${MUTED}">${game.ratio} in-world day${game.ratio === 1 ? "" : "s"} per real day since ${escapeHtml(new Date(game.startedAt).toLocaleDateString())}</div></div>
+          <div class="flex-1"><div class="text-lg font-semibold">${game.records} shared records</div>
+            <div class="${MUTED}">Linked chats sync when they generate and every minute.</div></div>
           <button type="button" class="${BTN}" data-action="sync">Sync now</button>
         </div>
         <div class="sw-grid">
@@ -214,13 +204,13 @@
             </div>
             <div class="${CARD}">
               <h2 class="text-sm font-semibold">Game chats</h2>
-              <p class="${MUTED}">Link a Game mode chat to share its world. Unlinking hides the other parties' deeds but keeps the calendar where it is.</p>
+              <p class="${MUTED}">Link a Game mode chat right after its setup, before its first turn. The first chat linked seeds the world; each later one joins it, taking on its cast and maps and starting where the first party started. Unlinking keeps the world as it is in the chat.</p>
               <ul class="space-y-2">${chatRows || `<li class="${MUTED}">No Game mode chats.</li>`}</ul>
             </div>
           </div>
           <div class="space-y-2">
             <h2 class="text-sm font-semibold">What happened</h2>
-            <ul class="space-y-2">${feed || `<li class="${MUTED}">Nothing shared yet. Deeds publish once you answer the reply that made them.</li>`}</ul>
+            <ul class="space-y-2">${feed || `<li class="${MUTED}">Nothing shared yet. Link a chat to seed the world.</li>`}</ul>
           </div>
         </div>
       </div>`;
