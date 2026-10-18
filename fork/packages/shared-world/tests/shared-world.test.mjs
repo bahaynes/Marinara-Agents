@@ -80,7 +80,11 @@ function fakeRuntime() {
       messages.set(id, []);
     },
     say(chatId, id, role, content = "") {
-      messages.get(chatId).push({ id, chatId, role, content });
+      messages.get(chatId).push({ id, chatId, role, content, createdAt: new Date(Date.now() + 1000).toISOString() });
+    },
+    /** A message written before now (the reply that existed before a Peek Prompt). */
+    said(chatId, id, role, content = "") {
+      messages.get(chatId).push({ id, chatId, role, content, createdAt: "2026-01-01T00:00:00Z" });
     },
   };
 }
@@ -428,4 +432,21 @@ test("deleting a game unlinks its chats, which keep their world", async () => {
     assert.equal(world.meta(chatId).gameNpcs.length, 2, chatId);
   }
   assert.match((await route("GET /games/:gameId", {}, { gameId: game.id })).error, /not found/);
+});
+
+test("Peek Prompt before the next message does not use up the news", async () => {
+  const { world, sync, news } = await linkedPair();
+  world.said("a1", "u1", "user", "Look around.");
+  world.said("a1", "g1", "assistant", "Dust.");
+  world.engineWrite("b1", (meta) => {
+    meta.gameNpcs.push(npc("cass", "Cass"));
+    return meta;
+  });
+  await sync();
+  assert.match(await news("a1"), /Cass/, "the peek sees it");
+  world.say("a1", "u2", "user", "Walk on.");
+  assert.match(await news("a1"), /Cass/, "the real turn still gets it");
+  world.say("a1", "g2", "assistant", "You meet Cass.");
+  world.say("a1", "u3", "user", "Talk to her.");
+  assert.equal(await news("a1"), null);
 });
