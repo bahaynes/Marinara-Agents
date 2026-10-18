@@ -2695,6 +2695,79 @@
     },
     {
       "manifest": {
+        "schemaVersion": 2,
+        "capabilityApi": {
+          "major": 1,
+          "minor": 19
+        },
+        "builtAgainst": {
+          "engineVersion": "2.5.0",
+          "engineCommit": "9052b4d0a4d6bfe06dc2192ea81e74d45577ad68"
+        },
+        "id": "puppet-inp",
+        "name": "Inochi2D Puppet Reader",
+        "version": "1.0.0",
+        "description": "Inspect and load Inochi2D 2.5D (.inp) animated puppet models. Unpacks TRNSRTS binary archives, extracts embedded texture pages, parses facial parameter trees, and validates rigging hierarchies directly inside Marinara Engine.",
+        "engine": {
+          "min": "2.5.0",
+          "maxExclusive": "4.0.0"
+        },
+        "kind": [
+          "agent"
+        ],
+        "entrypoints": {
+          "agents": "agents.json",
+          "client": "client.js",
+          "server": "server.mjs"
+        },
+        "contributions": {
+          "slots": [
+            "home-browser-tab"
+          ],
+          "homeBrowserTab": {
+            "label": "Inochi2D",
+            "ariaLabel": "Open Inochi2D Puppet Reader"
+          }
+        },
+        "permissions": [
+          "routes",
+          "storage",
+          "ui"
+        ],
+        "restartRequired": false,
+        "files": [
+          {
+            "path": "agents.json",
+            "sha256": "a8e7391b412aa7d7a5071c6a2a4a0919ebfa8a0f45446caa6334723c71143d07",
+            "bytes": 531
+          },
+          {
+            "path": "client.js",
+            "sha256": "09f406aedf886fa19eb8cbc20d0d2b06d59259ce8ed1a0a7b9bd919b7dfbd7d0",
+            "bytes": 6088
+          },
+          {
+            "path": "inp-parser.mjs",
+            "sha256": "ee2f5d8c58900650974eb93004deaefeb67bcb0172e3bc4406f0dfb25377f054",
+            "bytes": 5032
+          },
+          {
+            "path": "server.mjs",
+            "sha256": "9084a3a7d40d35fb04450afbc5bd6672cbf453f16780c2ac6abbf0859235bab4",
+            "bytes": 4164
+          }
+        ]
+      },
+      "category": "misc",
+      "artifact": {
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/puppet-inp-1.0.0.zip",
+        "sha256": "5843a60b5edfed78450b35b9302ec43844b358e2d7d41f535da46bbf5a74d75e",
+        "bytes": 17930
+      },
+      "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/puppet-inp/README.md"
+    },
+    {
+      "manifest": {
         "schemaVersion": 1,
         "id": "inventory-tracker",
         "name": "Inventory Tracker",
