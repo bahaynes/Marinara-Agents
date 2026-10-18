@@ -19,6 +19,10 @@ function fakeDocuments() {
       docs.set(doc.id, stored);
       return stored;
     },
+    async remove(_packageId, id, expectedRevision) {
+      if (docs.get(id)?.revision !== expectedRevision) return false;
+      return docs.delete(id);
+    },
     async update({ id, expectedRevision, ...fields }) {
       const current = docs.get(id);
       if (!current || current.revision !== expectedRevision) return null;
@@ -413,4 +417,15 @@ test("a chat linked without a base (an old v0.1 link) is left alone until it is 
   assert.deepEqual(world.meta("c1"), before);
   assert.equal(world.persistence.metadataWrites, writes);
   assert.equal((await load()).hub.world["npc:joe"], undefined);
+});
+
+test("deleting a game unlinks its chats, which keep their world", async () => {
+  const { world, route, game } = await linkedPair();
+  assert.deepEqual(await route("DELETE /games/:gameId", {}, { gameId: game.id }), { ok: true });
+  assert.deepEqual(await route("GET /games"), []);
+  for (const chatId of ["a1", "b1"]) {
+    assert.equal(world.meta(chatId).sharedWorld, undefined, chatId);
+    assert.equal(world.meta(chatId).gameNpcs.length, 2, chatId);
+  }
+  assert.match((await route("GET /games/:gameId", {}, { gameId: game.id })).error, /not found/);
 });
