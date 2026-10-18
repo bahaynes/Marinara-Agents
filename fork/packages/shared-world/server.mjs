@@ -8,7 +8,7 @@
 // Game Master as news, held until the player's next message so a swipe sees it too.
 
 import { randomUUID } from "node:crypto";
-import { changesSince, emptyHub, newsBlock, parseMeta, sharedLink, syncWorld } from "./merge.mjs";
+import { changesSince, emptyHub, newsBlock, parseMeta, partiesTogether, presenceBlock, sharedLink, syncWorld } from "./merge.mjs";
 
 export const PACKAGE_ID = "shared-world";
 const GAME_KIND = "game";
@@ -238,7 +238,8 @@ export async function deliverNews(persistence, store, gameId, chatId) {
     };
   });
   const names = new Map((game.players ?? []).map((player) => [player.id, player.name]));
-  return newsBlock(shown, names);
+  const presence = presenceBlock(partiesTogether(game.hub ?? emptyHub(), game.bases), localGameId, names);
+  return [newsBlock(shown, names), presence].filter(Boolean).join("\n\n") || null;
 }
 
 // ── Routes ──
@@ -260,7 +261,11 @@ function gameView(game) {
     .reverse()
     .slice(0, FEED_LIMIT)
     .map((item) => ({ seq: item.seq, at: item.at, player: names.get(item.by) || "Another party", text: item.text }));
-  return { ...gameSummary(game), feed };
+  const together = partiesTogether(game.hub ?? emptyHub(), game.bases).map((entry) => ({
+    place: entry.place,
+    players: [...new Set(entry.members.map((member) => names.get(member.playerId) || "Another party"))],
+  }));
+  return { ...gameSummary(game), feed, together };
 }
 
 async function chatList(runtime) {

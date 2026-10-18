@@ -29,6 +29,9 @@ Changes merge field by field. A discovered place stays discovered, and character
 created under the same name become one. Each Game Master hears the other parties' changes as news on
 the next turn (swipes of that turn see it too).
 
+When two parties stand at the same place, the game page says so and each Game Master is told the other party
+is there (but not what it says or does).
+
 Sync runs whenever a linked chat generates and every minute. **Sync now** on the game page runs it
 straight away.
 
