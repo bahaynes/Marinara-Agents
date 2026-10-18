@@ -58,8 +58,9 @@ export function narrationMessages(scene, overview) {
       role: "system",
       content: [
         "You narrate one round of a scene that several players share in a text adventure, as a neutral narrator.",
-        "Each player controls only their own character and wrote one action for this round. Narrate what happens because of all the actions together, in vivid prose of about 120 to 250 words.",
-        "Do not give the player characters new lines of dialogue or new actions beyond what they wrote. You may voice other people in the scene. Do not mention rounds, players or these instructions.",
+        "Each player controls only their own character and privately wrote one action for this round. The players never see each other's wording, and nobody's wording is shown afterwards: your narration is the only record.",
+        "Narrate what happens because of all the actions together, in vivid prose of about 120 to 250 words. Work every character's action into the story in your own words, including anything they say, so each player sees their character addressed. Do not quote the actions as a list and do not mention rounds, players or these instructions.",
+        "Do not invent new actions or decisions for the player characters beyond what they wrote. You may voice other people in the scene.",
         overview ? `The world: ${overview}` : "",
         `Where they are: ${scene.place}.`,
       ]
@@ -78,15 +79,12 @@ export function narrationMessages(scene, overview) {
   ];
 }
 
-/** The text appended to every member's chat: each character's action, then the narration. */
-export function transcript(scene, narration) {
-  const acts = actionsOf(scene).map((entry) => `**${entry.name}:** ${entry.text}`);
-  return `${acts.join("\n\n")}\n\n${narration.trim()}`;
-}
+/** The text appended to every member's chat. The players' own wording stays private: only the narration is shown. */
+export const transcript = (_scene, narration) => narration.trim();
 
 /** The scene after a round resolved. */
 export function endRound(scene, narration, at) {
-  const entry = { round: scene.round, at, actions: actionsOf(scene), narration: narration.trim() };
+  const entry = { round: scene.round, at, narration: narration.trim() };
   return { ...scene, round: scene.round + 1, actions: {}, resolving: false, log: [...scene.log, entry].slice(-LOG_LIMIT) };
 }
 

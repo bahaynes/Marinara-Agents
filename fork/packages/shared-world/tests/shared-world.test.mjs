@@ -487,7 +487,7 @@ test("parties standing at the same place are told about each other, and the page
   assert.deepEqual((await route("GET /games/:gameId", {}, { gameId: game.id })).together, []);
 });
 
-test("a scene waits for both players, hides pending actions, and writes one narration into both chats", async () => {
+test("a scene waits for both players, hides pending actions, and writes only the narration into both chats", async () => {
   const { world, route, game, alice, bob } = await linkedPair();
   const params = { gameId: game.id };
   const state = (player) => route("POST /games/:gameId/scene/state", { playerId: player.id }, params);
@@ -511,9 +511,10 @@ test("a scene waits for both players, hides pending actions, and writes one narr
   for (const chatId of ["a1", "b1"]) {
     const last = world.messagesOf(chatId).at(-1);
     assert.equal(last.role, "assistant");
-    assert.match(last.content, /\*\*Alice:\*\* I raise a hand[\s\S]*\*\*Bob:\*\* I step out[\s\S]*The wind turns\./);
+    assert.equal(last.content, "The wind turns.", "only the narration is written; the players' wording stays private");
   }
   const after = (await state(alice)).scene;
+  assert.doesNotMatch(JSON.stringify(after), /raise a hand|step out/);
   assert.equal(after.round, 2);
   assert.equal(after.log.length, 1);
   assert.deepEqual(after.members.map((member) => member.acted), [false, false]);
