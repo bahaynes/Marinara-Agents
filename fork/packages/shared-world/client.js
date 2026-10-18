@@ -128,6 +128,14 @@
           await this.openGame(game.id);
         });
       }
+      if (action === "delete-game") {
+        if (!confirm(`Delete "${game.name}"? Its chats are unlinked and keep their world as it is now.`)) return;
+        return void this.run("Deleting", async () => {
+          await call(`/games/${encodeURIComponent(game.id)}`, "DELETE");
+          this.state.game = null;
+          await this.loadGames();
+        });
+      }
       if (action === "sync") {
         return void this.run("Syncing", async () => {
           await call(`/games/${encodeURIComponent(game.id)}/sync`, "POST", {});
@@ -193,6 +201,7 @@
           <div class="flex-1"><div class="text-lg font-semibold">${game.records} shared records</div>
             <div class="${MUTED}">Linked chats sync when they generate and every minute.</div></div>
           <button type="button" class="${BTN}" data-action="sync">Sync now</button>
+          <button type="button" class="${BTN}" data-action="delete-game">Delete game</button>
         </div>
         <div class="sw-grid">
           <div class="space-y-3">
