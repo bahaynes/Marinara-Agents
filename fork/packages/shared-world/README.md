@@ -36,8 +36,9 @@ is there (but not what it says or does).
 
 When two parties are at the same place, the game page offers **Go synchronous**. Pick who you play as and start.
 Each player writes what their own character does; nobody sees the other's pending action. When everyone has
-acted, one neutral narration (from the first player's chat connection) is written into every player's chat, and
-the next round opens. **Narrate again** retries a failed narration without losing the actions. **End scene**
+acted, one neutral narration (from the first player's chat connection) is written into every player's chat. Nobody's wording is shown afterwards, not even
+their own: the narration works every action into the story, so it reads like a shared impersonation. Then the next
+round opens. **Narrate again** retries a failed narration without losing the actions. **End scene**
 closes it; the rounds stay in each chat's history. Players are two browser tabs on this instance: choose
 "Playing as" in each. Needs the `agent-runtime` permission for the narration call.
 
