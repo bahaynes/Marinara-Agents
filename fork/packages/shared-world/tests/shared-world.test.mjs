@@ -379,11 +379,11 @@ test("news reaches the other party's Game Master, survives a swipe, and clears o
   const first = await news("a1");
   assert.match(first, /New character: Cass \(A caravaneer\) \(Bob\)/);
   assert.match(first, /Benny is now at The Tops \(Bob\)/);
-  assert.equal(await news("b1"), null, "Bob's own changes are not news to him");
+  assert.doesNotMatch((await news("b1")) ?? "", /shared_world_news/, "Bob's own changes are not news to him");
   assert.equal(await news("a1"), first, "a swipe of the same turn sees it again");
   world.say("a1", "g1", "assistant", "You see Cass.");
   world.say("a1", "u2", "user", "Talk to Cass.");
-  assert.equal(await news("a1"), null);
+  assert.doesNotMatch((await news("a1")) ?? "", /shared_world_news/);
 });
 
 test("a chat must be a set-up Game chat, and unlinking keeps its world", async () => {
@@ -448,5 +448,22 @@ test("Peek Prompt before the next message does not use up the news", async () =>
   assert.match(await news("a1"), /Cass/, "the real turn still gets it");
   world.say("a1", "g2", "assistant", "You meet Cass.");
   world.say("a1", "u3", "user", "Talk to her.");
-  assert.equal(await news("a1"), null);
+  assert.doesNotMatch((await news("a1")) ?? "", /shared_world_news/);
+});
+
+test("parties standing at the same place are told about each other, and the page shows it", async () => {
+  const { world, sync, news, route, game } = await linkedPair();
+  world.say("a1", "u1", "user", "Look around.");
+  assert.match(await news("a1"), /<shared_world_presence>[\s\S]*Bob is also at .* right now/);
+  const view = await route("GET /games/:gameId", {}, { gameId: game.id });
+  assert.deepEqual(view.together.map((entry) => entry.players), [["Alice", "Bob"]]);
+
+  world.engineWrite("b1", (meta) => {
+    meta.gameMap.partyPosition = "primm";
+    return meta;
+  });
+  await sync();
+  world.say("a1", "u2", "user", "Wait.");
+  assert.doesNotMatch((await news("a1")) ?? "", /shared_world_presence/);
+  assert.deepEqual((await route("GET /games/:gameId", {}, { gameId: game.id })).together, []);
 });
