@@ -387,10 +387,11 @@ export function changesSince(hub, sinceSeq, exclude = null) {
         world: "The world overview changed",
       }[kind];
       out.push({ seq: record.seq, by: record.by, at: record.at, text });
-      continue;
     }
     for (const [field, cell] of Object.entries(record.fields)) {
-      if (cell.seq <= sinceSeq || cell.by === exclude || record.seq > sinceSeq) continue;
+      if (cell.seq <= sinceSeq || cell.by === exclude) continue;
+      // The push that created the record already reads as "New …".
+      if (record.seq > sinceSeq && cell.by === record.by && cell.at === record.at) continue;
       let text;
       if (kind === "npc" && field === "location") text = `${label} is now at ${short(cell.v)}`;
       else if (kind === "npc" && field === "notes") text = `${label}: ${short(cell.v.at(-1))}`;
