@@ -8,7 +8,15 @@ Working name: **Shared World** (package id `shared-world`). Two people each play
 - **This plan replaces it** with a sync of Classic game metadata. The two checks below were answered by reading code, with no generations or deploys.
 - **The Overworld seam is reverted** (`dd28c8f33` on the Engine's `custom-mods`, reverting `52a06ec2f`). The Classic sync needs no Engine change, and that keeps the fork minimal (memory: *engine-fork-minimal*).
 - **One instance may be the whole solution (2026-10-18).** If two chats on `marinara` sync well, she plays her chat on that instance and there's no sidecar at all. See *One instance first*.
-- **v0.2.0 is built (2026-10-18):** the Classic sync, one instance, package storage as the hub. Code is `fork/packages/shared-world/merge.mjs` (pure merge) and `server.mjs` (store, sync, news, routes), with 10 unit tests. It needs no Engine change. The play test on `marinara` is next. Where the build differs from the design below, *Phase 0 findings* wins.
+- **v0.2.1 is installed on `marinara` (2026-10-18):** the Classic sync, one instance, package storage as the hub. Code is `fork/packages/shared-world/merge.mjs` (pure merge) and `server.mjs` (store, sync, news, routes), with 11 unit tests. It needs no Engine change. Where the build differs from the design below, *Phase 0 findings* wins.
+  - **The model-free live test passed** on 0.2.0, with two throwaway Game chats made through the Engine API, the first seeded with a copy of Fallout Duo's world keys.
+    - Join copied the cast and map, with reputation 0 and the start node.
+    - Story arc stayed per chat, and `spatialContext` was not copied.
+    - An Engine metadata patch crossed over to the other chat.
+    - A 75 s idle (one background tick) wrote nothing.
+  - **It found one bug:** the feed hid later edits. That is fixed in 0.2.1.
+  - **Not yet tested:** a model play test, to check that GMs use the news and that real turns merge cleanly. It costs about 0.4% of the weekly Agy Gemini bucket per flash call, roughly 8–15% for two setups and a few turns each.
+  - **Leftover:** an inert "SW live test" game remains in the tab, because there is no delete-game route yet.
 - **Rejected alternatives:** upstream multiplayer rooms (one host-owned chat, the model doesn't answer both players, synchronous, not fun) and one Engine with two personas (not two independent threads).
 
 ## Goals
