@@ -1,0 +1,22 @@
+[
+  {
+    "id": "puppet-inp",
+    "name": "Inochi2D Puppet Reader",
+    "description": "Inspects and manages Inochi2D (.inp) 2.5D animated character puppets.",
+    "author": "custom-mods",
+    "phase": "pre_generation",
+    "enabledByDefault": false,
+    "category": "misc",
+    "runtimeDisabled": true,
+    "libraryHidden": true,
+    "modeAllowlist": [
+      "conversation",
+      "roleplay",
+      "game"
+    ],
+    "defaultTools": [],
+    "defaultSettings": {},
+    "defaultPromptTemplate": "",
+    "execution": "feature"
+  }
+]
