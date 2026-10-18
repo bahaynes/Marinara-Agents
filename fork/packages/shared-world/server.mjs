@@ -281,10 +281,15 @@ async function openScene(runtime, store, gameId, playerId) {
   return scene;
 }
 
-/** One neutral narration for the round, from the first member's connection. */
+/**
+ * One neutral narration for the round, on the first member's chat connection (its main model). Named outright, so
+ * the Engine does not substitute the cheaper default agents connection, which is poor at prose.
+ */
 async function narrate(runtime, scene, overview) {
   const chat = await runtime.persistence.getChat(scene.members[0].chatId);
-  const model = await runtime.languageModels.resolveForRequest({ chatConnectionId: chat?.connectionId ?? null });
+  const model = await runtime.languageModels.resolveForRequest(
+    chat?.connectionId ? { connectionId: chat.connectionId } : { chatConnectionId: null },
+  );
   const result = await model.chatComplete(narrationMessages(scene, overview), { maxTokens: 700, temperature: 0.9 });
   const text = String(result?.content ?? "").trim();
   if (!text) throw new WorldError(502, "The narrator returned nothing. Your actions are kept; try again.");

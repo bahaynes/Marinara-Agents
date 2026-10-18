@@ -63,9 +63,10 @@ function fakeRuntime() {
     },
     async updateChatActivity() {},
   };
-  const narrator = { prompts: [], reply: "The wind turns.", fail: false };
+  const narrator = { prompts: [], requests: [], reply: "The wind turns.", fail: false };
   const languageModels = {
-    async resolveForRequest() {
+    async resolveForRequest(request) {
+      narrator.requests.push(request);
       return {
         async chatComplete(prompt) {
           narrator.prompts.push(prompt);
@@ -98,6 +99,7 @@ function fakeRuntime() {
       messages.set(id, []);
     },
     messagesOf: (chatId) => messages.get(chatId),
+    setConnection: (chatId, connectionId) => (chats.get(chatId).connectionId = connectionId),
     say(chatId, id, role, content = "") {
       messages.get(chatId).push({ id, chatId, role, content, createdAt: new Date(Date.now() + 1000).toISOString() });
     },
@@ -493,6 +495,8 @@ test("a scene waits for both players, hides pending actions, and writes only the
   const state = (player) => route("POST /games/:gameId/scene/state", { playerId: player.id }, params);
   const act = (player, text) => route("POST /games/:gameId/scene/act", { playerId: player.id, text }, params);
 
+  world.setConnection("a1", "main-a");
+  world.setConnection("b1", "main-b");
   const started = await route("POST /games/:gameId/scene/start", { playerId: alice.id }, params);
   assert.deepEqual(started.scene.members.map((member) => [member.name, member.acted]), [["Alice", false], ["Bob", false]]);
   assert.equal((await route("POST /games/:gameId/scene/start", { playerId: bob.id }, params)).error, "A scene is already open.");
@@ -507,6 +511,7 @@ test("a scene waits for both players, hides pending actions, and writes only the
 
   await act(bob, "I step out of the shade.");
   assert.equal(world.narrator.prompts.length, 1);
+  assert.deepEqual(world.narrator.requests, [{ connectionId: "main-a" }], "the first chat's own model is named, not the agents default");
   assert.match(world.narrator.prompts[0][1].content, /Alice: I raise a hand[\s\S]*Bob: I step out/);
   for (const chatId of ["a1", "b1"]) {
     const last = world.messagesOf(chatId).at(-1);
