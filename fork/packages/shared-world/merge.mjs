@@ -406,6 +406,51 @@ export function changesSince(hub, sinceSeq, exclude = null) {
   return out.sort((a, b) => a.seq - b.seq);
 }
 
+// ── Presence ──
+
+/** Where the party stands, in shared ids, or null before the active map has a position. */
+export function locationOf(meta, alias) {
+  const activeId = meta.activeGameMapId ?? meta.gameMap?.id;
+  const map = nodeMaps(meta).find((entry) => entry.id === activeId);
+  if (map?.partyPosition === undefined) return null;
+  return { map: sharedMapId(alias, map.id), node: sharedNodeId(alias, map.id, map.partyPosition) };
+}
+
+const placeLabel = (hub, here) =>
+  hub.world?.[`node:${here.map}/${here.node}`]?.fields?.label?.v ?? hub.world?.[`map:${here.map}`]?.fields?.name?.v ?? "this place";
+
+/**
+ * The parties standing at the same node. Each entry is `{ place, bases }` for two or more bases whose last
+ * synced position is the same shared node. Pure: reads each base's `here` and `playerId`.
+ */
+export function partiesTogether(hub, bases) {
+  const groups = new Map();
+  for (const [key, base] of Object.entries(bases ?? {})) {
+    if (!base?.here || !base.playerId) continue;
+    const spot = `${base.here.map}/${base.here.node}`;
+    groups.set(spot, [...(groups.get(spot) ?? []), { key, playerId: base.playerId, here: base.here }]);
+  }
+  return [...groups.values()]
+    .filter((members) => new Set(members.map((member) => member.playerId)).size > 1)
+    .map((members) => ({ place: placeLabel(hub, members[0].here), members }));
+}
+
+/** The prompt block telling one Game Master which other parties are standing here, or null. */
+export function presenceBlock(together, localKey, names) {
+  const group = together.find((entry) => entry.members.some((member) => member.key === localKey));
+  if (!group) return null;
+  const me = group.members.find((member) => member.key === localKey).playerId;
+  const others = [...new Set(group.members.map((member) => member.playerId))].filter((id) => id !== me);
+  if (!others.length) return null;
+  const who = others.map((id) => names.get(id) ?? "another party").join(" and ");
+  return [
+    "<shared_world_presence>",
+    `${who} ${others.length > 1 ? "are" : "is"} also at ${group.place} right now, played by another player.`,
+    "Their party can show up in the scene as people your party notices; do not decide what they say or do.",
+    "</shared_world_presence>",
+  ].join("\n");
+}
+
 // ── Sync ──
 
 /**
@@ -423,16 +468,9 @@ export function syncWorld({ meta, hub: hubIn, base: baseIn, player, at, join = f
   }
   const written = materialize(meta, hub, base.alias, { join: joining });
 
-  if (!hub.start) {
-    const activeId = written.activeGameMapId ?? written.gameMap?.id;
-    const map = nodeMaps(written).find((entry) => entry.id === activeId);
-    if (map?.partyPosition !== undefined) {
-      hub.start = {
-        map: sharedMapId(base.alias, map.id),
-        node: sharedNodeId(base.alias, map.id, map.partyPosition),
-      };
-    }
-  }
+  const here = locationOf(written, base.alias);
+  if (!hub.start && here) hub.start = here;
+  base.here = here;
 
   if (!joining && !join) base.news = [...base.news, ...changesSince(hub, base.lastSeq, player)].slice(-NEWS_LIMIT);
   base.lastSeq = hub.seq;
