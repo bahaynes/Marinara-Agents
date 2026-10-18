@@ -6,7 +6,8 @@ Working name: **Shared World** (package id `shared-world`). Two people each play
 
 - **v0.1 (0.1.1) is superseded.** It synced Overworld world-ledger deeds through the Engine seam `52a06ec2f`. Overworld games are locked behind `MARINARA_OVERWORLD_GAMES` (upstream: "not ready for everyone yet"), which is unset on both instances, and every game we play is Classic. So v0.1 can't run for us.
 - **This plan replaces it** with a sync of Classic game metadata. The two checks below were answered by reading code, with no generations or deploys.
-- **The Overworld seam is parked.** If the Classic sync works without an Engine change (expected, see below), revert `52a06ec2f` from `custom-mods` so the fork stays minimal (memory: *engine-fork-minimal*). Not done yet; that's the user's call.
+- **The Overworld seam is reverted** (`dd28c8f33` on the Engine's `custom-mods`, reverting `52a06ec2f`). The Classic sync needs no Engine change, and that keeps the fork minimal (memory: *engine-fork-minimal*).
+- **One instance may be the whole solution (2026-10-18).** If two chats on `marinara` sync well, she plays her chat on that instance and there's no sidecar at all. See *One instance first*.
 - **Rejected alternatives:** upstream multiplayer rooms (one host-owned chat, the model doesn't answer both players, synchronous, not fun) and one Engine with two personas (not two independent threads).
 
 ## Goals
@@ -43,6 +44,18 @@ Classic game state is plain top-level chat metadata (checked on Fallout Duo's ke
 - **Date and weather.** These live in per-message `game_state_snapshots` rows, not in metadata, and they rewind with swipes. They stay per thread (see *Time*).
 - **`activeLorebookIds`.** The package's `updateChatMetadata` is a raw whole-blob write that skips `patchMetadata`'s side effects, including the lorebook-entry cleanup tied to this key. Don't touch it.
 
+### What `gameNpcs` is
+
+It's the roster of **everyone the game has ever named**, not who's in the scene. The Engine only adds to it: setup's starting NPCs (`game.routes.ts` ~6607), people the GM names in play (`generate.routes.ts` ~11118), recruits (~2595), and up to 3 new NPCs per session end. After that, it only updates reputation and avatars. Nothing removes an NPC except starting a new game (~7114) or a hand edit. The GM prompt gets the whole roster (`game-gm-prompt-runtime.ts` ~201, ~404).
+
+**Who's in the scene** is `presentCharacters`, a separate field in the per-message `game_state_snapshots` row. It rewinds with swipes, and it stays per thread.
+
+So for sync:
+- **The roster syncs as add-only.** That matches how the Engine already treats it.
+- **`reputation` stays per player**, because it's your party's standing with that NPC.
+- **`location` is ambiguous.** It's where the NPC was last seen, so two threads will disagree. It syncs as last writer wins with attribution, and news tells the GM the NPC was seen elsewhere.
+- **Roster growth costs prompt tokens.** Two threads naming people roughly doubles the list the GM reads each turn. Watch it in playtest.
+
 Whether the campaign plan, story arc and plot twists should be shared or per thread is a playtest question. The default is shared, per the ask ("everything but the chat history"). A per-game setting can make them per thread if two players chasing one plot feels wrong.
 
 ## The two checks
@@ -59,7 +72,7 @@ Whether the campaign plan, story arc and plot twists should be shared or per thr
 - **The lock is shared.** `persistence.withChatLock` is the Engine's own `withChatMetadataPatchQueue`, and the Engine's `patchMetadata` re-reads inside that queue. Most turn writes are fresh read-modify-writes: `generate.routes.ts` ~11118 (named world people) and `game.routes.ts` ~16570 (NPC avatars) both read `gameNpcs` inside the updater.
 - **Client edits are partial.** The client's `PATCH /chats/:id/metadata` (`use-chats.ts` ~965) sends only the keys it changed. A UI edit can't wipe unrelated synced keys, but an edit to `gameNpcs` does send the whole array from the client's cache.
 - **Some Engine writes are stale.** There are 21 whole-blob `chats.updateMetadata` calls across the game and generate routes, and they don't use the queue. Most re-read just before writing, so their window is small. One isn't: the party-turn reputation write (`game.routes.ts` ~13685) builds `gameNpcs` from turn-start `meta`, then writes it after a model call. An NPC synced in during that turn is wiped.
-- **Session end prunes NPCs.** `normalizeNextSessionNpcs` (`game.routes.ts` ~3168) rewrites `gameNpcs` at session end.
+- **Session end adds NPCs, it doesn't prune them.** `normalizeNextSessionNpcs` (`next-session-plan.ts:79`) keeps every current NPC and appends up to 3 new ones.
 - **Metadata never rewinds.** It is chat-global (see the #5406 note in `chats.storage.ts`), so a swiped-away reply's NPC stays, the same as in single-player play.
 - **Network:** packages are loaded with plain `import()` in the Engine process, so `fetch` works. The manifest still declares the `network` permission (see *Transport*).
 
@@ -72,7 +85,7 @@ Both Engines' GMs rewrite these keys whole, so plain syncing means last writer w
 - **Where the base lives:** package storage, keyed by (shared game, local `gameId`). All session chats of one game share `gameId`, so the base survives Next Session even though the chat id changes.
 - **Local changes** are `local − base`. They are pushed to the sidecar. **Remote changes** are `remote − base`. They are written into the chat, under `withChatLock`, re-reading inside it, changing only the synced keys.
 - **Records merge by id, field by field.** That covers NPCs, maps and map nodes, and invented items. Never whole arrays.
-- **Add-only through sync.** A record missing locally that's in the base is a local deletion (session-end pruning, a stale write). It isn't pushed as a deletion, and remote doesn't re-add it to this chat. A record missing remotely is never deleted locally.
+- **Add-only through sync.** A record missing locally that's in the base is a local deletion (a stale write, or a hand edit in the NPC panel). It isn't pushed as a deletion, and remote doesn't re-add it to this chat. A record missing remotely is never deleted locally.
 - **Sticky facts only move forward:** dead stays dead, destroyed stays destroyed, discovered stays discovered.
 - **Regression is loss, not an edit.** A local field that changed back to an *older* value sync has already seen is treated as a stale write. It's re-applied, not pushed. This keeps one stale whole-blob write from turning into "player deleted X" on both instances.
 - **Other fields conflict as last writer wins**, in sidecar `seq` order, with attribution (`by`, `at`) kept for the feed and news.
@@ -98,7 +111,24 @@ On each pull, the package diffs what the other thread changed and stores a short
 - v1 adds no shared calendar. News carries the other party's date ("…on 14 June, the other party…") so each GM can place the change in its own timeline.
 - A shared calendar floor, as in the old West Marches design, needs a way to write snapshot dates. That's an Engine seam, so it's deferred until play says it matters.
 
-## Transport
+## One instance first
+
+Both chats live on `marinara`, and she logs in there to play hers. The package's own storage is the hub. Compared with two instances, this:
+
+- **Removes the sidecar, the `network` permission, tokens and the deploy** to `marinara-wife`.
+- **Makes joining free.** *Branch* a game chat (`POST /chats/:id/branch`, `chats.routes.ts` ~5022) and the copy keeps the metadata, the same NPC, map and item ids, and the world snapshot. Name matching is then only for people either GM invents later.
+- **Shares lorebooks for free.** Both chats can use the same lorebooks, so the lorebook gap above goes away.
+- **Shares avatars and assets**, because the URLs resolve on the same instance.
+
+Costs and open questions:
+- **No separate accounts.** The instance has one login (Basic Auth), so she sees all your chats, characters and settings. Spoilers between threads are on the honor system.
+- **Branching copies your thread.** It copies the per-player keys too (party, cards, inventory, journal) and the messages up to the branch point. *Join* has to branch at the first message and then reset the per-player keys, or she plays a copy of your party. Decide in Phase 1.
+- **One subscription for both.** Both threads draw on the same Claude and Agy subscriptions, so quota runs out roughly twice as fast.
+- **Two generations at once on one Engine** haven't been tested. Phase 1 checks it.
+
+If all of that is fine in play, the *Transport* section below is never built.
+
+## Transport (only if one instance isn't enough)
 
 Package routes are admin-gated (`requirePrivilegedAccess`), so the two Engines can't call each other's packages. Each package talks to a sidecar instead.
 
@@ -143,7 +173,9 @@ Read both from a scratch dump of Fallout Duo's metadata. No generation needed.
   - the base survives a chat-id change (Next Session)
   - news emitted once, then cleared
 
-**Phase 2: sidecar, two instances.** The `shared-world` container, the `network` permission, tokens and `seq` pulls. Deploy to `marinara` first; `marinara-wife` only with consent.
+Phase 1 also decides whether Phase 2 is needed. Check how *Join* by branch handles per-player keys, two generations running at once, and the shared subscription quota.
+
+**Phase 2 (only if needed): sidecar, two instances.** The `shared-world` container, the `network` permission, tokens and `seq` pulls. Deploy to `marinara` first; `marinara-wife` only with consent.
 
 **Phase 3: polish.** Chronicle feed cards, NPC avatars carried across instances (bytes through the sidecar, saved into package storage, served by the package route), and per-game settings for what's shared.
 
