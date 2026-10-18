@@ -203,6 +203,12 @@
           <button type="button" class="${BTN}" data-action="sync">Sync now</button>
           <button type="button" class="${BTN}" data-action="delete-game">Delete game</button>
         </div>
+        ${(game.together ?? [])
+          .map(
+            (t) =>
+              `<div class="${CARD}">${escapeHtml(t.players.join(" and "))} ${t.players.length > 1 ? "are" : "is"} together at ${escapeHtml(t.place)}.</div>`,
+          )
+          .join("")}
         <div class="sw-grid">
           <div class="space-y-3">
             <div class="${CARD}">
