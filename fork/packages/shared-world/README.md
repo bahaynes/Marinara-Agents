@@ -32,6 +32,15 @@ the next turn (swipes of that turn see it too).
 When two parties stand at the same place, the game page says so and each Game Master is told the other party
 is there (but not what it says or does).
 
+## Scenes (synchronous play)
+
+When two parties are at the same place, the game page offers **Go synchronous**. Pick who you play as and start.
+Each player writes what their own character does; nobody sees the other's pending action. When everyone has
+acted, one neutral narration (from the first player's chat connection) is written into every player's chat, and
+the next round opens. **Narrate again** retries a failed narration without losing the actions. **End scene**
+closes it; the rounds stay in each chat's history. Players are two browser tabs on this instance: choose
+"Playing as" in each. Needs the `agent-runtime` permission for the narration call.
+
 Sync runs whenever a linked chat generates and every minute. **Sync now** on the game page runs it
 straight away.
 
