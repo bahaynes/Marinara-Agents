@@ -51,5 +51,5 @@ writes came from the first request after a gap of more than an hour.
 
 ## Seeing it live
 
-`fork/tools/cache-status.py` is a status line: context size and cache age. It warns when the cache has gone
+`fork/tools/cache-status.py` shows context size and cache age: as a status line, a manual check (run it with no input), or a `UserPromptSubmit` hook that blocks the first prompt sent to a cold cache. It warns when the cache has gone
 cold, so you can `/clear` instead of resuming. See its header for the settings line.
