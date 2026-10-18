@@ -1,266 +1,165 @@
 # Shared World — plan
 
-Working name: **Shared World** (package id `shared-world`). It is regular Game mode, but one world, its lore and its history are shared by everyone who plays in it. Each player runs their own adventure in their own chat. What they settle into the world reaches every other player's world. Synchronous play together comes later, as an opt-in.
+Working name: **Shared World** (package id `shared-world`). Two people each play their own Classic Game mode chat, on their own Engine, at their own pace. **Everything about the game syncs except the chat history**: the world, its people, its places, its plot and its items. What stays separate is each thread's story and where each party is standing in it.
 
-## Status
+## Status (2026-10-18)
 
-Phase 1 is built: `fork/packages/shared-world` 0.1.0 (commit `a17a657c3`), with 9 unit tests passing and no live run yet. A live run needs the Engine seam (`52a06ec2f` on the local Engine branch `shared-world-seam`, not pushed) on `custom-mods` and deployed. Unlink keeps the day floor so a chat's calendar never runs back. Phase 0 is a set of spikes that confirm the Engine seams below, run on flash (cost stated before each run).
+- **v0.1 (0.1.1) is superseded.** It synced Overworld world-ledger deeds through the Engine seam `52a06ec2f`. Overworld games are locked behind `MARINARA_OVERWORLD_GAMES` (upstream: "not ready for everyone yet"), which is unset on both instances, and every game we play is Classic. So v0.1 can't run for us.
+- **This plan replaces it** with a sync of Classic game metadata. The two checks below were answered by reading code, with no generations or deploys.
+- **The Overworld seam is parked.** If the Classic sync works without an Engine change (expected, see below), revert `52a06ec2f` from `custom-mods` so the fork stays minimal (memory: *engine-fork-minimal*). Not done yet; that's the user's call.
+- **Rejected alternatives:** upstream multiplayer rooms (one host-owned chat, the model doesn't answer both players, synchronous, not fun) and one Engine with two personas (not two independent threads).
 
 ## Goals
 
-1. **Your own adventure in a shared world.** Each player plays ordinary Game mode on their own Engine, their own subscription and their own pace. No turn-waiting and no host.
-2. **Your deeds change their world.** What one party settles into the world (a town helped, a lord crowned, a bridge destroyed, a group turned hostile) shows up in every other player's world, as world facts and as in-fiction news.
-3. **Watching is gameplay.** A Home tab shows the world's chronicle: who changed what, where, and when. Reading it is a reason to open the app, not a debug view.
-4. **Shared lore, not just shared numbers.** People and places that one party meets or names become lore every party can run into.
-5. **Later: meet up.** Players who are in the same place can opt in to play a scene together.
+1. **Two independent threads, one game.** Each player plays ordinary Classic Game mode in their own chat on their own instance. No host, no turn-waiting.
+2. **One world state.** When a GM reply in one thread adds an NPC, kills one, discovers a place or invents an item, the other thread's game has it too from its next turn.
+3. **Changes become story, not glitches.** The other thread's GM hears what changed as in-fiction news, so the world doesn't just silently shift underneath it.
+4. **Watching is gameplay.** A Home tab feed shows what the other party changed.
 
 ## Non-goals (for now)
 
-- Real-time co-presence. You don't see another party walk past mid-scene.
-- Lockstep time. The calendar is shared, but time inside a session is each party's own (see Time).
-- Players on other hosts. The sidecar can be put behind Caddy later without changing its API.
-- Pay-per-token APIs or local Gemma narration. Story play stays on the Claude and Agy subscriptions. A background extractor may use the agent model, if it is needed at all.
-- PvP mechanics. Contradictory actions are reconciled as story, not adjudicated.
+- Syncing chat history, or co-presence mid-scene.
+- Lockstep time (see *Time*).
+- Players on other hosts. The sidecar can go behind Caddy later with no API change.
+- Pay-per-token or local narration. Story play stays on the Claude and Agy subscriptions.
+- Adjudicating contradictions. They are reconciled as story.
 
-## Why this fits Marinara with one small Engine change
+## What syncs
 
-Game worlds (worldgen W4–W12) already do most of the work:
+Classic game state is plain top-level chat metadata (checked on Fallout Duo's keys). The split:
 
-- **Stable ids.** A world is built from a kit plus a seed and shared as a world file with a snapshot. Places, groups and people have stable ids, so two games built from the same world file agree on what "Thornwick" is.
-- **The world ledger** (`shared/src/features/world/ledger.ts`). The GM writes `[world: …]` tags. The ledger is just those answered tags in the visible replies, oldest first, and `worldPresent(game, ledger)` folds them into the present world: places held, groups, deeds, renown, standing, time. Swipes, deletes and branches stay consistent because nothing is stored beside the replies.
-- **`gameRepliesBefore` is the seam.** `game-market.service.ts:75` builds the ledger on every generation as `fold ? [{from: fold}, ...own] : readWorldLedger([carry.tags, ...own])`. The world is recomputed from that each turn, so anything added to that list reaches the GM on the next generation. The existing keys can't carry foreign entries safely (see the table), so the plan adds one key for them (see *The one Engine seam*).
-- **News is already native.** `worldNewsHere` / `worldBrewingNear` turn the present world into what locals talk about. If foreign deeds are in the fold, the GM hears of them the way it hears of anything else in the world.
-- **Synchronous play exists upstream.** Multiplayer rooms (`docs/development/multiplayer.md`) support Game rounds between Engines with invite, pinned certificate, password and host approval. That is the base for the meet-up phase.
+| Shared (the game) | Per player (the thread) |
+|---|---|
+| `gameNpcs`: who exists, alive or dead, description, notes, avatar | `reputation` inside each NPC: how *your* party stands with them |
+| `gameMaps` / `gameMap`: maps, nodes, what's discovered | `activeGameMapId`, `lastMapPosition`: where *you* are |
+| `gameWorldOverview`, `gameStoryArc`, `gamePlotTwists` | Chat history, `gamePreviousSessionSummaries`, `gameJournal` |
+| `gameBlueprint.campaignPlan`, `gameRuleset`, `gameSetupConfig` world fields | `gameInventory`, `gameInventoryTurn`, `gameCharacterCards`, `gamePartyCharacterIds` |
+| `gameInventedItems` (item definitions, not who holds them) | `gameActiveState`, combat, scene, music, media, widget state |
+| | `gameSessionNumber`, `gameSessionStatus`, connections, `metadataWriteOrdinals`, `multiplayer*` |
 
-## Verified seams and caveats
+**Not synced in v1, by necessity:**
 
-| Seam | Finding | Consequence |
-|---|---|---|
-| Carry read | `gameLedgerCarry.tags` is read on every generation, but **only when the chat has no fold** | Works in a game's first session only. |
-| Fold at rollover | `game.routes.ts:7989` writes `setFold(newChat, worldFold(world, ledger))` whenever the game has a world snapshot (every library-world game). From session 2 on, `own = all.slice(1)` drops the carry entirely | Writing foreign tags into the carry stops working at the first new session. Packages have no API to rewrite the fold. **No-Engine-change ingest is ruled out.** |
-| Rollover merges the carry | `carryWorldLedger(prev, replies)` concatenates the previous carry's tags with the session's, unmarked, and the fold is computed from that ledger | Even in session 1, foreign tags left in the carry would be baked into the player's own past (and fold) at rollover, crediting their renown and double-counting on the next rebuild. Foreign entries must live in a key that rollover never folds. |
-| Metadata write | `persistence.updateChatMetadata` needs `chat-write` and replaces the whole blob; no write ordinal | Always do read, merge and write inside `withChatLock(chatId)`, changing only the package's own key. Rollover copies unknown metadata keys forward (`...carryMeta`), so the key survives sessions. |
-| Renown and standing | `worldPresent` does `present.renown += 1` and moves `standing[group]` for **every** deed entry, with no "who" check | Folding another party's deeds as-is would credit *your* party with their renown. |
-| Prompt context | `injectCapabilityContexts` appends to the **system** message | Never put news there. Each change would break the cache, the same Game-mode 0% failure `gameLoreInTail` fixed. News must come through the fold (native placement) or the lore in the tail. Spike S3 confirms where the native world block lands. |
-| Package routes | Admin-gated by `requirePrivilegedAccess` | The other Engine cannot call them, so they can't be the cross-player transport. |
-| Multiplayer peer listener | Serves a fixed set of room actions only; packages can't add any | It can't be the async transport either. |
+- **Lorebook contents.** The package persistence host has no lorebook write (only `listExistingLorebookEntryIds`). Each player imports the shared lorebook once by hand. Lore discovered in play travels as NPC notes and news.
+- **Date and weather.** These live in per-message `game_state_snapshots` rows, not in metadata, and they rewind with swipes. They stay per thread (see *Time*).
+- **`activeLorebookIds`.** The package's `updateChatMetadata` is a raw whole-blob write that skips `patchMetadata`'s side effects, including the lorebook-entry cleanup tied to this key. Don't touch it.
 
-### The one Engine seam: foreign entries
+Whether the campaign plan, story arc and plot twists should be shared or per thread is a playtest question. The default is shared, per the ask ("everything but the chat history"). A per-game setting can make them per thread if two players chasing one plot feels wrong.
 
-About 25 lines plus tests, in two shared spots (plus the calendar floor described under Time):
+## The two checks
 
-1. **`ledger.ts`: whose deed.** A ledger entry field `by: "<player id>"`. In `worldPresent`, an entry with `by` still changes the world (place holders, groups, crowns, falls, destruction) but skips `renown += 1` and the `standing` push.
-2. **`game-market.service.ts`: a foreign key.** `gameRepliesBefore` reads `meta.gameLedgerForeign` (a JSON array of ledger entries the package writes, each with a non-empty `by`; `worldForeignLedger` drops anything else and strips `days`, `at`, `from`, `hold`, `release` and `ground`). It appends those entries after the fold or carry and before the chat's own replies. The rollover's fold and `carryWorldLedger` are computed **without** it, so foreign entries are never baked into a player's own past; the package rewrites the whole key from the log each time.
+### 1. Does the GM read these keys fresh every turn? Yes, with a one-turn lag for package writes.
 
-Following the memory rule *engine-fork-minimal*, this is folded into the existing Call Sheet commit on `custom-mods`, not added as a new commit. It is also a plausible upstream PR in its own right ("entries from another party"), since it is generic: any package that wants outside events in a game world needs it.
+- `generate.routes.ts` ~1662 reads `chatMeta` once per turn from the database. The GM prompt is built from it (`injectGameGmPromptRuntime`, ~4902: story arc, plot twists, blueprint, map, NPCs and so on).
+- Package prompt contexts run after that (`injectCapabilityContexts`, ~4985). Anything the package writes from its hook therefore lands **next** turn.
+- **Design:** pull and merge in the background between turns (after each settled reply, and on a timer while a chat is linked). Use the hook's return value only for this turn's news text.
+- **ponytail:** a change made in the other thread reaches yours one turn after it syncs, not instantly. The upgrade path, if it matters in play, is an Engine seam that runs a package "before turn" hook ahead of the ~1662 read.
 
-The seam was checked against the source: both the carry and the fold paths were read, and there is no package path to the fold. A no-Engine variant (rewriting foreign deeds into `fact` entries in the carry) only lasts until the first session ends, so it is a Phase 1 prototype aid at most.
+### 2. Can a package write metadata between turns safely? Mostly. Stale Engine writes exist, so the merge must contain them.
 
-## Decision 1: where the shared world lives
+- **The lock is shared.** `persistence.withChatLock` is the Engine's own `withChatMetadataPatchQueue`, and the Engine's `patchMetadata` re-reads inside that queue. Most turn writes are fresh read-modify-writes: `generate.routes.ts` ~11118 (named world people) and `game.routes.ts` ~16570 (NPC avatars) both read `gameNpcs` inside the updater.
+- **Client edits are partial.** The client's `PATCH /chats/:id/metadata` (`use-chats.ts` ~965) sends only the keys it changed. A UI edit can't wipe unrelated synced keys, but an edit to `gameNpcs` does send the whole array from the client's cache.
+- **Some Engine writes are stale.** There are 21 whole-blob `chats.updateMetadata` calls across the game and generate routes, and they don't use the queue. Most re-read just before writing, so their window is small. One isn't: the party-turn reputation write (`game.routes.ts` ~13685) builds `gameNpcs` from turn-start `meta`, then writes it after a model call. An NPC synced in during that turn is wiped.
+- **Session end prunes NPCs.** `normalizeNextSessionNpcs` (`game.routes.ts` ~3168) rewrites `gameNpcs` at session end.
+- **Metadata never rewinds.** It is chat-global (see the #5406 note in `chats.storage.ts`), so a swiped-away reply's NPC stays, the same as in single-player play.
+- **Network:** packages are loaded with plain `import()` in the Engine process, so `fetch` works. The manifest still declares the `network` permission (see *Transport*).
 
-There are two Engines in `~/git/minecraftdocker/marinara/compose.yaml`, `marinara` and `marinara-wife`, with separate data dirs. Because package routes and the peer listener are both closed (above), two Engines can't talk through Marinara itself.
+**Conclusion: no Engine change is needed,** as long as the merge can't let one stale write spread to both instances (next section).
 
-**Decided: a tiny world-log sidecar in the compose stack**, the same pattern as `dnd-engine` and `lyrics-relay`. The players are the two of you, on `marinara` and `marinara-wife`.
+## Merge
 
-- A `shared-world` container on `caddy_network`, not exposed through Caddy.
-- It holds any number of **shared games**. Each one has exactly one world: the pinned world file, its calendar start, and an append-only log of published entries, NPCs and images.
-- Endpoints, all keyed by shared-game id:
-  - `GET /games`, `GET /games/:id/world`
-  - `GET /games/:id/log?since=<seq>`, `POST /games/:id/log`, `POST /games/:id/retract`
-  - `PUT` and `GET /games/:id/media/:hash`, for content-addressed images
-- Each player has a bearer token, set through package settings.
-- The package on each Engine uses the `network` permission to pull and push.
-- Storage is one SQLite or JSONL file on a mounted volume. Each entry gets a monotonic `seq` from the server, which gives one canonical order.
+Both Engines' GMs rewrite these keys whole, so plain syncing means last writer wins. Instead, the package merges **three-way** against a **base**: what sync last wrote into this game.
 
-**Alternative if both players use one Engine:** package `storage` alone, no sidecar. That is simpler, but it doesn't fit the current two-instance setup.
+- **Where the base lives:** package storage, keyed by (shared game, local `gameId`). All session chats of one game share `gameId`, so the base survives Next Session even though the chat id changes.
+- **Local changes** are `local − base`. They are pushed to the sidecar. **Remote changes** are `remote − base`. They are written into the chat, under `withChatLock`, re-reading inside it, changing only the synced keys.
+- **Records merge by id, field by field.** That covers NPCs, maps and map nodes, and invented items. Never whole arrays.
+- **Add-only through sync.** A record missing locally that's in the base is a local deletion (session-end pruning, a stale write). It isn't pushed as a deletion, and remote doesn't re-add it to this chat. A record missing remotely is never deleted locally.
+- **Sticky facts only move forward:** dead stays dead, destroyed stays destroyed, discovered stays discovered.
+- **Regression is loss, not an edit.** A local field that changed back to an *older* value sync has already seen is treated as a stale write. It's re-applied, not pushed. This keeps one stale whole-blob write from turning into "player deleted X" on both instances.
+- **Other fields conflict as last writer wins**, in sidecar `seq` order, with attribution (`by`, `at`) kept for the feed and news.
+- **Per-player fields are never pushed or written.** That includes NPC `reputation`.
 
-**ponytail:** the sidecar trusts the docker network plus a bearer token. Its ceiling is same-host players. The upgrade path, for friends on other hosts, is to put it behind Caddy with TLS and per-player tokens. The API doesn't change.
+### Identity
 
+NPC, map and node ids are minted per chat, so two separately generated games share nothing to merge on.
 
-## Model
+- **Join seeds from the first game.** The second player starts a Classic game (any quick setup), then links it with *Join*. The package overwrites that chat's shared keys with the shared game's current state before its first real turn, so ids match from then on.
+- **Records either GM invents later** are matched by normalized name, using the Engine's own rule (`normalizeJournalMatch` and `findNpcRecordByName`, ported). A name match adopts the shared id.
+- Check whether `packages/client/src/lib/game-setup-share.ts` (the "marinara-game-setup" share file) is a usable seed for the setup itself. It only carries `GameSetupConfig` plus connections, not world state, so it's a convenience at most.
 
-```
-world file (pinned, with snapshot)  ──►  every player's game is built from it (same ids)
+## News
 
-player A's chat ──settled [world:] tags──► package A ──POST──► sidecar log (seq, by, at, entries)
-                                                                      │
-player B's chat ◄── gameLedgerCarry.tags ◄── package B ◄──GET since──┘
-```
+On each pull, the package diffs what the other thread changed and stores a short news list. On the next turn, the prompt-context hook returns it once as text ("Word around the wasteland: …"), with who did it, then clears it.
 
-### What is published
+- **Cost:** capability context goes into the **system** message, which breaks the prompt cache on that turn. That's acceptable because it happens only on turns that carry news, and any synced change to `gameNpcs` or the map changes the GM prompt on that turn anyway. Turns with nothing new return `null`.
 
-- **World-ledger entries**, from the GM's own `[world: …]` tags, parsed with `readWorldLedger`. No extra model call is needed. Each entry is stamped with `by` (the player), the author's world day, the author's place, and the source reply id.
-- **Shared lore.** These are named people and places the party met. They come from the ledger's `name`/`who` fields and, if installed, from NPC Registry facts. They become lorebook entries that other players' GMs can trigger (see Lore).
-- **NPCs.** These are the game's `meta.gameNpcs` records (`GameNpc`: name, emoji, description, gender and pronouns, location, notes, `avatarUrl`, `worldId`, `role`). They are keyed by `worldId` when the world drew the person, else by normalized name.
-  - Published: the description, `descriptionSource`, notes and the avatar.
-  - Never published: `reputation`, which is how *your* party stands with them.
-  - The reader merges them into its own `gameNpcs` under `withChatLock`, keeping its own reputation and adding the other party's notes as "heard: …". That way an NPC your wife's party met turns up in your game with the same face and history.
-- **Generated images.** These are NPC avatars and scene illustrations. Bytes are uploaded to the sidecar under their content hash. A reader downloads them once and saves them into its own Engine, so the browser never has to reach the sidecar. Images are saved in package storage and served by the package route (S6). The images also illustrate the chronicle feed.
-- **A one-line chronicle note** per published batch, for the feed. It is the GM's own sentence, trimmed to show what happened, not generated.
+## Time
 
-**Everything in a shared game is shared.** Everything above is published by default. Settings can narrow it per game: no images, or no NPC notes. A "keep this scene to myself" toggle is available but off by default.
+- Each thread keeps its own date and weather (per-message snapshots that rewind with swipes).
+- v1 adds no shared calendar. News carries the other party's date ("…on 14 June, the other party…") so each GM can place the change in its own timeline.
+- A shared calendar floor, as in the old West Marches design, needs a way to write snapshot dates. That's an Engine seam, so it's deferred until play says it matters.
 
-Not published: inventory, party members, dice, anything in a Conversation chat.
+## Transport
 
-### Commit point (swipe safety)
+Package routes are admin-gated (`requirePrivilegedAccess`), so the two Engines can't call each other's packages. Each package talks to a sidecar instead.
 
-The ledger is defined as the *visible* replies, so a swipe, regenerate or delete takes a change back. The package publishes a reply's entries only once that reply can no longer be swiped in normal play:
+- **A `shared-world` sidecar** joins the compose network both Engines already share, the same pattern as `dnd-engine` and `lyrics-relay`. It isn't exposed through Caddy. Verify with `docker network inspect` that `marinara` and `marinara-wife` are both on it.
+- **It holds shared games:** players, the current merged state per key and record, an append-only change log with a server `seq`, and attribution.
+- **Endpoints:**
+  - `GET /games`, `POST /games`, `POST /games/:id/players`
+  - `GET /games/:id/state`
+  - `GET /games/:id/log?since=<seq>`, `POST /games/:id/changes`
+- **Storage** is one SQLite or JSONL file on the sidecar's own volume, so no Engine volume changes.
+- **Auth:** a bearer token per player, set in package settings.
+- **Permissions:** the manifest adds `network`. That's a permission change, which `AGENTS.md` treats as security-sensitive, so it needs validation notes.
+- **Deploy:** add the service and start it with `--no-deps`, which doesn't recreate either Engine. Installing the package on `marinara-wife` still needs an Engine restart. That restart needs explicit consent, after checking its logs for recent play.
+- **ponytail:** the sidecar trusts the docker network plus a bearer token, so its ceiling is same-host players. The upgrade path is Caddy with TLS, with no API change.
 
-- when the player sends the **next** turn after it (the reply is then superseded). The trigger is the package's prompt-context contributor, which runs on every generation with `chatId` and `mode` (S2). It publishes every visible GM reply that has a later user message, so a regenerate of the latest reply never publishes it. It returns no prompt text, so the system message and cache are untouched, and it sends the POST without awaiting it, because contributors have a 2 s deadline. Or
-- at **session end** (`game.routes` session rollover), which publishes everything still pending.
+## What carries over from v0.1
 
-If a published reply is later deleted or branched away from, the package posts a **retraction** for its entries, keyed by source reply id. Readers drop retracted entries on their next pull. Retractions are rare and visible in the feed ("…and then it was as if it had never happened").
-
-### What a reader folds in
-
-On each pull (at most every N minutes, and on chat open), package B:
-
-1. Reads the whole log in `seq` order, minus retractions and minus B's own entries.
-2. Converts each one for the reader's world: it keeps ids, marks it `by`, and strips the author's `days` and time steps.
-3. Drops any foreign entry that B's own *published* history supersedes. That means the same place or group, where B's entry has a later `seq` (see Conflicts).
-4. Writes the result as `meta.gameLedgerForeign` inside `withChatLock`. It rebuilds the key from the log every time, so the step is idempotent. The player's own carry and fold are never touched.
-
-So the reader's world is: built world, then their own earlier sessions (fold or carry), then other players' settled deeds, then this session's replies. The present is always recomputed, never stored.
-
-### Conflicts
-
-There is one canonical order, sidecar `seq`, applied with one honest exception: **your live session wins until it is published.**
-
-- Foreign entries fold *before* this session's replies. So while you play, your own `take` beats any foreign `take` of the same place, even a newer one. Once your entries are published they get a `seq`, and step 3 of the reader drops a foreign entry only when your published entry is newer. Across sessions, the later `seq` holds the place. The fold already handles a holder changing hands.
-- A foreign entry older than your own published one is dropped for you, but it stays in the log, so other players still see it in order.
-- If A `destroy`s a place B is standing in, B's GM sees it in B's present on the next generation. The plan accepts that this can feel abrupt; S4 tests how the GM narrates it.
-- Facts aren't re-answered on the reader's side. They are replayed as settled history. Re-answering, meaning re-checking a deed against the reader's own state, is out of scope; it diverges and costs model calls.
-
-### Time: West Marches rules
-
-West Marches tables solve this with a few rules that map well onto Marinara. In Ben Robbins' original game, and in the many tables that copied it:
-
-- **The calendar is real time.** Gygax's 1:1 rule: a day passes in the world for each day that passes for the players. Nobody owns the clock, so nobody drags anyone else along.
-- **Every session is an expedition from a home base.** You set out from town and you're back by the end of the session. Between sessions every party is "in town", so no one is ever stuck mid-dungeon while the world moves.
-- **Time on an expedition is pocket time.** The days you spend in the field are your own. The world doesn't wait for you, and you don't skip it ahead.
-- **News is shared in town.** The bar talk at session start is where you hear what the other group did.
-
-**Shared World's rule:**
-
-1. Each shared game has a **calendar**, `start + (real days since start) × ratio`. The default ratio is 1 world day per real day; at that rate the world's own weekly step happens about once a real week. The ratio is a setting for each shared game.
-2. **When a session starts**, the party's world day snaps forward to the calendar: `day = max(own day, calendar)`. If the party spent more days in the field than real time has passed, they are simply ahead for a while. Nothing rolls back, and everyone else catches up as real time passes.
-3. **During a session**, `[world: days=…]` moves only your own clock, which is pocket time, as now.
-4. Foreign changes are applied on the day they arrive. News of them still travels by the world's own reach, which depends on renown and distance.
-5. **About one session per adventuring day.** Marinara sessions don't force a return to town, but sessions are good practice in Game mode anyway. The Game Master prompt gets one line: "a session is one adventuring day; when the party beds down for the night, offer to end the session there." It's a nudge, not a rule, and it keeps pocket time short, so parties rarely run far ahead of the calendar.
-
-This needs one more piece in the Engine seam: a **calendar floor**, `meta.gameWorldDayFloor`. It is an `{ untilDay }` entry placed **last**, after the party's own replies, so the day is `max(own days, floor)` and never the sum. The world steps weekly up to it, and rollover *keeps* that step. The floor is a fact about time, not a foreign deed. That's about five more lines next to the `gameLedgerForeign` read.
-
-**Known divergence.** The world's own weekly business (`stepWorld`: brewing troubles, events ripening) runs in each player's fold. It depends on that player's present and party position, so background events can differ between your world and hers. Player deeds are canonical; the world's own churn is per-player "weather" for now. The upgrade path is for the first Engine to cross a week to publish that week's events, and for the other to adopt them instead of stepping on its own. That is spike S7, and only worth building if the drift is noticeable in play.
-
-### Lore
-
-The user story says the *lorebook* is shared too, not just the ledger. In scope:
-
-- **A shared seed lorebook** ships with the world file (kit lore, places, groups), same for everyone.
-- **Discovered lore**: people and places a party has met or named, published as small lorebook entries, keyed by name, written in the GM's words. The package keeps them in one package-owned lorebook per game. Because `gameLoreInTail` puts triggered lore on the final user message, new entries don't break the cache.
-- S5 answered: packages **cannot** write lorebooks. Persistence only has `listExistingLorebookEntryIds`, and `runInternalRoute` only reaches the package's own `/api/<id>` routes. v1 uses the fallback: discovered people go out as ledger `who` fields and shared NPCs, which the native world block already names. The seed lorebook is imported by hand at join time (below).
-
-## Joining a shared game
-
-Opt-in is per Game chat. Nothing is shared until a chat is linked, and an unlinked game on the same Engine stays private.
-
-1. **Start a shared game (once, by one player).** In the Home tab, choose *New shared game* and pick a library world (New Vegas). The package uploads that world's export and its snapshot hash to the sidecar, and sets the time ratio (1:1). The sidecar returns a shared-game id and makes the creator its first player.
-2. **Invite.** The creator gets a one-time join code. Either player can also be pre-seeded with a token in compose env, which is the simplest option for two people.
-3. **Join.** The other player enters the code in their Home tab. The sidecar trades it for a player token, which is saved in package settings and never shown again.
-4. **Get the world.** The Join panel offers the pinned world export and seed lorebook as downloads. The player imports them with Marinara's normal world and lorebook import. This is manual because a package can't create worlds, games or lorebooks (S5). Each player does it once.
-5. **Start and link.** The player starts a normal Game from that world, then presses *Link to shared game* in the Home tab. That sets `meta.sharedWorld = { gameId, playerId }` on the chat. The package checks that the chat's world snapshot hash matches the pinned one and refuses the link if it doesn't, so a world edited locally can't fork the shared world.
-6. **Leave.** *Unlink* stops publishing and clears `gameLedgerForeign`. The player's past entries stay in the shared log as history unless they are retracted.
-
-Automatic import is possible: the package receives the raw Fastify `app`, and an `app.inject` from loopback would get past auth. But no package does this, and it bypasses the package permission model. Using it is a separate decision for the user, not part of v1.
-
-## UI: the chronicle (core, not polish)
-
-A `home-browser-tab` page, built like the Call Sheet page with theme tokens and `mari-*` controls:
-
-- **Chronicle feed.** Newest first. Each card shows who (player and party name), where, what changed, and the chronicle line. Filter by player, place or group.
-- **By place.** A world map list where each place shows its current holder, recent changes and who made them. Changes since you last looked are marked.
-- **Calendar strip.** Today's world day, each party's day and how far ahead it is, and the next weekly step.
-- **My mark on the world.** What your deeds changed, and which of them other players have since run into.
-- **Join panel.** Create or join a shared game, download the pinned world, and link a Game chat. See *Joining a shared game*.
-
-In-chat, nothing new is needed: the GM learns of foreign changes through the native world news. An optional small chat-header pill reads "3 things changed in the world since you last played" and links to the feed.
+- **Kept:** the store and its revision-checked writes, the players list, link and unlink, the Home tab, the sync queue, `withChatLock` writes, and the prompt-context trigger.
+- **Next Session:** `sharedWorld` survives it, because the new session's metadata spreads every unlisted key (`...carryMeta`, `game.routes.ts` ~7932). The link's `since` message id won't exist in the new chat. Linking is by `gameId`, and a missing `since` means "from the start of this chat".
+- **Replaced:** `world.mjs` (world-ledger tags) becomes `merge.mjs`. `gameLedgerForeign` and `gameWorldDayFloor` go away.
+- **Fixed in passing:** v0.1 accepted chats with no world, silently. v1 validates against Classic game keys.
 
 ## Phases
 
-**Phase 0: spikes** (flash only, cost stated before each run, no `gemini-4-argon`)
+**Phase 0: checks (done, by reading code).** See *The two checks*. Still to read before Phase 1:
+- The real shape of `gameMaps` / `gameMap` and their node ids, and whether a GM map rewrite keeps ids.
+- The fields of `gameInventedItems`.
 
-- S1 (**done**, local branch `shared-world-seam`, commit `52a06ec2f`, regression `world-ledger-foreign`; the other world regressions pass, and `world-kit-battlefields` fails on base too): Build the Engine seam on a scratch branch. Fold a hand-written `gameLedgerForeign` set into a two-session game. Check that renown and standing don't move, holders do, the native news text mentions the changes, and rollover doesn't bake them into the fold.
-- S2 (answered): package agents in `agents.json` always make a model call. `agent-runtime` only wraps one, with `prepareContext` and `finalizeResult`. The trigger is the prompt-context contributor instead (see *Commit point*). It runs at `generate.routes.ts:4985`, before the lazy `gameRepliesBefore` at :5130. A foreign write that is awaited inside the deadline therefore lands in the same turn; otherwise it lands next turn. Both are fine. Metadata race: `withChatLock` uses the same `withChatMetadataPatchQueue` as the Engine's `patchMetadata`, and `patchMetadata` re-reads inside the queue. So a package write that re-reads under the lock is not lost.
-- S3: Find where the native world block and news land in the Game prompt (system message or tail). Measure the cache hit rate before and after a `gameLedgerForeign` write.
-- S4: Two flash games from the same world file. A destroys B's current town. Read how B's GM narrates it.
-- S5 (answered): no. Use the ledger-only fallback and manual seed import.
-- S6 (answered): package records can *reference* global-gallery items, but a package can't upload to the gallery. Images go to package storage and are served by the package's own route, which `avatarUrl` points at.
-- S7: Two flash games, advanced four weeks each on the calendar. Compare their `stepWorld` news and decide whether the divergence matters.
+Read both from a scratch dump of Fallout Duo's metadata. No generation needed.
 
-**Phase 1: one-player loop, local log**
+**Phase 1: one Engine, two chats, package storage as the hub.** No sidecar and no network.
+- Two Classic chats on `marinara`, linked to one shared game, with play on flash (cost stated first).
+- Proves the merge, add-only, sticky facts, the regression guard, join seeding, name matching and the news text.
+- Unit tests in `fork/packages/shared-world/tests/`:
+  - three-way merge per record and field
+  - add-only, both ways
+  - sticky dead and discovered
+  - stale regression re-applied, not pushed
+  - reputation never pushed
+  - join seed rewrites ids
+  - name match adopts the shared id
+  - the base survives a chat-id change (Next Session)
+  - news emitted once, then cleared
 
-- Package with `chat-read`, `chat-write`, `storage`, `ui`, `prompt-context`. The publisher is the prompt-context contributor (code, no model call, returns no text). It reads `[world:]` tags and bails unless `mode === "game"` and the chat is linked.
-- Commit point, publish to package storage, read back into a *second chat on the same Engine*. This proves the fold, retractions and the feed without any network.
-- Built (0.1.0): one game doc per shared game (revision-checked writes), background sync from the contributor plus **Sync now**, link and unlink from the Home page, and a linear port of the Engine's tag scanner. Still to do: the live test on the seam Engine.
+**Phase 2: sidecar, two instances.** The `shared-world` container, the `network` permission, tokens and `seq` pulls. Deploy to `marinara` first; `marinara-wife` only with consent.
 
-**Phase 2: sidecar, two Engines**
+**Phase 3: polish.** Chronicle feed cards, NPC avatars carried across instances (bytes through the sidecar, saved into package storage, served by the package route), and per-game settings for what's shared.
 
-- `shared-world` container plus `network` permission, tokens, `seq` pulls, and retractions.
-- Deploy: add the service to compose, then recreate `marinara` first. `marinara-wife` is recreated only with explicit consent, after checking its logs for recent play.
-
-**Phase 3: shared lore, NPCs and images**
-
-- Discovered people and places become lorebook entries (or the S5 fallback), plus NPC Registry facts if it is installed.
-- `gameNpcs` sharing (reputation stays local) and image upload and download (S6). Chronicle cards get images.
-
-**First shared game: Fallout: New Vegas**
-
-- Built from the built-in **Post-apocalyptic** starter kit (`starter-kits.ts`, family `wasteland`), then hand-edited in the world editor into the Mojave:
-  - places: Goodsprings, Primm, Novac, the Strip, Freeside, Hoover Dam, and the like
-  - groups: NCR, Caesar's Legion, Mr. House, the Kings, the Great Khans, the Boomers, the Brotherhood
-  - the dam and the Strip as the two places everyone fights over, which is good West Marches material
-- A seed lorebook of faction and setting lore, written for the two of you.
-- **It stays private.** The world file and lorebook use Bethesda's IP, so they live in the sidecar volume only, never in the public catalog or the package. The package ships no world.
-
-**Phase 4: meet up (synchronous)**
-
-- Players whose parties are in the same place opt in to a joint scene. The vehicle is the upstream multiplayer room in Game mode. It needs its own design, because a room is *one host-owned chat*, not two players' chats. Open questions:
-  - Which world does the room's GM see? Probably the host's present plus a snapshot of the guest's party.
-  - How do the room's `[world:]` tags flow back? Likely published once, `by` both players, with each player's chat getting a short summary reply.
-  - Package tools are unavailable in rooms, so the package can't act inside the room itself.
-- Not designed further until Phases 1–3 are played.
+**Later, if play asks for it:** a shared calendar floor and shared lorebook writes (each an Engine seam, so weigh them against *engine-fork-minimal*), and a "before turn" hook to remove the one-turn lag.
 
 ## Validation
 
-- Unit tests in `fork/packages/shared-world/tests/`:
-  - tag conversion
-  - idempotent carry rebuild
-  - retraction drop
-  - commit-point selection, including the swipe case: a reply that is still the latest is never published
-  - time rule: foreign `days` stripped
-  - NPC merge: reputation stays local, and the other party's notes are added as "heard"
-- Engine seam tests:
-  - in `ledger.ts`, a `by` deed changes holders but not renown or standing
-  - in `game-market.service.ts`, `gameLedgerForeign` is in the ledger, but rollover's fold and carry exclude it
-- Fork builder: build, entrypoint syntax, and package unit tests (`38da5bfac` builder), then catalog rebuild. Never hand-edit bundles or catalogs.
-- Calendar tests: the floor snaps forward at session start, never back, and rollover keeps it.
-- Play test: two flash games for an hour against one sidecar. Check the feed, news text and cache hit rate.
-
-## Decisions (2026-10-17)
-
-1. **Players:** the two of you, on the two existing instances. Sidecar on `caddy_network`.
-2. **Time:** West Marches calendar, with real time as the floor and pocket time in sessions.
-3. **Worlds:** one world per shared game. The first is New Vegas.
-4. **Sharing:** everything in a shared game is shared, including NPCs and images. Settings can narrow it.
-
-5. **Calendar ratio:** start at 1:1, adjustable per shared game.
-6. **Sessions:** the Game Master nudges toward about one session per adventuring day.
+- Package unit tests (above) and the fork builder: build, entrypoint syntax, tests, then a catalog rebuild. Never hand-edit bundles or catalogs.
+- Engine: none expected. If a seam turns out to be needed, it's one commit with its own regression test.
+- Play test: two flash chats for an hour.
+  - Check that NPCs and places cross over, dead stays dead, and the news reads well.
+  - Check that a party-turn reputation write and a session end don't spread deletions.
 
 ## Tune in playtest
 
-Everything below is a guess until the two of you play it:
-
-- **Ratio.** Raise it if the world feels slow (weekly news rarely turns over between sessions), or if you're constantly ahead of the calendar. The chronicle shows each party's day next to the calendar ("you are 4 days ahead"), so "constantly ahead" is visible rather than a feeling.
-- **The session nudge:** too pushy, or not enough?
-- **Background drift** between the two worlds (S7).
-- **News reach:** do the other player's deeds reach you too slowly or too fast through the world's own news?
+- Shared vs per-thread campaign plan and story arc.
+- How often to pull (timer interval).
+- Whether the one-turn lag is noticeable.
+- How news reads, and how much of it is too much.
