@@ -8,14 +8,22 @@ Working name: **Shared World** (package id `shared-world`). Two people each play
 - **This plan replaces it** with a sync of Classic game metadata. The two checks below were answered by reading code, with no generations or deploys.
 - **The Overworld seam is reverted** (`dd28c8f33` on the Engine's `custom-mods`, reverting `52a06ec2f`). The Classic sync needs no Engine change, and that keeps the fork minimal (memory: *engine-fork-minimal*).
 - **One instance may be the whole solution (2026-10-18).** If two chats on `marinara` sync well, she plays her chat on that instance and there's no sidecar at all. See *One instance first*.
-- **v0.2.2 is installed on `marinara` (2026-10-18):** the Classic sync, one instance, package storage as the hub. Code is `fork/packages/shared-world/merge.mjs` (pure merge) and `server.mjs` (store, sync, news, routes), with 12 unit tests. It needs no Engine change. Where the build differs from the design below, *Phase 0 findings* wins.
+- **v0.2.3 is installed on `marinara` (2026-10-18):** the Classic sync, one instance, package storage as the hub. Code is `fork/packages/shared-world/merge.mjs` (pure merge) and `server.mjs` (store, sync, news, routes), with 13 unit tests. It needs no Engine change. Where the build differs from the design below, *Phase 0 findings* wins.
   - **The model-free live test passed** on 0.2.0, with two throwaway Game chats made through the Engine API, the first seeded with a copy of Fallout Duo's world keys.
     - Join copied the cast and map, with reputation 0 and the start node.
     - Story arc stayed per chat, and `spatialContext` was not copied.
     - An Engine metadata patch crossed over to the other chat.
     - A 75 s idle (one background tick) wrote nothing.
   - **It found one bug:** the feed hid later edits. That is fixed in 0.2.1.
-  - **Not yet tested:** a model play test, to check that GMs use the news and that real turns merge cleanly. It costs about 0.4% of the weekly Agy Gemini bucket per flash call, roughly 8–15% for two setups and a few turns each.
+  - **The NanoGPT play test passed (0.2.3, 2026-10-18):** two Classic games on the NanoGPT subscription, turns sent through the Engine API, test chats deleted afterwards.
+    - B linked after its own setup and took A's cast and map.
+    - A discovery in B (Convict Camp) reached A, with A's party position kept.
+    - A reputation change in B (Trudy −15) stayed in B.
+    - The news "Discovered: Convict Camp" was delivered to A's GM on its next real turn.
+    - B's Next Session kept the link; the session end added 3 characters, which reached A with reputation 0.
+    - A 75 s idle wrote nothing, and there were no sync failures in the logs.
+  - **Learned:** Classic GM tags (map updates, reputation) are applied by the browser client after a reply, so API-driven turns skip them; the test called those game routes directly. New characters in Classic come mostly from setup and session end. The reputation route re-hydrates metadata and can reset the party position to the scene snapshot's location (Engine behavior, not Shared World's).
+  - **Fixed along the way:** 0.2.3 keeps news that Peek Prompt saw until the GM actually replies after it.
   - **0.2.2 adds Delete game.** It runs a last sync, unlinks the game's chats (each keeps its world as it is) and removes the game. The "SW live test" game has been deleted with it.
 - **Rejected alternatives:** upstream multiplayer rooms (one host-owned chat, the model doesn't answer both players, synchronous, not fun) and one Engine with two personas (not two independent threads).
 
