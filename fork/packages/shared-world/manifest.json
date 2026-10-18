@@ -10,7 +10,7 @@
   },
   "id": "shared-world",
   "name": "Shared World",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "One world for several Game mode adventures, each played at its own pace. Create a shared game, add its players, and link each player's Game mode chat to it right after setup: the first chat seeds the world and later ones join it. Characters, maps, discovered places, invented items and the world overview stay in sync between the linked chats; chat history, reputation, the story arc and the party's position stay each player's own. Each Game Master hears what the other parties changed as news. Works on a stock Marinara Engine. Install it, restart Marinara Engine when prompted, then open Home → Shared World.",
   "engine": {
     "min": "2.5.0",
@@ -50,8 +50,8 @@
     },
     {
       "path": "client.js",
-      "sha256": "eeb93a129b485bc17e996b4fb0c52642b2ad153512abe7c08b16058c281dc4dc",
-      "bytes": 10729
+      "sha256": "ccce8c4b6fae7e308611b6694640daa24cb067ee597c08378db03a19a5af62e5",
+      "bytes": 11191
     },
     {
       "path": "merge.mjs",
@@ -60,8 +60,8 @@
     },
     {
       "path": "server.mjs",
-      "sha256": "8dd0e58713d006efc1241c91b220c5780270f93d78375f189071e3eb4db125a5",
-      "bytes": 15287
+      "sha256": "637bedab7c90c17290d6818751581c303a5b67b02a15fff8fb59ed95c5b3126f",
+      "bytes": 16095
     }
   ]
 }

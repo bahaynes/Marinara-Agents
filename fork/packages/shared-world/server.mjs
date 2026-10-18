@@ -59,6 +59,13 @@ export function createStore(documents) {
       });
       return game;
     },
+    async remove(gameId) {
+      for (let attempt = 0; attempt < WRITE_RETRIES; attempt += 1) {
+        const { revision } = await load(gameId);
+        if (await documents.remove(PACKAGE_ID, gameDocId(gameId), revision)) return;
+      }
+      throw new WorldError(409, "The shared game kept changing. Try again.");
+    },
     /** Read, change and write a game, retrying when another write landed first. */
     async update(gameId, change) {
       for (let attempt = 0; attempt < WRITE_RETRIES; attempt += 1) {
@@ -305,6 +312,14 @@ async function unlinkChat(runtime, body) {
   return { ok: true };
 }
 
+/** Deleting a game unlinks its chats first; each keeps the world as it is. */
+async function deleteGame(runtime, store, gameId) {
+  await store.load(gameId);
+  for (const { chat } of await linkedChats(runtime.persistence, gameId)) await unlinkChat(runtime, { chatId: chat.id });
+  await store.remove(gameId);
+  return { ok: true };
+}
+
 export async function activate(context) {
   const runtime = context.api.runtime;
   const store = createStore(runtime.persistence.documents);
@@ -359,6 +374,10 @@ export async function activate(context) {
       routes.get(
         "/games/:gameId",
         handle(async ({ gameId }) => gameView((await store.load(gameId)).game)),
+      );
+      routes.delete(
+        "/games/:gameId",
+        handle(({ gameId }) => sync(gameId).then(() => deleteGame(runtime, store, gameId))),
       );
       routes.post(
         "/games/:gameId/players",
