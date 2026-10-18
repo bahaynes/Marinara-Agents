@@ -57,9 +57,27 @@ function fakeRuntime() {
       chats.get(chatId).metadata = structuredClone(metadata);
     },
     withChatLock: (_chatId, op) => op(),
+    async createMessageWithSwipe(input) {
+      messages.get(input.chatId).push({ ...input });
+      return input;
+    },
+    async updateChatActivity() {},
+  };
+  const narrator = { prompts: [], reply: "The wind turns.", fail: false };
+  const languageModels = {
+    async resolveForRequest() {
+      return {
+        async chatComplete(prompt) {
+          narrator.prompts.push(prompt);
+          if (narrator.fail) throw new Error("model down");
+          return { content: narrator.reply };
+        },
+      };
+    },
   };
   return {
-    runtime: { persistence, logger: {} },
+    narrator,
+    runtime: { persistence, languageModels, logger: {} },
     persistence,
     meta: (chatId) => chats.get(chatId).metadata,
     /** An Engine write: the whole metadata, as the Engine holds it. */
@@ -79,6 +97,7 @@ function fakeRuntime() {
       });
       messages.set(id, []);
     },
+    messagesOf: (chatId) => messages.get(chatId),
     say(chatId, id, role, content = "") {
       messages.get(chatId).push({ id, chatId, role, content, createdAt: new Date(Date.now() + 1000).toISOString() });
     },
@@ -466,4 +485,70 @@ test("parties standing at the same place are told about each other, and the page
   world.say("a1", "u2", "user", "Wait.");
   assert.doesNotMatch((await news("a1")) ?? "", /shared_world_presence/);
   assert.deepEqual((await route("GET /games/:gameId", {}, { gameId: game.id })).together, []);
+});
+
+test("a scene waits for both players, hides pending actions, and writes one narration into both chats", async () => {
+  const { world, route, game, alice, bob } = await linkedPair();
+  const params = { gameId: game.id };
+  const state = (player) => route("POST /games/:gameId/scene/state", { playerId: player.id }, params);
+  const act = (player, text) => route("POST /games/:gameId/scene/act", { playerId: player.id, text }, params);
+
+  const started = await route("POST /games/:gameId/scene/start", { playerId: alice.id }, params);
+  assert.deepEqual(started.scene.members.map((member) => [member.name, member.acted]), [["Alice", false], ["Bob", false]]);
+  assert.equal((await route("POST /games/:gameId/scene/start", { playerId: bob.id }, params)).error, "A scene is already open.");
+
+  await act(alice, "I raise a hand and call out.");
+  assert.equal((await act(alice, "again")).error, "You already acted this round.");
+  const seenByBob = (await state(bob)).scene;
+  assert.equal(seenByBob.mine, null, "Bob cannot read Alice's pending action");
+  assert.deepEqual(seenByBob.members.map((member) => member.acted), [true, false]);
+  assert.doesNotMatch(JSON.stringify(seenByBob), /call out/);
+  assert.equal(world.narrator.prompts.length, 0, "nothing is narrated until both have acted");
+
+  await act(bob, "I step out of the shade.");
+  assert.equal(world.narrator.prompts.length, 1);
+  assert.match(world.narrator.prompts[0][1].content, /Alice: I raise a hand[\s\S]*Bob: I step out/);
+  for (const chatId of ["a1", "b1"]) {
+    const last = world.messagesOf(chatId).at(-1);
+    assert.equal(last.role, "assistant");
+    assert.match(last.content, /\*\*Alice:\*\* I raise a hand[\s\S]*\*\*Bob:\*\* I step out[\s\S]*The wind turns\./);
+  }
+  const after = (await state(alice)).scene;
+  assert.equal(after.round, 2);
+  assert.equal(after.log.length, 1);
+  assert.deepEqual(after.members.map((member) => member.acted), [false, false]);
+
+  await route("POST /games/:gameId/scene/end", {}, params);
+  assert.equal((await state(alice)).scene, null);
+});
+
+test("a scene cannot start while the parties are apart", async () => {
+  const { world, route, game, sync, alice } = await linkedPair();
+  world.engineWrite("b1", (meta) => {
+    meta.gameMap.partyPosition = "primm";
+    return meta;
+  });
+  await sync();
+  const result = await route("POST /games/:gameId/scene/start", { playerId: alice.id }, { gameId: game.id });
+  assert.match(result.error, /not at the same place/);
+});
+
+test("a failed narration keeps the actions and the round can be retried", async () => {
+  const { world, route, game, alice, bob } = await linkedPair();
+  const params = { gameId: game.id };
+  await route("POST /games/:gameId/scene/start", { playerId: alice.id }, params);
+  world.narrator.fail = true;
+  await route("POST /games/:gameId/scene/act", { playerId: alice.id, text: "I wait." }, params);
+  const failed = await route("POST /games/:gameId/scene/act", { playerId: bob.id, text: "I wave." }, params);
+  assert.ok(failed.error);
+  assert.equal(world.messagesOf("a1").length, 0, "nothing was written");
+  const view = (await route("POST /games/:gameId/scene/state", { playerId: alice.id }, params)).scene;
+  assert.equal(view.resolving, false);
+  assert.equal(view.mine, "I wait.");
+  world.narrator.fail = false;
+  assert.equal(world.narrator.prompts.length, 1, "the failed call was the only one");
+  await route("POST /games/:gameId/scene/retry", { playerId: alice.id }, params);
+  assert.equal(world.messagesOf("a1").length, 1);
+  assert.equal(world.messagesOf("b1").length, 1);
+  assert.equal((await route("POST /games/:gameId/scene/retry", {}, params)).error, "Nothing to retry.");
 });

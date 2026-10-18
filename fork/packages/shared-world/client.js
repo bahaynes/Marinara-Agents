@@ -44,7 +44,9 @@
   class SharedWorldElement extends HTMLElement {
     constructor() {
       super();
-      this.state = { games: null, game: null, chats: [], busy: "", error: "" };
+      this.state = { games: null, game: null, chats: [], busy: "", error: "", scene: null, playAs: "" };
+      this.draft = "";
+      this.sceneTimer = null;
       this._props = null;
       this.addEventListener("click", (event) => this.onClick(event));
     }
@@ -60,6 +62,52 @@
     connectedCallback() {
       this.render();
       void this.run("Loading", () => this.loadGames());
+      this.addEventListener("input", (event) => {
+        if (event.target.matches("[data-scene-text]")) this.draft = event.target.value;
+      });
+      this.addEventListener("change", (event) => {
+        if (!event.target.matches("[data-play-as]")) return;
+        this.state.playAs = event.target.value;
+        this.draft = "";
+        void this.pollScene().then(() => this.paintScene());
+      });
+      this.sceneTimer = setInterval(() => void this.pollScene(), 3000);
+    }
+
+    disconnectedCallback() {
+      clearInterval(this.sceneTimer);
+    }
+
+    /** The scene card refreshes by itself while a scene is open; only its own parts are repainted, so a typed action survives. */
+    async pollScene() {
+      const game = this.state.game;
+      if (!game || !this.state.playAs || this.state.busy) return;
+      try {
+        const { scene } = await call(`/games/${encodeURIComponent(game.id)}/scene/state`, "POST", { playerId: this.state.playAs });
+        const before = this.sceneSignature();
+        this.state.scene = scene;
+        if (this.sceneSignature() !== before) this.paintScene();
+      } catch {
+        /* the next poll tries again */
+      }
+    }
+
+    sceneSignature() {
+      const scene = this.state.scene;
+      return scene ? JSON.stringify([scene.round, scene.resolving, scene.mine, scene.members.map((m) => m.acted), scene.log.length]) : "none";
+    }
+
+    paintScene() {
+      const holder = this.$("[data-scene]");
+      if (holder) holder.innerHTML = this.renderScene();
+      const box = this.$("[data-scene-text]");
+      if (box) box.value = this.draft;
+    }
+
+    async sceneCall(path, body = {}) {
+      const game = this.state.game;
+      const { scene } = await call(`/games/${encodeURIComponent(game.id)}/scene/${path}`, "POST", { playerId: this.state.playAs, ...body });
+      this.state.scene = scene;
     }
 
     $(selector) {
@@ -87,6 +135,13 @@
       const [game, chats] = await Promise.all([call(`/games/${encodeURIComponent(gameId)}`), call("/chats")]);
       this.state.game = game;
       this.state.chats = chats;
+      const ids = game.together?.[0]?.playerIds ?? [];
+      if (!ids.includes(this.state.playAs)) this.state.playAs = ids[0] ?? "";
+      this.state.scene = null;
+      if (this.state.playAs) {
+        const { scene } = await call(`/games/${encodeURIComponent(game.id)}/scene/state`, "POST", { playerId: this.state.playAs });
+        this.state.scene = scene;
+      }
     }
 
     onClick(event) {
@@ -136,12 +191,72 @@
           await this.loadGames();
         });
       }
+      if (action === "scene-start") {
+        this.state.playAs = this.$("[data-play-as]")?.value || this.state.playAs;
+        return void this.run("Starting the scene", () => this.sceneCall("start"));
+      }
+      if (action === "scene-act") {
+        const text = this.$("[data-scene-text]")?.value;
+        return void this.run("Sending", async () => {
+          await this.sceneCall("act", { text });
+          this.draft = "";
+        });
+      }
+      if (action === "scene-retry") return void this.run("Narrating", () => this.sceneCall("retry"));
+      if (action === "scene-end") {
+        return void this.run("Ending the scene", async () => {
+          await this.sceneCall("end");
+          this.state.scene = null;
+        });
+      }
       if (action === "sync") {
         return void this.run("Syncing", async () => {
           await call(`/games/${encodeURIComponent(game.id)}/sync`, "POST", {});
           await this.openGame(game.id);
         });
       }
+    }
+
+    renderScene() {
+      const { game, scene, playAs } = this.state;
+      const together = game?.together?.[0];
+      if (!scene) {
+        if (!together) return `<h2 class="text-sm font-semibold">Scene</h2><p class="${MUTED}">When two parties stand at the same place, they can play a round together here.</p>`;
+        const options = together.playerIds
+          .map((id, index) => `<option value="${escapeHtml(id)}" ${id === playAs ? "selected" : ""}>${escapeHtml(together.players[index] ?? "Player")}</option>`)
+          .join("");
+        return `<h2 class="text-sm font-semibold">Scene</h2>
+          <p class="${MUTED}">${escapeHtml(together.players.join(" and "))} are together at ${escapeHtml(together.place)}. Each player writes their own character's action; once everyone has, one narration goes into every chat.</p>
+          <div class="flex flex-wrap items-center gap-2"><span class="${MUTED}">Playing as</span>
+            <select class="${FIELD}" data-play-as>${options}</select>
+            <button type="button" class="${BTN_PRIMARY}" data-action="scene-start">Go synchronous</button></div>`;
+      }
+      const color = (name) => {
+        const index = scene.members.findIndex((member) => member.name === name);
+        return `hsl(${(index < 0 ? 0 : index) * 150 + 20} 70% 70%)`;
+      };
+      const log = scene.log
+        .map(
+          (entry) => `<div class="space-y-1 border-t border-[var(--border)] pt-2">
+            ${entry.actions.map((a) => `<div class="text-sm"><b style="color:${color(a.name)}">${escapeHtml(a.name)}</b> ${escapeHtml(a.text)}</div>`).join("")}
+            <div class="whitespace-pre-wrap text-sm italic">${escapeHtml(entry.narration)}</div></div>`,
+        )
+        .join("");
+      const chips = scene.members
+        .map((m) => `<span class="text-xs" style="color:${color(m.name)}">${escapeHtml(m.name)} ${m.acted ? "✓" : "…"}</span>`)
+        .join(" ");
+      const everyoneActed = scene.members.every((m) => m.acted);
+      const waiting = scene.members.filter((m) => !m.acted).map((m) => m.name);
+      const input = scene.mine
+        ? `<p class="${MUTED}">${scene.resolving ? "Narrating…" : everyoneActed ? "The narration failed." : `Waiting for ${escapeHtml(waiting.join(" and "))}.`}</p>
+           ${everyoneActed && !scene.resolving ? `<button type="button" class="${BTN}" data-action="scene-retry">Narrate again</button>` : ""}
+           <p class="text-sm">Your action: ${escapeHtml(scene.mine)}</p>`
+        : `<textarea class="${FIELD} w-full" rows="3" data-scene-text placeholder="What does your character do?"></textarea>
+           <button type="button" class="${BTN_PRIMARY}" data-action="scene-act">Send</button>`;
+      return `<div class="flex items-center gap-2"><h2 class="flex-1 text-sm font-semibold">Scene at ${escapeHtml(scene.place)} · round ${scene.round}</h2>
+          ${chips}<select class="${FIELD}" data-play-as aria-label="Playing as">${scene.members.map((m) => `<option value="${escapeHtml(m.playerId)}" ${m.playerId === playAs ? "selected" : ""}>${escapeHtml(m.name)}</option>`).join("")}</select>
+          <button type="button" class="${BTN}" data-action="scene-end">End scene</button></div>
+        ${log}<div class="space-y-2 border-t border-[var(--border)] pt-2">${input}</div>`;
     }
 
     renderGames() {
@@ -203,6 +318,7 @@
           <button type="button" class="${BTN}" data-action="sync">Sync now</button>
           <button type="button" class="${BTN}" data-action="delete-game">Delete game</button>
         </div>
+        <div class="${CARD}" data-scene>${this.renderScene()}</div>
         ${(game.together ?? [])
           .map(
             (t) =>
@@ -243,6 +359,8 @@
         </header>
         <div class="sw-body">${game ? this.renderGame() : this.renderGames()}</div>
       </div>`;
+      const box = this.$("[data-scene-text]");
+      if (box) box.value = this.draft;
       if (busy) for (const button of this.querySelectorAll("button")) if (button.dataset.action !== "close") button.disabled = true;
     }
   }
