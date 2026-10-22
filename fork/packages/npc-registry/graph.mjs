@@ -5,7 +5,7 @@
 // to the message + swipe that produced it, so swiping, regenerating or deleting a
 // message hides its facts with no cleanup, and swiping back restores them.
 
-export const SINGLE = new Set(["name", "role", "archetype", "appearance", "status", "location", "faction"]);
+export const SINGLE = new Set(["name", "gender", "role", "archetype", "appearance", "status", "location", "faction"]);
 export const MULTI = new Set(["alias", "trait", "deed"]);
 const MAX_VALUE = 300;
 
@@ -220,11 +220,13 @@ export function applyOps(graph, ops, anchor, swipes, { exclude = [] } = {}) {
     const a = graph.assertions.find((assertion) => assertion.id === id)?.a;
     return a ? (position.get(a.m) ?? -1) > at : false;
   };
+  // A manual (unanchored) fact is a user correction: the extractor never overrides it.
+  const isPinned = (id) => !graph.assertions.find((assertion) => assertion.id === id)?.a;
   const setField = (s, field, value) => {
     const same = liveFor(s, field, value);
     const all = liveFor(s, field);
     if (same.length && same.length === all.length) return; // already the current value
-    if (all.some(isLater)) return; // a later message already set it
+    if (all.some(isLater) || all.some(isPinned)) return; // a later message or the user already set it
     add(s, field, value, all);
   };
 
