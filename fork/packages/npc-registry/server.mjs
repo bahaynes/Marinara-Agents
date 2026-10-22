@@ -1,26 +1,14 @@
-// NPC Registry: one graph per chat (see graph.mjs), written only by the
-// post-processing extractor agent, read by the npc_registry_lookup tool and the
-// roster prompt context.
+// NPC Registry: the names (and pronouns) already used in a story, so the story model
+// never duplicates one. One graph per chat (see graph.mjs), written by the
+// post-processing extractor agent, read by the roster prompt context and the
+// npc_registry_lookup name check. NPC descriptions live in Lorebook Keeper entries.
 
-import {
-  activeSwipes,
-  applyOps,
-  conceptText,
-  cosine,
-  emptyGraph,
-  findByName,
-  inheritGraph,
-  nameCollision,
-  resolve,
-  wordOverlap,
-} from "./graph.mjs";
+import { activeSwipes, applyOps, emptyGraph, findByName, inheritGraph, nameCollision, resolve } from "./graph.mjs";
 
 export const PACKAGE_ID = "npc-registry";
 const DOC_KIND = "npc-graph";
 const MODES = new Set(["roleplay", "game"]);
 const ROSTER_LIMIT = 150;
-const DEED_LIMIT = 8; // newest deeds per card, so mentioned cards stay small
-const ARCHETYPE_THRESHOLD = { embedding: 0.82, words: 0.5 };
 
 const docId = (chatId) => `${PACKAGE_ID}:${chatId}`;
 const parseMeta = (value) => {
@@ -86,112 +74,48 @@ export function createStore(runtime) {
   return { load, save, current };
 }
 
-// ponytail: in-memory embedding cache, rebuilt after restart; persist vectors in the
-// graph doc if cold-start lookups get slow.
-const embeddingCache = new Map();
-async function embedAll(runtime, texts) {
-  const host = typeof runtime.resolveEmbeddings === "function" ? await runtime.resolveEmbeddings() : runtime.embeddings;
-  if (!host?.embed) return null;
-  const missing = texts.filter((text) => !embeddingCache.has(`${host.spaceId}\n${text}`));
-  if (missing.length) {
-    const vectors = await host.embed(missing);
-    if (!vectors) return null;
-    missing.forEach((text, index) => embeddingCache.set(`${host.spaceId}\n${text}`, vectors[index]));
-  }
-  return texts.map((text) => embeddingCache.get(`${host.spaceId}\n${text}`));
-}
-
 const publicCard = (entry) => ({
   name: entry.name,
   ...(entry.aliases.length ? { aliases: entry.aliases } : {}),
-  ...Object.fromEntries(
-    ["gender", "role", "archetype", "appearance", "status", "location", "faction"]
-      .filter((field) => entry[field])
-      .map((field) => [field, entry[field]]),
-  ),
-  ...(entry.traits.length ? { traits: entry.traits } : {}),
-  ...(entry.deeds.length ? { deeds: entry.deeds.slice(-DEED_LIMIT) } : {}),
-  ...(entry.relations.length ? { relations: entry.relations.map((r) => `${r.type}: ${r.other}`) } : {}),
+  ...(entry.gender ? { gender: entry.gender } : {}),
 });
 
+/** Name check: established NPCs whose name or alias matches or collides with `name`. */
 export async function lookup(runtime, store, chatId, args) {
   const chat = await runtime.persistence.getChat(chatId);
   if (!chat || !isEnabled(parseMeta(chat.metadata), chat.mode)) {
     return { enabled: false, note: "The NPC registry is not active in this chat." };
   }
+  const name = typeof args.name === "string" ? args.name.trim() : "";
+  if (!name) return { verdict: "clear", matches: [], note: "Pass a name to check." };
   const resolved = await store.current(chatId);
-  const npcs = [...resolved.npcs.values()];
-  if (typeof args.name === "string" && args.name.trim()) {
-    const exact = findByName(resolved, args.name);
-    const matches = exact
-      ? [exact]
-      : npcs.filter((entry) => [entry.name, ...entry.aliases].some((n) => nameCollision(args.name, n))).slice(0, 3);
-    return matches.length
-      ? { found: matches.map(publicCard) }
-      : { found: [], note: "No established NPC by that name." };
-  }
-
-  const proposed = typeof args.proposed_name === "string" ? args.proposed_name : "";
-  const concept = typeof args.concept === "string" ? args.concept : "";
-  const nameConflicts = proposed
-    ? npcs.flatMap((entry) => {
+  const exact = findByName(resolved, name);
+  const matches = exact
+    ? [{ ...publicCard(exact), why: "established NPC" }]
+    : [...resolved.npcs.values()].flatMap((entry) => {
         for (const candidate of [entry.name, ...entry.aliases]) {
-          const why = nameCollision(proposed, candidate);
-          if (why) return [{ existing: entry.name, why }];
+          const why = nameCollision(name, candidate);
+          if (why) return [{ ...publicCard(entry), why }];
         }
         return [];
-      })
-    : [];
-
-  let archetypeOverlaps = [];
-  const withConcept = npcs.filter((entry) => conceptText(entry));
-  if (concept && withConcept.length) {
-    const texts = withConcept.map(conceptText);
-    const vectors = await embedAll(runtime, [concept, ...texts]).catch(() => null);
-    archetypeOverlaps = withConcept
-      .map((entry, index) =>
-        vectors
-          ? { entry, score: cosine(vectors[0], vectors[index + 1]), kind: "embedding" }
-          : { entry, score: wordOverlap(concept, texts[index]), kind: "words" },
-      )
-      .filter(({ score, kind }) => score >= ARCHETYPE_THRESHOLD[kind])
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 3)
-      .map(({ entry, score }) => ({
-        existing: entry.name,
-        role: entry.role ?? null,
-        archetype: entry.archetype ?? null,
-        similarity: Math.round(score * 100) / 100,
-      }));
-  }
-  const clear = !nameConflicts.length && !archetypeOverlaps.length;
-  return {
-    verdict: clear ? "clear" : "conflict",
-    nameConflicts,
-    archetypeOverlaps,
-    note: clear
-      ? "No collision with established NPCs."
-      : "Reuse the existing NPC if it fits; otherwise pick a clearly different name and concept.",
-  };
+      });
+  return matches.length
+    ? {
+        verdict: exact ? "established" : "conflict",
+        matches: matches.slice(0, 5),
+        note: exact
+          ? "This NPC already exists; keep their established pronouns."
+          : "Reuse the existing NPC if it is the same person; otherwise pick a clearly different name.",
+      }
+    : { verdict: "clear", matches: [], note: "No established NPC by that name or a similar one." };
 }
 
-/** The extractor's view: the roster plus full cards for NPCs the new message mentions. */
+/** The extractor's view: the roster as [id, name, gender, ...aliases]. */
 export async function prepare(store, context) {
   if (!MODES.has(context?.chatMode)) return null;
   const resolved = await store.current(context.chatId);
-  const text = (context.mainResponse ?? "").toLowerCase();
-  const npcs = [...resolved.npcs.values()];
-  const mentioned = npcs.filter((entry) =>
-    [entry.name, ...entry.aliases].some((n) =>
-      n
-        .toLowerCase()
-        .split(/\s+/)
-        .some((word) => word.length >= 3 && text.includes(word)),
-    ),
-  );
   return {
-    roster: npcs.map((entry) => [entry.id, entry.name, ...entry.aliases]),
-    mentioned: mentioned.slice(0, 20).map((entry) => ({ id: entry.id, ...publicCard(entry) })),
+    roster: [...resolved.npcs.values()].map((entry) => [entry.id, entry.name, entry.gender ?? "", ...entry.aliases]),
     notNpcs: [...(context.characters ?? []).map((c) => c.name), context.persona?.name].filter(Boolean),
   };
 }
@@ -255,9 +179,8 @@ export function rosterContext(store) {
       .map((entry) => (entry.gender ? `${entry.name} (${entry.gender})` : entry.name))
       .slice(0, ROSTER_LIMIT);
     const head =
-      "NPC registry: established named NPCs in this story. Reuse them instead of inventing look-alikes. " +
-      "Before giving a new character a name, call npc_registry_lookup with proposed_name and concept; " +
-      "call it with name to recall an NPC's established details.";
+      "NPC registry: named NPCs already in this story, with their pronouns. Keep those pronouns. " +
+      "Never give a new character one of these names or a near-copy; if unsure, call npc_registry_lookup with the name.";
     return names.length ? `${head}\nEstablished NPCs: ${names.join(", ")}` : head;
   };
 }
@@ -266,16 +189,14 @@ const TOOL = {
   name: "lookup",
   description:
     "Only use when the system prompt contains an NPC registry block; otherwise ignore this tool. " +
-    "NPC registry for this story. Pass `name` to get an established NPC's facts and key deeds. Before introducing a new " +
-    "named character, pass `proposed_name` and `concept` (role/archetype in a few words) to check for name " +
-    "or archetype collisions with existing NPCs.",
+    "Checks a character name against the NPCs already in this story: returns the established NPC (with pronouns) " +
+    "or names that are too similar. Call it before naming a new character.",
   parameters: {
     type: "object",
     properties: {
-      name: { type: "string", description: "Name of an existing NPC to recall." },
-      proposed_name: { type: "string", description: "Name you intend to give a new character." },
-      concept: { type: "string", description: "The new character's role or archetype, a few words." },
+      name: { type: "string", description: "The name to check: a new character's intended name or an existing NPC." },
     },
+    required: ["name"],
     additionalProperties: false,
   },
 };
