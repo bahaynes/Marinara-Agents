@@ -59,6 +59,17 @@ test("deeds list in story order even when an older reply is recorded later", () 
   ]);
 });
 
+test("a manual (unanchored) fact is never overridden by the extractor", () => {
+  const graph = emptyGraph();
+  const swipes = activeSwipes(msgs(["m1", 0], ["m2", 0]));
+  applyOps(graph, [{ op: "create", name: "Old Pruett", gender: "he" }], { m: "m1", w: 0 }, swipes);
+  const id = Object.keys(graph.nodes)[0];
+  const sup = graph.assertions.filter((a) => a.p === "gender").map((a) => a.id);
+  graph.assertions.push({ id: "pin", s: id, p: "gender", o: "he", sup });
+  applyOps(graph, [{ op: "set", npc: id, field: "gender", value: "she" }], { m: "m2", w: 0 }, swipes);
+  assert.equal(resolve(graph, swipes).npcs.get(id).gender, "he");
+});
+
 test("create of a known name or alias updates the same NPC", () => {
   const graph = emptyGraph();
   const swipes = activeSwipes(msgs(["m1", 0], ["m2", 0]));
