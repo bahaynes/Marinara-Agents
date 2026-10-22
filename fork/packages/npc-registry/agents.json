@@ -2,18 +2,21 @@
   {
     "id": "npc-registry",
     "name": "NPC Registry",
-    "description": "Keeps one record per NPC in a per-chat knowledge graph, updated from each reply, and lets the story model look NPCs up so new characters do not collide with existing names or archetypes.",
+    "description": "Keeps the names and pronouns of every named NPC in a story, so the story model never invents a duplicate or flips someone's pronouns.",
     "author": "custom-mods",
     "phase": "post_processing",
     "enabledByDefault": false,
     "defaultInjectAsSection": false,
     "category": "tracker",
-    "modeAllowlist": ["roleplay", "game"],
+    "modeAllowlist": [
+      "roleplay",
+      "game"
+    ],
     "defaultTools": [],
     "defaultSettings": {
       "resultType": "context_injection",
       "contextSize": 4,
-      "maxTokens": 1500,
+      "maxTokens": 600,
       "temperature": 0,
       "contextSources": {
         "chatHistory": true,
@@ -27,6 +30,6 @@
       }
     },
     "execution": "pipeline",
-    "defaultPromptTemplate": "You maintain the NPC registry for this story. Read the newly completed turn in <assistant_response> and record durable facts about named non-player characters. Use recent chat history only to resolve who is meant; record nothing that only appears in history.\n\n<agent_runtime_context> holds:\n- roster: every known NPC as [id, name, ...aliases]\n- mentioned: full current records of NPCs the new turn may mention\n- notNpcs: main characters and the user's persona; never record these\n\nReturn ONLY one JSON object: {\"ops\": [...]}. Return {\"ops\": []} when nothing durable changed.\n\nOperations (refer to an existing NPC by its roster id):\n- {\"op\":\"create\",\"ref\":\"new1\",\"name\":\"...\",\"role\":\"...\",\"archetype\":\"...\",\"appearance\":\"...\",\"traits\":[\"...\"]} for a NAMED character not in the roster. Only name is required. Use ref to point later ops in this batch at it.\n- {\"op\":\"set\",\"npc\":\"<id>\",\"field\":\"name|gender|role|archetype|appearance|status|location|faction\",\"value\":\"...\"} replaces that field.\n- {\"op\":\"add\",\"npc\":\"<id>\",\"field\":\"alias|trait|deed\",\"value\":\"...\"}\n- {\"op\":\"retract\",\"npc\":\"<id>\",\"field\":\"alias|trait\",\"value\":\"...\"} when the story shows a trait or alias is no longer true.\n- {\"op\":\"relate\",\"npc\":\"<id>\",\"type\":\"sibling_of|parent_of|works_for|ally_of|enemy_of|...\",\"other\":\"<id or ref>\"}\n- {\"op\":\"retract\",\"npc\":\"<id>\",\"field\":\"rel:<type>\",\"value\":\"<other id>\"} when a relationship ends.\n- {\"op\":\"merge\",\"npc\":\"<duplicate id>\",\"into\":\"<original id>\"} when the turn reveals two roster entries are the same person.\n\nRules:\n- A character introduced by title or description only (no name) is not recorded until named. When a known NPC's real name is revealed, set name and add the old name as an alias instead of creating a new NPC.\n- Before create, check the roster and aliases; if the person is already there, update them instead.\n- Fields are short phrases, not sentences. role = what they do; archetype = the story type they fill; status = alive, dead, missing, captured, and similar; appearance = stable visible features.\n- Record only what the turn states or plainly shows. Never guess. Skip passing moods and minor actions.\n- gender = the pronouns the story uses for them: he, she or they. Set it when a card lacks it and the turn shows it. Once set, change it only if the story explicitly reveals it was wrong; a reply that slips and uses other pronouns is a mistake, not a change.\n- deed = a story-significant act the NPC performed in this turn that later scenes should remember: a betrayal, rescue, killing, confession, theft, promise, discovery or decision. One short past-tense phrase per deed. Do not repeat deeds already on their card; do not put deeds in traits.\n- Never output reasoning, markdown, or text outside the JSON."
+    "defaultPromptTemplate": "You maintain the NPC name registry for this story: which named non-player characters exist and the pronouns the story uses for them. Descriptions, traits and history are recorded elsewhere; never record them here.\n\nRead the newly completed turn in <assistant_response>. Use recent chat history only to resolve who is meant; record nothing that only appears in history.\n\n<agent_runtime_context> holds:\n- roster: every known NPC as [id, name, pronouns, ...aliases]\n- notNpcs: main characters and the user's persona; never record these\n\nReturn ONLY one JSON object: {\"ops\": [...]}. Return {\"ops\": []} when nothing changed, which is most turns.\n\nOperations (refer to an existing NPC by its roster id):\n- {\"op\":\"create\",\"name\":\"...\",\"gender\":\"he|she|they\"} for a NAMED character not in the roster. Include gender when the turn shows it.\n- {\"op\":\"set\",\"npc\":\"<id>\",\"field\":\"name|gender\",\"value\":\"...\"}\n- {\"op\":\"add\",\"npc\":\"<id>\",\"field\":\"alias\",\"value\":\"...\"} for another name, title or nickname the story uses for them.\n- {\"op\":\"retract\",\"npc\":\"<id>\",\"field\":\"alias\",\"value\":\"...\"}\n- {\"op\":\"merge\",\"npc\":\"<duplicate id>\",\"into\":\"<original id>\"} when the turn reveals two roster entries are the same person.\n\nRules:\n- A character introduced by title or description only (no name) is not recorded until named. When a known NPC's real name is revealed, set name and add the old name as an alias instead of creating a new NPC.\n- Before create, check the roster names and aliases; if the person is already there, do not create them again.\n- gender = the pronouns the story uses: he, she or they. Set it when the roster lacks it and the turn shows it. Once set, change it only if the story explicitly reveals it was wrong; a reply that slips and uses other pronouns or a mismatched title is a mistake, not a change, and is not an alias.\n- Never guess. Never output reasoning, markdown, or text outside the JSON."
   }
 ]
