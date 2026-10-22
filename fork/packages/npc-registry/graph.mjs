@@ -6,7 +6,7 @@
 // message hides its facts with no cleanup, and swiping back restores them.
 
 export const SINGLE = new Set(["name", "role", "archetype", "appearance", "status", "location", "faction"]);
-export const MULTI = new Set(["alias", "trait"]);
+export const MULTI = new Set(["alias", "trait", "deed"]);
 const MAX_VALUE = 300;
 
 export function emptyGraph() {
@@ -63,10 +63,11 @@ export function resolve(graph, swipes) {
     if (drop !== keep && graph.nodes[drop] && graph.nodes[keep]) parent.set(drop, keep);
   }
 
+  const position = new Map([...swipes.keys()].map((id, index) => [id, index]));
   const npcs = new Map();
   const card = (id) => {
     if (!npcs.has(id)) {
-      npcs.set(id, { id, name: "", aliases: [], traits: [], relations: [], merged: [] });
+      npcs.set(id, { id, name: "", aliases: [], traits: [], deeds: [], relations: [], merged: [] });
     }
     return npcs.get(id);
   };
@@ -79,6 +80,7 @@ export function resolve(graph, swipes) {
     } else if (SINGLE.has(assertion.p)) target[assertion.p] = assertion.o;
     else if (assertion.p === "alias") target.aliases.push(assertion.o);
     else if (assertion.p === "trait") target.traits.push(assertion.o);
+    else if (assertion.p === "deed") target.deeds.push({ o: assertion.o, at: position.get(assertion.a?.m) ?? -1 });
     else if (assertion.p.startsWith("rel:")) target.relations.push({ type: assertion.p.slice(4), other: assertion.o });
   }
   for (const [id, entry] of npcs) {
@@ -92,6 +94,8 @@ export function resolve(graph, swipes) {
     }
     entry.aliases = [...new Set(entry.aliases.filter((alias) => alias !== entry.name))];
     entry.traits = [...new Set(entry.traits)];
+    // Story order, not write order: a backfill or retry can record an older deed later.
+    entry.deeds = [...new Set(entry.deeds.sort((a, b) => a.at - b.at).map((deed) => deed.o))];
   }
   for (const entry of npcs.values()) {
     entry.relations = entry.relations
