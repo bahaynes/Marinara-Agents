@@ -4015,7 +4015,7 @@
         },
         "id": "shared-world",
         "name": "Shared World",
-        "version": "0.2.7",
+        "version": "0.2.8",
         "description": "One world for several Game mode adventures, each played at its own pace. Create a shared game, add its players, and link each player's Game mode chat to it right after setup: the first chat seeds the world and later ones join it. Characters, maps, discovered places, invented items and the world overview stay in sync between the linked chats; chat history, reputation, the story arc and the party's position stay each player's own. Each Game Master hears what the other parties changed as news. Works on a stock Marinara Engine. Install it, restart Marinara Engine when prompted, then open Home → Shared World.",
         "engine": {
           "min": "2.5.0",
@@ -4066,21 +4066,21 @@
           },
           {
             "path": "scene.mjs",
-            "sha256": "8ae868161b7a1b8791e7c09f9d3005f11d98f77c68e63d1abfe4c131b505b787",
-            "bytes": 5394
+            "sha256": "855594ef357623afa9e05b57a10268d6dbfd3da80d97fb93a8240b2755967404",
+            "bytes": 5853
           },
           {
             "path": "server.mjs",
-            "sha256": "bb3c86c1e9fb13c10c9331338b646976e22a8c5fbcffb21f710c0dbe2ef4230d",
-            "bytes": 23639
+            "sha256": "0d0fbf30351e1e7fb0bb12088e0998bbd97952a4c5b3bec1393bf3b2790c098e",
+            "bytes": 24368
           }
         ]
       },
       "category": "misc",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/shared-world-0.2.7.zip",
-        "sha256": "c9234f0b56288fdf6eda54daa57ac71a53c56c3f8e3771447959ea0451218757",
-        "bytes": 72676
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/shared-world-0.2.8.zip",
+        "sha256": "e9914f4446914d8b2eccec4efc7ba3cddb8dbcd19337f7dce86720d5584ba9c2",
+        "bytes": 73864
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/shared-world/README.md"
     },
