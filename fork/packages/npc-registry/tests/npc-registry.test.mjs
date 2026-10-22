@@ -12,26 +12,21 @@ test("set supersedes; swipes hide and restore facts; deleted messages drop NPCs"
   let messages = msgs(["m1", 0]);
   applyOps(
     graph,
-    [{ op: "create", ref: "x", name: "Captain Vos", role: "harbor master" }],
+    [{ op: "create", ref: "x", name: "Captain Vos", gender: "he" }],
     { m: "m1", w: 0 },
     activeSwipes(messages),
   );
   messages = msgs(["m1", 0], ["m2", 0]);
   const id = Object.keys(graph.nodes)[0];
-  applyOps(
-    graph,
-    [{ op: "set", npc: id, field: "role", value: "smuggler" }],
-    { m: "m2", w: 0 },
-    activeSwipes(messages),
-  );
-  assert.equal(resolve(graph, activeSwipes(messages)).npcs.get(id).role, "smuggler");
+  applyOps(graph, [{ op: "set", npc: id, field: "gender", value: "she" }], { m: "m2", w: 0 }, activeSwipes(messages));
+  assert.equal(resolve(graph, activeSwipes(messages)).npcs.get(id).gender, "she");
 
   // Regenerate m2 (swipe 1): its fact disappears and the old one is live again.
   messages = msgs(["m1", 0], ["m2", 1]);
-  assert.equal(resolve(graph, activeSwipes(messages)).npcs.get(id).role, "harbor master");
+  assert.equal(resolve(graph, activeSwipes(messages)).npcs.get(id).gender, "he");
   // Swipe back.
   messages = msgs(["m1", 0], ["m2", 0]);
-  assert.equal(resolve(graph, activeSwipes(messages)).npcs.get(id).role, "smuggler");
+  assert.equal(resolve(graph, activeSwipes(messages)).npcs.get(id).gender, "she");
   // Delete m1: the NPC's own name assertion is gone, so the NPC is gone.
   assert.deepEqual(names(graph, msgs(["m2", 0])), []);
 });
@@ -39,24 +34,10 @@ test("set supersedes; swipes hide and restore facts; deleted messages drop NPCs"
 test("a backfilled older message does not override a later message's value", () => {
   const graph = emptyGraph();
   const messages = msgs(["m1", 0], ["m2", 0]);
-  applyOps(graph, [{ op: "create", name: "Captain Vos", location: "tower" }], { m: "m2", w: 0 }, activeSwipes(messages));
+  applyOps(graph, [{ op: "create", name: "Captain Vos", gender: "he" }], { m: "m2", w: 0 }, activeSwipes(messages));
   const id = Object.keys(graph.nodes)[0];
-  applyOps(graph, [{ op: "set", npc: id, field: "location", value: "docks" }], { m: "m1", w: 0 }, activeSwipes(messages));
-  assert.equal(resolve(graph, activeSwipes(messages)).npcs.get(id).location, "tower");
-});
-
-test("deeds list in story order even when an older reply is recorded later", () => {
-  const graph = emptyGraph();
-  const swipes = activeSwipes(msgs(["m1", 0], ["m2", 0], ["m3", 0]));
-  applyOps(graph, [{ op: "create", name: "Iris Vale" }], { m: "m1", w: 0 }, swipes);
-  const id = Object.keys(graph.nodes)[0];
-  applyOps(graph, [{ op: "add", npc: id, field: "deed", value: "burned the letter" }], { m: "m3", w: 0 }, swipes);
-  applyOps(graph, [{ op: "add", npc: id, field: "deed", value: "stole the letter" }], { m: "m2", w: 0 }, swipes);
-  assert.deepEqual(resolve(graph, swipes).npcs.get(id).deeds, ["stole the letter", "burned the letter"]);
-  // Regenerating m3 drops its deed.
-  assert.deepEqual(resolve(graph, activeSwipes(msgs(["m1", 0], ["m2", 0], ["m3", 1]))).npcs.get(id).deeds, [
-    "stole the letter",
-  ]);
+  applyOps(graph, [{ op: "set", npc: id, field: "gender", value: "she" }], { m: "m1", w: 0 }, activeSwipes(messages));
+  assert.equal(resolve(graph, activeSwipes(messages)).npcs.get(id).gender, "he");
 });
 
 test("a manual (unanchored) fact is never overridden by the extractor", () => {
@@ -73,11 +54,11 @@ test("a manual (unanchored) fact is never overridden by the extractor", () => {
 test("create of a known name or alias updates the same NPC", () => {
   const graph = emptyGraph();
   const swipes = activeSwipes(msgs(["m1", 0], ["m2", 0]));
-  applyOps(graph, [{ op: "create", name: "Iris Vale", traits: ["wary"] }], { m: "m1", w: 0 }, swipes);
-  applyOps(graph, [{ op: "create", name: "iris  vale", traits: ["wary", "loyal"] }], { m: "m2", w: 0 }, swipes);
+  applyOps(graph, [{ op: "create", name: "Iris Vale" }], { m: "m1", w: 0 }, swipes);
+  applyOps(graph, [{ op: "create", name: "iris  vale", gender: "she" }], { m: "m2", w: 0 }, swipes);
   const all = [...resolve(graph, swipes).npcs.values()];
   assert.equal(all.length, 1);
-  assert.deepEqual(all[0].traits, ["wary", "loyal"]);
+  assert.equal(all[0].gender, "she");
 });
 
 test("excluded names (cast, persona) are never recorded", () => {
@@ -89,37 +70,38 @@ test("excluded names (cast, persona) are never recorded", () => {
   assert.equal(counts.applied, 0);
 });
 
-test("merge, alias, relations and retractions", () => {
+test("merge, alias and retraction; legacy trait facts are ignored", () => {
   const graph = emptyGraph();
   const swipes = activeSwipes(msgs(["m1", 0], ["m2", 0]));
   applyOps(
     graph,
     [
-      { op: "create", ref: "a", name: "The Stranger" },
-      { op: "create", ref: "b", name: "Doran Pike", traits: ["limps"] },
-      { op: "create", ref: "c", name: "Mae Pike" },
-      { op: "relate", npc: "c", type: "sibling of", other: "b" },
+      { op: "create", name: "The Stranger" },
+      { op: "create", name: "Doran Pike" },
     ],
     { m: "m1", w: 0 },
     swipes,
   );
   const [stranger, doran] = Object.keys(graph.nodes);
+  graph.assertions.push({ id: "old", s: doran, p: "trait", o: "limps", a: { m: "m1", w: 0 } });
   applyOps(
     graph,
     [
       { op: "merge", npc: stranger, into: doran },
-      { op: "retract", npc: doran, field: "trait", value: "limps" },
+      { op: "add", npc: doran, field: "alias", value: "Pike" },
+      { op: "retract", npc: doran, field: "alias", value: "Pike" },
     ],
     { m: "m2", w: 0 },
     swipes,
   );
   const resolved = resolve(graph, swipes);
-  const card = resolved.npcs.get(doran);
-  assert.deepEqual(card.aliases, ["The Stranger"]);
-  assert.deepEqual(card.traits, []);
-  assert.equal(resolved.npcs.size, 2);
-  const mae = [...resolved.npcs.values()].find((e) => e.name === "Mae Pike");
-  assert.deepEqual(mae.relations, [{ type: "sibling_of", other: "Doran Pike" }]);
+  assert.equal(resolved.npcs.size, 1);
+  assert.deepEqual(resolved.npcs.get(doran), {
+    id: doran,
+    name: "Doran Pike",
+    aliases: ["The Stranger"],
+    merged: [stranger],
+  });
 });
 
 test("name collisions", () => {
@@ -185,7 +167,7 @@ test("extractor -> store -> lookup tool and roster, end to end", async () => {
   assert.deepEqual(prepared.notNpcs, ["Hero"]);
   const ops = {
     ops: [
-      { op: "create", name: "Hessa", role: "ferrywoman", archetype: "wise elder guide" },
+      { op: "create", name: "Hessa", gender: "she" },
       { op: "create", name: "Hero" },
     ],
   };
@@ -195,22 +177,16 @@ test("extractor -> store -> lookup tool and roster, end to end", async () => {
     result: { success: true, type: "context_injection", data: { text: JSON.stringify(ops) } },
   });
   assert.equal(result.data.text, "");
-  assert.equal(result.data.diagnostics.applied, 3); // Hessa name + role + archetype; cast member skipped
+  assert.equal(result.data.diagnostics.applied, 2); // Hessa name + gender; cast member skipped
   const found = await lookup(runtime, store, "c1", { name: "hessa" });
-  assert.equal(found.found[0].role, "ferrywoman");
-  const conflict = await lookup(runtime, store, "c1", {
-    proposed_name: "Hesta",
-    concept: "wise elder guide who ferries travelers",
-  });
+  assert.equal(found.verdict, "established");
+  assert.equal(found.matches[0].gender, "she");
+  const conflict = await lookup(runtime, store, "c1", { name: "Hesta" });
   assert.equal(conflict.verdict, "conflict");
-  assert.equal(conflict.nameConflicts[0].existing, "Hessa");
-  assert.equal(conflict.archetypeOverlaps[0].existing, "Hessa");
-  const clear = await lookup(runtime, store, "c1", { proposed_name: "Bram", concept: "young blacksmith" });
-  assert.equal(clear.verdict, "clear");
+  assert.equal(conflict.matches[0].name, "Hessa");
+  assert.equal((await lookup(runtime, store, "c1", { name: "Bram" })).verdict, "clear");
   const roster = await rosterContext(store)({ chatId: "c1", chatMeta: meta, mode: "roleplay" });
-  assert.match(roster, /Established NPCs: Hessa$/);
-  const disabled = await lookup(runtime, store, "c1", {});
-  assert.equal(disabled.verdict, "clear");
+  assert.match(roster, /Established NPCs: Hessa \(she\)$/);
   chat.metadata = "{}";
   assert.equal((await lookup(runtime, store, "c1", { name: "Hessa" })).enabled, false);
 });

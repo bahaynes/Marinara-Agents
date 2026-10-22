@@ -3396,8 +3396,8 @@
         },
         "id": "npc-registry",
         "name": "NPC Registry",
-        "version": "0.1.4",
-        "description": "One record per NPC in a per-chat knowledge graph: an extractor agent records named NPCs, their facts and relationships from each reply; the story model gets an npc_registry_lookup tool and a name roster so new characters do not collide with existing names or archetypes. Facts are tied to the message swipe that produced them, so swipes and regenerations never leave stale NPCs behind. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
+        "version": "0.2.0",
+        "description": "Keeps the names and pronouns of every named NPC in a per-chat graph and shows them to the story model as a roster, with an npc_registry_lookup name check, so it never invents a duplicate name or flips someone's pronouns. Entries follow the message swipe that produced them. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
         "engine": {
           "min": "2.5.0",
           "maxExclusive": "4.0.0"
@@ -3412,18 +3412,18 @@
         "files": [
           {
             "path": "agents.json",
-            "sha256": "f78c760f72735f03a13b87ae0ec8aa8b86b899af74b9415a46ed42d2b6a57b62",
-            "bytes": 3902
+            "sha256": "928e4cac4e461300f889fa5252b126b49af8cabd3c5e5394c77a81b3556d64c7",
+            "bytes": 2951
           },
           {
             "path": "graph.mjs",
-            "sha256": "409d2923cee8299723b14065144526fcc9e3746399213440abb4efd5e2e5a56e",
-            "bytes": 12536
+            "sha256": "68bb35afee120a7cea58e8a6b4ab84dfc4bc4c30e3d312145f7c2e55deff58d6",
+            "bytes": 10115
           },
           {
             "path": "server.mjs",
-            "sha256": "25a9c71ac840b3c585fb3f50f801e669879b9466edeb574549ff4d6bb0046912",
-            "bytes": 12481
+            "sha256": "d1a97a12c9fa543a905e98ac167513fc13464c0ed602095a8199c04a84c6a85e",
+            "bytes": 9590
           }
         ],
         "permissions": [
@@ -3437,9 +3437,9 @@
       },
       "category": "tracker",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/npc-registry-0.1.4.zip",
-        "sha256": "fdfbe85191ca360d435d0c372d1056534d14f252f38eedf92f98c8ed29f15c03",
-        "bytes": 30868
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/npc-registry-0.2.0.zip",
+        "sha256": "0b52a5b5154011b0af05badd3ce2c7f203843ffeddd36ddcf38c20ec900a1964",
+        "bytes": 24492
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/npc-registry/README.md"
     },

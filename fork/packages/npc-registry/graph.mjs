@@ -5,8 +5,10 @@
 // to the message + swipe that produced it, so swiping, regenerating or deleting a
 // message hides its facts with no cleanup, and swiping back restores them.
 
-export const SINGLE = new Set(["name", "gender", "role", "archetype", "appearance", "status", "location", "faction"]);
-export const MULTI = new Set(["alias", "trait", "deed"]);
+// Scope: who exists, so the story model never duplicates a name. Descriptions and history
+// belong to Lorebook Keeper entries, which fire by keyword.
+export const SINGLE = new Set(["name", "gender"]);
+export const MULTI = new Set(["alias"]);
 const MAX_VALUE = 300;
 
 export function emptyGraph() {
@@ -63,11 +65,10 @@ export function resolve(graph, swipes) {
     if (drop !== keep && graph.nodes[drop] && graph.nodes[keep]) parent.set(drop, keep);
   }
 
-  const position = new Map([...swipes.keys()].map((id, index) => [id, index]));
   const npcs = new Map();
   const card = (id) => {
     if (!npcs.has(id)) {
-      npcs.set(id, { id, name: "", aliases: [], traits: [], deeds: [], relations: [], merged: [] });
+      npcs.set(id, { id, name: "", aliases: [], merged: [] });
     }
     return npcs.get(id);
   };
@@ -79,9 +80,7 @@ export function resolve(graph, swipes) {
       else target.name = assertion.o;
     } else if (SINGLE.has(assertion.p)) target[assertion.p] = assertion.o;
     else if (assertion.p === "alias") target.aliases.push(assertion.o);
-    else if (assertion.p === "trait") target.traits.push(assertion.o);
-    else if (assertion.p === "deed") target.deeds.push({ o: assertion.o, at: position.get(assertion.a?.m) ?? -1 });
-    else if (assertion.p.startsWith("rel:")) target.relations.push({ type: assertion.p.slice(4), other: assertion.o });
+    // Older graphs also hold trait/deed/role/rel:* facts; they are ignored, not migrated.
   }
   for (const [id, entry] of npcs) {
     if (!entry.name) {
@@ -93,14 +92,6 @@ export function resolve(graph, swipes) {
       if (root === id && other !== id) entry.merged.push(other);
     }
     entry.aliases = [...new Set(entry.aliases.filter((alias) => alias !== entry.name))];
-    entry.traits = [...new Set(entry.traits)];
-    // Story order, not write order: a backfill or retry can record an older deed later.
-    entry.deeds = [...new Set(entry.deeds.sort((a, b) => a.at - b.at).map((deed) => deed.o))];
-  }
-  for (const entry of npcs.values()) {
-    entry.relations = entry.relations
-      .map((relation) => ({ type: relation.type, other: npcs.get(find(relation.other))?.name ?? null }))
-      .filter((relation) => relation.other);
   }
   return { npcs, canonical: find, live };
 }
@@ -144,38 +135,6 @@ export function nameCollision(proposed, existing) {
   return null;
 }
 
-const words = (text) =>
-  new Set(
-    normalizeName(text)
-      .split(" ")
-      .filter((word) => word.length >= 4),
-  );
-
-/** Summary used for archetype similarity (embeddings or word overlap). */
-export function conceptText(entry) {
-  return [entry.role, entry.archetype, ...(entry.traits ?? [])].filter(Boolean).join("; ");
-}
-
-export function wordOverlap(a, b) {
-  const [left, right] = [words(a), words(b)];
-  if (!left.size || !right.size) return 0;
-  let shared = 0;
-  for (const word of left) if (right.has(word)) shared += 1;
-  return shared / Math.min(left.size, right.size);
-}
-
-export function cosine(a, b) {
-  let dot = 0;
-  let normA = 0;
-  let normB = 0;
-  for (let index = 0; index < a.length; index += 1) {
-    dot += a[index] * b[index];
-    normA += a[index] * a[index];
-    normB += b[index] * b[index];
-  }
-  return normA && normB ? dot / Math.sqrt(normA * normB) : 0;
-}
-
 /**
  * Apply extractor operations anchored to `anchor` ({ m, w }). Returns counts.
  * Refs: an op names an NPC by node id, by a `ref` from a create op in the same
@@ -198,7 +157,7 @@ export function applyOps(graph, ops, anchor, swipes, { exclude = [] } = {}) {
     if (graph.nodes[ref]) return resolved.canonical(ref);
     return findByName(resolved, ref)?.id ?? null;
   };
-  // Live assertion ids for (s, p[, o]); relation objects compare by canonical node.
+  // Live assertion ids for (s, p[, o]).
   const liveFor = (s, p, o) => {
     const resolved = current();
     return resolved.live
@@ -206,10 +165,7 @@ export function applyOps(graph, ops, anchor, swipes, { exclude = [] } = {}) {
         (assertion) =>
           resolved.canonical(assertion.s) === s &&
           assertion.p === p &&
-          (o === undefined ||
-            (p.startsWith("rel:")
-              ? resolved.canonical(assertion.o) === o
-              : normalizeName(assertion.o) === normalizeName(o))),
+          (o === undefined || normalizeName(assertion.o) === normalizeName(o)),
       )
       .map((assertion) => assertion.id);
   };
@@ -249,12 +205,7 @@ export function applyOps(graph, ops, anchor, swipes, { exclude = [] } = {}) {
         add(id, "name", name);
       }
       if (typeof op.ref === "string") refs.set(op.ref, id);
-      for (const field of SINGLE) {
-        if (field !== "name" && clean(op[field])) setField(id, field, clean(op[field]));
-      }
-      for (const trait of Array.isArray(op.traits) ? op.traits : []) {
-        if (clean(trait) && !liveFor(id, "trait", trait).length) add(id, "trait", clean(trait));
-      }
+      if (clean(op.gender)) setField(id, "gender", clean(op.gender));
       continue;
     }
     const s = lookup(op.npc);
@@ -268,16 +219,8 @@ export function applyOps(graph, ops, anchor, swipes, { exclude = [] } = {}) {
       setField(s, field, value);
     } else if (op.op === "add" && MULTI.has(field) && value) {
       if (!liveFor(s, field, value).length) add(s, field, value);
-    } else if (op.op === "relate" && clean(op.type)) {
-      const o = lookup(op.other);
-      const p = `rel:${clean(op.type).toLowerCase().replace(/\s+/g, "_")}`;
-      if (o && o !== s && !liveFor(s, p, o).length) {
-        add(s, p, o);
-      } else skipped += 1;
-    } else if (op.op === "retract" && (MULTI.has(field) || field.startsWith("rel:"))) {
-      const ids = field.startsWith("rel:")
-        ? liveFor(s, field, op.value ? (lookup(op.value) ?? "") : undefined)
-        : liveFor(s, field, value);
+    } else if (op.op === "retract" && MULTI.has(field)) {
+      const ids = liveFor(s, field, value);
       if (ids.length) add(s, field, null, ids);
       else skipped += 1;
     } else if (op.op === "merge") {
