@@ -253,6 +253,16 @@ async function chatOfLocalGame(persistence, gameId, localKey) {
   return entries.sort((a, b) => String(b.chat.createdAt ?? "").localeCompare(String(a.chat.createdAt ?? "")))[0]?.chat ?? null;
 }
 
+/** Who a member plays in a scene: the chat's persona (else the player's name) and the party's companions. */
+async function partyOf(resources, chat, playerName) {
+  const nameOf = (record) => String(parseMeta(record?.data).name ?? "").trim();
+  const meta = parseMeta(chat.metadata);
+  const companionIds = Array.isArray(meta.gamePartyCharacterIds) ? meta.gamePartyCharacterIds : [];
+  const [persona] = chat.personaId && resources ? await resources.listPersonas([chat.personaId]) : [];
+  const companions = companionIds.length && resources ? (await resources.listCharacters(companionIds)).map(nameOf).filter(Boolean) : [];
+  return { name: nameOf(persona) || playerName || "Another party", companions };
+}
+
 async function openScene(runtime, store, gameId, playerId) {
   const persistence = runtime.persistence;
   const { game } = await store.load(gameId);
@@ -266,7 +276,7 @@ async function openScene(runtime, store, gameId, playerId) {
   for (const member of group.members) {
     if (members.some((held) => held.playerId === member.playerId)) continue;
     const chat = await chatOfLocalGame(persistence, gameId, member.key);
-    if (chat) members.push({ playerId: member.playerId, chatId: chat.id, name: names.get(member.playerId) || "Another party" });
+    if (chat) members.push({ playerId: member.playerId, chatId: chat.id, ...(await partyOf(runtime.resources, chat, names.get(member.playerId))) });
   }
   let scene;
   try {
