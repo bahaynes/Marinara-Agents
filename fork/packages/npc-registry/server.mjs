@@ -105,7 +105,7 @@ const publicCard = (entry) => ({
   name: entry.name,
   ...(entry.aliases.length ? { aliases: entry.aliases } : {}),
   ...Object.fromEntries(
-    ["role", "archetype", "appearance", "status", "location", "faction"]
+    ["gender", "role", "archetype", "appearance", "status", "location", "faction"]
       .filter((field) => entry[field])
       .map((field) => [field, entry[field]]),
   ),
@@ -249,9 +249,11 @@ export function rosterContext(store) {
   return async (request) => {
     if (!isEnabled(request?.chatMeta, request?.mode)) return null;
     const resolved = await store.current(request.chatId);
-    // Names only, in creation order: the roster lands in the system prompt, so it must
-    // change only when an NPC is created or renamed, not on every fact update.
-    const names = [...resolved.npcs.values()].map((entry) => entry.name).slice(0, ROSTER_LIMIT);
+    // Names (and pronouns) only, in creation order: the roster lands in the system prompt, so it
+    // must change only when an NPC is created, renamed or gendered, not on every fact update.
+    const names = [...resolved.npcs.values()]
+      .map((entry) => (entry.gender ? `${entry.name} (${entry.gender})` : entry.name))
+      .slice(0, ROSTER_LIMIT);
     const head =
       "NPC registry: established named NPCs in this story. Reuse them instead of inventing look-alikes. " +
       "Before giving a new character a name, call npc_registry_lookup with proposed_name and concept; " +
