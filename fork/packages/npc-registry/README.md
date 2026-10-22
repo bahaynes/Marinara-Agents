@@ -3,7 +3,9 @@
 One record per NPC, per chat, kept as a small knowledge graph.
 
 - **Extractor agent** (post-processing): reads each reply and emits operations
-  (`create`, `set`, `add`, `retract`, `relate`, `merge`). It is the only writer.
+  (`create`, `set`, `add`, `retract`, `relate`, `merge`), including short
+  past-tense deeds (what an NPC did that later scenes should remember). It is the
+  only writer.
 - **`npc_registry_lookup` tool** for the story model: recall an NPC by `name`, or
   check a `proposed_name` + `concept` for name and archetype collisions before
   introducing a new character. Archetype similarity uses the agent's embedding

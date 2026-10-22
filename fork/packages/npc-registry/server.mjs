@@ -19,6 +19,7 @@ export const PACKAGE_ID = "npc-registry";
 const DOC_KIND = "npc-graph";
 const MODES = new Set(["roleplay", "game"]);
 const ROSTER_LIMIT = 150;
+const DEED_LIMIT = 8; // newest deeds per card, so mentioned cards stay small
 const ARCHETYPE_THRESHOLD = { embedding: 0.82, words: 0.5 };
 
 const docId = (chatId) => `${PACKAGE_ID}:${chatId}`;
@@ -109,6 +110,7 @@ const publicCard = (entry) => ({
       .map((field) => [field, entry[field]]),
   ),
   ...(entry.traits.length ? { traits: entry.traits } : {}),
+  ...(entry.deeds.length ? { deeds: entry.deeds.slice(-DEED_LIMIT) } : {}),
   ...(entry.relations.length ? { relations: entry.relations.map((r) => `${r.type}: ${r.other}`) } : {}),
 });
 
@@ -262,7 +264,7 @@ const TOOL = {
   name: "lookup",
   description:
     "Only use when the system prompt contains an NPC registry block; otherwise ignore this tool. " +
-    "NPC registry for this story. Pass `name` to get an established NPC's facts. Before introducing a new " +
+    "NPC registry for this story. Pass `name` to get an established NPC's facts and key deeds. Before introducing a new " +
     "named character, pass `proposed_name` and `concept` (role/archetype in a few words) to check for name " +
     "or archetype collisions with existing NPCs.",
   parameters: {
