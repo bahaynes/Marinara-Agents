@@ -3,8 +3,7 @@
 // goes into every member's chat. Pure state and prompt text; storage, the model call and chat writes are in
 // server.mjs. Design: plan/shared-world-scene.md.
 //
-// ponytail: a member's character is their player name, and a round has no timeout (it waits for everyone).
-// The upgrade is a per-member character name and a "play my character" button.
+// ponytail: a round has no timeout (it waits for everyone). The upgrade is a "play my character" button.
 
 export class SceneError extends Error {
   constructor(statusCode, message) {
@@ -17,7 +16,7 @@ const ACTION_LIMIT = 1200;
 const LOG_LIMIT = 40;
 const RECAP_ROUNDS = 3;
 
-/** A new scene for the members `[{ playerId, chatId, name }]` standing at `place`. */
+/** A new scene for the members `[{ playerId, chatId, name, companions? }]` standing at `place`. */
 export function startScene({ id, members, place, at }) {
   if (members.length < 2) throw new SceneError(409, "A scene needs two parties at the same place.");
   return { id, status: "open", round: 1, place, members, actions: {}, log: [], resolving: false, startedAt: at };
@@ -47,6 +46,10 @@ export function claimRound(scene) {
   return { ...scene, resolving: true };
 }
 
+/** One line per party: the character a player controls, and who travels with them. */
+const partyLine = (member) =>
+  `- ${member.name}, a player character${member.companions?.length ? `, travelling with ${member.companions.join(", ")}` : ""}`;
+
 const actionsOf = (scene) => scene.members.map((member) => ({ name: member.name, text: scene.actions[member.playerId] }));
 
 /** The chat messages for the narration model. */
@@ -63,6 +66,8 @@ export function narrationMessages(scene, overview) {
         "Do not invent new actions or decisions for the player characters beyond what they wrote. You may voice other people in the scene.",
         overview ? `The world: ${overview}` : "",
         `Where they are: ${scene.place}.`,
+        `The parties here, each led by a different player's character:\n${scene.members.map(partyLine).join("\n")}`,
+        "An action may refer to another player's character loosely (for example \"the stranger\"). Prefer one of the parties above before inventing a new person.",
       ]
         .filter(Boolean)
         .join("\n"),
