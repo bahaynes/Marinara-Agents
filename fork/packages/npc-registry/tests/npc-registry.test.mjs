@@ -45,6 +45,20 @@ test("a backfilled older message does not override a later message's value", () 
   assert.equal(resolve(graph, activeSwipes(messages)).npcs.get(id).location, "tower");
 });
 
+test("deeds list in story order even when an older reply is recorded later", () => {
+  const graph = emptyGraph();
+  const swipes = activeSwipes(msgs(["m1", 0], ["m2", 0], ["m3", 0]));
+  applyOps(graph, [{ op: "create", name: "Iris Vale" }], { m: "m1", w: 0 }, swipes);
+  const id = Object.keys(graph.nodes)[0];
+  applyOps(graph, [{ op: "add", npc: id, field: "deed", value: "burned the letter" }], { m: "m3", w: 0 }, swipes);
+  applyOps(graph, [{ op: "add", npc: id, field: "deed", value: "stole the letter" }], { m: "m2", w: 0 }, swipes);
+  assert.deepEqual(resolve(graph, swipes).npcs.get(id).deeds, ["stole the letter", "burned the letter"]);
+  // Regenerating m3 drops its deed.
+  assert.deepEqual(resolve(graph, activeSwipes(msgs(["m1", 0], ["m2", 0], ["m3", 1]))).npcs.get(id).deeds, [
+    "stole the letter",
+  ]);
+});
+
 test("create of a known name or alias updates the same NPC", () => {
   const graph = emptyGraph();
   const swipes = activeSwipes(msgs(["m1", 0], ["m2", 0]));
