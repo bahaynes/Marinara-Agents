@@ -2,6 +2,21 @@
 
 Extends `plan/shared-world.md`. Shared World is asynchronous: each player plays their own Classic Game mode chat, and the other party's changes arrive as news on the next turn. This adds an opt-in **synchronous scene**: a pop-up over each player's own Game chat where both players act in the same round, and one narration lands in both chats.
 
+## Status (2026-10-21)
+
+- **Phases A to C are built** (0.2.4 meeting detection and the presence line, 0.2.5 to 0.2.7 the scene). The scene runs from the Shared World Home tab (option 2 below), not a pop-up in the game.
+- **Mechanical run passed (0.2.7, 2026-10-21):** 16 checks on two throwaway Classic chats driven through the API on Local Llama.cpp, then deleted (`DELETE /api/chats/:id?force=true`, game chats need it).
+  - Meeting detected; a second start, an outsider, an empty action, a double submit and an empty retry are refused.
+  - The waiting player sees that the other acted, not what.
+  - One identical narration lands in both chats; nobody's wording is quoted.
+  - Both players submitting at the same instant still resolves the round once.
+  - A player deleting the scene's message in their own chat doesn't stop the next round (that chat is just one message shorter).
+  - Ending mid-round closes the scene and a new one starts clean.
+  - An ordinary GM turn afterwards works, knows the scene, and keeps the link.
+- **Found and fixed in 0.2.8:** the narrator used player names ("Ben", "Erin") as character names. Each party is now its chat's persona plus party companions, and the narrator is told the parties so "the stranger" means the other player character, not a new person.
+- **Not tested:** swiping a scene message (it would regenerate as an ordinary GM reply in that chat only), and retry after a real narration failure (unit-tested only).
+- **Next: Phase D with both players.** Erin links her own Game chat to the "Fallout: New Vegas" shared game (only "Fallout: Ben" is linked), both parties reach one map node, then Go synchronous from two tabs. Then judge fun and readability, and only then the Engine pop-up hook.
+
 ## Why
 
 The upstream multiplayer rooms were rejected (`shared-world.md`: "one host-owned chat, the model doesn't answer both players, synchronous, not fun"). The play that went badly had two causes:

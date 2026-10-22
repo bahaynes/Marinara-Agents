@@ -25,6 +25,7 @@ Working name: **Shared World** (package id `shared-world`). Two people each play
   - **Learned:** Classic GM tags (map updates, reputation) are applied by the browser client after a reply, so API-driven turns skip them; the test called those game routes directly. New characters in Classic come mostly from setup and session end. The reputation route re-hydrates metadata and can reset the party position to the scene snapshot's location (Engine behavior, not Shared World's).
   - **Fixed along the way:** 0.2.3 keeps news that Peek Prompt saw until the GM actually replies after it.
   - **0.2.2 adds Delete game.** It runs a last sync, unlinks the game's chats (each keeps its world as it is) and removes the game. The "SW live test" game has been deleted with it.
+- **Later (2026-10-18 to 10-21):** 0.2.4 tells each GM when another party is at the same place; 0.2.5 to 0.2.8 add the synchronous scene. Status and test results for that live in `plan/shared-world-scene.md`. 0.2.8 is installed on `marinara`.
 - **Rejected alternatives:** upstream multiplayer rooms (one host-owned chat, the model doesn't answer both players, synchronous, not fun) and one Engine with two personas (not two independent threads).
 
 ## Goals
