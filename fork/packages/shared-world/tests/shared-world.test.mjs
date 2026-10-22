@@ -64,6 +64,11 @@ function fakeRuntime() {
     async updateChatActivity() {},
   };
   const narrator = { prompts: [], requests: [], reply: "The wind turns.", fail: false };
+  const library = new Map();
+  const resources = {
+    listPersonas: async (ids) => ids.flatMap((id) => (library.has(id) ? [{ id, data: library.get(id) }] : [])),
+    listCharacters: async (ids) => ids.flatMap((id) => (library.has(id) ? [{ id, data: JSON.stringify(library.get(id)) }] : [])),
+  };
   const languageModels = {
     async resolveForRequest(request) {
       narrator.requests.push(request);
@@ -78,7 +83,7 @@ function fakeRuntime() {
   };
   return {
     narrator,
-    runtime: { persistence, languageModels, logger: {} },
+    runtime: { persistence, languageModels, resources, logger: {} },
     persistence,
     meta: (chatId) => chats.get(chatId).metadata,
     /** An Engine write: the whole metadata, as the Engine holds it. */
@@ -100,6 +105,9 @@ function fakeRuntime() {
     },
     messagesOf: (chatId) => messages.get(chatId),
     setConnection: (chatId, connectionId) => (chats.get(chatId).connectionId = connectionId),
+    /** A persona or character card in the Engine's library. */
+    card: (id, name) => library.set(id, { name }),
+    setPersona: (chatId, personaId) => (chats.get(chatId).personaId = personaId),
     say(chatId, id, role, content = "") {
       messages.get(chatId).push({ id, chatId, role, content, createdAt: new Date(Date.now() + 1000).toISOString() });
     },
@@ -557,4 +565,21 @@ test("a failed narration keeps the actions and the round can be retried", async 
   assert.equal(world.messagesOf("a1").length, 1);
   assert.equal(world.messagesOf("b1").length, 1);
   assert.equal((await route("POST /games/:gameId/scene/retry", {}, params)).error, "Nothing to retry.");
+});
+
+test("a scene names each party by its persona and companions, not the player's name", async () => {
+  const { world, route, game, alice } = await linkedPair();
+  const params = { gameId: game.id };
+  world.card("p-courier", "Six");
+  world.card("c-boone", "Boone");
+  world.setPersona("a1", "p-courier");
+  world.engineWrite("a1", (meta) => ({ ...meta, gamePartyCharacterIds: ["c-boone", "gone"] }));
+  const started = await route("POST /games/:gameId/scene/start", { playerId: alice.id }, params);
+  assert.deepEqual(started.scene.members.map((member) => member.name), ["Six", "Bob"], "no persona falls back to the player's name");
+
+  await route("POST /games/:gameId/scene/act", { playerId: alice.id, text: "I nod." }, params);
+  await route("POST /games/:gameId/scene/act", { playerId: started.scene.members[1].playerId, text: "I wave." }, params);
+  const [system, user] = world.narrator.prompts[0];
+  assert.match(system.content, /- Six, a player character, travelling with Boone\n- Bob, a player character/);
+  assert.match(user.content, /Six: I nod\.\nBob: I wave\./);
 });
