@@ -36,6 +36,15 @@ test("set supersedes; swipes hide and restore facts; deleted messages drop NPCs"
   assert.deepEqual(names(graph, msgs(["m2", 0])), []);
 });
 
+test("a backfilled older message does not override a later message's value", () => {
+  const graph = emptyGraph();
+  const messages = msgs(["m1", 0], ["m2", 0]);
+  applyOps(graph, [{ op: "create", name: "Captain Vos", location: "tower" }], { m: "m2", w: 0 }, activeSwipes(messages));
+  const id = Object.keys(graph.nodes)[0];
+  applyOps(graph, [{ op: "set", npc: id, field: "location", value: "docks" }], { m: "m1", w: 0 }, activeSwipes(messages));
+  assert.equal(resolve(graph, activeSwipes(messages)).npcs.get(id).location, "tower");
+});
+
 test("create of a known name or alias updates the same NPC", () => {
   const graph = emptyGraph();
   const swipes = activeSwipes(msgs(["m1", 0], ["m2", 0]));
