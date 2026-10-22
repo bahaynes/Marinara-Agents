@@ -209,10 +209,18 @@ export function applyOps(graph, ops, anchor, swipes, { exclude = [] } = {}) {
       )
       .map((assertion) => assertion.id);
   };
+  // Message order, so a backfill of an old message never overrides a later message's value.
+  const position = new Map([...swipes.keys()].map((id, index) => [id, index]));
+  const at = position.get(anchor?.m) ?? Infinity;
+  const isLater = (id) => {
+    const a = graph.assertions.find((assertion) => assertion.id === id)?.a;
+    return a ? (position.get(a.m) ?? -1) > at : false;
+  };
   const setField = (s, field, value) => {
     const same = liveFor(s, field, value);
     const all = liveFor(s, field);
     if (same.length && same.length === all.length) return; // already the current value
+    if (all.some(isLater)) return; // a later message already set it
     add(s, field, value, all);
   };
 
