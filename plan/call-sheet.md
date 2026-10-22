@@ -4,7 +4,15 @@
 
 Fork-only concept, drafted 2026-10-15 on `custom-mods`, revised the same day with the maintainer's
 answers to the pre-implementation questions, then again after both players agreed that scenes end
-manually and that play is driven by instructions. Not yet approved for implementation.
+manually and that play is driven by instructions.
+
+**As of 2026-10-21: built and in use, v0.6.0 on `marinara`.** Delivery steps 1 to 3 are done (the
+Engine change is pushed on `custom-mods`). Of the [v1 scope](#v1-scope), what is still missing:
+
+- d20 skill checks resolved by a rules referee (no code yet; the largest piece).
+- Explicit cast entrances and exits mid-scene (today the cast changes only at scene planning).
+
+The [open questions](#open-questions) are still open; answer them from play before cut-over.
 
 The name comes from film: a call sheet says which scene is shot, where, which cast is called, and
 what the scene is for. That is the scene plan, and the plan's core idea is that those facts are
