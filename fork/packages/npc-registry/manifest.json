@@ -10,7 +10,7 @@
   },
   "id": "npc-registry",
   "name": "NPC Registry",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "One record per NPC in a per-chat knowledge graph: an extractor agent records named NPCs, their facts and relationships from each reply; the story model gets an npc_registry_lookup tool and a name roster so new characters do not collide with existing names or archetypes. Facts are tied to the message swipe that produced them, so swipes and regenerations never leave stale NPCs behind. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
   "engine": {
     "min": "2.5.0",
@@ -31,8 +31,8 @@
     },
     {
       "path": "graph.mjs",
-      "sha256": "3f46c4fc48e1b49375de7d213d056fb7e07c116f1bc571061191b930e9f184cb",
-      "bytes": 11459
+      "sha256": "3fa657a939932e8eb773f015a7938a3ee85a8b0310be873860961edc398f1862",
+      "bytes": 11915
     },
     {
       "path": "server.mjs",

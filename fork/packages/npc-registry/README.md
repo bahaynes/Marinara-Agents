@@ -34,6 +34,14 @@ roster is the main guard there.
 Consider telling Lorebook Keeper (in its prompt) to skip character entries in chats
 that use this, so two agents do not write competing NPC facts.
 
+To fill the registry for a chat that predates it, run the extractor over its past
+replies (oldest first, one Agent call per reply; it waits while the chat is
+generating and stops if a new message arrives):
+
+```bash
+docker exec -i marinara node - <chatId> [--from N] [--limit N] [--dry] < fork/tools/npc-registry-backfill.mjs
+```
+
 ## Tests
 
 ```bash
