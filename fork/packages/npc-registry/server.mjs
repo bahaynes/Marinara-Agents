@@ -290,7 +290,20 @@ export async function activate(context) {
       }),
     );
     releases.push(
-      context.api.registerTool({ ...TOOL, handler: (args, call) => lookup(runtime, store, call.chatId, args ?? {}) }),
+      context.api.registerTool({
+        ...TOOL,
+        handler: async (args, call) => {
+          const result = await lookup(runtime, store, call.chatId, args ?? {});
+          // Usage evidence: is the story model calling the registry at all? Query Loki for "[npc-registry] lookup".
+          runtime.logger?.info(
+            "[npc-registry] lookup chat=%s args=%j -> %s",
+            call.chatId,
+            args ?? {},
+            result.verdict ?? (result.found ? `found ${result.found.length}` : "disabled"),
+          );
+          return result;
+        },
+      }),
     );
     releases.push(context.api.registerPromptContext(rosterContext(store)));
   } catch (error) {
