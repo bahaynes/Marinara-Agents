@@ -3,8 +3,8 @@
 One record per NPC, per chat, kept as a small knowledge graph.
 
 - **Extractor agent** (post-processing): reads each reply and emits operations
-  (`create`, `set`, `add`, `retract`, `relate`, `merge`), including short
-  past-tense deeds (what an NPC did that later scenes should remember). It is the
+  (`create`, `set`, `add`, `retract`, `relate`, `merge`), including gender
+  (pronouns, shown in the roster) and short past-tense deeds (what an NPC did that later scenes should remember). It is the
   only writer.
 - **`npc_registry_lookup` tool** for the story model: recall an NPC by `name`, or
   check a `proposed_name` + `concept` for name and archetype collisions before
@@ -22,6 +22,9 @@ a merge is a `same_as` assertion. Each assertion is anchored to the message and
 swipe that produced it; reads keep only assertions whose message exists and whose
 active swipe matches. Swiping, regenerating or deleting a message therefore hides
 its facts without editing anything, and swiping back restores them.
+
+An assertion with no anchor is a manual correction (written into the graph document
+by hand): it is always valid, and the extractor never supersedes it.
 
 A chat branch starts with its parent's graph, anchors remapped onto the copied
 messages.

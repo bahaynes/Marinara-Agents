@@ -3396,7 +3396,7 @@
         },
         "id": "npc-registry",
         "name": "NPC Registry",
-        "version": "0.1.3",
+        "version": "0.1.4",
         "description": "One record per NPC in a per-chat knowledge graph: an extractor agent records named NPCs, their facts and relationships from each reply; the story model gets an npc_registry_lookup tool and a name roster so new characters do not collide with existing names or archetypes. Facts are tied to the message swipe that produced them, so swipes and regenerations never leave stale NPCs behind. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
         "engine": {
           "min": "2.5.0",
@@ -3412,18 +3412,18 @@
         "files": [
           {
             "path": "agents.json",
-            "sha256": "b11ec983d5ae21483c2495437d6d4444f403fc819dbaa2e3839606d79b1e18dc",
-            "bytes": 3635
+            "sha256": "f78c760f72735f03a13b87ae0ec8aa8b86b899af74b9415a46ed42d2b6a57b62",
+            "bytes": 3902
           },
           {
             "path": "graph.mjs",
-            "sha256": "c50b1065e5f3483781ad82ad68f263dde163fc1c5ee997b4ee84de7f8053e2bf",
-            "bytes": 12314
+            "sha256": "409d2923cee8299723b14065144526fcc9e3746399213440abb4efd5e2e5a56e",
+            "bytes": 12536
           },
           {
             "path": "server.mjs",
-            "sha256": "d800673915a9876e3c14dc218af39ce30f67aa8bf3f4ef64161eec24a782c80a",
-            "bytes": 12379
+            "sha256": "25a9c71ac840b3c585fb3f50f801e669879b9466edeb574549ff4d6bb0046912",
+            "bytes": 12481
           }
         ],
         "permissions": [
@@ -3437,9 +3437,9 @@
       },
       "category": "tracker",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/npc-registry-0.1.3.zip",
-        "sha256": "60daa8399c93f1dc9fee25f884c303ec6b9d68fb8db24c5967c278a523ffd7ac",
-        "bytes": 30277
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/npc-registry-0.1.4.zip",
+        "sha256": "fdfbe85191ca360d435d0c372d1056534d14f252f38eedf92f98c8ed29f15c03",
+        "bytes": 30868
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/npc-registry/README.md"
     },
