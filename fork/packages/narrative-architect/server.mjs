@@ -51,36 +51,72 @@ export async function isSceneBreak(runtime, messages, state, settings = {}) {
     return true;
   }
 
-  // 2. Try the Decision Model if available
+  // 2. Decision Model Gating (if enabled)
+  const useDecision = settings.useDecisionModel !== false;
   let decisionAnswered = false;
-  if (typeof runtime?.decisions?.evaluate === "function") {
-    try {
-      const decisionRequest = {
-        messages: messages.slice(-4).map((m) => ({
-          role: m.role === "assistant" ? "assistant" : "user",
-          name: m.name,
-          content: m.content || "",
-        })),
-        questions: [
-          {
-            id: "scene_break",
-            question:
-              "Did the latest message begin a new scene, change location, skip forward in time, or conclude the previous encounter?",
-          },
-        ],
-      };
-      const result = await runtime.decisions.evaluate(decisionRequest);
-      if (result && typeof result.answers?.scene_break === "number") {
-        decisionAnswered = true;
-        const threshold = typeof result.threshold === "number" ? result.threshold : 0.5;
-        return result.answers.scene_break >= threshold;
+
+  if (useDecision) {
+    // Custom connection override for decision gating
+    if (settings.decisionConnectionId && settings.decisionConnectionId !== "system") {
+      try {
+        const model = await runtime?.languageModels?.resolveForRequest?.({
+          connectionId: settings.decisionConnectionId,
+        });
+        if (model) {
+          const prompt = [
+            {
+              role: "system",
+              content:
+                "You are an automated scene transition detector. Determine if the latest turn began a new scene, changed location, skipped time, or concluded the previous encounter. Answer YES or NO only.",
+            },
+            {
+              role: "user",
+              content: `Recent scene context:\n${messages
+                .slice(-3)
+                .map((m) => `${m.role === "assistant" ? "Assistant" : (m.name || "User")}: ${m.content}`)
+                .join("\n\n")}\n\nDid the scene transition? Answer YES or NO:`,
+            },
+          ];
+          const res = await model.chatComplete(prompt, { maxTokens: 10, temperature: 0 });
+          const text = String(res?.content || "").trim().toLowerCase();
+          if (text.startsWith("yes")) {
+            return true;
+          } else if (text.startsWith("no")) {
+            decisionAnswered = true;
+          }
+        }
+      } catch (err) {
+        runtime?.logger?.warn?.("[narrative-architect] custom decision connection error: %s", err?.message);
       }
-    } catch (err) {
-      runtime?.logger?.warn?.("[narrative-architect] decision evaluation error: %s", err?.message);
+    } else if (typeof runtime?.decisions?.evaluate === "function") {
+      try {
+        const decisionRequest = {
+          messages: messages.slice(-4).map((m) => ({
+            role: m.role === "assistant" ? "assistant" : "user",
+            name: m.name,
+            content: m.content || "",
+          })),
+          questions: [
+            {
+              id: "scene_break",
+              question:
+                "Did the latest message begin a new scene, change location, skip forward in time, or conclude the previous encounter?",
+            },
+          ],
+        };
+        const result = await runtime.decisions.evaluate(decisionRequest);
+        if (result && typeof result.answers?.scene_break === "number") {
+          decisionAnswered = true;
+          const threshold = typeof result.threshold === "number" ? result.threshold : 0.5;
+          return result.answers.scene_break >= threshold;
+        }
+      } catch (err) {
+        runtime?.logger?.warn?.("[narrative-architect] decision evaluation error: %s", err?.message);
+      }
     }
   }
 
-  // 3. Fallback when Decision model is missing or gives no answer:
+  // 3. Fallback when Decision model is disabled, missing, or gives no answer:
   // Trigger every `fallbackInterval` messages (default: 5 turns) so the story never stalls
   if (!decisionAnswered) {
     const fallbackInterval = typeof settings.fallbackInterval === "number" ? settings.fallbackInterval : 5;
@@ -206,7 +242,14 @@ export async function activate(context) {
         (routes) => {
           routes.get("/settings/:chatId", async (req) => {
             const { state } = await store.load(req.params.chatId);
-            return state?.settings ?? { connectionId: "", fallbackInterval: 5 };
+            return (
+              state?.settings ?? {
+                connectionId: "",
+                useDecisionModel: false,
+                decisionConnectionId: "system",
+                fallbackInterval: 5,
+              }
+            );
           });
           routes.patch("/settings/:chatId", async (req) => {
             const { state, revision } = await store.load(req.params.chatId);

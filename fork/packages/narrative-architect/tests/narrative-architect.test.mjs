@@ -62,6 +62,22 @@ test("isSceneBreak uses runtime.decisions when available", async () => {
     },
   };
   assert.equal(await isSceneBreak(runtimeNo, messages), false);
+
+  // useDecisionModel = false bypasses decision evaluation
+  let decisionEvaluated = false;
+  const runtimeBypass = {
+    decisions: {
+      async evaluate() {
+        decisionEvaluated = true;
+        return { answers: { scene_break: 0.9 }, threshold: 0.5 };
+      },
+    },
+  };
+  assert.equal(
+    await isSceneBreak(runtimeBypass, messages, { lastMessageCount: 0 }, { useDecisionModel: false, fallbackInterval: 5 }),
+    false,
+  );
+  assert.equal(decisionEvaluated, false, "Decision evaluate must not be called when useDecisionModel is false");
 });
 
 test("isSceneBreak falls back to regex or turn interval when decision model is missing", async () => {
