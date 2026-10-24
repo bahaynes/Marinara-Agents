@@ -10,7 +10,7 @@
   },
   "id": "narrative-architect",
   "name": "Narrative Architect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pre-generation narrative architect. Uses the local Decision model to detect scene breaks, then invokes a thinking model to scaffold recursive beats, information asymmetry, and turning points without repetitive input token costs.",
   "engine": {
     "min": "2.5.0",
@@ -53,5 +53,5 @@
     "routes",
     "storage"
   ],
-  "restartRequired": false
+  "restartRequired": true
 }

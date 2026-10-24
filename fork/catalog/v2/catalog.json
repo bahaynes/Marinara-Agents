@@ -3210,7 +3210,7 @@
         },
         "id": "narrative-architect",
         "name": "Narrative Architect",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "Pre-generation narrative architect. Uses the local Decision model to detect scene breaks, then invokes a thinking model to scaffold recursive beats, information asymmetry, and turning points without repetitive input token costs.",
         "engine": {
           "min": "2.5.0",
@@ -3253,13 +3253,13 @@
           "routes",
           "storage"
         ],
-        "restartRequired": false
+        "restartRequired": true
       },
       "category": "writer",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/narrative-architect-1.0.0.zip",
-        "sha256": "b1d08c516caed158940c3e56724569238cbbe06bf2f866a9de689a33e69e9b25",
-        "bytes": 17029
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/narrative-architect-1.0.1.zip",
+        "sha256": "af8ad53a18af6f485997589df8cc9e779c297a97e6ca3db8116688ba3e5ab47c",
+        "bytes": 17028
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/narrative-architect/README.md"
     },
