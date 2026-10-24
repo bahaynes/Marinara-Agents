@@ -1,0 +1,25 @@
+[
+  {
+    "id": "narrative-architect",
+    "name": "Narrative Architect",
+    "description": "Builds the scene's logical skeleton before writing prose: maps recursive emotional and factual beats, information asymmetry, and turning points. Uses your Decision model to gate thinking calls.",
+    "author": "custom-mods",
+    "phase": "pre_generation",
+    "enabledByDefault": false,
+    "category": "writer",
+    "runtimeDisabled": true,
+    "modeAllowlist": [
+      "roleplay",
+      "game"
+    ],
+    "defaultTools": [],
+    "defaultSettings": {
+      "requireSceneBoundary": true,
+      "maxTokens": 1200,
+      "temperature": 0.7,
+      "connectionId": null
+    },
+    "defaultPromptTemplate": "Act as a narrative architect. I want to write a scene based on the recent context and character motivations.\nMap out the recursive emotional and factual beats: what each character knows, what they are hiding, the turning point of the scene, and how the ending shifts the dynamic for the next chapter. Do not write the prose—just give me the beat sheet.",
+    "execution": "feature"
+  }
+]

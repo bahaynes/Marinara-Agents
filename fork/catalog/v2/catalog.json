@@ -3199,6 +3199,72 @@
     },
     {
       "manifest": {
+        "schemaVersion": 2,
+        "capabilityApi": {
+          "major": 1,
+          "minor": 19
+        },
+        "builtAgainst": {
+          "engineVersion": "2.5.0",
+          "engineCommit": "b19bfbd9f4455205eb715452beb28e342c196269"
+        },
+        "id": "narrative-architect",
+        "name": "Narrative Architect",
+        "version": "1.0.0",
+        "description": "Pre-generation narrative architect. Uses the local Decision model to detect scene breaks, then invokes a thinking model to scaffold recursive beats, information asymmetry, and turning points without repetitive input token costs.",
+        "engine": {
+          "min": "2.5.0",
+          "maxExclusive": "4.0.0"
+        },
+        "kind": [
+          "agent"
+        ],
+        "entrypoints": {
+          "agents": "agents.json",
+          "server": "server.mjs",
+          "client": "client.js"
+        },
+        "contributions": {
+          "slots": [
+            "chat-settings"
+          ]
+        },
+        "files": [
+          {
+            "path": "agents.json",
+            "sha256": "856d4ff66d92d74c3b8cd74cd6b8aad3d841dbfb63e45fa20d5af76377c27b58",
+            "bytes": 1088
+          },
+          {
+            "path": "client.js",
+            "sha256": "e5abc01060fa3659f32989c5b3d94e4c371be4f75f7c110dde272d6b50fabaa6",
+            "bytes": 5801
+          },
+          {
+            "path": "server.mjs",
+            "sha256": "b4cebe5c2cf0775b104f1108e3ff11e7f2e496df8e8b46ccb104da881e534581",
+            "bytes": 8328
+          }
+        ],
+        "permissions": [
+          "agent-runtime",
+          "chat-read",
+          "prompt-context",
+          "routes",
+          "storage"
+        ],
+        "restartRequired": false
+      },
+      "category": "writer",
+      "artifact": {
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/narrative-architect-1.0.0.zip",
+        "sha256": "b1d08c516caed158940c3e56724569238cbbe06bf2f866a9de689a33e69e9b25",
+        "bytes": 17029
+      },
+      "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/narrative-architect/README.md"
+    },
+    {
+      "manifest": {
         "schemaVersion": 1,
         "id": "director",
         "name": "Narrative Director",
