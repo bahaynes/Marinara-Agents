@@ -1050,8 +1050,8 @@
         "files": [
           {
             "path": "agents.json",
-            "sha256": "8d94b2b4e0e92da632c96230203ea9c821a30d3d85740eb1fc1212bb19d71429",
-            "bytes": 3535
+            "sha256": "8be3fa3a79986d860903ceefc89768656313352527534efcc664d87af5849547",
+            "bytes": 3541
           }
         ],
         "permissions": [
@@ -1066,8 +1066,8 @@
       "category": "tracker",
       "artifact": {
         "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/foreshadow-vault-1.0.0.zip",
-        "sha256": "3636a094a99c8c9f2ca6715efdeceb8f0d2453366bb98a0b0b0272d9a43282c4",
-        "bytes": 4483
+        "sha256": "2feac07f8d469aa8aea3d5870e46cf382c32783c8fce29b7e2792155078fbc65",
+        "bytes": 4489
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/CUSTOM_MODS.md"
     },
@@ -4472,7 +4472,7 @@
         "schemaVersion": 1,
         "id": "directors-whisper",
         "name": "The Director's Whisper",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "description": "Pre-generation director that inspects the Foreshadow Vault. Injects payoff directives ONLY for seeds that are marked READY, remaining completely silent when all seeds are dormant.",
         "engine": {
           "min": "2.3.0",
@@ -4482,13 +4482,19 @@
           "agent"
         ],
         "entrypoints": {
-          "agents": "agents.json"
+          "agents": "agents.json",
+          "server": "server.mjs"
         },
         "files": [
           {
             "path": "agents.json",
-            "sha256": "c24dae1195e364f5d47ff4f922c25913deb614bbd6a5166866cf0e777e105bac",
-            "bytes": 1832
+            "sha256": "ef9342e4e52515b001e8e7852263b72f2ba7e9e63726a67da2f081915db50c65",
+            "bytes": 568
+          },
+          {
+            "path": "server.mjs",
+            "sha256": "2f0f17a0113d683eb3a7008af961b2265b949e7031d6793348456168ff4fcfd8",
+            "bytes": 4743
           }
         ],
         "permissions": [
@@ -4502,9 +4508,9 @@
       },
       "category": "writer",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/directors-whisper-1.0.0.zip",
-        "sha256": "25880690b03a23ba520ed9454f1f9938a561ec642d2f5ee4fb5edc5736fa67fc",
-        "bytes": 2813
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/directors-whisper-1.1.0.zip",
+        "sha256": "a250812c3208185bddbf4182cfdbb17faf6ba298c009f7f4ebab060dfeb81566",
+        "bytes": 6560
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/CUSTOM_MODS.md"
     },
