@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "directors-whisper",
   "name": "The Director's Whisper",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Pre-generation director that inspects the Foreshadow Vault. Injects payoff directives ONLY for seeds that are marked READY, remaining completely silent when all seeds are dormant.",
   "engine": {
     "min": "2.3.0",
@@ -12,13 +12,19 @@
     "agent"
   ],
   "entrypoints": {
-    "agents": "agents.json"
+    "agents": "agents.json",
+    "server": "server.mjs"
   },
   "files": [
     {
       "path": "agents.json",
-      "sha256": "c24dae1195e364f5d47ff4f922c25913deb614bbd6a5166866cf0e777e105bac",
-      "bytes": 1832
+      "sha256": "ef9342e4e52515b001e8e7852263b72f2ba7e9e63726a67da2f081915db50c65",
+      "bytes": 568
+    },
+    {
+      "path": "server.mjs",
+      "sha256": "2f0f17a0113d683eb3a7008af961b2265b949e7031d6793348456168ff4fcfd8",
+      "bytes": 4743
     }
   ],
   "permissions": [
