@@ -54,6 +54,10 @@ def state(info, kind):
     return os.path.join(tempfile.gettempdir(), f"claude-{kind}-{info.get('session_id', 'x')}")
 
 
+def handoff_path(info):
+    return os.path.expanduser(f"~/.claude/handoffs/{os.path.basename(info.get('cwd') or os.getcwd())}.md")
+
+
 def rewake(info):
     """Stop hook (asyncRewake): shortly before the cache expires on an idle session, wake the model once to
     write a handoff note. One sleeper per session; fires at most once per real user prompt."""
@@ -79,9 +83,8 @@ def rewake(info):
     if os.path.exists(fired) and (not os.path.exists(prompted) or os.path.getmtime(fired) >= os.path.getmtime(prompted)):
         return 0  # already woke since the last real prompt: don't keep the cache warm all night
     open(fired, "w").close()
-    name = os.path.basename(info.get("cwd") or os.getcwd())
     print(f"Prompt cache expires in ~{TTL_MIN - found[1]:.0f} min and Ben is away. If this session has unfinished "
-          f"multi-step work, update ~/.claude/handoffs/{name}.md (done with commit SHAs, in progress, exact next "
+          f"multi-step work, update {handoff_path(info)} (done with commit SHAs, in progress, exact next "
           "step, open questions; under 30 lines). If nothing is unfinished, reply only 'No handoff needed.' "
           "Start no new work.", file=sys.stderr)
     return 2  # asyncRewake: exit 2 wakes the model with stderr
@@ -104,8 +107,14 @@ def hook(info):
     except OSError:
         pass
     open(mark, "w").close()
-    print(describe(*found) + f". Prompt not sent: press up-arrow and send it again within {CONFIRM_MIN} min to go ahead, or /clear.",
-          file=sys.stderr)
+    hint = ""
+    try:
+        at = datetime.datetime.fromtimestamp(os.path.getmtime(handoff_path(info)))
+        hint = f" Handoff written {at:%H:%M}: /clear, then ask to resume from {handoff_path(info)}."
+    except OSError:
+        pass
+    print(describe(*found) + f". Prompt not sent: press up-arrow and send it again within {CONFIRM_MIN} min to go ahead, or /clear."
+          + hint, file=sys.stderr)
     return 2  # UserPromptSubmit: exit 2 blocks this prompt and shows stderr to the user
 
 
