@@ -88,7 +88,12 @@ def rewake(info):
 
 
 def hook(info):
-    open(state(info, "prompted"), "w").close()  # a real prompt re-arms the rewake
+    try:  # the rewake's own wake-up also fires UserPromptSubmit: only a later, real prompt re-arms it
+        woke = datetime.datetime.now().timestamp() - os.path.getmtime(state(info, "rewake-fired")) < 60
+    except OSError:
+        woke = False
+    if not woke:
+        open(state(info, "prompted"), "w").close()
     found = last_usage(info["transcript_path"])
     if not found or found[1] < TTL_MIN or found[0] < MIN_CONTEXT:
         return 0
