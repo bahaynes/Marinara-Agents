@@ -275,3 +275,9 @@ Not changed, so still open:
 **Confound:** a warm comedy with one personal mystery is easier to keep consistent than a horror threat. A good result could be the genre, not the design. Weigh any win against that.
 
 **Queued A/B:** npc-registry on versus off, in a later run, once its defects are fixed (duplicate aliases, unnamed people, places recorded as people, the lookup-tool line on providers without tools).
+
+### Run 2 log
+
+- **Build bug, fixed after turn 1.** The four constant entries were missing from turns 1–2: `mari db patch {"constant": true}` stored a value the scan did not count, and `update-entry --constant` fixed it. Turn 1's reply still held to the rules, which it never needed. The builder must preview-check constants before play.
+- **Turn 1 had three sealed entries in the prompt** (Estela, Senda, Dolça). They were keyed on role words ("bride", "mother of the bride", "planner") that the greeting uses. Senda, who was present, played hers correctly: she held back her observation and steered toward the missed fitting. Estela's full truth was in the prompt while she was offstage.
+- **The character tracker copied sealed facts into its private notes** ("Fura knows Estela cries in stables"). Agents that read activated lore can carry sealed facts into lasting state, outside the lorebook's gating. Watch whether that state leaks.
