@@ -221,3 +221,34 @@ Finish one agent end to end (built, measured on stored runs, kept or deleted) be
 - `npc-registry`: 314 runs, every result under 120 characters.
 - `timeline-anchor`: enabled on four configs across both instances, with no `agent_runs` records to measure.
 - `directors-whisper`, `narrative-architect`, `shared-world`, `foreshadow-vault`: enabled, but 0–9 recorded runs.
+
+## 12. Run 2: Magrana (lore-graph baseline, 2026-10-30)
+
+A fresh world, so it cannot be confused with Caldera: a three-day summer island wedding. The tone is warm and comedic, with two romance threads. The player is a duellist officiant.
+
+| Variable | Caldera (run 1) | Magrana (run 2) |
+| --- | --- | --- |
+| Lore shape | Prose entries plus a railroader pack (Spine and Pressure group) | Graph nodes to the §11 baseline: Thing, Place, Event, Group and Person entries, rules on Things |
+| Pacing | Message-count delays, a decision-gated finale | None in lore. The player picks scenes; the act ends at the vows (dusk, day three) |
+| Hidden truth | None written | Four "Sealed ·" keyword entries with who-knows lines, each keyed to its person |
+| Threat | An undefined Force | No Force. The mystery runs only on the familiar bond's closed rules |
+| Romance | None planned | Two candidates, written as slow and mutual |
+| Connection, preset | Opus, preset `tLoXuciK6OzP-pUT6YwlR` | Same. Preset changes so far: none (record each one here) |
+| Advanced Memory | On | On (one variable at a time) |
+| Agents | character-tracker, world-state, npc-registry, memory-nag, illustrator, quartermaster | Same minus npc-registry |
+
+Records: character `vVITI2zhvDgqX7LIaXFwi` (Magrana, narrator), persona `UmCAKqRPRB7eAXW-PAQFv` (Lorenç), lorebook `UDOboCTYnlIXrb-3EgPRP`.
+
+Authoring choices to check against play:
+
+- **Name roots are kept out of the text.** Names were built from Catalan, Occitan and Old High German roots. The roots appear in no entry (finding 5).
+- **Fada's closed fields are pinned.** She is warm like sun-warmed stone, breathes nothing and flies only when she must. This keeps a white dragon from drifting into frost.
+- **The rite is written as island custom, not law.** The families differ in temperament, never in holdings. Both are written positively.
+- **Known risk: the bride's sealed entry fires whenever she is in play.** Watch for over-hinting.
+
+What to measure:
+
+- Contradictions of a closed rule, counted with message numbers.
+- Narrator-opened threads that stack on the existing one.
+- Recalled facts versus retconned facts.
+- Whether the sealed truth leaks before the player earns it.
