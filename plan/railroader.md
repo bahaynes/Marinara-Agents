@@ -218,7 +218,11 @@ The Continuity Checker package holds a reply but rewrites it. A regenerate resul
 
 Finish one agent end to end (built, measured on stored runs, kept or deleted) before designing the next. Fork agents in use on 2026-10-30 that have no proof they work:
 
-- `npc-registry`: 314 runs, every result under 120 characters.
+- `npc-registry` (corrected 2026-10-30): works. Small results are by design (`{"ops": []}` on most turns). It wrote changes in 37 of 97 Caldera runs, and the roster reaches the prompt. Its defects:
+  - duplicates: Iolen / Iolen Saveret, Dorrin / Dorrin of Hollin, Wren / Gammer Wren;
+  - unnamed people recorded against its own rule: Herald, Page, Unnamed Elder;
+  - a place recorded as a person: Oryth;
+  - a prompt that tells the narrator to call `npc_registry_lookup`, which `claude_subscription` cannot call.
 - `timeline-anchor`: enabled on four configs across both instances, with no `agent_runs` records to measure.
 - `directors-whisper`, `narrative-architect`, `shared-world`, `foreshadow-vault`: enabled, but 0–9 recorded runs.
 
@@ -235,7 +239,7 @@ A fresh world, so it cannot be confused with Caldera: a three-day summer island 
 | Romance | None planned | Two candidates, written as slow and mutual |
 | Connection, preset | Opus, preset `tLoXuciK6OzP-pUT6YwlR` | Same. Preset changes so far: none (record each one here) |
 | Advanced Memory | On | On (one variable at a time) |
-| Agents | character-tracker, world-state, npc-registry, memory-nag, illustrator, quartermaster | Same minus npc-registry |
+| Agents | character-tracker, world-state, npc-registry, memory-nag, illustrator, quartermaster | Same |
 
 Records: character `vVITI2zhvDgqX7LIaXFwi` (Magrana, narrator), persona `UmCAKqRPRB7eAXW-PAQFv` (Lorenç), lorebook `UDOboCTYnlIXrb-3EgPRP`.
 
