@@ -148,3 +148,76 @@ Pacing finding that motivated this: turn-delayed scenarios fired mid-scene (the 
 **Pace note (2026-10-27, user):** about 20 messages in, play is still in the first scene. Plot moves slower than an author expects, partly because of the player's conversational pace. A message-count timer assumes a pace the player doesn't keep, but a scene count follows the player's actual pace. That is another argument for scene units. Size packs for few scenes per session: a 15-day arc with many scenarios is likely more content than a campaign reaches.
 
 **Scope note (2026-10-27, user):** a pack covers one act, not the whole story. The prototype's Ordeal is Act I. The story's real ending (the persona's final choice) belongs to the user and is not in any pack. The next act gets a new fit pass when it starts, built from what play established (§3 step 5). Building one act at a time is what keeps the earlier warning valid: do not plan several acts up front and then gate phases on events.
+
+## 11. Prototype verdict and the lore graph (2026-10-30)
+
+The prototype chat (Caldera, 191 messages) is evidence, not something to rescue. Message numbers below are 0-based indexes in creation order.
+
+### What broke
+
+1. **The finale gate was a decision, not a terminal event.** The Spine latched `rr_ordeal` on "being taken to the Hall of Resonances". That broke §9 rule 5. A tour of the Hall at msg 74, about day 5, set it, and every later prompt carried Ordeal-mode text. The Hall scene (msgs 75–95) then played as the climax while Tora was still saying "The Ordeal is in eleven days". A builder rule that can be ignored is not a gate: the finale has to gate in code on the date or scene index.
+2. **Timers ran twice as fast**, the counter bug in §10. "Tora's wager" (`delay: 14`) fired at msg 15. Six of eight scenarios fired by msg 38, each staying sticky for 4.
+3. **A threat with no rules got new rules every scene.** The Skein entry gives symptoms only (drained wards, grey valleys, hollow survivors). Play invented, one scene at a time:
+   - iron that both destroys it and carries the infection (msgs 117–118);
+   - crossbow bolts that pass through harmlessly;
+   - a flock that chases a flare (msg 127) yet is clever enough to freeze a crossing (msg 134);
+   - a memory "fog" separate from being "emptied" (msg 188);
+   - victims called permanently emptied while being rescued anyway.
+4. **Unrelated lore was fused.** The lore places the Skein beyond Rindvar. Nothing links it to the Hall's floor or the Ordeal, but play did: candidates "went grey on the plate" (msg 87), and grey grit sank into the Hall's wells (msg 97).
+5. **Metaphor became body.** The entry's "a skein is tangled yarn or a flock in silent flight" became a string-man who "came apart like wet yarn" and a shoal of "starlings with too many joints".
+6. **Played facts were retconned.** At msg 64 the Hall lamps bending is news. At msg 170 Tora says court lamps have leaned "for three hundred years". By msg 170, msg 64 was ~106 messages outside the 30-message window, and the scene summary covering it does not mention lamps.
+7. **The summary hardened a guess into canon.** The summary for msgs ~40–75 says the infrastructure "is a lid designed to contain a prehistoric threat known as 'the Unquiet'". The messages only had a character speculate that "somebody was very busy putting a lid on something".
+8. **The narrator opened its own mysteries.** A cart with no driver and a toll-keeper's lost afternoon were new hooks stacked on a running pressure.
+
+Working hypothesis (the user's, consistent with 6 and 7): a cloud narrator with good prompt construction does not drift by itself. Most of the drift comes from what memory and the lorebook feed it: facts that are missing, dropped or hardened. Test this before building a checker.
+
+### The lore graph: lorebook baseline
+
+Use Marinara primitives: one lorebook entry per node. Call Sheet has to prove 1:1 parity with Roleplay or Game mode before it becomes the target.
+
+| Node | Required fields |
+| --- | --- |
+| Person | who they are, what they want, what they know, where they usually are |
+| Group | what it wants, how it acts, who leads it, where it is |
+| Place | what is there, who is there, what connects to it |
+| Force (phenomenon, threat) | what it does, how it spreads, what stops it, what it cannot do, what happens to victims, how smart it is |
+| Event (past) | what happened, when, who was there, what it caused |
+| Thing (object, material, **magic system**) | what it does, what it costs, its limits, who can use it |
+
+Magic is a Thing with hard rules, never a Force.
+
+- **Edges:** in, member of, wants, opposes, caused, knows, and an explicit **unrelated to**. A relation left out reads as "maybe connected" (finding 4).
+- **Open and closed fields:** the author marks each rule field open (play may invent it) or closed. Inventing is allowed where a field is open but never required. The narrator is steered to use what the graph already has.
+- **Facts carry a source:** lore, established in play (message), or rumor. Facts from play are append-only. Changing one is an explicit edit.
+
+Baseline lint for a pack, run in code:
+
+1. Every proper noun in any entry has its own node.
+2. Every Force and Thing has all its rule fields.
+3. Every pair of Forces or mysteries states a relation, even "unrelated".
+4. Every past event the card or greeting mentions has an Event node.
+5. Alternate names and meanings sit in a names field, never in the description (finding 5).
+6. Secrets list who knows them.
+
+### Play without homework
+
+Nothing is approved by hand during play. Write-back of new nodes and facts from play is automatic, attached to its source.
+
+**Phase 2 (opt-in): rebound.** A held check asks "does this reply contradict a closed field of an active node?":
+
+| Source | Response |
+| --- | --- |
+| Narrator reply or impersonate turn | Regenerate with the violated rule pinned. |
+| The player's own text | Never rejected. The next reply shows the real rule in the fiction. |
+
+What happens when the retry also fails is deferred.
+
+The Continuity Checker package holds a reply but rewrites it. A regenerate result type is Engine work.
+
+### Process rule
+
+Finish one agent end to end (built, measured on stored runs, kept or deleted) before designing the next. Fork agents in use on 2026-10-30 that have no proof they work:
+
+- `npc-registry`: 314 runs, every result under 120 characters.
+- `timeline-anchor`: enabled on four configs across both instances, with no `agent_runs` records to measure.
+- `directors-whisper`, `narrative-architect`, `shared-world`, `foreshadow-vault`: enabled, but 0–9 recorded runs.
