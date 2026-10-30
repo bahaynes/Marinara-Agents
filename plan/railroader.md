@@ -239,7 +239,7 @@ A fresh world, so it cannot be confused with Caldera: a three-day summer island 
 | Romance | None planned | Two candidates, written as slow and mutual |
 | Connection, preset | Opus, preset `tLoXuciK6OzP-pUT6YwlR` | Same. Preset changes so far: none (record each one here) |
 | Advanced Memory | On | On (one variable at a time) |
-| Agents | character-tracker, world-state, npc-registry, memory-nag, illustrator, quartermaster | Same |
+| Agents | character-tracker, world-state, npc-registry, memory-nag, illustrator, quartermaster | Same minus npc-registry (Ben, 2026-10-30: its duplicate and unnamed roster entries may add to drift) |
 
 Records: character `vVITI2zhvDgqX7LIaXFwi` (Magrana, narrator), persona `UmCAKqRPRB7eAXW-PAQFv` (Lorenç), lorebook `UDOboCTYnlIXrb-3EgPRP`.
 
@@ -256,3 +256,22 @@ What to measure:
 - Narrator-opened threads that stack on the existing one.
 - Recalled facts versus retconned facts.
 - Whether the sealed truth leaks before the player earns it.
+
+### What run 2 tests, and what it does not
+
+Changed, each against a Caldera finding:
+
+1. **Rules are fully specified** (findings 3 and 5). The familiar bond and the witness are closed rules, and the mystery needs nothing else. Pass: no reply invents a new rule for familiars or the rite.
+2. **No pacing machinery in lore** (findings 1, 2 and 8). There is no Pressure group, no timers and no decision-gated finale. Pass: no climax before day three, and the narrator does not stack new mysteries on the silence.
+3. **Need-to-know truth** (pain point 3). Sealed facts sit on the people who hold them, each with a who-knows line. Pass: nobody acts on a sealed fact they do not hold, and the truth is not given away before Lorenç earns it.
+
+Not changed, so still open:
+
+- **Memory.** Advanced Memory, the 30-message window and the summaries are unchanged. A Caldera-style retcon (findings 6 and 7) can still happen. This run cannot test the memory half of the hypothesis.
+- **No write-back.** Facts invented in play are not saved to the graph. They live only in Advanced Memory.
+- **No rebound check.**
+- **Edges.** No "unrelated to" edges were written, because the world has only one mystery. That makes the run easier than Caldera.
+
+**Confound:** a warm comedy with one personal mystery is easier to keep consistent than a horror threat. A good result could be the genre, not the design. Weigh any win against that.
+
+**Queued A/B:** npc-registry on versus off, in a later run, once its defects are fixed (duplicate aliases, unnamed people, places recorded as people, the lookup-tool line on providers without tools).
