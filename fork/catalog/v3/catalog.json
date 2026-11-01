@@ -1032,47 +1032,6 @@
     },
     {
       "manifest": {
-        "schemaVersion": 1,
-        "id": "foreshadow-vault",
-        "name": "Foreshadow Vault",
-        "version": "1.0.0",
-        "description": "Post-processing watcher that detects narrative seeds/Chekhov's guns, ticks countdowns, and stores dormant items hidden in the custom tracker until ready.",
-        "engine": {
-          "min": "2.3.0",
-          "maxExclusive": "4.0.0"
-        },
-        "kind": [
-          "agent"
-        ],
-        "entrypoints": {
-          "agents": "agents.json"
-        },
-        "files": [
-          {
-            "path": "agents.json",
-            "sha256": "8be3fa3a79986d860903ceefc89768656313352527534efcc664d87af5849547",
-            "bytes": 3541
-          }
-        ],
-        "permissions": [
-          "agent-runtime",
-          "chat-read",
-          "prompt-context",
-          "storage",
-          "ui"
-        ],
-        "restartRequired": false
-      },
-      "category": "tracker",
-      "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/foreshadow-vault-1.0.0.zip",
-        "sha256": "2feac07f8d469aa8aea3d5870e46cf382c32783c8fce29b7e2792155078fbc65",
-        "bytes": 4489
-      },
-      "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/CUSTOM_MODS.md"
-    },
-    {
-      "manifest": {
         "schemaVersion": 2,
         "capabilityApi": {
           "major": 1,
@@ -3285,72 +3244,6 @@
     },
     {
       "manifest": {
-        "schemaVersion": 2,
-        "capabilityApi": {
-          "major": 1,
-          "minor": 19
-        },
-        "builtAgainst": {
-          "engineVersion": "2.5.0",
-          "engineCommit": "b19bfbd9f4455205eb715452beb28e342c196269"
-        },
-        "id": "narrative-architect",
-        "name": "Narrative Architect",
-        "version": "1.0.3",
-        "description": "Pre-generation narrative architect. Uses the local Decision model to detect scene breaks, then invokes a thinking model to scaffold recursive beats, information asymmetry, and turning points without repetitive input token costs.",
-        "engine": {
-          "min": "2.5.0",
-          "maxExclusive": "4.0.0"
-        },
-        "kind": [
-          "agent"
-        ],
-        "entrypoints": {
-          "agents": "agents.json",
-          "server": "server.mjs",
-          "client": "client.js"
-        },
-        "contributions": {
-          "slots": [
-            "chat-settings"
-          ]
-        },
-        "files": [
-          {
-            "path": "agents.json",
-            "sha256": "856d4ff66d92d74c3b8cd74cd6b8aad3d841dbfb63e45fa20d5af76377c27b58",
-            "bytes": 1088
-          },
-          {
-            "path": "client.js",
-            "sha256": "1ed4e5fffc3122028b1f44a21fbdfb7ce158c5200d81f77bef16ceb123e6da79",
-            "bytes": 15522
-          },
-          {
-            "path": "server.mjs",
-            "sha256": "b8040fb52ca023d89a9af4276898022c6495c8a2c08eece3981593880eceb953",
-            "bytes": 10093
-          }
-        ],
-        "permissions": [
-          "agent-runtime",
-          "chat-read",
-          "prompt-context",
-          "routes",
-          "storage"
-        ],
-        "restartRequired": true
-      },
-      "category": "writer",
-      "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/narrative-architect-1.0.3.zip",
-        "sha256": "50a65cafc761552ceb3758cfbffedaf2c06989a0add3316f578c192870017b8d",
-        "bytes": 28516
-      },
-      "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/narrative-architect/README.md"
-    },
-    {
-      "manifest": {
         "schemaVersion": 1,
         "id": "director",
         "name": "Narrative Director",
@@ -4466,53 +4359,6 @@
         "bytes": 17718
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/staging/docs/agents/built-in-agents.md#storyboard"
-    },
-    {
-      "manifest": {
-        "schemaVersion": 1,
-        "id": "directors-whisper",
-        "name": "The Director's Whisper",
-        "version": "1.1.0",
-        "description": "Pre-generation director that inspects the Foreshadow Vault. Injects payoff directives ONLY for seeds that are marked READY, remaining completely silent when all seeds are dormant.",
-        "engine": {
-          "min": "2.3.0",
-          "maxExclusive": "4.0.0"
-        },
-        "kind": [
-          "agent"
-        ],
-        "entrypoints": {
-          "agents": "agents.json",
-          "server": "server.mjs"
-        },
-        "files": [
-          {
-            "path": "agents.json",
-            "sha256": "ef9342e4e52515b001e8e7852263b72f2ba7e9e63726a67da2f081915db50c65",
-            "bytes": 568
-          },
-          {
-            "path": "server.mjs",
-            "sha256": "2f0f17a0113d683eb3a7008af961b2265b949e7031d6793348456168ff4fcfd8",
-            "bytes": 4743
-          }
-        ],
-        "permissions": [
-          "agent-runtime",
-          "chat-read",
-          "prompt-context",
-          "storage",
-          "ui"
-        ],
-        "restartRequired": false
-      },
-      "category": "writer",
-      "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/directors-whisper-1.1.0.zip",
-        "sha256": "a250812c3208185bddbf4182cfdbb17faf6ba298c009f7f4ebab060dfeb81566",
-        "bytes": 6560
-      },
-      "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/CUSTOM_MODS.md"
     },
     {
       "manifest": {
