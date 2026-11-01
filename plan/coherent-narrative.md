@@ -2,6 +2,16 @@
 
 Status: **draft for review, nothing built.** Written 2026-10-25 after reviewing the Engine and `fork/packages`.
 
+> **Superseded in part, 2026-11-01 (Ben).** Thread, seed and knowledge tracking moves into one new plugin, specified in
+> `minecraftdocker/docs/llm/story-threads-plan.md`. As a result:
+> - `foreshadow-vault`, `directors-whisper` and `narrative-architect` are **deleted**, not kept, merged or extended
+>   (sections 3, 4.5, 5, 8). Their useful ideas are seeds and information asymmetry, and both move to the new plugin.
+> - Memory Nag is **not** the thread store (12.2), and plan B in 12.5 is dropped. Memory Nag and `quest` are turned
+>   off in chats that use threads.
+> - Section 4.3's ledger becomes the plugin's commit log, built on `npc-registry`'s append-only graph.
+>
+> Still open from this doc: chronology (4.2), sealed storage and the leak check (12.4), and Story Architect (12.3).
+
 ## 1. The problem
 
 RP chats lose plot threads, drift on chronology, and break when the story depends on timing, who-knows-what,
