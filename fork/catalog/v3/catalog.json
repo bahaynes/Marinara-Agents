@@ -64,8 +64,8 @@
         },
         "id": "3d-avatars",
         "name": "3D Avatars",
-        "version": "0.1.1",
-        "description": "Shows your characters and personas as animated 3D models that blink, talk, and change faces with each reply. Uses VRM model files. Set up each avatar on the agent's page in Agents, then add the Agent in Chat Settings → Agents → Misc Agents for Roleplay and Game modes.",
+        "version": "0.1.2",
+        "description": "Shows your characters and personas as animated 3D models that blink, talk, and change faces with each reply. Uses VRM model files; Marinara Engine versions after 2.5.1 also take MMD PMX models and rigged GLB and FBX models. Set up each avatar on the agent's page in Agents, then add the Agent in Chat Settings → Agents → Misc Agents for Roleplay and Game modes.",
         "engine": {
           "min": "2.5.0",
           "maxExclusive": "4.0.0"
@@ -79,8 +79,8 @@
         "files": [
           {
             "path": "agents.json",
-            "sha256": "69f4979c0272d438ddbff9fbef7b71b7451f32fe32c58a31d6103ec9d5ac496a",
-            "bytes": 465
+            "sha256": "9f2af90ad2b4a3e7b637c94d53b898f324484195be23394d586465981badb9ac",
+            "bytes": 558
           }
         ],
         "permissions": [
@@ -94,9 +94,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/3d-avatars.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/3d-avatars-0.1.1.zip",
-        "sha256": "11b8622eacc3dd249ecf0a25759bd36b89ea1bae122adbc689919e6064636f69",
-        "bytes": 1033
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/3d-avatars-0.1.2.zip",
+        "sha256": "e6a628cf9722768737db5a992b17bca6476fb576d6dff5e73d7a53a57ef3c72c",
+        "bytes": 1146
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/staging/docs/agents/built-in-agents.md#3d-avatars"
     },
@@ -105,18 +105,18 @@
         "schemaVersion": 2,
         "capabilityApi": {
           "major": 1,
-          "minor": 46
+          "minor": 813
         },
         "builtAgainst": {
-          "engineVersion": "2.4.6",
-          "engineCommit": "bd6464e61f03ad7d7743f2986f1371d0280c7c85"
+          "engineVersion": "2.5.1",
+          "engineCommit": "05ad846e7615f72709949043d8d519f1f2e37505"
         },
         "id": "ruleset-5e-2014",
         "name": "5e (SRD 5.1)",
-        "version": "0.9.1",
-        "description": "Play Game Mode by the 5e rules (SRD 5.1): ability checks, saving throws, a full character sheet with spells and class features, and 5e combat against 319 monsters, on a battle board or without positions. After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
+        "version": "1.0.3",
+        "description": "Play Game Mode by the 5e rules (SRD 5.1): ability checks, saving throws, a full character sheet with spells and class features, and 5e combat against 323 monsters, on a battle board or without positions. Its Equipment catalog puts the SRD's armor, weapons, gear and tools in your bag, and what you wear sets your Armor Class. Its Magic items catalog holds every SRD magic item and a spell scroll of every spell, and they work as printed: a potion of healing heals, a scroll casts its spell, and a +1 sword hits harder. Every item has a price, and a beaten creature can drop coins and, now and then, a potion, a scroll or a magic item. The Game Master buys and sells for you at the market, from a hamlet's general store to a city's magic dealer. Honest sellers warn before selling a wild chance item, and a town's fence may pass off a fake as the real thing. Its Races catalog has the SRD's nine races and their subraces, with your speed from the race you pick. A guided builder makes a character in steps: race, class, ability scores, background, proficiencies, features, spells and gear. Includes material from the System Reference Document 5.1 and 5.2.1 by Wizards of the Coast LLC (https://www.dndbeyond.com/srd), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/legalcode). Not affiliated with or endorsed by Wizards of the Coast. After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
         "engine": {
-          "min": "2.4.6",
+          "min": "2.5.1",
           "maxExclusive": "4.0.0"
         },
         "kind": [
@@ -129,30 +129,84 @@
               "ruleset.json",
               "catalogs/spells.json",
               "catalogs/features.json",
-              "catalogs/creatures.json"
+              "catalogs/races.json",
+              "catalogs/creatures.json",
+              "catalogs/equipment.json",
+              "catalogs/magic_items.json",
+              "catalogs/classes.json",
+              "catalogs/backgrounds.json",
+              "catalogs/languages.json",
+              "catalogs/tools.json",
+              "catalogs/fighting_styles.json",
+              "catalogs/weapons.json"
             ]
           }
         },
         "files": [
           {
             "path": "ruleset.json",
-            "sha256": "154fbae80ed86286a29ac1629f550dd052baf0f33ed0012d4a406a4ecf1202c0",
-            "bytes": 93257
+            "sha256": "4b9a7960f244c08778194557ab770b189144622cfe6722d802bf55c77d152d59",
+            "bytes": 406542
           },
           {
             "path": "catalogs/spells.json",
-            "sha256": "5073dbe894c942d752bb29df18440d47d4e4366f2aba12915905f86405018284",
-            "bytes": 314974
+            "sha256": "f06cf1c2a3c7752551be8ec76da27ae94463e0bc0a2139266c45781351029cfb",
+            "bytes": 858784
           },
           {
             "path": "catalogs/features.json",
-            "sha256": "3970e951d5c1a477334f225b1831b8ea2f7b9ce02e7488aa011a8e14edd537e9",
-            "bytes": 199372
+            "sha256": "d70b406c4eb22129ade4ef524bde839b4fd96785b34cf6fabd42b5e031ecd54a",
+            "bytes": 722138
+          },
+          {
+            "path": "catalogs/races.json",
+            "sha256": "727848a2493c33268086d5659d4bb193f23822e5a7e1ed0a25ce9f00e37a6e4f",
+            "bytes": 42859
           },
           {
             "path": "catalogs/creatures.json",
-            "sha256": "621feee41734fc0441c0edd6ddd01b47d3d79ea517a3a35c0aaae47076285246",
-            "bytes": 779881
+            "sha256": "e74e193d232e1d70e36c57bcc382d776ec9b8232df21c9a455c348faf96b328a",
+            "bytes": 1519653
+          },
+          {
+            "path": "catalogs/equipment.json",
+            "sha256": "f01684b10516c45446972140757987036fa8c8bfb94a0f4c00ffcdfe9fe6cbaa",
+            "bytes": 140900
+          },
+          {
+            "path": "catalogs/magic_items.json",
+            "sha256": "4e2fa042d6ffef360d8c3e7a6d801aa87906fa51a1e293f821874ed1ac9a53d7",
+            "bytes": 1449140
+          },
+          {
+            "path": "catalogs/classes.json",
+            "sha256": "3a28073a38e04c033a29a7ba9b6a4a6d16314c1e88f21e2a7ea8a71d04380b12",
+            "bytes": 37015
+          },
+          {
+            "path": "catalogs/backgrounds.json",
+            "sha256": "fc3dfb43f46446642cdb95157b66fc07e8c47c59a884d6f83533ba81879533d2",
+            "bytes": 2114
+          },
+          {
+            "path": "catalogs/languages.json",
+            "sha256": "a46214463c32f7c18c6146e169f6ccf68bf79d623abdd4a346ebd94fccb2136f",
+            "bytes": 2751
+          },
+          {
+            "path": "catalogs/tools.json",
+            "sha256": "26e1cf9a7958bba0a58edb8689c1adf967b4f6a55d4557c46d821491a9c3ddf8",
+            "bytes": 7445
+          },
+          {
+            "path": "catalogs/fighting_styles.json",
+            "sha256": "1471228a203518e39a10edcd9601358874bc83c2bda18a55cbda8caf073ba208",
+            "bytes": 4752
+          },
+          {
+            "path": "catalogs/weapons.json",
+            "sha256": "9ecd2fb6026ed674f4d732e08ab8a2e5239666b10120a9940d1a385a79ca71a0",
+            "bytes": 31058
           }
         ],
         "permissions": [],
@@ -161,9 +215,88 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/ruleset-5e-2014.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-0.9.1.zip",
-        "sha256": "c9b45dc9087608aebca420d65966ffbcfa7557cdf6ae382eb8da4aa91eed9365",
-        "bytes": 1389670
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.ruleset.json",
+        "sha256": "af2c999d9021aa8dc84404cfde23981656a5f3a2e484f8c96653794996220dc3",
+        "bytes": 6971823
+      },
+      "locales": {
+        "ar": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.ar.json",
+          "sha256": "db9b581435fb86e8d1671328972f23dcff6da3ffb5a79441b64c8272ee49abfb",
+          "bytes": 1950316,
+          "name": "5e (SRD 5.1)",
+          "description": "العب في وضع اللعب وفق قواعد 5e (SRD 5.1): اختبارات القدرات، ورميات الإنقاذ، وورقة شخصية كاملة تتضمن التعاويذ وميزات الفئات، وقتال بقواعد 5e ضد 323 وحشًا، على لوحة معركة أو دون تحديد المواقع. يضع كتالوج المعدات الدروع والأسلحة والعتاد والأدوات الواردة في SRD في حقيبتك، ويحدد ما ترتديه فئة درعك. يضم كتالوج العناصر السحرية جميع العناصر السحرية الواردة في SRD ولفافة تعويذة لكل تعويذة، وتعمل كما تنص أوصافها: جرعة الشفاء تشفي، واللفافة تلقي تعويذتها، وسيف +1 يضرب بقوة أكبر. لكل عنصر ثمن، وقد تترك المخلوقات المهزومة عملات، وأحيانًا جرعة أو لفافة أو عنصرًا سحريًا. يتولى سيد اللعبة الشراء والبيع نيابةً عنك في السوق، من متجر قرية صغيرة إلى تاجر سحر في مدينة. يحذرك الباعة الأمناء قبل بيع عنصر ذي تأثيرات عشوائية غير متوقعة، وقد يبيعك تاجر مسروقات في بلدة قطعة مزيفة على أنها أصلية. يضم كتالوج الأعراق الأعراق التسعة الواردة في SRD وأعراقها الفرعية، ويحدد العرق الذي تختاره سرعتك. يساعدك معالج إرشادي على إنشاء شخصية خطوة بخطوة: العرق، والفئة، وقيم القدرات، والخلفية، والإتقان، والميزات، والتعاويذ، والعتاد. يتضمن مواد من الوثيقة المرجعية للنظام 5.1 و5.2.1 الصادرة عن Wizards of the Coast LLC (https://www.dndbeyond.com/srd)، والمرخصة بموجب CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/legalcode). لا تربطه صلة بشركة Wizards of the Coast ولا يحظى بتأييدها. بعد التثبيت، اختر هذه القواعد ضمن «القواعد» في معالج إعداد وضع اللعب عند إنشاء لعبة جديدة."
+        },
+        "de": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.de.json",
+          "sha256": "e2b291978f81a1c61a9e56ff6d0ecc6c982cf7a3325d362ca1a9e014ba49e8b7",
+          "bytes": 1703209,
+          "name": "5e (SRD 5.1)",
+          "description": "Spiele im Spielmodus nach den Regeln von 5e (SRD 5.1): Attributswürfe, Rettungswürfe, ein vollständiger Charakterbogen mit Zaubern und Klassenmerkmalen sowie Kämpfe nach 5e gegen 323 Monster, auf einem Schlachtfeld oder ohne Positionen. Der Ausrüstungskatalog legt dir Rüstungen, Waffen, Abenteurerausrüstung und Werkzeuge aus dem SRD in die Tasche, und deine getragene Ausrüstung bestimmt deine Rüstungsklasse. Der Katalog magischer Gegenstände enthält jeden magischen Gegenstand des SRD und für jeden Zauber eine Zauberschriftrolle. Sie funktionieren wie beschrieben: Ein Heiltrank heilt, eine Schriftrolle wirkt ihren Zauber und ein Schwert +1 schlägt kräftiger zu. Jeder Gegenstand hat einen Preis, und besiegte Kreaturen können Münzen und gelegentlich einen Trank, eine Schriftrolle oder einen magischen Gegenstand hinterlassen. Der Spielleiter kauft und verkauft für dich auf dem Markt, vom Gemischtwarenladen eines Weilers bis zum Magiehändler einer Stadt. Ehrliche Händler warnen dich vor dem Kauf eines Gegenstands mit unberechenbaren Zufallseffekten, während ein Hehler in der Stadt dir eine Fälschung als echt andrehen kann. Der Völkerkatalog enthält die neun Völker des SRD und ihre Unterarten. Deine Bewegungsrate ergibt sich aus dem gewählten Volk. Ein Assistent führt dich schrittweise durch die Charaktererschaffung: Volk, Klasse, Attributswerte, Hintergrund, Übung, Merkmale, Zauber und Ausrüstung. Enthält Material aus dem Systemreferenzdokument 5.1 und 5.2.1 von Wizards of the Coast LLC (https://www.dndbeyond.com/srd), lizenziert unter CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/legalcode). Es besteht keine Verbindung zu Wizards of the Coast und keine Unterstützung durch das Unternehmen. Wähle dieses Regelwerk nach der Installation unter „Regeln“ im Einrichtungsassistenten des Spielmodus aus, wenn du ein neues Spiel erstellst."
+        },
+        "es": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.es.json",
+          "sha256": "7ddaeba0aad2cd405062710a851ca3578bf388a85e731bd8871f63bb3fec93a0",
+          "bytes": 1676212,
+          "name": "5e (SRD 5.1)",
+          "description": "Juega en el modo de juego con las reglas de 5e (SRD 5.1): pruebas de característica, tiradas de salvación, una ficha de personaje completa con conjuros y rasgos de clase, y combates de 5e contra 323 monstruos, en un tablero de batalla o sin posiciones. Su catálogo de equipo pone en tu bolsa las armaduras, armas, equipo de aventuras y herramientas del SRD, y lo que llevas puesto determina tu Clase de Armadura. Su catálogo de objetos mágicos contiene todos los objetos mágicos del SRD y un pergamino de conjuro de cada conjuro, y funcionan tal como indican sus descripciones: una poción de curación cura, un pergamino lanza su conjuro y una espada +1 golpea más fuerte. Cada objeto tiene un precio, y una criatura derrotada puede dejar monedas y, de vez en cuando, una poción, un pergamino o un objeto mágico. El director de juego compra y vende por ti en el mercado, desde la tienda de una aldea hasta el mercader de objetos mágicos de una ciudad. Los vendedores honrados te avisan antes de venderte un objeto con efectos aleatorios impredecibles, y un perista de la localidad puede hacer pasar una falsificación por un objeto auténtico. Su catálogo de razas contiene las nueve razas del SRD y sus subrazas, y tu velocidad depende de la raza que elijas. Un asistente te guía paso a paso para crear un personaje: raza, clase, puntuaciones de característica, trasfondo, competencias, rasgos, conjuros y equipo. Incluye material del Documento de Referencia del Sistema 5.1 y 5.2.1 de Wizards of the Coast LLC (https://www.dndbeyond.com/srd), bajo la licencia CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/legalcode). No está afiliado a Wizards of the Coast ni cuenta con su respaldo. Tras instalarlo, selecciónalo en «Reglas» en el asistente de configuración del modo de juego al crear una partida nueva."
+        },
+        "fr": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.fr.json",
+          "sha256": "81414020eb41a038248082dcdaa47a3a154aa7a0e15883213a39478ed0c412ad",
+          "bytes": 1713049,
+          "name": "5e (SRD 5.1)",
+          "description": "Jouez en mode Jeu selon les règles de 5e (SRD 5.1) : tests de caractéristique, jets de sauvegarde, fiche de personnage complète avec sorts et capacités de classe, et combats de 5e contre 323 monstres, sur un plateau de combat ou sans positions. Son catalogue d’équipement place dans votre sac les armures, armes, matériel d’aventurier et outils du SRD, et ce que vous portez détermine votre classe d’armure. Son catalogue d’objets magiques contient tous les objets magiques du SRD ainsi qu’un parchemin de sort pour chaque sort, et ils fonctionnent conformément à leur description : une potion de soins soigne, un parchemin lance son sort et une épée +1 frappe plus fort. Chaque objet a un prix, et une créature vaincue peut laisser des pièces et, de temps à autre, une potion, un parchemin ou un objet magique. Le maître du jeu achète et vend pour vous au marché, de l’échoppe d’un hameau au marchand d’objets magiques d’une ville. Les vendeurs honnêtes vous avertissent avant de vous vendre un objet aux effets aléatoires imprévisibles, tandis qu’un receleur local peut faire passer une contrefaçon pour un objet authentique. Son catalogue de races contient les neuf races du SRD et leurs sous-races, et votre vitesse dépend de la race choisie. Un assistant vous guide dans la création d’un personnage, étape par étape : race, classe, valeurs de caractéristique, historique, maîtrises, capacités, sorts et équipement. Comprend du contenu du Document de référence du système 5.1 et 5.2.1 de Wizards of the Coast LLC (https://www.dndbeyond.com/srd), sous licence CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/legalcode). Ce produit n’est ni affilié à Wizards of the Coast ni approuvé par cette société. Après l’installation, sélectionnez ce système dans « Règles » dans l’assistant de configuration du mode Jeu lorsque vous créez une nouvelle partie."
+        },
+        "hi": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.hi.json",
+          "sha256": "e2cc9db671451acd4436d130e77d1ffca78ed79f8b0d2bdccb4761fafb6788a9",
+          "bytes": 2630581,
+          "name": "5e (SRD 5.1)",
+          "description": "खेल मोड में 5e के नियमों (SRD 5.1) के अनुसार खेलें: क्षमता जाँच, बचाव फेंक, मंत्रों और वर्ग विशेषताओं सहित पूरा चरित्र पत्रक, और 323 राक्षसों के विरुद्ध 5e की युद्ध प्रणाली—युद्ध-पटल पर या बिना स्थान निर्धारित किए। इसकी उपकरण सूची से SRD के कवच, हथियार, साज-सामान और औज़ार आपके थैले में आते हैं, और आप जो पहनते हैं, उससे आपका कवच वर्ग तय होता है। इसकी जादुई वस्तुओं की सूची में SRD की हर जादुई वस्तु और प्रत्येक मंत्र का एक मंत्रपत्र है, और वे अपने विवरण के अनुसार काम करते हैं: उपचार का औषधि-पेय घाव भरता है, मंत्रपत्र अपना मंत्र चलाता है और +1 तलवार अधिक ज़ोर से वार करती है। हर वस्तु की एक कीमत है, और पराजित प्राणी से सिक्के तथा कभी-कभी कोई औषधि-पेय, मंत्रपत्र या जादुई वस्तु मिल सकती है। खेल संचालक बाज़ार में आपके लिए खरीद-बिक्री करता है, चाहे वह छोटे गाँव की परचून की दुकान हो या किसी शहर का जादुई वस्तुओं का व्यापारी। ईमानदार विक्रेता अनिश्चित और अप्रत्याशित प्रभावों वाली वस्तु बेचने से पहले चेतावनी देते हैं, और कस्बे का कोई चोरी का माल बेचने वाला व्यापारी नकली वस्तु को असली बताकर बेच सकता है। इसकी जातियों की सूची में SRD की नौ जातियाँ और उनकी उपजातियाँ हैं, और आपकी गति चुनी गई जाति से तय होती है। एक मार्गदर्शक आपको चरण-दर-चरण चरित्र बनाने में मदद करता है: जाति, वर्ग, क्षमता अंक, पृष्ठभूमि, प्रवीणताएँ, विशेषताएँ, मंत्र और साज-सामान। इसमें Wizards of the Coast LLC के सिस्टम रेफ़रेंस डॉक्यूमेंट 5.1 और 5.2.1 (https://www.dndbeyond.com/srd) की सामग्री शामिल है, जो CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/legalcode) के तहत लाइसेंस प्राप्त है। यह Wizards of the Coast से संबद्ध नहीं है और न ही उसके द्वारा अनुमोदित है। इंस्टॉल करने के बाद, नया खेल बनाते समय खेल मोड के सेटअप विज़ार्ड में «नियम» के अंतर्गत इसे चुनें।"
+        },
+        "ja": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.ja.json",
+          "sha256": "ebab19a0e91bdd803fe2ffa9f2b4614e9f9acdbf06f7e835a786104d7f79bab9",
+          "bytes": 1811119,
+          "name": "5e (SRD 5.1)",
+          "description": "ゲームモードを5eのルール（SRD 5.1）でプレイできます。能力値判定、セーヴィング・スロー、呪文やクラス特徴を備えた完全なキャラクター・シートに対応し、323体のモンスターを相手に、戦闘ボード上でも位置を使わずにも5eの戦闘を楽しめます。「装備品」カタログからSRDの鎧、武器、冒険用具、道具類をバッグに入れることができ、身に着けた装備によってアーマー・クラスが決まります。「魔法のアイテム」カタログにはSRDのすべての魔法のアイテムと、すべての呪文に対応する呪文の巻物が収録されており、それぞれ記載どおりに機能します。ポーション・オヴ・ヒーリングは回復を行い、巻物はその呪文を発動し、+1の剣はより強い打撃を与えます。どのアイテムにも価格があり、倒したクリーチャーは硬貨を落とすほか、ときにはポーション、巻物、魔法のアイテムを落とすこともあります。小さな村の雑貨屋から都市の魔法の品を扱う商人まで、ゲーム・マスターが市場での売買を代行します。正直な商人は、効果が予測できず運任せとなる品を売る前に警告してくれますが、町の盗品商は偽物を本物と偽って売ることがあります。「種族」カタログにはSRDの九種族とその亜種族が収録され、選んだ種族によって移動速度が決まります。作成ガイドに従い、種族、クラス、能力値、背景、習熟、特徴、呪文、装備の順にキャラクターを作成できます。Wizards of the Coast LLCによるシステム・リファレンス・ドキュメント5.1および5.2.1（https://www.dndbeyond.com/srd）の内容を含み、CC BY 4.0（https://creativecommons.org/licenses/by/4.0/legalcode）に基づいて使用しています。Wizards of the Coastとの提携関係はなく、同社の承認を受けたものではありません。インストール後、新しいゲームを作成する際に、ゲームモードのセットアップ・ウィザードの「ルール」でこのルールセットを選択してください。"
+        },
+        "ko": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.ko.json",
+          "sha256": "a0ada2ec8b413a960404d196ac0aa129126d91d021ab9ddbbcc636601eaa4e38",
+          "bytes": 1674405,
+          "name": "5e (SRD 5.1)",
+          "description": "게임 모드에서 5e 규칙(SRD 5.1)으로 플레이하세요. 능력치 판정, 내성 굴림, 주문과 클래스 특성이 포함된 완전한 캐릭터 시트를 제공하며, 전투 보드를 사용하거나 위치 없이 323종의 몬스터와 5e 전투를 벌일 수 있습니다. 장비 목록에서 SRD의 갑옷, 무기, 모험 장비와 도구를 가방에 넣을 수 있으며, 착용한 장비에 따라 방어도가 정해집니다. 마법 아이템 목록에는 SRD의 모든 마법 아이템과 각 주문에 해당하는 주문 두루마리가 들어 있으며, 모두 설명대로 작동합니다. 치유의 물약은 치유하고, 두루마리는 해당 주문을 시전하며, +1 검은 더 강하게 공격합니다. 모든 아이템에는 가격이 있으며, 쓰러뜨린 크리처에게서 동전과 함께 때때로 물약, 두루마리 또는 마법 아이템을 얻을 수 있습니다. 작은 마을의 잡화점부터 도시의 마법 상인까지, 게임 마스터가 시장에서 여러분 대신 물건을 사고팝니다. 정직한 상인은 효과가 종잡을 수 없이 무작위로 나타나는 아이템을 팔기 전에 경고하지만, 마을의 장물아비는 가짜를 진품으로 속여 팔기도 합니다. 종족 목록에는 SRD의 아홉 종족과 그 하위 종족이 포함되어 있으며, 선택한 종족에 따라 이동속도가 정해집니다. 생성 도우미를 따라 종족, 클래스, 능력치, 배경, 숙련, 특성, 주문, 장비를 차례로 선택하여 캐릭터를 만들 수 있습니다. Wizards of the Coast LLC의 시스템 참조 문서 5.1 및 5.2.1(https://www.dndbeyond.com/srd)의 자료를 포함하며, CC BY 4.0(https://creativecommons.org/licenses/by/4.0/legalcode) 라이선스에 따라 사용합니다. Wizards of the Coast와 제휴 관계가 없으며 해당 회사의 보증을 받지 않았습니다. 설치 후 새 게임을 만들 때 게임 모드 설정 마법사의 «규칙»에서 이 규칙 세트를 선택하세요."
+        },
+        "pl": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.pl.json",
+          "sha256": "b0ab65a7064b935164ab5d0059cc16d92dd7035742ba47c942a7b172a9eecf6d",
+          "bytes": 1642618,
+          "name": "5e (SRD 5.1)",
+          "description": "Graj w trybie gry według zasad 5e (SRD 5.1): testy cech, rzuty obronne, pełna karta postaci z zaklęciami i zdolnościami klasowymi oraz walka według zasad 5e z 323 potworami, na planszy bitewnej lub bez określania pozycji. Katalog wyposażenia pozwala dodawać do torby pancerze, broń, ekwipunek i narzędzia z SRD, a noszone wyposażenie określa twoją Klasę Pancerza. Katalog magicznych przedmiotów zawiera wszystkie magiczne przedmioty z SRD oraz zwój każdego zaklęcia. Działają zgodnie z opisem: mikstura leczenia leczy, zwój rzuca zapisane na nim zaklęcie, a miecz +1 uderza mocniej. Każdy przedmiot ma cenę, a pokonana istota może pozostawić monety, a od czasu do czasu także miksturę, zwój lub magiczny przedmiot. Mistrz Gry kupuje i sprzedaje za ciebie na targu, od wiejskiego sklepu wielobranżowego po miejskiego handlarza magicznymi przedmiotami. Uczciwi sprzedawcy ostrzegają przed zakupem przedmiotów o nieprzewidywalnych, losowych efektach, a miejscowy paser może sprzedać podróbkę jako oryginał. Katalog ras zawiera dziewięć ras z SRD i ich podrasy, a twoja szybkość zależy od wybranej rasy. Kreator prowadzi cię przez kolejne etapy tworzenia postaci: rasę, klasę, wartości cech, pochodzenie, biegłości, zdolności, zaklęcia i wyposażenie. Zawiera materiały z Dokumentu Referencyjnego Systemu 5.1 i 5.2.1 firmy Wizards of the Coast LLC (https://www.dndbeyond.com/srd), udostępnione na licencji CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/legalcode). Nie jest powiązany z Wizards of the Coast ani nie uzyskał aprobaty tej firmy. Po instalacji wybierz ten zestaw w sekcji „Zasady” kreatora konfiguracji trybu gry podczas tworzenia nowej rozgrywki."
+        },
+        "pt-BR": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.pt-BR.json",
+          "sha256": "00111038bdeb8575e570e26db20a0077b4a481ef87ea5790b8a487a02f24104f",
+          "bytes": 1664547,
+          "name": "5e (SRD 5.1)",
+          "description": "Jogue no Modo de Jogo com as regras de 5e (SRD 5.1): testes de atributo, salvaguardas, uma ficha de personagem completa com magias e características de classe, e combates de 5e contra 323 monstros, em um tabuleiro de batalha ou sem posições. O catálogo de Equipamento coloca na sua bolsa as armaduras, armas, equipamentos de aventura e ferramentas do SRD, e o que você veste determina sua Classe de Armadura. O catálogo de Itens Mágicos contém todos os itens mágicos do SRD e um pergaminho de magia para cada magia, e eles funcionam conforme suas descrições: uma poção de cura cura, um pergaminho conjura sua magia e uma espada +1 golpeia com mais força. Todo item tem um preço, e uma criatura derrotada pode deixar moedas e, de vez em quando, uma poção, um pergaminho ou um item mágico. O Mestre compra e vende para você no mercado, do armazém de um povoado ao comerciante de itens mágicos de uma cidade. Vendedores honestos avisam antes de vender um item com efeitos aleatórios imprevisíveis, e um receptador local pode vender uma falsificação como se fosse autêntica. O catálogo de Raças contém as nove raças do SRD e suas sub-raças, e seu deslocamento depende da raça escolhida. Um assistente orienta a criação do personagem em etapas: raça, classe, valores de atributo, antecedente, proficiências, características, magias e equipamento. Inclui material do Documento de Referência do Sistema 5.1 e 5.2.1 da Wizards of the Coast LLC (https://www.dndbeyond.com/srd), licenciado sob CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/legalcode). Não é afiliado à Wizards of the Coast nem endossado por ela. Após instalar, selecione este conjunto em «Regras» no assistente de configuração do Modo de Jogo ao criar uma nova partida."
+        },
+        "ru": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.ru.json",
+          "sha256": "3647a21da5685c0d33ef4fece60600e916ba2e84050c6c5e6229088e3be93789",
+          "bytes": 2265113,
+          "name": "5e (SRD 5.1)",
+          "description": "Играйте в игровом режиме по правилам 5e (SRD 5.1): проверки характеристик, спасброски, полноценный лист персонажа с заклинаниями и классовыми умениями, а также бои по правилам 5e против 323 чудовищ — на поле боя или без учёта позиций. Каталог снаряжения позволяет положить в сумку доспехи, оружие, снаряжение и инструменты из SRD, а надетые предметы определяют ваш Класс Доспеха. Каталог магических предметов содержит все магические предметы из SRD и свиток с каждым заклинанием. Всё работает по описанию: зелье лечения лечит, свиток накладывает своё заклинание, а меч +1 бьёт сильнее. У каждого предмета есть цена, а побеждённое существо может оставить монеты и иногда зелье, свиток или магический предмет. Мастер покупает и продаёт за вас на рынке — от лавки в деревушке до торговца магическими предметами в городе. Честные продавцы предупреждают перед продажей предметов с непредсказуемыми случайными эффектами, а местный скупщик краденого может выдать подделку за подлинник. Каталог рас содержит девять рас из SRD и их подрасы, а ваша скорость зависит от выбранной расы. Пошаговый помощник проведёт вас через создание персонажа: раса, класс, значения характеристик, предыстория, владения, умения, заклинания и снаряжение. Включает материалы Системного справочного документа 5.1 и 5.2.1 компании Wizards of the Coast LLC (https://www.dndbeyond.com/srd), распространяемые по лицензии CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/legalcode). Не связан с Wizards of the Coast и не одобрен этой компанией. После установки выберите этот набор в разделе «Правила» мастера настройки игрового режима при создании новой игры."
+        },
+        "zh-Hans": {
+          "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2014-1.0.3.zh-Hans.json",
+          "sha256": "d121dd2bb6ae609be0e36ad2f67d0877f620a071eb9dada86954537303969701",
+          "bytes": 1506277,
+          "name": "5e (SRD 5.1)",
+          "description": "在游戏模式中按5e规则（SRD 5.1）游玩：进行属性检定和豁免检定，使用包含法术与职业特性的完整角色卡，并按5e规则与323种怪物战斗，既可使用战斗棋盘，也可不使用站位。装备目录可将SRD中的护甲、武器、冒险用品和工具放入你的背包，你的穿戴则决定你的护甲等级。魔法物品目录收录了SRD中的全部魔法物品，以及每个法术对应的法术卷轴，效果均与规则描述一致：治疗药水恢复生命，卷轴施展其记载的法术，+1剑的攻击更强。每件物品都有价格，击败生物后可能获得钱币，偶尔还能获得药水、卷轴或魔法物品。游戏主持人会替你在市场上买卖物品，无论是小村落的杂货店，还是城市里的魔法物品商店。诚实的商人在出售效果随机且难以预测的物品前会提醒你，而镇上的销赃者可能把赝品当真货卖给你。种族目录包含SRD中的九个种族及其亚种，你的速度取决于所选种族。创建向导会引导你逐步创建角色：种族、职业、属性值、背景、熟练项、特性、法术和装备。包含Wizards of the Coast LLC《系统参考文档》5.1和5.2.1（https://www.dndbeyond.com/srd）中的内容，依照CC BY 4.0许可协议（https://creativecommons.org/licenses/by/4.0/legalcode）使用。本规则集与Wizards of the Coast无关联，也未获其认可。安装后，创建新游戏时，请在游戏模式设置向导的“规则”中选择此规则集。"
+        }
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/staging/docs/game/getting-started.md#choosing-rules"
     },
@@ -519,7 +652,7 @@
         },
         "id": "conversation-calls",
         "name": "Calls",
-        "version": "1.1.7",
+        "version": "1.1.8",
         "description": "Adds live audio and video calls with Conversation characters. Add as both a Command and an Agent in Chat Settings → Agents → Commands/Calls for Conversation mode.",
         "engine": {
           "min": "2.4.1",
@@ -549,13 +682,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "e7a7b0769ceda5d542206626dc775488c49ebbcfe9bed766dd429873a6f2d7b1",
-            "bytes": 405456
+            "sha256": "75849ff5da2351e5f3df02bfd33748c267c3a3e4e4fe68cbc9485ed1a23a686f",
+            "bytes": 405479
           },
           {
             "path": "client.js",
-            "sha256": "0ef7a269f2a7cffa68858c56d7a7611c78f26abacd07018aa8e7bcecabd46e93",
-            "bytes": 167433
+            "sha256": "1e5acfa3919839ab71f9b8315c2a67c62770e659abf41d1ccbef545bffa5d3c0",
+            "bytes": 170673
           }
         ],
         "permissions": [
@@ -572,9 +705,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/conversation-calls.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/conversation-calls-1.1.7.zip",
-        "sha256": "cee31728db5f6463553f29edb28cfde9ae98ae88399b47ccfd0d6b85e25e79ed",
-        "bytes": 575188
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/conversation-calls-1.1.8.zip",
+        "sha256": "51865dcfbdc27976300f6388d80a26a39ca63c4342ff2f38220542574a5184c8",
+        "bytes": 578451
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents#conversation-calls"
     },
@@ -583,7 +716,7 @@
         "schemaVersion": 1,
         "id": "card-evolution-auditor",
         "name": "Card Evolution Auditor",
-        "version": "1.0.3",
+        "version": "1.0.4",
         "description": "Suggests character card updates when the story changes a character, for you to approve. Add the Agent in Chat Settings → Agents → Writer Agents for Roleplay mode.",
         "engine": {
           "min": "2.3.0",
@@ -598,8 +731,8 @@
         "files": [
           {
             "path": "agents.json",
-            "sha256": "78f33f0d8baa9181c178ba766936180970b26db20244fdc16acdee8632614ae3",
-            "bytes": 1750
+            "sha256": "af62d704c1b2364ba2931cfca7e87b497708d68a944c4e0ca850b1b3a9e7e10a",
+            "bytes": 1735
           }
         ],
         "permissions": [
@@ -614,9 +747,9 @@
       "category": "writer",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/card-evolution-auditor.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/card-evolution-auditor-1.0.3.zip",
-        "sha256": "a650a487d8f496267b09e5175309b27825b2f418208adffa2f94cfa597c28149",
-        "bytes": 1540
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/card-evolution-auditor-1.0.4.zip",
+        "sha256": "7f87bbd621c179596302ee77bacc078fdcd5edac10aa80f427e32146b7503e33",
+        "bytes": 1532
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/staging/docs/agents/built-in-agents.md#card-evolution-auditor"
     },
@@ -993,7 +1126,7 @@
         "schemaVersion": 1,
         "id": "expression",
         "name": "Expression Engine",
-        "version": "1.0.5",
+        "version": "1.0.6",
         "description": "Changes character sprites to match how they feel. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay mode.",
         "engine": {
           "min": "2.3.0",
@@ -1008,8 +1141,8 @@
         "files": [
           {
             "path": "agents.json",
-            "sha256": "3b54e55b8a66525491f241824f6313376c86b528b3783a7c1576b45ee4df6ef6",
-            "bytes": 1899
+            "sha256": "2444ad1361f4cfc86092674f1bae5aa3696a2f4b133ec03ee6a4a41720cdc831",
+            "bytes": 2514
           }
         ],
         "permissions": [
@@ -1024,9 +1157,9 @@
       "category": "tracker",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/expression.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/expression-1.0.5.zip",
-        "sha256": "7bad09b42129dad0899b305fe6023ba99e8254d30b4d69cb4a188c52aafaa6ed",
-        "bytes": 1572
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/expression-1.0.6.zip",
+        "sha256": "eef50911eedf43a9c45afa2f92e2f4f435edaa5a6ee139576b990a33035a08fe",
+        "bytes": 1820
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/staging/docs/agents/built-in-agents.md#expression-engine"
     },
@@ -1035,15 +1168,15 @@
         "schemaVersion": 2,
         "capabilityApi": {
           "major": 1,
-          "minor": 381
+          "minor": 385
         },
         "builtAgainst": {
           "engineVersion": "2.5.1",
-          "engineCommit": "b9cc386e868d8ab9cdb4826939323a67d464e7bf"
+          "engineCommit": "afe9ddbd424dae2e0dae9188936689f0f0a5a80a"
         },
         "id": "gacha-forge",
         "name": "Gacha Forge",
-        "version": "1.14.0",
+        "version": "1.27.5",
         "description": "A complete gacha game mode. Describe a world and Gacha Forge builds the rest: banners to pull on, a cast the model writes and paints for you, story chapters told by a visual-novel narrator, and the battles, gear and events that grow around them. Install it, restart Marinara Engine when prompted, then open Home → Gacha Forge.",
         "engine": {
           "min": "2.5.1",
@@ -1332,8 +1465,8 @@
           },
           {
             "path": "client.js",
-            "sha256": "132a256686ada30f156eee395845c646367d23ae38279cbdc5ca8aa736ecb139",
-            "bytes": 1534019
+            "sha256": "08eeacb2f5ee583e532fbfadeef3263ca2aef90531d63b23a85daf548a4c94af",
+            "bytes": 1921764
           },
           {
             "path": "farm-asc.webp",
@@ -1807,8 +1940,8 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "01ad5984acded6abd00c08851df2857463dcfc1fcb9e94eb1a30778af8938b36",
-            "bytes": 627697
+            "sha256": "6e99135da7e14959257860002a4478b2414cb245ebb35af5d77636120d2b23fa",
+            "bytes": 1033225
           },
           {
             "path": "skill-aoe_damage-dark.webp",
@@ -2559,15 +2692,110 @@
             "path": "tower-bg.webp",
             "sha256": "22c28eb34c91b72ee9da276561e054745b828db21c55b4b647cbefb825e5bf8c",
             "bytes": 15292
+          },
+          {
+            "path": "src/formation-combat-client.mjs",
+            "sha256": "691433c1361f2e160bf52875c3dbb74c417baa71c6db0ff1d582aa5fabf9244c",
+            "bytes": 75982
+          },
+          {
+            "path": "src/formation-combat-en.mjs",
+            "sha256": "8bbcae90af673a487b764377a0d1d8389a230101d5faac01b190cd542ceb743f",
+            "bytes": 18002
+          },
+          {
+            "path": "src/formation-combat-server.mjs",
+            "sha256": "2c679bf29206b90111bb0c54c666ef1caf241e4d833565881838d04092dfc760",
+            "bytes": 24623
+          },
+          {
+            "path": "src/formation-combat-shared.mjs",
+            "sha256": "a032ed3d7073133ce9a18cdc0e0a5af09128b2bc587d5f097813d10ce214b505",
+            "bytes": 71666
+          },
+          {
+            "path": "src/formation-migration-server.mjs",
+            "sha256": "c16b905157714c3528604e01edb3c4d67bf8d76e54ac6e30dc9477ff12fd43db",
+            "bytes": 22427
+          },
+          {
+            "path": "src/formation-settings-client.mjs",
+            "sha256": "6741e855b2d704c7c70ad6ae461fd252b822e5b991216437dd588ea287e44a3d",
+            "bytes": 9980
+          },
+          {
+            "path": "src/formation-settings-en.mjs",
+            "sha256": "5335816230eb2a3dc63dab53abeb25231b0b63c1a87dc981ec851e062d8f91cc",
+            "bytes": 3723
+          },
+          {
+            "path": "src/combat-ultimate-client.mjs",
+            "sha256": "832cbfbed5e0e887eb61527da407a880861257f9e1a9984c0472b12856292fa6",
+            "bytes": 7695
+          },
+          {
+            "path": "src/combat-voices-client.mjs",
+            "sha256": "e2787168d7bc83b95721f83346ca112d2d9a34385863ccfc449d5f824118f51f",
+            "bytes": 16815
+          },
+          {
+            "path": "src/combat-voices-en.mjs",
+            "sha256": "d9656579bd48a6464c73195504fc6f130cc8deb1262361e7658c5e9a5aaecbcf",
+            "bytes": 1593
+          },
+          {
+            "path": "src/combat-voices-server.mjs",
+            "sha256": "ff04e4d84f59b500d074f7b7833e99ace52e12cbf0700c60bfc742436565f948",
+            "bytes": 19080
+          },
+          {
+            "path": "src/proactive-messages-en.mjs",
+            "sha256": "7c2a9d2f8216b780d92a8e26dd1b45f09eb02d471056c58ebdea9af317924328",
+            "bytes": 919
+          },
+          {
+            "path": "src/proactive-messages-client.mjs",
+            "sha256": "dda2d8259f61ddef28e9518740de4662971841eb25f1cd65fe209593a31f6051",
+            "bytes": 10938
+          },
+          {
+            "path": "src/proactive-messages-server.mjs",
+            "sha256": "2ac0079fc45e446b83c73d787a289b3aa7ec659a3083a3c2a10e4ca056b8f5c1",
+            "bytes": 14954
+          },
+          {
+            "path": "src/proactive-messages-adapter.mjs",
+            "sha256": "adb2d3f079a7c8f98fb86d8a918fcc91619ba819cc5d91c7418d887ca19e2d9a",
+            "bytes": 3267
+          },
+          {
+            "path": "src/background-download-client.mjs",
+            "sha256": "2ef9e96e3c243f6a5d4ed6b815e89cdfc7412ef3cb8983818dae061e406d9e26",
+            "bytes": 6420
+          },
+          {
+            "path": "src/background-unlocks-server.mjs",
+            "sha256": "af782ce72612652b2dc34af0a30e3a0397c785981b0b40fc9f8e45d5aabbe508",
+            "bytes": 11417
+          },
+          {
+            "path": "src/background-unlocks-client.mjs",
+            "sha256": "2c8a37d92eda1ef08389e5f0ae4af2b9a5d5d7f8d6843b31b3555099a4f646b2",
+            "bytes": 5215
+          },
+          {
+            "path": "src/unit-art-client.mjs",
+            "sha256": "7cf5a2703acd816e8b3b27538e9939d5da3fbf1241e735defdd8394a5fc9eeec",
+            "bytes": 1768
           }
         ]
       },
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/gacha-forge.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/gacha-forge-1.14.0.zip",
-        "sha256": "15ecf5eaa6e75dda082ab2d560d6eb3e17d88b077ec81ab8e5ed7487a9e46e46",
-        "bytes": 8061875
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/gacha-forge-1.27.5.zip",
+        "sha256": "a3a1581cb1d80e95ec491b57a64c7b8067120232c55051be68dab15d07849a0d",
+        "bytes": 9187385
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/gacha-forge/README.md"
     },
@@ -2816,7 +3044,7 @@
         "schemaVersion": 1,
         "id": "inventory-tracker",
         "name": "Inventory Tracker",
-        "version": "1.2.1",
+        "version": "1.2.2",
         "description": "Keeps track of your money, gear, and what you're carrying. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay mode.",
         "engine": {
           "min": "2.4.3",
@@ -2831,8 +3059,8 @@
         "files": [
           {
             "path": "agents.json",
-            "sha256": "10500c42d20f26509061b3288c34affdadb51b67ac804990e4562f3881ac4c50",
-            "bytes": 2819
+            "sha256": "930bba3eae1b5b4c403a777ca10ee894fe5c43044bf5e72e3dac428667975c21",
+            "bytes": 3240
           }
         ],
         "permissions": [
@@ -2847,9 +3075,9 @@
       "category": "tracker",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/inventory-tracker.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/inventory-tracker-1.2.1.zip",
-        "sha256": "fc9fe24ed1c6e7e23d3bb75de19b6bc206d626498d1ac99595bae539521c7afc",
-        "bytes": 1977
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/inventory-tracker-1.2.2.zip",
+        "sha256": "b9682cb9adb9a383d0caaa63e2ace4919e66382df4780c5831370e405dff48b9",
+        "bytes": 2109
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/staging/docs/agents/built-in-agents.md#inventory-tracker"
     },
@@ -2942,18 +3170,18 @@
         "schemaVersion": 2,
         "capabilityApi": {
           "major": 1,
-          "minor": 341
+          "minor": 390
         },
         "builtAgainst": {
-          "engineVersion": "2.5.0",
-          "engineCommit": "25f8df7b0a388fe36f657d69c6fcaa9f27e066ed"
+          "engineVersion": "2.5.1",
+          "engineCommit": "345cd747cf8e8fd56f3fbdceb625a1edd568b525"
         },
         "id": "long-term-memory",
         "name": "Long-Term Memory",
-        "version": "1.4.91",
-        "description": "Remembers important things from your chat summaries, characters, and lorebooks, and brings them back when they matter. Enable it per chat from Chat Settings → Agents → Long-Term Memory. In Roleplay and Game, you can also add it from Chat Settings → Agents → Misc Agents.",
+        "version": "1.5.29",
+        "description": "Remembers important things from your chats, characters, and lorebooks, and brings them back when they matter. Enable it per chat from Chat Settings → Agents → Long-Term Memory. In Roleplay and Game, you can also add it from Chat Settings → Agents → Misc Agents.",
         "engine": {
-          "min": "2.4.1",
+          "min": "2.5.1",
           "maxExclusive": "4.0.0"
         },
         "kind": [
@@ -2968,7 +3196,8 @@
           "agentDetail": {
             "agentIds": [
               "long-term-memory"
-            ]
+            ],
+            "header": "engine"
           },
           "slots": [
             "chat-settings"
@@ -2977,18 +3206,18 @@
         "files": [
           {
             "path": "agents.json",
-            "sha256": "263273cb19dbed76302b12855c9a56df0f5489008a580d24803f7ab9f998e6be",
-            "bytes": 552
+            "sha256": "d0c5a064c4d5cd96064d85ec73ab4c390bf4bfedeaa7237c9e79b599e308c631",
+            "bytes": 543
           },
           {
             "path": "server.mjs",
-            "sha256": "2a5a6b5aec812eefa196012a2ac1452d87e0d9bdcee805a21ddbc07d0b9692b8",
-            "bytes": 488930
+            "sha256": "32248683556b2083cd5e86963da7683c3ed84b33c48a7f613ab3e9be0d5ade35",
+            "bytes": 513182
           },
           {
             "path": "client.js",
-            "sha256": "3815bc897e6cdb88996320d38dcd73a8fd40a2c54ff647b27634f8e7c0ec18f0",
-            "bytes": 684105
+            "sha256": "bac132b36fccf7d40b5732fa637caafcf345ad9c6fe0d6e0d7b3cfc236835dec",
+            "bytes": 936831
           }
         ],
         "permissions": [
@@ -3004,9 +3233,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/long-term-memory.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/long-term-memory-1.4.91.zip",
-        "sha256": "41e25d15b769418f7d203d4c154ca48cbf8c7d379e64f5bbd4f178104ad78a48",
-        "bytes": 1175536
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/long-term-memory-1.5.29.zip",
+        "sha256": "a7a59e795c52de0965e237934b8568af87cb53208e03a75445a437b52812df3c",
+        "bytes": 1452522
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents#long-term-memory"
     },
@@ -3292,12 +3521,12 @@
           "minor": 341
         },
         "builtAgainst": {
-          "engineVersion": "2.5.0",
-          "engineCommit": "25f8df7b0a388fe36f657d69c6fcaa9f27e066ed"
+          "engineVersion": "2.5.1",
+          "engineCommit": "42d64368e82340a46e35c0f4489d9f41024d6032"
         },
         "id": "noodle",
         "name": "Noodle",
-        "version": "1.5.9",
+        "version": "1.5.12",
         "description": "A pretend social network where your characters post, share photos, and talk about your chats. Install it, restart Marinara Engine when prompted, then open Home → Noodle.",
         "localizations": {
           "de": {
@@ -3326,7 +3555,7 @@
           }
         },
         "engine": {
-          "min": "2.4.6",
+          "min": "2.5.1",
           "maxExclusive": "4.0.0"
         },
         "kind": [
@@ -3380,13 +3609,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "672f2722cbf0c9126a7ab58b3083e2621646410c0225af6013db464119918ef9",
-            "bytes": 543977
+            "sha256": "71795a663c2b92df08ce28026f031aafe729c5d7b39f375848403b1b40684810",
+            "bytes": 545726
           },
           {
             "path": "client.js",
-            "sha256": "38920a2b2fff2bf6b753949c3c93d182486f9247934c69f1a1c4d732b0cc1f2c",
-            "bytes": 717486
+            "sha256": "1c3b726cdb96522d96651849aa6e5fe65fd1b4f7214558574c64040257b00348",
+            "bytes": 733315
           },
           {
             "path": "noodle-klusek.png",
@@ -3407,9 +3636,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/noodle.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/noodle-1.5.9.zip",
-        "sha256": "b4d28f457f025c76161df381c934a74cd0b5ec6ec13976953d43b31359fba835",
-        "bytes": 1294208
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/noodle-1.5.12.zip",
+        "sha256": "6ce0d8812d52d7e63f9a131605ada38a35421c62bc572405953b0deae112f7d6",
+        "bytes": 1311787
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/noodle/README.md"
     },
@@ -3472,6 +3701,93 @@
         "bytes": 24492
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/npc-registry/README.md"
+    },
+    {
+      "manifest": {
+        "schemaVersion": 2,
+        "capabilityApi": {
+          "major": 1,
+          "minor": 386
+        },
+        "builtAgainst": {
+          "engineVersion": "2.5.1",
+          "engineCommit": "a3ceb0162b1629c6b99885759b11794aa6274869"
+        },
+        "id": "otome-forge",
+        "name": "Otome Hearth",
+        "version": "0.10.0",
+        "description": "An otome game in its own Home tab, made from your own characters: love interests who remember what you chose, their messages to you, dates and mini-games, and wishes for outfits and memories paid for only with Starlight you earn. Install it, restart Marinara Engine when prompted, then open Home → Otome Hearth.",
+        "engine": {
+          "min": "2.5.1",
+          "maxExclusive": "4.0.0"
+        },
+        "kind": [
+          "agent"
+        ],
+        "entrypoints": {
+          "agents": "agents.json",
+          "server": "server.mjs",
+          "client": "client.js"
+        },
+        "contributions": {
+          "slots": [
+            "home-browser-tab"
+          ],
+          "homeBrowserTab": {
+            "label": "Otome Hearth",
+            "ariaLabel": "Open Otome Hearth",
+            "iconPaths": [
+              "otome-hearth-tab-heart.png"
+            ]
+          }
+        },
+        "files": [
+          {
+            "path": "agents.json",
+            "sha256": "09424f88d12fdf3e542d3e67a3eb0c88071176658183fc4ead92e5a11d7dfac2",
+            "bytes": 681
+          },
+          {
+            "path": "server.mjs",
+            "sha256": "342067eff476b2fbfd8553ea7279af53745bf1d9d43f48659c64596ff2c82afa",
+            "bytes": 565695
+          },
+          {
+            "path": "client.js",
+            "sha256": "f61ef8b28becc24e878ab4882e50c7219cc90757b6b05947003c98ca289c3460",
+            "bytes": 1277330
+          },
+          {
+            "path": "otome-hearth-icon.png",
+            "sha256": "8a579710820c718e3f3e1a2535fc12a251c5b91569bd7f5bb59961f1e873bce8",
+            "bytes": 141313
+          },
+          {
+            "path": "otome-hearth-tab-heart.png",
+            "sha256": "301ef798d226eff3f2100daa1206b9ee1abe0654a070dd07718d98af4c7070d9",
+            "bytes": 2277
+          },
+          {
+            "path": "fonts/OFL.txt",
+            "sha256": "42a08de2370044e2966c8158770a86c67a8b343c9422a1b30b8599d25c05dd5f",
+            "bytes": 4558
+          }
+        ],
+        "permissions": [
+          "routes",
+          "storage",
+          "ui"
+        ],
+        "restartRequired": true
+      },
+      "category": "misc",
+      "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/otome-forge.png",
+      "artifact": {
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.10.0.zip",
+        "sha256": "d37b6ba223a1efef0323d901e550648b039283a8d53be521c90046189c5472cf",
+        "bytes": 1994677
+      },
+      "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/otome-forge/README.md"
     },
     {
       "manifest": {
@@ -3647,7 +3963,7 @@
         },
         "id": "quartermaster",
         "name": "Quartermaster",
-        "version": "0.1.28",
+        "version": "0.1.33",
         "description": "An RPG character sheet and inventory for Roleplay: equip gear around your persona's portrait, save outfits, get AI art for items, and let it keep everything in step with the story. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay mode.",
         "engine": {
           "min": "2.4.6",
@@ -3675,13 +3991,13 @@
           },
           {
             "path": "client.js",
-            "sha256": "acc3b1778a802799f9822aecb2077e138f8e04f5ca4a9d7802587450c1b8e43a",
-            "bytes": 306535
+            "sha256": "bb328e5d0887e067d2a2b554be19149875453b944aadc7ed5e7b761575a227fc",
+            "bytes": 356554
           },
           {
             "path": "server.mjs",
-            "sha256": "8a6b260e52068d0654723a75f98e95c84053491c3d9e3b812a5ab97ef3f073b1",
-            "bytes": 131685
+            "sha256": "8bbb7bc59705d9f0a57095920548c6d7a000aa7ecd6d8dcac06e8dd4f0be9ec0",
+            "bytes": 163277
           },
           {
             "path": "icons/armor_legs.webp",
@@ -3805,9 +4121,9 @@
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/quartermaster.png",
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/quartermaster/README.md",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/quartermaster-0.1.28.zip",
-        "sha256": "6eb40478ea7339318e6582b66a308f11547d35100c8c766851ced50fb3679a4e",
-        "bytes": 482700
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/quartermaster-0.1.33.zip",
+        "sha256": "c660f91a28d7db6a8ce3f968682e66ea8e96affac4aaf72c1fac83e1d4d50d82",
+        "bytes": 564311
       }
     },
     {
@@ -3865,7 +4181,7 @@
         },
         "id": "relationship-tracker",
         "name": "Relationship Tracker",
-        "version": "0.7.2",
+        "version": "0.7.3",
         "description": "Tracks how the characters and your persona feel about each other. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay mode.",
         "engine": {
           "min": "2.4.4",
@@ -3933,8 +4249,8 @@
           },
           {
             "path": "client.js",
-            "sha256": "a76ba1a1284fe7516447a74b0e9336d752c142fb4e15f50708a2985906abb3e8",
-            "bytes": 84902
+            "sha256": "7fad5a6bdb3b48a6241c4089b915c65f387fb295b45d5d8054413c915a774738",
+            "bytes": 89538
           },
           {
             "path": "contracts/relationship-state-v1.schema.json",
@@ -3965,9 +4281,9 @@
       "category": "tracker",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/relationship-tracker.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/relationship-tracker-0.7.2.zip",
-        "sha256": "faa02caace5a115aef46b4f9f5f57089bc7a2dad37d03af93242a721d99bc911",
-        "bytes": 251318
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/relationship-tracker-0.7.3.zip",
+        "sha256": "0bebbceccb3ff3068d99e9a8bc62f9e8302223d2c23b43f73e265a89b0e08dd2",
+        "bytes": 255954
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/relationship-tracker/README.md"
     },
@@ -4047,6 +4363,399 @@
         "bytes": 37676
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents#rock-paper-scissors"
+    },
+    {
+      "manifest": {
+        "schemaVersion": 2,
+        "capabilityApi": {
+          "major": 1,
+          "minor": 341
+        },
+        "builtAgainst": {
+          "engineVersion": "2.5.0",
+          "engineCommit": "2039583caf0288d31a5696ae3546f5b4913e7e6f"
+        },
+        "id": "saucelings",
+        "name": "Saucelings",
+        "version": "0.23.2",
+        "description": "A Tamagotchi-style pet in Home: pick a character to look after an egg, let their personality drive their care schedule, cover the gaps they miss, watch its sauce temperament shift, retire elders to a Menagerie, and let the caretaker find eggs of their own invention while you chat. Install it, restart Marinara Engine when prompted, then open Home → Saucelings.",
+        "engine": {
+          "min": "2.5.0",
+          "maxExclusive": "4.0.0"
+        },
+        "kind": [
+          "agent"
+        ],
+        "entrypoints": {
+          "agents": "agents.json",
+          "server": "server.mjs",
+          "client": "client.js"
+        },
+        "contributions": {
+          "slots": [
+            "home-browser-tab",
+            "home-widget"
+          ],
+          "homeBrowserTab": {
+            "label": "Saucelings",
+            "ariaLabel": "Open Saucelings",
+            "iconPaths": [
+              "saucelings-icon.png"
+            ]
+          },
+          "homeWidgets": [
+            {
+              "id": "sauceling-compact",
+              "label": "Sauceling",
+              "description": "Compact view of your sauceling's meters and caretaker status",
+              "size": "compact",
+              "icon": "heart",
+              "accent": "orange",
+              "surface": "soft",
+              "header": "compact"
+            },
+            {
+              "id": "sauceling-nook",
+              "label": "Sauceling Nook",
+              "description": "Quick Feed and Play actions plus the latest caretaker remark",
+              "size": "large",
+              "icon": "sparkles",
+              "accent": "orange",
+              "surface": "soft",
+              "header": "banner"
+            }
+          ],
+          "assets": {
+            "paths": [
+              "sprites/atlas.json",
+              "sprites/rigamuffin.webp",
+              "sprites/fluttino.webp",
+              "sprites/lentino.webp",
+              "sprites/shellbini.webp",
+              "sprites/tortellump.webp",
+              "sprites/mossaboo.webp",
+              "sprites/puddlepip.webp",
+              "sprites/snufflump.webp",
+              "sprites/burrowl.webp",
+              "sprites/prismite.webp",
+              "sprites/thundrake.webp",
+              "sprites/clockrit.webp",
+              "sprites/wickwisp.webp",
+              "sprites/cauldrop.webp",
+              "sprites/webbit.webp",
+              "sprites/fx-tomato.webp",
+              "sprites/fx-heart.webp",
+              "sprites/fx-sparkle.webp",
+              "sprites/fx-z.webp",
+              "sprites/fx-note.webp",
+              "sprites/fx-question.webp",
+              "sprites/fx-bang.webp",
+              "sprites/scene-nest.webp",
+              "sprites/scene-rigamuffin.webp",
+              "sprites/scene-fluttino.webp",
+              "sprites/scene-lentino.webp",
+              "sprites/scene-shellbini.webp",
+              "sprites/scene-tortellump.webp",
+              "sprites/scene-mossaboo.webp",
+              "sprites/scene-puddlepip.webp",
+              "sprites/scene-snufflump.webp",
+              "sprites/scene-burrowl.webp",
+              "sprites/scene-prismite.webp",
+              "sprites/scene-thundrake.webp",
+              "sprites/scene-clockrit.webp",
+              "sprites/scene-wickwisp.webp",
+              "sprites/scene-cauldrop.webp",
+              "sprites/scene-webbit.webp",
+              "sprites/fx-extras.webp",
+              "sprites/fx-auras.webp",
+              "sprites/fx-moves.webp",
+              "sprites/prismite-live.webp",
+              "sprites/thundrake-live.webp",
+              "sprites/clockrit-live.webp",
+              "sprites/wickwisp-live.webp",
+              "sprites/cauldrop-live.webp",
+              "sprites/webbit-live.webp"
+            ]
+          }
+        },
+        "files": [
+          {
+            "path": "agents.json",
+            "sha256": "9bf51fe9ac60152d24db068d2c0025ffef8d36ebc0261c1855f2db9475e28273",
+            "bytes": 730
+          },
+          {
+            "path": "server.mjs",
+            "sha256": "5c9d4640b9a7eef829b33c509603014c0352b23aa853b77591b779a9af6922de",
+            "bytes": 106672
+          },
+          {
+            "path": "client.js",
+            "sha256": "acb4e38ec88c1d0929920ee4974af175cb1df4679aea9c13ff794b37bf0c5433",
+            "bytes": 256618
+          },
+          {
+            "path": "saucelings-icon.png",
+            "sha256": "ad9bd2848d94b242e8f19c1427a7d19e61bc3a59561c08fb7155675d9f06d036",
+            "bytes": 2481
+          },
+          {
+            "path": "sprites/atlas.json",
+            "sha256": "0f183a47ea16a10bc3613a244a4674397cd7a366d6e384a1985071b719b757e3",
+            "bytes": 14572
+          },
+          {
+            "path": "sprites/rigamuffin.webp",
+            "sha256": "adf03a4480f579f53fecf8a9a3093c05f80544e1c521e0a1e6a2b22c0a4f8525",
+            "bytes": 10396
+          },
+          {
+            "path": "sprites/fluttino.webp",
+            "sha256": "b3d886262f079a3dcfa92a40364857b527c932858637c7cf01dee91e2774b03b",
+            "bytes": 13972
+          },
+          {
+            "path": "sprites/lentino.webp",
+            "sha256": "bd62de0492d7c92c726294640656a95b2864113908bcfb3e5bc9e85546b0a8b9",
+            "bytes": 9262
+          },
+          {
+            "path": "sprites/shellbini.webp",
+            "sha256": "4b3116be2fdfc3832c61349cf6fc1c6769d1b50640f83fe7b923189323c0195a",
+            "bytes": 13830
+          },
+          {
+            "path": "sprites/tortellump.webp",
+            "sha256": "9b456be0edebdaf8d7f5eba7f3cb50c0262710cd7b87b4ff9f540c31e7a0dcdd",
+            "bytes": 12340
+          },
+          {
+            "path": "sprites/mossaboo.webp",
+            "sha256": "ca9577621a806d65db71988b8adebcd85ef7e9d9770e7c9479c10502981dbf22",
+            "bytes": 10446
+          },
+          {
+            "path": "sprites/puddlepip.webp",
+            "sha256": "3248c75963a7096bd3a587bf2fe9054f081ad063c9f53698adbcd61e3d281c9d",
+            "bytes": 8528
+          },
+          {
+            "path": "sprites/snufflump.webp",
+            "sha256": "a61f691db046c677af97556f6c7dfe2ac79553fda51546e3163dbb938e757d62",
+            "bytes": 9950
+          },
+          {
+            "path": "sprites/burrowl.webp",
+            "sha256": "028219a4df6bb4fa4139808fe78c8ebaa1021f4b87e0865c19eeae7b8b81f726",
+            "bytes": 10066
+          },
+          {
+            "path": "sprites/prismite.webp",
+            "sha256": "e4803f0ab5f38a4689f1a98136bde7410399d5cf6291c663fd7fa6f0c1c01861",
+            "bytes": 11452
+          },
+          {
+            "path": "sprites/thundrake.webp",
+            "sha256": "e878066d98a9f87b30633c32a79cf65f4a625d2d88bf455df321a94b1a4dd5a0",
+            "bytes": 11476
+          },
+          {
+            "path": "sprites/clockrit.webp",
+            "sha256": "9264b3cb65eedc224a38cffd22504a5cd2ed00fa0ab73e58e6caeefbf743acf5",
+            "bytes": 12492
+          },
+          {
+            "path": "sprites/wickwisp.webp",
+            "sha256": "b0926684306a8238c5c52b0301b3f2a60bd3acd0381cd85c0368929e77992c7e",
+            "bytes": 7428
+          },
+          {
+            "path": "sprites/cauldrop.webp",
+            "sha256": "c6f10dcf6950338981ba559c5a0eb4e87b5a0867c02d0889aefe3b317588741f",
+            "bytes": 9834
+          },
+          {
+            "path": "sprites/webbit.webp",
+            "sha256": "7406520e818c0b2eb7502fd0c239cf3fd0d2af04d0025fafe0febe9fa7b80332",
+            "bytes": 13128
+          },
+          {
+            "path": "sprites/fx-tomato.webp",
+            "sha256": "3e4c3dd4a4e816fdd67e06e9b5d25264327bae77a3584e940f69c23831b117b5",
+            "bytes": 138
+          },
+          {
+            "path": "sprites/fx-heart.webp",
+            "sha256": "ed5859c17549280f0134e3c2bc674e9d937bcd63fee93fd38bfc3b78a749f263",
+            "bytes": 92
+          },
+          {
+            "path": "sprites/fx-sparkle.webp",
+            "sha256": "5f07106b524b35ce683211427bb67a15aeea205602a5d7533ca689eecbec1704",
+            "bytes": 96
+          },
+          {
+            "path": "sprites/fx-z.webp",
+            "sha256": "74a91b0cf1914f7e66ecc520a9e0f1fc18c2ab68f01a3c8753ada9185e6bb585",
+            "bytes": 96
+          },
+          {
+            "path": "sprites/fx-note.webp",
+            "sha256": "e831af1f80eb835ffe836554692dfa0f1493aaeb88e23d5fce6b3d232dfa54ba",
+            "bytes": 104
+          },
+          {
+            "path": "sprites/fx-question.webp",
+            "sha256": "42fff62dee53fe232619119959a01ee73c05649048f6a7d7fd11b18683d3e23f",
+            "bytes": 82
+          },
+          {
+            "path": "sprites/fx-bang.webp",
+            "sha256": "f9613a0f554924c75eaaa2c6d1e4f655bdc7d265baff1ae5565ce2b51d65e170",
+            "bytes": 72
+          },
+          {
+            "path": "sprites/scene-nest.webp",
+            "sha256": "f3b7c8f533c67b89d4ddaa1c0d5403fdb7b55f3e66413003dee0b90f8ed0049b",
+            "bytes": 4698
+          },
+          {
+            "path": "sprites/scene-rigamuffin.webp",
+            "sha256": "ffff115c59364e1d59e3a2cabfd302c51d4824f2d468e492ec69c8a075cd2a46",
+            "bytes": 4558
+          },
+          {
+            "path": "sprites/scene-fluttino.webp",
+            "sha256": "fc93fbb3a496ec9a6e27b75326940f3532edf48b01aa010d4279b83fce3a1f72",
+            "bytes": 3986
+          },
+          {
+            "path": "sprites/scene-lentino.webp",
+            "sha256": "0eb4d58b02d0bd76adc4d080737d8bc4b2a49123b3577588d39e893bc9f6c6d2",
+            "bytes": 4428
+          },
+          {
+            "path": "sprites/scene-shellbini.webp",
+            "sha256": "b1482986cb4219dab5161b11d3ea769a8e2af95e459c416df278640de4a8cd18",
+            "bytes": 4362
+          },
+          {
+            "path": "sprites/scene-tortellump.webp",
+            "sha256": "07c9e7e410593ff8b736426ae5a1d37a76f72660c44c21a925e5410129ad19a7",
+            "bytes": 4524
+          },
+          {
+            "path": "sprites/scene-mossaboo.webp",
+            "sha256": "1840087d60b32b7b92768e3fc1b9781ee6c0a62cf9d4514d46787b2559ff41e2",
+            "bytes": 4840
+          },
+          {
+            "path": "sprites/scene-puddlepip.webp",
+            "sha256": "7f34e02b15f074d47f120b6744173044398400d036e66088027c56279cb08f18",
+            "bytes": 4558
+          },
+          {
+            "path": "sprites/scene-snufflump.webp",
+            "sha256": "80d8f6cbfe49e364f53b8e9861a316cc0d43a4f27f01aa8a0d9f8f16c0b7b4e0",
+            "bytes": 3004
+          },
+          {
+            "path": "sprites/scene-burrowl.webp",
+            "sha256": "342016e5653419996deac8d567cd80c0d7db36581379869089e10d7a070a8de1",
+            "bytes": 5842
+          },
+          {
+            "path": "sprites/scene-prismite.webp",
+            "sha256": "c8b0a0bca2f7aed04e721de6fc4a995debc2116f6c83bf5264cedff9255fbc2a",
+            "bytes": 6424
+          },
+          {
+            "path": "sprites/scene-thundrake.webp",
+            "sha256": "84261316310ac725fe3bede49b3e9405019730652d0bcf5dc5c46fcfeb30bd88",
+            "bytes": 3910
+          },
+          {
+            "path": "sprites/scene-clockrit.webp",
+            "sha256": "a47af3f62f04608ab3f5a63b1aef8ba6fab1b9dc285421d2cc19fd798b5461f1",
+            "bytes": 5312
+          },
+          {
+            "path": "sprites/scene-wickwisp.webp",
+            "sha256": "5b227324414aaed2a5cd28d2d1d371c6c33e3efbd1b17747beeb3f550dd27f8a",
+            "bytes": 4968
+          },
+          {
+            "path": "sprites/scene-cauldrop.webp",
+            "sha256": "50b520d73e8fc8f0d736ede75cd0ebaac01b1bc1bdbaf7d323dd39d66b4f448d",
+            "bytes": 5692
+          },
+          {
+            "path": "sprites/scene-webbit.webp",
+            "sha256": "f56f96ea8f09779c7d835d65c87b17faebda3a1e4bb80c1389e662d3f5ad9980",
+            "bytes": 3984
+          },
+          {
+            "path": "sprites/fx-extras.webp",
+            "sha256": "7f0d70adbd00fadbb765492e6448e742af603a84c2673134de88b31147f21ed8",
+            "bytes": 1066
+          },
+          {
+            "path": "sprites/fx-auras.webp",
+            "sha256": "bf9180b5cd1e5aa3f5db64504ae36cc57f8a8ed25bec2a1cc7af2cf557565844",
+            "bytes": 318
+          },
+          {
+            "path": "sprites/fx-moves.webp",
+            "sha256": "dd6d9e7de15b2976d81bf679a9746b26c4c4863d55889db0d83c304d65f2d3f4",
+            "bytes": 3172
+          },
+          {
+            "path": "sprites/prismite-live.webp",
+            "sha256": "097e03dc33bed14d12c38df603034bd94b1f784d9210b26cecfb09081556deb8",
+            "bytes": 60000
+          },
+          {
+            "path": "sprites/thundrake-live.webp",
+            "sha256": "ee524b3ab894bb2f0086af4722af298695fdb54868090236b11bd2eab5998c6e",
+            "bytes": 31670
+          },
+          {
+            "path": "sprites/clockrit-live.webp",
+            "sha256": "26a785d726e2614dd5f085304bc5f5cc423da8e6720cb096dca5bb23fc4429ac",
+            "bytes": 29538
+          },
+          {
+            "path": "sprites/wickwisp-live.webp",
+            "sha256": "2bb3332a0cfe952ec8663e64242e32e2771b6fb4a93bc85ae5037b0d4f5b613f",
+            "bytes": 17620
+          },
+          {
+            "path": "sprites/cauldrop-live.webp",
+            "sha256": "a1302a67a9aaefca7739e8b6c41af5ea773d587629422ed8480130591a65af56",
+            "bytes": 19006
+          },
+          {
+            "path": "sprites/webbit-live.webp",
+            "sha256": "4ccf412b6ac644a6b2812f1d995ba6ccd122b855ee1ece875b97c35a06abe8b2",
+            "bytes": 22194
+          }
+        ],
+        "permissions": [
+          "prompt-context",
+          "routes",
+          "storage",
+          "ui"
+        ],
+        "restartRequired": true
+      },
+      "category": "misc",
+      "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/saucelings.png",
+      "artifact": {
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/saucelings-0.23.2.zip",
+        "sha256": "1f886bac6b54d5b97c5edef854b246f2f8a071ca50121a9234fb15a555bd24a8",
+        "bytes": 824313
+      },
+      "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents#saucelings"
     },
     {
       "manifest": {
@@ -4143,7 +4852,7 @@
         },
         "id": "slurp2",
         "name": "Slurp",
-        "version": "0.4.1",
+        "version": "0.4.18",
         "description": "A private social app for your characters. Turn characters and personas into Creators, post public or locked photos, and watch a simulated audience follow, subscribe, unlock, comment, and message them. By default, it is tuned for an adult experience. Install it, restart Marinara Engine when prompted, then open Home → Slurp.",
         "localizations": {
           "de": {
@@ -4212,13 +4921,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "2f8f75e42e58f3cb1459307baf3b2d422bf84930e88f705a5309f29f1fb86e20",
-            "bytes": 2008746
+            "sha256": "71054a56bfdb8cd4d28a09c99a00f8dd180ce740cf606371d0ecc22acf3c8a2c",
+            "bytes": 2164536
           },
           {
             "path": "client.js",
-            "sha256": "5916950ee953da96c8d5c2957ce5ff5fc5e41895e31082df14fae716d85c24c0",
-            "bytes": 2839552
+            "sha256": "174f826104ba12aaf20b12599a572bd5cb927d93a1031717fd0bf02b9aa748c6",
+            "bytes": 2910591
           },
           {
             "path": "slurp2-logo.png",
@@ -4242,18 +4951,18 @@
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/de.json",
-            "sha256": "1f6bf145d2f707bcf4600bfe9b32a330cfa2314d9772eb14e7d29d928252b65a",
-            "bytes": 231893
+            "sha256": "5f84b47b173de6433d1e3638797d96e1923d13263b049ef98cbddb62b302d9cf",
+            "bytes": 242224
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/ko.json",
-            "sha256": "af21ea5829363ccbe6999893eb62ef838ef9c02347cd4f2b80c8d0b4a208c8de",
-            "bytes": 328893
+            "sha256": "51715d63f9adf86922fb92dae91baba6604c83a1f5734c7622f67baa9ead6eb6",
+            "bytes": 339947
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/pl.json",
-            "sha256": "2a7eba40377498e64f1ba4ca534e74c1143a6378a309fe517e1ebdb6d5dc8377",
-            "bytes": 233528
+            "sha256": "09c99b2a79c9eeedcb3fc2965bddfc77567f34612a12247cb031f8d6e77cb0e2",
+            "bytes": 243945
           }
         ],
         "permissions": [
@@ -4271,9 +4980,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/slurp2.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/slurp2-0.4.1.zip",
-        "sha256": "d72b33c28cf7169badcc2eccbf118b80980238b66b2db80a8a4a3d8010987b40",
-        "bytes": 5874623
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/slurp2-0.4.18.zip",
+        "sha256": "be13c0f314f58580bebf3f264589af4ffb0d346d8393967c4b8bdb38423008ef",
+        "bytes": 6133255
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/slurp2/README.md"
     },
@@ -4317,6 +5026,111 @@
         "bytes": 3748
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/CUSTOM_MODS.md"
+    },
+    {
+      "manifest": {
+        "schemaVersion": 2,
+        "capabilityApi": {
+          "major": 1,
+          "minor": 386
+        },
+        "builtAgainst": {
+          "engineVersion": "2.5.1",
+          "engineCommit": "54e6848c818ae4150f108ab9614986bb7610891d"
+        },
+        "id": "story-writer",
+        "name": "Story Writer",
+        "version": "0.2.0",
+        "description": "A co-writing book. Pick a connection, your characters, personas and lorebooks, describe the story, and the model writes it chapter by chapter while you guide it with an author's note and edit anything on the page. Install it, restart Marinara Engine when prompted, then open Home → Story Writer.",
+        "engine": {
+          "min": "2.5.1",
+          "maxExclusive": "4.0.0"
+        },
+        "kind": [
+          "agent"
+        ],
+        "entrypoints": {
+          "agents": "agents.json",
+          "server": "server.mjs",
+          "client": "client.js"
+        },
+        "contributions": {
+          "slots": [
+            "home-browser-tab"
+          ],
+          "homeBrowserTab": {
+            "label": "Story Writer",
+            "ariaLabel": "Open Story Writer",
+            "iconPaths": [
+              "story-writer-icon.png"
+            ]
+          },
+          "assets": {
+            "paths": [
+              "story-writer-mari.webp",
+              "wood-desk.webp",
+              "paper-light.webp",
+              "paper-dark.webp"
+            ]
+          }
+        },
+        "files": [
+          {
+            "path": "agents.json",
+            "sha256": "498b13d0c7f04f59546aab5d16d4c6806335bcb4b7eef9e9bcf46008b0e7a3a3",
+            "bytes": 666
+          },
+          {
+            "path": "server.mjs",
+            "sha256": "51b0d291c248e9f0eca322233ad1a57de6a2fe69e592b4a1fbfbda053eb05d98",
+            "bytes": 14027
+          },
+          {
+            "path": "client.js",
+            "sha256": "c16ce04d42c33c3aa28ff58e78a4a4ea4f451d395a92b960dac87ba76656353a",
+            "bytes": 219920
+          },
+          {
+            "path": "story-writer-icon.png",
+            "sha256": "fdf24e26aaea6611faf1038b92fe95762abb240c2861c13496930a015d1cce9c",
+            "bytes": 61634
+          },
+          {
+            "path": "story-writer-mari.webp",
+            "sha256": "97dd7fe0c5609602e1abcdb628d38e59ad30077945346900035d6cb89c302da7",
+            "bytes": 174988
+          },
+          {
+            "path": "wood-desk.webp",
+            "sha256": "6a5b8a51f584c5062999eea3dfe90fb74facb1cc4a3b55ecdb119f5b5a89d913",
+            "bytes": 91530
+          },
+          {
+            "path": "paper-light.webp",
+            "sha256": "61b26fa8903d0213eeea702b02d34a2853356b7f60932ab0e789ef50a6064350",
+            "bytes": 43156
+          },
+          {
+            "path": "paper-dark.webp",
+            "sha256": "3889e55f4c6513a1cf0424344eb17d10d8fd4142a0288398c06bf610d984cecb",
+            "bytes": 14878
+          }
+        ],
+        "permissions": [
+          "routes",
+          "storage",
+          "ui"
+        ],
+        "restartRequired": true
+      },
+      "category": "misc",
+      "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/story-writer.png",
+      "artifact": {
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/story-writer-0.2.0.zip",
+        "sha256": "af14d99ff9780d9d344fc83c7d73b304c355e9125df4fa7e3f73b4c68ed821ba",
+        "bytes": 624271
+      },
+      "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/story-writer/README.md"
     },
     {
       "manifest": {
@@ -4656,7 +5470,7 @@
         },
         "id": "hierarchical-maps",
         "name": "World Maps",
-        "version": "1.7.1",
+        "version": "1.8.0",
         "description": "Adds world maps to Roleplay and Game, from whole regions down to single rooms, with art and travel between places. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
         "engine": {
           "min": "2.5.1",
@@ -4697,8 +5511,8 @@
           },
           {
             "path": "client.js",
-            "sha256": "6a38be8b9502cca77da968620c52532a132510e70a398a0ad7e228cfdb1cb330",
-            "bytes": 441581
+            "sha256": "94f946e904c6e6570a9f6a0cdf852d132ba1b878079352dc441c883ea9b9e09b",
+            "bytes": 444643
           }
         ],
         "permissions": [
@@ -4716,9 +5530,9 @@
       "category": "tracker",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/hierarchical-maps.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/hierarchical-maps-1.7.1.zip",
-        "sha256": "04b45bf0d1d90041cc61d6d40e06a19c90a84130339a6d85fbddf888d66c6a82",
-        "bytes": 581365
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/hierarchical-maps-1.8.0.zip",
+        "sha256": "20a4f7304221ef895ce98997200b3f0e411b085d3fd3ebdf3704da305a797a78",
+        "bytes": 584427
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/main/docs/agents/hierarchical-maps.md"
     },
