@@ -177,6 +177,10 @@ export const OFFICIAL_PACKAGE_GUIDANCE = Object.freeze({
     modes: ["game"],
     activation: "After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
   },
+  "ruleset-5e-2024": {
+    modes: ["game"],
+    activation: "After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
+  },
   spotify: {
     modes: ["conversation", "roleplay", "game"],
     activation:

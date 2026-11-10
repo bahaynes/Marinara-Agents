@@ -21,6 +21,13 @@
       "iconPath": "../../../store/icons/ruleset-5e-2014.webp",
       "bannerPath": "../../../store/banners/ruleset-5e-2014.webp",
       "bannerSmallPath": "../../../store/banners/ruleset-5e-2014-1200.webp"
+    },
+    "ruleset-5e-2024": {
+      "section": "adventure",
+      "tagline": "Play Game Mode by the 2024 revised 5e rules.",
+      "iconPath": "../../../store/icons/ruleset-5e-2024.webp",
+      "bannerPath": "../../../store/banners/ruleset-5e-2024.webp",
+      "bannerSmallPath": "../../../store/banners/ruleset-5e-2024-1200.webp"
     }
   }
 }

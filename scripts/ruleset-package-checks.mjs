@@ -1901,7 +1901,7 @@ export const RULESET_BUILDER_SAFE_MIN_CAPABILITY_API = Object.freeze({ major: 1,
 const RULESET_DERIVED_OLD_MAX = 60;
 const RULESET_DERIVED_MID_MAX = 120;
 const RULESET_DERIVED_PRE_106_MAX = 240;
-const RULESET_DERIVED_MAX = 800;
+const RULESET_DERIVED_MAX = 1600;
 // More than 400 derived values (Capability API 1.729), gated in the sheet hooks.
 const RULESET_DERIVED_PRE_676_MAX = 400;
 export const RULESET_DERIVED_800_MIN = Object.freeze({ major: 1, minor: 729 });
@@ -2105,11 +2105,11 @@ const VALUE_REF_KEYS = Object.freeze([
 // declaring an older API is still held to the earlier 256 KiB and 1 MiB, because an
 // older Engine refuses anything larger.
 export const RULESET_SIZE_LIMITS_MIN_CAPABILITY_API = Object.freeze({ major: 1, minor: 340 });
-export const RULESET_MAX_BYTES = 512 * 1024;
+export const RULESET_MAX_BYTES = 2 * 1024 * 1024;
 export const RULESET_EARLIER_MAX_BYTES = 256 * 1024;
-export const RULESET_CATALOG_MAX_BYTES = 2 * 1024 * 1024;
+export const RULESET_CATALOG_MAX_BYTES = 16 * 1024 * 1024;
 export const RULESET_CATALOG_EARLIER_MAX_BYTES = 1024 * 1024;
-export const RULESET_CATALOG_MAX_ENTRIES = 2000;
+export const RULESET_CATALOG_MAX_ENTRIES = 10000;
 const RULESET_CATALOGS_MAX = 12;
 
 // `catalogs/<id>.json` is a reserved asset family: the file name is the

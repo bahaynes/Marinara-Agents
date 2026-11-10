@@ -1,0 +1,561 @@
+{
+ "schemaVersion": 1,
+ "catalog": "tools",
+ "entries": [
+  {
+   "id": "alchemists-supplies",
+   "label": "Alchemist's Supplies",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Alchemist's Supplies"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bagpipes",
+   "label": "Bagpipes",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Bagpipes"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "brewers-supplies",
+   "label": "Brewer's Supplies",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Brewer's Supplies"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "calligraphers-supplies",
+   "label": "Calligrapher's Supplies",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Calligrapher's Supplies"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "carpenters-tools",
+   "label": "Carpenter's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Carpenter's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "cartographers-tools",
+   "label": "Cartographer's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Cartographer's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "cobblers-tools",
+   "label": "Cobbler's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Cobbler's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "cooks-utensils",
+   "label": "Cook's Utensils",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Cook's Utensils"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "dice-set",
+   "label": "Dice Set",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Dice Set"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "disguise-kit",
+   "label": "Disguise Kit",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Disguise Kit"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "dragonchess-set",
+   "label": "Dragonchess Set",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Dragonchess Set"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "drum",
+   "label": "Drum",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Drum"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "dulcimer",
+   "label": "Dulcimer",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Dulcimer"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "flute",
+   "label": "Flute",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Flute"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "forgery-kit",
+   "label": "Forgery Kit",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Forgery Kit"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "glassblowers-tools",
+   "label": "Glassblower's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Glassblower's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "herbalism-kit",
+   "label": "Herbalism Kit",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Herbalism Kit"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "horn",
+   "label": "Horn",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Horn"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "jewelers-tools",
+   "label": "Jeweler's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Jeweler's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "leatherworkers-tools",
+   "label": "Leatherworker's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Leatherworker's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "lute",
+   "label": "Lute",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Lute"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "lyre",
+   "label": "Lyre",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Lyre"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "masons-tools",
+   "label": "Mason's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Mason's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "navigators-tools",
+   "label": "Navigator's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Navigator's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "painters-supplies",
+   "label": "Painter's Supplies",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Painter's Supplies"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "pan-flute",
+   "label": "Pan Flute",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Pan Flute"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "playing-card-set",
+   "label": "Playing Card Set",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Playing Card Set"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "poisoners-kit",
+   "label": "Poisoner's Kit",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Poisoner's Kit"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "potters-tools",
+   "label": "Potter's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Potter's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "shawm",
+   "label": "Shawm",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Shawm"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "smiths-tools",
+   "label": "Smith's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Smith's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "thieves-tools",
+   "label": "Thieves' Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Thieves' Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "three-dragon-ante-set",
+   "label": "Three-Dragon Ante Set",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Three-Dragon Ante Set"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "tinkers-tools",
+   "label": "Tinker's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Tinker's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "viol",
+   "label": "Viol",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Viol"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "weavers-tools",
+   "label": "Weaver's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Weaver's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "woodcarvers-tools",
+   "label": "Woodcarver's Tools",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Woodcarver's Tools"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  }
+ ]
+}

@@ -1,0 +1,246 @@
+{
+ "schemaVersion": 1,
+ "catalog": "languages",
+ "entries": [
+  {
+   "id": "abyssal",
+   "label": "Abyssal",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Abyssal"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "celestial",
+   "label": "Celestial",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Celestial"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "common",
+   "label": "Common",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Common"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "deep-speech",
+   "label": "Deep Speech",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Deep Speech"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "draconic",
+   "label": "Draconic",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Draconic"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "dwarvish",
+   "label": "Dwarvish",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Dwarvish"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "elvish",
+   "label": "Elvish",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Elvish"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "giant",
+   "label": "Giant",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Giant"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "gnomish",
+   "label": "Gnomish",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Gnomish"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "goblin",
+   "label": "Goblin",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Goblin"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "halfling",
+   "label": "Halfling",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Halfling"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "infernal",
+   "label": "Infernal",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Infernal"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "orc",
+   "label": "Orc",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Orc"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "primordial",
+   "label": "Primordial",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Primordial"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "sylvan",
+   "label": "Sylvan",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Sylvan"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "undercommon",
+   "label": "Undercommon",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Languages: Undercommon"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  }
+ ]
+}

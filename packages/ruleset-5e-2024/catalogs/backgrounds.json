@@ -1,0 +1,1876 @@
+{
+ "schemaVersion": 1,
+ "catalog": "backgrounds",
+ "entries": [
+  {
+   "id": "aberrant-heir",
+   "label": "Aberrant Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Aberrant Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "acolyte",
+   "label": "Acolyte",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Acolyte",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "archaeologist",
+   "label": "Archaeologist",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Archaeologist",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "artisan",
+   "label": "Artisan",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Artisan",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "astral-drifter",
+   "label": "Astral Drifter",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Astral Drifter",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "athlete",
+   "label": "Athlete",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Athlete",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "MOT"
+   }
+  },
+  {
+   "id": "augen-trust-spy",
+   "label": "Augen Trust (Spy)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Augen Trust (Spy)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "azorius-functionary",
+   "label": "Azorius Functionary",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Azorius Functionary",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "boros-legionnaire",
+   "label": "Boros Legionnaire",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Boros Legionnaire",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "charlatan",
+   "label": "Charlatan",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Charlatan",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "chondathan-freebooter",
+   "label": "Chondathan Freebooter",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Chondathan Freebooter",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "city-watch",
+   "label": "City Watch",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: City Watch",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "clan-crafter",
+   "label": "Clan Crafter",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Clan Crafter",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "cloistered-scholar",
+   "label": "Cloistered Scholar",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Cloistered Scholar",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "cobalt-scholar-sage",
+   "label": "Cobalt Scholar (Sage)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Cobalt Scholar (Sage)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "courtier",
+   "label": "Courtier",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Courtier",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "criminal",
+   "label": "Criminal",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Criminal",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "custom-background",
+   "label": "Custom Background",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Custom Background",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "dead-magic-dweller",
+   "label": "Dead Magic Dweller",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Dead Magic Dweller",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "dimir-operative",
+   "label": "Dimir Operative",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Dimir Operative",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "dragon-cultist",
+   "label": "Dragon Cultist",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Dragon Cultist",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "emerald-enclave-caretaker",
+   "label": "Emerald Enclave Caretaker",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Emerald Enclave Caretaker",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "entertainer",
+   "label": "Entertainer",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Entertainer",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "faction-agent",
+   "label": "Faction Agent",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Faction Agent",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "far-traveler",
+   "label": "Far Traveler",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Far Traveler",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "farmer",
+   "label": "Farmer",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Farmer",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "flaming-fist-mercenary",
+   "label": "Flaming Fist Mercenary",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Flaming Fist Mercenary",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "folk-hero",
+   "label": "Folk Hero",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Folk Hero",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "gate-warden",
+   "label": "Gate Warden",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Gate Warden",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SATO"
+   }
+  },
+  {
+   "id": "genie-touched",
+   "label": "Genie Touched",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Genie Touched",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "giant-foundling",
+   "label": "Giant Foundling",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Giant Foundling",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "BGG"
+   }
+  },
+  {
+   "id": "golgari-agent",
+   "label": "Golgari Agent",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Golgari Agent",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "grinner",
+   "label": "Grinner",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Grinner",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "gruul-anarch",
+   "label": "Gruul Anarch",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Gruul Anarch",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "guard",
+   "label": "Guard",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Guard",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "guide",
+   "label": "Guide",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Guide",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "guild-artisan",
+   "label": "Guild Artisan",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Guild Artisan",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "harper",
+   "label": "Harper",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Harper",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "haunted-one",
+   "label": "Haunted One",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Haunted One",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "VRGR"
+   }
+  },
+  {
+   "id": "hermit",
+   "label": "Hermit",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Hermit",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "house-agent",
+   "label": "House Agent",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Agent",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-cannith-heir",
+   "label": "House Cannith Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Cannith Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-deneith-heir",
+   "label": "House Deneith Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Deneith Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-ghallanda-heir",
+   "label": "House Ghallanda Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Ghallanda Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-jorasco-heir",
+   "label": "House Jorasco Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Jorasco Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-kundarak-heir",
+   "label": "House Kundarak Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Kundarak Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-lyrandar-heir",
+   "label": "House Lyrandar Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Lyrandar Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-medani-heir",
+   "label": "House Medani Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Medani Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-orien-heir",
+   "label": "House Orien Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Orien Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-phiarlan-heir",
+   "label": "House Phiarlan Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Phiarlan Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-sivis-heir",
+   "label": "House Sivis Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Sivis Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-tharashk-heir",
+   "label": "House Tharashk Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Tharashk Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-thuranni-heir",
+   "label": "House Thuranni Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Thuranni Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "house-vadalis-heir",
+   "label": "House Vadalis Heir",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: House Vadalis Heir",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "ice-fisher",
+   "label": "Ice Fisher",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Ice Fisher",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "inheritor",
+   "label": "Inheritor",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Inheritor",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "inquisitive",
+   "label": "Inquisitive",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Inquisitive",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA"
+   }
+  },
+  {
+   "id": "investigator",
+   "label": "Investigator",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Investigator",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "VRGR"
+   }
+  },
+  {
+   "id": "izzet-engineer",
+   "label": "Izzet Engineer",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Izzet Engineer",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "knight-of-solamnia",
+   "label": "Knight of Solamnia",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Knight of Solamnia",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "DSOTDQ"
+   }
+  },
+  {
+   "id": "knight-of-the-gauntlet",
+   "label": "Knight of the Gauntlet",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Knight of the Gauntlet",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "knight-of-the-order",
+   "label": "Knight of the Order",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Knight of the Order",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "lords-alliance-vassal",
+   "label": "Lords' Alliance Vassal",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Lords' Alliance Vassal",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "lorehold-student",
+   "label": "Lorehold Student",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Lorehold Student",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCC"
+   }
+  },
+  {
+   "id": "luxonborn-acolyte",
+   "label": "Luxonborn (Acolyte)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Luxonborn (Acolyte)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "mage-of-high-sorcery",
+   "label": "Mage of High Sorcery",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Mage of High Sorcery",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "DSOTDQ"
+   }
+  },
+  {
+   "id": "mercenary-veteran",
+   "label": "Mercenary Veteran",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Mercenary Veteran",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "merchant",
+   "label": "Merchant",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Merchant",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "moonwell-pilgrim",
+   "label": "Moonwell Pilgrim",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Moonwell Pilgrim",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "mulhorandi-tomb-raider",
+   "label": "Mulhorandi Tomb Raider",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Mulhorandi Tomb Raider",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "myriad-operative-criminal",
+   "label": "Myriad Operative (Criminal)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Myriad Operative (Criminal)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "mythalkeeper",
+   "label": "Mythalkeeper",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Mythalkeeper",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "noble",
+   "label": "Noble",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Noble",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "orzhov-representative",
+   "label": "Orzhov Representative",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Orzhov Representative",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "outlander",
+   "label": "Outlander",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Outlander",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "planar-philosopher",
+   "label": "Planar Philosopher",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Planar Philosopher",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SATO"
+   }
+  },
+  {
+   "id": "prismari-student",
+   "label": "Prismari Student",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Prismari Student",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCC"
+   }
+  },
+  {
+   "id": "purple-dragon-squire",
+   "label": "Purple Dragon Squire",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Purple Dragon Squire",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "quandrix-student",
+   "label": "Quandrix Student",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Quandrix Student",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCC"
+   }
+  },
+  {
+   "id": "rakdos-cultist",
+   "label": "Rakdos Cultist",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Rakdos Cultist",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "rashemi-wanderer",
+   "label": "Rashemi Wanderer",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Rashemi Wanderer",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "revelry-pirate-sailor",
+   "label": "Revelry Pirate (Sailor)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Revelry Pirate (Sailor)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "rewarded",
+   "label": "Rewarded",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Rewarded",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT"
+   }
+  },
+  {
+   "id": "ruined",
+   "label": "Ruined",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Ruined",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT"
+   }
+  },
+  {
+   "id": "rune-carver",
+   "label": "Rune Carver",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Rune Carver",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "BGG"
+   }
+  },
+  {
+   "id": "sage",
+   "label": "Sage",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Sage",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "sailor",
+   "label": "Sailor",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Sailor",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "scribe",
+   "label": "Scribe",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Scribe",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "selesnya-initiate",
+   "label": "Selesnya Initiate",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Selesnya Initiate",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "shadowmasters-exile",
+   "label": "Shadowmasters Exile",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Shadowmasters Exile",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "silverquill-student",
+   "label": "Silverquill Student",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Silverquill Student",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCC"
+   }
+  },
+  {
+   "id": "simic-scientist",
+   "label": "Simic Scientist",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Simic Scientist",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "soldier",
+   "label": "Soldier",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Soldier",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "spellfire-initiate",
+   "label": "Spellfire Initiate",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Spellfire Initiate",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "urban-bounty-hunter",
+   "label": "Urban Bounty Hunter",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Urban Bounty Hunter",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "urchin",
+   "label": "Urchin",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Urchin",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "uthgardt-tribe-member",
+   "label": "Uthgardt Tribe Member",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Uthgardt Tribe Member",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "variant-city-watch-investigator",
+   "label": "Variant City Watch (Investigator)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Variant City Watch (Investigator)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "variant-criminal-spy",
+   "label": "Variant Criminal (Spy)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Variant Criminal (Spy)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "variant-entertainer-gladiator",
+   "label": "Variant Entertainer (Gladiator)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Variant Entertainer (Gladiator)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "variant-guild-artisan-guild-merchant",
+   "label": "Variant Guild Artisan (Guild Merchant)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Variant Guild Artisan (Guild Merchant)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "variant-noble-knight",
+   "label": "Variant Noble (Knight)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Variant Noble (Knight)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "variant-noble-retainers",
+   "label": "Variant Noble (Retainers)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Variant Noble (Retainers)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "variant-sailor-pirate",
+   "label": "Variant Sailor (Pirate)",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Variant Sailor (Pirate)",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "volstrucker-agent",
+   "label": "Volstrucker Agent",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Volstrucker Agent",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "waterdhavian-noble",
+   "label": "Waterdhavian Noble",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Waterdhavian Noble",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "wayfarer",
+   "label": "Wayfarer",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Wayfarer",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "wildspacer",
+   "label": "Wildspacer",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Wildspacer",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "witherbloom-student",
+   "label": "Witherbloom Student",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Witherbloom Student",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCC"
+   }
+  },
+  {
+   "id": "zhentarim-mercenary",
+   "label": "Zhentarim Mercenary",
+   "summary": "",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Background: Zhentarim Mercenary",
+      "text": ""
+     }
+    }
+   ],
+   "filters": {
+    "source": "FRHOF"
+   }
+  }
+ ]
+}

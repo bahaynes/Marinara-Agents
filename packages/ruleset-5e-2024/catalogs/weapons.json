@@ -1,0 +1,4251 @@
+{
+ "schemaVersion": 1,
+ "catalog": "weapons",
+ "entries": [
+  {
+   "id": "1-moon-sickle",
+   "label": "+1 Moon Sickle",
+   "summary": "This silver-bladed sickle glimmers softly with moonlight. While holding this magic weapon, you gain a +1 bonus to attack and damage rolls made with it, and you gain a +1 bonus to spell attack rolls and the saving throw DCs of your druid and ranger spells. In addition, you can use the sickle as a spe Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "+1 Moon Sickle",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "TCE",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "2-moon-sickle",
+   "label": "+2 Moon Sickle",
+   "summary": "This silver-bladed sickle glimmers softly with moonlight. While holding this magic weapon, you gain a +2 bonus to attack and damage rolls made with it, and you gain a +2 bonus to spell attack rolls and the saving throw DCs of your druid and ranger spells. In addition, you can use the sickle as a spe Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "+2 Moon Sickle",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "TCE",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "3-moon-sickle",
+   "label": "+3 Moon Sickle",
+   "summary": "This silver-bladed sickle glimmers softly with moonlight. While holding this magic weapon, you gain a +3 bonus to attack and damage rolls made with it, and you gain a +3 bonus to spell attack rolls and the saving throw DCs of your druid and ranger spells. In addition, you can use the sickle as a spe Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "+3 Moon Sickle",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "TCE",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "adze-of-annam",
+   "label": "Adze of Annam",
+   "summary": "This massive adze is said to have been wielded by All-Father Annam, not as a weapon but as the tool he used to shape the various worlds of the Material Plane eons ago. Mastery: Cleave.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Adze of Annam",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d12",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "BGG",
+    "category": "martial",
+    "mastery": "Cleave"
+   }
+  },
+  {
+   "id": "akmon-hammer-of-purphoros",
+   "label": "Akmon, Hammer of Purphoros",
+   "summary": "Purphoros's hammer works wonders and disasters, the god of the forge using it to craft ground-breaking marvels and dangerous inventions in equal measure. Purphoros rarely bestows Akmon on mortals but occasionally leaves it unattended at his forge in Mount Velus. When Purphoros does permit a mortal t Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Akmon, Hammer of Purphoros",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "MOT",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "antimatter-rifle",
+   "label": "Antimatter Rifle",
+   "summary": "Antimatter Rifle Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Antimatter Rifle",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "6d8",
+      "damage_type": "N",
+      "reach": 5,
+      "range": 120,
+      "long_range": 360
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "automatic-rifle",
+   "label": "Automatic Rifle",
+   "summary": "Automatic Rifle Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Automatic Rifle",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 80,
+      "long_range": 240
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "axe-of-the-dwarvish-lords",
+   "label": "Axe of the Dwarvish Lords",
+   "summary": "A young dwarf prince set out to forge a weapon that would be regarded as a symbol of unity among his people. Venturing deep under the mountains, deeper than any dwarf had ever delved, the prince came to the blazing heart of a great volcano. With the aid of Moradin, a god of creation, he first crafte Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Axe of the Dwarvish Lords",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "baba-yagas-pestle",
+   "label": "Baba Yaga's Pestle",
+   "summary": "The pestle is a 6-inch-long, worn wooden tool. Once during your turn while you are holding the pestle, you can extend it into a quarterstaff or shrink it back into a pestle (no action required). As a quarterstaff, the pestle is a magic weapon that grants a +3 bonus to attack and damage rolls made wi Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Baba Yaga's Pestle",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "TCE",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "baleful-talon",
+   "label": "Baleful Talon",
+   "summary": "You gain a +1 bonus to attack and damage rolls made with this hooked, obsidian dagger. Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Baleful Talon",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "battleaxe",
+   "label": "Battleaxe",
+   "summary": "Battleaxe Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Battleaxe",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "blackrazor",
+   "label": "Blackrazor",
+   "summary": "Hidden in the dungeon of White Plume Mountain, Blackrazor shines like a piece of night sky filled with stars. Its black scabbard is decorated with pieces of cut obsidian. Mastery: Graze.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Blackrazor",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d6",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Graze"
+   }
+  },
+  {
+   "id": "blade-of-broken-mirrors-dormant",
+   "label": "Blade of Broken Mirrors (Dormant)",
+   "summary": "A weapon of Tharizdun, this dagger is a piece of jagged stone whose blade is scribed with a maze-like pattern with no beginning or end. Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Blade of Broken Mirrors (Dormant)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "bloodaxe",
+   "label": "Bloodaxe",
+   "summary": "You gain a +2 bonus to attack and damage rolls made with this magic axe. The axe deals an extra 1d6 necrotic damage to creatures that aren't constructs or undead. If you reduce such a creature to 0 hit points with an attack using this axe, you gain 10 temporary hit points. Mastery: Cleave.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Bloodaxe",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d12",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "martial",
+    "mastery": "Cleave"
+   }
+  },
+  {
+   "id": "bloodrage-greataxe",
+   "label": "Bloodrage Greataxe",
+   "summary": "You gain a +2 bonus to attack and damage rolls made with this magic greataxe while you have half your hit points or fewer. Mastery: Cleave.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Bloodrage Greataxe",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d12",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT",
+    "category": "martial",
+    "mastery": "Cleave"
+   }
+  },
+  {
+   "id": "blowgun",
+   "label": "Blowgun",
+   "summary": "Blowgun Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Blowgun",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 25,
+      "long_range": 100
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "club",
+   "label": "Club",
+   "summary": "Club Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Club",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "dagger",
+   "label": "Dagger",
+   "summary": "Dagger Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Dagger",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "dagger-of-venom",
+   "label": "Dagger of Venom",
+   "summary": "You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon. Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Dagger of Venom",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "dart",
+   "label": "Dart",
+   "summary": "Dart Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Dart",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "dekella-bident-of-thassa",
+   "label": "Dekella, Bident of Thassa",
+   "summary": "Thassa wields Dekella, a two-pronged weapon gifted to her by Purphoros. When the god of the sea bestows her weapon on a mortal, it's often so they might work her will far from the ocean, right some wrong affecting those she'd prefer not to harm, or give a mortal a glimpse of her terrible responsibil Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Dekella, Bident of Thassa",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "MOT",
+    "category": "martial",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "devotees-censer",
+   "label": "Devotee's Censer",
+   "summary": "The rounded head of this flail is perforated with tiny holes, arranged in symbols and patterns. The flail counts as a holy symbol for you. When you hit with an attack using this magic flail, the target takes an extra 1d8 radiant damage. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Devotee's Censer",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "TCE",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "double-bladed-scimitar",
+   "label": "Double-Bladed Scimitar",
+   "summary": "",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Double-Bladed Scimitar",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "ERLW",
+    "category": "martial"
+   }
+  },
+  {
+   "id": "duskcrusher",
+   "label": "Duskcrusher",
+   "summary": "This item takes the form of a leather-wrapped metal rod emblazoned with the symbol of Pelor, the Dawn Father. While grasping the rod, you can use a bonus action to cause a warhammer head of crackling radiance to spring into existence. The warhammer's radiant head emits bright light in a 15-foot radi Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Duskcrusher",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "R",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "dwarven-thrower",
+   "label": "Dwarven Thrower",
+   "summary": "You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. It has T|XPHB|Thrown with a normal range of 20 feet and a long range of 60 feet. When you hit with a ranged attack using this weapon, it deals an extra 1d8 Force damage, or an extra 2d8 Force damage if the target is a  Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Dwarven Thrower",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "dyrrns-tentacle-whip",
+   "label": "Dyrrn's Tentacle Whip",
+   "summary": "This long, whip-like strand of tough muscle bears a sharp stinger at one end. To attune to this symbiotic weapon, you wrap the whip around your wrist for the entire attunement period, during which time the whip painfully embeds its tendrils into your arm. Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Dyrrn's Tentacle Whip",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "ERLW",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "elven-thrower",
+   "label": "Elven Thrower",
+   "summary": "You gain a +3 bonus to attack and damage rolls made with this magic weapon. It has the thrown property with a normal range of 20 feet and a long range of 60 feet. When you hit with a ranged attack using this weapon, it deals an extra 1d8 damage or, if the target is a Giant, 2d8 damage. Immediately a Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Elven Thrower",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "BGG",
+    "category": "simple",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "enspelled-staff-cantrip",
+   "label": "Enspelled Staff (Cantrip)",
+   "summary": "Bound into this staff is a cantrip. The cantrip is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last charge Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Enspelled Staff (Cantrip)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "enspelled-staff-level-1",
+   "label": "Enspelled Staff (Level 1)",
+   "summary": "Bound into this staff is a level 1 spell|spells|level=1. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Enspelled Staff (Level 1)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "enspelled-staff-level-2",
+   "label": "Enspelled Staff (Level 2)",
+   "summary": "Bound into this staff is a level 2 spell|spells|level=2. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Enspelled Staff (Level 2)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "enspelled-staff-level-3",
+   "label": "Enspelled Staff (Level 3)",
+   "summary": "Bound into this staff is a level 3 spell|spells|level=3. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Enspelled Staff (Level 3)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "enspelled-staff-level-4",
+   "label": "Enspelled Staff (Level 4)",
+   "summary": "Bound into this staff is a level 4 spell|spells|level=4. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Enspelled Staff (Level 4)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "enspelled-staff-level-5",
+   "label": "Enspelled Staff (Level 5)",
+   "summary": "Bound into this staff is a level 5 spell|spells|level=5. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Enspelled Staff (Level 5)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "enspelled-staff-level-6",
+   "label": "Enspelled Staff (Level 6)",
+   "summary": "Bound into this staff is a level 6 spell|spells|level=6. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Enspelled Staff (Level 6)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "enspelled-staff-level-7",
+   "label": "Enspelled Staff (Level 7)",
+   "summary": "Bound into this staff is a level 7 spell|spells|level=7. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Enspelled Staff (Level 7)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "enspelled-staff-level-8",
+   "label": "Enspelled Staff (Level 8)",
+   "summary": "Bound into this staff is a level 8 spell|spells|level=8. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Enspelled Staff (Level 8)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "ephixis-bow-of-nylea",
+   "label": "Ephixis, Bow of Nylea",
+   "summary": "Nylea wields the shortbow Ephixis, the bow whose arrows herald the turning of the seasons. Nylea is quick to let her favored followers borrow her bow, particularly when they intend to use it to perform great deeds, put an end to foul creatures, or cast down the arrogant. Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Ephixis, Bow of Nylea",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 80,
+      "long_range": 320
+     }
+    }
+   ],
+   "filters": {
+    "source": "MOT",
+    "category": "simple",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "fate-cutter-shears",
+   "label": "Fate Cutter Shears",
+   "summary": "The blades of these pruning shears bear many nicks and dents but still cut cleanly. The shears function as a magic dagger. The weapon has the following properties: Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Fate Cutter Shears",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "flail",
+   "label": "Flail",
+   "summary": "Flail Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Flail",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "flail-of-tiamat",
+   "label": "Flail of Tiamat",
+   "summary": "This magic flail is made in the image of Tiamat, with five jagged heads shaped like the heads of five different chromatic dragons. You gain a +3 bonus to attack and damage rolls made with this flail. When you hit with an attack roll using it, the target takes an extra 5d4 damage of your choice of on Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Flail of Tiamat",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "FTD",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "glaive",
+   "label": "Glaive",
+   "summary": "Glaive Mastery: Graze.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Glaive",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d10",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Graze"
+   }
+  },
+  {
+   "id": "grasping-whip",
+   "label": "Grasping Whip",
+   "summary": "You gain a +1 bonus to attack and damage rolls made with this magic whip. When you hit a creature or object that is Large or smaller with this whip, you can pull that creature or object 5 feet toward you instead of dealing damage. Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Grasping Whip",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "greataxe",
+   "label": "Greataxe",
+   "summary": "Greataxe Mastery: Cleave.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Greataxe",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d12",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Cleave"
+   }
+  },
+  {
+   "id": "greatclub",
+   "label": "Greatclub",
+   "summary": "Greatclub Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Greatclub",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "greater-silver-sword",
+   "label": "Greater Silver Sword",
+   "summary": "This magic weapon grants a +3 bonus to attack and damage rolls made with it. While you hold the sword, you have advantage on Intelligence, Wisdom, and Charisma saving throws, you are immune to being charmed, and you have resistance to psychic damage. In addition, if you score a critical hit with it  Mastery: Graze.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Greater Silver Sword",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d6",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "MTF",
+    "category": "martial",
+    "mastery": "Graze"
+   }
+  },
+  {
+   "id": "greatsword",
+   "label": "Greatsword",
+   "summary": "Greatsword Mastery: Graze.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Greatsword",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d6",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Graze"
+   }
+  },
+  {
+   "id": "grovelthrash-dormant",
+   "label": "Grovelthrash (Dormant)",
+   "summary": "Crafted from a single piece of obsidian, this warhammer of Torog hums with magical energy and is carved with the images of faces screaming in pain. Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Grovelthrash (Dormant)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "halberd",
+   "label": "Halberd",
+   "summary": "Halberd Mastery: Cleave.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Halberd",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d10",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Cleave"
+   }
+  },
+  {
+   "id": "hammer-of-runic-focus",
+   "label": "Hammer of Runic Focus",
+   "summary": "This magic hammer has 3 charges. As a bonus action, you can expend 1 charge and slam this hammer on the ground, creating a 15-foot-radius circle of glowing runes centered on the point of impact. While you're inside that area, your hammer glows with matching runes, and you gain a +3 bonus to attack a Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Hammer of Runic Focus",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "hammer-of-thunderbolts",
+   "label": "Hammer of Thunderbolts",
+   "summary": "You gain a +1 bonus to attack and damage rolls made with this magic weapon. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Hammer of Thunderbolts",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "category": "martial",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "hand-crossbow",
+   "label": "Hand Crossbow",
+   "summary": "Hand Crossbow Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Hand Crossbow",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 30,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "handaxe",
+   "label": "Handaxe",
+   "summary": "Handaxe Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Handaxe",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "heavy-crossbow",
+   "label": "Heavy Crossbow",
+   "summary": "Heavy Crossbow Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Heavy Crossbow",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d10",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 100,
+      "long_range": 400
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "hoopak",
+   "label": "Hoopak",
+   "summary": "A hoopak is a sturdy stick with a sling at one end and a pointed tip at the other.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Hoopak",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 40,
+      "long_range": 160
+     }
+    }
+   ],
+   "filters": {
+    "source": "DSOTDQ",
+    "category": "martial"
+   }
+  },
+  {
+   "id": "hunting-rifle",
+   "label": "Hunting Rifle",
+   "summary": "Hunting Rifle Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Hunting Rifle",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d10",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 80,
+      "long_range": 240
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "javelin",
+   "label": "Javelin",
+   "summary": "Javelin Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Javelin",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 30,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "javelin-of-lightning",
+   "label": "Javelin of Lightning",
+   "summary": "Each time you make an attack roll with this magic weapon and hit, you can have it deal Lightning damage instead of Piercing damage. Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Javelin of Lightning",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 30,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "khrusor-spear-of-heliod",
+   "label": "Khrusor, Spear of Heliod",
+   "summary": "Heliod wields Khrusor, a spear blessed with the power of the sun. In his hands, it can be pitched from Nyx to any point on Theros. When Heliod lends his weapon to a mortal, it's typically so they can perform some great work in his name or as a test of their worthiness. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Khrusor, Spear of Heliod",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "MOT",
+    "category": "simple",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "lance",
+   "label": "Lance",
+   "summary": "A Lance requires two hands to wield when you aren't mounted. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Lance",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d10",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "laser-pistol",
+   "label": "Laser Pistol",
+   "summary": "Laser Pistol Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Laser Pistol",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "3d6",
+      "damage_type": "R",
+      "reach": 5,
+      "range": 40,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "laser-rifle",
+   "label": "Laser Rifle",
+   "summary": "Laser Rifle Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Laser Rifle",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "3d8",
+      "damage_type": "R",
+      "reach": 5,
+      "range": 100,
+      "long_range": 300
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "lash-of-immolation",
+   "label": "Lash of Immolation",
+   "summary": "The handle of this dark leather whip bears the fire rune, and embers dance around the whip's tail. Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Lash of Immolation",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "BGG",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "lash-of-shadows-dormant",
+   "label": "Lash of Shadows (Dormant)",
+   "summary": "This snakeskin whip is touched by the power of Zehir and ends in five animated serpent heads. Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Lash of Shadows (Dormant)",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "light-crossbow",
+   "label": "Light Crossbow",
+   "summary": "Light Crossbow Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Light Crossbow",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 80,
+      "long_range": 320
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "light-hammer",
+   "label": "Light Hammer",
+   "summary": "Light Hammer Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Light Hammer",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "longbow",
+   "label": "Longbow",
+   "summary": "Longbow Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Longbow",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 150,
+      "long_range": 600
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "longbow-of-the-healing-hearth",
+   "label": "Longbow of the Healing Hearth",
+   "summary": "This ivory longbow is inscribed with a prayer to the god Hiatea, the runes of which are entwined with gilded engravings of wheat stalks and deer antlers. Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Longbow of the Healing Hearth",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 150,
+      "long_range": 600
+     }
+    }
+   ],
+   "filters": {
+    "source": "BGG",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "longsword",
+   "label": "Longsword",
+   "summary": "Longsword Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Longsword",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "lucent-destroyer",
+   "label": "Lucent Destroyer",
+   "summary": "This magic weapon is a triple-barreled bronze musket. You gain a +1 bonus to attack and damage rolls made with it. It requires no ammunition, its damage is radiant instead of piercing, and it doesn't have the loading property. The base of the weapon is emblazoned with the light rune. Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Lucent Destroyer",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d12",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 40,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "BGG",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "lute-of-thunderous-thumping",
+   "label": "Lute of Thunderous Thumping",
+   "summary": "This reinforced XPHB can be wielded as a magic Club that deals an extra 2d8 Thunder damage on a hit. Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Lute of Thunderous Thumping",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "mace",
+   "label": "Mace",
+   "summary": "Mace Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Mace",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "mace-of-disruption",
+   "label": "Mace of Disruption",
+   "summary": "When you hit a Fiend or an Undead with this magic weapon, that creature takes an extra 2d6 Radiant damage. If the target has 25 Hit Points|XPHB or fewer after taking this damage, it must succeed on a DC 15 Wisdom saving throw or be destroyed. On a successful save, the creature has the XPHB condition Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Mace of Disruption",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "mace-of-smiting",
+   "label": "Mace of Smiting",
+   "summary": "You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon. The bonus increases to +3 when you use the weapon to attack a Construct. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Mace of Smiting",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "mace-of-terror",
+   "label": "Mace of Terror",
+   "summary": "This magic weapon has 3 charges and regains 1d3 expended charges daily at dawn. While holding the weapon, you can take a XPHB action and expend 1 charge to release a wave of terror from it. Each creature of your choice within 30 feet of you must succeed on a DC 15 Wisdom saving throw or have the XPH Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Mace of Terror",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "mace-of-the-black-crown-dormant",
+   "label": "Mace of the Black Crown (Dormant)",
+   "summary": "This mace has a haft of black iron and a ruby head with a fiendish countenance. Carrying the boon of Asmodeus, it is fit for the most powerful servants of the Nine Hells. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Mace of the Black Crown (Dormant)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "simple",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "mastix-whip-of-erebos",
+   "label": "Mastix, Whip of Erebos",
+   "summary": "Erebos wields Mastix, a whip capable of extending like an impossibly long shadow. In the hands of the god of the dead, the whip snares the reluctant dead and drags them into his realm. When Erebos grants his weapon to a mortal follower, it's typically to reclaim a powerful soul or to humiliate Helio Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Mastix, Whip of Erebos",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "MOT",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "maul",
+   "label": "Maul",
+   "summary": "Maul Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Maul",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "mind-lash",
+   "label": "Mind Lash",
+   "summary": "In the hands of any creature other than a mind flayer, a mind lash functions as a normal whip. In the hands of an illithid, this magic weapon strips away a creature's will to survive as it also strips away flesh, dealing an extra 2d4 psychic damage to any target it hits. Any creature that takes psyc",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Mind Lash",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "VGM",
+    "category": "simple"
+   }
+  },
+  {
+   "id": "moonblade",
+   "label": "Moonblade",
+   "summary": "Of all the magic items created by the elves, one of the most prized and jealously guarded is a moon blade. In ancient times, nearly all elven noble houses claimed one such blade. Over the centuries, some blades have faded from the world, their magic lost as family lines have become extinct. Other bl Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Moonblade",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "morningstar",
+   "label": "Morningstar",
+   "summary": "Morningstar Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Morningstar",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "musket",
+   "label": "Musket",
+   "summary": "Musket Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Musket",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d12",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 40,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "needle-of-mending",
+   "label": "Needle of Mending",
+   "summary": "This weapon is a magic dagger disguised as a sewing needle. When you hold it and use a bonus action to speak its command word, it transforms into a dagger or back into a needle. Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Needle of Mending",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "nepenthe",
+   "label": "Nepenthe",
+   "summary": "You gain a +3 bonus to attack and damage rolls made with this magic weapon. When you hit a fiend or an undead with it, that creature takes an extra 2d10 radiant damage. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Nepenthe",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "VRGR",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "oathbow",
+   "label": "Oathbow",
+   "summary": "When you nock an arrow on this bow, it whispers in Elvish, \"Swift defeat to my enemies.\" When you use this weapon to make a ranged attack, you can, as a command phrase, say, \"Swift death to you who have wronged me.\" The target of your attack becomes your sworn enemy until it dies or until dawn seven Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Oathbow",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 150,
+      "long_range": 600
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "pike",
+   "label": "Pike",
+   "summary": "Pike Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Pike",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d10",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "pistol",
+   "label": "Pistol",
+   "summary": "Pistol Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Pistol",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d10",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 30,
+      "long_range": 90
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "psychic-blade",
+   "label": "Psychic Blade",
+   "summary": "Psychic Blade Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Psychic Blade",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "Y",
+      "reach": 5,
+      "range": 60,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "quarterstaff",
+   "label": "Quarterstaff",
+   "summary": "Quarterstaff Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Quarterstaff",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "quarterstaff-of-the-acrobat",
+   "label": "Quarterstaff of the Acrobat",
+   "summary": "You have a +2 bonus to attack rolls and damage rolls made with this magic weapon. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Quarterstaff of the Acrobat",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 30,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "rakdos-riteknife",
+   "label": "Rakdos Riteknife",
+   "summary": "You gain a +1 bonus to attack and damage rolls made with this magic weapon. Its blade is cruelly serrated, and its hilt resembles a demonic head and wings. Whenever you slay a creature with an attack using the dagger, the creature's soul is imprisoned inside the dagger, and that creature can be rest Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Rakdos Riteknife",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "rapier",
+   "label": "Rapier",
+   "summary": "Rapier Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Rapier",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "reapers-scream",
+   "label": "Reaper's Scream",
+   "summary": "The spikes of this iron morningstar glow with sickly, pale light. The death rune is inscribed on its shaft and inlaid with pearl. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Reaper's Scream",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "BGG",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "revolver",
+   "label": "Revolver",
+   "summary": "Revolver Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Revolver",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 40,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "ruinous-flail",
+   "label": "Ruinous Flail",
+   "summary": "This ash-gray flail is cold to the touch. You gain a +1 bonus to attack and damage rolls made with this magic weapon, and it deals double damage to objects and structures. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Ruinous Flail",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "ruins-wake-dormant",
+   "label": "Ruin's Wake (Dormant)",
+   "summary": "This spear is made from the ivory bone of an ancient gold dragon and carved with an Orc hymn to Gruumsh. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Ruin's Wake (Dormant)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "simple",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "scimitar",
+   "label": "Scimitar",
+   "summary": "Scimitar Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Scimitar",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "scimitar-of-speed",
+   "label": "Scimitar of Speed",
+   "summary": "You gain a +2 bonus to attack rolls and damage rolls made with this magic weapon. In addition, you can make one attack with it as a Bonus Action|XPHB on each of your turns. Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Scimitar of Speed",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "semiautomatic-pistol",
+   "label": "Semiautomatic Pistol",
+   "summary": "Semiautomatic Pistol Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Semiautomatic Pistol",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 50,
+      "long_range": 150
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "shortbow",
+   "label": "Shortbow",
+   "summary": "Shortbow Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Shortbow",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 80,
+      "long_range": 320
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "shortsword",
+   "label": "Shortsword",
+   "summary": "Shortsword Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Shortsword",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "shotgun",
+   "label": "Shotgun",
+   "summary": "Shotgun Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Shotgun",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 30,
+      "long_range": 90
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "sickle",
+   "label": "Sickle",
+   "summary": "Sickle Mastery: Nick.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Sickle",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Nick"
+   }
+  },
+  {
+   "id": "silken-spite-dormant",
+   "label": "Silken Spite (Dormant)",
+   "summary": "The blade of this rapier is made of spider silk. Its onyx pommel is tipped with a ruby cut in the shape of a spider, and the blade carries the blessing of Lolth. Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Silken Spite (Dormant)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "martial",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "silver-sword",
+   "label": "Silver Sword",
+   "summary": "You have a +3 bonus to attack and damage rolls made with this magic weapon. On a critical hit against a target in an astral body (as with the astral projection spell), you can cut the silvery cord that tethers the target to its material body, instead of dealing damage.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Silver Sword",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d6",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "MTF",
+    "category": "martial"
+   }
+  },
+  {
+   "id": "skyblinder-staff",
+   "label": "Skyblinder Staff",
+   "summary": "You gain a +1 bonus to attack and damage rolls made with this magic quarterstaff. While holding it, you gain a +1 bonus to spell attack rolls.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Skyblinder Staff",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR",
+    "category": "simple"
+   }
+  },
+  {
+   "id": "sling",
+   "label": "Sling",
+   "summary": "Sling Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Sling",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 30,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "sling-of-giant-felling",
+   "label": "Sling of Giant Felling",
+   "summary": "When you hit a Giant creature with a ranged attack roll using this magic sling, the creature must succeed on a DC 18 Constitution saving throw or have the prone condition. Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Sling of Giant Felling",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 30,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT",
+    "category": "simple",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "spear",
+   "label": "Spear",
+   "summary": "Spear Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Spear",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "staff",
+   "label": "Staff",
+   "summary": "Staff Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-adornment",
+   "label": "Staff of Adornment",
+   "summary": "If you place a Tiny object weighing no more than 1 pound (such as a shard of crystal, an egg, or a stone) above the tip of this staff while holding it, the object floats an inch from the staff's tip and remains there until it is removed or until the staff is no longer in your possession. The staff c Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Adornment",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-birdcalls",
+   "label": "Staff of Birdcalls",
+   "summary": "This wooden staff is decorated with bird carvings. It has 10 charges. While holding it, you can take a XPHB action to expend 1 charge from the staff and cause it to create one of the following sounds, which can be heard out to 120 feet: a finch's chirp, a raven's caw, a duck's quack, a chicken's clu Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Birdcalls",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-charming",
+   "label": "Staff of Charming",
+   "summary": "This staff has 10 charges. While holding the staff, you can use any of its properties: Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Charming",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-dunamancy",
+   "label": "Staff of Dunamancy",
+   "summary": "This staff of polished gray wood bears numerous runes carved along its length. The staff has 10 charges and regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff turns into dust and is destroyed.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Dunamancy",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "simple"
+   }
+  },
+  {
+   "id": "staff-of-fire",
+   "label": "Staff of Fire",
+   "summary": "You have Resistance|XPHB to Fire damage while you hold this staff. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Fire",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-flowers",
+   "label": "Staff of Flowers",
+   "summary": "This wooden staff has 10 charges. While holding it, you can take a XPHB action to expend 1 charge from the staff and cause a flower to sprout from a patch of earth or soil within 5 feet of yourself, or from the staff itself. Unless you choose a specific kind of flower, the staff creates a mild-scent Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Flowers",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-frost",
+   "label": "Staff of Frost",
+   "summary": "You have Resistance|XPHB to Cold damage while you hold this staff. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Frost",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-healing",
+   "label": "Staff of Healing",
+   "summary": "This staff has 10 charges. While holding the staff, you can cast one of the spells on the following table from it, using your spellcasting ability modifier. The table indicates how many charges you must expend to cast the spell. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Healing",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-power",
+   "label": "Staff of Power",
+   "summary": "This staff has 20 charges and can be wielded as a magic Quarterstaff that grants a +2 bonus to attack rolls and damage rolls made with it. While holding it, you gain a +2 bonus to Armor Class|XPHB, saving throws, and spell attack rolls. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Power",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-striking",
+   "label": "Staff of Striking",
+   "summary": "This staff can be wielded as a magic Quarterstaff that grants a +3 bonus to attack rolls and damage rolls made with it. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Striking",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-swarming-insects",
+   "label": "Staff of Swarming Insects",
+   "summary": "This staff has 10 charges. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Swarming Insects",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-the-adder",
+   "label": "Staff of the Adder",
+   "summary": "As a Bonus Action|XPHB, you can turn the head of this staff into that of an animate, venomous snake for 1 minute or revert the staff to its inanimate form. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of the Adder",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-the-ivory-claw",
+   "label": "Staff of the Ivory Claw",
+   "summary": "This gray-and-cerulean staff is topped with a small dragon claw carved from ivory. While holding the staff, you gain a +1 bonus to spell attack rolls. Whenever you score a critical hit with a spell attack, the target takes an extra 3d6 radiant damage.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of the Ivory Claw",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "simple"
+   }
+  },
+  {
+   "id": "staff-of-the-magi",
+   "label": "Staff of the Magi",
+   "summary": "This staff has 50 charges and can be wielded as a magic Quarterstaff that grants a +2 bonus to attack rolls and damage rolls made with it. While you hold it, you gain a +2 bonus to spell attack rolls. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of the Magi",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-the-python",
+   "label": "Staff of the Python",
+   "summary": "As a XPHB action, you can throw this staff so that it lands in an unoccupied space within 10 feet of you, causing the staff to become a XMM in that space. The snake is under your control and shares your Initiative|XPHB count, taking its turn immediately after yours. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of the Python",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-the-rooted-hills",
+   "label": "Staff of the Rooted Hills",
+   "summary": "The hill rune is carved into this gnarled wooden staff. The staff magically resizes to match the height of any creature that attunes to it.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of the Rooted Hills",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "BGG",
+    "category": "simple"
+   }
+  },
+  {
+   "id": "staff-of-the-woodlands",
+   "label": "Staff of the Woodlands",
+   "summary": "This staff has 6 charges and can be wielded as a magic Quarterstaff that grants a +2 bonus to attack rolls and damage rolls made with it. While holding it, you have a +2 bonus to spell attack rolls. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of the Woodlands",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-thunder-and-lightning",
+   "label": "Staff of Thunder and Lightning",
+   "summary": "This staff can be wielded as a magic Quarterstaff that grants a +2 bonus to attack rolls and damage rolls made with it. It also has the following additional properties. Once one of these properties is used, it can't be used again until the next dawn. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Thunder and Lightning",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "staff-of-withering",
+   "label": "Staff of Withering",
+   "summary": "This staff has 3 charges and regains 1d3 expended charges daily at dawn. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Staff of Withering",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "stonemaker-war-pick",
+   "label": "Stonemaker War Pick",
+   "summary": "You gain a +1 bonus to attack and damage rolls made with this magic war pick. It has the following special properties: Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Stonemaker War Pick",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "sun-blade",
+   "label": "Sun Blade",
+   "summary": "This item appears to be a sword hilt. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Sun Blade",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "R",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "sun-staff",
+   "label": "Sun Staff",
+   "summary": "Veins of sunstone run through this wooden staff. This staff can be wielded as a magic quarterstaff that grants a +1 bonus to attack and damage rolls made with it. When you hit with an attack roll using this staff, the target takes an extra 1d8 fire damage.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Sun Staff",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT",
+    "category": "simple"
+   }
+  },
+  {
+   "id": "sunforger",
+   "label": "Sunforger",
+   "summary": "You gain a +2 bonus to attack and damage rolls made with this magic weapon. Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Sunforger",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "sword-of-answering",
+   "label": "Sword of Answering",
+   "summary": "You gain a +3 bonus to attack rolls and damage rolls made with this sword. In addition, while you hold the sword, you can take a Reaction|XPHB to make one melee attack with it against any creature in your reach that deals damage to you. You have Advantage|XPHB on the attack roll, and any damage deal Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Sword of Answering",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "sword-of-kas",
+   "label": "Sword of Kas",
+   "summary": "Kas was a powerful warrior who served Vecna|XDMG|8|Vecna and whose loyalty was rewarded with this sword. As Kas's power grew, so did his hubris. The sword urged Kas to destroy Vecna and usurp his throne. Legend says Vecna's destruction came at Kas's hand, but Vecna also wrought his rebellious lieute Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Sword of Kas",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "sword-of-the-paruns",
+   "label": "Sword of the Paruns",
+   "summary": "You gain a +1 bonus to attack and damage rolls made with this magic weapon. Additionally, once on each of your turns, you can use one of the following properties if you're holding the sword: Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Sword of the Paruns",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "the-bloody-end-dormant",
+   "label": "The Bloody End (Dormant)",
+   "summary": "Carrying the power of Bane, this adamantine morningstar sports foot-long spikes and has a jagged blade on its pommel. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "The Bloody End (Dormant)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "thunderbuss",
+   "label": "Thunderbuss",
+   "summary": "This magic ranged weapon is a flared pistol with the storm rune engraved along the barrel. You gain a +1 bonus to attack and damage rolls made with it. It requires no ammunition, its damage is thunder instead of piercing, and it doesn't have the loading property. Mastery: Vex.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Thunderbuss",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d10",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 30,
+      "long_range": 90
+     }
+    }
+   ],
+   "filters": {
+    "source": "BGG",
+    "category": "martial",
+    "mastery": "Vex"
+   }
+  },
+  {
+   "id": "thunderous-greatclub",
+   "label": "Thunderous Greatclub",
+   "summary": "While you are attuned to this magic weapon, your Strength is 20 unless your Strength is already equal to or greater than that score. The weapon deals an extra 1d8 Thunder damage to any creature it hits and an extra 3d8 Thunder damage to objects it hits that aren't being worn or carried. Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Thunderous Greatclub",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "tidecaller-trident",
+   "label": "Tidecaller Trident",
+   "summary": "You gain a +2 bonus to attack and damage rolls made with this magic trident. You also have advantage on attack rolls made with this weapon while underwater. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Tidecaller Trident",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "BMT",
+    "category": "martial",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "topaz-annihilator",
+   "label": "Topaz Annihilator",
+   "summary": "This magic ranged weapon resembles a DMG, but in lieu of any ammunition, it holds a glowing yellow scale from a topaz dragon in its heart.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Topaz Annihilator",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "2d6",
+      "damage_type": "N",
+      "reach": 5,
+      "range": 100,
+      "long_range": 300
+     }
+    }
+   ],
+   "filters": {
+    "source": "FTD",
+    "category": "simple"
+   }
+  },
+  {
+   "id": "trident",
+   "label": "Trident",
+   "summary": "Trident Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Trident",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "trident-of-fish-command",
+   "label": "Trident of Fish Command",
+   "summary": "This magic weapon has 3 charges, and it regains 1d3 expended charges daily at dawn. While you carry it, you can expend 1 charge to cast XPHB (save DC 15) from it on a Beast that has a Swim Speed|XPHB. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Trident of Fish Command",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "two-birds-sling",
+   "label": "Two-Birds Sling",
+   "summary": "You have a +1 bonus to attack and damage rolls made with this weapon. Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Two-Birds Sling",
+      "ability": "dex",
+      "proficient": true,
+      "finesse_or_ranged": true,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 30,
+      "long_range": 120
+     }
+    }
+   ],
+   "filters": {
+    "source": "MOT",
+    "category": "simple",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "voyager-staff",
+   "label": "Voyager Staff",
+   "summary": "You gain a +1 bonus to attack and damage rolls made with this magic quarterstaff. While you hold it, you gain a +1 bonus to spell attack rolls.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Voyager Staff",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR",
+    "category": "simple"
+   }
+  },
+  {
+   "id": "wand-of-orcus",
+   "label": "Wand of Orcus",
+   "summary": "Crafted and wielded by MPMM, this ghastly wand slips from the demon lord's grasp from time to time. When it does, it magically appears wherever the demon lord senses an opportunity to achieve some fell goal. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Wand of Orcus",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "simple",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "war-pick",
+   "label": "War Pick",
+   "summary": "War Pick Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "War Pick",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "warhammer",
+   "label": "Warhammer",
+   "summary": "Warhammer Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Warhammer",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "wave",
+   "label": "Wave",
+   "summary": "Held in the dungeon of White Plume Mountain, Wave is engraved with images of waves, shells, and sea creatures. Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Wave",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 20,
+      "long_range": 60
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Topple"
+   }
+  },
+  {
+   "id": "whelm",
+   "label": "Whelm",
+   "summary": "Whelm is a powerful weapon forged by dwarves and lost in the dungeon of White Plume Mountain. Mastery: Push.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Whelm",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 60,
+      "long_range": 180
+     }
+    }
+   ],
+   "filters": {
+    "source": "XDMG",
+    "category": "martial",
+    "mastery": "Push"
+   }
+  },
+  {
+   "id": "whip",
+   "label": "Whip",
+   "summary": "Whip Mastery: Slow.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Whip",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d4",
+      "damage_type": "slashing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "martial",
+    "mastery": "Slow"
+   }
+  },
+  {
+   "id": "will-of-the-talon-dormant",
+   "label": "Will of the Talon (Dormant)",
+   "summary": "Black, blue, green, red, and white gems carved in the form of dragon heads cover this ostentatious gold war pick, marking it as a weapon channeling the power of Tiamat. Mastery: Sap.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Will of the Talon (Dormant)",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d8",
+      "damage_type": "piercing",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "EGW",
+    "category": "martial",
+    "mastery": "Sap"
+   }
+  },
+  {
+   "id": "wooden-staff",
+   "label": "Wooden Staff",
+   "summary": "Wooden Staff Mastery: Topple.",
+   "rows": [
+    {
+     "list": "attacks",
+     "values": {
+      "name": "Wooden Staff",
+      "ability": "str",
+      "proficient": true,
+      "finesse_or_ranged": false,
+      "loading": false,
+      "bonus": 0,
+      "damage": "1d6",
+      "damage_type": "bludgeoning",
+      "reach": 5,
+      "range": 0,
+      "long_range": 0
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "category": "simple",
+    "mastery": "Topple"
+   }
+  }
+ ]
+}

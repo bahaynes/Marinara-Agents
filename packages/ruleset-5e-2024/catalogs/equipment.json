@@ -1,0 +1,7311 @@
+{
+ "schemaVersion": 1,
+ "catalog": "equipment",
+ "entries": [
+  {
+   "id": "abacus",
+   "label": "Abacus",
+   "summary": "Abacus",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "acid",
+   "label": "Acid",
+   "summary": "When you take the XPHB action, you can replace one of your attacks with throwing a vial of Acid. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency|XPHB|Proficiency Bonus) or tak",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "aerenal-trinket",
+   "label": "Aerenal Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "ERLW"
+   }
+  },
+  {
+   "id": "airship",
+   "label": "Airship",
+   "summary": "Airship",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "alchemists-fire",
+   "label": "Alchemist's Fire",
+   "summary": "When you take the XPHB action, you can replace one of your attacks with throwing a flask of Alchemist's Fire. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency|XPHB|Proficiency ",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "alchemists-supplies",
+   "label": "Alchemist's Supplies",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 8
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ale-gallon",
+   "label": "Ale (gallon)",
+   "summary": "Ale (gallon)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "ale-mug",
+   "label": "Ale (mug)",
+   "summary": "Ale (mug)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "alexandrite",
+   "label": "Alexandrite",
+   "summary": "A dark green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "amber",
+   "label": "Amber",
+   "summary": "A watery gold to rich gold gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "amethyst",
+   "label": "Amethyst",
+   "summary": "A deep purple gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "amulet",
+   "label": "Amulet",
+   "summary": "For an Amulet to be an effective Holy Symbol, it must be worn or held.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "antitoxin",
+   "label": "Antitoxin",
+   "summary": "As a Bonus Action|XPHB, you can drink a vial of Antitoxin to gain Advantage|XPHB on saving throws to avoid or end the XPHB condition for 1 hour.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "aquamarine",
+   "label": "Aquamarine",
+   "summary": "A pale blue green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "argonnessen-trinket",
+   "label": "Argonnessen Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "ERLW"
+   }
+  },
+  {
+   "id": "arrow",
+   "label": "Arrow",
+   "summary": "Arrows are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). A",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.05
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "arrows-20",
+   "label": "Arrows (20)",
+   "summary": "Arrows are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). A",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "assassins-blood",
+   "label": "Assassin's Blood",
+   "summary": "A creature subjected to Assassin's Blood makes a DC 10 Constitution saving throw. On a failed save, the creature takes 6 (1d12) Poison damage and has the XPHB condition for 24 hours. On a successful save, the creature takes half as much damage only.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "axe-beak",
+   "label": "Axe Beak",
+   "summary": "Use the XMM stat block.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "azurite",
+   "label": "Azurite",
+   "summary": "A mottled deep blue gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "backpack",
+   "label": "Backpack",
+   "summary": "A Backpack holds up to 30 pounds within 1 cubic foot. It can also serve as a saddlebag.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bagpipes",
+   "label": "Bagpipes",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 6
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ball-bearing",
+   "label": "Ball Bearing",
+   "summary": "Most commonly found inside a bag of ball bearings.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.002
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "ball-bearings",
+   "label": "Ball Bearings",
+   "summary": "As a XPHB action, you can spill Ball Bearings from their pouch. They spread to cover a level, 10-foot-square area within 10 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 10 Dexterity saving throw or have the XPHB condition. It takes 10 minutes t",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "banded-agate",
+   "label": "Banded Agate",
+   "summary": "A striped brown, blue, white, or red gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "bandore",
+   "label": "Bandore",
+   "summary": "Bandore",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "barrel",
+   "label": "Barrel",
+   "summary": "A Barrel holds up to 40 gallons of liquid or up to 4 cubic feet of dry goods.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 70
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "basic-fishing-equipment",
+   "label": "Basic Fishing Equipment",
+   "summary": "Basic Fishing Equipment includes a pole, a line, a hook, and either a lure or some bait.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "basic-poison",
+   "label": "Basic Poison",
+   "summary": "As a Bonus Action|XPHB, you can use a vial of Basic Poison to coat one weapon or up to three pieces of ammunition. A creature that takes Piercing or Slashing damage from the poisoned weapon or ammunition takes an extra 1d4 Poison damage. Once applied, the poison retains potency for 1 minute or until",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "basket",
+   "label": "Basket",
+   "summary": "A Basket holds up to 40 pounds within 2 cubic feet.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bedroll",
+   "label": "Bedroll",
+   "summary": "A Bedroll sleeps one Small or Medium creature. While in a Bedroll, you automatically succeed on saving throws against extreme cold|XDMG (see the Dungeon Master's Guide|XDMG).",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 7
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bejeweled-gold-bracelet",
+   "label": "Bejeweled gold bracelet",
+   "summary": "Bejeweled gold bracelet",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "bejeweled-ivory-drinking-horn-with-gold-filigree",
+   "label": "Bejeweled ivory drinking horn with gold filigree",
+   "summary": "Bejeweled ivory drinking horn with gold filigree",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "bell",
+   "label": "Bell",
+   "summary": "When rung as a XPHB action, a Bell produces a sound that can be heard up to 60 feet away.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "birdpipes",
+   "label": "Birdpipes",
+   "summary": "Pan pipes or satyr pipes, also known as the shalm, these are sacred to Lliira|Faerûnian|scag and popular with wood elf and wild elf bards.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "bit-and-bridle",
+   "label": "Bit and bridle",
+   "summary": "Bit and bridle",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "black-opal",
+   "label": "Black Opal",
+   "summary": "A dark green with black mottling and golden flecks gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "black-pearl",
+   "label": "Black Pearl",
+   "summary": "A pure black gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "black-sap",
+   "label": "Black Sap",
+   "summary": "This tarry substance harvested from the dark boughs of the death's head willow is a powerful intoxicant. It can be smoked as a concentrate or injected directly into the bloodstream. A creature subjected to a dose of black sap cannot be charmed or frightened for 1d6 hours.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "black-sapphire",
+   "label": "Black Sapphire",
+   "summary": "A lustrous black with glowing highlights gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "black-velvet-mask-stitched-with-silver-thread",
+   "label": "Black velvet mask stitched with silver thread",
+   "summary": "Black velvet mask stitched with silver thread",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "blade-of-broken-mirrors-awakened",
+   "label": "Blade of Broken Mirrors (Awakened)",
+   "summary": "Blade of Broken Mirrors (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "blade-of-broken-mirrors-exalted",
+   "label": "Blade of Broken Mirrors (Exalted)",
+   "summary": "Blade of Broken Mirrors (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "blanket",
+   "label": "Blanket",
+   "summary": "While wrapped in a blanket, you have Advantage|XPHB on saving throws against extreme cold|XDMG (see the Dungeon Master's Guide|XDMG).",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "blasting-powder",
+   "label": "Blasting Powder",
+   "summary": "This volatile alchemical powder comes in a small pouch. When ignited by an open flame or a fuse, the powder explodes. Each creature within 5 feet of the exploding pouch must make a DC 13 Dexterity saving throw, taking 3d6 bludgeoning damage on a failed save, or half as much damage on a successful on",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "blight-ichor",
+   "label": "Blight Ichor",
+   "summary": "This bitter chartreuse concoction is distilled from a fungus native to the Blightshore badlands. The sickly green liqueur harbors potent psychedelic properties. Provided it is neither a construct nor undead, a creature subjected to a dose of blight ichor gains advantage on Intelligence and Wisdom ch",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "block-and-tackle",
+   "label": "Block and Tackle",
+   "summary": "A XPHB allows you to hoist up to four times the weight you can normally lift.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bloodstone",
+   "label": "Bloodstone",
+   "summary": "A dark gray with red flecks gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "blue-quartz",
+   "label": "Blue Quartz",
+   "summary": "A pale blue gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "blue-sapphire",
+   "label": "Blue Sapphire",
+   "summary": "A medium blue gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "blue-spinel",
+   "label": "Blue Spinel",
+   "summary": "A deep blue gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "bolt",
+   "label": "Bolt",
+   "summary": "Crossbow bolts are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed we",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.075
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bolts-20",
+   "label": "Bolts (20)",
+   "summary": "Crossbow bolts are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed we",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1.5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bomb",
+   "label": "Bomb",
+   "summary": "As an action, you can light a Bomb and throw it at a point up to 60 feet away, where it explodes. Each creature in a 5-foot-radius Sphere [Area of Effect]|XPHB|Sphere centered on that point makes a DC 12 Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a succ",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "bombard",
+   "label": "Bombard",
+   "summary": "Bombards are built by giff. The major feature of each ship is an enormous cannon that fires massive cannon balls capable of blowing other ships to smithereens. (The cannon is included in the cost of the ship.) A bombard can carry up to fourteen giant cannon balls, each of which weighs 10 tons. These",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "book",
+   "label": "Book",
+   "summary": "A Book contains fiction or nonfiction. If you consult an accurate nonfiction Book about its topic, you gain a +5 bonus to Intelligence (XPHB, XPHB, XPHB, or XPHB) checks you make about that topic.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bottle-stopper-cork-embossed-with-gold-leaf-and-set-with-amethysts",
+   "label": "Bottle stopper cork embossed with gold leaf and set with amethysts",
+   "summary": "Bottle stopper cork embossed with gold leaf and set with amethysts",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "box-of-turquoise-animal-figurines",
+   "label": "Box of turquoise animal figurines",
+   "summary": "Box of turquoise animal figurines",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "brass-mug-with-jade-inlay",
+   "label": "Brass mug with jade inlay",
+   "summary": "Brass mug with jade inlay",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "bread-loaf",
+   "label": "Bread (loaf)",
+   "summary": "Bread (loaf)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "breastplate",
+   "label": "Breastplate",
+   "summary": "Breastplate",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 20
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "brewers-supplies",
+   "label": "Brewer's Supplies",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 9
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bright-fungal-cloak",
+   "label": "Bright Fungal Cloak",
+   "summary": "While wearing a Bright Fungal Cloak, you can take a Bonus Action|XPHB to furl or unfurl it. When the cloak is unfurled, it sheds Bright Light|XPHB in a 5-foot radius and Dim Light|XPHB for an additional 5 feet.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "bronze-crown",
+   "label": "Bronze crown",
+   "summary": "Bronze crown",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "bucket",
+   "label": "Bucket",
+   "summary": "A Bucket holds up to half a cubic foot of contents.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bullseye-lantern",
+   "label": "Bullseye Lantern",
+   "summary": "A Bullseye Lantern burns Oil as fuel to cast Bright Light|XPHB in a 60-foot Cone and Dim Light|XPHB for an additional 60 feet.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bundle-of-sheet-music-representing-the-lost-dirges-of-a-famous-composer",
+   "label": "Bundle of sheet music representing the lost dirges of a famous composer",
+   "summary": "Bundle of sheet music representing the lost dirges of a famous composer",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "burglars-pack",
+   "label": "Burglar's Pack",
+   "summary": "A Burglar's Pack contains the following items: XPHB, XPHB, XPHB, 10 Candles, XPHB, XPHB, 7 flasks of XPHB, 5 days of XPHB, XPHB, XPHB, and XPHB.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 47.5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "burnt-othur-fumes",
+   "label": "Burnt Othur Fumes",
+   "summary": "A creature subjected to Burnt Othur Fumes must succeed on a DC 13 Constitution saving throw or take 10 (3d6) Poison damage, and it must repeat the save at the start of each of its turns. On each successive failed save, the creature takes 3 (1d6) Poison damage. After three successful saves, the poiso",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "calligraphers-supplies",
+   "label": "Calligrapher's Supplies",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "caltrop",
+   "label": "Caltrop",
+   "summary": "As an action, you can spread a single bag of caltrops to cover a 5-foot-square area. Any creature that enters the area must succeed on a DC 15 Dexterity saving throw or stop moving and take 1 piercing damage. Until the creature regains at least 1 hit point, its walking speed is reduced by 10 feet. A",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.1
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "caltrops",
+   "label": "Caltrops",
+   "summary": "As a XPHB action, you can spread Caltrops from their bag to cover a 5-foot-square area within 5 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 15 Dexterity saving throw or take 1 Piercing damage and have its Speed|XPHB reduced to 0 until the star",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "camel",
+   "label": "Camel",
+   "summary": "Camel",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "candle",
+   "label": "Candle",
+   "summary": "For 1 hour, a lit Candle sheds Bright Light|XPHB in a 5-foot radius and Dim Light|XPHB for an additional 5 feet.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "canvas-1-sq-yd",
+   "label": "Canvas (1 sq. yd.)",
+   "summary": "Canvas (1 sq. yd.)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "carnelian",
+   "label": "Carnelian",
+   "summary": "A orange to red brown gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "carpenters-tools",
+   "label": "Carpenter's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 6
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "carriage",
+   "label": "Carriage",
+   "summary": "Carriage",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 600
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "carrion-crawler-mucus",
+   "label": "Carrion Crawler Mucus",
+   "summary": "A creature subjected to Carrion Crawler Mucus must succeed on a DC 13 Constitution saving throw or have the XPHB condition for 1 minute. The creature also has the XPHB condition while XPHB in this way. The creature repeats the save at the end of each of its turns, ending the effect on itself on a su",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "cart",
+   "label": "Cart",
+   "summary": "Cart",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 200
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "cartographers-tools",
+   "label": "Cartographer's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 6
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "carved-bone-statuette",
+   "label": "Carved bone statuette",
+   "summary": "Carved bone statuette",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "carved-ivory-statuette",
+   "label": "Carved ivory statuette",
+   "summary": "Carved ivory statuette",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "carved-wooden-harp-with-ivory-inlay-and-zircon-gems",
+   "label": "Carved wooden harp with ivory inlay and zircon gems",
+   "summary": "Carved wooden harp with ivory inlay and zircon gems",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "ceremonial-gold-armor-with-black-pearls",
+   "label": "Ceremonial gold armor with black pearls",
+   "summary": "Ceremonial gold armor with black pearls",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "chain",
+   "label": "Chain",
+   "summary": "As a XPHB action, you can wrap a Chain around an unwilling creature within 5 feet of yourself that has the XPHB, XPHB, or XPHB condition if you succeed on a DC 13 Strength (XPHB) check. If the creature's legs are bound, the creature has the XPHB condition until it escapes. Escaping the Chain require",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 10
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "chain-mail",
+   "label": "Chain Mail",
+   "summary": "Chain Mail",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 55
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "chain-shirt",
+   "label": "Chain Shirt",
+   "summary": "Chain Shirt",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 20
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "chalcedony",
+   "label": "Chalcedony",
+   "summary": "A white gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "chalk-1-piece",
+   "label": "Chalk (1 piece)",
+   "summary": "Chalk (1 piece)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "chariot",
+   "label": "Chariot",
+   "summary": "Chariot",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 100
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "cheese-wedge",
+   "label": "Cheese (wedge)",
+   "summary": "Cheese (wedge)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "chest",
+   "label": "Chest",
+   "summary": "A Chest holds up to 12 cubic feet of contents.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 25
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "chicken",
+   "label": "Chicken",
+   "summary": "Chicken",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "chrysoberyl",
+   "label": "Chrysoberyl",
+   "summary": "A yellow green to pale green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "chrysoprase",
+   "label": "Chrysoprase",
+   "summary": "A green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "chunk-of-meat",
+   "label": "Chunk of Meat",
+   "summary": "Chunk of Meat",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "cinnamon",
+   "label": "Cinnamon",
+   "summary": "Cinnamon",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "citrine",
+   "label": "Citrine",
+   "summary": "A pale yellow brown gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "cittern",
+   "label": "Cittern",
+   "summary": "Cittern",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "climbers-kit",
+   "label": "Climber's Kit",
+   "summary": "A Climber's Kit includes boot tips, gloves, pitons, and a harness. As a XPHB action, you can use the Climber's Kit to anchor yourself; when you do, you can't fall more than 25 feet from the anchor point, and you can't move more than 25 feet from there without undoing the anchor as a Bonus Action|XPH",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 12
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "cloth-of-gold-vestments",
+   "label": "Cloth-of-gold vestments",
+   "summary": "Cloth-of-gold vestments",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "cloves",
+   "label": "Cloves",
+   "summary": "Cloves",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "cobblers-tools",
+   "label": "Cobbler's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "common-clothes",
+   "label": "Common Clothes",
+   "summary": "Common Clothes",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "common-wine-bottle",
+   "label": "Common Wine (bottle)",
+   "summary": "Common Wine (bottle)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "component-pouch",
+   "label": "Component Pouch",
+   "summary": "A Component Pouch is watertight and filled with compartments that hold all the free Material components of your spells.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "cooks-utensils",
+   "label": "Cook's Utensils",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 8
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "copper",
+   "label": "Copper",
+   "summary": "Copper",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "copper-alms-coin",
+   "label": "Copper Alms-Coin",
+   "summary": "Copper Alms-Coin",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "copper-chalice-with-silver-filigree",
+   "label": "Copper chalice with silver filigree",
+   "summary": "Copper chalice with silver filigree",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "copper-cp",
+   "label": "Copper (cp)",
+   "summary": "Common coins come in several different denominations based on the relative worth of the metal from which they are made. The three most common coins are the gold piece (gp), the silver piece (sp), and the copper piece (cp).",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.02
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "copper-zib",
+   "label": "Copper Zib",
+   "summary": "Copper Zib",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "coral",
+   "label": "Coral",
+   "summary": "A crimson gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "costume",
+   "label": "Costume",
+   "summary": "While wearing a Costume, you have Advantage|XPHB on any ability check you make to impersonate the person or type of person it represents.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "cotton-cloth-1-sq-yd",
+   "label": "Cotton Cloth (1 sq. yd.)",
+   "summary": "Cotton Cloth (1 sq. yd.)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "covered-wagon",
+   "label": "Covered Wagon",
+   "summary": "This vehicle is a XPHB covered by durable canvas. A creature has Cover|XPHB|Three-Quarters Cover while riding inside this vehicle.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1300
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "cow",
+   "label": "Cow",
+   "summary": "Cow",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "crossbow-bolt-case",
+   "label": "Crossbow Bolt Case",
+   "summary": "A XPHB holds up to 20 Bolts.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "crowbar",
+   "label": "Crowbar",
+   "summary": "Using a Crowbar gives you Advantage|XPHB on Strength checks where the Crowbar's leverage can be applied.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "crystal",
+   "label": "Crystal",
+   "summary": "Crystal",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "cult-of-the-dragon-trinket",
+   "label": "Cult of the Dragon Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "damselfly-ship",
+   "label": "Damselfly Ship",
+   "summary": "This swift but cramped ship is made mostly of metal. It can't float on water, but its legs enable it to land safely on the ground. A sliding hatch just behind the wings allows access to the ship's mangonel turret. The ship's cargo hold can easily be turned into crew cabins or another weapon deck.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "danoths-visor-awakened",
+   "label": "Danoth's Visor (Awakened)",
+   "summary": "Danoth's Visor (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "danoths-visor-exalted",
+   "label": "Danoth's Visor (Exalted)",
+   "summary": "Danoth's Visor (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "desert-clothing",
+   "label": "Desert Clothing",
+   "summary": "When you are wearing Desert Clothing and not wearing Medium or Heavy armor, you automatically succeed on saving throws against the effects of extreme heat|XDMG.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "detailed-life-sized-dragonborn-skull-cast-in-electrum",
+   "label": "Detailed, life-sized dragonborn skull cast in electrum",
+   "summary": "Detailed, life-sized dragonborn skull cast in electrum",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "devil-mask",
+   "label": "Devil Mask",
+   "summary": "While you are wearing a Devil Mask, other creatures have Disadvantage|XPHB on Intelligence (XPHB) and Wisdom (XPHB) checks made to discern your true identity or intentions.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "diamond",
+   "label": "Diamond",
+   "summary": "A blue white, canary, pink, brown, or blue gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "dice-set",
+   "label": "Dice Set",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "diplomats-pack",
+   "label": "Diplomat's Pack",
+   "summary": "A Diplomat's Pack contains the following items: XPHB, XPHB, XPHB, 5 Ink Pens, XPHB, 2 Map or Scroll Cases, 4 flasks of XPHB, 5 sheets of XPHB, 5 sheets of XPHB, XPHB, and XPHB.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 39
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "disguise-kit",
+   "label": "Disguise Kit",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "donkey",
+   "label": "Donkey",
+   "summary": "Donkey",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "draft-horse",
+   "label": "Draft Horse",
+   "summary": "Draft Horse",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "dragonchess-set",
+   "label": "Dragonchess Set",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "dragons-blood",
+   "label": "Dragon's Blood",
+   "summary": "Introduced into Sharn by Daask, dragon's blood is a potent and highly addictive stimulant. In addition to inducing euphoria, it can enhance spellcasting ability or even temporarily imbue a user with the ability to cast sorcerer spells. The drug's effects are potentially dangerous and always unpredic",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "ERLW"
+   }
+  },
+  {
+   "id": "dreamlily",
+   "label": "Dreamlily",
+   "summary": "A psychoactive liquid that smells and tastes like your favorite beverage, essence of dreamlily is a Sarlonan opiate. First imported to help manage pain during the Last War, it's now the most commonly abused substance in Sharn. Though dreamlily isn't illegal if used for medicinal purposes, it's heavi",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "ERLW"
+   }
+  },
+  {
+   "id": "drum",
+   "label": "Drum",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "dulcimer",
+   "label": "Dulcimer",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 10
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "dungeoneers-pack",
+   "label": "Dungeoneer's Pack",
+   "summary": "A Dungeoneer's Pack contains the following items: XPHB, XPHB, XPHB, 2 flasks of XPHB, 10 days of XPHB, XPHB, XPHB, 10 Torches, and XPHB.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 55
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "dynamite-stick",
+   "label": "Dynamite Stick",
+   "summary": "An an action, you can light a Dynamite Stick and throw it at a point up to 60 feet away, where it explodes. Each creature in a 5-foot-radius Sphere [Area of Effect]|XPHB|Sphere centered on that point makes a DC 12 Dexterity saving throw, taking 3d6 Force damage on a failed save or half as much damag",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "electrum-50-zib-coin",
+   "label": "Electrum 50-Zib Coin",
+   "summary": "Electrum 50-Zib Coin",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "electrum-ep",
+   "label": "Electrum (ep)",
+   "summary": "Common coins come in several different denominations based on the relative worth of the metal from which they are made. The three most common coins are the gold piece (gp), the silver piece (sp), and the copper piece (cp).",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.02
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "elephant",
+   "label": "Elephant",
+   "summary": "Elephant",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "elven-trinket",
+   "label": "Elven Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "MTF"
+   }
+  },
+  {
+   "id": "emblem",
+   "label": "Emblem",
+   "summary": "For an Emblem to be an effective Holy Symbol, it must be borne on fabric (such as a tabard or banner) or a XPHB.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "embroidered-glove-set-with-jewel-chips",
+   "label": "Embroidered glove set with jewel chips",
+   "summary": "Embroidered glove set with jewel chips",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "embroidered-silk-and-velvet-mantle-set-with-numerous-moonstones",
+   "label": "Embroidered silk and velvet mantle set with numerous moonstones",
+   "summary": "Embroidered silk and velvet mantle set with numerous moonstones",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "embroidered-silk-handkerchief",
+   "label": "Embroidered silk handkerchief",
+   "summary": "Embroidered silk handkerchief",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "emerald",
+   "label": "Emerald",
+   "summary": "A deep bright green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "emerald-enclave-trinket",
+   "label": "Emerald Enclave Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "energy-cell",
+   "label": "Energy Cell",
+   "summary": "Energy Cell",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.5
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "entertainers-pack",
+   "label": "Entertainer's Pack",
+   "summary": "An Entertainer's Pack contains the following items: XPHB, XPHB, XPHB, XPHB, 3 Costumes, XPHB, 8 flasks of XPHB, 9 days of XPHB, XPHB, and XPHB.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 58.5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "essence-of-ether",
+   "label": "Essence of Ether",
+   "summary": "A creature subjected to Essence of Ether must succeed on a DC 15 Constitution saving throw or have the XPHB condition for 8 hours. The creature also has the XPHB condition while XPHB in this way. The creature wakes up if it takes damage or if another creature takes an action to shake it awake.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "exotic-saddle",
+   "label": "Exotic Saddle",
+   "summary": "A saddle comes with a bit, a bridle, reins, and any other equipment needed to use the saddle. An Exotic Saddle is required for riding an aquatic or a flying mount.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 40
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "explorers-pack",
+   "label": "Explorer's Pack",
+   "summary": "An Explorer's Pack contains the following items: XPHB, XPHB, 2 flasks of XPHB, 10 days of XPHB, XPHB, XPHB, 10 Torches, and XPHB.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 55
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "explosive-seed",
+   "label": "Explosive Seed",
+   "summary": "This acorn-sized sphere of brass contains a small amount of blasting powder and a clockwork trigger. An explosive seed can be thrown up to 30 feet as an action, detonating on impact. Each creature within 5 feet of the exploding seed must make a DC 10 Dexterity saving throw, taking 1d8 bludgeoning da",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "eye-agate",
+   "label": "Eye Agate",
+   "summary": "A circles of gray, white, brown, blue, or green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "eye-patch-decorated-with-tiny-blue-sapphires-and-moonstones",
+   "label": "Eye patch decorated with tiny blue sapphires and moonstones",
+   "summary": "Eye patch decorated with tiny blue sapphires and moonstones",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "fargab",
+   "label": "Fargab",
+   "summary": "These backpack-sized devices are created in pairs, with matching numbers engraved on them, and allow communication over a long distance using radio frequencies. While wearing a fargab, you can use an action to speak into the device's mouthpiece and send a short message of twenty-five words or less t",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "DSOTDQ"
+   }
+  },
+  {
+   "id": "feed-per-day",
+   "label": "Feed (per day)",
+   "summary": "Feed (per day)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 10
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "fine-clothes",
+   "label": "Fine Clothes",
+   "summary": "Fine Clothes are made of expensive fabrics and adorned with expertly crafted details. Some events and locations admit only people wearing these clothes.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 6
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "fine-gold-chain-set-with-a-fire-opal",
+   "label": "Fine gold chain set with a fire opal",
+   "summary": "Fine gold chain set with a fire opal",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "fine-wine-bottle",
+   "label": "Fine Wine (bottle)",
+   "summary": "Fine Wine (bottle)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "fire-opal",
+   "label": "Fire Opal",
+   "summary": "A fiery red gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "firearm-bullet",
+   "label": "Firearm Bullet",
+   "summary": "Firearm Bullets are destroyed upon use in a modern firearm.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "firearm-bullets-10",
+   "label": "Firearm Bullets (10)",
+   "summary": "Firearm Bullets are destroyed upon use in a modern firearm.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "fishing-tackle",
+   "label": "Fishing Tackle",
+   "summary": "This kit includes a wooden rod, silken line, corkwood bobbers, steel hooks, lead sinkers, velvet lures, and narrow netting.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "flask",
+   "label": "Flask",
+   "summary": "A Flask holds up to 1 pint.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "flour",
+   "label": "Flour",
+   "summary": "Flour",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "flute",
+   "label": "Flute",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "flying-fish-ship",
+   "label": "Flying Fish Ship",
+   "summary": "Aside from space galleons, flying fish ships are the most common vessels in Wildspace, favorites among merchants and adventurers alike.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "flying-snake",
+   "label": "Flying Snake",
+   "summary": "Pet flying snakes use the XMM stat block.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "forgery-kit",
+   "label": "Forgery Kit",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "fragmentation-grenade",
+   "label": "Fragmentation Grenade",
+   "summary": "{#itemEntry Grenade|XDMG}",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "frostfell-and-everice-trinket",
+   "label": "Frostfell and Everice Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "ERLW"
+   }
+  },
+  {
+   "id": "galley",
+   "label": "Galley",
+   "summary": "Galley",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "garb-of-light-and-shadow",
+   "label": "Garb of Light and Shadow",
+   "summary": "This garb appeals to Fey from one Domain of Delight, such as the Gloaming Court or the Summer Court. While wearing the garb, you have Advantage|XPHB on ability checks to influence Fey associated with that Domain of Delight.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 6
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "garnet",
+   "label": "Garnet",
+   "summary": "A red, brown green, or violet gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gate-warden-trinket",
+   "label": "Gate Warden Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SATO"
+   }
+  },
+  {
+   "id": "genie-robe",
+   "label": "Genie Robe",
+   "summary": "This robe appeals to Elementals associated with a particular Elemental Plane (Air, Earth, Fire, Water). While wearing a Genie Robe, you have Advantage|XPHB on ability checks made to influence Elementals associated with that plane.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 6
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "giant-trinket",
+   "label": "Giant Trinket",
+   "summary": "While exploring your home, you discovered some trivial remnant of the ancient inhabitants, as determined by rolling on the Giant Trinkets table. The items in parentheses are the normal-sized objects most analogous to the described giant trinkets.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "BGG"
+   }
+  },
+  {
+   "id": "gilded-royal-coach-or-funeral-barge",
+   "label": "Gilded royal coach or funeral barge",
+   "summary": "Gilded royal coach or funeral barge",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "ginger",
+   "label": "Ginger",
+   "summary": "Ginger",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "glass-bottle",
+   "label": "Glass Bottle",
+   "summary": "A Glass Bottle holds up to 1½ pints.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "glassblowers-tools",
+   "label": "Glassblower's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "glaur",
+   "label": "Glaur",
+   "summary": "Short, curved horns like a cornucopia. Played with valves, glaur sound like trumpets, while those without valves, known as gloon, have a more mournful sound.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "goat",
+   "label": "Goat",
+   "summary": "Goat",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold",
+   "label": "Gold",
+   "summary": "Gold",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-5-zino-coin",
+   "label": "Gold 5-Zino Coin",
+   "summary": "Gold 5-Zino Coin",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "gold-bar-5-pound",
+   "label": "Gold Bar (5-pound)",
+   "summary": "Gold Bar (5-pound)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-birdcage-with-electrum-filigree",
+   "label": "Gold birdcage with electrum filigree",
+   "summary": "Gold birdcage with electrum filigree",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-bracelet",
+   "label": "Gold bracelet",
+   "summary": "Gold bracelet",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-circlet-set-with-four-aquamarines",
+   "label": "Gold circlet set with four aquamarines",
+   "summary": "Gold circlet set with four aquamarines",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-comb-shaped-like-a-dragon-with-red-garnets-as-eyes",
+   "label": "Gold comb shaped like a dragon with red garnets as eyes",
+   "summary": "Gold comb shaped like a dragon with red garnets as eyes",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-cup-set-with-emeralds",
+   "label": "Gold cup set with emeralds",
+   "summary": "Gold cup set with emeralds",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-gp",
+   "label": "Gold (gp)",
+   "summary": "Common coins come in several different denominations based on the relative worth of the metal from which they are made. The three most common coins are the gold piece (gp), the silver piece (sp), and the copper piece (cp).",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.02
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "gold-idol",
+   "label": "Gold idol",
+   "summary": "Gold idol",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-jewelry-box-with-platinum-filigree",
+   "label": "Gold jewelry box with platinum filigree",
+   "summary": "Gold jewelry box with platinum filigree",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-locket-with-a-painted-portrait-inside",
+   "label": "Gold locket with a painted portrait inside",
+   "summary": "Gold locket with a painted portrait inside",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-music-box",
+   "label": "Gold music box",
+   "summary": "Gold music box",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-ring-set-with-bloodstones",
+   "label": "Gold ring set with bloodstones",
+   "summary": "Gold ring set with bloodstones",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-statuette-set-with-rubies",
+   "label": "Gold statuette set with rubies",
+   "summary": "Gold statuette set with rubies",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-zino",
+   "label": "Gold Zino",
+   "summary": "Gold Zino",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "goose-egg-trinket",
+   "label": "Goose Egg Trinket",
+   "summary": "Sometimes, an egg laid by a BGG inexplicably contains some kind of small trinket or minor magic item. Once it lays a golden egg, a giant goose can't do so again for a year and a day.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "BGG"
+   }
+  },
+  {
+   "id": "grappling-hook",
+   "label": "Grappling Hook",
+   "summary": "As a XPHB action, you can throw the Grappling Hook at a railing, a ledge, or another catch within 50 feet of yourself, and the hook catches on if you succeed on a DC 13 Dexterity (XPHB) check. If you tied a Rope to the hook, you can then climb it.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "grenade-launcher",
+   "label": "Grenade Launcher",
+   "summary": "{#itemEntry Grenade|XDMG}",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 7
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "grimoire-infinitus-awakened",
+   "label": "Grimoire Infinitus (Awakened)",
+   "summary": "Grimoire Infinitus (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "grimoire-infinitus-exalted",
+   "label": "Grimoire Infinitus (Exalted)",
+   "summary": "Grimoire Infinitus (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "grovelthrash-awakened",
+   "label": "Grovelthrash (Awakened)",
+   "summary": "Grovelthrash (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "grovelthrash-exalted",
+   "label": "Grovelthrash (Exalted)",
+   "summary": "Grovelthrash (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "gunpowder-keg",
+   "label": "Gunpowder (keg)",
+   "summary": "Setting fire to a keg full of Gunpowder causes it to explode. When a keg explodes, each creature in a 10-foot-radius Sphere [Area of Effect]|XPHB|Sphere centered on the keg makes a DC 12 Dexterity saving throw, taking 24 (7d6) Fire damage on a failed save or half as much damage on a successful one.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 20
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gunpowder-powder-horn",
+   "label": "Gunpowder (powder horn)",
+   "summary": "Setting fire to a powder horn full of Gunpowder causes it to explode. When a powder horn explodes, each creature in a 10-foot-radius Sphere [Area of Effect]|XPHB|Sphere centered on the powder horn makes a DC 12 Dexterity saving throw, taking 10 (3d6) Fire damage on a failed save or half as much dama",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "half-plate-armor",
+   "label": "Half Plate Armor",
+   "summary": "Half Plate Armor",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 40
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "hammer",
+   "label": "Hammer",
+   "summary": "Hammer",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "hammerhead-ship",
+   "label": "Hammerhead Ship",
+   "summary": "Hammerhead ships are popular craft, especially among pirates and merchants carrying heavy cargo. They can float on water and sail across it, but they aren't built to land on the ground (their keels would cause them to tip to one side). Standard weapons on a hammerhead ship include fore and aft mango",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "hand-drum",
+   "label": "Hand Drum",
+   "summary": "A double-headed skin drum fitted with handles along its side.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "handheld-mirror-set-in-a-painted-wooden-frame",
+   "label": "Handheld mirror set in a painted wooden frame",
+   "summary": "Handheld mirror set in a painted wooden frame",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "harper-trinket",
+   "label": "Harper Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "healers-kit",
+   "label": "Healer's Kit",
+   "summary": "A Healer's Kit has ten uses. As a XPHB action, you can expend one of its uses to stabilize an XPHB creature that has 0 Hit Points|XPHB without needing to make a Wisdom (XPHB) check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "hematite",
+   "label": "Hematite",
+   "summary": "A gray black gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "herbalism-kit",
+   "label": "Herbalism Kit",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "hide-armor",
+   "label": "Hide Armor",
+   "summary": "Hide Armor",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 12
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "hide-of-the-feral-guardian-awakened",
+   "label": "Hide of the Feral Guardian (Awakened)",
+   "summary": "Hide of the Feral Guardian (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "hide-of-the-feral-guardian-exalted",
+   "label": "Hide of the Feral Guardian (Exalted)",
+   "summary": "Hide of the Feral Guardian (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "holy-water",
+   "label": "Holy Water",
+   "summary": "When you take the XPHB action, you can replace one of your attacks with throwing a flask of Holy Water. Target one creature you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency|XPHB|Proficiency Bonus) or take 2",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "hooded-lantern",
+   "label": "Hooded Lantern",
+   "summary": "A Hooded Lantern burns Oil as fuel to cast Bright Light|XPHB in a 30-foot radius and Dim Light|XPHB for an additional 30 feet. As a Bonus Action|XPHB, you can lower the hood, reducing the light to Dim Light|XPHB in a 5-foot radius, or raise it again.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "horn",
+   "label": "Horn",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "horror-trinket",
+   "label": "Horror Trinket",
+   "summary": "Before you finish making a character, roll once on the Horror Trinkets table for a unique object your character has with them at the start of their adventuring career. These trinkets hint toward various horrific tales and might lead to dreadful revelations or be nothing more than grim keepsakes. At ",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "VRGR"
+   }
+  },
+  {
+   "id": "hourglass",
+   "label": "Hourglass",
+   "summary": "Hourglass",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "hunting-trap",
+   "label": "Hunting Trap",
+   "summary": "As a XPHB action, you can set a Hunting Trap, which is a sawtooth steel ring that snaps shut when a creature steps on a pressure plate in the center. The trap is affixed by a heavy chain to an immobile object, such as a tree or a spike driven into the ground. A creature that steps on the plate must ",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 25
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "infiltrators-key-awakened",
+   "label": "Infiltrator's Key (Awakened)",
+   "summary": "Infiltrator's Key (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "infiltrators-key-exalted",
+   "label": "Infiltrator's Key (Exalted)",
+   "summary": "Infiltrator's Key (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "ink",
+   "label": "Ink",
+   "summary": "Ink comes in a 1-ounce bottle, which provides enough ink to write about 500 pages.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ink-pen",
+   "label": "Ink Pen",
+   "summary": "Using XPHB, an Ink Pen is used to write or draw.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "iron",
+   "label": "Iron",
+   "summary": "Iron",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "iron-pot",
+   "label": "Iron Pot",
+   "summary": "An Iron Pot holds up to 1 gallon.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 10
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "iron-spike",
+   "label": "Iron Spike",
+   "summary": "Iron Spikes come in bundles of ten. As a XPHB action, you can use a blunt object, such as a XPHB, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a XPHB or XPHB to the Spike.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "iron-spikes",
+   "label": "Iron Spikes",
+   "summary": "Iron Spikes come in bundles of ten. As a XPHB action, you can use a blunt object, such as a XPHB, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a XPHB or XPHB to the Spike.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "jacinth",
+   "label": "Jacinth",
+   "summary": "A fiery orange gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jade",
+   "label": "Jade",
+   "summary": "A light green, deep green, or white gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jade-game-board-with-gold-playing-pieces",
+   "label": "Jade game board with gold playing pieces",
+   "summary": "Jade game board with gold playing pieces",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jasper",
+   "label": "Jasper",
+   "summary": "A blue, black, or brown gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jet",
+   "label": "Jet",
+   "summary": "A deep black gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jeweled-anklet",
+   "label": "Jeweled anklet",
+   "summary": "Jeweled anklet",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jeweled-gold-crown",
+   "label": "Jeweled gold crown",
+   "summary": "Jeweled gold crown",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jeweled-platinum-ring",
+   "label": "Jeweled platinum ring",
+   "summary": "Jeweled platinum ring",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jewelers-tools",
+   "label": "Jeweler's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "jug",
+   "label": "Jug",
+   "summary": "A Jug holds up to 1 gallon.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "keelboat",
+   "label": "Keelboat",
+   "summary": "Keelboat",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "khyber-trinket",
+   "label": "Khyber Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "ERLW"
+   }
+  },
+  {
+   "id": "ladder",
+   "label": "Ladder",
+   "summary": "A Ladder is 10 feet tall. You must climb to move up or down it.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 25
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "lamp",
+   "label": "Lamp",
+   "summary": "A Lamp burns XPHB as fuel to cast Bright Light|XPHB in a 15-foot radius and Dim Light|XPHB for an additional 30 feet.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "lamprey-ship",
+   "label": "Lamprey Ship",
+   "summary": "Lamprey ships are antiquated, being among the oldest spelljamming ships still in use. Psurlons (see Boo's Astral Menagerie) are particularly fond of them.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "lapis-lazuli",
+   "label": "Lapis Lazuli",
+   "summary": "A light and dark blue with yellow flecks gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "lash-of-shadows-awakened",
+   "label": "Lash of Shadows (Awakened)",
+   "summary": "Lash of Shadows (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "lash-of-shadows-exalted",
+   "label": "Lash of Shadows (Exalted)",
+   "summary": "Lash of Shadows (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "leather-armor",
+   "label": "Leather Armor",
+   "summary": "Leather Armor",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 10
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "leatherworkers-tools",
+   "label": "Leatherworker's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "linen-1-sq-yd",
+   "label": "Linen (1 sq. yd.)",
+   "summary": "Linen (1 sq. yd.)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "living-ship",
+   "label": "Living Ship",
+   "summary": "Druids, rangers, and clerics devoted to gods of nature are often found aboard living ships, as are Wildspace explorers who don't want to have to worry about their ship's air envelope becoming fouled during a long voyage.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "lock",
+   "label": "Lock",
+   "summary": "A Lock comes with a key. Without the key, a creature can use XPHB to pick this Lock with a successful DC 15 Dexterity (XPHB) check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "locking-spellbook",
+   "label": "Locking Spellbook",
+   "summary": "This 100-page leather-bound tome can be used as a Spellbook. It is closed with a lock that comes with a key. As a XPHB action, a creature can try to pick the lock using XPHB, doing so with a successful DC 15 Dexterity (XPHB) check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "lolths-sting",
+   "label": "Lolth's Sting",
+   "summary": "A creature subjected to Lolth's Sting must succeed on a DC 13 Constitution saving throw or have the XPHB condition for 1 hour. If the creature fails the save by 5 or more, the creature also has the XPHB condition while XPHB in this way. The creature wakes up if it takes damage or if another creature",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "longhorn",
+   "label": "Longhorn",
+   "summary": "A Faerûnian flute of sophisticated make, found only in areas with skilled artisans, as in great cities or elven enclaves.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "longship",
+   "label": "Longship",
+   "summary": "Longship",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "lords-alliance-trinket",
+   "label": "Lords' Alliance Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "lorehold-trinket",
+   "label": "Lorehold Trinket",
+   "summary": "When you make your character, you may roll once on the Lorehold Trinkets table, instead of on the Trinkets table in the Player's Handbook|PHB, for your starting trinket.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCC"
+   }
+  },
+  {
+   "id": "lute",
+   "label": "Lute",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "lyre",
+   "label": "Lyre",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "mace-of-the-black-crown-awakened",
+   "label": "Mace of the Black Crown (Awakened)",
+   "summary": "Mace of the Black Crown (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "mace-of-the-black-crown-exalted",
+   "label": "Mace of the Black Crown (Exalted)",
+   "summary": "Mace of the Black Crown (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "magnifying-glass",
+   "label": "Magnifying Glass",
+   "summary": "A Magnifying Glass grants Advantage|XPHB on any ability check made to appraise or inspect a highly detailed item. Lighting a fire with a Magnifying Glass requires light as bright as sunlight to focus, tinder to ignite, and about 5 minutes for the fire to ignite.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "malachite",
+   "label": "Malachite",
+   "summary": "A striated light and dark green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "malice",
+   "label": "Malice",
+   "summary": "A creature subjected to Malice must succeed on a DC 15 Constitution saving throw or have the XPHB condition for 1 hour. The creature also has the XPHB condition while XPHB in this way.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "manacles",
+   "label": "Manacles",
+   "summary": "As a XPHB action, you can use Manacles to bind an unwilling Small or Medium creature within 5 feet of yourself that has the XPHB, XPHB, or XPHB condition if you succeed on a DC 13 Dexterity (XPHB) check. While bound, a creature has Disadvantage|XPHB on attack rolls, and the creature is XPHB if the M",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 6
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "map",
+   "label": "Map",
+   "summary": "If you consult an accurate Map, you gain a +5 bonus to Wisdom (XPHB) checks you make to find your way in the place represented on it.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "map-or-scroll-case",
+   "label": "Map or Scroll Case",
+   "summary": "A XPHB holds up to 10 sheets of paper or 5 sheets of parchment.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "masons-tools",
+   "label": "Mason's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 8
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "mastiff",
+   "label": "Mastiff",
+   "summary": "Mastiff",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "merchants-scale",
+   "label": "Merchant's Scale",
+   "summary": "A scale includes a small balance, pans, and a suitable assortment of weights up to 2 pounds. With it, you can measure the exact weight of small objects, such as raw precious metals or trade goods, to help determine their worth.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "mess-kit",
+   "label": "Mess Kit",
+   "summary": "This tin box contains a cup and simple cutlery. The box clamps together, and one side can be used as a cooking pan and the other as a plate or shallow bowl.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "midnight-tears",
+   "label": "Midnight Tears",
+   "summary": "A creature that ingests Midnight Tears suffers no effect until the stroke of midnight. Any effect that ends the XPHB condition neutralizes this poison. If the poison hasn't been neutralized before midnight, the creature makes a DC 17 Constitution saving throw, taking 31 (9d6) Poison damage on a fail",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "military-saddle",
+   "label": "Military Saddle",
+   "summary": "A saddle comes with a bit, a bridle, reins, and any other equipment needed to use the saddle. A Military Saddle gives Advantage|XPHB on any ability check you make to remain mounted.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 30
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "miners-pick",
+   "label": "Miner's Pick",
+   "summary": "Miner's Pick",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 10
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "mirror",
+   "label": "Mirror",
+   "summary": "A handheld steel Mirror is useful for personal cosmetics but also for peeking around corners and reflecting light as a signal.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "modern-bullet",
+   "label": "Modern Bullet",
+   "summary": "Modern Bullet",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.1
+    }
+   },
+   "filters": {
+    "source": "DMG"
+   }
+  },
+  {
+   "id": "modern-bullets-10",
+   "label": "Modern Bullets (10)",
+   "summary": "Modern Bullets (10)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "DMG"
+   }
+  },
+  {
+   "id": "monster-camouflage",
+   "label": "Monster Camouflage",
+   "summary": "A suit of Monster Camouflage looks like a Beast or Monstrosity, such as an XMM. To discern that you're disguised, a creature must take the XPHB action to inspect your appearance and succeed on a DC 10 Intelligence (XPHB or XPHB) check. The creature has Advantage|XPHB on this check if it is within 30",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 6
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "monster-hunters-pack",
+   "label": "Monster Hunter's Pack",
+   "summary": "Includes:",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 48.5
+    }
+   },
+   "filters": {
+    "source": "VRGR"
+   }
+  },
+  {
+   "id": "moonstone",
+   "label": "Moonstone",
+   "summary": "A white with pale-blue glow gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "moorbounder",
+   "label": "Moorbounder",
+   "summary": "Beasts of burden are common throughout Xhorhas, and often horses and other riding animals are the best or only option. For those who require speed and have a little more coin to spend, the best option is often a moorbounder. However, moorbounders that haven't undergone proper training or established",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "moss-agate",
+   "label": "Moss Agate",
+   "summary": "A pink or yellow white with mossy gray or green markings gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "mournland-trinket",
+   "label": "Mournland Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "ERLW"
+   }
+  },
+  {
+   "id": "mule",
+   "label": "Mule",
+   "summary": "Mule",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "muroosa-balm",
+   "label": "Muroosa Balm",
+   "summary": "This paste made from the muroosa bush is known to help prevent sunburn, but it is also a fire retardant. After spending 1 minute applying a quarter pint of muroosa balm to your skin, you gain resistance against fire damage for 1 hour.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "narycrash",
+   "label": "Narycrash",
+   "summary": "This backpack-sized device holds a balloon-based parachute. If you fall while wearing this device, you can use your reaction to deploy the parachute. Once deployed, the parachute rapidly inflates, and you descend 60 feet per round and take no damage from falling. When you are 10 feet away from the g",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "DSOTDQ"
+   }
+  },
+  {
+   "id": "nautiloid",
+   "label": "Nautiloid",
+   "summary": "Built and used by mind flayers, nautiloids are designed exclusively for space travel. They can't float on water, nor can they land safely on the ground.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "navigators-tools",
+   "label": "Navigator's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "necklace-string-of-small-pink-pearls",
+   "label": "Necklace string of small pink pearls",
+   "summary": "Necklace string of small pink pearls",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "needle",
+   "label": "Needle",
+   "summary": "Blowgun needles are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed w",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.02
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "needles-50",
+   "label": "Needles (50)",
+   "summary": "Blowgun needles are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed w",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "net",
+   "label": "Net",
+   "summary": "When you take the XPHB action, you can replace one of your attacks with throwing a Net. Target a creature you can see within 15 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency|XPHB|Proficiency Bonus) or have the XPHB condition ",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "nightspider",
+   "label": "Nightspider",
+   "summary": "Neogi terrorize Wildspace in ships of their own construction, which others call nightspiders. These vessels often wait in ambush for other ships. Once a target ship is identified, the neogi try to steal its spelljamming helm and capture its crew.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "obsidian",
+   "label": "Obsidian",
+   "summary": "A black gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "obsidian-statuette-with-gold-fittings-and-inlay",
+   "label": "Obsidian statuette with gold fittings and inlay",
+   "summary": "Obsidian statuette with gold fittings and inlay",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "oil",
+   "label": "Oil",
+   "summary": "You can douse a creature, object, or space with Oil or use it as fuel, as detailed below.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "oil-of-taggit",
+   "label": "Oil of Taggit",
+   "summary": "A creature subjected to Oil of Taggit must succeed on a DC 13 Constitution saving throw or have the XPHB condition for 24 hours. The creature also has the XPHB condition while XPHB in this way. It wakes up if it takes damage.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "old-masterpiece-painting",
+   "label": "Old masterpiece painting",
+   "summary": "Old masterpiece painting",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "olisuba-leaf",
+   "label": "Olisuba Leaf",
+   "summary": "These dried leaves of the Olisuba tree, when steeped to make a tea, can help a body recover from strenuous activity. If you drink a dose of Olisuba tea during a long rest, your exhaustion level is reduced by 2 instead of 1 at the end of that long rest.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "onyx",
+   "label": "Onyx",
+   "summary": "A bands of black and white, or pure black or white gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "opal",
+   "label": "Opal",
+   "summary": "A pale blue with green and golden mottling gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "orb",
+   "label": "Orb",
+   "summary": "Orb",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "order-of-the-gauntlet-trinket",
+   "label": "Order of the Gauntlet Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "ox",
+   "label": "Ox",
+   "summary": "Ox",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "pack-saddle",
+   "label": "Pack Saddle",
+   "summary": "Pack Saddle",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 15
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "padded-armor",
+   "label": "Padded Armor",
+   "summary": "Padded Armor",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 8
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "painted-gold-war-mask",
+   "label": "Painted gold war mask",
+   "summary": "Painted gold war mask",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "painters-supplies",
+   "label": "Painter's Supplies",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "pair-of-engraved-bone-dice",
+   "label": "Pair of engraved bone dice",
+   "summary": "Pair of engraved bone dice",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "pale-tincture",
+   "label": "Pale Tincture",
+   "summary": "A creature subjected to Pale Tincture must succeed on a DC 16 Constitution saving throw or take 3 (1d6) Poison damage and have the XPHB condition. The XPHB creature repeats the save every 24 hours, taking 3 (1d6) Poison damage on a failed save. The damage the poison deals can't be healed by any mean",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "pan-flute",
+   "label": "Pan Flute",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "paper",
+   "label": "Paper",
+   "summary": "One sheet of Paper can hold about 250 handwritten words.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "parchment",
+   "label": "Parchment",
+   "summary": "One sheet of Parchment can hold about 250 handwritten words.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "pearl",
+   "label": "Pearl",
+   "summary": "A lustrous white, yellow, or pink gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "pepper",
+   "label": "Pepper",
+   "summary": "Pepper",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "perfume",
+   "label": "Perfume",
+   "summary": "Perfume comes in a 4-ounce vial. For 1 hour after applying Perfume to yourself, you have Advantage|XPHB on Charisma (XPHB) checks made to influence an Indifferent Humanoid within 5 feet of yourself.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "peridot",
+   "label": "Peridot",
+   "summary": "A rich olive green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "pig",
+   "label": "Pig",
+   "summary": "Pig",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "pitcher",
+   "label": "Pitcher",
+   "summary": "A pitcher holds 1 gallon of liquid.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "piton",
+   "label": "Piton",
+   "summary": "Piton",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.25
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "planar-philosopher-trinket",
+   "label": "Planar Philosopher Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SATO"
+   }
+  },
+  {
+   "id": "plate-armor",
+   "label": "Plate Armor",
+   "summary": "Plate Armor",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 65
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "platinum",
+   "label": "Platinum",
+   "summary": "Platinum",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "platinum-10-zino-coin",
+   "label": "Platinum 10-Zino Coin",
+   "summary": "Platinum 10-Zino Coin",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "platinum-100-zino-coin",
+   "label": "Platinum 100-Zino Coin",
+   "summary": "Platinum 100-Zino Coin",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "platinum-bracelet-set-with-an-emerald",
+   "label": "Platinum bracelet set with an emerald",
+   "summary": "Platinum bracelet set with an emerald",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "platinum-pp",
+   "label": "Platinum (pp)",
+   "summary": "Common coins come in several different denominations based on the relative worth of the metal from which they are made. The three most common coins are the gold piece (gp), the silver piece (sp), and the copper piece (cp).",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.02
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "playing-cards",
+   "label": "Playing Cards",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "poisoners-kit",
+   "label": "Poisoner's Kit",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "pole",
+   "label": "Pole",
+   "summary": "A Pole is 10 feet long. You can use it to touch something up to 10 feet away. If you must make a Strength (XPHB) check as part of a High or Long Jump|XPHB, you can use the Pole to vault, giving yourself Advantage|XPHB on the check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 7
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "pony",
+   "label": "Pony",
+   "summary": "Pony",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "portable-ram",
+   "label": "Portable Ram",
+   "summary": "You can use a Portable Ram to break down doors. When doing so, you gain a +4 bonus to the Strength check. One other character can help you use the ram, giving you Advantage|XPHB on this check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 35
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "potters-tools",
+   "label": "Potter's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "pouch",
+   "label": "Pouch",
+   "summary": "A Pouch holds up to 6 pounds within one-fifth of a cubic foot.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "pride-silk",
+   "label": "Pride Silk",
+   "summary": "The hearty silk unique to the region has long been a point of pride with the locals. When processed and woven properly, the resulting cloth is pride silk: an extremely flexible material with the durability of tanned leather. Pride silk has become a favorite cloth for use on military ship sails, war ",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "pride-silk-outfit",
+   "label": "Pride Silk Outfit",
+   "summary": "An outfit made of pride silk weighs 4 pounds and costs 500 gp. If you aren't wearing armor, your base Armor Class is 11 + your Dexterity modifier while wearing it.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "priests-pack",
+   "label": "Priest's Pack",
+   "summary": "A Priest's Pack contains the following items: XPHB, XPHB, XPHB, XPHB, 7 days of XPHB, XPHB, and XPHB.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 29
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "prismari-trinket",
+   "label": "Prismari Trinket",
+   "summary": "When you make your character, you may roll once on the Prismari Trinkets table, instead of on the Trinkets table in the Player's Handbook|PHB, for your starting trinket.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCC"
+   }
+  },
+  {
+   "id": "purple-dragon-knight-trinket",
+   "label": "Purple Dragon Knight Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "purple-worm-poison",
+   "label": "Purple Worm Poison",
+   "summary": "A creature subjected to Purple Worm Poison makes a DC 21 Constitution saving throw, taking 35 (10d6) Poison damage on a failed save or half as much damage on a successful one.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "quandrix-trinket",
+   "label": "Quandrix Trinket",
+   "summary": "When you make your character, you may roll once on the Quandrix Trinkets table, instead of on the Trinkets table in the Player's Handbook|PHB, for your starting trinket.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCC"
+   }
+  },
+  {
+   "id": "quartz",
+   "label": "Quartz",
+   "summary": "A white, smoky gray, or yellow gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "quiver",
+   "label": "Quiver",
+   "summary": "A Quiver holds up to 20 Arrows.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "rations",
+   "label": "Rations",
+   "summary": "Rations consist of travel-ready food, including jerky, dried fruit, hardtack, and nuts. See \"Malnutrition|XPHB\" for the risks of not eating.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "red-wizard-trinket",
+   "label": "Red Wizard Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "reliquary",
+   "label": "Reliquary",
+   "summary": "For a Reliquary to be an effective Holy Symbol, it must be held.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "rhodochrosite",
+   "label": "Rhodochrosite",
+   "summary": "A light pink gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "riding-horse",
+   "label": "Riding Horse",
+   "summary": "Riding Horse",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "riding-saddle",
+   "label": "Riding Saddle",
+   "summary": "A saddle comes with a bit, a bridle, reins, and any other equipment needed to use the saddle.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 25
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ring-mail",
+   "label": "Ring Mail",
+   "summary": "Ring Mail",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 40
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "robe",
+   "label": "Robe",
+   "summary": "A Robe has vocational or ceremonial significance. Some events and locations admit only people wearing a Robe bearing certain colors or symbols.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "rod",
+   "label": "Rod",
+   "summary": "Rod",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "rope",
+   "label": "Rope",
+   "summary": "As a XPHB action, you can tie a knot with Rope if you succeed on a DC 10 Dexterity (XPHB) check. The Rope can be burst with a successful DC 20 Strength (XPHB) check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "rowboat",
+   "label": "Rowboat",
+   "summary": "Rowboat",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 100
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ruby",
+   "label": "Ruby",
+   "summary": "A clear red to deep crimson gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "ruins-wake-awakened",
+   "label": "Ruin's Wake (Awakened)",
+   "summary": "Ruin's Wake (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "ruins-wake-exalted",
+   "label": "Ruin's Wake (Exalted)",
+   "summary": "Ruin's Wake (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "sack",
+   "label": "Sack",
+   "summary": "A Sack holds up to 30 pounds within 1 cubic foot.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "saddlebags",
+   "label": "Saddlebags",
+   "summary": "Saddlebags",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 8
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "saffron",
+   "label": "Saffron",
+   "summary": "Saffron",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "sailing-ship",
+   "label": "Sailing Ship",
+   "summary": "Sailing Ship",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "salt",
+   "label": "Salt",
+   "summary": "Salt",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "sardonyx",
+   "label": "Sardonyx",
+   "summary": "A bands of red and white gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "sarlona-trinket",
+   "label": "Sarlona Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "ERLW"
+   }
+  },
+  {
+   "id": "scale-mail",
+   "label": "Scale Mail",
+   "summary": "Scale Mail",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 45
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "scholars-pack",
+   "label": "Scholar's Pack",
+   "summary": "A Scholar's Pack contains the following items: XPHB, XPHB, XPHB, XPHB, XPHB, 10 flasks of XPHB, 10 sheets of XPHB, and XPHB.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 22
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "scorpion-ship",
+   "label": "Scorpion Ship",
+   "summary": "Scorpion ships are archaic metal warships that have never lost their popularity, largely because of their versatility. Articulated legs enable a scorpion ship to land safely on the ground and move across a solid surface at a walking speed of 30 feet. The ship can't float on water, however. A ballist",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "sealing-wax",
+   "label": "Sealing Wax",
+   "summary": "Sealing Wax",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "secondhand-steal-trinket",
+   "label": "Secondhand Steal Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "BMT"
+   }
+  },
+  {
+   "id": "serpent-venom",
+   "label": "Serpent Venom",
+   "summary": "A creature subjected to Serpent Venom must succeed on a DC 11 Constitution saving throw, taking 10 (3d6) Poison damage on a failed save or half as much damage on a successful one.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "set-of-gold-nesting-dolls",
+   "label": "Set of gold nesting dolls",
+   "summary": "Set of gold nesting dolls",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "shawm",
+   "label": "Shawm",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "sheep",
+   "label": "Sheep",
+   "summary": "Sheep",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "shield",
+   "label": "Shield",
+   "summary": "Shield",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 6
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "shovel",
+   "label": "Shovel",
+   "summary": "Working for 1 hour, you can use a Shovel to dig a hole that is 5 feet on each side in soil or similar material.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "shrike-ship",
+   "label": "Shrike Ship",
+   "summary": "This swift vessel is a relatively recent design, quickly gaining popularity with merchants and pirates. A shrike ship's legs enable it to land safely on the ground. The ship can float but isn't built for traveling on water and sinks quickly in rough seas.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "signal-whistle",
+   "label": "Signal Whistle",
+   "summary": "When blown as a XPHB action, a Signal Whistle produces a sound that can be heard up to 600 feet away.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "signet-ring",
+   "label": "Signet Ring",
+   "summary": "Signet Ring",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "silk",
+   "label": "Silk",
+   "summary": "Silk",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silk-rope-50-feet",
+   "label": "Silk Rope (50 feet)",
+   "summary": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "silk-vestments-with-gold-embroidery",
+   "label": "Silk vestments with gold embroidery",
+   "summary": "Silk vestments with gold embroidery",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silken-spite-awakened",
+   "label": "Silken Spite (Awakened)",
+   "summary": "Silken Spite (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "silken-spite-exalted",
+   "label": "Silken Spite (Exalted)",
+   "summary": "Silken Spite (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "silver",
+   "label": "Silver",
+   "summary": "Silver",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silver-25-zib-coin",
+   "label": "Silver 25-Zib Coin",
+   "summary": "Silver 25-Zib Coin",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "GGR"
+   }
+  },
+  {
+   "id": "silver-and-gold-brooch",
+   "label": "Silver and gold brooch",
+   "summary": "Silver and gold brooch",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silver-bar-2-pound",
+   "label": "Silver Bar (2-pound)",
+   "summary": "Silver Bar (2-pound)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silver-bar-5-pound",
+   "label": "Silver Bar (5-pound)",
+   "summary": "Silver Bar (5-pound)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silver-chalice-set-with-moonstones",
+   "label": "Silver chalice set with moonstones",
+   "summary": "Silver chalice set with moonstones",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silver-ewer",
+   "label": "Silver ewer",
+   "summary": "Silver ewer",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silver-necklace-with-a-gemstone-pendant",
+   "label": "Silver necklace with a gemstone pendant",
+   "summary": "Silver necklace with a gemstone pendant",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silver-sp",
+   "label": "Silver (sp)",
+   "summary": "Common coins come in several different denominations based on the relative worth of the metal from which they are made. The three most common coins are the gold piece (gp), the silver piece (sp), and the copper piece (cp).",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.02
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "silverquill-trinket",
+   "label": "Silverquill Trinket",
+   "summary": "When you make your character, you may roll once on the Silverquill Trinkets table, instead of on the Trinkets table in the Player's Handbook|PHB, for your starting trinket.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCC"
+   }
+  },
+  {
+   "id": "skyship",
+   "label": "Skyship",
+   "summary": "Skyship",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "sled",
+   "label": "Sled",
+   "summary": "Sled",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 300
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "sled-dog",
+   "label": "Sled Dog",
+   "summary": "A sled dog uses the XMM stat block (see the Monster Manual). A sled dog pulling a sled alone must take a Short Rest|XPHB after pulling a sled for 1 hour; otherwise, it gains 1 XPHB level.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "sledgehammer",
+   "label": "Sledgehammer",
+   "summary": "Sledgehammer",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 10
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "sling-bullet",
+   "label": "Sling Bullet",
+   "summary": "Sling bullets are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed wea",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0.075
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "sling-bullets-20",
+   "label": "Sling Bullets (20)",
+   "summary": "Sling bullets are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed wea",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1.5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "smiths-tools",
+   "label": "Smith's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 8
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "smoke-grenade",
+   "label": "Smoke Grenade",
+   "summary": "{#itemEntry Grenade|XDMG}",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "soap",
+   "label": "Soap",
+   "summary": "Soap",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "songhorn",
+   "label": "Songhorn",
+   "summary": "A recorder, a simple type of flute, usually carved from wood.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "soothsalts",
+   "label": "Soothsalts",
+   "summary": "Soothsalts are derived from a naturally occurring crystalline substance discovered throughout the wilds of the Miskath Strand. The crimson crystals have been mined from cavernous veins like those in the mouth of the Miskath Pit and found within smaller geode formations near sites ravaged by the Cala",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "space-galleon",
+   "label": "Space Galleon",
+   "summary": "The space galleon is a mainstay among the host of vessels that ply Wildspace and the Astral Sea. Space galleons can easily pass for ordinary seafaring galleons. Because they can land on water and move across it like their namesakes, they can sail into ports on terrestrial worlds without attracting u",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "spellbook",
+   "label": "Spellbook",
+   "summary": "Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 3
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "spinel",
+   "label": "Spinel",
+   "summary": "A red, red brown, or deep green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "splint-armor",
+   "label": "Splint Armor",
+   "summary": "Splint Armor",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 60
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "sprig-of-mistletoe",
+   "label": "Sprig of Mistletoe",
+   "summary": "Sprig of Mistletoe",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "spyglass",
+   "label": "Spyglass",
+   "summary": "Objects viewed through a Spyglass are magnified to twice their size.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "squid-ship",
+   "label": "Squid Ship",
+   "summary": "Among the oldest types of spelljamming vessels, squid ships are popular with privateers and are often used as patrol ships. Standard weapons on a squid ship include a forward-mounted mangonel, two aft-mounted ballistae, and a reinforced bow for ramming. The tentacles that extend from the bow account",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "stabling-per-day",
+   "label": "Stabling (per day)",
+   "summary": "Stabling (per day)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "star-moth",
+   "label": "Star Moth",
+   "summary": "Star moths are ships constructed and flown by astral elves, who don't like it when these ships end up in the hands of others.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "star-rose-quartz",
+   "label": "Star rose quartz",
+   "summary": "A rosy stone with white star-shaped center gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "star-ruby",
+   "label": "Star Ruby",
+   "summary": "A ruby with white star-shaped center gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "star-sapphire",
+   "label": "Star Sapphire",
+   "summary": "A blue sapphire with white star-shaped center gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "stormgirdle-awakened",
+   "label": "Stormgirdle (Awakened)",
+   "summary": "Stormgirdle (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "stormgirdle-exalted",
+   "label": "Stormgirdle (Exalted)",
+   "summary": "Stormgirdle (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "string",
+   "label": "String",
+   "summary": "String is 10 feet long. You can tie a knot in it as a XPHB action.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "studded-leather-armor",
+   "label": "Studded Leather Armor",
+   "summary": "Studded Leather Armor",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 13
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "tankard",
+   "label": "Tankard",
+   "summary": "A tankard holds 1 pint of liquid.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "tantan",
+   "label": "Tantan",
+   "summary": "A tambourine, a popular instrument with halflings and humans south of the Dalelands.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "tent",
+   "label": "Tent",
+   "summary": "A Tent sleeps up to two Small or Medium creatures.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 20
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "the-bloody-end-awakened",
+   "label": "The Bloody End (Awakened)",
+   "summary": "The Bloody End (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "the-bloody-end-exalted",
+   "label": "The Bloody End (Exalted)",
+   "summary": "The Bloody End (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "theki-root",
+   "label": "Theki Root",
+   "summary": "This thick marsh root tastes bitter but is thought to aid digestive health. When you use an action to consume a dose, you gain advantage on saving throws against the effects of poisonous or toxic substances for 8 hours.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "thelarr",
+   "label": "Thelarr",
+   "summary": "Also known as a whistlecane, a simple and easy-to-make wind instrument cut from a reed. They are so simple, in fact, that skilled bards frequently make and give them away to children—to the parents' delight or regret.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "thieves-tools",
+   "label": "Thieves' Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "three-dragon-ante-set",
+   "label": "Three-Dragon Ante Set",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "tiger-eye",
+   "label": "Tiger Eye",
+   "summary": "A brown with golden center gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "tinderbox",
+   "label": "Tinderbox",
+   "summary": "A Tinderbox is a small container holding flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a XPHB, XPHB, Lantern, or XPHB—or anything else with exposed fuel—takes a Bonus Action|XPHB. Lighting any other fire takes 1 minute.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "tinkers-tools",
+   "label": "Tinker's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 10
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "tocken",
+   "label": "Tocken",
+   "summary": "A hanging set of carved oval bells, usually played with a pair of light wooden hammers (or open handed). They are most common in underground cultures, where the resonant tones can carry.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "topaz",
+   "label": "Topaz",
+   "summary": "A golden yellow gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "torch",
+   "label": "Torch",
+   "summary": "A Torch burns for 1 hour, casting Bright Light|XPHB in a 20-foot radius and Dim Light|XPHB for an additional 20 feet. When you take the XPHB action, you can attack with the Torch, using it as a Simple Melee weapon. On a hit, the target takes 1 Fire damage.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "torpor",
+   "label": "Torpor",
+   "summary": "A creature subjected to Torpor poison must succeed on a DC 15 Constitution saving throw or have the XPHB condition for 4d6 hours. The creature's Speed|XPHB is halved while the creature is XPHB in this way.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "totem",
+   "label": "Totem",
+   "summary": "Totem",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "tourmaline",
+   "label": "Tourmaline",
+   "summary": "A pale green, blue, brown, or red gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "travelers-clothes",
+   "label": "Traveler's Clothes",
+   "summary": "Traveler's Clothes are resilient garments designed for travel in various environments.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "trinket",
+   "label": "Trinket",
+   "summary": "When you make your character, you can roll once on the Trinkets table to gain a Tiny trinket, a simple item lightly touched by mystery. The DM might also use this table. It can help stock a room in a dungeon or fill a creature's pockets.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "truth-serum",
+   "label": "Truth Serum",
+   "summary": "A creature subjected to Truth Serum must succeed on a DC 11 Constitution saving throw or have the XPHB condition for 1 hour. The XPHB creature can't knowingly communicate a lie.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "turquoise",
+   "label": "Turquoise",
+   "summary": "A light blue green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "turtle-ship",
+   "label": "Turtle Ship",
+   "summary": "A turtle ship is encased in a protective metal shell, as befits its name, and bristles with weapons. In addition to its roomy quarters, it can carry a decent- sized payload, making it popular among traders and others who need a lot of cargo space. The ship can land on the ground, and it floats on wa",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "tyrant-ship",
+   "label": "Tyrant Ship",
+   "summary": "Beholders carve tyrant ships out of stone using their disintegration rays and use these ships to wander the Astral Plane, looking for worlds to conquer and rival beholders to destroy. No two tyrant ships look alike, but they all have one or more features reminiscent of their creators, such as a bulb",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "verminshroud-awakened",
+   "label": "Verminshroud (Awakened)",
+   "summary": "Verminshroud (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "verminshroud-exalted",
+   "label": "Verminshroud (Exalted)",
+   "summary": "Verminshroud (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "vial",
+   "label": "Vial",
+   "summary": "A Vial holds up to 4 ounces.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "viol",
+   "label": "Viol",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "wagon",
+   "label": "Wagon",
+   "summary": "Wagon",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 400
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "wand",
+   "label": "Wand",
+   "summary": "Wand",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "wargong",
+   "label": "Wargong",
+   "summary": "A metal gong, traditionally made from a shield, particularly the shield of an enemy. Both goblins and dwarves make and play wargongs, their sound echoing through tunnels in the Underdark.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCAG"
+   }
+  },
+  {
+   "id": "warhorse",
+   "label": "Warhorse",
+   "summary": "Warhorse",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "warm-fungal-clothing",
+   "label": "Warm Fungal Clothing",
+   "summary": "When you're wearing Warm Fungal Clothing, you automatically succeed on saving throws against the effects of extreme cold. See chapter 3 of the Dungeon Master's Guide for rules on extreme cold. One pound of fungus is sewn into Fungal Clothing. This fungus can be eaten as food. Once all the fungus is ",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "warship",
+   "label": "Warship",
+   "summary": "Warship",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "wasp-ship",
+   "label": "Wasp Ship",
+   "summary": "Wasp ships are lightweight wooden vessels capable of landing safely on the ground, but not on water. They appeal to adventurers because they're affordable and don't require a large crew. Pirates like them because they're swift. Aristocrats are fond of using them as flying yachts because the ship's c",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "AAG"
+   }
+  },
+  {
+   "id": "waterskin",
+   "label": "Waterskin",
+   "summary": "A Waterskin holds up to 4 pints. If you don't drink sufficient water, you risk dehydration.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "weavers-tools",
+   "label": "Weaver's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "well-made-tapestry-that-is-10-feet-by-10-feet",
+   "label": "Well-made tapestry that is 10 feet by 10 feet",
+   "summary": "Well-made tapestry that is 10 feet by 10 feet",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "wheat",
+   "label": "Wheat",
+   "summary": "Wheat",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "whetstone",
+   "label": "Whetstone",
+   "summary": "Whetstone",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "PHB"
+   }
+  },
+  {
+   "id": "will-of-the-talon-awakened",
+   "label": "Will of the Talon (Awakened)",
+   "summary": "Will of the Talon (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "will-of-the-talon-exalted",
+   "label": "Will of the Talon (Exalted)",
+   "summary": "Will of the Talon (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "willowshade-oil",
+   "label": "Willowshade Oil",
+   "summary": "A dark blue oil can be extracted from the rare fruit of the willowshade plant. A creature can use its action to apply the oil to another creature that has been petrified for less than 1 minute, causing the petrified condition on that creature to end at the start of what would be that creature's next",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "winter-camouflage",
+   "label": "Winter Camouflage",
+   "summary": "While you wear Winter Camouflage in an appropriate environment, you have Advantage|XPHB on Dexterity (XPHB) checks.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 4
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "witherbloom-trinket",
+   "label": "Witherbloom Trinket",
+   "summary": "When you make your character, you may roll once on the Witherbloom Trinkets table, instead of on the Trinkets table in the Player's Handbook|PHB, for your starting trinket.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCC"
+   }
+  },
+  {
+   "id": "woodcarvers-tools",
+   "label": "Woodcarver's Tools",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 5
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "wreath-of-the-prism-awakened",
+   "label": "Wreath of the Prism (Awakened)",
+   "summary": "Wreath of the Prism (Awakened)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "wreath-of-the-prism-exalted",
+   "label": "Wreath of the Prism (Exalted)",
+   "summary": "Wreath of the Prism (Exalted)",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "EGW"
+   }
+  },
+  {
+   "id": "wyvern-poison",
+   "label": "Wyvern Poison",
+   "summary": "A creature subjected to Wyvern Poison makes a DC 14 Constitution saving throw, taking 24 (7d6) Poison damage on a failed save or half as much damage on a successful one.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "xendrik-trinket",
+   "label": "Xen'drik Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "ERLW"
+   }
+  },
+  {
+   "id": "yarting",
+   "label": "Yarting",
+   "summary": "Yarting",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 2
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "yellow-sapphire",
+   "label": "Yellow Sapphire",
+   "summary": "A fiery yellow or yellow green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "yew-wand",
+   "label": "Yew Wand",
+   "summary": "Yew Wand",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 1
+    }
+   },
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "zhentarim-trinket",
+   "label": "Zhentarim Trinket",
+   "summary": "",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "zircon",
+   "label": "Zircon",
+   "summary": "A pale blue green gemstone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "XDMG"
+   }
+  },
+  {
+   "id": "zulkoon",
+   "label": "Zulkoon",
+   "summary": "A complex pump organ that originated with the zulkirs of Thay, who use it in the casting of their spells. It is considered to have a dramatic, but sinister, sound.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "stats": {
+     "weight": 0
+    }
+   },
+   "filters": {
+    "source": "SCAG"
+   }
+  }
+ ]
+}
