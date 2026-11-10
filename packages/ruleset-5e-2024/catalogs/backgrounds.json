@@ -5,7 +5,7 @@
   {
    "id": "aberrant-heir",
    "label": "Aberrant Heir",
-   "summary": "",
+   "summary": "Aberrant Heir",
    "rows": [
     {
      "list": "features",
@@ -14,15 +14,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "acolyte",
    "label": "Acolyte",
-   "summary": "",
+   "summary": "Acolyte",
    "rows": [
     {
      "list": "features",
@@ -31,15 +28,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "archaeologist",
    "label": "Archaeologist",
-   "summary": "",
+   "summary": "Archaeologist",
    "rows": [
     {
      "list": "features",
@@ -48,15 +42,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "artisan",
    "label": "Artisan",
-   "summary": "",
+   "summary": "Artisan",
    "rows": [
     {
      "list": "features",
@@ -65,15 +56,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "astral-drifter",
    "label": "Astral Drifter",
-   "summary": "",
+   "summary": "Astral Drifter",
    "rows": [
     {
      "list": "features",
@@ -82,15 +70,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "AAG"
-   }
+   ]
   },
   {
    "id": "athlete",
    "label": "Athlete",
-   "summary": "",
+   "summary": "Athlete",
    "rows": [
     {
      "list": "features",
@@ -99,15 +84,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "MOT"
-   }
+   ]
   },
   {
    "id": "augen-trust-spy",
    "label": "Augen Trust (Spy)",
-   "summary": "",
+   "summary": "Augen Trust (Spy)",
    "rows": [
     {
      "list": "features",
@@ -116,15 +98,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EGW"
-   }
+   ]
   },
   {
    "id": "azorius-functionary",
    "label": "Azorius Functionary",
-   "summary": "",
+   "summary": "Azorius Functionary",
    "rows": [
     {
      "list": "features",
@@ -133,15 +112,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "GGR"
-   }
+   ]
   },
   {
    "id": "boros-legionnaire",
    "label": "Boros Legionnaire",
-   "summary": "",
+   "summary": "Boros Legionnaire",
    "rows": [
     {
      "list": "features",
@@ -150,15 +126,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "GGR"
-   }
+   ]
   },
   {
    "id": "charlatan",
    "label": "Charlatan",
-   "summary": "",
+   "summary": "Charlatan",
    "rows": [
     {
      "list": "features",
@@ -167,15 +140,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "chondathan-freebooter",
    "label": "Chondathan Freebooter",
-   "summary": "",
+   "summary": "Chondathan Freebooter",
    "rows": [
     {
      "list": "features",
@@ -184,15 +154,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "city-watch",
    "label": "City Watch",
-   "summary": "",
+   "summary": "City Watch",
    "rows": [
     {
      "list": "features",
@@ -201,15 +168,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "clan-crafter",
    "label": "Clan Crafter",
-   "summary": "",
+   "summary": "Clan Crafter",
    "rows": [
     {
      "list": "features",
@@ -218,15 +182,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "cloistered-scholar",
    "label": "Cloistered Scholar",
-   "summary": "",
+   "summary": "Cloistered Scholar",
    "rows": [
     {
      "list": "features",
@@ -235,15 +196,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "cobalt-scholar-sage",
    "label": "Cobalt Scholar (Sage)",
-   "summary": "",
+   "summary": "Cobalt Scholar (Sage)",
    "rows": [
     {
      "list": "features",
@@ -252,15 +210,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EGW"
-   }
+   ]
   },
   {
    "id": "courtier",
    "label": "Courtier",
-   "summary": "",
+   "summary": "Courtier",
    "rows": [
     {
      "list": "features",
@@ -269,15 +224,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "criminal",
    "label": "Criminal",
-   "summary": "",
+   "summary": "Criminal",
    "rows": [
     {
      "list": "features",
@@ -286,15 +238,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "custom-background",
    "label": "Custom Background",
-   "summary": "",
+   "summary": "Custom Background",
    "rows": [
     {
      "list": "features",
@@ -303,15 +252,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "dead-magic-dweller",
    "label": "Dead Magic Dweller",
-   "summary": "",
+   "summary": "Dead Magic Dweller",
    "rows": [
     {
      "list": "features",
@@ -320,15 +266,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "dimir-operative",
    "label": "Dimir Operative",
-   "summary": "",
+   "summary": "Dimir Operative",
    "rows": [
     {
      "list": "features",
@@ -337,15 +280,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "GGR"
-   }
+   ]
   },
   {
    "id": "dragon-cultist",
    "label": "Dragon Cultist",
-   "summary": "",
+   "summary": "Dragon Cultist",
    "rows": [
     {
      "list": "features",
@@ -354,15 +294,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "emerald-enclave-caretaker",
    "label": "Emerald Enclave Caretaker",
-   "summary": "",
+   "summary": "Emerald Enclave Caretaker",
    "rows": [
     {
      "list": "features",
@@ -371,15 +308,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "entertainer",
    "label": "Entertainer",
-   "summary": "",
+   "summary": "Entertainer",
    "rows": [
     {
      "list": "features",
@@ -388,15 +322,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "faction-agent",
    "label": "Faction Agent",
-   "summary": "",
+   "summary": "Faction Agent",
    "rows": [
     {
      "list": "features",
@@ -405,15 +336,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "far-traveler",
    "label": "Far Traveler",
-   "summary": "",
+   "summary": "Far Traveler",
    "rows": [
     {
      "list": "features",
@@ -422,15 +350,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "farmer",
    "label": "Farmer",
-   "summary": "",
+   "summary": "Farmer",
    "rows": [
     {
      "list": "features",
@@ -439,15 +364,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "flaming-fist-mercenary",
    "label": "Flaming Fist Mercenary",
-   "summary": "",
+   "summary": "Flaming Fist Mercenary",
    "rows": [
     {
      "list": "features",
@@ -456,15 +378,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "folk-hero",
    "label": "Folk Hero",
-   "summary": "",
+   "summary": "Folk Hero",
    "rows": [
     {
      "list": "features",
@@ -473,15 +392,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "gate-warden",
    "label": "Gate Warden",
-   "summary": "",
+   "summary": "Gate Warden",
    "rows": [
     {
      "list": "features",
@@ -490,15 +406,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SATO"
-   }
+   ]
   },
   {
    "id": "genie-touched",
    "label": "Genie Touched",
-   "summary": "",
+   "summary": "Genie Touched",
    "rows": [
     {
      "list": "features",
@@ -507,15 +420,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "giant-foundling",
    "label": "Giant Foundling",
-   "summary": "",
+   "summary": "Giant Foundling",
    "rows": [
     {
      "list": "features",
@@ -524,15 +434,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "BGG"
-   }
+   ]
   },
   {
    "id": "golgari-agent",
    "label": "Golgari Agent",
-   "summary": "",
+   "summary": "Golgari Agent",
    "rows": [
     {
      "list": "features",
@@ -541,15 +448,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "GGR"
-   }
+   ]
   },
   {
    "id": "grinner",
    "label": "Grinner",
-   "summary": "",
+   "summary": "Grinner",
    "rows": [
     {
      "list": "features",
@@ -558,15 +462,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EGW"
-   }
+   ]
   },
   {
    "id": "gruul-anarch",
    "label": "Gruul Anarch",
-   "summary": "",
+   "summary": "Gruul Anarch",
    "rows": [
     {
      "list": "features",
@@ -575,15 +476,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "GGR"
-   }
+   ]
   },
   {
    "id": "guard",
    "label": "Guard",
-   "summary": "",
+   "summary": "Guard",
    "rows": [
     {
      "list": "features",
@@ -592,15 +490,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "guide",
    "label": "Guide",
-   "summary": "",
+   "summary": "Guide",
    "rows": [
     {
      "list": "features",
@@ -609,15 +504,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "guild-artisan",
    "label": "Guild Artisan",
-   "summary": "",
+   "summary": "Guild Artisan",
    "rows": [
     {
      "list": "features",
@@ -626,15 +518,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "harper",
    "label": "Harper",
-   "summary": "",
+   "summary": "Harper",
    "rows": [
     {
      "list": "features",
@@ -643,15 +532,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "haunted-one",
    "label": "Haunted One",
-   "summary": "",
+   "summary": "Haunted One",
    "rows": [
     {
      "list": "features",
@@ -660,15 +546,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "VRGR"
-   }
+   ]
   },
   {
    "id": "hermit",
    "label": "Hermit",
-   "summary": "",
+   "summary": "Hermit",
    "rows": [
     {
      "list": "features",
@@ -677,15 +560,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "house-agent",
    "label": "House Agent",
-   "summary": "",
+   "summary": "House Agent",
    "rows": [
     {
      "list": "features",
@@ -694,15 +574,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-cannith-heir",
    "label": "House Cannith Heir",
-   "summary": "",
+   "summary": "House Cannith Heir",
    "rows": [
     {
      "list": "features",
@@ -711,15 +588,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-deneith-heir",
    "label": "House Deneith Heir",
-   "summary": "",
+   "summary": "House Deneith Heir",
    "rows": [
     {
      "list": "features",
@@ -728,15 +602,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-ghallanda-heir",
    "label": "House Ghallanda Heir",
-   "summary": "",
+   "summary": "House Ghallanda Heir",
    "rows": [
     {
      "list": "features",
@@ -745,15 +616,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-jorasco-heir",
    "label": "House Jorasco Heir",
-   "summary": "",
+   "summary": "House Jorasco Heir",
    "rows": [
     {
      "list": "features",
@@ -762,15 +630,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-kundarak-heir",
    "label": "House Kundarak Heir",
-   "summary": "",
+   "summary": "House Kundarak Heir",
    "rows": [
     {
      "list": "features",
@@ -779,15 +644,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-lyrandar-heir",
    "label": "House Lyrandar Heir",
-   "summary": "",
+   "summary": "House Lyrandar Heir",
    "rows": [
     {
      "list": "features",
@@ -796,15 +658,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-medani-heir",
    "label": "House Medani Heir",
-   "summary": "",
+   "summary": "House Medani Heir",
    "rows": [
     {
      "list": "features",
@@ -813,15 +672,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-orien-heir",
    "label": "House Orien Heir",
-   "summary": "",
+   "summary": "House Orien Heir",
    "rows": [
     {
      "list": "features",
@@ -830,15 +686,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-phiarlan-heir",
    "label": "House Phiarlan Heir",
-   "summary": "",
+   "summary": "House Phiarlan Heir",
    "rows": [
     {
      "list": "features",
@@ -847,15 +700,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-sivis-heir",
    "label": "House Sivis Heir",
-   "summary": "",
+   "summary": "House Sivis Heir",
    "rows": [
     {
      "list": "features",
@@ -864,15 +714,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-tharashk-heir",
    "label": "House Tharashk Heir",
-   "summary": "",
+   "summary": "House Tharashk Heir",
    "rows": [
     {
      "list": "features",
@@ -881,15 +728,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-thuranni-heir",
    "label": "House Thuranni Heir",
-   "summary": "",
+   "summary": "House Thuranni Heir",
    "rows": [
     {
      "list": "features",
@@ -898,15 +742,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "house-vadalis-heir",
    "label": "House Vadalis Heir",
-   "summary": "",
+   "summary": "House Vadalis Heir",
    "rows": [
     {
      "list": "features",
@@ -915,15 +756,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "ice-fisher",
    "label": "Ice Fisher",
-   "summary": "",
+   "summary": "Ice Fisher",
    "rows": [
     {
      "list": "features",
@@ -932,15 +770,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "inheritor",
    "label": "Inheritor",
-   "summary": "",
+   "summary": "Inheritor",
    "rows": [
     {
      "list": "features",
@@ -949,15 +784,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "inquisitive",
    "label": "Inquisitive",
-   "summary": "",
+   "summary": "Inquisitive",
    "rows": [
     {
      "list": "features",
@@ -966,15 +798,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EFA"
-   }
+   ]
   },
   {
    "id": "investigator",
    "label": "Investigator",
-   "summary": "",
+   "summary": "Investigator",
    "rows": [
     {
      "list": "features",
@@ -983,15 +812,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "VRGR"
-   }
+   ]
   },
   {
    "id": "izzet-engineer",
    "label": "Izzet Engineer",
-   "summary": "",
+   "summary": "Izzet Engineer",
    "rows": [
     {
      "list": "features",
@@ -1000,15 +826,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "GGR"
-   }
+   ]
   },
   {
    "id": "knight-of-solamnia",
    "label": "Knight of Solamnia",
-   "summary": "",
+   "summary": "Knight of Solamnia",
    "rows": [
     {
      "list": "features",
@@ -1017,15 +840,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "DSOTDQ"
-   }
+   ]
   },
   {
    "id": "knight-of-the-gauntlet",
    "label": "Knight of the Gauntlet",
-   "summary": "",
+   "summary": "Knight of the Gauntlet",
    "rows": [
     {
      "list": "features",
@@ -1034,15 +854,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "knight-of-the-order",
    "label": "Knight of the Order",
-   "summary": "",
+   "summary": "Knight of the Order",
    "rows": [
     {
      "list": "features",
@@ -1051,15 +868,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "lords-alliance-vassal",
    "label": "Lords' Alliance Vassal",
-   "summary": "",
+   "summary": "Lords' Alliance Vassal",
    "rows": [
     {
      "list": "features",
@@ -1068,15 +882,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "lorehold-student",
    "label": "Lorehold Student",
-   "summary": "",
+   "summary": "Lorehold Student",
    "rows": [
     {
      "list": "features",
@@ -1085,15 +896,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCC"
-   }
+   ]
   },
   {
    "id": "luxonborn-acolyte",
    "label": "Luxonborn (Acolyte)",
-   "summary": "",
+   "summary": "Luxonborn (Acolyte)",
    "rows": [
     {
      "list": "features",
@@ -1102,15 +910,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EGW"
-   }
+   ]
   },
   {
    "id": "mage-of-high-sorcery",
    "label": "Mage of High Sorcery",
-   "summary": "",
+   "summary": "Mage of High Sorcery",
    "rows": [
     {
      "list": "features",
@@ -1119,15 +924,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "DSOTDQ"
-   }
+   ]
   },
   {
    "id": "mercenary-veteran",
    "label": "Mercenary Veteran",
-   "summary": "",
+   "summary": "Mercenary Veteran",
    "rows": [
     {
      "list": "features",
@@ -1136,15 +938,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "merchant",
    "label": "Merchant",
-   "summary": "",
+   "summary": "Merchant",
    "rows": [
     {
      "list": "features",
@@ -1153,15 +952,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "moonwell-pilgrim",
    "label": "Moonwell Pilgrim",
-   "summary": "",
+   "summary": "Moonwell Pilgrim",
    "rows": [
     {
      "list": "features",
@@ -1170,15 +966,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "mulhorandi-tomb-raider",
    "label": "Mulhorandi Tomb Raider",
-   "summary": "",
+   "summary": "Mulhorandi Tomb Raider",
    "rows": [
     {
      "list": "features",
@@ -1187,15 +980,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "myriad-operative-criminal",
    "label": "Myriad Operative (Criminal)",
-   "summary": "",
+   "summary": "Myriad Operative (Criminal)",
    "rows": [
     {
      "list": "features",
@@ -1204,15 +994,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EGW"
-   }
+   ]
   },
   {
    "id": "mythalkeeper",
    "label": "Mythalkeeper",
-   "summary": "",
+   "summary": "Mythalkeeper",
    "rows": [
     {
      "list": "features",
@@ -1221,15 +1008,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "noble",
    "label": "Noble",
-   "summary": "",
+   "summary": "Noble",
    "rows": [
     {
      "list": "features",
@@ -1238,15 +1022,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "orzhov-representative",
    "label": "Orzhov Representative",
-   "summary": "",
+   "summary": "Orzhov Representative",
    "rows": [
     {
      "list": "features",
@@ -1255,15 +1036,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "GGR"
-   }
+   ]
   },
   {
    "id": "outlander",
    "label": "Outlander",
-   "summary": "",
+   "summary": "Outlander",
    "rows": [
     {
      "list": "features",
@@ -1272,15 +1050,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "planar-philosopher",
    "label": "Planar Philosopher",
-   "summary": "",
+   "summary": "Planar Philosopher",
    "rows": [
     {
      "list": "features",
@@ -1289,15 +1064,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SATO"
-   }
+   ]
   },
   {
    "id": "prismari-student",
    "label": "Prismari Student",
-   "summary": "",
+   "summary": "Prismari Student",
    "rows": [
     {
      "list": "features",
@@ -1306,15 +1078,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCC"
-   }
+   ]
   },
   {
    "id": "purple-dragon-squire",
    "label": "Purple Dragon Squire",
-   "summary": "",
+   "summary": "Purple Dragon Squire",
    "rows": [
     {
      "list": "features",
@@ -1323,15 +1092,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "quandrix-student",
    "label": "Quandrix Student",
-   "summary": "",
+   "summary": "Quandrix Student",
    "rows": [
     {
      "list": "features",
@@ -1340,15 +1106,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCC"
-   }
+   ]
   },
   {
    "id": "rakdos-cultist",
    "label": "Rakdos Cultist",
-   "summary": "",
+   "summary": "Rakdos Cultist",
    "rows": [
     {
      "list": "features",
@@ -1357,15 +1120,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "GGR"
-   }
+   ]
   },
   {
    "id": "rashemi-wanderer",
    "label": "Rashemi Wanderer",
-   "summary": "",
+   "summary": "Rashemi Wanderer",
    "rows": [
     {
      "list": "features",
@@ -1374,15 +1134,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "revelry-pirate-sailor",
    "label": "Revelry Pirate (Sailor)",
-   "summary": "",
+   "summary": "Revelry Pirate (Sailor)",
    "rows": [
     {
      "list": "features",
@@ -1391,15 +1148,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EGW"
-   }
+   ]
   },
   {
    "id": "rewarded",
    "label": "Rewarded",
-   "summary": "",
+   "summary": "Rewarded",
    "rows": [
     {
      "list": "features",
@@ -1408,15 +1162,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "BMT"
-   }
+   ]
   },
   {
    "id": "ruined",
    "label": "Ruined",
-   "summary": "",
+   "summary": "Ruined",
    "rows": [
     {
      "list": "features",
@@ -1425,15 +1176,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "BMT"
-   }
+   ]
   },
   {
    "id": "rune-carver",
    "label": "Rune Carver",
-   "summary": "",
+   "summary": "Rune Carver",
    "rows": [
     {
      "list": "features",
@@ -1442,15 +1190,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "BGG"
-   }
+   ]
   },
   {
    "id": "sage",
    "label": "Sage",
-   "summary": "",
+   "summary": "Sage",
    "rows": [
     {
      "list": "features",
@@ -1459,15 +1204,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "sailor",
    "label": "Sailor",
-   "summary": "",
+   "summary": "Sailor",
    "rows": [
     {
      "list": "features",
@@ -1476,15 +1218,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "scribe",
    "label": "Scribe",
-   "summary": "",
+   "summary": "Scribe",
    "rows": [
     {
      "list": "features",
@@ -1493,15 +1232,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "selesnya-initiate",
    "label": "Selesnya Initiate",
-   "summary": "",
+   "summary": "Selesnya Initiate",
    "rows": [
     {
      "list": "features",
@@ -1510,15 +1246,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "GGR"
-   }
+   ]
   },
   {
    "id": "shadowmasters-exile",
    "label": "Shadowmasters Exile",
-   "summary": "",
+   "summary": "Shadowmasters Exile",
    "rows": [
     {
      "list": "features",
@@ -1527,15 +1260,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "silverquill-student",
    "label": "Silverquill Student",
-   "summary": "",
+   "summary": "Silverquill Student",
    "rows": [
     {
      "list": "features",
@@ -1544,15 +1274,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCC"
-   }
+   ]
   },
   {
    "id": "simic-scientist",
    "label": "Simic Scientist",
-   "summary": "",
+   "summary": "Simic Scientist",
    "rows": [
     {
      "list": "features",
@@ -1561,15 +1288,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "GGR"
-   }
+   ]
   },
   {
    "id": "soldier",
    "label": "Soldier",
-   "summary": "",
+   "summary": "Soldier",
    "rows": [
     {
      "list": "features",
@@ -1578,15 +1302,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "spellfire-initiate",
    "label": "Spellfire Initiate",
-   "summary": "",
+   "summary": "Spellfire Initiate",
    "rows": [
     {
      "list": "features",
@@ -1595,15 +1316,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   },
   {
    "id": "urban-bounty-hunter",
    "label": "Urban Bounty Hunter",
-   "summary": "",
+   "summary": "Urban Bounty Hunter",
    "rows": [
     {
      "list": "features",
@@ -1612,15 +1330,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "urchin",
    "label": "Urchin",
-   "summary": "",
+   "summary": "Urchin",
    "rows": [
     {
      "list": "features",
@@ -1629,15 +1344,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "uthgardt-tribe-member",
    "label": "Uthgardt Tribe Member",
-   "summary": "",
+   "summary": "Uthgardt Tribe Member",
    "rows": [
     {
      "list": "features",
@@ -1646,15 +1358,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "variant-city-watch-investigator",
    "label": "Variant City Watch (Investigator)",
-   "summary": "",
+   "summary": "Variant City Watch (Investigator)",
    "rows": [
     {
      "list": "features",
@@ -1663,15 +1372,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "variant-criminal-spy",
    "label": "Variant Criminal (Spy)",
-   "summary": "",
+   "summary": "Variant Criminal (Spy)",
    "rows": [
     {
      "list": "features",
@@ -1680,15 +1386,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "variant-entertainer-gladiator",
    "label": "Variant Entertainer (Gladiator)",
-   "summary": "",
+   "summary": "Variant Entertainer (Gladiator)",
    "rows": [
     {
      "list": "features",
@@ -1697,15 +1400,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "variant-guild-artisan-guild-merchant",
    "label": "Variant Guild Artisan (Guild Merchant)",
-   "summary": "",
+   "summary": "Variant Guild Artisan (Guild Merchant)",
    "rows": [
     {
      "list": "features",
@@ -1714,15 +1414,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "variant-noble-knight",
    "label": "Variant Noble (Knight)",
-   "summary": "",
+   "summary": "Variant Noble (Knight)",
    "rows": [
     {
      "list": "features",
@@ -1731,15 +1428,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "variant-noble-retainers",
    "label": "Variant Noble (Retainers)",
-   "summary": "",
+   "summary": "Variant Noble (Retainers)",
    "rows": [
     {
      "list": "features",
@@ -1748,15 +1442,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "variant-sailor-pirate",
    "label": "Variant Sailor (Pirate)",
-   "summary": "",
+   "summary": "Variant Sailor (Pirate)",
    "rows": [
     {
      "list": "features",
@@ -1765,15 +1456,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "PHB"
-   }
+   ]
   },
   {
    "id": "volstrucker-agent",
    "label": "Volstrucker Agent",
-   "summary": "",
+   "summary": "Volstrucker Agent",
    "rows": [
     {
      "list": "features",
@@ -1782,15 +1470,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "EGW"
-   }
+   ]
   },
   {
    "id": "waterdhavian-noble",
    "label": "Waterdhavian Noble",
-   "summary": "",
+   "summary": "Waterdhavian Noble",
    "rows": [
     {
      "list": "features",
@@ -1799,15 +1484,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCAG"
-   }
+   ]
   },
   {
    "id": "wayfarer",
    "label": "Wayfarer",
-   "summary": "",
+   "summary": "Wayfarer",
    "rows": [
     {
      "list": "features",
@@ -1816,15 +1498,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "wildspacer",
    "label": "Wildspacer",
-   "summary": "",
+   "summary": "Wildspacer",
    "rows": [
     {
      "list": "features",
@@ -1833,15 +1512,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "AAG"
-   }
+   ]
   },
   {
    "id": "witherbloom-student",
    "label": "Witherbloom Student",
-   "summary": "",
+   "summary": "Witherbloom Student",
    "rows": [
     {
      "list": "features",
@@ -1850,15 +1526,12 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "SCC"
-   }
+   ]
   },
   {
    "id": "zhentarim-mercenary",
    "label": "Zhentarim Mercenary",
-   "summary": "",
+   "summary": "Zhentarim Mercenary",
    "rows": [
     {
      "list": "features",
@@ -1867,10 +1540,7 @@
       "text": ""
      }
     }
-   ],
-   "filters": {
-    "source": "FRHOF"
-   }
+   ]
   }
  ]
 }

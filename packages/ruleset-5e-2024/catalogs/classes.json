@@ -15,7 +15,7 @@
     }
    ],
    "filters": {
-    "source": "TCE"
+    "kind": "class"
    }
   },
   {
@@ -31,7 +31,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -47,7 +47,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -63,7 +63,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -79,7 +79,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -95,7 +95,7 @@
     }
    ],
    "filters": {
-    "source": "TCE"
+    "kind": "class"
    }
   },
   {
@@ -111,7 +111,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -127,7 +127,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -143,7 +143,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -159,7 +159,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -175,7 +175,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -191,7 +191,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -207,7 +207,7 @@
     }
    ],
    "filters": {
-    "source": "TCE"
+    "kind": "class"
    }
   },
   {
@@ -223,7 +223,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   },
   {
@@ -239,7 +239,7 @@
     }
    ],
    "filters": {
-    "source": "TCE"
+    "kind": "class"
    }
   },
   {
@@ -255,7 +255,7 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "kind": "class"
    }
   }
  ]

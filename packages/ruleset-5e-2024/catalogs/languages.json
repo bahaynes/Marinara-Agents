@@ -12,10 +12,7 @@
       "name": "Languages: Abyssal"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "celestial",
@@ -27,10 +24,7 @@
       "name": "Languages: Celestial"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "common",
@@ -42,10 +36,7 @@
       "name": "Languages: Common"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "deep-speech",
@@ -57,10 +48,7 @@
       "name": "Languages: Deep Speech"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "draconic",
@@ -72,10 +60,7 @@
       "name": "Languages: Draconic"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "dwarvish",
@@ -87,10 +72,7 @@
       "name": "Languages: Dwarvish"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "elvish",
@@ -102,10 +84,7 @@
       "name": "Languages: Elvish"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "giant",
@@ -117,10 +96,7 @@
       "name": "Languages: Giant"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "gnomish",
@@ -132,10 +108,7 @@
       "name": "Languages: Gnomish"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "goblin",
@@ -147,10 +120,7 @@
       "name": "Languages: Goblin"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "halfling",
@@ -162,10 +132,7 @@
       "name": "Languages: Halfling"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "infernal",
@@ -177,10 +144,7 @@
       "name": "Languages: Infernal"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "orc",
@@ -192,10 +156,7 @@
       "name": "Languages: Orc"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "primordial",
@@ -207,10 +168,7 @@
       "name": "Languages: Primordial"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "sylvan",
@@ -222,10 +180,7 @@
       "name": "Languages: Sylvan"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   },
   {
    "id": "undercommon",
@@ -237,10 +192,7 @@
       "name": "Languages: Undercommon"
      }
     }
-   ],
-   "filters": {
-    "source": "XPHB"
-   }
+   ]
   }
  ]
 }

@@ -16,7 +16,11 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "class_ids": [
+     "fighter",
+     "paladin",
+     "ranger"
+    ]
    }
   },
   {
@@ -33,7 +37,11 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "class_ids": [
+     "fighter",
+     "paladin",
+     "ranger"
+    ]
    }
   },
   {
@@ -50,7 +58,11 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "class_ids": [
+     "fighter",
+     "paladin",
+     "ranger"
+    ]
    }
   },
   {
@@ -67,13 +79,17 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "class_ids": [
+     "fighter",
+     "paladin",
+     "ranger"
+    ]
    }
   },
   {
    "id": "great-weapon-fighting",
    "label": "Great Weapon Fighting",
-   "summary": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the 2h|XPHB|Two-Handed or V|X",
+   "summary": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the 2h|XPHB|Two-Handed or V|XPHB|Versatile property to gain this benefit.",
    "rows": [
     {
      "list": "features",
@@ -84,13 +100,17 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "class_ids": [
+     "fighter",
+     "paladin",
+     "ranger"
+    ]
    }
   },
   {
    "id": "interception",
    "label": "Interception",
-   "summary": "When a creature you can see hits another creature within 5 feet of you with an attack roll, you can take a Reaction|XPHB to reduce the damage dealt to the target by 1d10 plus your Proficiency|XPHB|Pro",
+   "summary": "When a creature you can see hits another creature within 5 feet of you with an attack roll, you can take a Reaction|XPHB to reduce the damage dealt to the target by 1d10 plus your Proficiency|XPHB|Proficiency Bonus. You must be holding a XPHB or a Simple or Martial weapon to use this Reaction|XPHB.",
    "rows": [
     {
      "list": "features",
@@ -101,13 +121,17 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "class_ids": [
+     "fighter",
+     "paladin",
+     "ranger"
+    ]
    }
   },
   {
    "id": "protection",
    "label": "Protection",
-   "summary": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can take a Reaction|XPHB to interpose your XPHB if you're holding one. You impose Disadvantage|XPHB on the",
+   "summary": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can take a Reaction|XPHB to interpose your XPHB if you're holding one. You impose Disadvantage|XPHB on the triggering attack roll and all other attack rolls against the target until the start of your next t",
    "rows": [
     {
      "list": "features",
@@ -118,7 +142,11 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "class_ids": [
+     "fighter",
+     "paladin",
+     "ranger"
+    ]
    }
   },
   {
@@ -135,13 +163,17 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "class_ids": [
+     "fighter",
+     "paladin",
+     "ranger"
+    ]
    }
   },
   {
    "id": "two-weapon-fighting",
    "label": "Two-Weapon Fighting",
-   "summary": "When you make an extra attack as a result of using a weapon that has the L|XPHB|Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the da",
+   "summary": "When you make an extra attack as a result of using a weapon that has the L|XPHB|Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage.",
    "rows": [
     {
      "list": "features",
@@ -152,13 +184,17 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "class_ids": [
+     "fighter",
+     "paladin",
+     "ranger"
+    ]
    }
   },
   {
    "id": "unarmed-fighting",
    "label": "Unarmed Fighting",
-   "summary": "When you hit with your Unarmed Strike|XPHB and deal damage, you can deal Bludgeoning damage equal to 1d6 plus your Strength modifier instead of the normal damage of an Unarmed Strike|XPHB. If you aren",
+   "summary": "When you hit with your Unarmed Strike|XPHB and deal damage, you can deal Bludgeoning damage equal to 1d6 plus your Strength modifier instead of the normal damage of an Unarmed Strike|XPHB. If you aren't holding any weapons or a XPHB when you make the attack roll, the d6 becomes a d8.",
    "rows": [
     {
      "list": "features",
@@ -169,7 +205,11 @@
     }
    ],
    "filters": {
-    "source": "XPHB"
+    "class_ids": [
+     "fighter",
+     "paladin",
+     "ranger"
+    ]
    }
   }
  ]
