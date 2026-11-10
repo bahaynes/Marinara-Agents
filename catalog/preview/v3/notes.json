@@ -196,6 +196,12 @@
     "ruleset-5e-2024": {
       "versions": [
         {
+          "version": "1.0.4",
+          "date": "2026-11-09",
+          "notes": "- Added Relentless Rage and Relentless Endurance counter rows to fulfill combat hangsOn pool requirements.",
+          "highlight": false
+        },
+        {
           "version": "1.0.3",
           "date": "2026-11-09",
           "notes": "- Aligned all 12 catalog assets with strict engine catalog schemas (filters, mechanics, text limits, rarities, and challenge numbers).\n- Integrated verified 2014 SRD combat mechanics onto 2024 spell catalog entries.",
