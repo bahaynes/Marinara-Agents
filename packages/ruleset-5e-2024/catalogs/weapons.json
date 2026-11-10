@@ -5,7 +5,7 @@
   {
    "id": "1-moon-sickle",
    "label": "+1 Moon Sickle",
-   "summary": "This silver-bladed sickle glimmers softly with moonlight. While holding this magic weapon, you gain a +1 bonus to attack and damage rolls made with it, and you gain a +1 bonus to spell attack rolls and the saving throw DCs of your druid and ranger spells. In addition, you can use the sickle as a spe Mastery: Nick.",
+   "summary": "This silver-bladed sickle glimmers softly with moonlight. While holding this magic weapon, you gain a +1 bonus to attack and damage rolls made with it, and you gain a +1 bonus to spell attack rolls and the saving throw DCs of your druid and ranger spells. In addition, you can use the sickle as a spe",
    "rows": [
     {
      "list": "attacks",
@@ -25,7 +25,6 @@
     }
    ],
    "filters": {
-    "source": "TCE",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -33,7 +32,7 @@
   {
    "id": "2-moon-sickle",
    "label": "+2 Moon Sickle",
-   "summary": "This silver-bladed sickle glimmers softly with moonlight. While holding this magic weapon, you gain a +2 bonus to attack and damage rolls made with it, and you gain a +2 bonus to spell attack rolls and the saving throw DCs of your druid and ranger spells. In addition, you can use the sickle as a spe Mastery: Nick.",
+   "summary": "This silver-bladed sickle glimmers softly with moonlight. While holding this magic weapon, you gain a +2 bonus to attack and damage rolls made with it, and you gain a +2 bonus to spell attack rolls and the saving throw DCs of your druid and ranger spells. In addition, you can use the sickle as a spe",
    "rows": [
     {
      "list": "attacks",
@@ -53,7 +52,6 @@
     }
    ],
    "filters": {
-    "source": "TCE",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -61,7 +59,7 @@
   {
    "id": "3-moon-sickle",
    "label": "+3 Moon Sickle",
-   "summary": "This silver-bladed sickle glimmers softly with moonlight. While holding this magic weapon, you gain a +3 bonus to attack and damage rolls made with it, and you gain a +3 bonus to spell attack rolls and the saving throw DCs of your druid and ranger spells. In addition, you can use the sickle as a spe Mastery: Nick.",
+   "summary": "This silver-bladed sickle glimmers softly with moonlight. While holding this magic weapon, you gain a +3 bonus to attack and damage rolls made with it, and you gain a +3 bonus to spell attack rolls and the saving throw DCs of your druid and ranger spells. In addition, you can use the sickle as a spe",
    "rows": [
     {
      "list": "attacks",
@@ -81,7 +79,6 @@
     }
    ],
    "filters": {
-    "source": "TCE",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -109,7 +106,6 @@
     }
    ],
    "filters": {
-    "source": "BGG",
     "category": "martial",
     "mastery": "Cleave"
    }
@@ -117,7 +113,7 @@
   {
    "id": "akmon-hammer-of-purphoros",
    "label": "Akmon, Hammer of Purphoros",
-   "summary": "Purphoros's hammer works wonders and disasters, the god of the forge using it to craft ground-breaking marvels and dangerous inventions in equal measure. Purphoros rarely bestows Akmon on mortals but occasionally leaves it unattended at his forge in Mount Velus. When Purphoros does permit a mortal t Mastery: Push.",
+   "summary": "Purphoros's hammer works wonders and disasters, the god of the forge using it to craft ground-breaking marvels and dangerous inventions in equal measure. Purphoros rarely bestows Akmon on mortals but occasionally leaves it unattended at his forge in Mount Velus. When Purphoros does permit a mortal t",
    "rows": [
     {
      "list": "attacks",
@@ -137,7 +133,6 @@
     }
    ],
    "filters": {
-    "source": "MOT",
     "category": "martial",
     "mastery": "Push"
    }
@@ -165,7 +160,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -193,7 +187,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -201,7 +194,7 @@
   {
    "id": "axe-of-the-dwarvish-lords",
    "label": "Axe of the Dwarvish Lords",
-   "summary": "A young dwarf prince set out to forge a weapon that would be regarded as a symbol of unity among his people. Venturing deep under the mountains, deeper than any dwarf had ever delved, the prince came to the blazing heart of a great volcano. With the aid of Moradin, a god of creation, he first crafte Mastery: Topple.",
+   "summary": "A young dwarf prince set out to forge a weapon that would be regarded as a symbol of unity among his people. Venturing deep under the mountains, deeper than any dwarf had ever delved, the prince came to the blazing heart of a great volcano. With the aid of Moradin, a god of creation, he first crafte",
    "rows": [
     {
      "list": "attacks",
@@ -221,7 +214,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Topple"
    }
@@ -229,7 +221,7 @@
   {
    "id": "baba-yagas-pestle",
    "label": "Baba Yaga's Pestle",
-   "summary": "The pestle is a 6-inch-long, worn wooden tool. Once during your turn while you are holding the pestle, you can extend it into a quarterstaff or shrink it back into a pestle (no action required). As a quarterstaff, the pestle is a magic weapon that grants a +3 bonus to attack and damage rolls made wi Mastery: Topple.",
+   "summary": "The pestle is a 6-inch-long, worn wooden tool. Once during your turn while you are holding the pestle, you can extend it into a quarterstaff or shrink it back into a pestle (no action required). As a quarterstaff, the pestle is a magic weapon that grants a +3 bonus to attack and damage rolls made wi",
    "rows": [
     {
      "list": "attacks",
@@ -249,7 +241,6 @@
     }
    ],
    "filters": {
-    "source": "TCE",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -277,7 +268,6 @@
     }
    ],
    "filters": {
-    "source": "BMT",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -305,7 +295,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Topple"
    }
@@ -333,7 +322,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Graze"
    }
@@ -361,7 +349,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -389,7 +376,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "martial",
     "mastery": "Cleave"
    }
@@ -417,7 +403,6 @@
     }
    ],
    "filters": {
-    "source": "BMT",
     "category": "martial",
     "mastery": "Cleave"
    }
@@ -445,7 +430,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Vex"
    }
@@ -473,7 +457,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Slow"
    }
@@ -501,7 +484,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -529,7 +511,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -557,7 +538,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Vex"
    }
@@ -565,7 +545,7 @@
   {
    "id": "dekella-bident-of-thassa",
    "label": "Dekella, Bident of Thassa",
-   "summary": "Thassa wields Dekella, a two-pronged weapon gifted to her by Purphoros. When the god of the sea bestows her weapon on a mortal, it's often so they might work her will far from the ocean, right some wrong affecting those she'd prefer not to harm, or give a mortal a glimpse of her terrible responsibil Mastery: Topple.",
+   "summary": "Thassa wields Dekella, a two-pronged weapon gifted to her by Purphoros. When the god of the sea bestows her weapon on a mortal, it's often so they might work her will far from the ocean, right some wrong affecting those she'd prefer not to harm, or give a mortal a glimpse of her terrible responsibil",
    "rows": [
     {
      "list": "attacks",
@@ -585,7 +565,6 @@
     }
    ],
    "filters": {
-    "source": "MOT",
     "category": "martial",
     "mastery": "Topple"
    }
@@ -613,7 +592,6 @@
     }
    ],
    "filters": {
-    "source": "TCE",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -641,14 +619,13 @@
     }
    ],
    "filters": {
-    "source": "ERLW",
     "category": "martial"
    }
   },
   {
    "id": "duskcrusher",
    "label": "Duskcrusher",
-   "summary": "This item takes the form of a leather-wrapped metal rod emblazoned with the symbol of Pelor, the Dawn Father. While grasping the rod, you can use a bonus action to cause a warhammer head of crackling radiance to spring into existence. The warhammer's radiant head emits bright light in a 15-foot radi Mastery: Push.",
+   "summary": "This item takes the form of a leather-wrapped metal rod emblazoned with the symbol of Pelor, the Dawn Father. While grasping the rod, you can use a bonus action to cause a warhammer head of crackling radiance to spring into existence. The warhammer's radiant head emits bright light in a 15-foot radi",
    "rows": [
     {
      "list": "attacks",
@@ -668,7 +645,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "martial",
     "mastery": "Push"
    }
@@ -676,7 +652,7 @@
   {
    "id": "dwarven-thrower",
    "label": "Dwarven Thrower",
-   "summary": "You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. It has T|XPHB|Thrown with a normal range of 20 feet and a long range of 60 feet. When you hit with a ranged attack using this weapon, it deals an extra 1d8 Force damage, or an extra 2d8 Force damage if the target is a  Mastery: Push.",
+   "summary": "You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. It has T|XPHB|Thrown with a normal range of 20 feet and a long range of 60 feet. When you hit with a ranged attack using this weapon, it deals an extra 1d8 Force damage, or an extra 2d8 Force damage if the target is a ",
    "rows": [
     {
      "list": "attacks",
@@ -696,7 +672,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Push"
    }
@@ -724,7 +699,6 @@
     }
    ],
    "filters": {
-    "source": "ERLW",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -732,7 +706,7 @@
   {
    "id": "elven-thrower",
    "label": "Elven Thrower",
-   "summary": "You gain a +3 bonus to attack and damage rolls made with this magic weapon. It has the thrown property with a normal range of 20 feet and a long range of 60 feet. When you hit with a ranged attack using this weapon, it deals an extra 1d8 damage or, if the target is a Giant, 2d8 damage. Immediately a Mastery: Sap.",
+   "summary": "You gain a +3 bonus to attack and damage rolls made with this magic weapon. It has the thrown property with a normal range of 20 feet and a long range of 60 feet. When you hit with a ranged attack using this weapon, it deals an extra 1d8 damage or, if the target is a Giant, 2d8 damage. Immediately a",
    "rows": [
     {
      "list": "attacks",
@@ -752,7 +726,6 @@
     }
    ],
    "filters": {
-    "source": "BGG",
     "category": "simple",
     "mastery": "Sap"
    }
@@ -760,7 +733,7 @@
   {
    "id": "enspelled-staff-cantrip",
    "label": "Enspelled Staff (Cantrip)",
-   "summary": "Bound into this staff is a cantrip. The cantrip is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last charge Mastery: Topple.",
+   "summary": "Bound into this staff is a cantrip. The cantrip is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last charge",
    "rows": [
     {
      "list": "attacks",
@@ -780,7 +753,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -788,7 +760,7 @@
   {
    "id": "enspelled-staff-level-1",
    "label": "Enspelled Staff (Level 1)",
-   "summary": "Bound into this staff is a level 1 spell|spells|level=1. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "summary": "Bound into this staff is a level 1 spell|spells|level=1. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
    "rows": [
     {
      "list": "attacks",
@@ -808,7 +780,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -816,7 +787,7 @@
   {
    "id": "enspelled-staff-level-2",
    "label": "Enspelled Staff (Level 2)",
-   "summary": "Bound into this staff is a level 2 spell|spells|level=2. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "summary": "Bound into this staff is a level 2 spell|spells|level=2. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
    "rows": [
     {
      "list": "attacks",
@@ -836,7 +807,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -844,7 +814,7 @@
   {
    "id": "enspelled-staff-level-3",
    "label": "Enspelled Staff (Level 3)",
-   "summary": "Bound into this staff is a level 3 spell|spells|level=3. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "summary": "Bound into this staff is a level 3 spell|spells|level=3. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
    "rows": [
     {
      "list": "attacks",
@@ -864,7 +834,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -872,7 +841,7 @@
   {
    "id": "enspelled-staff-level-4",
    "label": "Enspelled Staff (Level 4)",
-   "summary": "Bound into this staff is a level 4 spell|spells|level=4. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "summary": "Bound into this staff is a level 4 spell|spells|level=4. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
    "rows": [
     {
      "list": "attacks",
@@ -892,7 +861,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -900,7 +868,7 @@
   {
    "id": "enspelled-staff-level-5",
    "label": "Enspelled Staff (Level 5)",
-   "summary": "Bound into this staff is a level 5 spell|spells|level=5. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "summary": "Bound into this staff is a level 5 spell|spells|level=5. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
    "rows": [
     {
      "list": "attacks",
@@ -920,7 +888,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -928,7 +895,7 @@
   {
    "id": "enspelled-staff-level-6",
    "label": "Enspelled Staff (Level 6)",
-   "summary": "Bound into this staff is a level 6 spell|spells|level=6. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "summary": "Bound into this staff is a level 6 spell|spells|level=6. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
    "rows": [
     {
      "list": "attacks",
@@ -948,7 +915,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -956,7 +922,7 @@
   {
    "id": "enspelled-staff-level-7",
    "label": "Enspelled Staff (Level 7)",
-   "summary": "Bound into this staff is a level 7 spell|spells|level=7. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "summary": "Bound into this staff is a level 7 spell|spells|level=7. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
    "rows": [
     {
      "list": "attacks",
@@ -976,7 +942,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -984,7 +949,7 @@
   {
    "id": "enspelled-staff-level-8",
    "label": "Enspelled Staff (Level 8)",
-   "summary": "Bound into this staff is a level 8 spell|spells|level=8. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the  Mastery: Topple.",
+   "summary": "Bound into this staff is a level 8 spell|spells|level=8. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
    "rows": [
     {
      "list": "attacks",
@@ -1004,7 +969,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -1032,7 +996,6 @@
     }
    ],
    "filters": {
-    "source": "MOT",
     "category": "simple",
     "mastery": "Vex"
    }
@@ -1060,7 +1023,6 @@
     }
    ],
    "filters": {
-    "source": "BMT",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -1088,7 +1050,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -1096,7 +1057,7 @@
   {
    "id": "flail-of-tiamat",
    "label": "Flail of Tiamat",
-   "summary": "This magic flail is made in the image of Tiamat, with five jagged heads shaped like the heads of five different chromatic dragons. You gain a +3 bonus to attack and damage rolls made with this flail. When you hit with an attack roll using it, the target takes an extra 5d4 damage of your choice of on Mastery: Sap.",
+   "summary": "This magic flail is made in the image of Tiamat, with five jagged heads shaped like the heads of five different chromatic dragons. You gain a +3 bonus to attack and damage rolls made with this flail. When you hit with an attack roll using it, the target takes an extra 5d4 damage of your choice of on",
    "rows": [
     {
      "list": "attacks",
@@ -1116,7 +1077,6 @@
     }
    ],
    "filters": {
-    "source": "FTD",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -1144,7 +1104,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Graze"
    }
@@ -1172,7 +1131,6 @@
     }
    ],
    "filters": {
-    "source": "BMT",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -1200,7 +1158,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Cleave"
    }
@@ -1228,7 +1185,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Push"
    }
@@ -1236,7 +1192,7 @@
   {
    "id": "greater-silver-sword",
    "label": "Greater Silver Sword",
-   "summary": "This magic weapon grants a +3 bonus to attack and damage rolls made with it. While you hold the sword, you have advantage on Intelligence, Wisdom, and Charisma saving throws, you are immune to being charmed, and you have resistance to psychic damage. In addition, if you score a critical hit with it  Mastery: Graze.",
+   "summary": "This magic weapon grants a +3 bonus to attack and damage rolls made with it. While you hold the sword, you have advantage on Intelligence, Wisdom, and Charisma saving throws, you are immune to being charmed, and you have resistance to psychic damage. In addition, if you score a critical hit with it ",
    "rows": [
     {
      "list": "attacks",
@@ -1256,7 +1212,6 @@
     }
    ],
    "filters": {
-    "source": "MTF",
     "category": "martial",
     "mastery": "Graze"
    }
@@ -1284,7 +1239,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Graze"
    }
@@ -1312,7 +1266,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "martial",
     "mastery": "Push"
    }
@@ -1340,7 +1293,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Cleave"
    }
@@ -1348,7 +1300,7 @@
   {
    "id": "hammer-of-runic-focus",
    "label": "Hammer of Runic Focus",
-   "summary": "This magic hammer has 3 charges. As a bonus action, you can expend 1 charge and slam this hammer on the ground, creating a 15-foot-radius circle of glowing runes centered on the point of impact. While you're inside that area, your hammer glows with matching runes, and you gain a +3 bonus to attack a Mastery: Push.",
+   "summary": "This magic hammer has 3 charges. As a bonus action, you can expend 1 charge and slam this hammer on the ground, creating a 15-foot-radius circle of glowing runes centered on the point of impact. While you're inside that area, your hammer glows with matching runes, and you gain a +3 bonus to attack a",
    "rows": [
     {
      "list": "attacks",
@@ -1368,7 +1320,6 @@
     }
    ],
    "filters": {
-    "source": "BMT",
     "category": "martial",
     "mastery": "Push"
    }
@@ -1396,7 +1347,6 @@
     }
    ],
    "filters": {
-    "source": "DMG",
     "category": "martial",
     "mastery": "Topple"
    }
@@ -1424,7 +1374,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Vex"
    }
@@ -1452,7 +1401,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Vex"
    }
@@ -1480,7 +1428,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Push"
    }
@@ -1508,7 +1455,6 @@
     }
    ],
    "filters": {
-    "source": "DSOTDQ",
     "category": "martial"
    }
   },
@@ -1535,7 +1481,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -1563,7 +1508,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Slow"
    }
@@ -1591,7 +1535,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Slow"
    }
@@ -1619,7 +1562,6 @@
     }
    ],
    "filters": {
-    "source": "MOT",
     "category": "simple",
     "mastery": "Sap"
    }
@@ -1647,7 +1589,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Topple"
    }
@@ -1675,7 +1616,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Vex"
    }
@@ -1703,7 +1643,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -1731,7 +1670,6 @@
     }
    ],
    "filters": {
-    "source": "BGG",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -1759,7 +1697,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -1787,7 +1724,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Slow"
    }
@@ -1815,7 +1751,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -1843,7 +1778,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -1871,7 +1805,6 @@
     }
    ],
    "filters": {
-    "source": "BGG",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -1899,7 +1832,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -1927,7 +1859,6 @@
     }
    ],
    "filters": {
-    "source": "BGG",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -1955,7 +1886,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Slow"
    }
@@ -1983,7 +1913,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Sap"
    }
@@ -1991,7 +1920,7 @@
   {
    "id": "mace-of-disruption",
    "label": "Mace of Disruption",
-   "summary": "When you hit a Fiend or an Undead with this magic weapon, that creature takes an extra 2d6 Radiant damage. If the target has 25 Hit Points|XPHB or fewer after taking this damage, it must succeed on a DC 15 Wisdom saving throw or be destroyed. On a successful save, the creature has the XPHB condition Mastery: Sap.",
+   "summary": "When you hit a Fiend or an Undead with this magic weapon, that creature takes an extra 2d6 Radiant damage. If the target has 25 Hit Points|XPHB or fewer after taking this damage, it must succeed on a DC 15 Wisdom saving throw or be destroyed. On a successful save, the creature has the XPHB condition",
    "rows": [
     {
      "list": "attacks",
@@ -2011,7 +1940,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Sap"
    }
@@ -2039,7 +1967,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Sap"
    }
@@ -2047,7 +1974,7 @@
   {
    "id": "mace-of-terror",
    "label": "Mace of Terror",
-   "summary": "This magic weapon has 3 charges and regains 1d3 expended charges daily at dawn. While holding the weapon, you can take a XPHB action and expend 1 charge to release a wave of terror from it. Each creature of your choice within 30 feet of you must succeed on a DC 15 Wisdom saving throw or have the XPH Mastery: Sap.",
+   "summary": "This magic weapon has 3 charges and regains 1d3 expended charges daily at dawn. While holding the weapon, you can take a XPHB action and expend 1 charge to release a wave of terror from it. Each creature of your choice within 30 feet of you must succeed on a DC 15 Wisdom saving throw or have the XPH",
    "rows": [
     {
      "list": "attacks",
@@ -2067,7 +1994,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Sap"
    }
@@ -2095,7 +2021,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "simple",
     "mastery": "Sap"
    }
@@ -2103,7 +2028,7 @@
   {
    "id": "mastix-whip-of-erebos",
    "label": "Mastix, Whip of Erebos",
-   "summary": "Erebos wields Mastix, a whip capable of extending like an impossibly long shadow. In the hands of the god of the dead, the whip snares the reluctant dead and drags them into his realm. When Erebos grants his weapon to a mortal follower, it's typically to reclaim a powerful soul or to humiliate Helio Mastery: Slow.",
+   "summary": "Erebos wields Mastix, a whip capable of extending like an impossibly long shadow. In the hands of the god of the dead, the whip snares the reluctant dead and drags them into his realm. When Erebos grants his weapon to a mortal follower, it's typically to reclaim a powerful soul or to humiliate Helio",
    "rows": [
     {
      "list": "attacks",
@@ -2123,7 +2048,6 @@
     }
    ],
    "filters": {
-    "source": "MOT",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -2151,7 +2075,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Topple"
    }
@@ -2179,14 +2102,13 @@
     }
    ],
    "filters": {
-    "source": "VGM",
     "category": "simple"
    }
   },
   {
    "id": "moonblade",
    "label": "Moonblade",
-   "summary": "Of all the magic items created by the elves, one of the most prized and jealously guarded is a moon blade. In ancient times, nearly all elven noble houses claimed one such blade. Over the centuries, some blades have faded from the world, their magic lost as family lines have become extinct. Other bl Mastery: Sap.",
+   "summary": "Of all the magic items created by the elves, one of the most prized and jealously guarded is a moon blade. In ancient times, nearly all elven noble houses claimed one such blade. Over the centuries, some blades have faded from the world, their magic lost as family lines have become extinct. Other bl",
    "rows": [
     {
      "list": "attacks",
@@ -2206,7 +2128,6 @@
     }
    ],
    "filters": {
-    "source": "DMG",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -2234,7 +2155,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -2262,7 +2182,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -2290,7 +2209,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -2318,7 +2236,6 @@
     }
    ],
    "filters": {
-    "source": "VRGR",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -2326,7 +2243,7 @@
   {
    "id": "oathbow",
    "label": "Oathbow",
-   "summary": "When you nock an arrow on this bow, it whispers in Elvish, \"Swift defeat to my enemies.\" When you use this weapon to make a ranged attack, you can, as a command phrase, say, \"Swift death to you who have wronged me.\" The target of your attack becomes your sworn enemy until it dies or until dawn seven Mastery: Slow.",
+   "summary": "When you nock an arrow on this bow, it whispers in Elvish, \"Swift defeat to my enemies.\" When you use this weapon to make a ranged attack, you can, as a command phrase, say, \"Swift death to you who have wronged me.\" The target of your attack becomes your sworn enemy until it dies or until dawn seven",
    "rows": [
     {
      "list": "attacks",
@@ -2346,7 +2263,6 @@
     }
    ],
    "filters": {
-    "source": "DMG",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -2374,7 +2290,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Push"
    }
@@ -2402,7 +2317,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Vex"
    }
@@ -2430,7 +2344,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Vex"
    }
@@ -2458,7 +2371,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -2486,7 +2398,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -2494,7 +2405,7 @@
   {
    "id": "rakdos-riteknife",
    "label": "Rakdos Riteknife",
-   "summary": "You gain a +1 bonus to attack and damage rolls made with this magic weapon. Its blade is cruelly serrated, and its hilt resembles a demonic head and wings. Whenever you slay a creature with an attack using the dagger, the creature's soul is imprisoned inside the dagger, and that creature can be rest Mastery: Nick.",
+   "summary": "You gain a +1 bonus to attack and damage rolls made with this magic weapon. Its blade is cruelly serrated, and its hilt resembles a demonic head and wings. Whenever you slay a creature with an attack using the dagger, the creature's soul is imprisoned inside the dagger, and that creature can be rest",
    "rows": [
     {
      "list": "attacks",
@@ -2514,7 +2425,6 @@
     }
    ],
    "filters": {
-    "source": "GGR",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -2542,7 +2452,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Vex"
    }
@@ -2570,7 +2479,6 @@
     }
    ],
    "filters": {
-    "source": "BGG",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -2598,7 +2506,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -2626,7 +2533,6 @@
     }
    ],
    "filters": {
-    "source": "BMT",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -2654,7 +2560,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "simple",
     "mastery": "Sap"
    }
@@ -2682,7 +2587,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Nick"
    }
@@ -2710,7 +2614,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Nick"
    }
@@ -2738,7 +2641,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Vex"
    }
@@ -2766,7 +2668,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Vex"
    }
@@ -2794,7 +2695,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Vex"
    }
@@ -2822,7 +2722,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Push"
    }
@@ -2850,7 +2749,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Nick"
    }
@@ -2878,7 +2776,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "martial",
     "mastery": "Vex"
    }
@@ -2906,7 +2803,6 @@
     }
    ],
    "filters": {
-    "source": "MTF",
     "category": "martial"
    }
   },
@@ -2933,7 +2829,6 @@
     }
    ],
    "filters": {
-    "source": "GGR",
     "category": "simple"
    }
   },
@@ -2960,7 +2855,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Slow"
    }
@@ -2988,7 +2882,6 @@
     }
    ],
    "filters": {
-    "source": "BMT",
     "category": "simple",
     "mastery": "Slow"
    }
@@ -3016,7 +2909,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Sap"
    }
@@ -3044,7 +2936,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3052,7 +2943,7 @@
   {
    "id": "staff-of-adornment",
    "label": "Staff of Adornment",
-   "summary": "If you place a Tiny object weighing no more than 1 pound (such as a shard of crystal, an egg, or a stone) above the tip of this staff while holding it, the object floats an inch from the staff's tip and remains there until it is removed or until the staff is no longer in your possession. The staff c Mastery: Topple.",
+   "summary": "If you place a Tiny object weighing no more than 1 pound (such as a shard of crystal, an egg, or a stone) above the tip of this staff while holding it, the object floats an inch from the staff's tip and remains there until it is removed or until the staff is no longer in your possession. The staff c",
    "rows": [
     {
      "list": "attacks",
@@ -3072,7 +2963,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3080,7 +2970,7 @@
   {
    "id": "staff-of-birdcalls",
    "label": "Staff of Birdcalls",
-   "summary": "This wooden staff is decorated with bird carvings. It has 10 charges. While holding it, you can take a XPHB action to expend 1 charge from the staff and cause it to create one of the following sounds, which can be heard out to 120 feet: a finch's chirp, a raven's caw, a duck's quack, a chicken's clu Mastery: Topple.",
+   "summary": "This wooden staff is decorated with bird carvings. It has 10 charges. While holding it, you can take a XPHB action to expend 1 charge from the staff and cause it to create one of the following sounds, which can be heard out to 120 feet: a finch's chirp, a raven's caw, a duck's quack, a chicken's clu",
    "rows": [
     {
      "list": "attacks",
@@ -3100,7 +2990,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3128,7 +3017,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3156,7 +3044,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "simple"
    }
   },
@@ -3183,7 +3070,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3191,7 +3077,7 @@
   {
    "id": "staff-of-flowers",
    "label": "Staff of Flowers",
-   "summary": "This wooden staff has 10 charges. While holding it, you can take a XPHB action to expend 1 charge from the staff and cause a flower to sprout from a patch of earth or soil within 5 feet of yourself, or from the staff itself. Unless you choose a specific kind of flower, the staff creates a mild-scent Mastery: Topple.",
+   "summary": "This wooden staff has 10 charges. While holding it, you can take a XPHB action to expend 1 charge from the staff and cause a flower to sprout from a patch of earth or soil within 5 feet of yourself, or from the staff itself. Unless you choose a specific kind of flower, the staff creates a mild-scent",
    "rows": [
     {
      "list": "attacks",
@@ -3211,7 +3097,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3239,7 +3124,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3267,7 +3151,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3295,7 +3178,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3323,7 +3205,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3351,7 +3232,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3379,7 +3259,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3407,7 +3286,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "simple"
    }
   },
@@ -3434,7 +3312,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3462,7 +3339,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3490,7 +3366,6 @@
     }
    ],
    "filters": {
-    "source": "BGG",
     "category": "simple"
    }
   },
@@ -3517,7 +3392,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3545,7 +3419,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3573,7 +3446,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Topple"
    }
@@ -3601,7 +3473,6 @@
     }
    ],
    "filters": {
-    "source": "BMT",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -3629,7 +3500,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -3657,7 +3527,6 @@
     }
    ],
    "filters": {
-    "source": "BMT",
     "category": "simple"
    }
   },
@@ -3684,7 +3553,6 @@
     }
    ],
    "filters": {
-    "source": "GGR",
     "category": "martial",
     "mastery": "Push"
    }
@@ -3692,7 +3560,7 @@
   {
    "id": "sword-of-answering",
    "label": "Sword of Answering",
-   "summary": "You gain a +3 bonus to attack rolls and damage rolls made with this sword. In addition, while you hold the sword, you can take a Reaction|XPHB to make one melee attack with it against any creature in your reach that deals damage to you. You have Advantage|XPHB on the attack roll, and any damage deal Mastery: Sap.",
+   "summary": "You gain a +3 bonus to attack rolls and damage rolls made with this sword. In addition, while you hold the sword, you can take a Reaction|XPHB to make one melee attack with it against any creature in your reach that deals damage to you. You have Advantage|XPHB on the attack roll, and any damage deal",
    "rows": [
     {
      "list": "attacks",
@@ -3712,7 +3580,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -3720,7 +3587,7 @@
   {
    "id": "sword-of-kas",
    "label": "Sword of Kas",
-   "summary": "Kas was a powerful warrior who served Vecna|XDMG|8|Vecna and whose loyalty was rewarded with this sword. As Kas's power grew, so did his hubris. The sword urged Kas to destroy Vecna and usurp his throne. Legend says Vecna's destruction came at Kas's hand, but Vecna also wrought his rebellious lieute Mastery: Sap.",
+   "summary": "Kas was a powerful warrior who served Vecna|XDMG|8|Vecna and whose loyalty was rewarded with this sword. As Kas's power grew, so did his hubris. The sword urged Kas to destroy Vecna and usurp his throne. Legend says Vecna's destruction came at Kas's hand, but Vecna also wrought his rebellious lieute",
    "rows": [
     {
      "list": "attacks",
@@ -3740,7 +3607,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -3768,7 +3634,6 @@
     }
    ],
    "filters": {
-    "source": "GGR",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -3796,7 +3661,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -3824,7 +3688,6 @@
     }
    ],
    "filters": {
-    "source": "BGG",
     "category": "martial",
     "mastery": "Vex"
    }
@@ -3832,7 +3695,7 @@
   {
    "id": "thunderous-greatclub",
    "label": "Thunderous Greatclub",
-   "summary": "While you are attuned to this magic weapon, your Strength is 20 unless your Strength is already equal to or greater than that score. The weapon deals an extra 1d8 Thunder damage to any creature it hits and an extra 3d8 Thunder damage to objects it hits that aren't being worn or carried. Mastery: Push.",
+   "summary": "While you are attuned to this magic weapon, your Strength is 20 unless your Strength is already equal to or greater than that score. The weapon deals an extra 1d8 Thunder damage to any creature it hits and an extra 3d8 Thunder damage to objects it hits that aren't being worn or carried. Mastery: Pus",
    "rows": [
     {
      "list": "attacks",
@@ -3852,7 +3715,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Push"
    }
@@ -3880,7 +3742,6 @@
     }
    ],
    "filters": {
-    "source": "BMT",
     "category": "martial",
     "mastery": "Topple"
    }
@@ -3908,7 +3769,6 @@
     }
    ],
    "filters": {
-    "source": "FTD",
     "category": "simple"
    }
   },
@@ -3935,7 +3795,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Topple"
    }
@@ -3963,7 +3822,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Topple"
    }
@@ -3991,7 +3849,6 @@
     }
    ],
    "filters": {
-    "source": "MOT",
     "category": "simple",
     "mastery": "Slow"
    }
@@ -4019,7 +3876,6 @@
     }
    ],
    "filters": {
-    "source": "GGR",
     "category": "simple"
    }
   },
@@ -4046,7 +3902,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "simple",
     "mastery": "Sap"
    }
@@ -4074,7 +3929,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -4102,7 +3956,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Push"
    }
@@ -4130,7 +3983,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Topple"
    }
@@ -4158,7 +4010,6 @@
     }
    ],
    "filters": {
-    "source": "XDMG",
     "category": "martial",
     "mastery": "Push"
    }
@@ -4186,7 +4037,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "martial",
     "mastery": "Slow"
    }
@@ -4214,7 +4064,6 @@
     }
    ],
    "filters": {
-    "source": "EGW",
     "category": "martial",
     "mastery": "Sap"
    }
@@ -4242,7 +4091,6 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
     "category": "simple",
     "mastery": "Topple"
    }

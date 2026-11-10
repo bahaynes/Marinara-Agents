@@ -15,7 +15,7 @@
         },
         "id": "ruleset-5e-2024",
         "name": "5e (2024 Edition)",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "description": "Play Game Mode by the 2024 revised 5e rules: updated character progression, 13 classes including Artificer, Level-1 half-caster spell progression, 2024 species and backgrounds with Origin Feats, 2024 Weapon Masteries, updated Exhaustion, bonus-action potions, and extensive monster bestiaries built from your owned 5etools library. After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
         "engine": {
           "min": "2.5.1",
@@ -54,72 +54,72 @@
           },
           {
             "path": "catalogs/spells.json",
-            "sha256": "9f7ba81bd4de70911c98b9af382282517d318016bacb40ed6813e6cf3e2ff79a",
-            "bytes": 643487
+            "sha256": "10c01de3d1ada0348cf351f4b0973b183ecb5d21ac10c25e1d0537b7544ce20c",
+            "bytes": 844932
           },
           {
             "path": "catalogs/features.json",
-            "sha256": "c5e5df29e6a4e2a7095b829e8a972e45863f5955ea743175409fb158ba0435b5",
-            "bytes": 1124469
+            "sha256": "5b28de817042475617841801c14f2b35fe1f5b24f86dc3a5a01db255ebffe5f8",
+            "bytes": 1086655
           },
           {
             "path": "catalogs/races.json",
-            "sha256": "22101bc0aa8d84367c9b647315f410de3570c88d2e837591a007048bf57472ac",
-            "bytes": 21412
+            "sha256": "41353ec7442b53bb489d4842270a91a707a6f14369b014ede4e7eabefe6117cb",
+            "bytes": 21283
           },
           {
             "path": "catalogs/creatures.json",
-            "sha256": "989cc543a507f184672faa662712dc0b72491b405ac092dc7976568fa73a617f",
-            "bytes": 1123550
+            "sha256": "96528512cd3cfa8cb795d38381277977a82a162fd1659246e1c7d691c5f2a512",
+            "bytes": 1215405
           },
           {
             "path": "catalogs/equipment.json",
-            "sha256": "9b090fca9b2d8f7734bfa47b1a15ef049bd4e3404b77f6956e79c47e84d1cc7a",
-            "bytes": 153263
+            "sha256": "90aadad7051084b44505605dad3101161112ce78bc719c6b918e60179833d04d",
+            "bytes": 215341
           },
           {
             "path": "catalogs/magic_items.json",
-            "sha256": "000e483fbcfd3d7913d3841516b5fe067534029ae8f85f870350e1c7b7264280",
-            "bytes": 325874
+            "sha256": "32869c0134931a9a7a4e7e95b0e4b6066ed74e7b50057591fe722a9b3752d823",
+            "bytes": 279230
           },
           {
             "path": "catalogs/classes.json",
-            "sha256": "deafc806b805fbfb44def560d6b2a0a1733bcd51ec5f763c66eaf5eab0808658",
-            "bytes": 4321
+            "sha256": "2842bad594199336d75119153cb2329410ea2e0a1cac1dad80741fee43ea4a11",
+            "bytes": 4309
           },
           {
             "path": "catalogs/backgrounds.json",
-            "sha256": "1f1e87467affb0ea643b9a1b1f181e70c8147c4db2b3bc30b21615b70fee08b6",
-            "bytes": 29755
+            "sha256": "689d9d3ec6bf904f43d93a49ac6d10c0aeb6129585d855398d2c304d388a29a2",
+            "bytes": 26726
           },
           {
             "path": "catalogs/languages.json",
-            "sha256": "71da6be39728768c08274de468f4551cb5e533f50eb5e164f5f5d6b5a69d8620",
-            "bytes": 3510
+            "sha256": "535135bc9668471d0dd38a04e757dd612154df2986a63deec7936b98418f545a",
+            "bytes": 2822
           },
           {
             "path": "catalogs/tools.json",
-            "sha256": "761d4a3cd45b486d0b897cefd746e2cd1f2c5260a4a2e7cb67cb74e96284538c",
-            "bytes": 8480
+            "sha256": "a95dbcbe7d8e440202a91fbe3154e4defa7588b1082fa35dac562a0c13e5aaaa",
+            "bytes": 8406
           },
           {
             "path": "catalogs/fighting_styles.json",
-            "sha256": "baed6a48ace5d432156179291811784a2d3a98288337afe8911f46c9d4906d69",
-            "bytes": 5878
+            "sha256": "a60f63d45e29cb19bd8b535e0d2efff632f16074a876b5a0bd8e6e0b0f9ecfab",
+            "bytes": 6710
           },
           {
             "path": "catalogs/weapons.json",
-            "sha256": "3d246d5272ddc19da64eb58cb0cd21a325037c72496a1d907e9fd0b40f86a633",
-            "bytes": 104284
+            "sha256": "604a0f284dd2769068bbed19a4fd4fb1ac2c82f23e985fcabd5780f2c5630c42",
+            "bytes": 100472
           }
         ]
       },
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/Pasta-Devs/Marinara-Agents/main/artwork/agent-covers/ruleset-5e-2024.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/Pasta-Devs/Marinara-Agents/main/artifacts/ruleset-5e-2024-1.0.2.ruleset.json",
-        "sha256": "ec1018ccdfeb1073d5f17cab332e4b81ba83ee88175239a6af38f8820a9ff1a3",
-        "bytes": 5242393
+        "url": "https://raw.githubusercontent.com/Pasta-Devs/Marinara-Agents/main/artifacts/ruleset-5e-2024-1.0.3.ruleset.json",
+        "sha256": "5ad24ee45aca16a1f47ea1aac510600efe2bc1b0fbfe352d731ed136b16c57ea",
+        "bytes": 5594401
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/staging/docs/game/getting-started.md#choosing-rules"
     },
