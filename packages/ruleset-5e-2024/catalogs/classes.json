@@ -1,0 +1,262 @@
+{
+ "schemaVersion": 1,
+ "catalog": "classes",
+ "entries": [
+  {
+   "id": "artificer",
+   "label": "Artificer",
+   "summary": "Hit die d8. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Artificer Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "TCE"
+   }
+  },
+  {
+   "id": "barbarian",
+   "label": "Barbarian",
+   "summary": "Hit die d12. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Barbarian Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bard",
+   "label": "Bard",
+   "summary": "Hit die d8. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Bard Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "cleric",
+   "label": "Cleric",
+   "summary": "Hit die d8. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Cleric Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "druid",
+   "label": "Druid",
+   "summary": "Hit die d8. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Druid Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "expert-sidekick",
+   "label": "Expert Sidekick",
+   "summary": "Hit die d8. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Expert Sidekick Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "TCE"
+   }
+  },
+  {
+   "id": "fighter",
+   "label": "Fighter",
+   "summary": "Hit die d10. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Fighter Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "monk",
+   "label": "Monk",
+   "summary": "Hit die d8. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Monk Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "paladin",
+   "label": "Paladin",
+   "summary": "Hit die d10. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Paladin Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ranger",
+   "label": "Ranger",
+   "summary": "Hit die d10. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Ranger Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "rogue",
+   "label": "Rogue",
+   "summary": "Hit die d8. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Rogue Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "sorcerer",
+   "label": "Sorcerer",
+   "summary": "Hit die d6. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Sorcerer Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "spellcaster-sidekick",
+   "label": "Spellcaster Sidekick",
+   "summary": "Hit die d8. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Spellcaster Sidekick Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "TCE"
+   }
+  },
+  {
+   "id": "warlock",
+   "label": "Warlock",
+   "summary": "Hit die d8. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Warlock Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  },
+  {
+   "id": "warrior-sidekick",
+   "label": "Warrior Sidekick",
+   "summary": "Hit die d8. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Warrior Sidekick Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "TCE"
+   }
+  },
+  {
+   "id": "wizard",
+   "label": "Wizard",
+   "summary": "Hit die d6. 2024 class progression.",
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Wizard Class"
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB"
+   }
+  }
+ ]
+}

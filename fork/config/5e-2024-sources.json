@@ -1,0 +1,42 @@
+{
+  "$schema": "./5e-2024-sources.schema.json",
+  "editionMode": "2024-with-legacy-supplements",
+  "dataDir": "/home/bah/git/5etools-src/data",
+  "options": {
+    "includeAdventureCreatures": false,
+    "includeNamedNpcs": false,
+    "compactScrolls": true,
+    "compactVariants": true
+  },
+  "books": {
+    "XPHB": { "title": "Player's Handbook (2024)", "group": "core2024", "owned": true },
+    "XDMG": { "title": "Dungeon Master's Guide (2024)", "group": "core2024", "owned": true },
+    "XMM": { "title": "Monster Manual (2025)", "group": "core2024", "owned": true },
+    "EFA": { "title": "Eberron: Forge of the Artificer", "group": "supplements", "owned": true },
+    "FRHoF": { "title": "Forgotten Realms: Heroes of Faerûn", "group": "supplements", "owned": true },
+    "TCE": { "title": "Tasha's Cauldron of Everything", "group": "supplements", "owned": true },
+    "XGE": { "title": "Xanathar's Guide to Everything", "group": "supplements", "owned": true },
+    "MPMM": { "title": "Mordenkainen Presents: Monsters of the Multiverse", "group": "supplements", "owned": true },
+    "FTD": { "title": "Fizban's Treasury of Dragons", "group": "supplements", "owned": true },
+    "BGG": { "title": "Bigby Presents: Glory of the Giants", "group": "supplements", "owned": true },
+    "BMT": { "title": "The Book of Many Things", "group": "supplements", "owned": true },
+    "ERLW": { "title": "Eberron: Rising from the Last War", "group": "settings", "owned": true },
+    "VRGR": { "title": "Van Richten's Guide to Ravenloft", "group": "settings", "owned": true },
+    "AAG": { "title": "Astral Adventurer's Guide (Spelljammer)", "group": "settings", "owned": true },
+    "BAM": { "title": "Boo's Astral Menagerie", "group": "settings", "owned": true },
+    "SCAG": { "title": "Sword Coast Adventurer's Guide", "group": "settings", "owned": true },
+    "EGW": { "title": "Explorer's Guide to Wildemount", "group": "settings", "owned": true },
+    "GGR": { "title": "Guildmasters' Guide to Ravnica", "group": "settings", "owned": true },
+    "MOT": { "title": "Mythic Odysseys of Theros", "group": "settings", "owned": true },
+    "SCC": { "title": "Strixhaven: A Curriculum of Chaos", "group": "settings", "owned": true },
+    "SatO": { "title": "Sigil and the Outlands", "group": "settings", "owned": true },
+    "ToFW": { "title": "Turn of Fortune's Wheel", "group": "settings", "owned": true },
+    "DSotDQ": { "title": "Dragonlance: Shadow of the Dragon Queen", "group": "settings", "owned": true },
+    "MTF": { "title": "Mordenkainen's Tome of Foes", "group": "legacy", "owned": true },
+    "VGM": { "title": "Volo's Guide to Monsters", "group": "legacy", "owned": true },
+    "PHB": { "title": "Player's Handbook (2014)", "group": "core2014", "owned": true },
+    "DMG": { "title": "Dungeon Master's Guide (2014)", "group": "core2014", "owned": true },
+    "MM": { "title": "Monster Manual (2014)", "group": "core2014", "owned": true },
+    "AI": { "title": "Acquisitions Incorporated", "group": "settings", "owned": false }
+  }
+}
