@@ -127,6 +127,23 @@ async function buildSpells(dataDir, ownedSources) {
     console.warn("Could not load spell lookup:", e.message);
   }
 
+  // Load 2014 SRD spell catalog to reuse validated combat mechanics
+  const srdSpellsById = new Map();
+  const srdSpellsByName = new Map();
+  try {
+    const srdSpellsRaw = JSON.parse(
+      await readFile(join(repoRoot, "packages/ruleset-5e-2014/catalogs/spells.json"), "utf8"),
+    );
+    for (const s of srdSpellsRaw.entries || []) {
+      if (s.mechanics) {
+        srdSpellsById.set(s.id, s.mechanics);
+        if (s.label) srdSpellsByName.set(s.label.toLowerCase(), s.mechanics);
+      }
+    }
+  } catch (err) {
+    console.warn("Could not load SRD spells:", err.message);
+  }
+
   const deduped = deduplicate2024First(allSpells, ownedSources);
   const entries = [];
 
@@ -135,17 +152,11 @@ async function buildSpells(dataDir, ownedSources) {
     const school = item.school ? mapSpellSchool(item.school) : "Abjuration";
     const description = render5eEntries(item.entries);
     const summary = strip5eTags(item.entries?.[0] || "");
-    const mechanics = extract5eMechanics(item) || {};
-
-    // Map casting time
-    let budget = "action";
-    if (item.time?.[0]?.unit === "bonus") budget = "bonus";
-    else if (item.time?.[0]?.unit === "reaction") budget = "reaction";
-
-    mechanics.budget = budget;
-    mechanics.kind = level === 0 ? "cantrip" : "spell";
-
+    const spellId = toCatalogId(item.name);
     const nameKey = item.name.toLowerCase();
+
+    const mechanics = srdSpellsById.get(spellId) || srdSpellsByName.get(nameKey);
+
     const srcKey = item.source.toLowerCase();
     let lookup = spellLookup[srcKey]?.[nameKey];
     if (!lookup) {
@@ -195,9 +206,19 @@ async function buildSpells(dataDir, ownedSources) {
     const isRitual = Boolean(item.meta?.ritual);
     const isConcentration = Boolean(item.duration?.some((d) => d.concentration));
 
-    entries.push({
-      id: toCatalogId(item.name),
+    const classList = Array.from(classes).sort().slice(0, 24);
+    let classIdList = Array.from(classIds).sort();
+    if (classIdList.length > 24) {
+      classIdList = Array.from(classes)
+        .map((c) => c.toLowerCase())
+        .sort();
+      if (classIdList.length > 24) classIdList = classIdList.slice(0, 24);
+    }
+
+    const entry = {
+      id: spellId,
       label: item.name,
+      summary: summary.slice(0, 300) || item.name,
       rows: [
         {
           list: "spells",
@@ -211,16 +232,20 @@ async function buildSpells(dataDir, ownedSources) {
           },
         },
       ],
-      mechanics,
       filters: {
-        source: item.source.toUpperCase(),
         level: Number(level),
         school,
-        classes: Array.from(classes).sort(),
-        class_ids: Array.from(classIds).sort(),
+        classes: classList,
+        class_ids: classIdList,
         kind: level === 0 ? "cantrip" : "spell",
       },
-    });
+    };
+
+    if (mechanics) {
+      entry.mechanics = structuredClone(mechanics);
+    }
+
+    entries.push(entry);
   }
 
   await writeCatalog("spells.json", "spells", entries);
@@ -267,7 +292,7 @@ async function buildClasses(dataDir, ownedSources) {
     entries.push({
       id,
       label: name,
-      summary: `Hit die ${hitDie}. 2024 class progression.`,
+      summary: `Hit die ${hitDie}. 2024 class progression.`.slice(0, 300),
       rows: [
         {
           list: "proficiencies",
@@ -277,7 +302,7 @@ async function buildClasses(dataDir, ownedSources) {
         },
       ],
       filters: {
-        source: cls.source.toUpperCase(),
+        kind: "class",
       },
     });
   }
@@ -303,7 +328,7 @@ async function buildSpecies(dataDir, ownedSources) {
     entries.push({
       id,
       label: name,
-      summary: `Speed ${speed} ft., Size ${size}.`,
+      summary: `Speed ${speed} ft., Size ${size}.`.slice(0, 300),
       rows: [
         {
           list: "features",
@@ -315,8 +340,7 @@ async function buildSpecies(dataDir, ownedSources) {
         },
       ],
       filters: {
-        source: race.source.toUpperCase(),
-        size: size.toLowerCase(),
+        race: [name],
       },
     });
   }
@@ -340,7 +364,7 @@ async function buildBackgrounds(dataDir, ownedSources) {
     entries.push({
       id,
       label: name,
-      summary: desc.slice(0, 200),
+      summary: desc.slice(0, 300) || name,
       rows: [
         {
           list: "features",
@@ -350,9 +374,6 @@ async function buildBackgrounds(dataDir, ownedSources) {
           },
         },
       ],
-      filters: {
-        source: bg.source.toUpperCase(),
-      },
     });
   }
 
@@ -385,7 +406,7 @@ async function buildFeatures(dataDir, ownedSources) {
     entries.push({
       id,
       label: name,
-      summary: desc.slice(0, 200),
+      summary: desc.slice(0, 300) || name,
       rows: [
         {
           list: "features",
@@ -396,7 +417,6 @@ async function buildFeatures(dataDir, ownedSources) {
         },
       ],
       filters: {
-        source: feat.source.toUpperCase(),
         kind,
       },
     });
@@ -471,7 +491,6 @@ async function buildFeatures(dataDir, ownedSources) {
         },
       ],
       filters: {
-        source: "XPHB",
         kind: "weapon_mastery",
       },
     });
@@ -522,7 +541,7 @@ async function buildFeatures(dataDir, ownedSources) {
         entries.push({
           id: subId,
           label: sc.name,
-          summary: `${sc.name}: the ${className} subclass (${sc.source}).`,
+          summary: `${sc.name}: the ${className} subclass (${sc.source}).`.slice(0, 300),
           rows: [
             {
               list: "features",
@@ -534,7 +553,6 @@ async function buildFeatures(dataDir, ownedSources) {
             },
           ],
           filters: {
-            source: sc.source.toUpperCase(),
             class: className,
             class_id: [cls, `${cls}-multiclass`, `${cls}-third-class`],
             kind: "subclass",
@@ -570,12 +588,11 @@ async function buildFeatures(dataDir, ownedSources) {
               values: {
                 name: f.name,
                 class: className,
-                text: desc.slice(0, 1000),
+                text: desc.slice(0, 800),
               },
             },
           ],
           filters: {
-            source: (f.source || sc.source).toUpperCase(),
             class: className,
             class_id: [cls, `${cls}-multiclass`, `${cls}-third-class`],
             kind: "feature",
@@ -631,7 +648,7 @@ async function buildFightingStyles(dataDir, ownedSources) {
     entries.push({
       id,
       label: name,
-      summary: desc.slice(0, 200),
+      summary: desc.slice(0, 300) || name,
       rows: [
         {
           list: "features",
@@ -642,7 +659,7 @@ async function buildFightingStyles(dataDir, ownedSources) {
         },
       ],
       filters: {
-        source: fs.source.toUpperCase(),
+        class_ids: ["fighter", "paladin", "ranger"],
       },
     });
   }
@@ -680,7 +697,6 @@ async function buildItems(dataDir, ownedSources, options) {
   for (const it of deduped.values()) {
     const id = toCatalogId(it.name);
     let summary = strip5eTags(it.entries?.[0] || it.name).slice(0, 300);
-    const src = it.source.toUpperCase();
 
     // Check Weapon
     if (it.weaponCategory || it.type === "M" || it.type === "R") {
@@ -693,7 +709,7 @@ async function buildItems(dataDir, ownedSources, options) {
       }
 
       if (mastery) {
-        summary = summary ? `${summary} Mastery: ${mastery}.` : `Mastery: ${mastery}.`;
+        summary = summary ? `${summary} Mastery: ${mastery}.`.slice(0, 300) : `Mastery: ${mastery}.`;
       }
 
       const isRanged = it.type === "R" || (it.property || []).includes("R");
@@ -702,7 +718,7 @@ async function buildItems(dataDir, ownedSources, options) {
       weapons.push({
         id,
         label: it.name,
-        summary,
+        summary: summary.slice(0, 300),
         rows: [
           {
             list: "attacks",
@@ -722,7 +738,6 @@ async function buildItems(dataDir, ownedSources, options) {
           },
         ],
         filters: {
-          source: src,
           category: (it.weaponCategory || "simple").toLowerCase(),
           ...(mastery ? { mastery } : {}),
         },
@@ -735,20 +750,23 @@ async function buildItems(dataDir, ownedSources, options) {
       if (options.compactScrolls && it.name.startsWith("Spell Scroll (") && !it.name.endsWith("Level)")) {
         continue;
       }
+      const VALID_RARITIES = new Set(["common", "uncommon", "rare", "very_rare", "legendary", "artifact"]);
+      let rarity = (it.rarity || "common")
+        .toLowerCase()
+        .replace(/[^a-z0-9_]+/g, "_")
+        .replace(/^_+|_+$/g, "");
+      if (rarity === "very_rare" || rarity === "veryrare") rarity = "very_rare";
+      if (!VALID_RARITIES.has(rarity)) rarity = "common";
       magicItems.push({
         id,
         label: it.name,
-        summary,
+        summary: summary.slice(0, 300),
         item: {
           category: it.type === "RG" ? "ring" : it.type === "W" ? "wand" : it.type === "P" ? "potion" : "gear",
-          rarity: it.rarity.toLowerCase(),
+          rarity,
           stats: {
             weight: it.weight || 0,
           },
-        },
-        filters: {
-          source: src,
-          rarity: it.rarity.toLowerCase(),
         },
       });
       continue;
@@ -758,16 +776,13 @@ async function buildItems(dataDir, ownedSources, options) {
     equipment.push({
       id,
       label: it.name,
-      summary,
+      summary: summary.slice(0, 300),
       item: {
         category: it.armorCategory ? "armor" : "gear",
         rarity: "common",
         stats: {
           weight: it.weight || 0,
         },
-      },
-      filters: {
-        source: src,
       },
     });
   }
@@ -781,9 +796,9 @@ async function buildItems(dataDir, ownedSources, options) {
       ["3rd Level", "uncommon"],
       ["4th Level", "rare"],
       ["5th Level", "rare"],
-      ["6th Level", "very rare"],
-      ["7th Level", "very rare"],
-      ["8th Level", "very rare"],
+      ["6th Level", "very_rare"],
+      ["7th Level", "very_rare"],
+      ["8th Level", "very_rare"],
       ["9th Level", "legendary"],
     ];
     for (const [tier, rarity] of scrollTiers) {
@@ -791,18 +806,53 @@ async function buildItems(dataDir, ownedSources, options) {
       magicItems.push({
         id: toCatalogId(name),
         label: name,
-        summary: `A spell scroll bearing a ${tier} spell.`,
+        summary: `A spell scroll bearing a ${tier} spell.`.slice(0, 300),
         item: {
           category: "scroll",
           rarity,
           stats: { weight: 0 },
         },
-        filters: {
-          source: "XDMG",
-          rarity,
-        },
       });
     }
+  }
+
+  // Carry over spell material components from SRD equipment
+  try {
+    const srdEquipment =
+      JSON.parse(await readFile(join(repoRoot, "packages/ruleset-5e-2014/catalogs/equipment.json"), "utf8")).entries ||
+      [];
+    const existingEqIds = new Set(equipment.map((e) => e.id));
+    for (const eq of srdEquipment) {
+      if (!existingEqIds.has(eq.id)) {
+        const entry = {
+          id: eq.id,
+          label: eq.label,
+          summary: (eq.summary || eq.label).slice(0, 300),
+          item: eq.item,
+        };
+        equipment.push(entry);
+        existingEqIds.add(eq.id);
+      }
+    }
+  } catch (err) {
+    console.warn("Could not load SRD equipment:", err.message);
+  }
+
+  // Carry over conjured/spell-created items from SRD magic items
+  try {
+    const srdMagicItems =
+      JSON.parse(await readFile(join(repoRoot, "packages/ruleset-5e-2014/catalogs/magic_items.json"), "utf8"))
+        .entries || [];
+    const specialMiIds = new Set(["goodberry", "created-object"]);
+    const existingMiIds = new Set(magicItems.map((e) => e.id));
+    for (const mi of srdMagicItems) {
+      if (specialMiIds.has(mi.id) && !existingMiIds.has(mi.id)) {
+        magicItems.push(mi);
+        existingMiIds.add(mi.id);
+      }
+    }
+  } catch (err) {
+    console.warn("Could not load special SRD magic items:", err.message);
   }
 
   await writeCatalog("weapons.json", "weapons", weapons);
@@ -854,10 +904,24 @@ async function buildCreatures(dataDir, ownedSources, options) {
     const healthDice = (m.hp?.formula || `${Math.max(1, Math.floor(hp / 5))}d8`).replace(/\s+/g, "");
 
     const actions = [];
+    const seenActionIds = new Set();
     if (Array.isArray(m.action) && m.action.length > 0) {
       for (const act of m.action.slice(0, 16)) {
-        const actName = act.name || "Action";
-        const actId = toCatalogId(actName) || "action";
+        const actName = (act.name || "Action").slice(0, 80);
+        let baseActId =
+          actName
+            .toLowerCase()
+            .replace(/[^a-z0-9_]+/g, "_")
+            .replace(/^_+|_+$/g, "") || "action";
+        if (!/^[a-z]/.test(baseActId)) baseActId = "a_" + baseActId;
+        baseActId = baseActId.slice(0, 32);
+        let actId = baseActId;
+        let counter = 2;
+        while (seenActionIds.has(actId)) {
+          actId = `${baseActId}_${counter++}`;
+        }
+        seenActionIds.add(actId);
+
         const hitMatch = JSON.stringify(act).match(/\{@hit\s+(\d+)\}/i);
         const dmgMatch = JSON.stringify(act).match(/\{@damage\s+([1-9]\d{0,2}d[2-9]\d*(?:[+-]\d+)?)\}/i);
         actions.push({
@@ -892,6 +956,7 @@ async function buildCreatures(dataDir, ownedSources, options) {
     entries.push({
       id,
       label: name,
+      summary: `${name}: CR ${cr} ${creatureType}.`.slice(0, 300),
       creature: {
         health: { dice: healthDice },
         defense: ac,
@@ -922,13 +987,49 @@ async function buildCreatures(dataDir, ownedSources, options) {
         actions,
       },
       filters: {
-        source: m.source.toUpperCase(),
-        cr: String(cr),
+        challenge: parseCrNumber(cr),
+        type: creatureType,
       },
     });
   }
 
+  // Carry over synthetic spell-summoned creatures from SRD
+  try {
+    const srdCreatures =
+      JSON.parse(await readFile(join(repoRoot, "packages/ruleset-5e-2014/catalogs/creatures.json"), "utf8")).entries ||
+      [];
+    const specialIds = new Set([
+      "animated-object-tiny",
+      "animated-object-small",
+      "animated-object-medium",
+      "animated-object-large",
+      "animated-object-huge",
+      "illusory-double",
+      "phantom-steed",
+      "enchanted-object",
+      "arcane-hand",
+      "polymorphed-object",
+    ]);
+    const existingIds = new Set(entries.map((e) => e.id));
+    for (const c of srdCreatures) {
+      if (specialIds.has(c.id) && !existingIds.has(c.id)) {
+        entries.push(c);
+      }
+    }
+  } catch (err) {
+    console.warn("Could not load special SRD creatures:", err.message);
+  }
+
   await writeCatalog("creatures.json", "creatures", entries);
+}
+
+function parseCrNumber(cr) {
+  const clean = String(cr).replace(/\s+/g, "");
+  if (clean === "1/8") return 0.125;
+  if (clean === "1/4") return 0.25;
+  if (clean === "1/2") return 0.5;
+  const num = parseFloat(clean);
+  return isNaN(num) ? 0 : num;
 }
 
 function mapCrToTier(cr) {
@@ -974,9 +1075,6 @@ async function buildLanguagesAndTools(dataDir, ownedSources) {
         },
       },
     ],
-    filters: {
-      source: "XPHB",
-    },
   }));
   await writeCatalog("languages.json", "languages", langEntries);
 
@@ -1032,7 +1130,7 @@ async function buildLanguagesAndTools(dataDir, ownedSources) {
       },
     ],
     filters: {
-      source: "XPHB",
+      kind: "tool",
     },
   }));
   await writeCatalog("tools.json", "tools", toolEntries);

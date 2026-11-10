@@ -12,9 +12,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -27,9 +24,42 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "acid-vial",
+   "label": "Acid (vial)",
+   "summary": "As an action, you can splash the contents of this vial onto a creature within 5 feet of you or throw the vial up to 20 feet, shattering it on impact. In either case, make a ranged attack against a creature or object, treating the acid as an improvised weapon.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "use": {
+     "kind": "attack",
+     "budget": "action",
+     "range": 20,
+     "attackRoll": true,
+     "toHit": {
+      "abilities": [
+       "dex"
+      ]
+     },
+     "amount": {
+      "dice": "2d6"
+     },
+     "damageType": "acid",
+     "consumes": true,
+     "title": "Throw acid"
+    },
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -42,9 +72,26 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "ERLW"
+   }
+  },
+  {
+   "id": "agate-1000",
+   "label": "Agate (1,000 gp)",
+   "summary": "An agate worth 1,000 gp, as Awaken needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "gemstone",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 1000,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -57,9 +104,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -72,9 +116,53 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "alchemists-fire-flask",
+   "label": "Alchemist's Fire (Flask)",
+   "summary": "This sticky, adhesive fluid ignites when exposed to air. As an action, you can throw this flask up to 20 feet, shattering it on impact. Make a ranged attack against a creature or object, treating the alchemist's fire as an improvised weapon.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "use": {
+     "kind": "attack",
+     "budget": "action",
+     "range": 20,
+     "attackRoll": true,
+     "toHit": {
+      "abilities": [
+       "dex"
+      ]
+     },
+     "amount": {
+      "flat": 0
+     },
+     "damageType": "fire",
+     "applies": [
+      {
+       "condition": "alchemists_fire",
+       "duration": "until-dispelled",
+       "checkEnds": {
+        "check": "agility",
+        "difficulty": 10,
+        "by": "any"
+       }
+      }
+     ],
+     "consumes": true,
+     "title": "Throw alchemist's fire"
+    },
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 50,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -87,9 +175,6 @@
     "stats": {
      "weight": 8
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -102,9 +187,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -117,9 +199,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -132,9 +211,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -147,9 +223,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -162,9 +235,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -177,9 +247,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -192,9 +259,50 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "antitoxin-vial",
+   "label": "Antitoxin (Vial)",
+   "summary": "A creature that drinks this vial of liquid gains advantage on saving throws against poison for 1 hour. It confers no benefit to undead or constructs.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "use": {
+     "kind": "buff",
+     "budget": "action",
+     "range": 0,
+     "targets": "self",
+     "applies": [
+      {
+       "condition": "antitoxin",
+       "duration": {
+        "rounds": 600
+       }
+      }
+     ],
+     "targetTypes": {
+      "not": {
+       "types": [
+        "undead",
+        "construct"
+       ]
+      }
+     },
+     "consumes": true,
+     "title": "Drink antitoxin"
+    },
+    "tags": [
+     "mundane",
+     "herbal"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 50,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -207,9 +315,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -222,9 +327,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "ERLW"
    }
   },
   {
@@ -237,9 +339,27 @@
     "stats": {
      "weight": 0.05
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "arrow-bow",
+   "label": "Arrow (bow)",
+   "summary": "An arrow for a bow.",
+   "item": {
+    "category": "ammunition",
+    "rarity": "common",
+    "tags": [
+     "arrow",
+     "metal",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0.05
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "cp"
+    }
    }
   },
   {
@@ -252,9 +372,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -267,9 +384,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "augury-tokens-25",
+   "label": "Augury tokens (25 gp)",
+   "summary": "Specially marked sticks, bones or similar tokens worth 25 gp, as Augury needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -282,9 +415,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -297,9 +427,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -312,9 +439,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -327,9 +451,6 @@
     "stats": {
      "weight": 6
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -342,9 +463,6 @@
     "stats": {
      "weight": 0.002
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -357,9 +475,59 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ball-bearings-bag-of-1000",
+   "label": "Ball Bearings (bag of 1000)",
+   "summary": "As an action, you can spill these tiny metal balls from their pouch to cover a level, square area that is 10 feet on a side. A creature moving across the covered area must succeed on a DC 10 Dexterity saving throw or fall prone.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "use": {
+     "kind": "debuff",
+     "budget": "action",
+     "range": 5,
+     "area": {
+      "shape": "box",
+      "size": 10
+     },
+     "targetCount": 2,
+     "applies": [
+      {
+       "condition": "prone",
+       "duration": "instant"
+      }
+     ],
+     "save": {
+      "save": "dex_save",
+      "onSuccess": "negates"
+     },
+     "saveDifficulty": 10,
+     "zone": {
+      "rounds": 14400,
+      "triggers": [
+       "enter"
+      ],
+      "atCast": false,
+      "outlasts": true,
+      "terrain": {
+       "spareSlowWalkers": true
+      }
+     },
+     "consumes": true,
+     "title": "Scatter ball bearings"
+    },
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -372,9 +540,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -387,9 +552,6 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -402,9 +564,6 @@
     "stats": {
      "weight": 70
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -417,9 +576,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -432,9 +588,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -447,9 +600,68 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "battleaxe",
+   "label": "Battleaxe",
+   "summary": "Martial melee weapon. 1d8 slashing. Properties: Versatile. Versatile: 1d10 in two hands.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d8",
+      "abilities": [
+       "str"
+      ],
+      "type": "slashing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "versatile": {
+      "dice": "1d10"
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp",
+     "versatile"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -462,9 +674,6 @@
     "stats": {
      "weight": 7
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -477,9 +686,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -492,9 +698,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -507,9 +710,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -522,9 +722,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCAG"
    }
   },
   {
@@ -537,9 +734,26 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "PHB"
+   }
+  },
+  {
+   "id": "black-onyx-150",
+   "label": "Black onyx stone (150 gp)",
+   "summary": "A black onyx stone worth 150 gp, one for each corpse of a Create Undead.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "gemstone",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 150,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -552,9 +766,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -567,9 +778,26 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "black-pearl-500",
+   "label": "Black pearl (500 gp)",
+   "summary": "A black pearl worth 500 gp, crushed for Circle of Death.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "gemstone",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 500,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -582,9 +810,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -597,9 +822,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -612,9 +834,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -627,9 +846,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -642,9 +858,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -657,9 +870,6 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -672,9 +882,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -687,9 +894,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -702,9 +906,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -717,9 +918,87 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "blowgun",
+   "label": "Blowgun",
+   "summary": "Martial ranged weapon. 1 piercing. Properties: Ammunition, Loading. Range 25/100 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      },
+      "sheetBonus": {
+       "listSum": {
+        "list": "features",
+        "column": "ranged_to_hit"
+       }
+      }
+     },
+     "damage": {
+      "bonus": 1,
+      "abilities": [
+       "dex"
+      ],
+      "type": "piercing"
+     },
+     "range": {
+      "normal": 25,
+      "long": 100
+     },
+     "ammo": {
+      "tag": "needle",
+      "recover": 0.5
+     }
+    },
+    "tags": [
+     "ammunition",
+     "loading",
+     "martial",
+     "mundane",
+     "ranged",
+     "sharp",
+     "wood"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "blowgun-needles",
+   "label": "Blowgun needles",
+   "summary": "Needles to be fired with a blowgun.",
+   "item": {
+    "category": "ammunition",
+    "rarity": "common",
+    "tags": [
+     "metal",
+     "mundane",
+     "needle"
+    ],
+    "stats": {
+     "weight": 0.02
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "cp"
+    }
    }
   },
   {
@@ -732,9 +1011,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -747,9 +1023,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -762,9 +1035,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -777,9 +1047,6 @@
     "stats": {
      "weight": 0.075
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -792,9 +1059,6 @@
     "stats": {
      "weight": 1.5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -807,9 +1071,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -822,9 +1083,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -837,9 +1095,25 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "bottle-glass",
+   "label": "Bottle, glass",
+   "summary": "A glass bottle. Capacity: 1.5 pints liquid.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -852,9 +1126,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -867,9 +1138,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -882,9 +1150,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -897,9 +1162,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -912,9 +1174,6 @@
     "stats": {
      "weight": 20
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -927,9 +1186,6 @@
     "stats": {
      "weight": 9
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -942,9 +1198,6 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -957,9 +1210,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -972,9 +1222,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -987,9 +1234,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1002,9 +1246,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1017,9 +1258,6 @@
     "stats": {
      "weight": 47.5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1032,9 +1270,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1047,9 +1282,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1062,9 +1294,6 @@
     "stats": {
      "weight": 0.1
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -1077,9 +1306,64 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "caltrops-bag-of-20",
+   "label": "Caltrops (bag of 20)",
+   "summary": "As an action, you can spread a bag of caltrops to cover a square area that is 5 feet on a side. Any creature that enters the area must succeed on a DC 15 Dexterity saving throw or stop moving this turn and take 1 piercing damage.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "use": {
+     "kind": "attack",
+     "budget": "action",
+     "range": 5,
+     "area": {
+      "shape": "box",
+      "size": 5
+     },
+     "targetCount": 1,
+     "amount": {
+      "flat": 1
+     },
+     "damageType": "piercing",
+     "applies": [
+      {
+       "condition": "caltrops_stopped",
+       "duration": "until-dispelled"
+      }
+     ],
+     "save": {
+      "save": "dex_save",
+      "onSuccess": "negates"
+     },
+     "saveDifficulty": 15,
+     "zone": {
+      "rounds": 14400,
+      "triggers": [
+       "enter"
+      ],
+      "atCast": false,
+      "outlasts": true,
+      "terrain": {
+       "spareSlowWalkers": true,
+       "endsWalk": true
+      }
+     },
+     "consumes": true,
+     "title": "Scatter caltrops"
+    },
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -1092,9 +1376,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1107,9 +1388,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1122,9 +1400,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1137,9 +1412,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1152,9 +1424,6 @@
     "stats": {
      "weight": 6
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1167,9 +1436,6 @@
     "stats": {
      "weight": 600
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1182,9 +1448,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1197,9 +1460,6 @@
     "stats": {
      "weight": 200
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1212,9 +1472,6 @@
     "stats": {
      "weight": 6
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1227,9 +1484,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1242,9 +1496,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1257,9 +1508,44 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "case-crossbow-bolt",
+   "label": "Case, Crossbow Bolt",
+   "summary": "This wooden case can hold up to twenty crossbow bolts.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "case-map-or-scroll",
+   "label": "Case, Map or Scroll",
+   "summary": "This cylindrical leather case can hold up to ten rolled-up sheets of paper or five rolled-up sheets of parchment.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -1272,9 +1558,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1287,9 +1570,25 @@
     "stats": {
      "weight": 10
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "chain-10-feet",
+   "label": "Chain (10 feet)",
+   "summary": "A chain has 10 hit points. It can be burst with a successful DC 20 Strength check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 10
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -1302,9 +1601,6 @@
     "stats": {
      "weight": 55
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1317,9 +1613,6 @@
     "stats": {
      "weight": 20
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1332,9 +1625,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1347,9 +1637,26 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "PHB"
+   }
+  },
+  {
+   "id": "charcoal-incense-and-herbs-10",
+   "label": "Charcoal, incense and herbs (10 gp)",
+   "summary": "Charcoal, incense and herbs worth 10 gp, burned in a brass brazier to Find a Familiar.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "incense",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -1362,9 +1669,6 @@
     "stats": {
      "weight": 100
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1377,9 +1681,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1392,9 +1693,6 @@
     "stats": {
      "weight": 25
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1407,9 +1705,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1422,9 +1717,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1437,9 +1729,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1452,9 +1741,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -1467,9 +1753,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1482,9 +1765,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1497,9 +1777,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -1512,9 +1789,6 @@
     "stats": {
      "weight": 12
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1527,9 +1801,82 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "clothes-common",
+   "label": "Clothes, Common",
+   "summary": "Common clothes.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 3
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "sp"
+    }
+   }
+  },
+  {
+   "id": "clothes-costume",
+   "label": "Clothes, costume",
+   "summary": "A costume.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "clothes-fine",
+   "label": "Clothes, fine",
+   "summary": "Fine clothing.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 6
+    },
+    "cost": {
+     "amount": 15,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "clothes-travelers",
+   "label": "Clothes, traveler's",
+   "summary": "Traveler's clothing.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -1542,9 +1889,65 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "club",
+   "label": "Club",
+   "summary": "Simple melee weapon. 1d4 bludgeoning. Properties: Light.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d4",
+      "abilities": [
+       "str"
+      ],
+      "type": "bludgeoning",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     },
+     "offHand": true
+    },
+    "tags": [
+     "light",
+     "melee",
+     "mundane",
+     "simple",
+     "wood"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -1557,9 +1960,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1572,9 +1972,6 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -1587,9 +1984,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1602,9 +1996,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1617,9 +2008,6 @@
     "stats": {
      "weight": 8
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1632,9 +2020,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1647,9 +2032,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "GGR"
    }
   },
   {
@@ -1662,9 +2044,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1677,9 +2056,6 @@
     "stats": {
      "weight": 0.02
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -1692,9 +2068,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "GGR"
    }
   },
   {
@@ -1707,9 +2080,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1722,9 +2092,6 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1737,9 +2104,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1752,9 +2116,6 @@
     "stats": {
      "weight": 1300
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -1767,9 +2128,78 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "crawler-mucus",
+   "label": "Crawler mucus",
+   "summary": "This poison must be harvested from a dead or incapacitated crawler. A creature subjected to this poison must succeed on a DC 13 Constitution saving throw or be poisoned for 1 minute. The poisoned creature is paralyzed.",
+   "item": {
+    "category": "poison",
+    "rarity": "common",
+    "use": {
+     "kind": "debuff",
+     "budget": "action",
+     "range": 5,
+     "targets": "any",
+     "save": {
+      "save": "con_save",
+      "onSuccess": "negates"
+     },
+     "saveDifficulty": 13,
+     "applies": [
+      {
+       "condition": "poisoned",
+       "duration": {
+        "rounds": 10
+       },
+       "saveEnds": {
+        "save": "con_save",
+        "at": "turn-end"
+       }
+      },
+      {
+       "condition": "paralyzed",
+       "duration": {
+        "rounds": 10
+       },
+       "endsWith": "poisoned"
+      }
+     ],
+     "consumes": true,
+     "label": "Smear on a creature"
+    },
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 200,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "crossbow-bolt",
+   "label": "Crossbow bolt",
+   "summary": "Bolts to be used in a crossbow.",
+   "item": {
+    "category": "ammunition",
+    "rarity": "common",
+    "tags": [
+     "bolt",
+     "metal",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0.08
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "cp"
+    }
    }
   },
   {
@@ -1782,9 +2212,190 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "crossbow-hand",
+   "label": "Crossbow, hand",
+   "summary": "Martial ranged weapon. 1d6 piercing. Properties: Ammunition, Light, Loading. Range 30/120 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_named_weapons"
+      },
+      "sheetBonus": {
+       "listSum": {
+        "list": "features",
+        "column": "ranged_to_hit"
+       }
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "dex"
+      ],
+      "type": "piercing"
+     },
+     "range": {
+      "normal": 30,
+      "long": 120
+     },
+     "ammo": {
+      "tag": "bolt",
+      "recover": 0.5
+     }
+    },
+    "tags": [
+     "ammunition",
+     "light",
+     "loading",
+     "martial",
+     "mundane",
+     "ranged",
+     "sharp",
+     "wood"
+    ],
+    "stats": {
+     "weight": 3
+    },
+    "cost": {
+     "amount": 75,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "crossbow-heavy",
+   "label": "Crossbow, heavy",
+   "summary": "Martial ranged weapon. 1d10 piercing. Properties: Ammunition, Heavy, Loading, Two-Handed. Range 100/400 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      },
+      "sheetBonus": {
+       "listSum": {
+        "list": "features",
+        "column": "ranged_to_hit"
+       }
+      }
+     },
+     "damage": {
+      "dice": "1d10",
+      "abilities": [
+       "dex"
+      ],
+      "type": "piercing"
+     },
+     "range": {
+      "normal": 100,
+      "long": 400
+     },
+     "ammo": {
+      "tag": "bolt",
+      "recover": 0.5
+     }
+    },
+    "tags": [
+     "ammunition",
+     "heavy",
+     "loading",
+     "martial",
+     "mundane",
+     "ranged",
+     "sharp",
+     "two_handed",
+     "wood"
+    ],
+    "stats": {
+     "weight": 18
+    },
+    "cost": {
+     "amount": 50,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "crossbow-light",
+   "label": "Crossbow, light",
+   "summary": "Simple ranged weapon. 1d8 piercing. Properties: Ammunition, Loading, Two-Handed. Range 80/320 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      },
+      "sheetBonus": {
+       "listSum": {
+        "list": "features",
+        "column": "ranged_to_hit"
+       }
+      }
+     },
+     "damage": {
+      "dice": "1d8",
+      "abilities": [
+       "dex"
+      ],
+      "type": "piercing"
+     },
+     "range": {
+      "normal": 80,
+      "long": 320
+     },
+     "ammo": {
+      "tag": "bolt",
+      "recover": 0.5
+     }
+    },
+    "tags": [
+     "ammunition",
+     "loading",
+     "mundane",
+     "ranged",
+     "sharp",
+     "simple",
+     "two_handed",
+     "wood"
+    ],
+    "stats": {
+     "weight": 5
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -1797,9 +2408,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1812,9 +2420,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1827,9 +2432,74 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
+   }
+  },
+  {
+   "id": "dagger",
+   "label": "Dagger",
+   "summary": "Simple melee weapon. 1d4 piercing. Properties: Finesse, Light, Thrown. Range 20/60 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d4",
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "range": {
+      "normal": 20,
+      "long": 60
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     },
+     "offHand": true
+    },
+    "tags": [
+     "finesse",
+     "light",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp",
+     "simple",
+     "thrown"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -1842,9 +2512,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -1857,9 +2524,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -1872,9 +2536,67 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
+   }
+  },
+  {
+   "id": "dart",
+   "label": "Dart",
+   "summary": "Simple ranged weapon. 1d4 piercing. Properties: Finesse, Thrown. Range 20/60 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      },
+      "sheetBonus": {
+       "listSum": {
+        "list": "features",
+        "column": "ranged_to_hit"
+       }
+      }
+     },
+     "damage": {
+      "dice": "1d4",
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "type": "piercing"
+     },
+     "range": {
+      "normal": 20,
+      "long": 60
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "finesse",
+     "metal",
+     "mundane",
+     "ranged",
+     "sharp",
+     "simple",
+     "thrown"
+    ],
+    "stats": {
+     "weight": 0.25
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "cp"
+    }
    }
   },
   {
@@ -1887,9 +2609,6 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -1902,9 +2621,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -1917,9 +2633,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -1932,9 +2645,130 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "diamond-1000",
+   "label": "Diamond (1,000 gp)",
+   "summary": "A diamond worth 1,000 gp, as Clone and Resurrection need.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "diamond",
+     "gemstone",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 1000,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "diamond-300",
+   "label": "Diamond (300 gp)",
+   "summary": "A diamond worth 300 gp, as Revivify needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "diamond",
+     "gemstone",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 300,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "diamond-500",
+   "label": "Diamond (500 gp)",
+   "summary": "A diamond worth 500 gp, as Raise Dead needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "diamond",
+     "gemstone",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 500,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "diamond-5000",
+   "label": "Diamond (5,000 gp)",
+   "summary": "A diamond worth 5,000 gp, as Gate needs; five are a True Resurrection's.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "diamond",
+     "gemstone",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 5000,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "diamond-dust-100",
+   "label": "Diamond dust (100 gp)",
+   "summary": "Diamond dust worth 100 gp, as Greater Restoration and Stoneskin need.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "diamond_dust",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 100,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "diamond-dust-25",
+   "label": "Diamond dust (25 gp)",
+   "summary": "A pinch of diamond dust worth 25 gp, as Nondetection needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "diamond_dust",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -1947,9 +2781,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1962,9 +2793,6 @@
     "stats": {
      "weight": 39
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -1977,9 +2805,25 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "divinatory-tools-100",
+   "label": "Divinatory tools (100 gp)",
+   "summary": "Bones, ivory sticks, cards, teeth or carved runes worth 100 gp, as Find the Path needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 100,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -1992,9 +2836,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -2007,9 +2848,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2022,9 +2860,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2037,9 +2872,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "ERLW"
    }
   },
   {
@@ -2052,9 +2884,40 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "ERLW"
+   }
+  },
+  {
+   "id": "drow-poison",
+   "label": "Drow poison",
+   "summary": "This poison is typically made only by the drow, and only in a place far removed from sunlight. A creature subjected to this poison must succeed on a DC 13 Constitution saving throw or be poisoned for 1 hour.",
+   "item": {
+    "category": "poison",
+    "rarity": "common",
+    "use": {
+     "kind": "buff",
+     "budget": "action",
+     "range": 0,
+     "targets": "self",
+     "applies": [
+      {
+       "condition": "poison_drow",
+       "duration": "until-dispelled",
+       "endsAfter": "own-hit"
+      }
+     ],
+     "consumes": true,
+     "title": "Coat a weapon with drow poison"
+    },
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 200,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -2067,9 +2930,6 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2082,9 +2942,6 @@
     "stats": {
      "weight": 10
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2097,9 +2954,6 @@
     "stats": {
      "weight": 55
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2112,9 +2966,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2127,9 +2978,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "GGR"
    }
   },
   {
@@ -2142,9 +2990,6 @@
     "stats": {
      "weight": 0.02
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -2157,9 +3002,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2172,9 +3014,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "MTF"
    }
   },
   {
@@ -2187,9 +3026,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2202,9 +3038,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2217,9 +3050,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2232,9 +3062,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2247,9 +3074,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2262,9 +3086,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -2277,9 +3098,6 @@
     "stats": {
      "weight": 0.5
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2292,9 +3110,6 @@
     "stats": {
      "weight": 58.5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2307,9 +3122,56 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "essense-of-either",
+   "label": "Essence of ether",
+   "summary": "A creature subjected to this poison must succeed on a DC 15 Constitution saving throw or become poisoned for 8 hours. The poisoned creature is unconscious.",
+   "item": {
+    "category": "poison",
+    "rarity": "common",
+    "use": {
+     "kind": "debuff",
+     "budget": "action",
+     "range": 5,
+     "area": {
+      "shape": "box",
+      "size": 5
+     },
+     "targets": "enemy",
+     "save": {
+      "save": "con_save",
+      "onSuccess": "negates"
+     },
+     "saveDifficulty": 15,
+     "applies": [
+      {
+       "condition": "poisoned",
+       "duration": {
+        "rounds": 4800
+       }
+      },
+      {
+       "condition": "asleep",
+       "duration": {
+        "rounds": 4800
+       },
+       "endsWith": "poisoned"
+      }
+     ],
+     "consumes": true
+    },
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 300,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -2322,9 +3184,6 @@
     "stats": {
      "weight": 40
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2337,9 +3196,6 @@
     "stats": {
      "weight": 55
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2352,9 +3208,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
+   }
+  },
+  {
+   "id": "exquisite-chest-and-replica",
+   "label": "Exquisite chest and Tiny replica (5,050 gp)",
+   "summary": "A chest 3 feet by 2 feet by 2 feet of rare materials worth 5,000 gp and a Tiny replica of the same worth 50 gp, as Secret Chest needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 50
+    },
+    "cost": {
+     "amount": 5050,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -2367,9 +3239,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "eye-ointment-25",
+   "label": "Eye ointment (25 gp)",
+   "summary": "An ointment of mushroom powder, saffron and fat that costs 25 gp, as True Seeing uses up.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -2382,9 +3270,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2397,9 +3282,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "DSOTDQ"
    }
   },
   {
@@ -2412,9 +3294,6 @@
     "stats": {
      "weight": 10
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2427,9 +3306,6 @@
     "stats": {
      "weight": 6
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2442,9 +3318,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2457,9 +3330,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2472,9 +3342,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2487,9 +3354,6 @@
     "stats": {
      "weight": 0.2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2502,9 +3366,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2517,9 +3378,63 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "PHB"
+   }
+  },
+  {
+   "id": "flail",
+   "label": "Flail",
+   "summary": "Martial melee weapon. 1d8 bludgeoning.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d8",
+      "abilities": [
+       "str"
+      ],
+      "type": "bludgeoning",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "martial",
+     "melee",
+     "metal",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -2532,9 +3447,25 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "flask-or-tankard",
+   "label": "Flask or tankard",
+   "summary": "For drinking. Capacity: 1 pint liquid.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "cp"
+    }
    }
   },
   {
@@ -2547,9 +3478,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2562,9 +3490,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2577,9 +3502,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -2592,9 +3514,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -2607,9 +3526,25 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "forked-rod-250",
+   "label": "Forked metal rod (250 gp)",
+   "summary": "A forked metal rod worth 250 gp, attuned to one plane of existence, as Plane Shift needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 250,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -2622,9 +3557,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2637,9 +3569,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "ERLW"
    }
   },
   {
@@ -2652,9 +3581,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2667,9 +3593,6 @@
     "stats": {
      "weight": 6
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -2682,9 +3605,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2697,9 +3617,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SATO"
+   }
+  },
+  {
+   "id": "gem-encrusted-bowl-1000",
+   "label": "Gem-encrusted bowl (1,000 gp)",
+   "summary": "A gem-encrusted bowl worth 1,000 gp, as a Heroes' Feast uses up.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 1000,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -2712,9 +3648,6 @@
     "stats": {
      "weight": 6
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -2727,9 +3660,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "BGG"
    }
   },
   {
@@ -2742,9 +3672,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2757,9 +3684,67 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "glaive",
+   "label": "Glaive",
+   "summary": "Martial melee weapon. 1d10 slashing. Properties: Heavy, Reach, Two-Handed.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d10",
+      "abilities": [
+       "str"
+      ],
+      "type": "slashing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 10,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "heavy",
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "reach",
+     "sharp",
+     "two_handed"
+    ],
+    "stats": {
+     "weight": 6
+    },
+    "cost": {
+     "amount": 20,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -2772,9 +3757,25 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "glass-eye-100",
+   "label": "Glass eye (100 gp)",
+   "summary": "A glass eye worth 100 gp, a Clairvoyance's focus for seeing.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 100,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -2787,9 +3788,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -2802,9 +3800,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCAG"
    }
   },
   {
@@ -2817,9 +3812,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2832,9 +3824,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2847,9 +3836,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "GGR"
    }
   },
   {
@@ -2862,9 +3848,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2877,9 +3860,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2892,9 +3872,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2907,9 +3884,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2922,9 +3896,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2937,9 +3908,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "gold-dust-25",
+   "label": "Gold dust (25 gp)",
+   "summary": "Gold dust worth 25 gp, as Arcane Lock needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -2952,9 +3939,6 @@
     "stats": {
      "weight": 0.02
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -2967,9 +3951,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2982,9 +3963,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -2997,9 +3975,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3012,9 +3987,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3027,9 +3999,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3042,9 +4011,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3057,9 +4023,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "GGR"
    }
   },
   {
@@ -3072,9 +4035,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "BGG"
    }
   },
   {
@@ -3087,9 +4047,184 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "greataxe",
+   "label": "Greataxe",
+   "summary": "Martial melee weapon. 1d12 slashing. Properties: Heavy, Two-Handed.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d12",
+      "abilities": [
+       "str"
+      ],
+      "type": "slashing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "heavy",
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp",
+     "two_handed"
+    ],
+    "stats": {
+     "weight": 7
+    },
+    "cost": {
+     "amount": 30,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "greatclub",
+   "label": "Greatclub",
+   "summary": "Simple melee weapon. 1d8 bludgeoning. Properties: Two-Handed.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d8",
+      "abilities": [
+       "str"
+      ],
+      "type": "bludgeoning",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "melee",
+     "mundane",
+     "simple",
+     "two_handed",
+     "wood"
+    ],
+    "stats": {
+     "weight": 10
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "sp"
+    }
+   }
+  },
+  {
+   "id": "greatsword",
+   "label": "Greatsword",
+   "summary": "Martial melee weapon. 2d6 slashing. Properties: Heavy, Two-Handed.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "2d6",
+      "abilities": [
+       "str"
+      ],
+      "type": "slashing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "heavy",
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp",
+     "two_handed"
+    ],
+    "stats": {
+     "weight": 6
+    },
+    "cost": {
+     "amount": 50,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3102,9 +4237,6 @@
     "stats": {
      "weight": 7
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3117,9 +4249,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -3132,9 +4261,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -3147,9 +4273,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -3162,9 +4285,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -3177,9 +4297,6 @@
     "stats": {
      "weight": 20
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3192,9 +4309,113 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "halberd",
+   "label": "Halberd",
+   "summary": "Martial melee weapon. 1d10 slashing. Properties: Heavy, Reach, Two-Handed.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d10",
+      "abilities": [
+       "str"
+      ],
+      "type": "slashing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 10,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "heavy",
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "reach",
+     "sharp",
+     "two_handed"
+    ],
+    "stats": {
+     "weight": 6
+    },
+    "cost": {
+     "amount": 20,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "half-plate",
+   "label": "Half plate",
+   "summary": "Medium armor. Armor Class 15 + Dex modifier (max 2). Disadvantage on Stealth.",
+   "item": {
+    "category": "armor",
+    "rarity": "common",
+    "slots": {
+     "body": 1
+    },
+    "worn": {
+     "effects": [
+      "own-checks-disadvantage"
+     ],
+     "skills": [
+      "stealth"
+     ]
+    },
+    "requires": [
+     {
+      "value": {
+       "derived": "medium_armor_levels"
+      },
+      "atLeast": 1,
+      "otherwise": {
+       "keepsOn": [
+        "armor_untrained"
+       ]
+      }
+     }
+    ],
+    "tags": [
+     "medium_armor",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 40,
+     "ac_base": 15,
+     "dex_cap": 2
+    },
+    "cost": {
+     "amount": 750,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3207,9 +4428,6 @@
     "stats": {
      "weight": 40
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3222,9 +4440,25 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "PHB"
+   }
+  },
+  {
+   "id": "hammer-sledge",
+   "label": "Hammer, sledge",
+   "summary": "A sledgehammer",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 10
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3237,9 +4471,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -3252,9 +4483,71 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCAG"
+   }
+  },
+  {
+   "id": "handaxe",
+   "label": "Handaxe",
+   "summary": "Simple melee weapon. 1d6 slashing. Properties: Light, Thrown. Range 20/60 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "str"
+      ],
+      "type": "slashing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "range": {
+      "normal": 20,
+      "long": 60
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     },
+     "offHand": true
+    },
+    "tags": [
+     "light",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp",
+     "simple",
+     "thrown"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3267,9 +4560,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3282,9 +4572,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -3297,9 +4584,6 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3312,9 +4596,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3327,9 +4608,26 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "herbs-oils-and-incense-1000",
+   "label": "Herbs, oils and incense (1,000 gp)",
+   "summary": "Herbs, oils and incense worth 1,000 gp, as Hallow needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "incense",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 1000,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3342,9 +4640,6 @@
     "stats": {
      "weight": 12
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3357,9 +4652,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -3372,9 +4664,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -3387,9 +4676,54 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "holy-water-flask",
+   "label": "Holy Water (flask)",
+   "summary": "As an action, you can splash the contents of this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact.In either case, make a ranged attack against a target creature, treating the holy water as an improvised weapon.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "use": {
+     "kind": "attack",
+     "budget": "action",
+     "range": 20,
+     "attackRoll": true,
+     "toHit": {
+      "abilities": [
+       "dex"
+      ]
+     },
+     "amount": {
+      "flat": 0
+     },
+     "damageType": "radiant",
+     "plus": [
+      {
+       "dice": "2d6",
+       "type": "radiant",
+       "targetIs": {
+        "types": [
+         "fiend",
+         "undead"
+        ]
+       }
+      }
+     ],
+     "consumes": true,
+     "title": "Throw holy water"
+    },
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3402,9 +4736,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3417,9 +4748,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3432,9 +4760,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "VRGR"
    }
   },
   {
@@ -3447,9 +4772,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -3462,9 +4784,46 @@
     "stats": {
      "weight": 25
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "incense-250",
+   "label": "Incense (250 gp)",
+   "summary": "Incense worth 250 gp, as Legend Lore burns.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "incense",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 250,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "incense-and-offering-25",
+   "label": "Incense and offering (25 gp)",
+   "summary": "Incense and a sacrificial offering worth 25 gp, as Divination needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "incense",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3477,9 +4836,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -3492,9 +4848,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -3507,9 +4860,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ink-1-ounce-bottle",
+   "label": "Ink (1 ounce bottle)",
+   "summary": "A bottle of ink.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3522,9 +4891,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3537,9 +4903,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3552,9 +4915,6 @@
     "stats": {
      "weight": 10
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3567,9 +4927,6 @@
     "stats": {
      "weight": 0.5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3582,9 +4939,25 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ivory-statuette-1500",
+   "label": "Gem-decked ivory statuette (1,500 gp)",
+   "summary": "A statuette of its owner carved from ivory and decorated with gems, worth 1,500 gp, as Contingency needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 1500,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3597,9 +4970,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jacinth-and-silver-bar",
+   "label": "Jacinth and carved silver bar (1,100 gp)",
+   "summary": "A jacinth worth 1,000 gp and an ornately carved bar of silver worth 100 gp, one of each for every creature an Astral Projection takes.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 1100,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3612,9 +5001,45 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jade-circlet-1500",
+   "label": "Jade circlet (1,500 gp)",
+   "summary": "A jade circlet worth 1,500 gp, worn to cast Shapechange.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 1500,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "jade-dust-10",
+   "label": "Jade dust (10 gp)",
+   "summary": "Jade dust worth 10 gp, as Magic Mouth needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "jade_dust",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3627,9 +5052,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3642,9 +5064,69 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "javelin",
+   "label": "Javelin",
+   "summary": "Simple melee weapon. 1d6 piercing. Properties: Thrown. Range 30/120 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "str"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "range": {
+      "normal": 30,
+      "long": 120
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "melee",
+     "metal",
+     "mundane",
+     "sharp",
+     "simple",
+     "thrown"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -3657,9 +5139,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3672,9 +5151,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3687,9 +5163,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "jeweled-horn-100",
+   "label": "Jeweled horn (100 gp)",
+   "summary": "A jeweled horn worth 100 gp, a Clairvoyance's focus for hearing.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 100,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3702,9 +5194,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3717,9 +5206,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3732,9 +5218,25 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "jug-or-pitcher",
+   "label": "Jug or pitcher",
+   "summary": "For drinking a lot. Capacity: 1 gallon liquid.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "cp"
+    }
    }
   },
   {
@@ -3747,9 +5249,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3762,9 +5261,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "ERLW"
    }
   },
   {
@@ -3777,9 +5273,25 @@
     "stats": {
      "weight": 25
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ladder-10-foot",
+   "label": "Ladder (10-foot)",
+   "summary": "A 10 foot ladder.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 25
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -3792,9 +5304,80 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "lamp-oil-flask",
+   "label": "Lamp oil (flask)",
+   "summary": "Oil usually comes in a clay flask that holds 1 pint. As an action, you can splash the oil in this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. Make a ranged attack against a target creature or object, treating the oil as an improvised weapon.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "use": {
+     "kind": "attack",
+     "budget": "action",
+     "range": 20,
+     "attackRoll": true,
+     "toHit": {
+      "abilities": [
+       "dex"
+      ]
+     },
+     "amount": {
+      "flat": 0
+     },
+     "damageType": "bludgeoning",
+     "applies": [
+      {
+       "condition": "oiled",
+       "duration": {
+        "rounds": 10
+       }
+      }
+     ],
+     "consumes": true,
+     "label": "Throw",
+     "title": "Throw oil"
+    },
+    "moreUses": [
+     {
+      "label": "Pour and light",
+      "use": {
+       "kind": "attack",
+       "budget": "action",
+       "range": 5,
+       "area": {
+        "shape": "box",
+        "size": 5
+       },
+       "targetCount": 1,
+       "autoHit": true,
+       "amount": {
+        "flat": 5
+       },
+       "damageType": "fire",
+       "zone": {
+        "rounds": 2,
+        "triggers": [
+         "enter",
+         "turn-end"
+        ],
+        "atCast": false
+       },
+       "consumes": true
+      }
+     }
+    ],
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -3807,9 +5390,143 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
+   }
+  },
+  {
+   "id": "lance",
+   "label": "Lance",
+   "summary": "Martial melee weapon. 1d12 piercing. Properties: Reach, Special.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d12",
+      "abilities": [
+       "str"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 10,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "reach",
+     "sharp",
+     "special"
+    ],
+    "stats": {
+     "weight": 6
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "lantern-bullseye",
+   "label": "Lantern, Bullseye",
+   "summary": "A bullseye lantern casts bright light in a 60-­‐‑foot cone and dim light for an additional 60 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    },
+    "use": {
+     "kind": "utility",
+     "budget": "action",
+     "targets": "any",
+     "area": {
+      "shape": "cone",
+      "size": 120
+     },
+     "zone": {
+      "rounds": 1000,
+      "triggers": [],
+      "atCast": false,
+      "anchor": "caster",
+      "turn": {
+       "budget": "bonus"
+      },
+      "lights": {
+       "bright": 60,
+       "dim": 60
+      }
+     },
+     "title": "Aim the bullseye lantern"
+    }
+   }
+  },
+  {
+   "id": "lantern-hooded",
+   "label": "Lantern, Hooded",
+   "summary": "A hooded lantern casts bright light in a 30-­‐‑foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil. As an action, you can lower the hood, reducing the light to dim light in a 5-­‐‑foot radius.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    },
+    "carried": {
+     "light": {
+      "bright": 30,
+      "dim": 30
+     }
+    },
+    "toggle": {
+     "label": "Lantern",
+     "budget": "action",
+     "offLight": {
+      "bright": 0,
+      "dim": 5
+     },
+     "onLabel": "Raise the hood",
+     "offLabel": "Lower the hood"
+    }
    }
   },
   {
@@ -3822,9 +5539,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3837,9 +5551,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -3852,9 +5563,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
+   }
+  },
+  {
+   "id": "lead-based-ink-10",
+   "label": "Lead-based ink (10 gp)",
+   "summary": "Lead-based ink worth 10 gp, as Illusory Script uses up.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3867,9 +5594,6 @@
     "stats": {
      "weight": 10
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3882,9 +5606,70 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "light-hammer",
+   "label": "Light hammer",
+   "summary": "Simple melee weapon. 1d4 bludgeoning. Properties: Light, Thrown. Range 20/60 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d4",
+      "abilities": [
+       "str"
+      ],
+      "type": "bludgeoning",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "range": {
+      "normal": 20,
+      "long": 60
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     },
+     "offHand": true
+    },
+    "tags": [
+     "light",
+     "melee",
+     "metal",
+     "mundane",
+     "simple",
+     "thrown"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3897,9 +5682,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -3912,9 +5694,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -3927,9 +5706,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -3942,9 +5718,6 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -3957,9 +5730,77 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "longbow",
+   "label": "Longbow",
+   "summary": "Martial ranged weapon. 1d8 piercing. Properties: Ammunition, Heavy, Two-Handed. Range 150/600 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_longbow"
+      },
+      "sheetBonus": {
+       "listSum": {
+        "list": "features",
+        "column": "ranged_to_hit"
+       }
+      }
+     },
+     "damage": {
+      "dice": "1d8",
+      "abilities": [
+       "dex"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "itemStat": {
+        "stat": "archery_damage",
+        "from": "worn",
+        "pick": "max"
+       }
+      }
+     },
+     "range": {
+      "normal": 150,
+      "long": 600
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     },
+     "ammo": {
+      "tag": "arrow",
+      "recover": 0.5
+     }
+    },
+    "tags": [
+     "ammunition",
+     "heavy",
+     "martial",
+     "mundane",
+     "ranged",
+     "sharp",
+     "two_handed",
+     "wood"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 50,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -3972,9 +5813,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCAG"
    }
   },
   {
@@ -3987,9 +5825,68 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "longsword",
+   "label": "Longsword",
+   "summary": "Martial melee weapon. 1d8 slashing. Properties: Versatile. Versatile: 1d10 in two hands.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_named_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d8",
+      "abilities": [
+       "str"
+      ],
+      "type": "slashing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "versatile": {
+      "dice": "1d10"
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp",
+     "versatile"
+    ],
+    "stats": {
+     "weight": 3
+    },
+    "cost": {
+     "amount": 15,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4002,9 +5899,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -4017,9 +5911,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCC"
    }
   },
   {
@@ -4032,9 +5923,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4047,9 +5935,63 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "mace",
+   "label": "Mace",
+   "summary": "Simple melee weapon. 1d6 bludgeoning.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "str"
+      ],
+      "type": "bludgeoning",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "melee",
+     "metal",
+     "mundane",
+     "simple"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4062,9 +6004,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -4077,9 +6016,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -4092,9 +6028,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4107,9 +6040,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4122,9 +6052,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4137,9 +6064,25 @@
     "stats": {
      "weight": 6
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "mansion-miniatures-15",
+   "label": "Ivory portal, marble and silver spoon (15 gp)",
+   "summary": "A miniature portal carved from ivory, a small piece of polished marble and a tiny silver spoon, each worth 5 gp, as Magnificent Mansion needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 15,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4152,9 +6095,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4167,9 +6107,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4182,9 +6119,6 @@
     "stats": {
      "weight": 8
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4197,9 +6131,65 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "maul",
+   "label": "Maul",
+   "summary": "Martial melee weapon. 2d6 bludgeoning. Properties: Heavy, Two-Handed.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "2d6",
+      "abilities": [
+       "str"
+      ],
+      "type": "bludgeoning",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "heavy",
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "two_handed"
+    ],
+    "stats": {
+     "weight": 10
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4212,9 +6202,6 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -4227,9 +6214,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -4242,9 +6226,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4257,9 +6238,6 @@
     "stats": {
      "weight": 30
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4272,9 +6250,6 @@
     "stats": {
      "weight": 10
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -4287,9 +6262,25 @@
     "stats": {
      "weight": 0.5
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "mirror-steel",
+   "label": "Mirror, steel",
+   "summary": "A mirror.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0.5
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4302,9 +6293,6 @@
     "stats": {
      "weight": 0.1
     }
-   },
-   "filters": {
-    "source": "DMG"
    }
   },
   {
@@ -4317,9 +6305,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "DMG"
    }
   },
   {
@@ -4332,9 +6317,6 @@
     "stats": {
      "weight": 6
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -4347,9 +6329,6 @@
     "stats": {
      "weight": 48.5
     }
-   },
-   "filters": {
-    "source": "VRGR"
    }
   },
   {
@@ -4362,9 +6341,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4377,9 +6353,64 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
+   }
+  },
+  {
+   "id": "morningstar",
+   "label": "Morningstar",
+   "summary": "Martial melee weapon. 1d8 piercing.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d8",
+      "abilities": [
+       "str"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 15,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4392,9 +6423,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4407,9 +6435,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "ERLW"
    }
   },
   {
@@ -4422,9 +6447,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4437,9 +6459,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -4452,9 +6471,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "DSOTDQ"
    }
   },
   {
@@ -4467,9 +6483,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -4482,9 +6495,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4497,9 +6507,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4512,9 +6519,6 @@
     "stats": {
      "weight": 0.02
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4527,9 +6531,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4542,9 +6543,6 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4557,9 +6555,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -4572,9 +6567,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4587,9 +6579,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4602,9 +6591,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4617,9 +6603,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4632,9 +6615,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4647,9 +6627,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -4662,9 +6639,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4677,9 +6651,26 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "opal-dust-100",
+   "label": "Opal dust (100 gp)",
+   "summary": "Opal dust worth 100 gp, which a Symbol mixes with powdered diamond.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane",
+     "opal_dust"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 100,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4692,9 +6683,6 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4707,9 +6695,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -4722,9 +6707,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4737,9 +6719,6 @@
     "stats": {
      "weight": 15
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -4752,9 +6731,6 @@
     "stats": {
      "weight": 8
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4767,9 +6743,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4782,9 +6755,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4797,9 +6767,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4812,9 +6779,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4827,9 +6791,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -4842,9 +6803,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "paper-one-sheet",
+   "label": "Paper (one sheet)",
+   "summary": "A sheet of paper",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -4857,9 +6834,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "parchment-one-sheet",
+   "label": "Parchment (one sheet)",
+   "summary": "A sheet of parchment",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -4872,9 +6865,26 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "pearl-100",
+   "label": "Pearl (100 gp)",
+   "summary": "A pearl worth 100 gp, as Identify needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "gemstone",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 100,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4887,9 +6897,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -4902,9 +6909,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "perfume-vial",
+   "label": "Perfume (vial)",
+   "summary": "A vial of perfume.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4917,9 +6940,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "pick-miners",
+   "label": "Pick, miner's",
+   "summary": "A pick for mining.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 10
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4932,9 +6971,67 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "pike",
+   "label": "Pike",
+   "summary": "Martial melee weapon. 1d10 piercing. Properties: Heavy, Reach, Two-Handed.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d10",
+      "abilities": [
+       "str"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 10,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "heavy",
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "reach",
+     "sharp",
+     "two_handed"
+    ],
+    "stats": {
+     "weight": 18
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -4947,9 +7044,6 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -4962,9 +7056,6 @@
     "stats": {
      "weight": 0.25
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -4977,9 +7068,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SATO"
    }
   },
   {
@@ -4992,9 +7080,6 @@
     "stats": {
      "weight": 65
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5007,9 +7092,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5022,9 +7104,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "GGR"
    }
   },
   {
@@ -5037,9 +7116,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "GGR"
    }
   },
   {
@@ -5052,9 +7128,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5067,9 +7140,63 @@
     "stats": {
      "weight": 0.02
     }
-   },
-   "filters": {
-    "source": "PHB"
+   }
+  },
+  {
+   "id": "platinum-rings-100",
+   "label": "Platinum rings, a pair (100 gp)",
+   "summary": "A pair of platinum rings worth 50 gp each, worn by the caster and the target of a Warding Bond.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 100,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "platinum-sword-250",
+   "label": "Miniature platinum sword (250 gp)",
+   "summary": "A miniature platinum sword with a grip and pommel of copper and zinc, worth 250 gp, as Arcane Sword needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 250,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "playing-card-set",
+   "label": "Playing card set",
+   "summary": "This item encompasses a wide range of game pieces, including dice and decks of cards (for games such as Three-­‐‑Dragon Ante). A few common examples appear on the Tools table, but other kinds of gaming sets exist.",
+   "item": {
+    "category": "tool",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -5082,9 +7209,41 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "poison-basic",
+   "label": "Poison, Basic",
+   "summary": "You can use the poison in this vial to coat one slashing or piercing weapon or up to three pieces of ammunition. Applying the poison takes an action. A creature hit by the poisoned weapon or ammunition must make a DC 10 Constitution saving throw or take 1d4 poison damage.",
+   "item": {
+    "category": "poison",
+    "rarity": "common",
+    "use": {
+     "kind": "buff",
+     "budget": "action",
+     "range": 0,
+     "targets": "self",
+     "applies": [
+      {
+       "condition": "poison_basic",
+       "duration": {
+        "rounds": 10
+       }
+      }
+     ],
+     "consumes": true,
+     "title": "Coat a weapon with poison"
+    },
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 100,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5097,9 +7256,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5112,9 +7268,25 @@
     "stats": {
      "weight": 7
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "pole-10-foot",
+   "label": "Pole (10-foot)",
+   "summary": "A 10 foot pole.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 7
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "cp"
+    }
    }
   },
   {
@@ -5127,9 +7299,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5142,9 +7311,25 @@
     "stats": {
      "weight": 35
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "pot-iron",
+   "label": "Pot, iron",
+   "summary": "An iron pot. Capacity: 1 gallon liquid.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 10
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5157,9 +7342,6 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5172,9 +7354,25 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "powdered-silver-and-iron-100",
+   "label": "Powdered silver and iron (100 gp)",
+   "summary": "Powdered silver and iron worth 100 gp, as Magic Circle uses up.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 100,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5187,9 +7385,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -5202,9 +7397,6 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -5217,9 +7409,6 @@
     "stats": {
      "weight": 29
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5232,9 +7421,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCC"
    }
   },
   {
@@ -5247,9 +7433,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -5262,9 +7445,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5277,9 +7457,67 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCC"
+   }
+  },
+  {
+   "id": "quarterstaff",
+   "label": "Quarterstaff",
+   "summary": "Simple melee weapon. 1d6 bludgeoning. Properties: Versatile. Versatile: 1d8 in two hands.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "str"
+      ],
+      "type": "bludgeoning",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "versatile": {
+      "dice": "1d8"
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "melee",
+     "mundane",
+     "simple",
+     "versatile",
+     "wood"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -5292,9 +7530,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5307,9 +7542,124 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "ram-portable",
+   "label": "Ram, Portable",
+   "summary": "You can use a portable ram to break down doors. When doing so, you gain a +4 bonus on the Strength check. One other character can help you use the ram, giving you advantage on this check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 35
+    },
+    "cost": {
+     "amount": 4,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "rapier",
+   "label": "Rapier",
+   "summary": "Martial melee weapon. 1d8 piercing. Properties: Finesse.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_named_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d8",
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "finesse",
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "rare-chalks-and-inks-50",
+   "label": "Rare chalks and inks (50 gp)",
+   "summary": "Rare chalks and inks infused with precious gems, worth 50 gp, as a Teleportation Circle uses up.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 50,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "rare-oils-and-unguents-1000",
+   "label": "Rare oils and unguents (1,000 gp)",
+   "summary": "Rare oils and unguents worth 1,000 gp, as Reincarnate uses up.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 1000,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5322,9 +7672,25 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "rations-1-day",
+   "label": "Rations (1 day)",
+   "summary": "Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, and nuts.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -5337,9 +7703,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -5352,9 +7715,25 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "reliquary-1000",
+   "label": "Tiny reliquary (1,000 gp)",
+   "summary": "A tiny reliquary worth 1,000 gp holding a sacred relic, as Holy Aura needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 1
+    },
+    "cost": {
+     "amount": 1000,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5367,9 +7746,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5382,9 +7758,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5397,9 +7770,6 @@
     "stats": {
      "weight": 25
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5412,9 +7782,6 @@
     "stats": {
      "weight": 40
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5427,9 +7794,25 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "robes",
+   "label": "Robes",
+   "summary": "Robes, for wearing.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5442,9 +7825,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5457,9 +7837,44 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "rope-hempen-50-feet",
+   "label": "Rope, hempen (50 feet)",
+   "summary": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 10
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "rope-silk-50-feet",
+   "label": "Rope, silk (50 feet)",
+   "summary": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 5
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5472,9 +7887,6 @@
     "stats": {
      "weight": 100
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5487,9 +7899,46 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "ruby-dust-50",
+   "label": "Ruby dust (50 gp)",
+   "summary": "Ruby dust worth 50 gp, as Continual Flame needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane",
+     "ruby_dust"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 50,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "ruby-dust-500",
+   "label": "Ruby dust (500 gp)",
+   "summary": "Ruby dust worth 500 gp: Forbiddance needs two, Forcecage and Simulacrum three.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane",
+     "ruby_dust"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 500,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5502,9 +7951,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -5517,9 +7963,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -5532,9 +7975,6 @@
     "stats": {
      "weight": 0.5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5547,9 +7987,6 @@
     "stats": {
      "weight": 8
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -5562,9 +7999,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5577,9 +8011,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5592,9 +8023,26 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "sapphire-1000",
+   "label": "Sapphire (1,000 gp)",
+   "summary": "A sapphire worth 1,000 gp, as Instant Summons needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "gemstone",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 1000,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5607,9 +8055,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5622,9 +8067,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "ERLW"
    }
   },
   {
@@ -5637,9 +8079,25 @@
     "stats": {
      "weight": 45
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "scale-merchants",
+   "label": "Scale, Merchant's",
+   "summary": "A scale includes a small balance, pans, and a suitable assortment of weights up to 2 pounds. With it, you can measure the exact weight of small objects, such as raw precious metals or trade goods, to help determine their worth.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 3
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5652,9 +8110,69 @@
     "stats": {
      "weight": 22
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "scimitar",
+   "label": "Scimitar",
+   "summary": "Martial melee weapon. 1d6 slashing. Properties: Finesse, Light.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_scimitar"
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "type": "slashing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     },
+     "offHand": true
+    },
+    "tags": [
+     "finesse",
+     "light",
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp"
+    ],
+    "stats": {
+     "weight": 3
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5667,9 +8185,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -5682,9 +8197,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -5697,9 +8209,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "BMT"
+   }
+  },
+  {
+   "id": "sequester-powder-5000",
+   "label": "Diamond, emerald, ruby and sapphire dust (5,000 gp)",
+   "summary": "A powder of diamond, emerald, ruby and sapphire dust worth 5,000 gp, as Sequester uses up.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 5000,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5712,9 +8240,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5727,9 +8252,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5742,9 +8264,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5757,9 +8276,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5772,9 +8288,139 @@
     "stats": {
      "weight": 6
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "shortbow",
+   "label": "Shortbow",
+   "summary": "Simple ranged weapon. 1d6 piercing. Properties: Ammunition, Two-Handed. Range 80/320 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 2
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_shortbow"
+      },
+      "sheetBonus": {
+       "listSum": {
+        "list": "features",
+        "column": "ranged_to_hit"
+       }
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "dex"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "itemStat": {
+        "stat": "archery_damage",
+        "from": "worn",
+        "pick": "max"
+       }
+      }
+     },
+     "range": {
+      "normal": 80,
+      "long": 320
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     },
+     "ammo": {
+      "tag": "arrow",
+      "recover": 0.5
+     }
+    },
+    "tags": [
+     "ammunition",
+     "mundane",
+     "ranged",
+     "sharp",
+     "simple",
+     "two_handed",
+     "wood"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 25,
+     "unit": "gp"
+    }
+   }
+  },
+  {
+   "id": "shortsword",
+   "label": "Shortsword",
+   "summary": "Martial melee weapon. 1d6 piercing. Properties: Finesse, Light.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_shortsword"
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     },
+     "offHand": true
+    },
+    "tags": [
+     "finesse",
+     "light",
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5787,9 +8433,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5802,9 +8445,66 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
+   }
+  },
+  {
+   "id": "sickle",
+   "label": "Sickle",
+   "summary": "Simple melee weapon. 1d4 slashing. Properties: Light.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d4",
+      "abilities": [
+       "str"
+      ],
+      "type": "slashing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     },
+     "offHand": true
+    },
+    "tags": [
+     "light",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp",
+     "simple"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -5817,9 +8517,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -5832,9 +8529,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -5847,9 +8541,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5862,9 +8553,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -5877,9 +8565,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5892,9 +8577,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -5907,9 +8589,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -5922,9 +8601,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5937,9 +8613,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "GGR"
    }
   },
   {
@@ -5952,9 +8625,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5967,9 +8637,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5982,9 +8649,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -5997,9 +8661,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6012,9 +8673,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silver-mirror-1000",
+   "label": "Silver scrying mirror (1,000 gp)",
+   "summary": "A silver mirror worth 1,000 gp, a Scrying's focus.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 1000,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -6027,9 +8704,25 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
+   }
+  },
+  {
+   "id": "silver-rod-10",
+   "label": "Small silver rod (10 gp)",
+   "summary": "A small silver rod worth 10 gp, as Guards and Wards needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 10,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -6042,9 +8735,6 @@
     "stats": {
      "weight": 0.02
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -6057,9 +8747,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCC"
    }
   },
   {
@@ -6072,9 +8759,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -6087,9 +8771,6 @@
     "stats": {
      "weight": 300
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6102,9 +8783,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -6117,9 +8795,66 @@
     "stats": {
      "weight": 10
     }
-   },
-   "filters": {
-    "source": "PHB"
+   }
+  },
+  {
+   "id": "sling",
+   "label": "Sling",
+   "summary": "Simple ranged weapon. 1d4 bludgeoning. Properties: Ammunition. Range 30/120 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      },
+      "sheetBonus": {
+       "listSum": {
+        "list": "features",
+        "column": "ranged_to_hit"
+       }
+      }
+     },
+     "damage": {
+      "dice": "1d4",
+      "abilities": [
+       "dex"
+      ],
+      "type": "bludgeoning"
+     },
+     "range": {
+      "normal": 30,
+      "long": 120
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     },
+     "ammo": {
+      "tag": "bullet",
+      "recover": 0.5
+     }
+    },
+    "tags": [
+     "ammunition",
+     "mundane",
+     "ranged",
+     "simple"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -6132,9 +8867,27 @@
     "stats": {
      "weight": 0.075
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "sling-bullets",
+   "label": "Sling bullets",
+   "summary": "Technically their cost is 20 for 4cp.",
+   "item": {
+    "category": "ammunition",
+    "rarity": "common",
+    "tags": [
+     "bullet",
+     "metal",
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0.075
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "cp"
+    }
    }
   },
   {
@@ -6147,9 +8900,25 @@
     "stats": {
      "weight": 1.5
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "small-replica-5",
+   "label": "Small replica of yourself (5 gp)",
+   "summary": "A small replica of its owner made from materials worth 5 gp, as Project Image needs.",
+   "item": {
+    "category": "material",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -6162,9 +8931,6 @@
     "stats": {
      "weight": 8
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6177,9 +8943,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6192,9 +8955,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -6207,9 +8967,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCAG"
    }
   },
   {
@@ -6222,9 +8979,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -6237,9 +8991,73 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
+   }
+  },
+  {
+   "id": "spear",
+   "label": "Spear",
+   "summary": "Simple melee weapon. 1d6 piercing. Properties: Thrown, Versatile. Versatile: 1d8 in two hands. Range 20/60 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "str"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "range": {
+      "normal": 20,
+      "long": 60
+     },
+     "versatile": {
+      "dice": "1d8"
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "melee",
+     "metal",
+     "mundane",
+     "sharp",
+     "simple",
+     "thrown",
+     "versatile"
+    ],
+    "stats": {
+     "weight": 3
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -6252,9 +9070,25 @@
     "stats": {
      "weight": 3
     }
-   },
-   "filters": {
-    "source": "PHB"
+   }
+  },
+  {
+   "id": "spike-iron",
+   "label": "Spike, iron",
+   "summary": "An iron spike.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "tags": [
+     "mundane"
+    ],
+    "stats": {
+     "weight": 0.5
+    },
+    "cost": {
+     "amount": 1,
+     "unit": "sp"
+    }
    }
   },
   {
@@ -6267,9 +9101,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6282,9 +9113,6 @@
     "stats": {
      "weight": 60
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6297,9 +9125,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6312,9 +9137,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6327,9 +9149,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -6342,9 +9161,68 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "staff",
+   "label": "Staff",
+   "summary": "Simple melee weapon. 1d6 bludgeoning. Properties: Versatile. Versatile: 1d8 in two hands.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "str"
+      ],
+      "type": "bludgeoning",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "versatile": {
+      "dice": "1d8"
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "arcane_focus",
+     "melee",
+     "mundane",
+     "simple",
+     "versatile",
+     "wood"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -6357,9 +9235,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -6372,9 +9247,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6387,9 +9259,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6402,9 +9271,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6417,9 +9283,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -6432,9 +9295,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -6447,9 +9307,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6462,9 +9319,6 @@
     "stats": {
      "weight": 13
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6477,9 +9331,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -6492,9 +9343,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCAG"
    }
   },
   {
@@ -6507,9 +9355,6 @@
     "stats": {
      "weight": 20
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6522,9 +9367,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -6537,9 +9379,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -6552,9 +9391,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -6567,9 +9403,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCAG"
    }
   },
   {
@@ -6582,9 +9415,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6597,9 +9427,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6612,9 +9439,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6627,9 +9451,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6642,9 +9463,6 @@
     "stats": {
      "weight": 10
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6657,9 +9475,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCAG"
    }
   },
   {
@@ -6672,9 +9487,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6687,9 +9499,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6702,9 +9511,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6717,9 +9523,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "PHB"
    }
   },
   {
@@ -6732,9 +9535,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6747,9 +9547,73 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "trident",
+   "label": "Trident",
+   "summary": "Martial melee weapon. 1d6 piercing. Properties: Thrown, Versatile. Versatile: 1d8 in two hands. Range 20/60 feet.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "str"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "range": {
+      "normal": 20,
+      "long": 60
+     },
+     "versatile": {
+      "dice": "1d8"
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp",
+     "thrown",
+     "versatile"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -6762,9 +9626,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6777,9 +9638,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6792,9 +9650,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -6807,9 +9662,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -6822,9 +9674,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -6837,9 +9686,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -6852,9 +9698,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -6867,9 +9710,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6882,9 +9722,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6897,9 +9734,6 @@
     "stats": {
      "weight": 400
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6912,9 +9746,64 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "war-pick",
+   "label": "War pick",
+   "summary": "Martial melee weapon. 1d8 piercing.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d8",
+      "abilities": [
+       "str"
+      ],
+      "type": "piercing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "sharp"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -6927,9 +9816,67 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCAG"
+   }
+  },
+  {
+   "id": "warhammer",
+   "label": "Warhammer",
+   "summary": "Martial melee weapon. 1d8 bludgeoning. Properties: Versatile. Versatile: 1d10 in two hands.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d8",
+      "abilities": [
+       "str"
+      ],
+      "type": "bludgeoning",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "versatile": {
+      "dice": "1d10"
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "martial",
+     "melee",
+     "metal",
+     "mundane",
+     "versatile"
+    ],
+    "stats": {
+     "weight": 2
+    },
+    "cost": {
+     "amount": 15,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -6942,9 +9889,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6957,9 +9901,6 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -6972,9 +9913,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -6987,9 +9925,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "AAG"
    }
   },
   {
@@ -7002,9 +9937,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -7017,9 +9949,6 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -7032,9 +9961,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -7047,9 +9973,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -7062,9 +9985,67 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "PHB"
+   }
+  },
+  {
+   "id": "whip",
+   "label": "Whip",
+   "summary": "Martial melee weapon. 1d4 slashing. Properties: Finesse, Reach.",
+   "item": {
+    "category": "weapon",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "proficiency": {
+       "derived": "prof_martial_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d4",
+      "abilities": [
+       "str",
+       "dex"
+      ],
+      "type": "slashing",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 10,
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "finesse",
+     "martial",
+     "melee",
+     "mundane",
+     "reach",
+     "sharp"
+    ],
+    "stats": {
+     "weight": 3
+    },
+    "cost": {
+     "amount": 2,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -7077,9 +10058,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -7092,9 +10070,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -7107,9 +10082,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -7122,9 +10094,6 @@
     "stats": {
      "weight": 4
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -7137,9 +10106,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCC"
    }
   },
   {
@@ -7152,9 +10118,68 @@
     "stats": {
      "weight": 5
     }
-   },
-   "filters": {
-    "source": "XPHB"
+   }
+  },
+  {
+   "id": "wooden-staff",
+   "label": "Wooden staff",
+   "summary": "Simple melee weapon. 1d6 bludgeoning. Properties: Versatile. Versatile: 1d8 in two hands.",
+   "item": {
+    "category": "gear",
+    "rarity": "common",
+    "slots": {
+     "hands": 1
+    },
+    "attack": {
+     "budget": "action",
+     "toHit": {
+      "abilities": [
+       "str"
+      ],
+      "proficiency": {
+       "derived": "prof_simple_weapons"
+      }
+     },
+     "damage": {
+      "dice": "1d6",
+      "abilities": [
+       "str"
+      ],
+      "type": "bludgeoning",
+      "sheetBonus": {
+       "derived": "dueling"
+      },
+      "oneHanded": true,
+      "rerollUpTo": {
+       "listSum": {
+        "list": "features",
+        "column": "reroll_two_handed"
+       }
+      }
+     },
+     "reach": 5,
+     "versatile": {
+      "dice": "1d8"
+     },
+     "strikes": {
+      "derived": "attacks_per_action_total"
+     }
+    },
+    "tags": [
+     "druidic_focus",
+     "melee",
+     "mundane",
+     "simple",
+     "versatile",
+     "wood"
+    ],
+    "stats": {
+     "weight": 4
+    },
+    "cost": {
+     "amount": 5,
+     "unit": "gp"
+    }
    }
   },
   {
@@ -7167,9 +10192,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -7182,9 +10204,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "EGW"
    }
   },
   {
@@ -7197,9 +10216,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -7212,9 +10228,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "ERLW"
    }
   },
   {
@@ -7227,9 +10240,6 @@
     "stats": {
      "weight": 2
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -7242,9 +10252,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -7257,9 +10264,6 @@
     "stats": {
      "weight": 1
     }
-   },
-   "filters": {
-    "source": "XPHB"
    }
   },
   {
@@ -7272,9 +10276,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "FRHOF"
    }
   },
   {
@@ -7287,9 +10288,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "XDMG"
    }
   },
   {
@@ -7302,9 +10300,6 @@
     "stats": {
      "weight": 0
     }
-   },
-   "filters": {
-    "source": "SCAG"
    }
   }
  ]

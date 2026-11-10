@@ -17,8 +17,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Aarakocra"
+    ]
    }
   },
   {
@@ -36,8 +37,9 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
-    "size": "s"
+    "race": [
+     "Aasimar"
+    ]
    }
   },
   {
@@ -55,8 +57,9 @@
     }
    ],
    "filters": {
-    "source": "AAG",
-    "size": "m"
+    "race": [
+     "Astral Elf"
+    ]
    }
   },
   {
@@ -74,8 +77,9 @@
     }
    ],
    "filters": {
-    "source": "AAG",
-    "size": "s"
+    "race": [
+     "Autognome"
+    ]
    }
   },
   {
@@ -93,8 +97,9 @@
     }
    ],
    "filters": {
-    "source": "ERLW",
-    "size": "m"
+    "race": [
+     "Bugbear"
+    ]
    }
   },
   {
@@ -112,8 +117,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Bullywug"
+    ]
    }
   },
   {
@@ -131,8 +137,9 @@
     }
    ],
    "filters": {
-    "source": "GGR",
-    "size": "m"
+    "race": [
+     "Centaur"
+    ]
    }
   },
   {
@@ -150,8 +157,9 @@
     }
    ],
    "filters": {
-    "source": "EFA",
-    "size": "s"
+    "race": [
+     "Changeling"
+    ]
    }
   },
   {
@@ -169,8 +177,9 @@
     }
    ],
    "filters": {
-    "source": "TCE",
-    "size": "s"
+    "race": [
+     "Custom Lineage"
+    ]
    }
   },
   {
@@ -188,8 +197,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "s"
+    "race": [
+     "Deep Gnome"
+    ]
    }
   },
   {
@@ -207,8 +217,9 @@
     }
    ],
    "filters": {
-    "source": "VRGR",
-    "size": "s"
+    "race": [
+     "Dhampir"
+    ]
    }
   },
   {
@@ -226,8 +237,9 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
-    "size": "m"
+    "race": [
+     "Dragonborn"
+    ]
    }
   },
   {
@@ -245,8 +257,9 @@
     }
    ],
    "filters": {
-    "source": "FTD",
-    "size": "m"
+    "race": [
+     "Dragonborn (Gem)"
+    ]
    }
   },
   {
@@ -264,8 +277,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "m"
+    "race": [
+     "Duergar"
+    ]
    }
   },
   {
@@ -283,8 +297,9 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
-    "size": "m"
+    "race": [
+     "Dwarf"
+    ]
    }
   },
   {
@@ -302,8 +317,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "m"
+    "race": [
+     "Eladrin"
+    ]
    }
   },
   {
@@ -321,8 +337,9 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
-    "size": "m"
+    "race": [
+     "Elf"
+    ]
    }
   },
   {
@@ -340,8 +357,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "s"
+    "race": [
+     "Fairy"
+    ]
    }
   },
   {
@@ -359,8 +377,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "m"
+    "race": [
+     "Firbolg"
+    ]
    }
   },
   {
@@ -378,8 +397,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "s"
+    "race": [
+     "Genasi"
+    ]
    }
   },
   {
@@ -397,8 +417,9 @@
     }
    ],
    "filters": {
-    "source": "AAG",
-    "size": "m"
+    "race": [
+     "Giff"
+    ]
    }
   },
   {
@@ -416,8 +437,9 @@
     }
    ],
    "filters": {
-    "source": "MTF",
-    "size": "m"
+    "race": [
+     "Gith"
+    ]
    }
   },
   {
@@ -435,8 +457,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "m"
+    "race": [
+     "Githyanki"
+    ]
    }
   },
   {
@@ -454,8 +477,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "m"
+    "race": [
+     "Githzerai"
+    ]
    }
   },
   {
@@ -473,8 +497,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Gnoll"
+    ]
    }
   },
   {
@@ -492,8 +517,9 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
-    "size": "s"
+    "race": [
+     "Gnome"
+    ]
    }
   },
   {
@@ -511,8 +537,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "s"
+    "race": [
+     "Gnome (Deep)"
+    ]
    }
   },
   {
@@ -530,8 +557,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "s"
+    "race": [
+     "Goblin"
+    ]
    }
   },
   {
@@ -549,8 +577,9 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
-    "size": "m"
+    "race": [
+     "Goliath"
+    ]
    }
   },
   {
@@ -568,8 +597,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Grimlock"
+    ]
    }
   },
   {
@@ -587,8 +617,9 @@
     }
    ],
    "filters": {
-    "source": "AAG",
-    "size": "s"
+    "race": [
+     "Hadozee"
+    ]
    }
   },
   {
@@ -606,8 +637,9 @@
     }
    ],
    "filters": {
-    "source": "PHB",
-    "size": "m"
+    "race": [
+     "Half-Elf"
+    ]
    }
   },
   {
@@ -625,8 +657,9 @@
     }
    ],
    "filters": {
-    "source": "PHB",
-    "size": "m"
+    "race": [
+     "Half-Orc"
+    ]
    }
   },
   {
@@ -644,8 +677,9 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
-    "size": "s"
+    "race": [
+     "Halfling"
+    ]
    }
   },
   {
@@ -663,8 +697,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "s"
+    "race": [
+     "Harengon"
+    ]
    }
   },
   {
@@ -682,8 +717,9 @@
     }
    ],
    "filters": {
-    "source": "VRGR",
-    "size": "s"
+    "race": [
+     "Hexblood"
+    ]
    }
   },
   {
@@ -701,8 +737,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Hobgoblin"
+    ]
    }
   },
   {
@@ -720,8 +757,9 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
-    "size": "s"
+    "race": [
+     "Human"
+    ]
    }
   },
   {
@@ -739,8 +777,9 @@
     }
    ],
    "filters": {
-    "source": "EFA",
-    "size": "m"
+    "race": [
+     "Kalashtar"
+    ]
    }
   },
   {
@@ -758,8 +797,9 @@
     }
    ],
    "filters": {
-    "source": "DSOTDQ",
-    "size": "s"
+    "race": [
+     "Kender"
+    ]
    }
   },
   {
@@ -777,8 +817,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Kenku"
+    ]
    }
   },
   {
@@ -796,8 +837,9 @@
     }
    ],
    "filters": {
-    "source": "EFA",
-    "size": "s"
+    "race": [
+     "Khoravar"
+    ]
    }
   },
   {
@@ -815,8 +857,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "s"
+    "race": [
+     "Kobold"
+    ]
    }
   },
   {
@@ -834,8 +877,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Kuo-Toa"
+    ]
    }
   },
   {
@@ -853,8 +897,9 @@
     }
    ],
    "filters": {
-    "source": "MOT",
-    "size": "m"
+    "race": [
+     "Leonin"
+    ]
    }
   },
   {
@@ -872,8 +917,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Lizardfolk"
+    ]
    }
   },
   {
@@ -891,8 +937,9 @@
     }
    ],
    "filters": {
-    "source": "GGR",
-    "size": "m"
+    "race": [
+     "Loxodon"
+    ]
    }
   },
   {
@@ -910,8 +957,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Merfolk"
+    ]
    }
   },
   {
@@ -929,8 +977,9 @@
     }
    ],
    "filters": {
-    "source": "GGR",
-    "size": "m"
+    "race": [
+     "Minotaur"
+    ]
    }
   },
   {
@@ -948,8 +997,9 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
-    "size": "m"
+    "race": [
+     "Orc"
+    ]
    }
   },
   {
@@ -967,8 +1017,9 @@
     }
    ],
    "filters": {
-    "source": "SCC",
-    "size": "s"
+    "race": [
+     "Owlin"
+    ]
    }
   },
   {
@@ -986,8 +1037,9 @@
     }
    ],
    "filters": {
-    "source": "AAG",
-    "size": "s"
+    "race": [
+     "Plasmoid"
+    ]
    }
   },
   {
@@ -1005,8 +1057,9 @@
     }
    ],
    "filters": {
-    "source": "VRGR",
-    "size": "s"
+    "race": [
+     "Reborn"
+    ]
    }
   },
   {
@@ -1024,8 +1077,9 @@
     }
    ],
    "filters": {
-    "source": "MOT",
-    "size": "m"
+    "race": [
+     "Satyr"
+    ]
    }
   },
   {
@@ -1043,8 +1097,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "m"
+    "race": [
+     "Sea Elf"
+    ]
    }
   },
   {
@@ -1062,8 +1117,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "m"
+    "race": [
+     "Shadar-Kai"
+    ]
    }
   },
   {
@@ -1081,8 +1137,9 @@
     }
    ],
    "filters": {
-    "source": "EFA",
-    "size": "s"
+    "race": [
+     "Shifter"
+    ]
    }
   },
   {
@@ -1100,8 +1157,9 @@
     }
    ],
    "filters": {
-    "source": "GGR",
-    "size": "m"
+    "race": [
+     "Simic Hybrid"
+    ]
    }
   },
   {
@@ -1119,8 +1177,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Skeleton"
+    ]
    }
   },
   {
@@ -1138,8 +1197,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "s"
+    "race": [
+     "Tabaxi"
+    ]
    }
   },
   {
@@ -1157,8 +1217,9 @@
     }
    ],
    "filters": {
-    "source": "AAG",
-    "size": "s"
+    "race": [
+     "Thri-kreen"
+    ]
    }
   },
   {
@@ -1176,8 +1237,9 @@
     }
    ],
    "filters": {
-    "source": "XPHB",
-    "size": "s"
+    "race": [
+     "Tiefling"
+    ]
    }
   },
   {
@@ -1195,8 +1257,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "s"
+    "race": [
+     "Tortle"
+    ]
    }
   },
   {
@@ -1214,8 +1277,9 @@
     }
    ],
    "filters": {
-    "source": "MOT",
-    "size": "medium"
+    "race": [
+     "Triton"
+    ]
    }
   },
   {
@@ -1233,8 +1297,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Troglodyte"
+    ]
    }
   },
   {
@@ -1252,8 +1317,9 @@
     }
    ],
    "filters": {
-    "source": "GGR",
-    "size": "m"
+    "race": [
+     "Vedalken"
+    ]
    }
   },
   {
@@ -1271,8 +1337,9 @@
     }
    ],
    "filters": {
-    "source": "EFA",
-    "size": "s"
+    "race": [
+     "Warforged"
+    ]
    }
   },
   {
@@ -1290,8 +1357,9 @@
     }
    ],
    "filters": {
-    "source": "MPMM",
-    "size": "s"
+    "race": [
+     "Yuan-Ti"
+    ]
    }
   },
   {
@@ -1309,8 +1377,9 @@
     }
    ],
    "filters": {
-    "source": "VGM",
-    "size": "m"
+    "race": [
+     "Yuan-ti Pureblood"
+    ]
    }
   },
   {
@@ -1328,8 +1397,9 @@
     }
    ],
    "filters": {
-    "source": "DMG",
-    "size": "m"
+    "race": [
+     "Zombie"
+    ]
    }
   }
  ]

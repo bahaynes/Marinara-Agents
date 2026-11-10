@@ -1,5 +1,10 @@
 # 5e (2024 Edition)
 
+## 1.0.3 - 2026-11-09
+
+- Aligned all 12 catalog assets with strict engine catalog schemas (filters, mechanics, text limits, rarities, and challenge numbers).
+- Integrated verified 2014 SRD combat mechanics onto 2024 spell catalog entries.
+
 ## 1.0.2 - 2026-11-09
 
 - Aligned starting gear, condition behavior, and catalog layer schema with engine requirements.
