@@ -11,8 +11,9 @@ Three modes:
   python3 -I cache-status.py --hook      UserPromptSubmit hook: blocks the first prompt sent to a cold cache.
                                          Send it again within 10 min to go ahead (up-arrow recalls it).
   python3 -I cache-status.py --rewake    Stop hook with "asyncRewake": true and "timeout": 3600: ~8 min before an
-                                         idle session's cache expires, wakes the model once to write a handoff
-                                         note. CLAUDE_REWAKE_AFTER_MIN overrides the idle minutes (for testing).
+                                         idle session's cache expires, wakes the model once to write this session's
+                                         how-to-continue note (~/.claude/handoffs/<dir>-<session>.md).
+                                         CLAUDE_REWAKE_AFTER_MIN overrides the idle minutes (for testing).
 The status line only redraws when the conversation changes, so after a break it can still read "warm".
 """
 import datetime, glob, json, os, sys, tempfile
@@ -55,7 +56,9 @@ def state(info, kind):
 
 
 def handoff_path(info):
-    return os.path.expanduser(f"~/.claude/handoffs/{os.path.basename(info.get('cwd') or os.getcwd())}.md")
+    # One note per session, so parallel sessions in one repo don't overwrite each other.
+    name = os.path.basename(info.get('cwd') or os.getcwd())
+    return os.path.expanduser(f"~/.claude/handoffs/{name}-{info.get('session_id', 'x')[:8]}.md")
 
 
 def rewake(info):
@@ -83,10 +86,12 @@ def rewake(info):
     if os.path.exists(fired) and (not os.path.exists(prompted) or os.path.getmtime(fired) >= os.path.getmtime(prompted)):
         return 0  # already woke since the last real prompt: don't keep the cache warm all night
     open(fired, "w").close()
-    print(f"Prompt cache expires in ~{TTL_MIN - found[1]:.0f} min and Ben is away. If this session has unfinished "
-          f"multi-step work, update {handoff_path(info)} (done with commit SHAs, in progress, exact next "
-          "step, open questions; under 30 lines). If nothing is unfinished, reply only 'No handoff needed.' "
-          "Start no new work.", file=sys.stderr)
+    print(f"Prompt cache expires in ~{TTL_MIN - found[1]:.0f} min and Ben is away; he will /clear and resume from a "
+          f"note. Write {handoff_path(info)}: how to continue this conversation, for a fresh session with none of "
+          "this context. Cover what Ben last asked for and where it stands, decisions he made, findings and dead "
+          "ends a newcomer would otherwise repeat (the cause, not the attempt log), commit SHAs, and the exact next "
+          "step or open question. Under 30 lines. If the conversation reached a natural end with nothing to pick "
+          "up, reply only 'No handoff needed.' Start no new work.", file=sys.stderr)
     return 2  # asyncRewake: exit 2 wakes the model with stderr
 
 
