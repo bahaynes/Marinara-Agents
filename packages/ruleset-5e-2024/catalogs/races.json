@@ -1,0 +1,1336 @@
+{
+ "schemaVersion": 1,
+ "catalog": "races",
+ "entries": [
+  {
+   "id": "aarakocra",
+   "label": "Aarakocra",
+   "summary": "Speed 20 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Aarakocra Traits",
+      "text": "",
+      "speed": 20
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "aasimar",
+   "label": "Aasimar",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Aasimar Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "size": "s"
+   }
+  },
+  {
+   "id": "astral-elf",
+   "label": "Astral Elf",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Astral Elf Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "AAG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "autognome",
+   "label": "Autognome",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Autognome Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "AAG",
+    "size": "s"
+   }
+  },
+  {
+   "id": "bugbear",
+   "label": "Bugbear",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Bugbear Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "ERLW",
+    "size": "m"
+   }
+  },
+  {
+   "id": "bullywug",
+   "label": "Bullywug",
+   "summary": "Speed 20 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Bullywug Traits",
+      "text": "",
+      "speed": 20
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "centaur",
+   "label": "Centaur",
+   "summary": "Speed 40 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Centaur Traits",
+      "text": "",
+      "speed": 40
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR",
+    "size": "m"
+   }
+  },
+  {
+   "id": "changeling",
+   "label": "Changeling",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Changeling Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA",
+    "size": "s"
+   }
+  },
+  {
+   "id": "custom-lineage",
+   "label": "Custom Lineage",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Custom Lineage Traits",
+      "text": "Instead of choosing one of the game's races for your character at 1st level, you can use the following traits to represent your character's lineage, giving you full control over how your character's origin shaped them:",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "TCE",
+    "size": "s"
+   }
+  },
+  {
+   "id": "deep-gnome",
+   "label": "Deep Gnome",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Deep Gnome Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "s"
+   }
+  },
+  {
+   "id": "dhampir",
+   "label": "Dhampir",
+   "summary": "Speed 35 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Dhampir Traits",
+      "text": "",
+      "speed": 35
+     }
+    }
+   ],
+   "filters": {
+    "source": "VRGR",
+    "size": "s"
+   }
+  },
+  {
+   "id": "dragonborn",
+   "label": "Dragonborn",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Dragonborn Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "size": "m"
+   }
+  },
+  {
+   "id": "dragonborn-gem",
+   "label": "Dragonborn (Gem)",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Dragonborn (Gem) Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "FTD",
+    "size": "m"
+   }
+  },
+  {
+   "id": "duergar",
+   "label": "Duergar",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Duergar Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "m"
+   }
+  },
+  {
+   "id": "dwarf",
+   "label": "Dwarf",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Dwarf Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "size": "m"
+   }
+  },
+  {
+   "id": "eladrin",
+   "label": "Eladrin",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Eladrin Traits",
+      "text": "*Choose your eladrin's season: autumn, winter, spring, or summer. When finishing a long rest, you can change your season. See the \"Info\" tab for more information.*",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "m"
+   }
+  },
+  {
+   "id": "elf",
+   "label": "Elf",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Elf Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "size": "m"
+   }
+  },
+  {
+   "id": "fairy",
+   "label": "Fairy",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Fairy Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "s"
+   }
+  },
+  {
+   "id": "firbolg",
+   "label": "Firbolg",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Firbolg Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "m"
+   }
+  },
+  {
+   "id": "genasi",
+   "label": "Genasi",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Genasi Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "s"
+   }
+  },
+  {
+   "id": "giff",
+   "label": "Giff",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Giff Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "AAG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "gith",
+   "label": "Gith",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Gith Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MTF",
+    "size": "m"
+   }
+  },
+  {
+   "id": "githyanki",
+   "label": "Githyanki",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Githyanki Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "m"
+   }
+  },
+  {
+   "id": "githzerai",
+   "label": "Githzerai",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Githzerai Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "m"
+   }
+  },
+  {
+   "id": "gnoll",
+   "label": "Gnoll",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Gnoll Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "gnome",
+   "label": "Gnome",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Gnome Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "size": "s"
+   }
+  },
+  {
+   "id": "gnome-deep",
+   "label": "Gnome (Deep)",
+   "summary": "Speed 20 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Gnome (Deep) Traits",
+      "text": "",
+      "speed": 20
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "s"
+   }
+  },
+  {
+   "id": "goblin",
+   "label": "Goblin",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Goblin Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "s"
+   }
+  },
+  {
+   "id": "goliath",
+   "label": "Goliath",
+   "summary": "Speed 35 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Goliath Traits",
+      "text": "",
+      "speed": 35
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "size": "m"
+   }
+  },
+  {
+   "id": "grimlock",
+   "label": "Grimlock",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Grimlock Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "hadozee",
+   "label": "Hadozee",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Hadozee Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "AAG",
+    "size": "s"
+   }
+  },
+  {
+   "id": "half-elf",
+   "label": "Half-Elf",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Half-Elf Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB",
+    "size": "m"
+   }
+  },
+  {
+   "id": "half-orc",
+   "label": "Half-Orc",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Half-Orc Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "PHB",
+    "size": "m"
+   }
+  },
+  {
+   "id": "halfling",
+   "label": "Halfling",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Halfling Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "size": "s"
+   }
+  },
+  {
+   "id": "harengon",
+   "label": "Harengon",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Harengon Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "s"
+   }
+  },
+  {
+   "id": "hexblood",
+   "label": "Hexblood",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Hexblood Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "VRGR",
+    "size": "s"
+   }
+  },
+  {
+   "id": "hobgoblin",
+   "label": "Hobgoblin",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Hobgoblin Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "human",
+   "label": "Human",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Human Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "size": "s"
+   }
+  },
+  {
+   "id": "kalashtar",
+   "label": "Kalashtar",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Kalashtar Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA",
+    "size": "m"
+   }
+  },
+  {
+   "id": "kender",
+   "label": "Kender",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Kender Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DSOTDQ",
+    "size": "s"
+   }
+  },
+  {
+   "id": "kenku",
+   "label": "Kenku",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Kenku Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "khoravar",
+   "label": "Khoravar",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Khoravar Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA",
+    "size": "s"
+   }
+  },
+  {
+   "id": "kobold",
+   "label": "Kobold",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Kobold Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "s"
+   }
+  },
+  {
+   "id": "kuo-toa",
+   "label": "Kuo-Toa",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Kuo-Toa Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "leonin",
+   "label": "Leonin",
+   "summary": "Speed 35 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Leonin Traits",
+      "text": "",
+      "speed": 35
+     }
+    }
+   ],
+   "filters": {
+    "source": "MOT",
+    "size": "m"
+   }
+  },
+  {
+   "id": "lizardfolk",
+   "label": "Lizardfolk",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Lizardfolk Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "loxodon",
+   "label": "Loxodon",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Loxodon Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR",
+    "size": "m"
+   }
+  },
+  {
+   "id": "merfolk",
+   "label": "Merfolk",
+   "summary": "Speed 10 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Merfolk Traits",
+      "text": "",
+      "speed": 10
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "minotaur",
+   "label": "Minotaur",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Minotaur Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR",
+    "size": "m"
+   }
+  },
+  {
+   "id": "orc",
+   "label": "Orc",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Orc Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "size": "m"
+   }
+  },
+  {
+   "id": "owlin",
+   "label": "Owlin",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Owlin Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "SCC",
+    "size": "s"
+   }
+  },
+  {
+   "id": "plasmoid",
+   "label": "Plasmoid",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Plasmoid Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "AAG",
+    "size": "s"
+   }
+  },
+  {
+   "id": "reborn",
+   "label": "Reborn",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Reborn Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "VRGR",
+    "size": "s"
+   }
+  },
+  {
+   "id": "satyr",
+   "label": "Satyr",
+   "summary": "Speed 35 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Satyr Traits",
+      "text": "",
+      "speed": 35
+     }
+    }
+   ],
+   "filters": {
+    "source": "MOT",
+    "size": "m"
+   }
+  },
+  {
+   "id": "sea-elf",
+   "label": "Sea Elf",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Sea Elf Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "m"
+   }
+  },
+  {
+   "id": "shadar-kai",
+   "label": "Shadar-Kai",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Shadar-Kai Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "m"
+   }
+  },
+  {
+   "id": "shifter",
+   "label": "Shifter",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Shifter Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA",
+    "size": "s"
+   }
+  },
+  {
+   "id": "simic-hybrid",
+   "label": "Simic Hybrid",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Simic Hybrid Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR",
+    "size": "m"
+   }
+  },
+  {
+   "id": "skeleton",
+   "label": "Skeleton",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Skeleton Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "tabaxi",
+   "label": "Tabaxi",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Tabaxi Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "s"
+   }
+  },
+  {
+   "id": "thri-kreen",
+   "label": "Thri-kreen",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Thri-kreen Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "AAG",
+    "size": "s"
+   }
+  },
+  {
+   "id": "tiefling",
+   "label": "Tiefling",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Tiefling Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "XPHB",
+    "size": "s"
+   }
+  },
+  {
+   "id": "tortle",
+   "label": "Tortle",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Tortle Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "s"
+   }
+  },
+  {
+   "id": "triton",
+   "label": "Triton",
+   "summary": "Speed 30 ft., Size medium.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Triton Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MOT",
+    "size": "medium"
+   }
+  },
+  {
+   "id": "troglodyte",
+   "label": "Troglodyte",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Troglodyte Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  },
+  {
+   "id": "vedalken",
+   "label": "Vedalken",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Vedalken Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "GGR",
+    "size": "m"
+   }
+  },
+  {
+   "id": "warforged",
+   "label": "Warforged",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Warforged Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "EFA",
+    "size": "s"
+   }
+  },
+  {
+   "id": "yuan-ti",
+   "label": "Yuan-Ti",
+   "summary": "Speed 30 ft., Size S.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Yuan-Ti Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "MPMM",
+    "size": "s"
+   }
+  },
+  {
+   "id": "yuan-ti-pureblood",
+   "label": "Yuan-ti Pureblood",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Yuan-ti Pureblood Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "VGM",
+    "size": "m"
+   }
+  },
+  {
+   "id": "zombie",
+   "label": "Zombie",
+   "summary": "Speed 30 ft., Size M.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Zombie Traits",
+      "text": "",
+      "speed": 30
+     }
+    }
+   ],
+   "filters": {
+    "source": "DMG",
+    "size": "m"
+   }
+  }
+ ]
+}

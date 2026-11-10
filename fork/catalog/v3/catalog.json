@@ -111,6 +111,127 @@
           "engineVersion": "2.5.1",
           "engineCommit": "05ad846e7615f72709949043d8d519f1f2e37505"
         },
+        "id": "ruleset-5e-2024",
+        "name": "5e (2024 Edition)",
+        "version": "1.0.0",
+        "description": "Play Game Mode by the 2024 revised 5e rules: updated character progression, 13 classes including Artificer, Level-1 half-caster spell progression, 2024 species and backgrounds with Origin Feats, 2024 Weapon Masteries, updated Exhaustion, bonus-action potions, and extensive monster bestiaries built from your owned 5etools library. After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
+        "engine": {
+          "min": "2.5.1",
+          "maxExclusive": "4.0.0"
+        },
+        "kind": [
+          "ruleset"
+        ],
+        "entrypoints": {},
+        "permissions": [],
+        "restartRequired": false,
+        "contributions": {
+          "assets": {
+            "paths": [
+              "ruleset.json",
+              "catalogs/spells.json",
+              "catalogs/features.json",
+              "catalogs/races.json",
+              "catalogs/creatures.json",
+              "catalogs/equipment.json",
+              "catalogs/magic_items.json",
+              "catalogs/classes.json",
+              "catalogs/backgrounds.json",
+              "catalogs/languages.json",
+              "catalogs/tools.json",
+              "catalogs/fighting_styles.json",
+              "catalogs/weapons.json"
+            ]
+          }
+        },
+        "files": [
+          {
+            "path": "ruleset.json",
+            "sha256": "941acd815221b3fdfa6ae950bf284fc56cd908c1c86f3db144e022527b190132",
+            "bytes": 563076
+          },
+          {
+            "path": "catalogs/spells.json",
+            "sha256": "9f7ba81bd4de70911c98b9af382282517d318016bacb40ed6813e6cf3e2ff79a",
+            "bytes": 643487
+          },
+          {
+            "path": "catalogs/features.json",
+            "sha256": "c5e5df29e6a4e2a7095b829e8a972e45863f5955ea743175409fb158ba0435b5",
+            "bytes": 1124469
+          },
+          {
+            "path": "catalogs/races.json",
+            "sha256": "22101bc0aa8d84367c9b647315f410de3570c88d2e837591a007048bf57472ac",
+            "bytes": 21412
+          },
+          {
+            "path": "catalogs/creatures.json",
+            "sha256": "989cc543a507f184672faa662712dc0b72491b405ac092dc7976568fa73a617f",
+            "bytes": 1123550
+          },
+          {
+            "path": "catalogs/equipment.json",
+            "sha256": "9b090fca9b2d8f7734bfa47b1a15ef049bd4e3404b77f6956e79c47e84d1cc7a",
+            "bytes": 153263
+          },
+          {
+            "path": "catalogs/magic_items.json",
+            "sha256": "000e483fbcfd3d7913d3841516b5fe067534029ae8f85f870350e1c7b7264280",
+            "bytes": 325874
+          },
+          {
+            "path": "catalogs/classes.json",
+            "sha256": "deafc806b805fbfb44def560d6b2a0a1733bcd51ec5f763c66eaf5eab0808658",
+            "bytes": 4321
+          },
+          {
+            "path": "catalogs/backgrounds.json",
+            "sha256": "1f1e87467affb0ea643b9a1b1f181e70c8147c4db2b3bc30b21615b70fee08b6",
+            "bytes": 29755
+          },
+          {
+            "path": "catalogs/languages.json",
+            "sha256": "71da6be39728768c08274de468f4551cb5e533f50eb5e164f5f5d6b5a69d8620",
+            "bytes": 3510
+          },
+          {
+            "path": "catalogs/tools.json",
+            "sha256": "761d4a3cd45b486d0b897cefd746e2cd1f2c5260a4a2e7cb67cb74e96284538c",
+            "bytes": 8480
+          },
+          {
+            "path": "catalogs/fighting_styles.json",
+            "sha256": "baed6a48ace5d432156179291811784a2d3a98288337afe8911f46c9d4906d69",
+            "bytes": 5878
+          },
+          {
+            "path": "catalogs/weapons.json",
+            "sha256": "3d246d5272ddc19da64eb58cb0cd21a325037c72496a1d907e9fd0b40f86a633",
+            "bytes": 104284
+          }
+        ]
+      },
+      "category": "misc",
+      "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/ruleset-5e-2024.png",
+      "artifact": {
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2024-1.0.0.ruleset.json",
+        "sha256": "f6ddcee0f2b7559112464f2433c64c4e5a40e569e762e376d14cf6d9e74e1ac7",
+        "bytes": 5485753
+      },
+      "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/staging/docs/game/getting-started.md#choosing-rules"
+    },
+    {
+      "manifest": {
+        "schemaVersion": 2,
+        "capabilityApi": {
+          "major": 1,
+          "minor": 813
+        },
+        "builtAgainst": {
+          "engineVersion": "2.5.1",
+          "engineCommit": "05ad846e7615f72709949043d8d519f1f2e37505"
+        },
         "id": "ruleset-5e-2014",
         "name": "5e (SRD 5.1)",
         "version": "1.0.3",
