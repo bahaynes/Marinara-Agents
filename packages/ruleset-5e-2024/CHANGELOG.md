@@ -1,5 +1,10 @@
 # 5e (2024 Edition)
 
+## 1.0.1 - 2026-11-09
+
+- Compact ruleset envelope encoding to adhere to Engine 512 KiB asset limit.
+- Enriched 147 subclasses, 839 subclass features, and spell class filters from 5etools lookup data.
+
 ## 1.0.0 - 2026-11-08
 
 - Initial release of the 2024 D&D 5e Ruleset (`5e-2024`), built from a local 5etools dump with owned-book filtering (`fork/config/5e-2024-sources.json`).
