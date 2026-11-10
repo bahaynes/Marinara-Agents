@@ -1,5 +1,9 @@
 # 5e (2024 Edition)
 
+## 1.0.4 - 2026-11-09
+
+- Added Relentless Rage and Relentless Endurance counter rows to fulfill combat hangsOn pool requirements.
+
 ## 1.0.3 - 2026-11-09
 
 - Aligned all 12 catalog assets with strict engine catalog schemas (filters, mechanics, text limits, rarities, and challenge numbers).
