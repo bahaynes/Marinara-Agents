@@ -113,7 +113,7 @@
         },
         "id": "ruleset-5e-2024",
         "name": "5e (2024 Edition)",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "Play Game Mode by the 2024 revised 5e rules: updated character progression, 13 classes including Artificer, Level-1 half-caster spell progression, 2024 species and backgrounds with Origin Feats, 2024 Weapon Masteries, updated Exhaustion, bonus-action potions, and extensive monster bestiaries built from your owned 5etools library. After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
         "engine": {
           "min": "2.5.1",
@@ -147,8 +147,8 @@
         "files": [
           {
             "path": "ruleset.json",
-            "sha256": "941acd815221b3fdfa6ae950bf284fc56cd908c1c86f3db144e022527b190132",
-            "bytes": 563076
+            "sha256": "0e8946e1960d4f6fd424261a7e3cb16bdb019c2a70a2fdf1b83d6a18c289fbb1",
+            "bytes": 377525
           },
           {
             "path": "catalogs/spells.json",
@@ -215,9 +215,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/ruleset-5e-2024.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2024-1.0.0.ruleset.json",
-        "sha256": "f6ddcee0f2b7559112464f2433c64c4e5a40e569e762e376d14cf6d9e74e1ac7",
-        "bytes": 5485753
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/ruleset-5e-2024-1.0.1.ruleset.json",
+        "sha256": "b4f3c452b2db3e691493d06c1f3218015f945a8245bc6c47a1ccec8d72a6d9b5",
+        "bytes": 5238353
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/staging/docs/game/getting-started.md#choosing-rules"
     },
