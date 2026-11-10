@@ -277,20 +277,35 @@ async function main() {
     }
   }
 
-  // 9. Update Starting Gear & Condition Action Hooks
-  // In 2024, starting equipment is handled directly by class and background choices.
-  doc.items.startingGear = [];
-
-  // Remove legacy 2014 spell action hooks from conditions if they are not emitted as standalone sub-actions
+  // 9. Clean legacy 2014 condition action hooks that name missing Open5e sub-spells
   if (doc.combat?.conditions) {
     for (const condition of doc.combat.conditions) {
       if (Array.isArray(condition.actions)) {
         delete condition.actions;
       }
+      if (condition.behavior && condition.behavior.actions !== undefined) {
+        delete condition.behavior.actions;
+      }
     }
   }
 
-  // 10. Update Weapon Catalog Filters (Add Mastery)
+  // 10. Update Starting Gear for 2024 equipment
+  doc.items.startingGear = [
+    {
+      id: "adventurer",
+      label: "Adventurer Equipment",
+      summary: "Standard 2024 starting gear.",
+      group: "class",
+      lines: [
+        {
+          item: "equipment/rations",
+          count: 10,
+        },
+      ],
+    },
+  ];
+
+  // 11. Update Weapon Catalog Filters (Add Mastery)
   const weaponsCat = doc.catalogs?.find((c) => c.id === "weapons");
   if (weaponsCat && !weaponsCat.filters?.some((f) => f.id === "mastery")) {
     weaponsCat.filters = weaponsCat.filters || [];
@@ -301,80 +316,7 @@ async function main() {
     });
   }
 
-  // 11. Add Campaign Layers
-  doc.layers = [
-    {
-      id: "core_2024_only",
-      label: "2024 Core Only",
-      summary: "Restrict character options and monsters strictly to the 2024 Core Rulebooks (XPHB, XDMG, XMM).",
-      catalogs: [
-        {
-          id: "spells",
-          hide: { filter: "source", notIn: ["XPHB", "XDMG", "XMM"] },
-        },
-        {
-          id: "features",
-          hide: { filter: "source", notIn: ["XPHB", "XDMG", "XMM"] },
-        },
-        {
-          id: "races",
-          hide: { filter: "source", notIn: ["XPHB", "XDMG", "XMM"] },
-        },
-        {
-          id: "classes",
-          hide: { filter: "source", notIn: ["XPHB", "XDMG", "XMM"] },
-        },
-        {
-          id: "backgrounds",
-          hide: { filter: "source", notIn: ["XPHB", "XDMG", "XMM"] },
-        },
-        {
-          id: "weapons",
-          hide: { filter: "source", notIn: ["XPHB", "XDMG", "XMM"] },
-        },
-        {
-          id: "equipment",
-          hide: { filter: "source", notIn: ["XPHB", "XDMG", "XMM"] },
-        },
-        {
-          id: "magic_items",
-          hide: { filter: "source", notIn: ["XPHB", "XDMG", "XMM"] },
-        },
-        {
-          id: "creatures",
-          hide: { filter: "source", notIn: ["XPHB", "XDMG", "XMM"] },
-        },
-      ],
-    },
-    {
-      id: "no_setting_books",
-      label: "No Setting-Specific Options",
-      summary: "Hide setting-specific options from Eberron, Ravnica, Wildemount, and Spelljammer.",
-      catalogs: [
-        {
-          id: "races",
-          hide: { filter: "source", in: ["ERLW", "GGR", "EGW", "AAG"] },
-        },
-        {
-          id: "backgrounds",
-          hide: { filter: "source", in: ["ERLW", "GGR", "EGW", "AAG", "SCC"] },
-        },
-      ],
-    },
-    {
-      id: "low_magic",
-      label: "Low Magic",
-      summary: "Rare and higher magic items are hidden.",
-      catalogs: [
-        {
-          id: "magic_items",
-          hide: { filter: "rarity", in: ["rare", "very rare", "legendary", "artifact"] },
-        },
-      ],
-    },
-  ];
-
-  // 11. Write output (compact JSON to stay within Engine 512 KiB limit)
+  // 12. Write output (compact JSON to stay within Engine 512 KiB limit)
   const json = JSON.stringify(doc);
   await writeFile(outputPath, json, "utf8");
   console.log(`\nSuccessfully generated ${outputPath} (${(Buffer.byteLength(json) / 1024).toFixed(1)} KiB)`);

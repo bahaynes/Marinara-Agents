@@ -196,6 +196,12 @@
     "ruleset-5e-2024": {
       "versions": [
         {
+          "version": "1.0.2",
+          "date": "2026-11-09",
+          "notes": "- Aligned starting gear, condition behavior, and catalog layer schema with engine requirements.",
+          "highlight": false
+        },
+        {
           "version": "1.0.1",
           "date": "2026-11-09",
           "notes": "- Compact ruleset envelope encoding to adhere to Engine 512 KiB asset limit.\n- Enriched 147 subclasses, 839 subclass features, and spell class filters from 5etools lookup data.",
