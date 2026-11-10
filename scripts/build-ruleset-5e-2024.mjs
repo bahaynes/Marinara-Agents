@@ -374,8 +374,8 @@ async function main() {
     },
   ];
 
-  // 10. Write output
-  const json = JSON.stringify(doc, null, 1);
+  // 11. Write output (compact JSON to stay within Engine 512 KiB limit)
+  const json = JSON.stringify(doc);
   await writeFile(outputPath, json, "utf8");
   console.log(`\nSuccessfully generated ${outputPath} (${(Buffer.byteLength(json) / 1024).toFixed(1)} KiB)`);
 }

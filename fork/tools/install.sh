@@ -14,20 +14,25 @@ while [ $# -gt 0 ]; do
 done
 [ "$box" = marinara-wife ] && [ "$force" = 0 ] && { echo "refusing marinara-wife without --force (ask first)"; exit 2; }
 
-read -r version sha < <(python3 -I - "$id" <<'PY'
+read -r version sha artifact_path < <(python3 -I - "$id" <<'PY'
 import glob, json, sys
 for path in sorted(glob.glob("fork/catalog/v*/catalog.json"), reverse=True):
     data = json.load(open(path))
     for p in data["packages"] if isinstance(data, dict) else data:
         if (p.get("manifest", {}).get("id") or p.get("id")) == sys.argv[1]:
-            print(p.get("manifest", {}).get("version") or p["version"], p["artifact"]["sha256"]); sys.exit()
+            ver = p.get("manifest", {}).get("version") or p["version"]
+            sha = p["artifact"]["sha256"]
+            url = p["artifact"].get("url", "")
+            rel = url.split("custom-mods/", 1)[-1] if "custom-mods/" in url else f"fork/artifacts/{sys.argv[1]}-{ver}.zip"
+            print(ver, sha, rel)
+            sys.exit()
 sys.exit(f"{sys.argv[1]} is not in any fork catalog")
 PY
 ) || exit 1
 
 git fetch -q origin custom-mods
-if [ -z "$(git log -1 --format=%h origin/custom-mods -- "fork/artifacts/$id-$version.zip")" ]; then
-  echo "fork/artifacts/$id-$version.zip is not on origin/custom-mods yet — commit and push first"; exit 1
+if [ -z "$(git log -1 --format=%h origin/custom-mods -- "$artifact_path")" ]; then
+  echo "$artifact_path is not on origin/custom-mods yet — commit and push first"; exit 1
 fi
 
 echo "installing $id $version (${sha:0:12}) on $box"
