@@ -1,5 +1,9 @@
 # 5e (2024 Edition)
 
+## 1.0.2 - 2026-11-09
+
+- Aligned starting gear, condition behavior, and catalog layer schema with engine requirements.
+
 ## 1.0.1 - 2026-11-09
 
 - Compact ruleset envelope encoding to adhere to Engine 512 KiB asset limit.
