@@ -5375,85 +5375,57 @@
     },
     {
       "manifest": {
-        "schemaVersion": 1,
-        "id": "timeline-anchor",
-        "name": "Timeline & Chronology Anchor",
-        "version": "1.0.0",
-        "description": "Grounds the story clock, relative milestone start times (e.g. yesterday vs months ago), and injects temporal constraints to prevent LLM timeline hallucinations.",
-        "engine": {
-          "min": "2.3.0",
-          "maxExclusive": "4.0.0"
+        "schemaVersion": 2,
+        "capabilityApi": {
+          "major": 1,
+          "minor": 19
         },
-        "kind": [
-          "agent"
-        ],
-        "entrypoints": {
-          "agents": "agents.json"
+        "builtAgainst": {
+          "engineVersion": "2.5.0",
+          "engineCommit": "b19bfbd9f4455205eb715452beb28e342c196269"
         },
-        "files": [
-          {
-            "path": "agents.json",
-            "sha256": "0338c40d5ad04844e9569733ffe8d293348d18033a49307ca8d9b46e50850945",
-            "bytes": 1969
-          }
-        ],
-        "permissions": [
-          "agent-runtime",
-          "chat-read",
-          "prompt-context",
-          "storage",
-          "ui"
-        ],
-        "restartRequired": false
-      },
-      "category": "writer",
-      "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/timeline-anchor-1.0.0.zip",
-        "sha256": "666fbdaaf94ffe527f710364314a010e77594e68152044afb5a2c7c5f6b30c00",
-        "bytes": 2935
-      },
-      "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/CUSTOM_MODS.md"
-    },
-    {
-      "manifest": {
-        "schemaVersion": 1,
         "id": "timeline-tracker",
-        "name": "Timeline & Chronology Tracker",
-        "version": "1.0.0",
-        "description": "Tracks in-story time progression, total elapsed duration, and milestone start times to prevent models from forgetting when events and skill learning began. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
+        "name": "Timeline Tracker",
+        "version": "2.0.0",
+        "description": "Keeps a per-chat story clock and the skills, relationships and events that began on it, and tells the story model each turn how long ago each began, so nothing that started yesterday is described as lasting weeks. Uses World State's date and time when that tracker is active. Replaces Timeline & Chronology Anchor. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
         "engine": {
-          "min": "2.3.0",
+          "min": "2.5.0",
           "maxExclusive": "4.0.0"
         },
         "kind": [
           "agent"
         ],
         "entrypoints": {
-          "agents": "agents.json"
+          "agents": "agents.json",
+          "server": "server.mjs"
         },
         "files": [
           {
             "path": "agents.json",
-            "sha256": "9abb164f22145d2d813e8be765e8f55acd65aee07eff0f498fdfe24147bc3a86",
-            "bytes": 2247
+            "sha256": "65f0a4fcdbee937fcdb042a6bccf05e0b18b428727fd620eff756fd0e0959cb5",
+            "bytes": 2969
+          },
+          {
+            "path": "server.mjs",
+            "sha256": "24bb7eb8e73a09962e85f5b2ac6084f504762d4aa61f92babb13a847e2cf02dd",
+            "bytes": 12635
           }
         ],
         "permissions": [
           "agent-runtime",
           "chat-read",
           "prompt-context",
-          "storage",
-          "ui"
+          "storage"
         ],
-        "restartRequired": false
+        "restartRequired": true
       },
       "category": "tracker",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/timeline-tracker-1.0.0.zip",
-        "sha256": "4b6d3ab313a80f29106301a598938cedb866109bf6a0238ca8ff192691758431",
-        "bytes": 3300
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/timeline-tracker-2.0.0.zip",
+        "sha256": "8b85d445c822a9137bb05bf52b94e00fdecc012a237de655aebcb9643d150364",
+        "bytes": 17238
       },
-      "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/CUSTOM_MODS.md"
+      "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/timeline-tracker/README.md"
     },
     {
       "manifest": {
