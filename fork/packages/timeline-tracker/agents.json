@@ -2,17 +2,30 @@
   {
     "id": "timeline-tracker",
     "name": "Timeline Tracker",
-    "description": "Tracks in-story time progression, total elapsed duration, and milestone start times to prevent models from forgetting when events and skill learning began. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
+    "description": "Keeps a per-chat story clock and the skills, relationships and events that began on it, and tells the story model each turn how long ago each began, so nothing that started yesterday is described as lasting weeks. Uses World State's date and time when that tracker is active. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
     "phase": "post_processing",
     "enabledByDefault": false,
-    "defaultInjectAsSection": true,
+    "defaultInjectAsSection": false,
     "category": "tracker",
-    "modeAllowlist": [
-      "roleplay",
-      "game"
-    ],
+    "modeAllowlist": ["roleplay", "game"],
     "defaultTools": [],
+    "defaultSettings": {
+      "resultType": "context_injection",
+      "contextSize": 4,
+      "maxTokens": 600,
+      "temperature": 0,
+      "contextSources": {
+        "chatHistory": true,
+        "characters": false,
+        "persona": false,
+        "activatedLorebookEntries": false,
+        "chatSummary": true,
+        "authorNotes": false,
+        "trackerData": false,
+        "recalledMemories": false
+      }
+    },
     "author": "custom-mods",
-    "defaultPromptTemplate": "Track the in-story timeline, story clock, and episodic milestone start times after the latest assistant message. Current timeline state is in <current_timeline_state>. Respond ONLY with valid JSON.\nSchema:\n{\n  \"storyClock\": {\n    \"t_now\": 1440,\n    \"displayDay\": 2,\n    \"displayDate\": \"string (e.g. Tuesday, October 15)\",\n    \"displayTime\": \"string (e.g. 14:30 / 2:30 PM)\",\n    \"timePassedMin\": 15,\n    \"totalElapsedStr\": \"string (e.g. 1 day, 6 hours)\"\n  },\n  \"newOrUpdatedEvents\": [\n    [\n      120,\n      \"SK\",\n      \"string (subject: character name)\",\n      \"string (event: Started archery lessons with player)\",\n      \"string (meta: novice/beginner)\"\n    ]\n  ],\n  \"temporalDirectives\": [\n    \"string (e.g. Total story elapsed is 1 day; a character started archery yesterday; do not reference weeks/months)\"\n  ]\n}\nInstructions:\n1. Update storyClock based on in-story time progression or explicit time skips. t_now is total elapsed story minutes since story start (1440 min = 1 day).\n2. Add or update milestones when characters begin a skill, establish a relationship milestone, reach a major plot point, or change status.\n3. Categories: SK (skill/practice), REL (relationship/acquaintance), EV (major story event), ST (status/condition).\n4. Record t_start in minutes when the event first began. Keep existing t_start for ongoing activities so the engine knows exactly how many days have elapsed.\n5. Output concise temporalDirectives explicitly stating constraints (e.g. '<character> started learning yesterday; only 1 day has passed; do not claim weeks of practice')."
+    "defaultPromptTemplate": "You keep the story clock for this chat. Report only what the newly completed turn in <assistant_response> says or clearly implies; use recent history only to understand it. Code does all date arithmetic, so never add up durations yourself.\n\n<agent_runtime_context> holds:\n- firstRun: true when nothing is recorded yet\n- elapsedSoFar: story time since the story began, before this turn\n- lastStatedTime: the last in-story date/time the story stated\n- worldStateTime: the World State tracker's date/time, when that tracker is active (it may lag one turn)\n- milestones: open milestones as [id, kind, who, what, began ago]\n\nReturn ONLY one JSON object:\n{\"minutesPassed\": 0, \"stated\": null, \"start\": [], \"end\": []}\n\n- minutesPassed: in-story minutes this turn covers. A conversation exchange is a few minutes; a meal about an hour; \"the next morning\" or a time skip is the gap it describes. Compare against lastStatedTime and worldStateTime when the turn states a new time. Use 0 when no time passes.\n- stated: the in-story date and/or time as the turn states it (for example \"Tuesday, 9:56 AM\"), or null.\n- start: milestones that BEGIN in this turn: {\"kind\": \"SK|REL|EV|ST\", \"who\": \"name\", \"what\": \"short phrase\"}. SK = a skill, practice or habit begins; REL = people meet or a relationship changes; EV = a major story event; ST = a lasting status or condition. Only things a later turn might misdate. Most turns start nothing.\n- end: ids of open milestones that this turn finishes or makes irrelevant.\n- totalElapsedMin: ONLY when firstRun is true, add your best estimate of in-story minutes since the story began (1 day = 1440), from the history and any summary.\n\nNever start a milestone that is already open, and never record anything that only appears in history."
   }
 ]

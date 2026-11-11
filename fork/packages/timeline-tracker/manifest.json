@@ -1,32 +1,45 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
+  "capabilityApi": {
+    "major": 1,
+    "minor": 19
+  },
+  "builtAgainst": {
+    "engineVersion": "2.5.0",
+    "engineCommit": "b19bfbd9f4455205eb715452beb28e342c196269"
+  },
   "id": "timeline-tracker",
-  "name": "Timeline & Chronology Tracker",
-  "version": "1.0.0",
-  "description": "Tracks in-story time progression, total elapsed duration, and milestone start times to prevent models from forgetting when events and skill learning began. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
+  "name": "Timeline Tracker",
+  "version": "2.0.0",
+  "description": "Keeps a per-chat story clock and the skills, relationships and events that began on it, and tells the story model each turn how long ago each began, so nothing that started yesterday is described as lasting weeks. Uses World State's date and time when that tracker is active. Replaces Timeline & Chronology Anchor. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
   "engine": {
-    "min": "2.3.0",
+    "min": "2.5.0",
     "maxExclusive": "4.0.0"
   },
   "kind": [
     "agent"
   ],
   "entrypoints": {
-    "agents": "agents.json"
+    "agents": "agents.json",
+    "server": "server.mjs"
   },
   "files": [
     {
       "path": "agents.json",
-      "sha256": "9abb164f22145d2d813e8be765e8f55acd65aee07eff0f498fdfe24147bc3a86",
-      "bytes": 2247
+      "sha256": "65f0a4fcdbee937fcdb042a6bccf05e0b18b428727fd620eff756fd0e0959cb5",
+      "bytes": 2969
+    },
+    {
+      "path": "server.mjs",
+      "sha256": "24bb7eb8e73a09962e85f5b2ac6084f504762d4aa61f92babb13a847e2cf02dd",
+      "bytes": 12635
     }
   ],
   "permissions": [
     "agent-runtime",
     "chat-read",
     "prompt-context",
-    "storage",
-    "ui"
+    "storage"
   ],
-  "restartRequired": false
+  "restartRequired": true
 }
