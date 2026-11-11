@@ -3,6 +3,8 @@
 # Full output goes to a log; the terminal gets one line per stage, plus the failing lines when one fails.
 # Usage: fork/tools/check.sh [log-dir]      (default: $TMPDIR or /tmp)
 set -uo pipefail
+# custom-mods: package.json runs format:check then lint, ESLint on one thread, prettier on 4 workers. With per-core defaults this gate
+# peaked at 17.8-19 GiB next to the homeserver's pinned LLM. Throttled it peaks at 2.5 GiB in about 40 s.
 cd "$(git rev-parse --show-toplevel)"
 dir="${1:-${TMPDIR:-/tmp}}"
 mkdir -p "$dir"
@@ -32,6 +34,6 @@ stage catalog node scripts/validate-catalog.mjs
 stage release-notes node scripts/tests/catalog-release-notes.regression.mjs
 shopt -s nullglob
 tests=(fork/packages/*/tests/*.test.mjs)
-stage fork-tests node --test "${tests[@]}"
+stage fork-tests node --test --test-concurrency=1 "${tests[@]}"
 grep -E '^ℹ (tests|pass|fail) ' "$log" | tr '\n' ' '; echo
 echo "changed: $(git status --short | wc -l) files — log: $log"
