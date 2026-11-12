@@ -1,5 +1,9 @@
 # 5e (2024 Edition)
 
+## 1.0.5 - 2026-11-12
+
+- Fixed revealsFakes validation error during package install by removing unconfigured fake reference on Detect Poison and Disease.
+
 ## 1.0.4 - 2026-11-09
 
 - Added Relentless Rage and Relentless Endurance counter rows to fulfill combat hangsOn pool requirements.
