@@ -198,7 +198,7 @@
         {
           "version": "1.0.5",
           "date": "2026-11-12",
-          "notes": "- Fixed revealsFakes validation error during package install by removing unconfigured fake reference on Detect Poison and Disease.",
+          "notes": "- Fixed revealsFakes validation error during package install by removing unconfigured fake reference on Detect Poison and Disease.\n- Removed obsolete 2014 ritualNeeds feature requirements to match 2024 universal prepared ritual casting rules.",
           "highlight": false
         },
         {
