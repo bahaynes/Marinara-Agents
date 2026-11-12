@@ -1,5 +1,11 @@
 # 5e (2024 Edition)
 
+## 1.0.6 - 2026-11-12
+
+- Restored the base Armor of Vulnerability magic item: the 2024 catalogs carried only the three typed variants, but `ruleset.json`'s fences_odd_lot loot table (and its low-magic layer copy) references the base item, which failed package install with `No item "armor-of-vulnerability" in catalog "magic_items"`.
+- Carried the base item over from the 2014 SRD catalog during the 2024 build (added to `specialMiIds`), with the 2014-only seller-theater fields (`passesFor`, `tells`, `foolsReveal`) removed so the package honesty check passes; the 2024 package has no `armor-of-resistance-plate` for the fake to pass for.
+- Bumped to 1.0.6.
+
 ## 1.0.5 - 2026-11-12
 
 - Fixed revealsFakes validation error during package install by removing unconfigured fake reference on Detect Poison and Disease.
