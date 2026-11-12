@@ -196,6 +196,12 @@
     "ruleset-5e-2024": {
       "versions": [
         {
+          "version": "1.0.5",
+          "date": "2026-11-12",
+          "notes": "- Fixed revealsFakes validation error during package install by removing unconfigured fake reference on Detect Poison and Disease.",
+          "highlight": false
+        },
+        {
           "version": "1.0.4",
           "date": "2026-11-09",
           "notes": "- Added Relentless Rage and Relentless Endurance counter rows to fulfill combat hangsOn pool requirements.",
