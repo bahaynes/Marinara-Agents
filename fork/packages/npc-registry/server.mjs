@@ -78,6 +78,7 @@ const publicCard = (entry) => ({
   name: entry.name,
   ...(entry.aliases.length ? { aliases: entry.aliases } : {}),
   ...(entry.gender ? { gender: entry.gender } : {}),
+  ...(entry.avatar ? { avatar: entry.avatar } : {}),
 });
 
 /** Name check: established NPCs whose name or alias matches or collides with `name`. */
@@ -210,6 +211,35 @@ export async function activate(context) {
       context.api.registerService(`agent-runtime:${PACKAGE_ID}`, {
         prepareContext: ({ context: agentContext }) => prepare(store, agentContext),
         finalizeResult: (input) => finalize(runtime, store, input),
+      }),
+    );
+    releases.push(
+      context.api.registerService(PACKAGE_ID, {
+        current: (chatId) => store.current(chatId),
+        load: (chatId) => store.load(chatId),
+        save: (chatId, graph, revision) => store.save(chatId, graph, revision),
+        setAvatar: async (chatId, npcId, avatarPath) => {
+          for (let attempt = 0; attempt < 3; attempt += 1) {
+            const { graph, revision } = await store.load(chatId);
+            const resolved = resolve(graph, new Map());
+            const s = resolved.canonical(npcId) || findByName(resolved, npcId)?.id;
+            if (!s) return null;
+            const sup = graph.assertions.filter((a) => a.s === s && a.p === "avatar").map((a) => a.id);
+            graph.assertions.push({
+              id: `a${(graph.seq += 1).toString(36)}`,
+              s,
+              p: "avatar",
+              o: avatarPath,
+              ...(sup.length ? { sup } : {}),
+            });
+            try {
+              await store.save(chatId, graph, revision);
+              return avatarPath;
+            } catch (e) {
+              if (attempt === 2) throw e;
+            }
+          }
+        },
       }),
     );
     releases.push(
