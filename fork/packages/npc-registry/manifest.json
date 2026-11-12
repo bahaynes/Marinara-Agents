@@ -10,7 +10,7 @@
   },
   "id": "npc-registry",
   "name": "NPC Registry",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Keeps the names and pronouns of every named NPC in a per-chat graph and shows them to the story model as a roster, with an npc_registry_lookup name check, so it never invents a duplicate name or flips someone's pronouns. Entries follow the message swipe that produced them. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
   "engine": {
     "min": "2.5.0",
@@ -31,13 +31,13 @@
     },
     {
       "path": "graph.mjs",
-      "sha256": "68bb35afee120a7cea58e8a6b4ab84dfc4bc4c30e3d312145f7c2e55deff58d6",
-      "bytes": 10115
+      "sha256": "df4f7761a2496f7ef8abb8edc3b73286486cd68f0e6259d222b8b086be0bdb2f",
+      "bytes": 10164
     },
     {
       "path": "server.mjs",
-      "sha256": "d1a97a12c9fa543a905e98ac167513fc13464c0ed602095a8199c04a84c6a85e",
-      "bytes": 9590
+      "sha256": "49b93cc985b1df47b69165c08ab179d2452e6d957d51912044912757849975fb",
+      "bytes": 10806
     }
   ],
   "permissions": [

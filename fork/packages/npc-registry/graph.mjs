@@ -7,7 +7,7 @@
 
 // Scope: who exists, so the story model never duplicates a name. Descriptions and history
 // belong to Lorebook Keeper entries, which fire by keyword.
-export const SINGLE = new Set(["name", "gender"]);
+export const SINGLE = new Set(["name", "gender", "avatar"]);
 export const MULTI = new Set(["alias"]);
 const MAX_VALUE = 300;
 
@@ -165,7 +165,7 @@ export function applyOps(graph, ops, anchor, swipes, { exclude = [] } = {}) {
         (assertion) =>
           resolved.canonical(assertion.s) === s &&
           assertion.p === p &&
-          (o === undefined || normalizeName(assertion.o) === normalizeName(o)),
+          (o === undefined || (p === "avatar" ? assertion.o === o : normalizeName(assertion.o) === normalizeName(o))),
       )
       .map((assertion) => assertion.id);
   };
