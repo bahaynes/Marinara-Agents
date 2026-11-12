@@ -543,6 +543,70 @@
    }
   },
   {
+   "id": "armor-of-vulnerability",
+   "label": "Armor of Vulnerability",
+   "summary": "While wearing this armor, you have resistance to one of the following damage types: bludgeoning, piercing, or slashing. The GM chooses the type or determines it randomly. Curse. This armor is cursed, a fact that is revealed only when an identify spell is cast on the armor or you attune to it.",
+   "item": {
+    "category": "armor",
+    "rarity": "rare",
+    "slots": {
+     "body": 1
+    },
+    "worn": {
+     "effects": [
+      "own-checks-disadvantage"
+     ],
+     "skills": [
+      "stealth"
+     ]
+    },
+    "requires": [
+     {
+      "value": {
+       "derived": "armor_speed_strength"
+      },
+      "atLeast": 15,
+      "otherwise": {
+       "modifiers": [
+        {
+         "to": "speed",
+         "flat": -10
+        }
+       ]
+      }
+     },
+     {
+      "value": {
+       "derived": "heavy_armor_levels"
+      },
+      "atLeast": 1,
+      "otherwise": {
+       "keepsOn": [
+        "armor_untrained"
+       ]
+      }
+     }
+    ],
+    "tags": [
+     "heavy_armor",
+     "magical"
+    ],
+    "stats": {
+     "weight": 65,
+     "ac_base": 18,
+     "dex_cap": 0,
+     "dex_floor": 0
+    },
+    "binds": {
+     "cursed": true
+    },
+    "cost": {
+     "amount": 1500,
+     "unit": "gp"
+    }
+   }
+  },
+  {
    "id": "armor-of-vulnerability-bludgeoning",
    "label": "Armor of Vulnerability (Bludgeoning)",
    "summary": "While wearing this armor, you have resistance to bludgeoning damage.",
@@ -737,7 +801,7 @@
   {
    "id": "bag-of-holding",
    "label": "Bag of Holding",
-   "summary": "This bag has an interior space considerably larger than its outside dimensions—roughly 2 feet square and 4 feet deep on the inside. The bag can hold up to 500 pounds, not exceeding a volume of 64 cubic feet. The bag weighs 5 pounds, regardless of its contents. Retrieving an item from the bag require",
+   "summary": "This bag has an interior space considerably larger than its outside dimensions\u2014roughly 2 feet square and 4 feet deep on the inside. The bag can hold up to 500 pounds, not exceeding a volume of 64 cubic feet. The bag weighs 5 pounds, regardless of its contents. Retrieving an item from the bag require",
    "item": {
     "category": "gear",
     "rarity": "uncommon",
@@ -1408,7 +1472,7 @@
   },
   {
    "id": "carpet-of-flying-3-ft-5-ft",
-   "label": "Carpet of Flying, 3 ft. × 5 ft.",
+   "label": "Carpet of Flying, 3 ft. \u00d7 5 ft.",
    "summary": "You can make this carpet hover and fly by taking a XPHB action and using the carpet's command word. It moves according to your directions if you are within 30 feet of it.",
    "item": {
     "category": "gear",
@@ -1420,7 +1484,7 @@
   },
   {
    "id": "carpet-of-flying-4-ft-6-ft",
-   "label": "Carpet of Flying, 4 ft. × 6 ft.",
+   "label": "Carpet of Flying, 4 ft. \u00d7 6 ft.",
    "summary": "You can make this carpet hover and fly by taking a XPHB action and using the carpet's command word. It moves according to your directions if you are within 30 feet of it.",
    "item": {
     "category": "gear",
@@ -1432,7 +1496,7 @@
   },
   {
    "id": "carpet-of-flying-5-ft-7-ft",
-   "label": "Carpet of Flying, 5 ft. × 7 ft.",
+   "label": "Carpet of Flying, 5 ft. \u00d7 7 ft.",
    "summary": "You can make this carpet hover and fly by taking a XPHB action and using the carpet's command word. It moves according to your directions if you are within 30 feet of it.",
    "item": {
     "category": "gear",
@@ -1444,7 +1508,7 @@
   },
   {
    "id": "carpet-of-flying-6-ft-9-ft",
-   "label": "Carpet of Flying, 6 ft. × 9 ft.",
+   "label": "Carpet of Flying, 6 ft. \u00d7 9 ft.",
    "summary": "You can make this carpet hover and fly by taking a XPHB action and using the carpet's command word. It moves according to your directions if you are within 30 feet of it.",
    "item": {
     "category": "gear",
@@ -2995,7 +3059,7 @@
   {
    "id": "glamoured-studded-leather",
    "label": "Glamoured Studded Leather",
-   "summary": "While wearing this armor, you gain a +1 bonus to Armor Class|XPHB. You can also take a Bonus Action|XPHB to cause the armor to assume the appearance of a normal set of clothing or some other kind of armor. You decide what it looks like—including color, style, and accessories—but the armor retains it",
+   "summary": "While wearing this armor, you gain a +1 bonus to Armor Class|XPHB. You can also take a Bonus Action|XPHB to cause the armor to assume the appearance of a normal set of clothing or some other kind of armor. You decide what it looks like\u2014including color, style, and accessories\u2014but the armor retains it",
    "item": {
     "category": "gear",
     "rarity": "rare",
@@ -4138,7 +4202,7 @@
   {
    "id": "living-gloves",
    "label": "Living Gloves",
-   "summary": "These symbiotic gloves—made of thin chitin and sinew—pulse with a life of their own. To attune to them, you must wear them for the entire attunement period, during which the gloves bond with your skin.",
+   "summary": "These symbiotic gloves\u2014made of thin chitin and sinew\u2014pulse with a life of their own. To attune to them, you must wear them for the entire attunement period, during which the gloves bond with your skin.",
    "item": {
     "category": "gear",
     "rarity": "uncommon",
@@ -5626,7 +5690,7 @@
   {
    "id": "prosthetic-limb",
    "label": "Prosthetic Limb",
-   "summary": "This magic item replaces a lost limb—a hand, an arm, a foot, a leg, or a similar body part. While the prosthetic is attached, it functions identically to the part it replaces. You can detach or reattach it as a XPHB action, and it can't be removed against your will while you are alive.",
+   "summary": "This magic item replaces a lost limb\u2014a hand, an arm, a foot, a leg, or a similar body part. While the prosthetic is attached, it functions identically to the part it replaces. You can detach or reattach it as a XPHB action, and it can't be removed against your will while you are alive.",
    "item": {
     "category": "gear",
     "rarity": "common",
@@ -6406,7 +6470,7 @@
   {
    "id": "rod-of-absorption",
    "label": "Rod of Absorption",
-   "summary": "While holding this rod, you can take a Reaction|XPHB to absorb a spell that is targeting only you and doesn't create an area of effect. The absorbed spell's effect is canceled, and the spell's energy—not the spell itself—is stored in the rod. The energy has the same level as the spell when it was ca",
+   "summary": "While holding this rod, you can take a Reaction|XPHB to absorb a spell that is targeting only you and doesn't create an area of effect. The absorbed spell's effect is canceled, and the spell's energy\u2014not the spell itself\u2014is stored in the rod. The energy has the same level as the spell when it was ca",
    "item": {
     "category": "gear",
     "rarity": "very_rare",
