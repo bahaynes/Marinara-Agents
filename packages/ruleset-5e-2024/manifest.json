@@ -10,7 +10,7 @@
   },
   "id": "ruleset-5e-2024",
   "name": "5e (2024 Edition)",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Play Game Mode by the 2024 revised 5e rules: updated character progression, 13 classes including Artificer, Level-1 half-caster spell progression, 2024 species and backgrounds with Origin Feats, 2024 Weapon Masteries, updated Exhaustion, bonus-action potions, and extensive monster bestiaries built from your owned 5etools library. After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
   "engine": {
     "min": "2.5.1",
@@ -74,8 +74,8 @@
     },
     {
       "path": "catalogs/magic_items.json",
-      "sha256": "32869c0134931a9a7a4e7e95b0e4b6066ed74e7b50057591fe722a9b3752d823",
-      "bytes": 279230
+      "sha256": "46c6418962d053079a639294bdbb15356f68855e46c4132609cd3fde030326fd",
+      "bytes": 280577
     },
     {
       "path": "catalogs/classes.json",

@@ -910,7 +910,10 @@ async function buildItems(dataDir, ownedSources, options) {
     const srdMagicItems =
       JSON.parse(await readFile(join(repoRoot, "packages/ruleset-5e-2014/catalogs/magic_items.json"), "utf8"))
         .entries || [];
-    const specialMiIds = new Set(["goodberry", "created-object"]);
+    // armor-of-vulnerability: the 2024 data only carries the three typed variants
+    // (Bludgeoning|Piercing|Slashing), but ruleset.json's fences_odd_lot loot table
+    // (and its low_magic layer copy) references the base item the fence passes off.
+    const specialMiIds = new Set(["goodberry", "created-object", "armor-of-vulnerability"]);
     const existingMiIds = new Set(magicItems.map((e) => e.id));
     for (const mi of srdMagicItems) {
       if (specialMiIds.has(mi.id) && !existingMiIds.has(mi.id)) {
