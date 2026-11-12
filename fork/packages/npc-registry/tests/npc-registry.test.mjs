@@ -225,3 +225,33 @@ test("a concurrent revision bump is retried, not silently dropped", async () => 
   const roster = await rosterContext(store)({ chatId: "c1", chatMeta: meta, mode: "roleplay" });
   assert.match(roster, /First, Second$/);
 });
+
+test("avatar support: op set avatar, unanchored pin, and lookup exposure", async () => {
+  const graph = emptyGraph();
+  const swipes = activeSwipes(msgs(["m1", 0], ["m2", 0]));
+  applyOps(
+    graph,
+    [
+      { op: "create", name: "Princess Iselith", gender: "she" },
+      { op: "set", npc: "Princess Iselith", field: "avatar", value: "/api/avatars/npc/c1/iselith.png" },
+    ],
+    { m: "m1", w: 0 },
+    swipes,
+  );
+  const id = Object.keys(graph.nodes)[0];
+  const resolved = resolve(graph, swipes);
+  assert.equal(resolved.npcs.get(id).avatar, "/api/avatars/npc/c1/iselith.png");
+
+  // An unanchored manual avatar update pins it permanently across swipes
+  const sup = graph.assertions.filter((a) => a.p === "avatar").map((a) => a.id);
+  graph.assertions.push({ id: "pin-avatar", s: id, p: "avatar", o: "/api/avatars/npc/c1/custom.png", sup });
+
+  // Extractor op in later message cannot override pinned manual avatar
+  applyOps(
+    graph,
+    [{ op: "set", npc: id, field: "avatar", value: "/api/avatars/npc/c1/wrong.png" }],
+    { m: "m2", w: 0 },
+    swipes,
+  );
+  assert.equal(resolve(graph, swipes).npcs.get(id).avatar, "/api/avatars/npc/c1/custom.png");
+});
