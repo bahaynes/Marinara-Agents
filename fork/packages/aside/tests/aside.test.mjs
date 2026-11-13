@@ -1,7 +1,7 @@
 // node --test fork/packages/aside/tests/*.test.mjs
 import assert from "node:assert/strict";
 import test from "node:test";
-import { addNote, asideUserMessage, changeNote, cleanSettings, newNote } from "../aside.mjs";
+import { addNote, asideUserMessage, changeNote, cleanSettings, newNote, reorderNotes } from "../aside.mjs";
 import { createNote, createStore, prepare, recordExchange } from "../server.mjs";
 
 const settings = cleanSettings({});
@@ -62,4 +62,11 @@ test("empty question or answer is rejected", async () => {
   const store = createStore(fakeDocuments());
   await assert.rejects(() => prepare(store, "c", { question: " " }), /Ask something/);
   await assert.rejects(() => recordExchange(store, "c", { question: "q", answer: "" }), /Nothing to record/);
+});
+
+test("reorderNotes follows ids, keeps unnamed notes after, ignores unknown and duplicate ids", () => {
+  const notes = ["a", "b", "c", "d"].map((id) => ({ id }));
+  assert.deepEqual(reorderNotes(notes, ["c", "a"]).map((n) => n.id), ["c", "a", "b", "d"]);
+  assert.deepEqual(reorderNotes(notes, ["x", "b", "b"]).map((n) => n.id), ["b", "a", "c", "d"]);
+  assert.deepEqual(reorderNotes(notes, undefined).map((n) => n.id), ["a", "b", "c", "d"]);
 });
