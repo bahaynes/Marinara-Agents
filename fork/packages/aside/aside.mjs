@@ -1,11 +1,9 @@
-// Aside: pure helpers. Notes, the side thread, and the prompt for an out-of-band question to the narrator.
+// Aside: pure helpers. Notes, the side thread, and the temporary message for an out-of-band question to the narrator.
 // Nothing here touches the host, so it can be tested directly.
 
 // Defaults for settings the player can change; none of these is a design limit.
 export const DEFAULT_SETTINGS = Object.freeze({
-  recentMessages: 20, // main-chat messages shown to the narrator
   threadTurns: 20, // side-thread turns kept and sent
-  maxTokens: 1024,
   connectionId: null, // null = the chat's own connection
 });
 const MAX_NOTES = 500;
@@ -16,9 +14,7 @@ const int = (value, fallback, min, max) =>
 export function cleanSettings(raw) {
   const s = raw && typeof raw === "object" ? raw : {};
   return {
-    recentMessages: int(s.recentMessages, DEFAULT_SETTINGS.recentMessages, 1, 200),
     threadTurns: int(s.threadTurns, DEFAULT_SETTINGS.threadTurns, 2, 200),
-    maxTokens: int(s.maxTokens, DEFAULT_SETTINGS.maxTokens, 64, 16000),
     connectionId: typeof s.connectionId === "string" && s.connectionId.trim() ? s.connectionId.trim().slice(0, 120) : null,
   };
 }
@@ -48,32 +44,21 @@ export function newTurn(role, text) {
   return { id: newId(), role: role === "assistant" ? "assistant" : "user", text: String(text ?? ""), createdAt: new Date().toISOString() };
 }
 
-/** The Engine's stored role decides the label, so an impersonate turn (a user message written as a character) stays the player's. */
-export function transcriptLines(messages, { persona, limit }) {
-  return messages
-    .filter((m) => (m.role === "user" || m.role === "assistant") && String(m.content ?? "").trim())
-    .slice(-limit)
-    .map((m) => `${m.role === "user" ? persona : "Narrator"}: ${String(m.content).trim()}`);
-}
-
-const SYSTEM = [
-  "You are the narrator of an ongoing story, answering a private out-of-character aside from the player.",
-  "The aside is not part of the story: do not narrate, do not continue the scene, and do not write the player's character's actions. Answer the question directly and briefly, as the narrator who knows this story.",
-  "Use only what the story context below shows; say so when something has not been established.",
+const INSTRUCTION = [
+  "Out-of-character aside from the player. It is not part of the story and will not be kept in it.",
+  "Answer the question below directly and briefly, as the narrator who knows this story. Do not narrate, continue the scene, or write the player character's actions. Use only what the story shows; say so when something has not been established.",
 ].join("\n");
 
 /**
- * Messages for one aside. Order keeps the cache prefix stable: the role text, then the story so far, then
- * the notes, then the side thread; only the newest question changes between asides.
+ * The one temporary user message sent with the Engine's real chat prompt (dryRun), so the prompt prefix stays the
+ * chat's own and only this last message changes between asides.
  */
-export function asideMessages({ persona, characters, messages, notes, thread, question, settings }) {
-  const parts = [SYSTEM];
-  const who = [persona && `Player character: ${persona}`, characters.length && `Characters: ${characters.join(", ")}`].filter(Boolean);
-  if (who.length) parts.push(who.join("\n"));
-  const lines = transcriptLines(messages, { persona: persona || "Player", limit: settings.recentMessages });
-  parts.push(`<story_so_far>\n${lines.join("\n\n") || "(nothing yet)"}\n</story_so_far>`);
+export function asideUserMessage({ notes, thread, question, settings }) {
+  const parts = [INSTRUCTION];
   const pinned = notes.filter((n) => n.pinned).map((n) => `- ${n.text}`);
   if (pinned.length) parts.push(`<player_notes>\n${pinned.join("\n")}\n</player_notes>`);
-  const history = thread.slice(-settings.threadTurns).map((t) => ({ role: t.role, content: t.text }));
-  return [{ role: "system", content: parts.join("\n\n") }, ...history, { role: "user", content: String(question) }];
+  const earlier = thread.slice(-settings.threadTurns).map((t) => `${t.role === "user" ? "Player" : "Narrator"}: ${t.text}`);
+  if (earlier.length) parts.push(`<earlier_asides>\n${earlier.join("\n\n")}\n</earlier_asides>`);
+  parts.push(`Question: ${String(question)}`);
+  return parts.join("\n\n");
 }
