@@ -1,8 +1,8 @@
 // node --test fork/packages/aside/tests/*.test.mjs
 import assert from "node:assert/strict";
 import test from "node:test";
-import { addNote, asideUserMessage, changeNote, cleanSettings, newNote, reorderNotes, sortNotes } from "../aside.mjs";
-import { createNote, createStore, prepare, recordExchange } from "../server.mjs";
+import { addNote, asideUserMessage, changeNote, cleanSettings, changeTurn, newNote, reorderNotes, sortNotes } from "../aside.mjs";
+import { createNote, createStore, deleteTurn, editTurn, prepare, recordExchange } from "../server.mjs";
 
 const settings = cleanSettings({});
 
@@ -85,4 +85,16 @@ test("sortNotes orders once by the chosen mode; pinned-first is stable", () => {
   assert.deepEqual(ids("alpha"), ["b", "a", "c"]);
   assert.deepEqual(ids("pinned"), ["b", "c", "a"]);
   assert.deepEqual(ids("bogus"), ["a", "b", "c"]);
+});
+
+test("side-thread messages can be edited and deleted", async () => {
+  assert.equal(changeTurn([{ id: "t", text: "x" }], "t", "  "), null);
+  const store = createStore(fakeDocuments());
+  const { thread } = await recordExchange(store, "c", { question: "q", answer: "a" });
+  const edited = await editTurn(store, "c", thread[1].id, { text: "fixed" });
+  assert.deepEqual(edited.thread.map((t) => t.text), ["q", "fixed"]);
+  await assert.rejects(() => editTurn(store, "c", "missing", { text: "x" }), /not found/);
+  const left = await deleteTurn(store, "c", thread[0].id);
+  assert.deepEqual(left.thread.map((t) => t.text), ["fixed"]);
+  assert.match((await prepare(store, "c", { question: "next" })).userMessage, /You answered: fixed/);
 });
