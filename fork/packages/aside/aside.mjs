@@ -56,6 +56,15 @@ export const SORTS = Object.freeze({
 
 export const sortNotes = (notes, mode) => (SORTS[mode] ? [...notes].sort(SORTS[mode]) : notes);
 
+/** Replace the text of one side-thread turn. Null when it does not exist or the text is empty. */
+export function changeTurn(thread, id, text) {
+  const turn = thread.find((t) => t.id === id);
+  const clean = String(text ?? "").trim();
+  if (!turn || !clean) return null;
+  turn.text = clean;
+  return thread;
+}
+
 export const addNote = (notes, note) => [note, ...notes].slice(0, MAX_NOTES);
 
 export function newTurn(role, text) {

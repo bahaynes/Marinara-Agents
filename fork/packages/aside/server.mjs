@@ -6,6 +6,7 @@ import {
   addNote,
   asideUserMessage,
   changeNote,
+  changeTurn,
   cleanSettings,
   emptyChat,
   newNote,
@@ -121,6 +122,16 @@ export const editNote = (store, chatId, noteId, body) =>
     if (!changeNote(data.notes, noteId, body ?? {})) throw new AsideError(404, "Note not found.");
   });
 
+export const editTurn = (store, chatId, turnId, body) =>
+  store.update(chatId, (data) => {
+    if (!changeTurn(data.thread, turnId, body?.text)) throw new AsideError(404, "Message not found.");
+  });
+
+export const deleteTurn = (store, chatId, turnId) =>
+  store.update(chatId, (data) => {
+    data.thread = data.thread.filter((t) => t.id !== turnId);
+  });
+
 export const orderNotes = (store, chatId, body) =>
   store.update(chatId, (data) => {
     data.notes = body?.sort ? sortNotes(data.notes, body.sort) : reorderNotes(data.notes, body?.ids);
@@ -152,6 +163,8 @@ export async function activate(context) {
       routes.delete("/chats/:chatId/notes/:noteId", handle(({ chatId, noteId }) => deleteNote(store, chatId, noteId)));
       routes.post("/chats/:chatId/prepare", handle(({ chatId }, body) => prepare(store, chatId, body)));
       routes.post("/chats/:chatId/exchange", handle(({ chatId }, body) => recordExchange(store, chatId, body)));
+      routes.put("/chats/:chatId/thread/:turnId", handle(({ chatId, turnId }, body) => editTurn(store, chatId, turnId, body)));
+      routes.delete("/chats/:chatId/thread/:turnId", handle(({ chatId, turnId }) => deleteTurn(store, chatId, turnId)));
       routes.delete("/chats/:chatId/thread", handle(({ chatId }) => clearThread(store, chatId)));
       routes.put("/settings", handle((_p, body) => store.saveSettings(body)));
     },
