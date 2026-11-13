@@ -46,6 +46,16 @@ export function reorderNotes(notes, ids) {
   return [...named, ...rest];
 }
 
+/** One-shot orderings for the sort menu. The result becomes the stored order; nothing keeps sorting afterwards. */
+export const SORTS = Object.freeze({
+  newest: (x, y) => String(y.createdAt).localeCompare(String(x.createdAt)),
+  oldest: (x, y) => String(x.createdAt).localeCompare(String(y.createdAt)),
+  alpha: (x, y) => x.text.localeCompare(y.text, undefined, { sensitivity: "base" }),
+  pinned: (x, y) => Number(y.pinned) - Number(x.pinned), // stable: keeps the current order within each group
+});
+
+export const sortNotes = (notes, mode) => (SORTS[mode] ? [...notes].sort(SORTS[mode]) : notes);
+
 export const addNote = (notes, note) => [note, ...notes].slice(0, MAX_NOTES);
 
 export function newTurn(role, text) {

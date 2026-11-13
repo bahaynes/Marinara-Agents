@@ -11,6 +11,7 @@ import {
   newNote,
   newTurn,
   reorderNotes,
+  sortNotes,
 } from "./aside.mjs";
 
 export const PACKAGE_ID = "aside";
@@ -122,7 +123,7 @@ export const editNote = (store, chatId, noteId, body) =>
 
 export const orderNotes = (store, chatId, body) =>
   store.update(chatId, (data) => {
-    data.notes = reorderNotes(data.notes, body?.ids);
+    data.notes = body?.sort ? sortNotes(data.notes, body.sort) : reorderNotes(data.notes, body?.ids);
   });
 
 export const deleteNote = (store, chatId, noteId) =>

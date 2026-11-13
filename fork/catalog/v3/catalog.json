@@ -513,7 +513,7 @@
         },
         "id": "aside",
         "name": "Aside",
-        "version": "0.3.0",
+        "version": "0.4.0",
         "description": "Per-chat Notes and a /btw-style side chat with the narrator. Ask the narrator a question out of character, using the story so far and your pinned notes, without anything being added to the story. Add it in Chat Settings → Agents, then use the Aside button in the chat toolbar.",
         "engine": {
           "min": "2.5.1",
@@ -548,26 +548,26 @@
           },
           {
             "path": "aside.mjs",
-            "sha256": "af5aea74e87b42d38e3dda45119a35e905c25c6a0e8c116c3e65d76aef7431af",
-            "bytes": 3584
+            "sha256": "b2df00ec2ee930e8e0101fa10290ed751ffe025ad92f55d12b7a53f49c645a30",
+            "bytes": 4186
           },
           {
             "path": "client.js",
-            "sha256": "2c8e4872a6b112f1c57292b8f6c5789c8df50ceb50de15589a717a11537d1a49",
-            "bytes": 18571
+            "sha256": "9ff5da040f3e02f7d557e600504c96b875539427c8b26bf594a5cda48af19949",
+            "bytes": 20842
           },
           {
             "path": "server.mjs",
-            "sha256": "7a02f07912f346f07ff39b249c358bdb3b72b42403ef437681446c210763ddda",
-            "bytes": 6665
+            "sha256": "a21bfade53b68944ddbc8f874ddb387a2ab06b85d13d0921d227a6805bb18681",
+            "bytes": 6726
           }
         ]
       },
       "category": "misc",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/aside-0.3.0.zip",
-        "sha256": "a254af58f42e36d3576be1723a4002819610a08674a0e5d91b5aebc926a5943b",
-        "bytes": 31399
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/aside-0.4.0.zip",
+        "sha256": "e48532928347af54acf7bf455afef870273b3eb8533cf7a8aa2226de32e18598",
+        "bytes": 34333
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/aside/README.md"
     },
