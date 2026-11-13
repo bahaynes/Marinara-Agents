@@ -116,7 +116,7 @@
 
     constructor() {
       super();
-      this.state = { confirmDel: null, dragId: null, tab: "notes", open: false, data: null, chatId: null, busy: false, draft: "", error: "", streaming: "", search: "", settings: false, question: "" };
+      this.state = { editId: null, editText: "", confirmDel: null, dragId: null, tab: "notes", open: false, data: null, chatId: null, busy: false, draft: "", error: "", streaming: "", search: "", settings: false, question: "" };
     }
 
     get props() {
@@ -200,10 +200,14 @@
       const cards = list
         .map((n) => {
           const confirm = this.state.confirmDel === n.id;
-          return `<div class="as-card" data-pinned="${n.pinned}" data-id="${esc(n.id)}" ${drag ? 'draggable="true"' : ""}><div class="as-text">${esc(n.text)}</div><div class="as-row"><button type="button" class="as-icon" data-act="pin" data-id="${esc(n.id)}" aria-pressed="${n.pinned}" title="${n.pinned ? "Unpin" : "Pin"}" aria-label="${n.pinned ? "Unpin" : "Pin"}">${ICON_PIN(n.pinned)}</button><button type="button" class="as-icon" data-act="edit" data-id="${esc(n.id)}" title="Edit" aria-label="Edit">${ICON_EDIT}</button><button type="button" class="as-icon as-danger" data-act="del" data-id="${esc(n.id)}" data-confirm="${confirm}" title="${confirm ? "Click again to delete" : "Delete"}" aria-label="${confirm ? "Click again to delete" : "Delete"}">${confirm ? `${ICON_CHECK}Delete?` : ICON_TRASH}</button>${n.source === "aside" ? '<span class="as-muted">from side chat</span>' : ""}</div></div>`;
+          const editing = this.state.editId === n.id;
+          const body = editing
+            ? `<textarea class="as-field" data-edit="${esc(n.id)}" rows="3">${esc(this.state.editText)}</textarea><div class="as-muted">Ctrl+Enter to save, Esc to cancel</div>`
+            : `<div class="as-text" data-dbl="${esc(n.id)}" title="Double-click to edit">${esc(n.text)}</div>`;
+          return `<div class="as-card" data-pinned="${n.pinned}" data-id="${esc(n.id)}" ${drag && !editing ? 'draggable="true"' : ""}>${body}<div class="as-row"><button type="button" class="as-icon" data-act="pin" data-id="${esc(n.id)}" aria-pressed="${n.pinned}" title="${n.pinned ? "Unpin" : "Pin"}" aria-label="${n.pinned ? "Unpin" : "Pin"}">${ICON_PIN(n.pinned)}</button><button type="button" class="as-icon" data-act="edit" data-id="${esc(n.id)}" title="Edit" aria-label="Edit">${ICON_EDIT}</button><button type="button" class="as-icon as-danger" data-act="del" data-id="${esc(n.id)}" data-confirm="${confirm}" title="${confirm ? "Click again to delete" : "Delete"}" aria-label="${confirm ? "Click again to delete" : "Delete"}">${confirm ? `${ICON_CHECK}Delete?` : ICON_TRASH}</button>${n.source === "aside" ? '<span class="as-muted">from side chat</span>' : ""}</div></div>`;
         })
         .join("");
-      return `<textarea class="as-field" data-field="draft" rows="2" placeholder="New note">${esc(draft)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="add">Add note</button><input class="as-field" data-field="search" placeholder="Search" value="${esc(search)}" style="flex:1;width:auto"></div><div class="as-list">${cards || '<span class="as-muted">No notes yet.</span>'}</div><div class="as-muted">Drag notes to reorder. Pinned notes are shown to the narrator in side-chat questions.</div>`;
+      return `<textarea class="as-field" data-field="draft" rows="2" placeholder="New note">${esc(draft)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="add">Add note</button><input class="as-field" data-field="search" placeholder="Search" value="${esc(search)}" style="flex:1;width:auto"><select class="as-field" data-sort style="width:auto" aria-label="Sort notes" title="Reorder once; drag to fine-tune"><option value="">Sort…</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="alpha">A to Z</option><option value="pinned">Pinned first</option></select></div><div class="as-list">${cards || '<span class="as-muted">No notes yet.</span>'}</div><div class="as-muted">Drag notes to reorder. Pinned notes are shown to the narrator in side-chat questions.</div>`;
     }
 
     aside() {
@@ -231,7 +235,46 @@
         });
       }
       this.bindDrag();
+      this.bindEdit();
+      this.querySelector("[data-sort]")?.addEventListener("change", (e) => {
+        const sort = e.target.value;
+        e.target.value = "";
+        if (!sort) return;
+        const base = `/chats/${encodeURIComponent(this.state.chatId)}`;
+        void this.run(() => request(`${base}/notes-order`, "PUT", { sort }).then(() => request(base)));
+      });
       for (const el of this.querySelectorAll("[data-act]")) el.addEventListener("click", () => this.act(el.dataset.act, el.dataset));
+    }
+
+    startEdit(id) {
+      const note = this.state.data.notes.find((n) => n.id === id);
+      if (!note) return;
+      Object.assign(this.state, { editId: id, editText: note.text });
+      this.render();
+      this.querySelector("[data-edit]")?.focus();
+    }
+
+    /** Double-click a note to edit it in place. Ctrl/Cmd+Enter or leaving the box saves; Esc cancels. */
+    bindEdit() {
+      for (const el of this.querySelectorAll("[data-dbl]")) el.addEventListener("dblclick", () => this.startEdit(el.dataset.dbl));
+      const box = this.querySelector("[data-edit]");
+      if (!box) return;
+      const finish = (save) => {
+        const { editId, editText, chatId } = this.state;
+        if (editId === null) return;
+        this.state.editId = null;
+        const note = this.state.data.notes.find((n) => n.id === editId);
+        const text = editText.trim();
+        if (!save || !text || text === note?.text) return this.render();
+        const base = `/chats/${encodeURIComponent(chatId)}`;
+        void this.run(() => request(`${base}/notes/${editId}`, "PUT", { text }).then(() => request(base)));
+      };
+      box.addEventListener("input", () => (this.state.editText = box.value));
+      box.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") finish(false);
+        else if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) finish(true);
+      });
+      box.addEventListener("blur", () => finish(true));
     }
 
     /** Drag a note onto another to move it there. No re-render until the drop, so the drag survives. */
@@ -294,12 +337,7 @@
         const note = s.data.notes.find((n) => n.id === ds.id);
         return void this.run(() => request(`${base}/notes/${ds.id}`, "PUT", { pinned: !note?.pinned }).then(() => request(base)));
       }
-      if (action === "edit") {
-        const note = s.data.notes.find((n) => n.id === ds.id);
-        const text = window.prompt("Edit note", note?.text ?? "");
-        if (text === null) return;
-        return void this.run(() => request(`${base}/notes/${ds.id}`, "PUT", { text }).then(() => request(base)));
-      }
+      if (action === "edit") return void this.startEdit(ds.id);
       if (action === "del") return void this.run(() => request(`${base}/notes/${ds.id}`, "DELETE").then(() => request(base)));
       if (action === "save") {
         const turn = s.data.thread.find((t) => t.id === ds.id);

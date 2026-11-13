@@ -1,7 +1,7 @@
 // node --test fork/packages/aside/tests/*.test.mjs
 import assert from "node:assert/strict";
 import test from "node:test";
-import { addNote, asideUserMessage, changeNote, cleanSettings, newNote, reorderNotes } from "../aside.mjs";
+import { addNote, asideUserMessage, changeNote, cleanSettings, newNote, reorderNotes, sortNotes } from "../aside.mjs";
 import { createNote, createStore, prepare, recordExchange } from "../server.mjs";
 
 const settings = cleanSettings({});
@@ -69,4 +69,18 @@ test("reorderNotes follows ids, keeps unnamed notes after, ignores unknown and d
   assert.deepEqual(reorderNotes(notes, ["c", "a"]).map((n) => n.id), ["c", "a", "b", "d"]);
   assert.deepEqual(reorderNotes(notes, ["x", "b", "b"]).map((n) => n.id), ["b", "a", "c", "d"]);
   assert.deepEqual(reorderNotes(notes, undefined).map((n) => n.id), ["a", "b", "c", "d"]);
+});
+
+test("sortNotes orders once by the chosen mode; pinned-first is stable", () => {
+  const notes = [
+    { id: "a", text: "banana", pinned: false, createdAt: "2026-01-02" },
+    { id: "b", text: "Apple", pinned: true, createdAt: "2026-01-01" },
+    { id: "c", text: "cherry", pinned: true, createdAt: "2026-01-03" },
+  ];
+  const ids = (mode) => sortNotes(notes, mode).map((n) => n.id);
+  assert.deepEqual(ids("newest"), ["c", "a", "b"]);
+  assert.deepEqual(ids("oldest"), ["b", "a", "c"]);
+  assert.deepEqual(ids("alpha"), ["b", "a", "c"]);
+  assert.deepEqual(ids("pinned"), ["b", "c", "a"]);
+  assert.deepEqual(ids("bogus"), ["a", "b", "c"]);
 });
