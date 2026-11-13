@@ -1,0 +1,17 @@
+[
+  {
+    "id": "aside",
+    "name": "Aside",
+    "description": "Per-chat Notes and a private side chat with the narrator that never touches the story. Add it in Chat Settings → Agents.",
+    "author": "custom-mods",
+    "phase": "post_processing",
+    "enabledByDefault": false,
+    "category": "misc",
+    "runtimeDisabled": true,
+    "modeAllowlist": ["roleplay", "game"],
+    "defaultTools": [],
+    "defaultSettings": {},
+    "defaultPromptTemplate": "",
+    "execution": "feature"
+  }
+]
