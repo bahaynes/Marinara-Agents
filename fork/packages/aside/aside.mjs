@@ -62,9 +62,19 @@ export function newTurn(role, text) {
   return { id: newId(), role: role === "assistant" ? "assistant" : "user", text: String(text ?? ""), createdAt: new Date().toISOString() };
 }
 
-const INSTRUCTION = [
-  "Out-of-character aside from the player. It is not part of the story and will not be kept in it.",
-  "Answer the question below directly and briefly, as the narrator who knows this story. Do not narrate, continue the scene, or write the player character's actions. Use only what the story shows; say so when something has not been established.",
+// The aside rides on the chat's real roleplay prompt, whose instructions push the model to continue the story, so
+// the rules come twice: a marker up front and the hard rules last, where the model weighs them most.
+const OPENING = [
+  "[OUT OF CHARACTER ASIDE]",
+  "The player has paused the story to ask you something directly. This is not a story turn, and nothing here becomes part of the story.",
+].join("\n");
+
+const CLOSING = [
+  "Rules for this reply only:",
+  "- Answer in plain out-of-character prose, speaking to the player directly. Keep it short.",
+  "- Do not write any scene text, dialogue, character action or continuation of the story, not even one line. Do not start with a character's name or an action.",
+  "- Use only what the story has shown. If the answer is not established, say that instead of inventing it.",
+  "- The story resumes only when the player sends their next story turn.",
 ].join("\n");
 
 /**
@@ -72,11 +82,11 @@ const INSTRUCTION = [
  * chat's own and only this last message changes between asides.
  */
 export function asideUserMessage({ notes, thread, question, settings }) {
-  const parts = [INSTRUCTION];
+  const parts = [OPENING];
   const pinned = notes.filter((n) => n.pinned).map((n) => `- ${n.text}`);
   if (pinned.length) parts.push(`<player_notes>\n${pinned.join("\n")}\n</player_notes>`);
-  const earlier = thread.slice(-settings.threadTurns).map((t) => `${t.role === "user" ? "Player" : "Narrator"}: ${t.text}`);
+  const earlier = thread.slice(-settings.threadTurns).map((t) => `${t.role === "user" ? "Player asked" : "You answered"}: ${t.text}`);
   if (earlier.length) parts.push(`<earlier_asides>\n${earlier.join("\n\n")}\n</earlier_asides>`);
-  parts.push(`Question: ${String(question)}`);
+  parts.push(`The player's question: ${String(question)}`, CLOSING);
   return parts.join("\n\n");
 }

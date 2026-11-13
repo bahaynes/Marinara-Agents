@@ -86,6 +86,9 @@
   const ICON_TRASH = `<svg ${SVG}><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
   const ICON_CHECK = `<svg ${SVG}><polyline points="20 6 9 17 4 12"></polyline></svg>`;
 
+  /** Enter submits, Shift+Enter is a newline; Enter while composing text (IME) is left alone. */
+  const isSubmit = (e) => e.key === "Enter" && !e.shiftKey && !e.isComposing;
+
   const CSS = `
     .as-icon { display: inline-flex; align-items: center; gap: .25rem; padding: .25rem; border-radius: .375rem; border: 0; background: transparent; color: var(--muted-foreground); cursor: pointer; font-size: .75rem; }
     .as-icon:hover { background: var(--accent); color: var(--foreground); }
@@ -202,12 +205,12 @@
           const confirm = this.state.confirmDel === n.id;
           const editing = this.state.editId === n.id;
           const body = editing
-            ? `<textarea class="as-field" data-edit="${esc(n.id)}" rows="3">${esc(this.state.editText)}</textarea><div class="as-muted">Ctrl+Enter to save, Esc to cancel</div>`
+            ? `<textarea class="as-field" data-edit="${esc(n.id)}" rows="3">${esc(this.state.editText)}</textarea><div class="as-muted">Enter to save, Shift+Enter for a new line, Esc to cancel</div>`
             : `<div class="as-text" data-dbl="${esc(n.id)}" title="Double-click to edit">${esc(n.text)}</div>`;
           return `<div class="as-card" data-pinned="${n.pinned}" data-id="${esc(n.id)}" ${drag && !editing ? 'draggable="true"' : ""}>${body}<div class="as-row"><button type="button" class="as-icon" data-act="pin" data-id="${esc(n.id)}" aria-pressed="${n.pinned}" title="${n.pinned ? "Unpin" : "Pin"}" aria-label="${n.pinned ? "Unpin" : "Pin"}">${ICON_PIN(n.pinned)}</button><button type="button" class="as-icon" data-act="edit" data-id="${esc(n.id)}" title="Edit" aria-label="Edit">${ICON_EDIT}</button><button type="button" class="as-icon as-danger" data-act="del" data-id="${esc(n.id)}" data-confirm="${confirm}" title="${confirm ? "Click again to delete" : "Delete"}" aria-label="${confirm ? "Click again to delete" : "Delete"}">${confirm ? `${ICON_CHECK}Delete?` : ICON_TRASH}</button>${n.source === "aside" ? '<span class="as-muted">from side chat</span>' : ""}</div></div>`;
         })
         .join("");
-      return `<textarea class="as-field" data-field="draft" rows="2" placeholder="New note">${esc(draft)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="add">Add note</button><input class="as-field" data-field="search" placeholder="Search" value="${esc(search)}" style="flex:1;width:auto"><select class="as-field" data-sort style="width:auto" aria-label="Sort notes" title="Reorder once; drag to fine-tune"><option value="">Sort…</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="alpha">A to Z</option><option value="pinned">Pinned first</option></select></div><div class="as-list">${cards || '<span class="as-muted">No notes yet.</span>'}</div><div class="as-muted">Drag notes to reorder. Pinned notes are shown to the narrator in side-chat questions.</div>`;
+      return `<textarea class="as-field" data-field="draft" rows="2" placeholder="New note (Enter to add, Shift+Enter for a new line)">${esc(draft)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="add">Add note</button><input class="as-field" data-field="search" placeholder="Search" value="${esc(search)}" style="flex:1;width:auto"><select class="as-field" data-sort style="width:auto" aria-label="Sort notes" title="Reorder once; drag to fine-tune"><option value="">Sort…</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="alpha">A to Z</option><option value="pinned">Pinned first</option></select></div><div class="as-list">${cards || '<span class="as-muted">No notes yet.</span>'}</div><div class="as-muted">Drag notes to reorder. Pinned notes are shown to the narrator in side-chat questions.</div>`;
     }
 
     aside() {
@@ -224,7 +227,7 @@
       const config = settings
         ? `<div class="as-card">${num("threadTurns", "Side-chat turns kept")}<label class="as-muted">Connection id (empty = this chat's)<input class="as-field" data-setting="connectionId" value="${esc(s.connectionId ?? "")}"></label><button type="button" class="as-tab" data-act="save-settings">Save settings</button></div>`
         : "";
-      return `<div class="as-list">${turns || '<span class="as-muted">Ask the narrator something out of character. Nothing is added to the story.</span>'}${live}</div><textarea class="as-field" data-field="question" rows="2" placeholder="Ask the narrator…" ${busy ? "disabled" : ""}>${esc(question)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="${busy ? "stop" : "ask"}">${busy ? "Stop" : "Ask"}</button><button type="button" class="as-tab" data-act="clear" ${busy ? "disabled" : ""}>Clear thread</button><button type="button" class="as-tab" data-act="settings">Settings</button></div>${config}`;
+      return `<div class="as-list">${turns || '<span class="as-muted">Ask the narrator something out of character. Nothing is added to the story.</span>'}${live}</div><textarea class="as-field" data-field="question" rows="2" placeholder="Ask the narrator… (Enter to send, Shift+Enter for a new line)" ${busy ? "disabled" : ""}>${esc(question)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="${busy ? "stop" : "ask"}">${busy ? "Stop" : "Ask"}</button><button type="button" class="as-tab" data-act="clear" ${busy ? "disabled" : ""}>Clear thread</button><button type="button" class="as-tab" data-act="settings">Settings</button></div>${config}`;
     }
 
     bind() {
@@ -236,6 +239,11 @@
       }
       this.bindDrag();
       this.bindEdit();
+      for (const [field, action] of [["draft", "add"], ["question", "ask"]]) {
+        this.querySelector(`[data-field=${field}]`)?.addEventListener("keydown", (e) => {
+          if (isSubmit(e)) (e.preventDefault(), this.act(action, {}));
+        });
+      }
       this.querySelector("[data-sort]")?.addEventListener("change", (e) => {
         const sort = e.target.value;
         e.target.value = "";
@@ -272,7 +280,7 @@
       box.addEventListener("input", () => (this.state.editText = box.value));
       box.addEventListener("keydown", (e) => {
         if (e.key === "Escape") finish(false);
-        else if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) finish(true);
+        else if (isSubmit(e)) (e.preventDefault(), finish(true));
       });
       box.addEventListener("blur", () => finish(true));
     }
@@ -330,8 +338,11 @@
       if (action === "settings") return void ((s.settings = !s.settings), this.render());
       if (action === "add") {
         const text = s.draft;
+        if (!text.trim()) return;
         s.draft = "";
-        return void this.run(() => request(`${base}/notes`, "POST", { text }).then(() => request(base)));
+        return void this.run(() => request(`${base}/notes`, "POST", { text }).then(() => request(base))).then(() =>
+          this.querySelector("[data-field=draft]")?.focus(),
+        );
       }
       if (action === "pin") {
         const note = s.data.notes.find((n) => n.id === ds.id);

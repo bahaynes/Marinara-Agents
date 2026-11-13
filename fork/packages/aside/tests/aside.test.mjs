@@ -13,12 +13,14 @@ test("aside message: instruction first, pinned notes only, earlier asides, quest
     question: "q2",
     settings,
   });
-  assert.match(text, /^Out-of-character aside/);
+  assert.match(text, /^\[OUT OF CHARACTER ASIDE\]/);
   assert.match(text, /- pinned/);
   assert.doesNotMatch(text, /loose/);
   assert.ok(text.indexOf("<player_notes>") < text.indexOf("<earlier_asides>"));
-  assert.match(text, /Player: q1\n\nNarrator: a1/);
-  assert.ok(text.endsWith("Question: q2"));
+  assert.match(text, /Player asked: q1\n\nYou answered: a1/);
+  const q = text.indexOf("The player's question: q2");
+  assert.ok(q > 0 && text.indexOf("Rules for this reply only") > q, "the rules come after the question");
+  assert.match(text, /not even one line/);
 });
 
 test("threadTurns caps the earlier asides sent", () => {
@@ -55,7 +57,7 @@ test("prepare builds the message from stored notes and thread; recordExchange ke
   assert.equal(first.connectionId, null);
   const view = await recordExchange(store, "c", { question: "why?", answer: "because" });
   assert.deepEqual(view.thread.map((t) => t.text), ["why?", "because"]);
-  assert.match((await prepare(store, "c", { question: "and?" })).userMessage, /Narrator: because/);
+  assert.match((await prepare(store, "c", { question: "and?" })).userMessage, /You answered: because/);
 });
 
 test("empty question or answer is rejected", async () => {
