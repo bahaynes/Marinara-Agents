@@ -36,19 +36,31 @@
     return payload;
   }
 
-  /** POST the question and read server-sent events; `onToken` gets each chunk, the promise the final chat view. */
-  async function ask(chatId, question, onToken, signal) {
-    const res = await fetch(`${API}/chats/${encodeURIComponent(chatId)}/ask`, {
+  /**
+   * Ask through the Engine's own dryRun: the chat's real prompt plus `userMessage` as a temporary last turn,
+   * nothing persisted. `onToken` gets each chunk; the promise resolves to the full answer.
+   */
+  async function ask(chatId, prepared, onToken, signal) {
+    const res = await fetch("/api/generate/dryRun", {
       method: "POST",
-      headers: { ...headers(true), Accept: "text/event-stream" },
+      headers: headers(true),
       credentials: "same-origin",
-      body: JSON.stringify({ question }),
+      body: JSON.stringify({
+        chatId,
+        userMessage: prepared.userMessage,
+        streaming: true,
+        injectLorebook: true,
+        injectTrackers: true,
+        injectChatSummary: true,
+        ...(prepared.connectionId ? { connectionId: prepared.connectionId } : {}),
+      }),
       signal,
     });
     if (!res.ok || !res.body) throw new Error((await res.json().catch(() => null))?.error || `Request failed (${res.status})`);
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
     let buffer = "";
+    let answer = "";
     for (;;) {
       const { value, done } = await reader.read();
       if (done) break;
@@ -59,12 +71,13 @@
         const line = raw.split("\n").find((l) => l.startsWith("data: "));
         if (!line) continue;
         const event = JSON.parse(line.slice(6));
-        if (event.type === "token") onToken(event.text);
-        else if (event.type === "error") throw new Error(event.error);
-        else if (event.type === "done") return event.result;
+        if (event.type === "token") (answer += event.data), onToken(event.data);
+        else if (event.type === "result") answer = event.data?.content ?? answer;
+        else if (event.type === "error") throw new Error(String(event.data));
       }
     }
-    throw new Error("The reply ended early.");
+    if (!answer.trim()) throw new Error("The model returned an empty reply.");
+    return answer;
   }
 
   const CSS = `
@@ -192,7 +205,7 @@
       const s = data.settings;
       const num = (key, label) => `<label class="as-muted">${label}<input class="as-field" type="number" data-setting="${key}" value="${s[key]}"></label>`;
       const config = settings
-        ? `<div class="as-card">${num("recentMessages", "Story messages shown")}${num("threadTurns", "Side-chat turns kept")}${num("maxTokens", "Max answer tokens")}<label class="as-muted">Connection id (empty = this chat's)<input class="as-field" data-setting="connectionId" value="${esc(s.connectionId ?? "")}"></label><button type="button" class="as-tab" data-act="save-settings">Save settings</button></div>`
+        ? `<div class="as-card">${num("threadTurns", "Side-chat turns kept")}<label class="as-muted">Connection id (empty = this chat's)<input class="as-field" data-setting="connectionId" value="${esc(s.connectionId ?? "")}"></label><button type="button" class="as-tab" data-act="save-settings">Save settings</button></div>`
         : "";
       return `<div class="as-list">${turns || '<span class="as-muted">Ask the narrator something out of character. Nothing is added to the story.</span>'}${live}</div><textarea class="as-field" data-field="question" rows="2" placeholder="Ask the narrator…" ${busy ? "disabled" : ""}>${esc(question)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="${busy ? "stop" : "ask"}">${busy ? "Stop" : "Ask"}</button><button type="button" class="as-tab" data-act="clear" ${busy ? "disabled" : ""}>Clear thread</button><button type="button" class="as-tab" data-act="settings">Settings</button></div>${config}`;
     }
@@ -256,10 +269,13 @@
       Object.assign(s, { busy: true, streaming: "", error: "" });
       this.render();
       try {
-        const result = await ask(chatId, question, (text) => {
+        const base = `/chats/${encodeURIComponent(chatId)}`;
+        const prepared = await request(`${base}/prepare`, "POST", { question });
+        const answer = await ask(chatId, prepared, (text) => {
           s.streaming += text;
           this.render();
         }, this.abort.signal);
+        const result = await request(`${base}/exchange`, "POST", { question, answer });
         if (chatId === s.chatId) s.data = { ...s.data, ...result };
         s.question = "";
       } catch (error) {
