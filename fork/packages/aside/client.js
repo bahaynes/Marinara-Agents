@@ -80,7 +80,20 @@
     return answer;
   }
 
+  const SVG = 'viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
+  const ICON_PIN = (on) => `<svg ${SVG} ${on ? 'fill="currentColor"' : ""}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3" ${on ? 'fill="var(--background)"' : ""}></circle></svg>`;
+  const ICON_EDIT = `<svg ${SVG}><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>`;
+  const ICON_TRASH = `<svg ${SVG}><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
+  const ICON_CHECK = `<svg ${SVG}><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+
   const CSS = `
+    .as-icon { display: inline-flex; align-items: center; gap: .25rem; padding: .25rem; border-radius: .375rem; border: 0; background: transparent; color: var(--muted-foreground); cursor: pointer; font-size: .75rem; }
+    .as-icon:hover { background: var(--accent); color: var(--foreground); }
+    .as-icon[aria-pressed="true"] { color: var(--primary); }
+    .as-icon.as-danger:hover, .as-icon.as-danger[data-confirm="true"] { background: rgba(239,68,68,.15); color: #f87171; }
+    .as-card[draggable="true"] { cursor: grab; }
+    .as-card.as-dragging { opacity: .4; }
+    .as-card.as-over { outline: 2px dashed var(--primary); }
     .as-shell { display: grid; gap: .5rem; font-size: .8125rem; color: var(--foreground); }
     .as-tabs { display: flex; gap: .25rem; }
     .as-tab { padding: .25rem .625rem; border-radius: 9999px; border: 1px solid var(--border); background: var(--secondary); cursor: pointer; font-size: .75rem; color: var(--foreground); }
@@ -103,7 +116,7 @@
 
     constructor() {
       super();
-      this.state = { tab: "notes", open: false, data: null, chatId: null, busy: false, draft: "", error: "", streaming: "", search: "", settings: false, question: "" };
+      this.state = { confirmDel: null, dragId: null, tab: "notes", open: false, data: null, chatId: null, busy: false, draft: "", error: "", streaming: "", search: "", settings: false, question: "" };
     }
 
     get props() {
@@ -182,15 +195,15 @@
     notes() {
       const { data, draft, search } = this.state;
       const q = search.trim().toLowerCase();
-      const list = [...data.notes]
-        .filter((n) => !q || n.text.toLowerCase().includes(q))
-        .sort((a, b) => Number(b.pinned) - Number(a.pinned));
+      const list = data.notes.filter((n) => !q || n.text.toLowerCase().includes(q));
+      const drag = !q; // dragging reorders the whole list, so it is off while a search hides notes
       const cards = list
-        .map(
-          (n) => `<div class="as-card" data-pinned="${n.pinned}"><div class="as-text">${esc(n.text)}</div><div class="as-row"><button type="button" class="as-tab" data-act="pin" data-id="${esc(n.id)}">${n.pinned ? "Unpin" : "Pin"}</button><button type="button" class="as-tab" data-act="edit" data-id="${esc(n.id)}">Edit</button><button type="button" class="as-tab" data-act="del" data-id="${esc(n.id)}">Delete</button>${n.source === "aside" ? '<span class="as-muted">from side chat</span>' : ""}</div></div>`,
-        )
+        .map((n) => {
+          const confirm = this.state.confirmDel === n.id;
+          return `<div class="as-card" data-pinned="${n.pinned}" data-id="${esc(n.id)}" ${drag ? 'draggable="true"' : ""}><div class="as-text">${esc(n.text)}</div><div class="as-row"><button type="button" class="as-icon" data-act="pin" data-id="${esc(n.id)}" aria-pressed="${n.pinned}" title="${n.pinned ? "Unpin" : "Pin"}" aria-label="${n.pinned ? "Unpin" : "Pin"}">${ICON_PIN(n.pinned)}</button><button type="button" class="as-icon" data-act="edit" data-id="${esc(n.id)}" title="Edit" aria-label="Edit">${ICON_EDIT}</button><button type="button" class="as-icon as-danger" data-act="del" data-id="${esc(n.id)}" data-confirm="${confirm}" title="${confirm ? "Click again to delete" : "Delete"}" aria-label="${confirm ? "Click again to delete" : "Delete"}">${confirm ? `${ICON_CHECK}Delete?` : ICON_TRASH}</button>${n.source === "aside" ? '<span class="as-muted">from side chat</span>' : ""}</div></div>`;
+        })
         .join("");
-      return `<textarea class="as-field" data-field="draft" rows="2" placeholder="New note">${esc(draft)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="add">Add note</button><input class="as-field" data-field="search" placeholder="Search" value="${esc(search)}" style="flex:1;width:auto"></div><div class="as-list">${cards || '<span class="as-muted">No notes yet.</span>'}</div><div class="as-muted">Pinned notes are shown to the narrator in side-chat questions.</div>`;
+      return `<textarea class="as-field" data-field="draft" rows="2" placeholder="New note">${esc(draft)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="add">Add note</button><input class="as-field" data-field="search" placeholder="Search" value="${esc(search)}" style="flex:1;width:auto"></div><div class="as-list">${cards || '<span class="as-muted">No notes yet.</span>'}</div><div class="as-muted">Drag notes to reorder. Pinned notes are shown to the narrator in side-chat questions.</div>`;
     }
 
     aside() {
@@ -217,11 +230,53 @@
           if (el.dataset.field === "search") this.render(), this.querySelector("[data-field=search]")?.focus();
         });
       }
+      this.bindDrag();
       for (const el of this.querySelectorAll("[data-act]")) el.addEventListener("click", () => this.act(el.dataset.act, el.dataset));
+    }
+
+    /** Drag a note onto another to move it there. No re-render until the drop, so the drag survives. */
+    bindDrag() {
+      const cards = [...this.querySelectorAll(".as-card[draggable=true]")];
+      for (const card of cards) {
+        card.addEventListener("dragstart", (e) => {
+          this.state.dragId = card.dataset.id;
+          card.classList.add("as-dragging");
+          e.dataTransfer.effectAllowed = "move";
+          e.dataTransfer.setData("text/plain", card.dataset.id);
+        });
+        card.addEventListener("dragend", () => {
+          this.state.dragId = null;
+          for (const c of cards) c.classList.remove("as-dragging", "as-over");
+        });
+        card.addEventListener("dragover", (e) => {
+          if (!this.state.dragId || this.state.dragId === card.dataset.id) return;
+          e.preventDefault();
+          card.classList.add("as-over");
+        });
+        card.addEventListener("dragleave", () => card.classList.remove("as-over"));
+        card.addEventListener("drop", (e) => {
+          e.preventDefault();
+          const from = this.state.dragId;
+          this.state.dragId = null;
+          if (!from || from === card.dataset.id) return this.render();
+          const ids = this.state.data.notes.map((n) => n.id).filter((id) => id !== from);
+          ids.splice(ids.indexOf(card.dataset.id), 0, from);
+          const byId = new Map(this.state.data.notes.map((n) => [n.id, n]));
+          this.state.data = { ...this.state.data, notes: ids.map((id) => byId.get(id)) };
+          this.render();
+          const base = `/chats/${encodeURIComponent(this.state.chatId)}`;
+          void this.run(() => request(`${base}/notes-order`, "PUT", { ids }).then(() => request(base)));
+        });
+      }
     }
 
     act(action, ds) {
       const s = this.state;
+      // Delete takes two clicks; any other click cancels a pending confirmation.
+      if (action === "del") {
+        if (s.confirmDel !== ds.id) return void ((s.confirmDel = ds.id), this.render());
+        s.confirmDel = null;
+      } else s.confirmDel = null;
       const base = `/chats/${encodeURIComponent(s.chatId)}`;
       if (action === "toggle") {
         s.open = !s.open;
