@@ -10,6 +10,7 @@ import {
   emptyChat,
   newNote,
   newTurn,
+  reorderNotes,
 } from "./aside.mjs";
 
 export const PACKAGE_ID = "aside";
@@ -119,6 +120,11 @@ export const editNote = (store, chatId, noteId, body) =>
     if (!changeNote(data.notes, noteId, body ?? {})) throw new AsideError(404, "Note not found.");
   });
 
+export const orderNotes = (store, chatId, body) =>
+  store.update(chatId, (data) => {
+    data.notes = reorderNotes(data.notes, body?.ids);
+  });
+
 export const deleteNote = (store, chatId, noteId) =>
   store.update(chatId, (data) => {
     data.notes = data.notes.filter((n) => n.id !== noteId);
@@ -141,6 +147,7 @@ export async function activate(context) {
       routes.get("/chats/:chatId", handle(({ chatId }) => chatView(store, chatId)));
       routes.post("/chats/:chatId/notes", handle(({ chatId }, body) => createNote(store, chatId, body)));
       routes.put("/chats/:chatId/notes/:noteId", handle(({ chatId, noteId }, body) => editNote(store, chatId, noteId, body)));
+      routes.put("/chats/:chatId/notes-order", handle(({ chatId }, body) => orderNotes(store, chatId, body)));
       routes.delete("/chats/:chatId/notes/:noteId", handle(({ chatId, noteId }) => deleteNote(store, chatId, noteId)));
       routes.post("/chats/:chatId/prepare", handle(({ chatId }, body) => prepare(store, chatId, body)));
       routes.post("/chats/:chatId/exchange", handle(({ chatId }, body) => recordExchange(store, chatId, body)));

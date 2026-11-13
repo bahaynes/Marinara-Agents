@@ -38,6 +38,14 @@ export function changeNote(notes, id, patch) {
   return notes;
 }
 
+/** Put notes in the order of `ids`; notes not named keep their relative order after the named ones. */
+export function reorderNotes(notes, ids) {
+  const byId = new Map(notes.map((n) => [n.id, n]));
+  const named = [...new Set(Array.isArray(ids) ? ids : [])].filter((id) => byId.has(id)).map((id) => byId.get(id));
+  const rest = notes.filter((n) => !named.includes(n));
+  return [...named, ...rest];
+}
+
 export const addNote = (notes, note) => [note, ...notes].slice(0, MAX_NOTES);
 
 export function newTurn(role, text) {
