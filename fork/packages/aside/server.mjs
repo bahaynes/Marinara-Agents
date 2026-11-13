@@ -1,9 +1,10 @@
-// Aside: per-chat Notes and a read-only side chat with the narrator. It reads the chat through the host's
-// persistence and answers with the chat's own connection, but never writes to the chat itself.
+// Aside: per-chat Notes and a read-only side chat with the narrator. The page asks the Engine's own
+// /api/generate/dryRun (the chat's real prompt, nothing persisted) with the aside as a temporary last user
+// message; this server keeps the notes and the side thread and builds that message.
 
 import {
   addNote,
-  asideMessages,
+  asideUserMessage,
   changeNote,
   cleanSettings,
   emptyChat,
@@ -15,7 +16,6 @@ export const PACKAGE_ID = "aside";
 const CHAT_KIND = "aside-chat";
 const SETTINGS_ID = `${PACKAGE_ID}:settings`;
 const chatDocId = (chatId) => `${PACKAGE_ID}:chat:${chatId}`;
-const silent = () => {};
 
 export class AsideError extends Error {
   constructor(statusCode, message) {
@@ -23,19 +23,6 @@ export class AsideError extends Error {
     this.statusCode = statusCode;
   }
 }
-
-const parseRecord = (value) => {
-  if (value && typeof value === "object") return value;
-  try {
-    return JSON.parse(value || "{}");
-  } catch {
-    return {};
-  }
-};
-const parseList = (value) => {
-  const list = typeof value === "string" ? parseRecord(`{"v":${value}}`).v : value;
-  return Array.isArray(list) ? list.map(String) : [];
-};
 
 /** One write at a time per chat. */
 function createLocks() {
@@ -96,63 +83,23 @@ export async function chatView(store, chatId) {
   return { notes: data.notes, thread: data.thread, settings };
 }
 
-async function chatContext(runtime, chatId) {
-  const { persistence, resources } = runtime;
-  const chat = await persistence.getChat(chatId);
-  if (!chat) throw new AsideError(404, "Chat not found.");
-  const characterIds = parseList(chat.characterIds);
-  const [messages, personas, characters] = await Promise.all([
-    persistence.listMessages(chatId),
-    chat.personaId && resources ? resources.listPersonas([chat.personaId]) : [],
-    characterIds.length && resources ? resources.listCharacters(characterIds) : [],
-  ]);
-  const nameOf = (record) => String(parseRecord(record?.data).name ?? "").trim();
-  return {
-    chat,
-    messages,
-    persona: nameOf(personas[0]),
-    characters: characters.map(nameOf).filter(Boolean),
-  };
+/** What the page sends with the chat's real prompt (dryRun): the aside message and the connection override. */
+export async function prepare(store, chatId, body) {
+  const question = String(body?.question ?? "").trim().slice(0, 4000);
+  if (!question) throw new AsideError(400, "Ask something first.");
+  const [{ data }, settings] = await Promise.all([store.load(chatId), store.loadSettings()]);
+  return { userMessage: asideUserMessage({ notes: data.notes, thread: data.thread, question, settings }), connectionId: settings.connectionId };
 }
 
-/**
- * Answer one aside. The question and answer go into the side thread only; the main chat is read, never written.
- * `emit` gets `{type: "start"}` and then each streamed chunk as `{type: "token", text}`.
- */
-export function ask(runtime, store, chatId, body, emit = silent, signal) {
-  const question = String(body?.question ?? "").trim().slice(0, 4000);
-  if (!question) return Promise.reject(new AsideError(400, "Ask something first."));
-  return (async () => {
-    const [ctx, settings, { data }] = await Promise.all([chatContext(runtime, chatId), store.loadSettings(), store.load(chatId)]);
-    const model = await runtime.languageModels.resolveForRequest(
-      settings.connectionId || ctx.chat.connectionId
-        ? { connectionId: settings.connectionId ?? ctx.chat.connectionId }
-        : { chatConnectionId: null },
-    );
-    const messages = asideMessages({
-      persona: ctx.persona,
-      characters: ctx.characters,
-      messages: ctx.messages,
-      notes: data.notes,
-      thread: data.thread,
-      question,
-      settings,
-    });
-    const fitted = model.fitContext ? model.fitContext(messages, { maxTokens: settings.maxTokens }).messages : messages;
-    emit({ type: "start" });
-    const result = await model.chatComplete(fitted, {
-      maxTokens: settings.maxTokens,
-      // Asides repeat the same story prefix minutes apart, so ask for the long cache.
-      promptCache: { ttl: "1h", depth: 1 },
-      onToken: (text) => emit({ type: "token", text }),
-      ...(signal ? { signal } : {}),
-    });
-    const answer = String(result.content ?? "").trim();
-    if (!answer) throw new AsideError(502, "The model returned an empty reply.");
-    return store.update(chatId, (chatData) => {
-      chatData.thread = [...chatData.thread, newTurn("user", question), newTurn("assistant", answer)].slice(-settings.threadTurns);
-    });
-  })();
+/** Keep a finished exchange in the side thread. The main chat is never written. */
+export async function recordExchange(store, chatId, body) {
+  const question = String(body?.question ?? "").trim();
+  const answer = String(body?.answer ?? "").trim();
+  if (!question || !answer) throw new AsideError(400, "Nothing to record.");
+  const { threadTurns } = await store.loadSettings();
+  return store.update(chatId, (data) => {
+    data.thread = [...data.thread, newTurn("user", question), newTurn("assistant", answer)].slice(-threadTurns);
+  });
 }
 
 export const clearThread = (store, chatId) =>
@@ -189,40 +136,14 @@ export async function activate(context) {
       return reply.status(status).send({ error: error instanceof AsideError ? error.message : "Aside request failed." });
     }
   };
-  // The ask route streams server-sent events when asked: start/token events, then one done or error event.
-  const stream = (work) => async (request, reply) => {
-    if (!String(request.headers?.accept ?? "").includes("text/event-stream")) {
-      return handle((params, body) => work(params, body, silent, undefined))(request, reply);
-    }
-    reply.hijack();
-    reply.raw.writeHead(200, { "Content-Type": "text/event-stream", "Cache-Control": "no-cache", "X-Accel-Buffering": "no" });
-    const ac = new AbortController();
-    const onClose = () => ac.abort();
-    request.raw?.on?.("close", onClose);
-    reply.raw?.on?.("close", onClose);
-    const send = (event) => {
-      if (!ac.signal.aborted) reply.raw.write(`data: ${JSON.stringify(event)}\n\n`);
-    };
-    try {
-      send({ type: "done", result: await work(request.params ?? {}, request.body ?? {}, send, ac.signal) });
-    } catch (error) {
-      if (!ac.signal.aborted) {
-        if (!(error instanceof AsideError)) runtime.logger?.error?.(error, "Aside ask failed");
-        send({ type: "error", error: error instanceof AsideError ? error.message : "Aside request failed." });
-      }
-    } finally {
-      request.raw?.off?.("close", onClose);
-      reply.raw?.off?.("close", onClose);
-    }
-    if (!reply.raw.writableEnded) reply.raw.end();
-  };
   const release = await context.api.registerPrivilegedRoutes(
     async (routes) => {
       routes.get("/chats/:chatId", handle(({ chatId }) => chatView(store, chatId)));
       routes.post("/chats/:chatId/notes", handle(({ chatId }, body) => createNote(store, chatId, body)));
       routes.put("/chats/:chatId/notes/:noteId", handle(({ chatId, noteId }, body) => editNote(store, chatId, noteId, body)));
       routes.delete("/chats/:chatId/notes/:noteId", handle(({ chatId, noteId }) => deleteNote(store, chatId, noteId)));
-      routes.post("/chats/:chatId/ask", stream(({ chatId }, body, emit, signal) => ask(runtime, store, chatId, body, emit, signal)));
+      routes.post("/chats/:chatId/prepare", handle(({ chatId }, body) => prepare(store, chatId, body)));
+      routes.post("/chats/:chatId/exchange", handle(({ chatId }, body) => recordExchange(store, chatId, body)));
       routes.delete("/chats/:chatId/thread", handle(({ chatId }) => clearThread(store, chatId)));
       routes.put("/settings", handle((_p, body) => store.saveSettings(body)));
     },
