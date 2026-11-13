@@ -10,7 +10,7 @@
   },
   "id": "aside",
   "name": "Aside",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Per-chat Notes and a /btw-style side chat with the narrator. Ask the narrator a question out of character, using the story so far and your pinned notes, without anything being added to the story. Add it in Chat Settings → Agents, then use the Aside button in the chat toolbar.",
   "engine": {
     "min": "2.5.1",
@@ -45,18 +45,18 @@
     },
     {
       "path": "aside.mjs",
-      "sha256": "c742af9443f674bf394431048df4829bb586313208e8a06d07f38876b2d0ba37",
-      "bytes": 4755
+      "sha256": "482a65cf425909ead8eec675413601a0ace0b71fa0b96073276fb664e19b4bd1",
+      "bytes": 5069
     },
     {
       "path": "client.js",
-      "sha256": "76157923e70c72046674e1b7e905562f8587b99423bdbc4f94c5a87af1417fa9",
-      "bytes": 21493
+      "sha256": "903b47b992e14490f3104079882732b47a74c1a588dcad469e8652f4547d83ef",
+      "bytes": 22686
     },
     {
       "path": "server.mjs",
-      "sha256": "a21bfade53b68944ddbc8f874ddb387a2ab06b85d13d0921d227a6805bb18681",
-      "bytes": 6726
+      "sha256": "34a504ff9401c7044652b9feeefc8b8518e366d16729e62b9c6e4682a6091e8f",
+      "bytes": 7348
     }
   ]
 }

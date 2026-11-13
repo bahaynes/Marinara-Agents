@@ -217,8 +217,14 @@
       const { data, busy, streaming, question, settings } = this.state;
       const turns = data.thread
         .map((t) => {
-          const save = t.role === "assistant" ? `<div class="as-row"><button type="button" class="as-tab" data-act="save" data-id="${esc(t.id)}">Save as note</button></div>` : "";
-          return `<div class="as-card ${t.role === "user" ? "as-q" : ""}"><div class="as-muted">${t.role === "user" ? "You" : "Narrator"}</div><div class="as-text">${esc(t.text)}</div>${save}</div>`;
+          const editing = this.state.editId === t.id;
+          const confirm = this.state.confirmDel === t.id;
+          const body = editing
+            ? `<textarea class="as-field" data-edit="${esc(t.id)}" rows="3">${esc(this.state.editText)}</textarea><div class="as-muted">Enter to save, Shift+Enter for a new line, Esc to cancel</div>`
+            : `<div class="as-text" data-dbl="${esc(t.id)}" title="Double-click to edit">${esc(t.text)}</div>`;
+          const save = t.role === "assistant" ? `<button type="button" class="as-tab" data-act="save" data-id="${esc(t.id)}">Save as note</button>` : "";
+          const tools = `<div class="as-row"><button type="button" class="as-icon" data-act="edit" data-id="${esc(t.id)}" title="Edit" aria-label="Edit">${ICON_EDIT}</button><button type="button" class="as-icon as-danger" data-act="del" data-id="${esc(t.id)}" data-confirm="${confirm}" title="${confirm ? "Click again to delete" : "Delete"}" aria-label="${confirm ? "Click again to delete" : "Delete"}">${confirm ? `${ICON_CHECK}Delete?` : ICON_TRASH}</button>${save}</div>`;
+          return `<div class="as-card ${t.role === "user" ? "as-q" : ""}"><div class="as-muted">${t.role === "user" ? "You" : "Narrator"}</div>${body}${tools}</div>`;
         })
         .join("");
       const live = busy ? `<div class="as-card"><div class="as-muted">Narrator</div><div class="as-text">${esc(streaming) || "…"}</div></div>` : "";
@@ -254,10 +260,20 @@
       for (const el of this.querySelectorAll("[data-act]")) el.addEventListener("click", () => this.act(el.dataset.act, el.dataset));
     }
 
+    /** A note or a side-thread turn by id (ids are unique across both) and the route segment it lives under. */
+    item(id) {
+      const { notes, thread } = this.state.data;
+      return notes.find((n) => n.id === id) ?? thread.find((t) => t.id === id) ?? null;
+    }
+
+    segment(id) {
+      return this.state.data.notes.some((n) => n.id === id) ? "notes" : "thread";
+    }
+
     startEdit(id) {
-      const note = this.state.data.notes.find((n) => n.id === id);
-      if (!note) return;
-      Object.assign(this.state, { editId: id, editText: note.text });
+      const item = this.item(id);
+      if (!item) return;
+      Object.assign(this.state, { editId: id, editText: item.text });
       this.render();
       this.querySelector("[data-edit]")?.focus();
     }
@@ -271,11 +287,10 @@
         const { editId, editText, chatId } = this.state;
         if (editId === null) return;
         this.state.editId = null;
-        const note = this.state.data.notes.find((n) => n.id === editId);
         const text = editText.trim();
-        if (!save || !text || text === note?.text) return this.render();
+        if (!save || !text || text === this.item(editId)?.text) return this.render();
         const base = `/chats/${encodeURIComponent(chatId)}`;
-        void this.run(() => request(`${base}/notes/${editId}`, "PUT", { text }).then(() => request(base)));
+        void this.run(() => request(`${base}/${this.segment(editId)}/${editId}`, "PUT", { text }).then(() => request(base)));
       };
       box.addEventListener("input", () => (this.state.editText = box.value));
       box.addEventListener("keydown", (e) => {
@@ -349,7 +364,7 @@
         return void this.run(() => request(`${base}/notes/${ds.id}`, "PUT", { pinned: !note?.pinned }).then(() => request(base)));
       }
       if (action === "edit") return void this.startEdit(ds.id);
-      if (action === "del") return void this.run(() => request(`${base}/notes/${ds.id}`, "DELETE").then(() => request(base)));
+      if (action === "del") return void this.run(() => request(`${base}/${this.segment(ds.id)}/${ds.id}`, "DELETE").then(() => request(base)));
       if (action === "save") {
         const turn = s.data.thread.find((t) => t.id === ds.id);
         return void this.run(() => request(`${base}/notes`, "POST", { text: turn?.text, source: "aside" }).then(() => request(base)));
