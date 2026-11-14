@@ -23,6 +23,10 @@
     return h;
   }
 
+  // A 502/503/504 comes from the proxy in front of the Engine, usually while it restarts.
+  const failure = (status) =>
+    status >= 502 && status <= 504 ? "The server is restarting or unreachable. Try again in a moment." : `Request failed (${status})`;
+
   async function request(path, method = "GET", body) {
     const res = await fetch(API + path, {
       method,
@@ -32,7 +36,7 @@
       ...(body === undefined ? {} : { body: JSON.stringify(body) }),
     });
     const payload = await res.json().catch(() => null);
-    if (!res.ok) throw new Error(payload?.error || `Request failed (${res.status})`);
+    if (!res.ok) throw new Error(payload?.error || failure(res.status));
     return payload;
   }
 
@@ -56,7 +60,7 @@
       }),
       signal,
     });
-    if (!res.ok || !res.body) throw new Error((await res.json().catch(() => null))?.error || `Request failed (${res.status})`);
+    if (!res.ok || !res.body) throw new Error((await res.json().catch(() => null))?.error || failure(res.status));
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
     let buffer = "";
@@ -147,7 +151,10 @@
     }
 
     connectedCallback() {
-      this.addEventListener("marinara-capability-props", () => this.sync());
+      if (!this.bound) {
+        this.bound = true;
+        this.addEventListener("marinara-capability-props", () => this.sync());
+      }
       this.sync();
     }
 
@@ -167,6 +174,11 @@
         this.state = { ...this.state, chatId, data: null, error: "", streaming: "" };
         if (chatId && this.shown()) void this.load();
       }
+      // The host sends this event often (a phone keyboard opening resizes the page, for one). A redraw replaces the
+      // text box being typed in and closes the keyboard, so only redraw when something we show has changed.
+      const key = JSON.stringify([chatId, this.props.chatMode, this.props.toolbarButtonClass, this.getAttribute("view")]);
+      if (key === this.drawnKey) return;
+      this.drawnKey = key;
       this.render();
     }
 
@@ -196,7 +208,41 @@
       this.render();
     }
 
+    /** Redraw without losing the reader's place: a list stays where it was, or follows the end if it was at the end. */
     render() {
+      // Only the side-chat thread follows its end (a streaming answer grows downwards); notes keep their exact place.
+      const follows = (key) => key === "thread" || (key === "sheet" && this.state.tab === "aside");
+      const saved = this.findAll("[data-scroll]").map((el) => [
+        el.dataset.scroll,
+        el.scrollTop,
+        follows(el.dataset.scroll) && el.scrollHeight > el.clientHeight + 1 && el.scrollHeight - el.scrollTop - el.clientHeight < 24,
+      ]);
+      const focus = this.focusSnapshot();
+      this.draw();
+      this.restoreFocus(focus);
+      for (const [key, top, atEnd] of saved) {
+        const el = this.find(`[data-scroll="${key}"]`);
+        if (el) el.scrollTop = atEnd ? el.scrollHeight : top;
+      }
+    }
+
+    /** Which of our text boxes has focus, and where the caret is, so a redraw can put it back. */
+    focusSnapshot() {
+      const el = document.activeElement;
+      if (!el || !(this.contains(el) || this.sheet?.contains(el))) return null;
+      const attr = ["data-field", "data-edit", "data-setting"].find((a) => el.hasAttribute?.(a));
+      if (!attr) return null;
+      return { selector: `[${attr}="${el.getAttribute(attr)}"]`, start: el.selectionStart, end: el.selectionEnd };
+    }
+
+    restoreFocus(snap) {
+      const el = snap && this.find(snap.selector);
+      if (!el || document.activeElement === el) return;
+      el.focus({ preventScroll: true });
+      if (snap.start != null) el.setSelectionRange?.(snap.start, snap.end);
+    }
+
+    draw() {
       const view = this.getAttribute("view");
       const enabled = MODES.has(this.props.chatMode) && this.state.chatId;
       if (!enabled || (view !== "toolbar" && view !== "tracker")) return void (this.closeSheet(), (this.innerHTML = ""));
@@ -223,7 +269,7 @@
         this.sheet.addEventListener("click", (e) => e.target === this.sheet && this.act("toggle", {}));
         document.body.append(this.sheet);
       }
-      this.sheet.innerHTML = `<style>${CSS}</style><div class="as-sheet" role="dialog" aria-modal="true" aria-label="Aside"><div class="as-sheet-head"><strong>Aside</strong><button type="button" class="as-icon" data-act="toggle" aria-label="Close">${ICON_CLOSE}</button></div><div class="as-sheet-body">${this.panel()}</div></div>`;
+      this.sheet.innerHTML = `<style>${CSS}</style><div class="as-sheet" role="dialog" aria-modal="true" aria-label="Aside"><div class="as-sheet-head"><strong>Aside</strong><button type="button" class="as-icon" data-act="toggle" aria-label="Close">${ICON_CLOSE}</button></div><div class="as-sheet-body" data-scroll="sheet">${this.panel()}</div></div>`;
     }
 
     closeSheet() {
@@ -262,7 +308,7 @@
           return `<div class="as-card" data-pinned="${n.pinned}" data-id="${esc(n.id)}" ${drag && !editing ? 'draggable="true"' : ""}>${body}<div class="as-row">${drag ? `<button type="button" class="as-icon as-move" data-act="up" data-id="${esc(n.id)}" title="Move up" aria-label="Move up">${ICON_UP}</button><button type="button" class="as-icon as-move" data-act="down" data-id="${esc(n.id)}" title="Move down" aria-label="Move down">${ICON_DOWN}</button>` : ""}<button type="button" class="as-icon" data-act="pin" data-id="${esc(n.id)}" aria-pressed="${n.pinned}" title="${n.pinned ? "Unpin" : "Pin"}" aria-label="${n.pinned ? "Unpin" : "Pin"}">${ICON_PIN(n.pinned)}</button><button type="button" class="as-icon" data-act="edit" data-id="${esc(n.id)}" title="Edit" aria-label="Edit">${ICON_EDIT}</button><button type="button" class="as-icon as-danger" data-act="del" data-id="${esc(n.id)}" data-confirm="${confirm}" title="${confirm ? "Click again to delete" : "Delete"}" aria-label="${confirm ? "Click again to delete" : "Delete"}">${confirm ? `${ICON_CHECK}Delete?` : ICON_TRASH}</button>${n.source === "aside" ? '<span class="as-muted">from side chat</span>' : ""}</div></div>`;
         })
         .join("");
-      return `<textarea class="as-field" data-field="draft" rows="2" placeholder="${coarse() ? "New note" : "New note (Enter to add, Shift+Enter for a new line)"}">${esc(draft)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="add">Add note</button><input class="as-field" data-field="search" placeholder="Search" value="${esc(search)}" style="flex:1;width:auto"><select class="as-field" data-sort style="width:auto" aria-label="Sort notes" title="Reorder once; drag to fine-tune"><option value="">Sort…</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="alpha">A to Z</option><option value="pinned">Pinned first</option></select></div><div class="as-list">${cards || '<span class="as-muted">No notes yet.</span>'}</div><div class="as-muted">${coarse() ? "Use the arrows to reorder." : "Drag notes to reorder."} Pinned notes are shown to the narrator in side-chat questions.</div>`;
+      return `<textarea class="as-field" data-field="draft" rows="2" placeholder="${coarse() ? "New note" : "New note (Enter to add, Shift+Enter for a new line)"}">${esc(draft)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="add">Add note</button><input class="as-field" data-field="search" placeholder="Search" value="${esc(search)}" style="flex:1;width:auto"><select class="as-field" data-sort style="width:auto" aria-label="Sort notes" title="Reorder once; drag to fine-tune"><option value="">Sort…</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="alpha">A to Z</option><option value="pinned">Pinned first</option></select></div><div class="as-list" data-scroll="notes">${cards || '<span class="as-muted">No notes yet.</span>'}</div><div class="as-muted">${coarse() ? "Use the arrows to reorder." : "Drag notes to reorder."} Pinned notes are shown to the narrator in side-chat questions.</div>`;
     }
 
     aside() {
@@ -285,7 +331,7 @@
       const config = settings
         ? `<div class="as-card">${num("threadTurns", "Side-chat turns kept")}<label class="as-muted">Connection id (empty = this chat's)<input class="as-field" data-setting="connectionId" value="${esc(s.connectionId ?? "")}"></label><button type="button" class="as-tab" data-act="save-settings">Save settings</button></div>`
         : "";
-      return `<div class="as-list">${turns || '<span class="as-muted">Ask the narrator something out of character. Nothing is added to the story.</span>'}${live}</div><textarea class="as-field" data-field="question" rows="2" placeholder="${coarse() ? "Ask the narrator…" : "Ask the narrator… (Enter to send, Shift+Enter for a new line)"}" ${busy ? "disabled" : ""}>${esc(question)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="${busy ? "stop" : "ask"}">${busy ? "Stop" : "Ask"}</button><button type="button" class="as-tab" data-act="clear" ${busy ? "disabled" : ""}>Clear thread</button><button type="button" class="as-tab" data-act="settings">Settings</button></div>${config}`;
+      return `<div class="as-list" data-scroll="thread">${turns || '<span class="as-muted">Ask the narrator something out of character. Nothing is added to the story.</span>'}${live}</div><textarea class="as-field" data-field="question" rows="2" placeholder="${coarse() ? "Ask the narrator…" : "Ask the narrator… (Enter to send, Shift+Enter for a new line)"}" ${busy ? "disabled" : ""}>${esc(question)}</textarea><div class="as-row"><button type="button" class="as-tab" data-act="${busy ? "stop" : "ask"}">${busy ? "Stop" : "Ask"}</button><button type="button" class="as-tab" data-act="clear" ${busy ? "disabled" : ""}>Clear thread</button><button type="button" class="as-tab" data-act="settings">Settings</button></div>${config}`;
     }
 
     bind() {
