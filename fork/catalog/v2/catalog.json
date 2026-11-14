@@ -3081,8 +3081,8 @@
         "schemaVersion": 1,
         "id": "illustrator-2",
         "name": "Illustrator 2",
-        "version": "1.0.0",
-        "description": "Illustrator tuned for local multi-reference edit models (FLUX.2 klein, Qwen-Image-Edit) on ComfyUI: one focused moment, short prose prompts, reference images bound by slot, only characters the tracker says are present, and optional workflow variables.",
+        "version": "1.0.1",
+        "description": "Deprecated: use the stock Illustrator with the Reference Cast template and the Engine's present-character settings (Engine CUSTOM_MODS.md section 5). Illustrator tuned for local multi-reference edit models (FLUX.2 klein, Qwen-Image-Edit) on ComfyUI: one focused moment, short prose prompts, reference images bound by slot, only characters the tracker says are present, and optional workflow variables.",
         "engine": {
           "min": "2.3.3",
           "maxExclusive": "4.0.0"
@@ -3096,8 +3096,8 @@
         "files": [
           {
             "path": "agents.json",
-            "sha256": "df84a154259a17cf9c1531104e321f81c699558c38da8339c9d5de34191a67e8",
-            "bytes": 4905
+            "sha256": "9059e2207ebe5fcf011f9275c7be54cd51fe03a2e5e2b76c50d18fdde0c05bb5",
+            "bytes": 5055
           }
         ],
         "permissions": [
@@ -3111,9 +3111,9 @@
       },
       "category": "misc",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/illustrator-2-1.0.0.zip",
-        "sha256": "400db54483e65501bc07df986bb9960be4a66452c4e04a2995d5407cd40802d9",
-        "bytes": 5945
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/illustrator-2-1.0.1.zip",
+        "sha256": "561a872994573de3b00f69ed6751bb2de29b439441f7f90e4f0188f25906c426",
+        "bytes": 6245
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/CUSTOM_MODS.md"
     },
