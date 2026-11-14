@@ -1,7 +1,7 @@
 // node --test fork/packages/npc-registry/tests
 import assert from "node:assert/strict";
 import test from "node:test";
-import { activeSwipes, applyOps, emptyGraph, inheritGraph, nameCollision, resolve } from "../graph.mjs";
+import { activeSwipes, applyOps, emptyGraph, inheritGraph, nameCollision, pinField, resolve } from "../graph.mjs";
 import { createStore, finalize, lookup, prepare, rosterContext } from "../server.mjs";
 
 const msgs = (...pairs) => pairs.map(([id, w]) => ({ id, role: "assistant", content: id, activeSwipeIndex: w }));
@@ -254,4 +254,52 @@ test("avatar support: op set avatar, unanchored pin, and lookup exposure", async
     swipes,
   );
   assert.equal(resolve(graph, swipes).npcs.get(id).avatar, "/api/avatars/npc/c1/custom.png");
+});
+
+test("looks: set on create, kept verbatim, pinned by the user, cleared by an empty pin", () => {
+  const graph = emptyGraph();
+  const swipes = activeSwipes(msgs(["m1", 0], ["m2", 0]));
+  applyOps(
+    graph,
+    [{ op: "create", name: "Dez Hatfield", gender: "she", looks: "Wiry, pink and black buns, lip ring" }],
+    { m: "m1", w: 0 },
+    swipes,
+  );
+  const id = Object.keys(graph.nodes)[0];
+  assert.equal(resolve(graph, swipes).npcs.get(id).looks, "Wiry, pink and black buns, lip ring");
+
+  // A pin by name (not only by node id) finds the NPC on the active path.
+  assert.equal(pinField(graph, swipes, "dez hatfield", "looks", "wiry, pink buns"), id);
+  applyOps(graph, [{ op: "set", npc: id, field: "looks", value: "tall" }], { m: "m2", w: 0 }, swipes);
+  assert.equal(resolve(graph, swipes).npcs.get(id).looks, "wiry, pink buns", "the extractor never overrides a pin");
+
+  assert.equal(pinField(graph, swipes, id, "looks", ""), id);
+  assert.equal(resolve(graph, swipes).npcs.get(id).looks, undefined, "an empty pin clears");
+  assert.equal(pinField(graph, swipes, "Nobody", "looks", "x"), null);
+  assert.equal(pinField(graph, swipes, id, "name", "Renamed"), null, "names are not pinned this way");
+});
+
+test("store.pin (setAvatar/setLooks) finds an NPC by name, which the old setAvatar never did", async () => {
+  const meta = { enableAgents: true, activeAgentIds: ["npc-registry"] };
+  const chat = { id: "c1", mode: "roleplay", metadata: meta, branch: null };
+  const messages = [{ id: "a1", role: "assistant", content: "Simone arrives.", activeSwipeIndex: 0 }];
+  const runtime = fakeRuntime(chat, messages);
+  const store = createStore(runtime);
+  const context = { chatId: "c1", chatMode: "roleplay", mainResponse: messages[0].content };
+  await finalize(runtime, store, {
+    context,
+    preparedContext: null,
+    result: { success: true, type: "context_injection", data: { text: '{"ops":[{"op":"create","name":"Simone"}]}' } },
+  });
+  assert.equal(
+    await store.pin("c1", "Simone", "avatar", "/api/avatars/npc/c1/simone.png"),
+    "/api/avatars/npc/c1/simone.png",
+  );
+  assert.equal(await store.pin("c1", "Simone", "looks", "long-limbed, locs"), "long-limbed, locs");
+  assert.equal(await store.pin("c1", "Nobody", "looks", "x"), null);
+  const entry = [...(await store.current("c1")).npcs.values()][0];
+  assert.equal(entry.avatar, "/api/avatars/npc/c1/simone.png");
+  assert.equal(entry.looks, "long-limbed, locs");
+  const prepared = await prepare(store, context);
+  assert.deepEqual(Object.values(prepared.looks), ["long-limbed, locs"]);
 });
