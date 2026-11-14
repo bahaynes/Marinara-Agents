@@ -5,9 +5,12 @@
 // to the message + swipe that produced it, so swiping, regenerating or deleting a
 // message hides its facts with no cleanup, and swiping back restores them.
 
-// Scope: who exists, so the story model never duplicates a name. Descriptions and history
-// belong to Lorebook Keeper entries, which fire by keyword.
-export const SINGLE = new Set(["name", "gender", "avatar"]);
+// Scope: who exists, so the story model never duplicates a name, plus what they look like
+// (body only, never clothing) and their portrait, so the Illustrator can draw people with no
+// card. Personality and history belong to Lorebook Keeper entries, which fire by keyword.
+export const SINGLE = new Set(["name", "gender", "avatar", "looks"]);
+// Compared verbatim; names and pronouns compare normalized.
+const VERBATIM = new Set(["avatar", "looks"]);
 export const MULTI = new Set(["alias"]);
 const MAX_VALUE = 300;
 
@@ -165,7 +168,7 @@ export function applyOps(graph, ops, anchor, swipes, { exclude = [] } = {}) {
         (assertion) =>
           resolved.canonical(assertion.s) === s &&
           assertion.p === p &&
-          (o === undefined || (p === "avatar" ? assertion.o === o : normalizeName(assertion.o) === normalizeName(o))),
+          (o === undefined || (VERBATIM.has(p) ? assertion.o === o : normalizeName(assertion.o) === normalizeName(o))),
       )
       .map((assertion) => assertion.id);
   };
@@ -206,6 +209,7 @@ export function applyOps(graph, ops, anchor, swipes, { exclude = [] } = {}) {
       }
       if (typeof op.ref === "string") refs.set(op.ref, id);
       if (clean(op.gender)) setField(id, "gender", clean(op.gender));
+      if (clean(op.looks)) setField(id, "looks", clean(op.looks));
       continue;
     }
     const s = lookup(op.npc);
@@ -232,6 +236,30 @@ export function applyOps(graph, ops, anchor, swipes, { exclude = [] } = {}) {
     }
   }
   return { applied, skipped };
+}
+
+/**
+ * A user's (or the Engine's) value for a single field: an unanchored assertion, so no swipe hides
+ * it and the extractor never overrides it. An empty value clears the field. Returns the NPC's
+ * canonical id, or null when no NPC has that id, name or alias on the active message path.
+ */
+export function pinField(graph, swipes, npcIdOrName, field, value) {
+  if (!SINGLE.has(field) || field === "name") return null;
+  const resolved = resolve(graph, swipes);
+  const s = graph.nodes[npcIdOrName] ? resolved.canonical(npcIdOrName) : findByName(resolved, npcIdOrName)?.id;
+  if (!s || !resolved.npcs.has(s)) return null;
+  const sup = graph.assertions
+    .filter((assertion) => resolved.canonical(assertion.s) === s && assertion.p === field)
+    .map((assertion) => assertion.id);
+  const text = clean(value);
+  graph.assertions.push({
+    id: nextId(graph, "a"),
+    s,
+    p: field,
+    o: text || null,
+    ...(sup.length ? { sup } : {}),
+  });
+  return s;
 }
 
 /**

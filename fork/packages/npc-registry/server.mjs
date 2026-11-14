@@ -1,9 +1,19 @@
 // NPC Registry: the names (and pronouns) already used in a story, so the story model
-// never duplicates one. One graph per chat (see graph.mjs), written by the
-// post-processing extractor agent, read by the roster prompt context and the
-// npc_registry_lookup name check. NPC descriptions live in Lorebook Keeper entries.
+// never duplicates one, plus each NPC's looks and portrait for the Illustrator. One graph
+// per chat (see graph.mjs), written by the post-processing extractor agent, read by the
+// roster prompt context, the npc_registry_lookup name check and the Engine's Illustrator.
+// Personality and history live in Lorebook Keeper entries.
 
-import { activeSwipes, applyOps, emptyGraph, findByName, inheritGraph, nameCollision, resolve } from "./graph.mjs";
+import {
+  activeSwipes,
+  applyOps,
+  emptyGraph,
+  findByName,
+  inheritGraph,
+  nameCollision,
+  pinField,
+  resolve,
+} from "./graph.mjs";
 
 export const PACKAGE_ID = "npc-registry";
 const DOC_KIND = "npc-graph";
@@ -71,7 +81,22 @@ export function createStore(runtime) {
     return resolve(graph, activeSwipes(messages));
   }
 
-  return { load, save, current };
+  /** Pin one field by NPC id, name or alias (see pinField). Returns the stored value, or null for no such NPC. */
+  async function pin(chatId, npcIdOrName, field, value) {
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const [{ graph, revision }, messages] = await Promise.all([load(chatId), persistence.listMessages(chatId)]);
+      if (!pinField(graph, activeSwipes(messages), npcIdOrName, field, value)) return null;
+      try {
+        await save(chatId, graph, revision);
+        return typeof value === "string" ? value.trim() : null;
+      } catch (error) {
+        if (attempt === 2) throw error;
+      }
+    }
+    return null;
+  }
+
+  return { load, save, current, pin };
 }
 
 const publicCard = (entry) => ({
@@ -115,8 +140,10 @@ export async function lookup(runtime, store, chatId, args) {
 export async function prepare(store, context) {
   if (!MODES.has(context?.chatMode)) return null;
   const resolved = await store.current(context.chatId);
+  const npcs = [...resolved.npcs.values()];
   return {
-    roster: [...resolved.npcs.values()].map((entry) => [entry.id, entry.name, entry.gender ?? "", ...entry.aliases]),
+    roster: npcs.map((entry) => [entry.id, entry.name, entry.gender ?? "", ...entry.aliases]),
+    looks: Object.fromEntries(npcs.filter((entry) => entry.looks).map((entry) => [entry.id, entry.looks])),
     notNpcs: [...(context.characters ?? []).map((c) => c.name), context.persona?.name].filter(Boolean),
   };
 }
@@ -218,28 +245,8 @@ export async function activate(context) {
         current: (chatId) => store.current(chatId),
         load: (chatId) => store.load(chatId),
         save: (chatId, graph, revision) => store.save(chatId, graph, revision),
-        setAvatar: async (chatId, npcId, avatarPath) => {
-          for (let attempt = 0; attempt < 3; attempt += 1) {
-            const { graph, revision } = await store.load(chatId);
-            const resolved = resolve(graph, new Map());
-            const s = resolved.canonical(npcId) || findByName(resolved, npcId)?.id;
-            if (!s) return null;
-            const sup = graph.assertions.filter((a) => a.s === s && a.p === "avatar").map((a) => a.id);
-            graph.assertions.push({
-              id: `a${(graph.seq += 1).toString(36)}`,
-              s,
-              p: "avatar",
-              o: avatarPath,
-              ...(sup.length ? { sup } : {}),
-            });
-            try {
-              await store.save(chatId, graph, revision);
-              return avatarPath;
-            } catch (e) {
-              if (attempt === 2) throw e;
-            }
-          }
-        },
+        setAvatar: (chatId, npcIdOrName, avatarPath) => store.pin(chatId, npcIdOrName, "avatar", avatarPath),
+        setLooks: (chatId, npcIdOrName, looks) => store.pin(chatId, npcIdOrName, "looks", looks),
       }),
     );
     releases.push(

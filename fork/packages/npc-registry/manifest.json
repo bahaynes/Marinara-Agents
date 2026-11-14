@@ -10,8 +10,8 @@
   },
   "id": "npc-registry",
   "name": "NPC Registry",
-  "version": "0.2.1",
-  "description": "Keeps the names and pronouns of every named NPC in a per-chat graph and shows them to the story model as a roster, with an npc_registry_lookup name check, so it never invents a duplicate name or flips someone's pronouns. Entries follow the message swipe that produced them. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
+  "version": "0.3.0",
+  "description": "Keeps the names, pronouns and looks of every named NPC in a per-chat graph and shows the names and pronouns to the story model as a roster, with an npc_registry_lookup name check, so it never invents a duplicate name or flips someone's pronouns. Looks and portraits feed the Engine's Illustrator for people with no card. Entries follow the message swipe that produced them. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
   "engine": {
     "min": "2.5.0",
     "maxExclusive": "4.0.0"
@@ -26,18 +26,18 @@
   "files": [
     {
       "path": "agents.json",
-      "sha256": "928e4cac4e461300f889fa5252b126b49af8cabd3c5e5394c77a81b3556d64c7",
-      "bytes": 2951
+      "sha256": "a7be925b74e2deac5e593682ebb7590d1b01cc489ce1cf47a11271ddbaacb6c3",
+      "bytes": 3517
     },
     {
       "path": "graph.mjs",
-      "sha256": "df4f7761a2496f7ef8abb8edc3b73286486cd68f0e6259d222b8b086be0bdb2f",
-      "bytes": 10164
+      "sha256": "92c21923ee39635b4cf345b4a0442fbd0a0b7a7a729b4364f979446b29198d82",
+      "bytes": 11441
     },
     {
       "path": "server.mjs",
-      "sha256": "49b93cc985b1df47b69165c08ab179d2452e6d957d51912044912757849975fb",
-      "bytes": 10806
+      "sha256": "a47231469291e46aa3c9cc0e05e79a9d22b9e45274afb869c2a0bed00905669c",
+      "bytes": 11022
     }
   ],
   "permissions": [
