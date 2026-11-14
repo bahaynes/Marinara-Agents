@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "illustrator-2",
   "name": "Illustrator 2",
-  "version": "1.0.0",
-  "description": "Illustrator tuned for local multi-reference edit models (FLUX.2 klein, Qwen-Image-Edit) on ComfyUI: one focused moment, short prose prompts, reference images bound by slot, only characters the tracker says are present, and optional workflow variables.",
+  "version": "1.0.1",
+  "description": "Deprecated: use the stock Illustrator with the Reference Cast template and the Engine's present-character settings (Engine CUSTOM_MODS.md section 5). Illustrator tuned for local multi-reference edit models (FLUX.2 klein, Qwen-Image-Edit) on ComfyUI: one focused moment, short prose prompts, reference images bound by slot, only characters the tracker says are present, and optional workflow variables.",
   "engine": {
     "min": "2.3.3",
     "maxExclusive": "4.0.0"
@@ -17,8 +17,8 @@
   "files": [
     {
       "path": "agents.json",
-      "sha256": "df84a154259a17cf9c1531104e321f81c699558c38da8339c9d5de34191a67e8",
-      "bytes": 4905
+      "sha256": "9059e2207ebe5fcf011f9275c7be54cd51fe03a2e5e2b76c50d18fdde0c05bb5",
+      "bytes": 5055
     }
   ],
   "permissions": [
