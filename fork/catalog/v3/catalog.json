@@ -3371,7 +3371,7 @@
         },
         "id": "long-term-memory",
         "name": "Long-Term Memory",
-        "version": "1.6.0",
+        "version": "1.6.1",
         "description": "Remembers important things from your chats, characters, and lorebooks, and brings them back when they matter. Enable it per chat from Chat Settings → Agents → Long-Term Memory. In Roleplay and Game, you can also add it from Chat Settings → Agents → Misc Agents.",
         "engine": {
           "min": "2.5.2",
@@ -3438,13 +3438,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "71a143d2d45e0e3b1e869c84baa21111c30ed3b6385bddba6f815924387e3e6f",
-            "bytes": 560756
+            "sha256": "8a04497b47dec5c4451de86d7dd73389255046757f770a1a62c53754fedad498",
+            "bytes": 561170
           },
           {
             "path": "client.js",
-            "sha256": "5c39bfb53c95899879bbe57fa9cf07e535edfdaf46e962d86bece53103385213",
-            "bytes": 1067755
+            "sha256": "da5bcd9b216543000e8c564925c19eda08e475c2b03ae754bb44a4a1e540974d",
+            "bytes": 1068400
           },
           {
             "path": "assets/onboarding/activity-log-small.webp",
@@ -3600,9 +3600,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/long-term-memory.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/long-term-memory-1.6.0.zip",
-        "sha256": "095423f2eb662e4535f67215edc64b6e03076da51a76a85bede2520e977b48ac",
-        "bytes": 3515750
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/long-term-memory-1.6.1.zip",
+        "sha256": "33bf7ed4bc6d0ab65975d4f63a3dc9127a9c14071da2a7b8ed49db13fd1a69dc",
+        "bytes": 3516809
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents#long-term-memory"
     },
@@ -3885,15 +3885,15 @@
         "schemaVersion": 2,
         "capabilityApi": {
           "major": 1,
-          "minor": 819
+          "minor": 826
         },
         "builtAgainst": {
           "engineVersion": "2.5.2",
-          "engineCommit": "c18c1af639cd2c253c13f8ca392ac450065025d3"
+          "engineCommit": "a690a029df73c9e68db4c2f746529a555a091b1e"
         },
         "id": "noodle",
         "name": "Noodle",
-        "version": "1.5.16",
+        "version": "1.5.17",
         "description": "A pretend social network where your characters post, share photos, and talk about your chats. Install it, restart Marinara Engine when prompted, then open Home → Noodle.",
         "localizations": {
           "de": {
@@ -3981,8 +3981,8 @@
           },
           {
             "path": "client.js",
-            "sha256": "efc34d10952c6e4c13e5a7ad62e17b8758a144fcbdf15832bba45157652a9fde",
-            "bytes": 734158
+            "sha256": "fa2a09e5e99132dc82d2db6cf6f4deb225aab71c5ad016ae2e5da8814cc618d5",
+            "bytes": 734250
           },
           {
             "path": "noodle-klusek.png",
@@ -4003,9 +4003,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/noodle.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/noodle-1.5.16.zip",
-        "sha256": "2475a4b5b2e2b2efc45117a2c0bc15c56e8b62f1f48d6de44ceb3473b7afa344",
-        "bytes": 1300164
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/noodle-1.5.17.zip",
+        "sha256": "0b81dbdca73f963a241ceeaed2d67c642a844245ecada3b86972ef8839507566",
+        "bytes": 1300256
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/noodle/README.md"
     },
@@ -4082,7 +4082,7 @@
         },
         "id": "otome-forge",
         "name": "Otome Hearth",
-        "version": "0.30.0",
+        "version": "0.32.2",
         "description": "An otome game in its own Home tab, made from your own characters: love interests who remember what you chose, their messages to you, dates and mini-games, and wishes for outfits and memories paid for only with Starlight you earn. Install it, restart Marinara Engine when prompted, then open Home → Otome Hearth.",
         "engine": {
           "min": "2.5.1",
@@ -4116,13 +4116,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "f6809497047c4017f59253bc17cb52cc6d30ea4a45002bd9eb0f06a262552976",
-            "bytes": 706969
+            "sha256": "641ada49aa02611572f3d4204560f3836430d87c2f4583512714b79096e1b555",
+            "bytes": 709019
           },
           {
             "path": "client.js",
-            "sha256": "a208aaaded38cae3fa190ae85e76b31093130dfde879f9385925ebe971a2ec23",
-            "bytes": 1386154
+            "sha256": "b8566cf2cd7154ad155db75d6f9037820103405489aa10b470bae6e54f98f3ba",
+            "bytes": 1388472
           },
           {
             "path": "otome-hearth-icon.png",
@@ -4150,9 +4150,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/otome-forge.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.30.0.zip",
-        "sha256": "48f715703a93c96eb553a91c0c8f4bd3e2de5c0098714f969ede9f753f525d89",
-        "bytes": 2244775
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.32.2.zip",
+        "sha256": "f8bdb53f95d41e1dc5da53c527f83fdbd8d60c63cd550ba8a7d0ef9e9eb91f07",
+        "bytes": 2249143
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/otome-forge/README.md"
     },
@@ -5796,6 +5796,84 @@
         "bytes": 74347
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/ruleset-wasteland-special/README.md"
+    },
+    {
+      "manifest": {
+        "schemaVersion": 2,
+        "capabilityApi": {
+          "major": 1,
+          "minor": 386
+        },
+        "builtAgainst": {
+          "engineVersion": "2.5.1",
+          "engineCommit": "54e6848c818ae4150f108ab9614986bb7610891d"
+        },
+        "id": "wordle",
+        "name": "Wordle",
+        "version": "1.0.0",
+        "description": "A daily Wordle race with Conversation characters. Install to use /wordle manually in any Conversation chat, or type a message like \"let's play wordle\" to open today's game. Characters cannot start a game on their own yet.",
+        "engine": {
+          "min": "2.5.1",
+          "maxExclusive": "4.0.0"
+        },
+        "kind": [
+          "agent",
+          "turn-game"
+        ],
+        "entrypoints": {
+          "agents": "agents.json",
+          "server": "server.mjs",
+          "client": "client.js"
+        },
+        "contributions": {
+          "slots": [
+            "conversation-surface"
+          ],
+          "conversationGame": {
+            "command": "/wordle",
+            "aliases": [
+              "wordle",
+              "word of the day",
+              "daily word"
+            ],
+            "playerLabel": "Daily word game"
+          }
+        },
+        "files": [
+          {
+            "path": "agents.json",
+            "sha256": "d9395b58809fdd7c120198aae10a8af411a57a3700307876a21c294930dac67c",
+            "bytes": 605
+          },
+          {
+            "path": "server.mjs",
+            "sha256": "3670f345c6452ecf74c87cfabc9bc48599e541c1fbfdb721227e53e05a253324",
+            "bytes": 64636
+          },
+          {
+            "path": "client.js",
+            "sha256": "edb57658553e846dbd492785cbd734db38903e467c5abe58e669aeefe66d02c0",
+            "bytes": 159977
+          }
+        ],
+        "permissions": [
+          "agent-runtime",
+          "chat-read",
+          "chat-write",
+          "routes",
+          "storage",
+          "ui"
+        ],
+        "restartRequired": true
+      },
+      "category": "misc",
+      "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/wordle.png",
+      "artifact": {
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/wordle-1.0.0.zip",
+        "sha256": "9fe6b017af44d0a3c08ca4814b772b32a0749d28c498504330737f10718204fd",
+        "bytes": 227225
+      },
+      "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents#wordle"
     },
     {
       "manifest": {
