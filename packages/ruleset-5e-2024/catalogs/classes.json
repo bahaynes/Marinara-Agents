@@ -21,241 +21,1696 @@
   {
    "id": "barbarian",
    "label": "Barbarian",
-   "summary": "Hit die d12. 2024 class progression.",
+   "filters": {
+    "kind": "class"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d12. Saving throws: STR and CON.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "str_save",
+      "con_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "animal_handling",
+        "athletics",
+        "intimidation",
+        "nature",
+        "perception",
+        "survival"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_barbarian": 1,
+     "first_class": "barbarian",
+     "class": "Barbarian",
+     "hp_first_die": "d12",
+     "weapon_training": "simple_martial",
+     "unarmored_defense": "con"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Barbarian Class"
+      "name": "Armor: Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: simple"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: martial"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "barbarian-multiclass",
+   "label": "Barbarian (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
-   }
+    "kind": "multiclass"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_barbarian"
+   },
+   "grants": {
+    "sets": {
+     "level_barbarian": 1,
+     "second_class": "barbarian",
+     "weapon_training": "simple_martial"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Martial weapons"
+     }
+    }
+   ]
+  },
+  {
+   "id": "barbarian-third-class",
+   "label": "Barbarian (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_barbarian"
+   },
+   "grants": {
+    "sets": {
+     "level_barbarian": 1,
+     "weapon_training": "simple_martial"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Martial weapons"
+     }
+    }
+   ]
   },
   {
    "id": "bard",
    "label": "Bard",
-   "summary": "Hit die d8. 2024 class progression.",
+   "filters": {
+    "kind": "class",
+    "spell_class": "bard"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d8. Saving throws: DEX and CHA.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "dex_save",
+      "cha_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 3,
+       "from": [
+        "acrobatics",
+        "animal_handling",
+        "arcana",
+        "athletics",
+        "deception",
+        "history",
+        "insight",
+        "intimidation",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "performance",
+        "persuasion",
+        "religion",
+        "sleight_of_hand",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_bard": 1,
+     "first_class": "bard",
+     "class": "Bard",
+     "hp_first_die": "d8",
+     "weapon_training": "simple",
+     "spellcasting_ability": "cha"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Bard Class"
+      "name": "Armor: Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: simple"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Choose three Musical Instruments"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "bard-multiclass",
+   "label": "Bard (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
-   }
+    "kind": "multiclass",
+    "spell_class": "bard"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_bard"
+   },
+   "grants": {
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "athletics",
+        "acrobatics",
+        "sleight_of_hand",
+        "stealth",
+        "arcana",
+        "history",
+        "investigation",
+        "nature",
+        "religion",
+        "animal_handling",
+        "insight",
+        "medicine",
+        "perception",
+        "survival",
+        "deception",
+        "intimidation",
+        "performance",
+        "persuasion"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_bard": 1,
+     "second_class": "bard"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Choose one XPHB"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bard-third-class",
+   "label": "Bard (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass",
+    "spell_class": "bard"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_bard"
+   },
+   "grants": {
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "athletics",
+        "acrobatics",
+        "sleight_of_hand",
+        "stealth",
+        "arcana",
+        "history",
+        "investigation",
+        "nature",
+        "religion",
+        "animal_handling",
+        "insight",
+        "medicine",
+        "perception",
+        "survival",
+        "deception",
+        "intimidation",
+        "performance",
+        "persuasion"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_bard": 1
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Choose one XPHB"
+     }
+    }
+   ]
   },
   {
    "id": "cleric",
    "label": "Cleric",
-   "summary": "Hit die d8. 2024 class progression.",
+   "filters": {
+    "kind": "class",
+    "spell_class": "cleric"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d8. Saving throws: WIS and CHA.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "wis_save",
+      "cha_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "history",
+        "insight",
+        "medicine",
+        "persuasion",
+        "religion"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_cleric": 1,
+     "first_class": "cleric",
+     "class": "Cleric",
+     "hp_first_die": "d8",
+     "weapon_training": "simple",
+     "spellcasting_ability": "wis"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Cleric Class"
+      "name": "Armor: Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: simple"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "cleric-multiclass",
+   "label": "Cleric (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
-   }
+    "kind": "multiclass",
+    "spell_class": "cleric"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_cleric"
+   },
+   "grants": {
+    "sets": {
+     "level_cleric": 1,
+     "second_class": "cleric"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    }
+   ]
+  },
+  {
+   "id": "cleric-third-class",
+   "label": "Cleric (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass",
+    "spell_class": "cleric"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_cleric"
+   },
+   "grants": {
+    "sets": {
+     "level_cleric": 1
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    }
+   ]
   },
   {
    "id": "druid",
    "label": "Druid",
-   "summary": "Hit die d8. 2024 class progression.",
+   "filters": {
+    "kind": "class",
+    "spell_class": "druid"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d8. Saving throws: INT and WIS.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "int_save",
+      "wis_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "arcana",
+        "animal_handling",
+        "insight",
+        "medicine",
+        "nature",
+        "perception",
+        "religion",
+        "survival"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_druid": 1,
+     "first_class": "druid",
+     "class": "Druid",
+     "hp_first_die": "d8",
+     "weapon_training": "simple",
+     "spellcasting_ability": "wis"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Druid Class"
+      "name": "Armor: Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: simple"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: XPHB"
      }
     }
-   ],
-   "filters": {
-    "kind": "class"
-   }
+   ]
   },
   {
-   "id": "expert-sidekick",
-   "label": "Expert Sidekick",
-   "summary": "Hit die d8. 2024 class progression.",
+   "id": "druid-multiclass",
+   "label": "Druid (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass",
+    "spell_class": "druid"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_druid"
+   },
+   "grants": {
+    "sets": {
+     "level_druid": 1,
+     "second_class": "druid"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Expert Sidekick Class"
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "druid-third-class",
+   "label": "Druid (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
-   }
+    "kind": "multiclass",
+    "spell_class": "druid"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_druid"
+   },
+   "grants": {
+    "sets": {
+     "level_druid": 1
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    }
+   ]
   },
   {
    "id": "fighter",
    "label": "Fighter",
-   "summary": "Hit die d10. 2024 class progression.",
+   "filters": {
+    "kind": "class"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d10. Saving throws: STR and CON.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "str_save",
+      "con_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "acrobatics",
+        "animal_handling",
+        "athletics",
+        "history",
+        "insight",
+        "intimidation",
+        "persuasion",
+        "perception",
+        "survival"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_fighter": 1,
+     "first_class": "fighter",
+     "class": "Fighter",
+     "hp_first_die": "d10",
+     "weapon_training": "simple_martial"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Fighter Class"
+      "name": "Armor: Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Heavy armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: simple"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: martial"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "fighter-multiclass",
+   "label": "Fighter (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
-   }
+    "kind": "multiclass"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_fighter"
+   },
+   "grants": {
+    "sets": {
+     "level_fighter": 1,
+     "second_class": "fighter",
+     "weapon_training": "simple_martial"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Martial weapons"
+     }
+    }
+   ]
+  },
+  {
+   "id": "fighter-third-class",
+   "label": "Fighter (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_fighter"
+   },
+   "grants": {
+    "sets": {
+     "level_fighter": 1,
+     "weapon_training": "simple_martial"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Martial weapons"
+     }
+    }
+   ]
   },
   {
    "id": "monk",
    "label": "Monk",
-   "summary": "Hit die d8. 2024 class progression.",
+   "filters": {
+    "kind": "class"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d8. Saving throws: STR and DEX.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "str_save",
+      "dex_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "acrobatics",
+        "athletics",
+        "history",
+        "insight",
+        "religion",
+        "stealth"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_monk": 1,
+     "first_class": "monk",
+     "class": "Monk",
+     "hp_first_die": "d8",
+     "weapon_training": "simple_shortsword",
+     "unarmored_defense": "wis"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Monk Class"
+      "name": "Weapons: simple"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: Martial weapons that have the Light|items|type=martial weapon|property="
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Choose one type of XPHB or XPHB"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "monk-multiclass",
+   "label": "Monk (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
+    "kind": "multiclass"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_monk"
+   },
+   "grants": {
+    "sets": {
+     "level_monk": 1,
+     "second_class": "monk"
+    }
+   }
+  },
+  {
+   "id": "monk-third-class",
+   "label": "Monk (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_monk"
+   },
+   "grants": {
+    "sets": {
+     "level_monk": 1
+    }
    }
   },
   {
    "id": "paladin",
    "label": "Paladin",
-   "summary": "Hit die d10. 2024 class progression.",
+   "filters": {
+    "kind": "class",
+    "spell_class": "paladin"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d10. Saving throws: WIS and CHA.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "wis_save",
+      "cha_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "athletics",
+        "insight",
+        "intimidation",
+        "medicine",
+        "persuasion",
+        "religion"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_paladin": 1,
+     "first_class": "paladin",
+     "class": "Paladin",
+     "hp_first_die": "d10",
+     "weapon_training": "simple_martial",
+     "spellcasting_ability": "cha"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Paladin Class"
+      "name": "Armor: Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Heavy armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: simple"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: martial"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "paladin-multiclass",
+   "label": "Paladin (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
-   }
+    "kind": "multiclass",
+    "spell_class": "paladin"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_paladin"
+   },
+   "grants": {
+    "sets": {
+     "level_paladin": 1,
+     "second_class": "paladin",
+     "weapon_training": "simple_martial"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Martial weapons"
+     }
+    }
+   ]
+  },
+  {
+   "id": "paladin-third-class",
+   "label": "Paladin (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass",
+    "spell_class": "paladin"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_paladin"
+   },
+   "grants": {
+    "sets": {
+     "level_paladin": 1,
+     "weapon_training": "simple_martial"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Martial weapons"
+     }
+    }
+   ]
   },
   {
    "id": "ranger",
    "label": "Ranger",
-   "summary": "Hit die d10. 2024 class progression.",
+   "filters": {
+    "kind": "class",
+    "spell_class": "ranger"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d10. Saving throws: STR and DEX.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "str_save",
+      "dex_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 3,
+       "from": [
+        "animal_handling",
+        "athletics",
+        "insight",
+        "investigation",
+        "nature",
+        "perception",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_ranger": 1,
+     "first_class": "ranger",
+     "class": "Ranger",
+     "hp_first_die": "d10",
+     "weapon_training": "simple_martial",
+     "spellcasting_ability": "wis"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Ranger Class"
+      "name": "Armor: Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Armor: Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: simple"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: martial"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "ranger-multiclass",
+   "label": "Ranger (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
-   }
+    "kind": "multiclass",
+    "spell_class": "ranger"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_ranger"
+   },
+   "grants": {
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "animal_handling",
+        "athletics",
+        "insight",
+        "investigation",
+        "nature",
+        "perception",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_ranger": 1,
+     "second_class": "ranger",
+     "weapon_training": "simple_martial"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Martial weapons"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ranger-third-class",
+   "label": "Ranger (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass",
+    "spell_class": "ranger"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_ranger"
+   },
+   "grants": {
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "animal_handling",
+        "athletics",
+        "insight",
+        "investigation",
+        "nature",
+        "perception",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_ranger": 1,
+     "weapon_training": "simple_martial"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Martial weapons"
+     }
+    }
+   ]
   },
   {
    "id": "rogue",
    "label": "Rogue",
-   "summary": "Hit die d8. 2024 class progression.",
+   "filters": {
+    "kind": "class"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d8. Saving throws: DEX and INT.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "dex_save",
+      "int_save"
+     ],
+     "skills": [
+      "thieves_tools"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 4,
+       "from": [
+        "acrobatics",
+        "athletics",
+        "deception",
+        "insight",
+        "intimidation",
+        "investigation",
+        "perception",
+        "persuasion",
+        "sleight_of_hand",
+        "stealth"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_rogue": 1,
+     "first_class": "rogue",
+     "class": "Rogue",
+     "hp_first_die": "d8",
+     "weapon_training": "simple_named"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Rogue Class"
+      "name": "Armor: Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: simple"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: Martial weapons that have the Finesse or Light|items|type=martial weapo"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: XPHB"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "rogue-multiclass",
+   "label": "Rogue (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
-   }
+    "kind": "multiclass"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_rogue"
+   },
+   "grants": {
+    "trained": {
+     "skills": [
+      "thieves_tools"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "acrobatics",
+        "athletics",
+        "deception",
+        "insight",
+        "intimidation",
+        "investigation",
+        "perception",
+        "persuasion",
+        "sleight_of_hand",
+        "stealth"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_rogue": 1,
+     "second_class": "rogue"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "XPHB"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rogue-third-class",
+   "label": "Rogue (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_rogue"
+   },
+   "grants": {
+    "trained": {
+     "skills": [
+      "thieves_tools"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "acrobatics",
+        "athletics",
+        "deception",
+        "insight",
+        "intimidation",
+        "investigation",
+        "perception",
+        "persuasion",
+        "sleight_of_hand",
+        "stealth"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_rogue": 1
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "XPHB"
+     }
+    }
+   ]
   },
   {
    "id": "sorcerer",
    "label": "Sorcerer",
-   "summary": "Hit die d6. 2024 class progression.",
+   "filters": {
+    "kind": "class",
+    "spell_class": "sorcerer"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d6. Saving throws: CON and CHA.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "con_save",
+      "cha_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "arcana",
+        "deception",
+        "insight",
+        "intimidation",
+        "persuasion",
+        "religion"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_sorcerer": 1,
+     "first_class": "sorcerer",
+     "class": "Sorcerer",
+     "hp_first_die": "d6",
+     "weapon_training": "simple",
+     "spellcasting_ability": "cha"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Sorcerer Class"
+      "name": "Weapons: simple"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "sorcerer-multiclass",
+   "label": "Sorcerer (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
+    "kind": "multiclass",
+    "spell_class": "sorcerer"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_sorcerer"
+   },
+   "grants": {
+    "sets": {
+     "level_sorcerer": 1,
+     "second_class": "sorcerer"
+    }
    }
   },
   {
-   "id": "spellcaster-sidekick",
-   "label": "Spellcaster Sidekick",
-   "summary": "Hit die d8. 2024 class progression.",
-   "rows": [
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Spellcaster Sidekick Class"
-     }
-    }
-   ],
+   "id": "sorcerer-third-class",
+   "label": "Sorcerer (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
+    "kind": "multiclass",
+    "spell_class": "sorcerer"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_sorcerer"
+   },
+   "grants": {
+    "sets": {
+     "level_sorcerer": 1
+    }
    }
   },
   {
    "id": "warlock",
    "label": "Warlock",
-   "summary": "Hit die d8. 2024 class progression.",
+   "filters": {
+    "kind": "class",
+    "spell_class": "warlock"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d8. Saving throws: WIS and CHA.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "wis_save",
+      "cha_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "arcana",
+        "deception",
+        "history",
+        "intimidation",
+        "investigation",
+        "nature",
+        "religion"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_warlock": 1,
+     "first_class": "warlock",
+     "class": "Warlock",
+     "hp_first_die": "d8",
+     "weapon_training": "simple",
+     "spellcasting_ability": "cha"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Warlock Class"
+      "name": "Armor: Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: simple"
      }
     }
-   ],
-   "filters": {
-    "kind": "class"
-   }
+   ]
   },
   {
-   "id": "warrior-sidekick",
-   "label": "Warrior Sidekick",
-   "summary": "Hit die d8. 2024 class progression.",
+   "id": "warlock-multiclass",
+   "label": "Warlock (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass",
+    "spell_class": "warlock"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_warlock"
+   },
+   "grants": {
+    "sets": {
+     "level_warlock": 1,
+     "second_class": "warlock"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Warrior Sidekick Class"
+      "name": "Light armor"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "warlock-third-class",
+   "label": "Warlock (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
-   }
+    "kind": "multiclass",
+    "spell_class": "warlock"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_warlock"
+   },
+   "grants": {
+    "sets": {
+     "level_warlock": 1
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    }
+   ]
   },
   {
    "id": "wizard",
    "label": "Wizard",
-   "summary": "Hit die d6. 2024 class progression.",
+   "filters": {
+    "kind": "class",
+    "spell_class": "wizard"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d6. Saving throws: INT and WIS.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "int_save",
+      "wis_save"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "arcana",
+        "history",
+        "insight",
+        "investigation",
+        "medicine",
+        "nature",
+        "religion"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_wizard": 1,
+     "first_class": "wizard",
+     "class": "Wizard",
+     "hp_first_die": "d6",
+     "weapon_training": "simple",
+     "spellcasting_ability": "int"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Wizard Class"
+      "name": "Weapons: simple"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "wizard-multiclass",
+   "label": "Wizard (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
+    "kind": "multiclass",
+    "spell_class": "wizard"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_wizard"
+   },
+   "grants": {
+    "sets": {
+     "level_wizard": 1,
+     "second_class": "wizard"
+    }
+   }
+  },
+  {
+   "id": "wizard-third-class",
+   "label": "Wizard (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass",
+    "spell_class": "wizard"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_wizard"
+   },
+   "grants": {
+    "sets": {
+     "level_wizard": 1
+    }
    }
   }
  ]
