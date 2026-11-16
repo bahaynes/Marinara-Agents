@@ -146,6 +146,7 @@ async function buildSpells(dataDir, ownedSources) {
 
   const deduped = deduplicate2024First(allSpells, ownedSources);
   const entries = [];
+  const racialChoices = speciesSpellChoices(JSON.parse(await readFile(join(dataDir, "races.json"), "utf8")).race);
 
   for (const item of deduped.values()) {
     const level = item.level ?? 0;
@@ -193,9 +194,9 @@ async function buildSpells(dataDir, ownedSources) {
       }
     };
 
+    // A class's own spell list only: a subclass that grants a spell (an Eldritch Knight's, a domain's)
+    // does not put it on that class's list, and the optional expanded lists (classVariant) are 2014's.
     addFromMap(lookup?.class);
-    addFromMap(lookup?.classVariant);
-    addFromMap(lookup?.subclass);
 
     if (classes.size === 0 && item.classes?.fromClassList) {
       for (const c of item.classes.fromClassList) {
@@ -206,14 +207,19 @@ async function buildSpells(dataDir, ownedSources) {
     const isRitual = Boolean(item.meta?.ritual);
     const isConcentration = Boolean(item.duration?.some((d) => d.concentration));
 
-    const classList = Array.from(classes).sort().slice(0, 24);
-    let classIdList = Array.from(classIds).sort();
-    if (classIdList.length > 24) {
-      classIdList = Array.from(classes)
-        .map((c) => c.toLowerCase())
-        .sort();
-      if (classIdList.length > 24) classIdList = classIdList.slice(0, 24);
-    }
+    const classList = Array.from(classes).sort();
+    // An entry's tags hold 24 values: a spell on nine lists (Detect Magic) has 27 class ids. Only the
+    // Cantrips step reads class_ids (leveled spells go through known_ids and granted_ids), so a leveled
+    // spell over the cap keeps just the base class ids there.
+    const allClassIds = Array.from(classIds).sort();
+    const classIdList =
+      allClassIds.length > 24 && Number(level) > 0 ? classList.map((c) => c.toLowerCase()) : allClassIds;
+    // As in the 2014 ruleset: a wizard does not learn a spell from the list (the Spells step reads
+    // known_ids) but copies it into the spellbook (the Spellbook step reads granted_ids).
+    const isWizard = (id) => id === "wizard" || id.startsWith("wizard-");
+    const knownIds = allClassIds.filter((id) => !isWizard(id));
+    const grantedIds = allClassIds.filter(isWizard);
+    const raceIds = racialCantripChoices(racialChoices, Number(level), classList);
 
     const entry = {
       id: spellId,
@@ -232,13 +238,16 @@ async function buildSpells(dataDir, ownedSources) {
           },
         },
       ],
-      filters: {
+      filters: compactObject({
         level: Number(level),
         school,
         classes: classList,
         class_ids: classIdList,
+        known_ids: knownIds,
+        granted_ids: grantedIds,
+        race_ids: raceIds,
         kind: level === 0 ? "cantrip" : "spell",
-      },
+      }),
     };
 
     if (mechanics) {
@@ -249,6 +258,49 @@ async function buildSpells(dataDir, ownedSources) {
   }
 
   await writeCatalog("spells.json", "spells", entries);
+}
+
+/** A lineage's level-1 spells as 5etools lists them in its species' `additionalSpells` (named by the
+ *  lineage): fixed spells ("dancing lights|xphb#c") and choices ({choose: "level=0|class=Wizard"}). */
+function lineageSpells(race) {
+  return (race.additionalSpells ?? []).map((spells) => {
+    const known = spells.known?.["1"];
+    const list = Array.isArray(known) ? known : (known?._ ?? []);
+    return {
+      name: spells.name ?? null,
+      fixed: list.filter((spell) => typeof spell === "string").map((spell) => toCatalogId(spell.split(/[|#]/u)[0])),
+      choices: list.filter((spell) => spell?.choose).map((spell) => spell.choose),
+    };
+  });
+}
+
+/** The lineages that choose a cantrip, by the rule they choose by: { lineageId, level, className }. */
+function speciesSpellChoices(races = []) {
+  const choices = [];
+  for (const race of races.filter((r) => r.source === "XPHB")) {
+    for (const spells of lineageSpells(race)) {
+      if (!spells.name) continue;
+      for (const rule of spells.choices) {
+        const level = /level=(\d+)/u.exec(rule)?.[1];
+        const className = /class=(\w+)/u.exec(rule)?.[1];
+        if (level === undefined || !className) continue;
+        choices.push({
+          lineageId: toCatalogId(`${toCatalogId(race.name)}-${spells.name}`),
+          level: Number(level),
+          className,
+        });
+      }
+    }
+  }
+  return choices;
+}
+
+/** The lineages whose racial cantrip choice offers a spell (the High Elf's wizard cantrip). */
+function racialCantripChoices(choices, level, classList) {
+  const ids = choices
+    .filter((choice) => choice.level === level && classList.includes(choice.className))
+    .map((choice) => choice.lineageId);
+  return ids.length ? [...new Set(ids)] : undefined;
 }
 
 function mapSpellSchool(code) {
@@ -463,6 +515,18 @@ async function buildSpecies(dataDir, ownedSources) {
     const desc = render5eEntries(race.entries || []);
     const lineages = speciesLineages(race, id);
     const skills = skillChoices(race.skillProficiencies);
+    // A species' level-1 spells: an unnamed set is the species' own (Aasimar's Light), a named one a lineage's.
+    const spellSets = lineageSpells(race);
+    const spellsAdd = (ids) => (ids.length ? [{ catalog: "spells", ids }] : []);
+    const originFeat = (race.feats ?? []).some((feat) => feat.anyFromCategory?.category?.includes("O"));
+    const speciesEntries = {
+      ...(spellSets.some((set) => !set.name && set.fixed.length)
+        ? { add: spellsAdd(spellSets.filter((set) => !set.name).flatMap((set) => set.fixed)) }
+        : {}),
+      // ponytail: an origin feat chosen here adds its row but not its grants (a builder choice does
+      // not apply a chosen entry's grants). Upgrade: an Origin feat catalog step within species.
+      ...(originFeat ? { choose: [{ catalog: "features", count: 1, filters: { kind: "origin_feat" } }] } : {}),
+    };
     // 2024 species give no ability score increases: the background does.
     entries.push({
       id,
@@ -475,20 +539,21 @@ async function buildSpecies(dataDir, ownedSources) {
       grants: compactObject({
         sets: { size },
         trained: skills.length ? { choose: skills } : undefined,
-        // ponytail: an origin feat chosen here adds its row but not its grants (a builder choice does
-        // not apply a chosen entry's grants). Upgrade: an Origin feat catalog step within species.
-        entries: (race.feats ?? []).some((feat) => feat.anyFromCategory?.category?.includes("O"))
-          ? { choose: [{ catalog: "features", count: 1, filters: { kind: "origin_feat" } }] }
-          : undefined,
+        entries: Object.keys(speciesEntries).length ? speciesEntries : undefined,
       }),
       rows: [{ list: "features", values: { name: `${name} Traits`, text: desc.slice(0, 700), speed, darkvision } }],
       filters: { race: [name, ...lineages.map((lineage) => lineage.label)], subrace: "Base race" },
     });
     for (const lineage of lineages) {
+      // The lineage's fixed cantrips; a choice (the High Elf's wizard cantrip) is the spells' race_ids.
+      const fixed = spellSets
+        .filter((set) => set.name && toCatalogId(`${id}-${set.name}`) === lineage.id)
+        .flatMap((set) => set.fixed);
       entries.push({
         id: lineage.id,
         label: lineage.label,
         summary: `${lineage.label}: a ${name} lineage. Its traits add to the ${name}'s.`.slice(0, 300),
+        ...(fixed.length ? { grants: { entries: { add: spellsAdd(fixed) } } } : {}),
         rows: [
           {
             list: "features",
