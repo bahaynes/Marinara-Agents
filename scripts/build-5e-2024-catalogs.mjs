@@ -371,6 +371,25 @@ const ALL_SKILLS = [
 ];
 const SPELLCASTING_ABILITY = new Set(["int", "wis", "cha"]);
 const UNARMORED_DEFENSE = { Barbarian: "con", Monk: "wis" };
+// The order a suggested build raises a class's abilities, most wanted first (the maintainer's table,
+// 2026-11-15): point buy 15/15/14/10/8/8 goes down it, the background's +2/+1 to the top two, and each
+// half-feat to the first below 20. CON is second for most; DEX is fourth at worst (a 10, never an 8),
+// except where heavy armor taxes STR.
+const ABILITY_PRIORITY = {
+  Barbarian: ["str", "con", "dex", "wis", "cha", "int"],
+  Bard: ["cha", "con", "dex", "wis", "int", "str"],
+  Cleric: ["wis", "con", "dex", "cha", "str", "int"],
+  Druid: ["wis", "con", "dex", "int", "cha", "str"],
+  Fighter: ["str", "con", "wis", "dex", "cha", "int"],
+  Monk: ["dex", "wis", "con", "str", "int", "cha"],
+  Paladin: ["str", "cha", "con", "dex", "wis", "int"],
+  Ranger: ["dex", "con", "wis", "str", "int", "cha"],
+  Rogue: ["dex", "con", "wis", "int", "cha", "str"],
+  Sorcerer: ["cha", "con", "dex", "wis", "int", "str"],
+  Warlock: ["cha", "con", "dex", "wis", "int", "str"],
+  Wizard: ["int", "con", "dex", "wis", "cha", "str"],
+  Artificer: ["int", "con", "dex", "wis", "cha", "str"],
+};
 const ARMOR_NAMES = { light: "Light armor", medium: "Medium armor", heavy: "Heavy armor", shield: "Shields" };
 
 /** The sheet's weapon_training enum predates 2024. Martial training maps exactly; the Rogue's
@@ -423,7 +442,7 @@ function classEntries(cls, id, hitDie) {
   const first = {
     id,
     label: name,
-    filters: { kind: "class", ...spellClass },
+    filters: { kind: "class", ...spellClass, ability_priority: ABILITY_PRIORITY[name] },
     exclusive: "first_class",
     summary:
       `Hit die ${hitDie}. Saving throws: ${saves.map((save) => save.replace("_save", "").toUpperCase()).join(" and ")}.`.slice(

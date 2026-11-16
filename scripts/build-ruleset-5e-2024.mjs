@@ -456,6 +456,11 @@ async function patchSubclassesAndFeats(doc) {
   const steps = doc.sheet.builder.steps;
   const derived = doc.sheet.derived;
   const features = doc.catalogs.find((c) => c.id === "features");
+  // A first class's suggested ability order, most wanted first, which a suggested build reads.
+  const classes = doc.catalogs.find((c) => c.id === "classes");
+  if (!classes.filters.some((f) => f.id === "ability_priority")) {
+    classes.filters.push({ id: "ability_priority", label: "Ability priority (suggested build)", type: "tags" });
+  }
   for (const filter of [
     { id: "subclass_id", label: "Subclass (guided builder)", type: "tags" },
     { id: "abilities", label: "Abilities it can raise", type: "tags" },
