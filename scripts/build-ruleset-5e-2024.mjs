@@ -414,6 +414,10 @@ async function patchSubclassesAndFeats(doc) {
     addDerived({ id, label, op: "sum", of: halves.map((_, index) => ({ derived: `${id}_${index + 1}` })) });
   }
 
+  // A choices step hosts every choice on its catalog: the features one shows a species' origin feat as well
+  // as Metamagic, so it is named for both (its id stays, for sheets already made).
+  steps.find((s) => s.id === "metamagic").label = "Feat and feature choices";
+
   const subclass = steps.find((s) => s.id === "subclass");
   delete subclass.takesAll;
   Object.assign(subclass, { min: 0, max: 3, countFrom: { derived: "builder_subclasses" } });
