@@ -287,27 +287,161 @@ async function buildClasses(dataDir, ownedSources) {
   for (const cls of deduped.values()) {
     const name = cls.name;
     const id = toCatalogId(name);
+    // The builder's classes are the player classes the sheet has a level field for; sidekicks are not.
+    if (!STANDARD_5E_CLASSES.includes(name)) continue;
     const hitDie = cls.hd ? `d${cls.hd.faces}` : "d8";
-
-    entries.push({
-      id,
-      label: name,
-      summary: `Hit die ${hitDie}. 2024 class progression.`.slice(0, 300),
-      rows: [
-        {
-          list: "proficiencies",
-          values: {
-            name: `${name} Class`,
-          },
-        },
-      ],
-      filters: {
-        kind: "class",
-      },
-    });
+    if (!CLASS_GRANTS_READY.has(name)) {
+      entries.push({
+        id,
+        label: name,
+        summary: `Hit die ${hitDie}. 2024 class progression.`.slice(0, 300),
+        rows: [{ list: "proficiencies", values: { name: `${name} Class` } }],
+        filters: { kind: "class" },
+      });
+      continue;
+    }
+    entries.push(...classEntries(cls, id, hitDie));
   }
 
   await writeCatalog("classes.json", "classes", entries);
+}
+
+// The classes whose grants the ruleset can hold: its first_class and second_class enums and its levels
+// step name these twelve. The Artificer joins once the ruleset knows it.
+const CLASS_GRANTS_READY = new Set(STANDARD_5E_CLASSES.filter((name) => name !== "Artificer"));
+const SKILL_ID = (name) => name.toLowerCase().replace(/ /g, "_");
+const ALL_SKILLS = [
+  "acrobatics",
+  "animal_handling",
+  "arcana",
+  "athletics",
+  "deception",
+  "history",
+  "insight",
+  "intimidation",
+  "investigation",
+  "medicine",
+  "nature",
+  "perception",
+  "performance",
+  "persuasion",
+  "religion",
+  "sleight_of_hand",
+  "stealth",
+  "survival",
+];
+const SPELLCASTING_ABILITY = new Set(["int", "wis", "cha"]);
+const UNARMORED_DEFENSE = { Barbarian: "con", Monk: "wis" };
+const ARMOR_NAMES = { light: "Light armor", medium: "Medium armor", heavy: "Heavy armor", shield: "Shields" };
+
+/** The sheet's weapon_training enum predates 2024. Martial training maps exactly; the Rogue's
+ *  finesse-or-light and the Monk's light martial weapons map to the nearest value the sheet has.
+ *  ponytail: a 2024 Rogue's scimitar and whip, and a Monk's scimitar, are not covered by simple_named /
+ *  simple_shortsword. Upgrade: add 2024 values to the weapon_training enum in build-ruleset-5e-2024.mjs. */
+function weaponTraining(weapons = []) {
+  const said = weapons.map((weapon) => String(weapon).toLowerCase());
+  if (said.includes("martial")) return "simple_martial";
+  if (said.some((weapon) => weapon.includes("finesse"))) return "simple_named";
+  if (said.some((weapon) => weapon.includes("light"))) return "simple_shortsword";
+  return said.includes("simple") ? "simple" : "none";
+}
+
+/** 5etools skill grants as the builder's choose list: `{choose:{from,count}}` or `{any:n}`. */
+function skillChoices(skills = [], countOverride) {
+  return skills.flatMap((skill) => {
+    if (skill.any) return [{ what: "skills", count: countOverride ?? skill.any, from: ALL_SKILLS }];
+    if (skill.choose) {
+      return [
+        { what: "skills", count: countOverride ?? skill.choose.count ?? 1, from: skill.choose.from.map(SKILL_ID) },
+      ];
+    }
+    return [];
+  });
+}
+
+const thievesTools = (tools = []) => tools.some((tool) => Object.keys(tool).some((key) => key === "thieves' tools"));
+const compactObject = (value) =>
+  Object.fromEntries(Object.entries(value).filter(([, v]) => v !== undefined && !(Array.isArray(v) && !v.length)));
+
+/** One first class and its second- and third-class entries, in the 2014 ruleset's grant shape. */
+function classEntries(cls, id, hitDie) {
+  const name = cls.name;
+  const start = cls.startingProficiencies ?? {};
+  const spellcasting = SPELLCASTING_ABILITY.has(cls.spellcastingAbility) ? cls.spellcastingAbility : undefined;
+  const spellClass = spellcasting ? { spell_class: id } : {};
+  const saves = (cls.proficiency ?? []).map((ability) => `${ability}_save`);
+  const armor = (start.armor ?? []).map((kind) => ARMOR_NAMES[kind] ?? strip5eTags(String(kind)));
+  const weapons = (start.weapons ?? []).map((weapon) => strip5eTags(String(weapon)));
+  const tools = (start.tools ?? []).map((tool) => strip5eTags(String(tool)));
+  // One row per item: a joined line passes the proficiencies list's 80-character name limit.
+  const proficiencyRows = (label, list) =>
+    list.map((item) => ({ list: "proficiencies", values: { name: `${label}: ${item}`.slice(0, 80) } }));
+  const first = {
+    id,
+    label: name,
+    filters: { kind: "class", ...spellClass },
+    exclusive: "first_class",
+    summary:
+      `Hit die ${hitDie}. Saving throws: ${saves.map((save) => save.replace("_save", "").toUpperCase()).join(" and ")}.`.slice(
+        0,
+        300,
+      ),
+    grants: compactObject({
+      trained: compactObject({
+        saves,
+        // Thieves' tools are trained as the sheet's skill too, as in the 2014 ruleset.
+        skills: thievesTools(start.toolProficiencies) ? ["thieves_tools"] : undefined,
+        choose: skillChoices(start.skills),
+      }),
+      sets: compactObject({
+        [`level_${id}`]: 1,
+        first_class: id,
+        class: name,
+        hp_first_die: hitDie,
+        weapon_training: weaponTraining(start.weapons),
+        spellcasting_ability: spellcasting,
+        unarmored_defense: UNARMORED_DEFENSE[name],
+      }),
+    }),
+    rows: [
+      ...proficiencyRows("Armor", armor),
+      ...proficiencyRows("Weapons", weapons),
+      ...proficiencyRows("Tools", tools),
+    ],
+  };
+  const gained = cls.multiclassing?.proficienciesGained ?? {};
+  const gainedSaid = [
+    ...(gained.armor ?? []).map((kind) => ARMOR_NAMES[kind] ?? strip5eTags(String(kind))),
+    ...(gained.weapons ?? []).map((weapon) => (weapon === "martial" ? "Martial weapons" : strip5eTags(String(weapon)))),
+    ...(gained.tools ?? []).map((tool) => strip5eTags(String(tool))),
+  ];
+  const others = ["second", "third"].map((slot) => ({
+    id: slot === "second" ? `${id}-multiclass` : `${id}-third-class`,
+    label: `${name} (${slot} class)`,
+    summary: `A ${slot} class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.`,
+    filters: { kind: "multiclass", ...spellClass },
+    exclusive: `${slot}_class`,
+    offeredWhen: { derived: slot === "second" ? `mc_ok_${id}` : `mc3_ok_${id}` },
+    grants: compactObject({
+      trained:
+        gained.skills || thievesTools(gained.toolProficiencies)
+          ? compactObject({
+              skills: thievesTools(gained.toolProficiencies) ? ["thieves_tools"] : undefined,
+              choose: skillChoices(gained.skills, 1),
+            })
+          : undefined,
+      // Martial weapons are the sheet's widest training; anything less leaves the first class's.
+      sets: compactObject({
+        [`level_${id}`]: 1,
+        second_class: slot === "second" ? id : undefined,
+        weapon_training: (gained.weapons ?? []).includes("martial") ? "simple_martial" : undefined,
+      }),
+    }),
+    ...(gainedSaid.length
+      ? { rows: gainedSaid.map((text) => ({ list: "proficiencies", values: { name: text } })) }
+      : {}),
+  }));
+  return [first, ...others];
 }
 
 async function buildSpecies(dataDir, ownedSources) {
