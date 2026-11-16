@@ -316,10 +316,133 @@ async function main() {
     });
   }
 
+  // 11b. 2024 subclasses and feats. The 2014 builder takes every subclass and all its features, which
+  // is right for SRD 5.1's one subclass a class and wrong for 2024's several: here a subclass is picked,
+  // one for each class at 3rd level, and only the picked subclass's features are taken. Feats: a general
+  // feat at each level the class's table gives one (the Ability Score Improvement feat is one of them).
+  await patchSubclassesAndFeats(doc);
+
   // 12. Write output (compact JSON to stay within Engine 512 KiB limit)
   const json = JSON.stringify(doc);
   await writeFile(outputPath, json, "utf8");
   console.log(`\nSuccessfully generated ${outputPath} (${(Buffer.byteLength(json) / 1024).toFixed(1)} KiB)`);
+}
+
+const BUILDER_CLASSES = [
+  "barbarian",
+  "bard",
+  "cleric",
+  "druid",
+  "fighter",
+  "monk",
+  "paladin",
+  "ranger",
+  "rogue",
+  "sorcerer",
+  "warlock",
+  "wizard",
+  "artificer",
+];
+
+/** The levels each class's own table gives a general feat, read from the 5etools class data's
+ *  "Ability Score Improvement|<Class>|<source>|<level>" entries (XPHB first). */
+async function featLevels() {
+  const config = JSON.parse(await readFile(join(repoRoot, "fork/config/5e-2024-sources.json"), "utf8"));
+  const dataDir = process.env.FIVE_E_TOOLS_DATA_DIR || config.dataDir;
+  const levels = {};
+  for (const cls of BUILDER_CLASSES) {
+    const data = JSON.parse(await readFile(join(dataDir, `class/class-${cls}.json`), "utf8"));
+    const own = (data.class || []).find((c) => c.source === "XPHB") ?? data.class?.[0];
+    levels[cls] = (own?.classFeatures || [])
+      .map((ref) => (typeof ref === "string" ? ref : ref.classFeature))
+      .filter((ref) => ref?.startsWith("Ability Score Improvement|"))
+      .map((ref) => Number(ref.split("|")[3]))
+      .filter(Boolean);
+  }
+  return levels;
+}
+
+async function patchSubclassesAndFeats(doc) {
+  const steps = doc.sheet.builder.steps;
+  const derived = doc.sheet.derived;
+  const features = doc.catalogs.find((c) => c.id === "features");
+  for (const filter of [
+    { id: "subclass_id", label: "Subclass (guided builder)", type: "tags" },
+    { id: "abilities", label: "Abilities it can raise", type: "tags" },
+  ]) {
+    if (!features.filters.some((f) => f.id === filter.id)) features.filters.push(filter);
+  }
+  const addDerived = (value) => {
+    if (!derived.some((d) => d.id === value.id)) derived.push(value);
+  };
+  const levels = await featLevels();
+  for (const cls of BUILDER_CLASSES) {
+    addDerived({
+      id: `subclass_due_${cls}`,
+      label: `${cls} subclass to pick (guided builder)`,
+      op: "stepTable",
+      from: { field: `level_${cls}` },
+      table: [
+        [0, 0],
+        [3, 1],
+      ],
+      hideWhen: { field: `level_${cls}`, equals: 0 },
+    });
+    addDerived({
+      id: `feats_${cls}`,
+      label: `${cls} feats earned (guided builder)`,
+      op: "stepTable",
+      from: { field: `level_${cls}` },
+      table: [[0, 0], ...levels[cls].map((level, index) => [level, index + 1])],
+      hideWhen: { field: `level_${cls}`, equals: 0 },
+    });
+  }
+  // A sum takes at most 12 values and there are 13 classes: two halves, then their total.
+  const halves = [BUILDER_CLASSES.slice(0, 7), BUILDER_CLASSES.slice(7)];
+  for (const [id, prefix, label] of [
+    ["builder_subclasses", "subclass_due_", "Subclasses to pick (guided builder)"],
+    ["builder_feats", "feats_", "Feats to pick (guided builder)"],
+  ]) {
+    halves.forEach((half, index) =>
+      addDerived({
+        id: `${id}_${index + 1}`,
+        label: `${label}, part ${index + 1}`,
+        op: "sum",
+        of: half.map((cls) => ({ derived: `${prefix}${cls}` })),
+      }),
+    );
+    addDerived({ id, label, op: "sum", of: halves.map((_, index) => ({ derived: `${id}_${index + 1}` })) });
+  }
+
+  const subclass = steps.find((s) => s.id === "subclass");
+  delete subclass.takesAll;
+  Object.assign(subclass, { min: 0, max: 3, countFrom: { derived: "builder_subclasses" } });
+
+  const at = steps.findIndex((s) => s.id === "features");
+  if (!steps.some((s) => s.id === "subclass_features")) {
+    steps.splice(at + 1, 0, {
+      id: "subclass_features",
+      label: "Subclass features",
+      kind: "catalog",
+      catalog: "features",
+      takesAll: true,
+      filters: { kind: "subclass_feature" },
+      within: { step: "subclass", filter: "subclass_id" },
+      upTo: { filter: "level", value: { derived: "level" }, per: { filter: "class_id", prefix: "level_" } },
+    });
+  }
+  if (!steps.some((s) => s.id === "feats")) {
+    steps.splice(at + 2, 0, {
+      id: "feats",
+      label: "Feats",
+      kind: "catalog",
+      catalog: "features",
+      min: 0,
+      max: 12,
+      filters: { kind: "general_feat" },
+      countFrom: { derived: "builder_feats" },
+    });
+  }
 }
 
 main().catch((err) => {

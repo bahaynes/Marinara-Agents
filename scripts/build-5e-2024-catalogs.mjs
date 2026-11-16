@@ -514,6 +514,45 @@ async function buildBackgrounds(dataDir, ownedSources) {
   await writeCatalog("backgrounds.json", "backgrounds", entries);
 }
 
+// 5etools stores a feat's category as a code: O origin, G general, FS fighting style (FS:P, FS:R), EB boon.
+const FEAT_KINDS = { O: "origin_feat", G: "general_feat", FS: "fighting_style", EB: "epic_boon" };
+// The most general feats one class's levels give (the Fighter: 4, 6, 8, 12, 14 and 16).
+const MAX_CLASS_FEATS = 6;
+const ORDINALS = ["", "1st", "2nd", "3rd", "4th", "5th", "6th"];
+// Features written by hand below (they carry the counters combat reads); the class list skips them.
+const HAND_WRITTEN_FEATURES = new Set(["Relentless Rage"]);
+
+/** The abilities a feat can raise, from its 5etools `ability` list. */
+function featRaises(feat) {
+  const raises = new Set();
+  for (const ability of feat.ability || []) {
+    for (const key of Object.keys(ability)) if (ABILITIES.includes(key)) raises.add(key);
+    for (const key of ability.choose?.from || []) if (ABILITIES.includes(key)) raises.add(key);
+  }
+  return ABILITIES.filter((key) => raises.has(key));
+}
+
+/** A feat's ability increase as builder grants: "+1 to one of these" is a choice, a named +1 an add, and
+ *  the Ability Score Improvement feat is the 2014 ruleset's +2-or-+1/+1 (one choice of two, repeatable).
+ *  Epic Boons may go to 30. */
+function featGrants(feat) {
+  const options = feat.ability || [];
+  if (!options.length) return undefined;
+  const cap = options.some((option) => option.max === 30) ? 30 : 20;
+  if (options.every((option) => option.hidden)) {
+    return { abilities: { choose: [{ count: 2, amount: 1, repeat: true, upTo: cap }] } };
+  }
+  // A feat lists one option (5etools uses a second only for the hidden ASI alternatives).
+  const [option] = options;
+  if (option.choose?.from) {
+    const from = option.choose.from.filter((key) => ABILITIES.includes(key));
+    return { abilities: { choose: [{ count: 1, amount: option.choose.amount ?? 1, from, upTo: cap }] } };
+  }
+  const add = Object.fromEntries(Object.entries(option).filter(([key]) => ABILITIES.includes(key)));
+  return Object.keys(add).length ? { abilities: { add } } : undefined;
+}
+const ABILITIES = ["str", "dex", "con", "int", "wis", "cha"];
+
 async function buildFeatures(dataDir, ownedSources) {
   const featsPath = join(dataDir, "feats.json");
   const data = JSON.parse(await readFile(featsPath, "utf8"));
@@ -529,31 +568,27 @@ async function buildFeatures(dataDir, ownedSources) {
     if (seenIds.has(id)) continue;
     seenIds.add(id);
 
-    const category = feat.category ? feat.category.toLowerCase() : "general";
-    let kind = "general_feat";
-    if (category.includes("origin")) kind = "origin_feat";
-    else if (category.includes("boon")) kind = "epic_boon";
-    else if (category.includes("fighting style")) kind = "fighting_style";
-
+    const kind = FEAT_KINDS[String(feat.category ?? "G").split(":")[0]] ?? "general_feat";
     const desc = strip5eTags(feat.entries?.[0] || "");
-
-    entries.push({
+    const raises = featRaises(feat);
+    const entry = {
       id,
       label: name,
       summary: desc.slice(0, 300) || name,
-      rows: [
-        {
-          list: "features",
-          values: {
-            name,
-            text: desc.slice(0, 700),
-          },
-        },
-      ],
-      filters: {
-        kind,
-      },
-    });
+      rows: [{ list: "features", values: { name, text: desc.slice(0, 700) } }],
+      // `abilities`: what the feat can raise, so a suggestion can prefer the ones that raise a build's
+      // top abilities (every 2024 general feat raises one).
+      filters: compactObject({ kind, abilities: raises.length ? raises : undefined }),
+      ...(featGrants(feat) ? { grants: featGrants(feat) } : {}),
+    };
+    entries.push(entry);
+    // The Ability Score Improvement feat can be taken at every feat level, and a catalog step picks an
+    // entry once: numbered copies, as many as a class's most feat levels (the Fighter's six).
+    if (name === "Ability Score Improvement") {
+      for (let copy = 2; copy <= MAX_CLASS_FEATS; copy++) {
+        entries.push({ ...entry, id: `${id}-${copy}`, label: `${name} (${ORDINALS[copy]})` });
+      }
+    }
   }
 
   // 2024 Weapon Masteries
@@ -657,6 +692,53 @@ async function buildFeatures(dataDir, ownedSources) {
     }
     const className = classData.class?.[0]?.name || cls.charAt(0).toUpperCase() + cls.slice(1);
 
+    // Base class features, level by level, from the class's own "name|class|source|level" list.
+    const baseClass =
+      (classData.class || []).find((c) => c.source === "XPHB") ??
+      (classData.class || []).find((c) => ownedSources.has(String(c.source).toUpperCase()));
+    const featureCounts = new Map();
+    for (const ref of baseClass?.classFeatures || []) {
+      const refText = typeof ref === "string" ? ref : ref.classFeature;
+      if (!refText || (typeof ref === "object" && ref.gainSubclassFeature)) continue; // the Subclass step's own
+      const [featureName, , refSource = baseClass.source, refLevel] = refText.split("|");
+      if (HAND_WRITTEN_FEATURES.has(featureName)) continue;
+      const level = Number(refLevel) || 1;
+      const feature = (classData.classFeature || []).find(
+        (f) => f.name === featureName && f.className === baseClass.name && f.source === refSource && f.level === level,
+      );
+      const seen = (featureCounts.get(featureName) ?? 0) + 1;
+      featureCounts.set(featureName, seen);
+      const fId = toCatalogId(`${cls}-${featureName}${seen > 1 ? `-${level}` : ""}`);
+      if (seenIds.has(fId)) continue;
+      seenIds.add(fId);
+      entries.push({
+        id: fId,
+        label: seen > 1 ? `${featureName} (level ${level})` : featureName,
+        summary: (extractFirstParagraph(feature?.entries).slice(0, 300) || featureName).trim(),
+        rows: [
+          {
+            list: "features",
+            values: {
+              name: featureName,
+              class: className,
+              text: render5eEntries(feature?.entries || []).slice(0, 800),
+            },
+          },
+        ],
+        filters: {
+          class: className,
+          class_id: [cls, `${cls}-multiclass`, `${cls}-third-class`],
+          kind: "feature",
+          subclass: "Base class",
+          level,
+        },
+        // The Fighting Style feature opens the builder's Fighting Style choice, as in the 2014 ruleset.
+        ...(featureName === "Fighting Style"
+          ? { grants: { entries: { choose: [{ catalog: "fighting_styles", count: 1, filters: { class_ids: cls } }] } } }
+          : {}),
+      });
+    }
+
     // Deduplicate subclasses (2024 XPHB first)
     const scMap = new Map();
     for (const sc of classData.subclass || []) {
@@ -726,11 +808,13 @@ async function buildFeatures(dataDir, ownedSources) {
               },
             },
           ],
+          // Their own kind, taken only for the subclass picked (subclass_id), not with the class's features.
           filters: {
             class: className,
             class_id: [cls, `${cls}-multiclass`, `${cls}-third-class`],
-            kind: "feature",
+            kind: "subclass_feature",
             subclass: sc.name,
+            subclass_id: [subId],
             level: f.level || 3,
           },
         });
