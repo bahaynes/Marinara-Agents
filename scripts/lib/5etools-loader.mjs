@@ -22,6 +22,12 @@ export async function loadOwnedConfig(configPath) {
 export function deduplicate2024First(items, ownedSources, core2024 = new Set(["XPHB", "XDMG", "XMM"])) {
   const result = new Map();
   const byName = new Map();
+  // "name|source" of every owned entry, as a reprintedAs reference spells it.
+  const loaded = new Set(
+    items
+      .filter((item) => item?.name && item?.source && ownedSources.has(item.source.toUpperCase()))
+      .map((item) => `${item.name}|${item.source}`.toLowerCase()),
+  );
 
   // First pass: Index 2024 core items
   for (const item of items) {
@@ -49,13 +55,14 @@ export function deduplicate2024First(items, ownedSources, core2024 = new Set(["X
       continue; // 2024 version wins
     }
 
-    // Check if it has an explicit reprintedAs pointing to a 2024 core source
+    // A reprint that is itself loaded supersedes this entry ("Artificer|EFA" on Tasha's Artificer). One
+    // that is not loaded (XDMG made the Moonblade a variant, not an item) leaves this entry in.
     if (Array.isArray(item.reprintedAs)) {
-      const has2024Reprint = item.reprintedAs.some((r) => {
-        const str = typeof r === "string" ? r : r?.source || r?.name || "";
-        return [...core2024].some((c) => str.toUpperCase().includes(c));
+      const hasLoadedReprint = item.reprintedAs.some((r) => {
+        const uid = (typeof r === "string" ? r : r?.uid || "").toLowerCase();
+        return loaded.has(uid);
       });
-      if (has2024Reprint) continue;
+      if (hasLoadedReprint) continue;
     }
 
     byName.set(key, item);

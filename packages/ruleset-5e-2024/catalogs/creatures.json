@@ -387,42 +387,6 @@
    }
   },
   {
-   "id": "abjurer",
-   "label": "Abjurer",
-   "summary": "Abjurer: CR 9 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "13d8+26"
-    },
-    "defense": 12,
-    "speed": 30,
-    "initiativeModifier": 2,
-    "abilities": {
-     "str": 9,
-     "dex": 14,
-     "con": 14,
-     "int": 18,
-     "wis": 12,
-     "cha": 11
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_9",
-    "actions": [
-     {
-      "id": "quarterstaff",
-      "name": "Quarterstaff",
-      "budget": "action",
-      "toHit": 3
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 9,
-    "type": "humanoid"
-   }
-  },
-  {
    "id": "abjurer-wizard",
    "label": "Abjurer Wizard",
    "summary": "Abjurer Wizard: CR 9 humanoid.",
@@ -9058,53 +9022,6 @@
    }
   },
   {
-   "id": "black-guard-drake",
-   "label": "Black Guard Drake",
-   "summary": "Black Guard Drake: CR 2 dragon.",
-   "creature": {
-    "health": {
-     "dice": "7d8+21"
-    },
-    "defense": 14,
-    "speed": 30,
-    "initiativeModifier": 0,
-    "abilities": {
-     "str": 16,
-     "dex": 11,
-     "con": 16,
-     "int": 4,
-     "wis": 10,
-     "cha": 7
-    },
-    "size": "medium",
-    "type": "dragon",
-    "tier": "cr_2",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "bite",
-      "name": "Bite",
-      "budget": "action",
-      "toHit": 5
-     },
-     {
-      "id": "tail",
-      "name": "Tail",
-      "budget": "action",
-      "toHit": 5
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 2,
-    "type": "dragon"
-   }
-  },
-  {
    "id": "black-pudding",
    "label": "Black Pudding",
    "summary": "Black Pudding: CR 4 ooze.",
@@ -9762,53 +9679,6 @@
    },
    "filters": {
     "challenge": 27,
-    "type": "dragon"
-   }
-  },
-  {
-   "id": "blue-guard-drake",
-   "label": "Blue Guard Drake",
-   "summary": "Blue Guard Drake: CR 2 dragon.",
-   "creature": {
-    "health": {
-     "dice": "7d8+21"
-    },
-    "defense": 14,
-    "speed": 30,
-    "initiativeModifier": 0,
-    "abilities": {
-     "str": 16,
-     "dex": 11,
-     "con": 16,
-     "int": 4,
-     "wis": 10,
-     "cha": 7
-    },
-    "size": "medium",
-    "type": "dragon",
-    "tier": "cr_2",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "bite",
-      "name": "Bite",
-      "budget": "action",
-      "toHit": 5
-     },
-     {
-      "id": "tail",
-      "name": "Tail",
-      "budget": "action",
-      "toHit": 5
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 2,
     "type": "dragon"
    }
   },
@@ -11536,53 +11406,6 @@
       "name": "Bite",
       "budget": "action",
       "toHit": 5
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 1,
-    "type": "construct"
-   }
-  },
-  {
-   "id": "bronze-scout",
-   "label": "Bronze Scout",
-   "summary": "Bronze Scout: CR 1 construct.",
-   "creature": {
-    "health": {
-     "dice": "4d8"
-    },
-    "defense": 13,
-    "speed": 30,
-    "initiativeModifier": 3,
-    "abilities": {
-     "str": 10,
-     "dex": 16,
-     "con": 11,
-     "int": 3,
-     "wis": 14,
-     "cha": 1
-    },
-    "size": "medium",
-    "type": "construct",
-    "tier": "cr_1",
-    "actions": [
-     {
-      "id": "bite",
-      "name": "Bite",
-      "budget": "action",
-      "toHit": 5,
-      "damage": {
-       "dice": "1d6"
-      }
-     },
-     {
-      "id": "lightning_flare_recharges_after_",
-      "name": "Lightning Flare (Recharges after a Short or Long Rest)",
-      "budget": "action",
-      "damage": {
-       "dice": "4d6"
-      }
      }
     ]
    },
@@ -14411,42 +14234,6 @@
    "filters": {
     "challenge": 9,
     "type": "fey"
-   }
-  },
-  {
-   "id": "conjurer",
-   "label": "Conjurer",
-   "summary": "Conjurer: CR 6 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "9d8"
-    },
-    "defense": 12,
-    "speed": 30,
-    "initiativeModifier": 2,
-    "abilities": {
-     "str": 9,
-     "dex": 14,
-     "con": 11,
-     "int": 17,
-     "wis": 12,
-     "cha": 11
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_6",
-    "actions": [
-     {
-      "id": "dagger",
-      "name": "Dagger",
-      "budget": "action",
-      "toHit": 5
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 6,
-    "type": "humanoid"
    }
   },
   {
@@ -17897,42 +17684,6 @@
    "filters": {
     "challenge": 3,
     "type": "monstrosity"
-   }
-  },
-  {
-   "id": "diviner",
-   "label": "Diviner",
-   "summary": "Diviner: CR 8 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "15d8"
-    },
-    "defense": 12,
-    "speed": 30,
-    "initiativeModifier": 2,
-    "abilities": {
-     "str": 9,
-     "dex": 14,
-     "con": 11,
-     "int": 18,
-     "wis": 12,
-     "cha": 11
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_8",
-    "actions": [
-     {
-      "id": "quarterstaff",
-      "name": "Quarterstaff",
-      "budget": "action",
-      "toHit": 2
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 8,
-    "type": "humanoid"
    }
   },
   {
@@ -22362,42 +22113,6 @@
    }
   },
   {
-   "id": "enchanter",
-   "label": "Enchanter",
-   "summary": "Enchanter: CR 5 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "9d8"
-    },
-    "defense": 12,
-    "speed": 30,
-    "initiativeModifier": 2,
-    "abilities": {
-     "str": 9,
-     "dex": 14,
-     "con": 11,
-     "int": 17,
-     "wis": 12,
-     "cha": 11
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_5",
-    "actions": [
-     {
-      "id": "quarterstaff",
-      "name": "Quarterstaff",
-      "budget": "action",
-      "toHit": 2
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 5,
-    "type": "humanoid"
-   }
-  },
-  {
    "id": "enchanter-wizard",
    "label": "Enchanter Wizard",
    "summary": "Enchanter Wizard: CR 5 humanoid.",
@@ -22792,42 +22507,6 @@
    "filters": {
     "challenge": 18,
     "type": "monstrosity"
-   }
-  },
-  {
-   "id": "evoker",
-   "label": "Evoker",
-   "summary": "Evoker: CR 9 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "12d8+12"
-    },
-    "defense": 12,
-    "speed": 30,
-    "initiativeModifier": 2,
-    "abilities": {
-     "str": 9,
-     "dex": 14,
-     "con": 12,
-     "int": 17,
-     "wis": 12,
-     "cha": 11
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_9",
-    "actions": [
-     {
-      "id": "quarterstaff",
-      "name": "Quarterstaff",
-      "budget": "action",
-      "toHit": 3
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 9,
-    "type": "humanoid"
    }
   },
   {
@@ -29669,47 +29348,6 @@
    }
   },
   {
-   "id": "gloom-weaver",
-   "label": "Gloom Weaver",
-   "summary": "Gloom Weaver: CR 9 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "16d8+32"
-    },
-    "defense": 14,
-    "speed": 30,
-    "initiativeModifier": 4,
-    "abilities": {
-     "str": 11,
-     "dex": 18,
-     "con": 14,
-     "int": 15,
-     "wis": 12,
-     "cha": 18
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_9",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "shadow_spear",
-      "name": "Shadow Spear",
-      "budget": "action",
-      "toHit": 8
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 9,
-    "type": "humanoid"
-   }
-  },
-  {
    "id": "gloomstalker",
    "label": "Gloomstalker",
    "summary": "Gloomstalker: CR 6 monstrosity.",
@@ -31197,53 +30835,6 @@
    },
    "filters": {
     "challenge": 27,
-    "type": "dragon"
-   }
-  },
-  {
-   "id": "green-guard-drake",
-   "label": "Green Guard Drake",
-   "summary": "Green Guard Drake: CR 2 dragon.",
-   "creature": {
-    "health": {
-     "dice": "7d8+21"
-    },
-    "defense": 14,
-    "speed": 30,
-    "initiativeModifier": 0,
-    "abilities": {
-     "str": 16,
-     "dex": 11,
-     "con": 16,
-     "int": 4,
-     "wis": 10,
-     "cha": 7
-    },
-    "size": "medium",
-    "type": "dragon",
-    "tier": "cr_2",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "bite",
-      "name": "Bite",
-      "budget": "action",
-      "toHit": 5
-     },
-     {
-      "id": "tail",
-      "name": "Tail",
-      "budget": "action",
-      "toHit": 5
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 2,
     "type": "dragon"
    }
   },
@@ -35071,42 +34662,6 @@
    }
   },
   {
-   "id": "illusionist",
-   "label": "Illusionist",
-   "summary": "Illusionist: CR 3 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "7d8+7"
-    },
-    "defense": 12,
-    "speed": 30,
-    "initiativeModifier": 2,
-    "abilities": {
-     "str": 9,
-     "dex": 14,
-     "con": 13,
-     "int": 16,
-     "wis": 11,
-     "cha": 12
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_3",
-    "actions": [
-     {
-      "id": "quarterstaff",
-      "name": "Quarterstaff",
-      "budget": "action",
-      "toHit": 1
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 3,
-    "type": "humanoid"
-   }
-  },
-  {
    "id": "illusionist-wizard",
    "label": "Illusionist Wizard",
    "summary": "Illusionist Wizard: CR 3 humanoid.",
@@ -35742,45 +35297,6 @@
    "filters": {
     "challenge": 6,
     "type": "elemental"
-   }
-  },
-  {
-   "id": "iron-cobra",
-   "label": "Iron Cobra",
-   "summary": "Iron Cobra: CR 4 construct.",
-   "creature": {
-    "health": {
-     "dice": "7d8+14"
-    },
-    "defense": 13,
-    "speed": 30,
-    "initiativeModifier": 3,
-    "abilities": {
-     "str": 12,
-     "dex": 16,
-     "con": 14,
-     "int": 3,
-     "wis": 10,
-     "cha": 1
-    },
-    "size": "medium",
-    "type": "construct",
-    "tier": "cr_4",
-    "actions": [
-     {
-      "id": "bite",
-      "name": "Bite",
-      "budget": "action",
-      "toHit": 5,
-      "damage": {
-       "dice": "3d8"
-      }
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 4,
-    "type": "construct"
    }
   },
   {
@@ -43038,45 +42554,6 @@
    }
   },
   {
-   "id": "necromancer",
-   "label": "Necromancer",
-   "summary": "Necromancer: CR 9 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "12d8+12"
-    },
-    "defense": 12,
-    "speed": 30,
-    "initiativeModifier": 2,
-    "abilities": {
-     "str": 9,
-     "dex": 14,
-     "con": 12,
-     "int": 17,
-     "wis": 12,
-     "cha": 11
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_9",
-    "actions": [
-     {
-      "id": "withering_touch",
-      "name": "Withering Touch",
-      "budget": "action",
-      "toHit": 7,
-      "damage": {
-       "dice": "2d4"
-      }
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 9,
-    "type": "humanoid"
-   }
-  },
-  {
    "id": "necromancer-wizard",
    "label": "Necromancer Wizard",
    "summary": "Necromancer Wizard: CR 9 humanoid.",
@@ -44333,61 +43810,6 @@
    "filters": {
     "challenge": 1,
     "type": "monstrosity"
-   }
-  },
-  {
-   "id": "oaken-bolter",
-   "label": "Oaken Bolter",
-   "summary": "Oaken Bolter: CR 5 construct.",
-   "creature": {
-    "health": {
-     "dice": "9d8+18"
-    },
-    "defense": 16,
-    "speed": 30,
-    "initiativeModifier": 4,
-    "abilities": {
-     "str": 12,
-     "dex": 18,
-     "con": 15,
-     "int": 3,
-     "wis": 10,
-     "cha": 1
-    },
-    "size": "medium",
-    "type": "construct",
-    "tier": "cr_5",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "lancing_bolt",
-      "name": "Lancing Bolt",
-      "budget": "action",
-      "toHit": 7
-     },
-     {
-      "id": "harpoon",
-      "name": "Harpoon",
-      "budget": "action",
-      "toHit": 7
-     },
-     {
-      "id": "explosive_bolt_recharge_5",
-      "name": "Explosive Bolt {@recharge 5}",
-      "budget": "action",
-      "damage": {
-       "dice": "5d6"
-      }
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 5,
-    "type": "construct"
    }
   },
   {
@@ -49248,53 +48670,6 @@
    }
   },
   {
-   "id": "red-guard-drake",
-   "label": "Red Guard Drake",
-   "summary": "Red Guard Drake: CR 2 dragon.",
-   "creature": {
-    "health": {
-     "dice": "7d8+21"
-    },
-    "defense": 14,
-    "speed": 30,
-    "initiativeModifier": 0,
-    "abilities": {
-     "str": 16,
-     "dex": 11,
-     "con": 16,
-     "int": 4,
-     "wis": 10,
-     "cha": 7
-    },
-    "size": "medium",
-    "type": "dragon",
-    "tier": "cr_2",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "bite",
-      "name": "Bite",
-      "budget": "action",
-      "toHit": 5
-     },
-     {
-      "id": "tail",
-      "name": "Tail",
-      "budget": "action",
-      "toHit": 5
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 2,
-    "type": "dragon"
-   }
-  },
-  {
    "id": "red-slaad",
    "label": "Red Slaad",
    "summary": "Red Slaad: CR 5 aberration.",
@@ -52547,47 +51922,6 @@
    }
   },
   {
-   "id": "shadow-dancer",
-   "label": "Shadow Dancer",
-   "summary": "Shadow Dancer: CR 7 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "13d8+13"
-    },
-    "defense": 15,
-    "speed": 30,
-    "initiativeModifier": 3,
-    "abilities": {
-     "str": 12,
-     "dex": 16,
-     "con": 13,
-     "int": 11,
-     "wis": 12,
-     "cha": 12
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_7",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "spiked_chain",
-      "name": "Spiked Chain",
-      "budget": "action",
-      "toHit": 6
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 7,
-    "type": "humanoid"
-   }
-  },
-  {
    "id": "shadow-demon",
    "label": "Shadow Demon",
    "summary": "Shadow Demon: CR 4 fiend.",
@@ -54452,55 +53786,6 @@
    },
    "filters": {
     "challenge": 0.5,
-    "type": "humanoid"
-   }
-  },
-  {
-   "id": "soul-monger",
-   "label": "Soul Monger",
-   "summary": "Soul Monger: CR 11 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "19d8+38"
-    },
-    "defense": 15,
-    "speed": 30,
-    "initiativeModifier": 3,
-    "abilities": {
-     "str": 8,
-     "dex": 17,
-     "con": 14,
-     "int": 19,
-     "wis": 15,
-     "cha": 13
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_11",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "phantasmal_dagger",
-      "name": "Phantasmal Dagger",
-      "budget": "action",
-      "toHit": 7
-     },
-     {
-      "id": "wave_of_weariness_recharge_4",
-      "name": "Wave of Weariness {@recharge 4}",
-      "budget": "action",
-      "damage": {
-       "dice": "10d8"
-      }
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 11,
     "type": "humanoid"
    }
   },
@@ -56371,42 +55656,6 @@
    },
    "filters": {
     "challenge": 1,
-    "type": "construct"
-   }
-  },
-  {
-   "id": "stone-defender",
-   "label": "Stone Defender",
-   "summary": "Stone Defender: CR 4 construct.",
-   "creature": {
-    "health": {
-     "dice": "7d8+21"
-    },
-    "defense": 16,
-    "speed": 30,
-    "initiativeModifier": 0,
-    "abilities": {
-     "str": 19,
-     "dex": 10,
-     "con": 17,
-     "int": 3,
-     "wis": 10,
-     "cha": 1
-    },
-    "size": "medium",
-    "type": "construct",
-    "tier": "cr_4",
-    "actions": [
-     {
-      "id": "slam",
-      "name": "Slam",
-      "budget": "action",
-      "toHit": 6
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 4,
     "type": "construct"
    }
   },
@@ -58668,47 +57917,6 @@
    }
   },
   {
-   "id": "the-angry",
-   "label": "The Angry",
-   "summary": "The Angry: CR 13 monstrosity.",
-   "creature": {
-    "health": {
-     "dice": "30d8+120"
-    },
-    "defense": 18,
-    "speed": 30,
-    "initiativeModifier": 0,
-    "abilities": {
-     "str": 17,
-     "dex": 10,
-     "con": 19,
-     "int": 8,
-     "wis": 13,
-     "cha": 6
-    },
-    "size": "medium",
-    "type": "monstrosity",
-    "tier": "cr_13",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "hook",
-      "name": "Hook",
-      "budget": "action",
-      "toHit": 8
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 13,
-    "type": "monstrosity"
-   }
-  },
-  {
    "id": "the-bagman",
    "label": "The Bagman",
    "summary": "The Bagman: CR 0 humanoid.",
@@ -58745,105 +57953,6 @@
    "filters": {
     "challenge": 0,
     "type": "humanoid"
-   }
-  },
-  {
-   "id": "the-hungry",
-   "label": "The Hungry",
-   "summary": "The Hungry: CR 11 monstrosity.",
-   "creature": {
-    "health": {
-     "dice": "30d8+90"
-    },
-    "defense": 17,
-    "speed": 30,
-    "initiativeModifier": 0,
-    "abilities": {
-     "str": 19,
-     "dex": 10,
-     "con": 17,
-     "int": 6,
-     "wis": 11,
-     "cha": 6
-    },
-    "size": "medium",
-    "type": "monstrosity",
-    "tier": "cr_11",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "bite",
-      "name": "Bite",
-      "budget": "action",
-      "toHit": 8,
-      "damage": {
-       "dice": "3d8"
-      }
-     },
-     {
-      "id": "claws",
-      "name": "Claws",
-      "budget": "action",
-      "toHit": 8
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 11,
-    "type": "monstrosity"
-   }
-  },
-  {
-   "id": "the-lonely",
-   "label": "The Lonely",
-   "summary": "The Lonely: CR 9 monstrosity.",
-   "creature": {
-    "health": {
-     "dice": "15d8+45"
-    },
-    "defense": 16,
-    "speed": 30,
-    "initiativeModifier": 1,
-    "abilities": {
-     "str": 16,
-     "dex": 12,
-     "con": 17,
-     "int": 6,
-     "wis": 11,
-     "cha": 6
-    },
-    "size": "medium",
-    "type": "monstrosity",
-    "tier": "cr_9",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "harpoon_arm",
-      "name": "Harpoon Arm",
-      "budget": "action",
-      "toHit": 7
-     },
-     {
-      "id": "sorrowful_embrace",
-      "name": "Sorrowful Embrace",
-      "budget": "action",
-      "damage": {
-       "dice": "4d8"
-      }
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 9,
-    "type": "monstrosity"
    }
   },
   {
@@ -58903,92 +58012,6 @@
    }
   },
   {
-   "id": "the-lost",
-   "label": "The Lost",
-   "summary": "The Lost: CR 7 monstrosity.",
-   "creature": {
-    "health": {
-     "dice": "12d8+24"
-    },
-    "defense": 15,
-    "speed": 30,
-    "initiativeModifier": 1,
-    "abilities": {
-     "str": 17,
-     "dex": 12,
-     "con": 15,
-     "int": 6,
-     "wis": 7,
-     "cha": 5
-    },
-    "size": "medium",
-    "type": "monstrosity",
-    "tier": "cr_7",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "arm_spike",
-      "name": "Arm Spike",
-      "budget": "action",
-      "toHit": 6
-     },
-     {
-      "id": "embrace",
-      "name": "Embrace",
-      "budget": "action",
-      "toHit": 6,
-      "damage": {
-       "dice": "6d8"
-      }
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 7,
-    "type": "monstrosity"
-   }
-  },
-  {
-   "id": "the-wretched",
-   "label": "The Wretched",
-   "summary": "The Wretched: CR 1/4 monstrosity.",
-   "creature": {
-    "health": {
-     "dice": "4d6-4"
-    },
-    "defense": 15,
-    "speed": 40,
-    "initiativeModifier": 1,
-    "abilities": {
-     "str": 7,
-     "dex": 12,
-     "con": 9,
-     "int": 5,
-     "wis": 6,
-     "cha": 5
-    },
-    "size": "small",
-    "type": "monstrosity",
-    "tier": "cr_1_4",
-    "actions": [
-     {
-      "id": "bite",
-      "name": "Bite",
-      "budget": "action",
-      "toHit": 3
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 0.25,
-    "type": "monstrosity"
-   }
-  },
-  {
    "id": "theran-chimera",
    "label": "Theran Chimera",
    "summary": "Theran Chimera: CR 7 monstrosity.",
@@ -59044,42 +58067,6 @@
    "filters": {
     "challenge": 7,
     "type": "monstrosity"
-   }
-  },
-  {
-   "id": "thorny",
-   "label": "Thorny",
-   "summary": "Thorny: CR 1 plant.",
-   "creature": {
-    "health": {
-     "dice": "5d8+5"
-    },
-    "defense": 14,
-    "speed": 30,
-    "initiativeModifier": 1,
-    "abilities": {
-     "str": 13,
-     "dex": 12,
-     "con": 13,
-     "int": 2,
-     "wis": 10,
-     "cha": 6
-    },
-    "size": "medium",
-    "type": "plant",
-    "tier": "cr_1",
-    "actions": [
-     {
-      "id": "bite",
-      "name": "Bite",
-      "budget": "action",
-      "toHit": 3
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 1,
-    "type": "plant"
    }
   },
   {
@@ -59923,42 +58910,6 @@
    },
    "filters": {
     "challenge": 4,
-    "type": "humanoid"
-   }
-  },
-  {
-   "id": "transmuter",
-   "label": "Transmuter",
-   "summary": "Transmuter: CR 5 humanoid.",
-   "creature": {
-    "health": {
-     "dice": "9d8"
-    },
-    "defense": 12,
-    "speed": 30,
-    "initiativeModifier": 2,
-    "abilities": {
-     "str": 9,
-     "dex": 14,
-     "con": 11,
-     "int": 17,
-     "wis": 12,
-     "cha": 11
-    },
-    "size": "medium",
-    "type": "humanoid",
-    "tier": "cr_5",
-    "actions": [
-     {
-      "id": "quarterstaff",
-      "name": "Quarterstaff",
-      "budget": "action",
-      "toHit": 2
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 5,
     "type": "humanoid"
    }
   },
@@ -64393,53 +63344,6 @@
    },
    "filters": {
     "challenge": 27,
-    "type": "dragon"
-   }
-  },
-  {
-   "id": "white-guard-drake",
-   "label": "White Guard Drake",
-   "summary": "White Guard Drake: CR 2 dragon.",
-   "creature": {
-    "health": {
-     "dice": "7d8+21"
-    },
-    "defense": 14,
-    "speed": 30,
-    "initiativeModifier": 0,
-    "abilities": {
-     "str": 16,
-     "dex": 11,
-     "con": 16,
-     "int": 4,
-     "wis": 10,
-     "cha": 7
-    },
-    "size": "medium",
-    "type": "dragon",
-    "tier": "cr_2",
-    "actions": [
-     {
-      "id": "multiattack",
-      "name": "Multiattack",
-      "budget": "action"
-     },
-     {
-      "id": "bite",
-      "name": "Bite",
-      "budget": "action",
-      "toHit": 5
-     },
-     {
-      "id": "tail",
-      "name": "Tail",
-      "budget": "action",
-      "toHit": 5
-     }
-    ]
-   },
-   "filters": {
-    "challenge": 2,
     "type": "dragon"
    }
   },
