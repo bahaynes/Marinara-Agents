@@ -146,7 +146,7 @@
      "list": "features",
      "values": {
       "name": "Bugbear Traits",
-      "text": "**Age.** Bugbears reach adulthood at age 16 and live up to 80 years.\n\n**Alignment.** Bugbears live on the fringes of society even in Darguun, where they value self-sufficiency and violence. They are generally chaotic, organizing in loose tribes under charismatic and powerful leaders.\n\n**Size.** Your size is Medium.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Long-Limbed.** When you make a melee attack on your turn, your reach for it is 5 feet greater than normal.\n\n**Powerful Build.** You count as one size larger when determining your carrying c",
+      "text": "**Creature Type.** You are a Humanoid. You are also considered a goblinoid for any prerequisite or effect that requires you to be a goblinoid.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Fey Ancestry.** You have advantage on saving throws you make to avoid or end the charmed condition on yourself.\n\n**Long-Limbed.** When you make a melee attack on your turn, your reach for it is 5 feet greater than normal.\n\n**Powerful Build.** You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.\n\n**Sne",
       "speed": 30,
       "darkvision": 60
      }
@@ -214,7 +214,7 @@
      "list": "features",
      "values": {
       "name": "Centaur Traits",
-      "text": "**Age.** Centaurs mature and age at about the same rate as humans.\n\n**Alignment.** Centaurs are inclined toward neutrality. Those who join the Selesnya are more often neutral good, while those who join the Gruul are typically chaotic neutral.\n\n**Size.** Centaurs stand between 6 and 7 feet tall, with their equine bodies reaching about 4 feet at the withers. Your size is Medium.\n\n**Fey.** Your creature type is fey, rather than humanoid.\n\n**Charge.** If you move at least 30 feet straight toward a target and then hit it with a melee weapon attack on the same turn, you can immediately follow that attack with a bonus action, making one attack against the target with your hooves.\n\n**Hooves.** Your ",
+      "text": "**Creature Type.** You are a Fey.\n\n**Charge.** If you move at least 30 feet straight toward a target and then hit it with a melee weapon attack on the same turn, you can immediately follow that attack with a bonus action, making one attack against the target with your hooves.\n\n**Equine Build.** You count as one size larger when determining your carrying capacity and the weight you can push or drag.\n\nIn addition, any climb that requires hands and feet is especially difficult for you because of your equine legs. When you make such a climb, each foot of movement costs you 4 extra feet instead of the normal 1 extra foot.\n\n**Hooves.** You have hooves that you can use to make unarmed strikes. When",
       "speed": 40,
       "darkvision": 0
      }
@@ -1158,33 +1158,6 @@
    }
   },
   {
-   "id": "gith",
-   "label": "Gith",
-   "summary": "Speed 30 ft.",
-   "grants": {
-    "sets": {
-     "size": 3
-    }
-   },
-   "rows": [
-    {
-     "list": "features",
-     "values": {
-      "name": "Gith Traits",
-      "text": "**Age.** Gith reach adulthood in their late teens and live for about a century.\n\n**Size.** Gith are taller and leaner than humans, with most a slender 6 feet in height.\n\n**Languages.** You can speak, read, and write Common and Gith.",
-      "speed": 30,
-      "darkvision": 0
-     }
-    }
-   ],
-   "filters": {
-    "race": [
-     "Gith"
-    ],
-    "subrace": "Base race"
-   }
-  },
-  {
    "id": "githyanki",
    "label": "Githyanki",
    "summary": "Speed 30 ft.",
@@ -1693,61 +1666,6 @@
    "filters": {
     "race": [
      "Hadozee"
-    ],
-    "subrace": "Base race"
-   }
-  },
-  {
-   "id": "half-elf",
-   "label": "Half-Elf",
-   "summary": "Speed 30 ft., darkvision 60 ft.",
-   "grants": {
-    "sets": {
-     "size": 3
-    },
-    "trained": {
-     "choose": [
-      {
-       "what": "skills",
-       "count": 2,
-       "from": [
-        "acrobatics",
-        "animal_handling",
-        "arcana",
-        "athletics",
-        "deception",
-        "history",
-        "insight",
-        "intimidation",
-        "investigation",
-        "medicine",
-        "nature",
-        "perception",
-        "performance",
-        "persuasion",
-        "religion",
-        "sleight_of_hand",
-        "stealth",
-        "survival"
-       ]
-      }
-     ]
-    }
-   },
-   "rows": [
-    {
-     "list": "features",
-     "values": {
-      "name": "Half-Elf Traits",
-      "text": "**Age.** Half-elves mature at the same rate humans do and reach adulthood around the age of 20. They live much longer than humans, however, often exceeding 180 years.\n\n**Size.** Half-elves are about the same size as humans, ranging from 5 to 6 feet tall. Your size is Medium.\n\n**Darkvision.** Thanks to your elf blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Fey Ancestry.** You have advantage on saving throws against being charmed, and magic can't put you to sleep.\n\n**Skill Versatility.** You gain proficien",
-      "speed": 30,
-      "darkvision": 60
-     }
-    }
-   ],
-   "filters": {
-    "race": [
-     "Half-Elf"
     ],
     "subrace": "Base race"
    }
@@ -2298,18 +2216,6 @@
    "grants": {
     "sets": {
      "size": 3
-    },
-    "trained": {
-     "choose": [
-      {
-       "what": "skills",
-       "count": 1,
-       "from": [
-        "intimidation",
-        "persuasion"
-       ]
-      }
-     ]
     }
    },
    "rows": [
@@ -2317,7 +2223,7 @@
      "list": "features",
      "values": {
       "name": "Minotaur Traits",
-      "text": "Note: These traits are also suitable for minotaurs in other D&D worlds where these people have avoided the demonic influence of Baphomet.\n\n**Age.** Minotaurs enter adulthood at around the age of 17 and can live up to 150 years.\n\n**Alignment.** Most minotaurs who join the Boros Legion lean toward lawful alignments, while those associated with the Cult of Rakdos or the Gruul Clans tend toward chaotic alignments.\n\n**Size.** Minotaurs average over 6 feet in height, and they have stocky builds. Your size is Medium.\n\n**Horns.** Your horns are natural melee weapons, which you can use to make unarmed strikes. If you hit with them, you deal piercing damage equal to 1d6 + your Strength modifier, inste",
+      "text": "**Horns.** You have horns that you can use to make unarmed strikes. When you hit with them, the strike deals 1d6 + your Strength modifier piercing damage, instead of the bludgeoning damage normal for an unarmed strike.\n\n**Goring Rush.** Immediately after you take the Dash action on your turn and move at least 20 feet, you can make one melee attack with your Horns as a bonus action.\n\n**Hammering Horns.** Immediately after you hit a creature with a melee attack as part of the Attack action on your turn, you can use a bonus action to attempt to push that target with your horns. The target must be within 5 feet of you and no more than one size larger than you. Unless it succeeds on a Strength sa",
       "speed": 30,
       "darkvision": 0
      }
@@ -2452,7 +2358,7 @@
      "list": "features",
      "values": {
       "name": "Satyr Traits",
-      "text": "**Age.** Satyrs mature and age at about the same rate as humans.\n\n**Alignment.** Satyrs delight in living a life free of the mantle of law. They gravitate toward being good, but some have devious streaks and enjoy causing dismay.\n\n**Size.** Satyrs range from just under 5 feet to about 6 feet in height, with generally slender builds. Your size is Medium.\n\n**Fey.** Your creature type is fey, rather than humanoid.\n\n**Ram.** You can use your head and horns to make unarmed strikes. If you hit with them, you deal bludgeoning damage equal to 1d4 + your Strength modifier.\n\n**Magic Resistance.** You have advantage on saving throws against spells and other magical effects.\n\n**Mirthful Leaps.** Wheneve",
+      "text": "**Creature Type.** You are a Fey.\n\n**Ram.** You can use your head and horns to make unarmed strikes. When you hit with them, the strike deals 1d6 + your Strength modifier bludgeoning damage, instead of the bludgeoning damage normal for an unarmed strike.\n\n**Magic Resistance.** You have advantage on saving throws against spells.\n\n**Mirthful Leaps.** Whenever you make a long jump or a high jump, you can roll a d8 and add the number rolled to the number of feet you cover, even when making a standing jump. This extra distance costs movement as usual.\n\n**Reveler.** As an embodiment of revelry, you have proficiency in the Performance and Persuasion skills, and you have proficiency with one musical",
       "speed": 35,
       "darkvision": 0
      }
@@ -3124,43 +3030,6 @@
    "filters": {
     "race": [
      "Yuan-Ti"
-    ],
-    "subrace": "Base race"
-   }
-  },
-  {
-   "id": "yuan-ti-pureblood",
-   "label": "Yuan-ti Pureblood",
-   "summary": "Speed 30 ft., darkvision 60 ft.",
-   "grants": {
-    "sets": {
-     "size": 3
-    },
-    "entries": {
-     "add": [
-      {
-       "catalog": "spells",
-       "ids": [
-        "poison-spray"
-       ]
-      }
-     ]
-    }
-   },
-   "rows": [
-    {
-     "list": "features",
-     "values": {
-      "name": "Yuan-ti Pureblood Traits",
-      "text": "**Age.** Purebloods mature at the same rate as humans and have lifespans similar in length to theirs.\n\n**Size.** Purebloods match humans in average size and weight. Your size is Medium.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Innate Spellcasting.** You know the poison spray cantrip. You can cast animal friendship an unlimited number of times with this trait, but you can target only snakes with it. Starting at 3rd level, you can also cast suggestion with this trait. Once you cast it, you can't do so again until you finish a long rest. Charis",
-      "speed": 30,
-      "darkvision": 60
-     }
-    }
-   ],
-   "filters": {
-    "race": [
-     "Yuan-ti Pureblood"
     ],
     "subrace": "Base race"
    }
