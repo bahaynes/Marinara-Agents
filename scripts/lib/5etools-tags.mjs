@@ -12,15 +12,11 @@ export function strip5eTags(text) {
 
   return (
     text
-      // Replace pipe-separated display text tags like {@spell fireball|phb|Fireball Spell} -> Fireball Spell
-      // Or {@spell fireball|phb} -> fireball
+      // A reference tag reads name|source|display: {@spell fireball|phb|Fireball Spell} -> Fireball Spell,
+      // {@sense Darkvision|XPHB} -> Darkvision. Only a third part is display text; the second is the source.
       .replace(
-        /\{@(?:spell|item|creature|race|background|feat|condition|disease|sense|action|skill|language|table)\s+([^}|]+)(?:\|[^}|]*)*\|([^}]+)\}/gi,
-        "$2",
-      )
-      .replace(
-        /\{@(?:spell|item|creature|race|background|feat|condition|disease|sense|action|skill|language|table)\s+([^}|]+)(?:\|[^}]*)?\}/gi,
-        "$1",
+        /\{@(?:spell|item|creature|race|background|feat|condition|disease|sense|action|skill|language|table)\s+([^}]+)\}/gi,
+        (_, body) => referenceText(body),
       )
       // Damage, dice, hit, dc tags
       .replace(/\{@damage\s+([^}]+)\}/gi, "$1")
@@ -39,10 +35,28 @@ export function strip5eTags(text) {
       .replace(/\{@kbd\s+([^}]+)\}/gi, "`$1`")
       .replace(/\{@code\s+([^}]+)\}/gi, "`$1`")
       .replace(/\{@note\s+([^}]+)\}/gi, "Note: $1")
-      // Clean remaining unhandled tags
-      .replace(/\{@[a-z]+\s+([^}]+)\}/gi, "$1")
+      // Feature links carry more parts before their display text: name|class|classSource|level|source|display,
+      // and a subclass feature's name|class|classSource|subclass|subclassSource|level|source|display.
+      .replace(/\{@classFeature\s+([^}]+)\}/gi, (_, body) => featureText(body, 5))
+      .replace(/\{@subclassFeature\s+([^}]+)\}/gi, (_, body) => featureText(body, 7))
+      // A filter link shows its first part; its later parts are the filter's arguments.
+      .replace(/\{@filter\s+([^}|]+)[^}]*\}/gi, "$1")
+      // Remaining tags ({@variantrule Bonus Action|XPHB}, {@class Fighter|XPHB}) read like references.
+      .replace(/\{@[a-z0-9]+\s+([^}]+)\}/gi, (_, body) => referenceText(body))
       .trim()
   );
+}
+
+/** The text a name|source|display reference shows: its display part when it has one, else its name. */
+function referenceText(body) {
+  const parts = body.split("|");
+  return (parts[2] || parts[0]).trim();
+}
+
+/** A feature link's display part (at `displayAt`) when it has one, else its name. */
+function featureText(body, displayAt) {
+  const parts = body.split("|");
+  return (parts[displayAt] || parts[0]).trim();
 }
 
 /**

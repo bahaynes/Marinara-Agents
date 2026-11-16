@@ -26,13 +26,13 @@
   {
    "id": "blind-fighting",
    "label": "Blind Fighting",
-   "summary": "You have XPHB with a range of 10 feet.",
+   "summary": "You have Blindsight with a range of 10 feet.",
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Blind Fighting",
-      "text": "You have XPHB with a range of 10 feet."
+      "text": "You have Blindsight with a range of 10 feet."
      }
     }
    ],
@@ -47,13 +47,13 @@
   {
    "id": "defense",
    "label": "Defense",
-   "summary": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class|XPHB.",
+   "summary": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class.",
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Defense",
-      "text": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class|XPHB."
+      "text": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class."
      }
     }
    ],
@@ -89,13 +89,13 @@
   {
    "id": "great-weapon-fighting",
    "label": "Great Weapon Fighting",
-   "summary": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the 2h|XPHB|Two-Handed or V|XPHB|Versatile property to gain this benefit.",
+   "summary": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit.",
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Great Weapon Fighting",
-      "text": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the 2h|XPHB|Two-Handed or V|XPHB|Versatile property to gain this benefit."
+      "text": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
      }
     }
    ],
@@ -110,13 +110,13 @@
   {
    "id": "interception",
    "label": "Interception",
-   "summary": "When a creature you can see hits another creature within 5 feet of you with an attack roll, you can take a Reaction|XPHB to reduce the damage dealt to the target by 1d10 plus your Proficiency|XPHB|Proficiency Bonus. You must be holding a XPHB or a Simple or Martial weapon to use this Reaction|XPHB.",
+   "summary": "When a creature you can see hits another creature within 5 feet of you with an attack roll, you can take a Reaction to reduce the damage dealt to the target by 1d10 plus your Proficiency Bonus. You must be holding a Shield or a Simple or Martial weapon to use this Reaction.",
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Interception",
-      "text": "When a creature you can see hits another creature within 5 feet of you with an attack roll, you can take a Reaction|XPHB to reduce the damage dealt to the target by 1d10 plus your Proficiency|XPHB|Proficiency Bonus. You must be holding a XPHB or a Simple or Martial weapon to use this Reaction|XPHB."
+      "text": "When a creature you can see hits another creature within 5 feet of you with an attack roll, you can take a Reaction to reduce the damage dealt to the target by 1d10 plus your Proficiency Bonus. You must be holding a Shield or a Simple or Martial weapon to use this Reaction."
      }
     }
    ],
@@ -131,13 +131,13 @@
   {
    "id": "protection",
    "label": "Protection",
-   "summary": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can take a Reaction|XPHB to interpose your XPHB if you're holding one. You impose Disadvantage|XPHB on the triggering attack roll and all other attack rolls against the target until the start of your next t",
+   "summary": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can take a Reaction to interpose your Shield if you're holding one. You impose Disadvantage on the triggering attack roll and all other attack rolls against the target until the start of your next turn if y",
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Protection",
-      "text": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can take a Reaction|XPHB to interpose your XPHB if you're holding one. You impose Disadvantage|XPHB on the triggering attack roll and all other attack rolls against the target until the start of your next turn if you remain within 5 feet of the target."
+      "text": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can take a Reaction to interpose your Shield if you're holding one. You impose Disadvantage on the triggering attack roll and all other attack rolls against the target until the start of your next turn if you remain within 5 feet of the target."
      }
     }
    ],
@@ -152,13 +152,13 @@
   {
    "id": "thrown-weapon-fighting",
    "label": "Thrown Weapon Fighting",
-   "summary": "When you hit with a ranged attack roll using a weapon that has the T|XPHB|Thrown property, you gain a +2 bonus to the damage roll.",
+   "summary": "When you hit with a ranged attack roll using a weapon that has the Thrown property, you gain a +2 bonus to the damage roll.",
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Thrown Weapon Fighting",
-      "text": "When you hit with a ranged attack roll using a weapon that has the T|XPHB|Thrown property, you gain a +2 bonus to the damage roll."
+      "text": "When you hit with a ranged attack roll using a weapon that has the Thrown property, you gain a +2 bonus to the damage roll."
      }
     }
    ],
@@ -173,13 +173,13 @@
   {
    "id": "two-weapon-fighting",
    "label": "Two-Weapon Fighting",
-   "summary": "When you make an extra attack as a result of using a weapon that has the L|XPHB|Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage.",
+   "summary": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage.",
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Two-Weapon Fighting",
-      "text": "When you make an extra attack as a result of using a weapon that has the L|XPHB|Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
+      "text": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
      }
     }
    ],
@@ -194,13 +194,13 @@
   {
    "id": "unarmed-fighting",
    "label": "Unarmed Fighting",
-   "summary": "When you hit with your Unarmed Strike|XPHB and deal damage, you can deal Bludgeoning damage equal to 1d6 plus your Strength modifier instead of the normal damage of an Unarmed Strike|XPHB. If you aren't holding any weapons or a XPHB when you make the attack roll, the d6 becomes a d8.",
+   "summary": "When you hit with your Unarmed Strike and deal damage, you can deal Bludgeoning damage equal to 1d6 plus your Strength modifier instead of the normal damage of an Unarmed Strike. If you aren't holding any weapons or a Shield when you make the attack roll, the d6 becomes a d8.",
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Unarmed Fighting",
-      "text": "When you hit with your Unarmed Strike|XPHB and deal damage, you can deal Bludgeoning damage equal to 1d6 plus your Strength modifier instead of the normal damage of an Unarmed Strike|XPHB. If you aren't holding any weapons or a XPHB when you make the attack roll, the d6 becomes a d8."
+      "text": "When you hit with your Unarmed Strike and deal damage, you can deal Bludgeoning damage equal to 1d6 plus your Strength modifier instead of the normal damage of an Unarmed Strike. If you aren't holding any weapons or a Shield when you make the attack roll, the d6 becomes a d8."
      }
     }
    ],

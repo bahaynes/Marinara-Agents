@@ -282,7 +282,7 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Choose one XPHB"
+      "name": "Choose one Musical Instrument"
      }
     }
    ]
@@ -342,7 +342,7 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Choose one XPHB"
+      "name": "Choose one Musical Instrument"
      }
     }
    ]
@@ -552,7 +552,7 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Tools: XPHB"
+      "name": "Tools: Herbalism Kit"
      }
     }
    ]
@@ -838,13 +838,13 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Weapons: Martial weapons that have the Light|items|type=martial weapon|property="
+      "name": "Weapons: Martial weapons that have the Light property"
      }
     },
     {
      "list": "proficiencies",
      "values": {
-      "name": "Tools: Choose one type of XPHB or XPHB"
+      "name": "Tools: Choose one type of Artisan's Tools or Musical Instrument"
      }
     }
    ]
@@ -1314,13 +1314,13 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Weapons: Martial weapons that have the Finesse or Light|items|type=martial weapo"
+      "name": "Weapons: Martial weapons that have the Finesse or Light property"
      }
     },
     {
      "list": "proficiencies",
      "values": {
-      "name": "Tools: XPHB"
+      "name": "Tools: Thieves' Tools"
      }
     }
    ]
@@ -1375,7 +1375,7 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "XPHB"
+      "name": "Thieves' Tools"
      }
     }
    ]
@@ -1429,7 +1429,7 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "XPHB"
+      "name": "Thieves' Tools"
      }
     }
    ]
