@@ -603,50 +603,7 @@
     "cost": {
      "amount": 1500,
      "unit": "gp"
-    },
-    "passesFor": "magic_items/armor-of-resistance-plate",
-    "tells": [
-     {
-      "check": {
-       "value": {
-        "derived": "history_magic_items"
-       }
-      },
-      "dc": 18,
-      "says": "lore of a cursed armor that matches this one"
-     },
-     {
-      "check": {
-       "skill": "arcana"
-      },
-      "dc": 20,
-      "says": "a second working is wound under the resistance ward"
-     },
-     {
-      "check": {
-       "skill": "religion"
-      },
-      "dc": 20,
-      "says": "the marks of a curse"
-     },
-     {
-      "check": {
-       "value": {
-        "derived": "smiths_tools_check"
-       }
-      },
-      "dc": 20,
-      "carries": {
-       "anyOf": [
-        "equipment/smiths-tools"
-       ]
-      },
-      "says": "inside the plates, a ward pattern that is not a resistance ward"
-     }
-    ],
-    "foolsReveal": [
-     "identify"
-    ]
+    }
    }
   },
   {
