@@ -1,5 +1,9 @@
 # 5e (2024 Edition)
 
+## 1.1.1 - 2026-11-15
+
+- Fixed install: 1.1.0 again had Detect Poison and Disease see through a potion-of-poison fake this ruleset doesn't make, and 2014's ritualNeeds. The 1.0.5 fixes are now part of the build.
+
 ## 1.1.0 - 2026-11-15
 
 - The guided builder builds a 2024 character; before, the catalogs carried no grants.
