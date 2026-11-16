@@ -7,7 +7,15 @@
    "label": "Artificer",
    "filters": {
     "kind": "class",
-    "spell_class": "artificer"
+    "spell_class": "artificer",
+    "ability_priority": [
+     "int",
+     "con",
+     "dex",
+     "wis",
+     "cha",
+     "str"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d8. Saving throws: CON and INT.",
@@ -205,7 +213,15 @@
    "id": "barbarian",
    "label": "Barbarian",
    "filters": {
-    "kind": "class"
+    "kind": "class",
+    "ability_priority": [
+     "str",
+     "con",
+     "dex",
+     "wis",
+     "cha",
+     "int"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d12. Saving throws: STR and CON.",
@@ -324,7 +340,15 @@
    "label": "Bard",
    "filters": {
     "kind": "class",
-    "spell_class": "bard"
+    "spell_class": "bard",
+    "ability_priority": [
+     "cha",
+     "con",
+     "dex",
+     "wis",
+     "int",
+     "str"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d8. Saving throws: DEX and CHA.",
@@ -517,7 +541,15 @@
    "label": "Cleric",
    "filters": {
     "kind": "class",
-    "spell_class": "cleric"
+    "spell_class": "cleric",
+    "ability_priority": [
+     "wis",
+     "con",
+     "dex",
+     "cha",
+     "str",
+     "int"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d8. Saving throws: WIS and CHA.",
@@ -647,7 +679,15 @@
    "label": "Druid",
    "filters": {
     "kind": "class",
-    "spell_class": "druid"
+    "spell_class": "druid",
+    "ability_priority": [
+     "wis",
+     "con",
+     "dex",
+     "int",
+     "cha",
+     "str"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d8. Saving throws: INT and WIS.",
@@ -773,7 +813,15 @@
    "id": "fighter",
    "label": "Fighter",
    "filters": {
-    "kind": "class"
+    "kind": "class",
+    "ability_priority": [
+     "str",
+     "con",
+     "wis",
+     "dex",
+     "cha",
+     "int"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d10. Saving throws: STR and CON.",
@@ -917,7 +965,15 @@
    "id": "monk",
    "label": "Monk",
    "filters": {
-    "kind": "class"
+    "kind": "class",
+    "ability_priority": [
+     "dex",
+     "wis",
+     "con",
+     "str",
+     "int",
+     "cha"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d8. Saving throws: STR and DEX.",
@@ -1006,7 +1062,15 @@
    "label": "Paladin",
    "filters": {
     "kind": "class",
-    "spell_class": "paladin"
+    "spell_class": "paladin",
+    "ability_priority": [
+     "str",
+     "cha",
+     "con",
+     "dex",
+     "wis",
+     "int"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d10. Saving throws: WIS and CHA.",
@@ -1151,7 +1215,15 @@
    "label": "Ranger",
    "filters": {
     "kind": "class",
-    "spell_class": "ranger"
+    "spell_class": "ranger",
+    "ability_priority": [
+     "dex",
+     "con",
+     "wis",
+     "str",
+     "int",
+     "cha"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d10. Saving throws: STR and DEX.",
@@ -1333,7 +1405,15 @@
    "id": "rogue",
    "label": "Rogue",
    "filters": {
-    "kind": "class"
+    "kind": "class",
+    "ability_priority": [
+     "dex",
+     "con",
+     "wis",
+     "int",
+     "cha",
+     "str"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d8. Saving throws: DEX and INT.",
@@ -1508,7 +1588,15 @@
    "label": "Sorcerer",
    "filters": {
     "kind": "class",
-    "spell_class": "sorcerer"
+    "spell_class": "sorcerer",
+    "ability_priority": [
+     "cha",
+     "con",
+     "dex",
+     "wis",
+     "int",
+     "str"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d6. Saving throws: CON and CHA.",
@@ -1593,7 +1681,15 @@
    "label": "Warlock",
    "filters": {
     "kind": "class",
-    "spell_class": "warlock"
+    "spell_class": "warlock",
+    "ability_priority": [
+     "cha",
+     "con",
+     "dex",
+     "wis",
+     "int",
+     "str"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d8. Saving throws: WIS and CHA.",
@@ -1701,7 +1797,15 @@
    "label": "Wizard",
    "filters": {
     "kind": "class",
-    "spell_class": "wizard"
+    "spell_class": "wizard",
+    "ability_priority": [
+     "int",
+     "con",
+     "dex",
+     "wis",
+     "cha",
+     "str"
+    ]
    },
    "exclusive": "first_class",
    "summary": "Hit die d6. Saving throws: INT and WIS.",
