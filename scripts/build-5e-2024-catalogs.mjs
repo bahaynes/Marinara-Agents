@@ -455,31 +455,99 @@ async function buildSpecies(dataDir, ownedSources) {
   for (const race of deduped.values()) {
     const name = race.name;
     const id = toCatalogId(name);
-    const speed = typeof race.speed === "number" ? race.speed : race.speed?.walk || 30;
-    const size = race.size?.[0] || "medium";
-    const desc = strip5eTags(race.entries?.[0] || "");
-
+    const speed = speedOf(race.speed) ?? 30;
+    const darkvision = race.darkvision ?? 0;
+    // Small or Medium is the player's choice in 2024; the sheet keeps one, so Medium unless only Small.
+    const size = (race.size ?? []).includes("M") || !(race.size ?? []).length ? 3 : (SIZE_SCALE[race.size[0]] ?? 3);
+    // A species' traits are entry objects, not a leading paragraph: render them all.
+    const desc = render5eEntries(race.entries || []);
+    const lineages = speciesLineages(race, id);
+    const skills = skillChoices(race.skillProficiencies);
+    // 2024 species give no ability score increases: the background does.
     entries.push({
       id,
       label: name,
-      summary: `Speed ${speed} ft., Size ${size}.`.slice(0, 300),
-      rows: [
-        {
-          list: "features",
-          values: {
-            name: `${name} Traits`,
-            text: desc.slice(0, 700),
-            speed,
-          },
-        },
-      ],
-      filters: {
-        race: [name],
-      },
+      summary:
+        `Speed ${speed} ft.${darkvision ? `, darkvision ${darkvision} ft.` : ""}${lineages.length ? " Pick a lineage too." : ""}`.slice(
+          0,
+          300,
+        ),
+      grants: compactObject({
+        sets: { size },
+        trained: skills.length ? { choose: skills } : undefined,
+        // ponytail: an origin feat chosen here adds its row but not its grants (a builder choice does
+        // not apply a chosen entry's grants). Upgrade: an Origin feat catalog step within species.
+        entries: (race.feats ?? []).some((feat) => feat.anyFromCategory?.category?.includes("O"))
+          ? { choose: [{ catalog: "features", count: 1, filters: { kind: "origin_feat" } }] }
+          : undefined,
+      }),
+      rows: [{ list: "features", values: { name: `${name} Traits`, text: desc.slice(0, 700), speed, darkvision } }],
+      filters: { race: [name, ...lineages.map((lineage) => lineage.label)], subrace: "Base race" },
     });
+    for (const lineage of lineages) {
+      entries.push({
+        id: lineage.id,
+        label: lineage.label,
+        summary: `${lineage.label}: a ${name} lineage. Its traits add to the ${name}'s.`.slice(0, 300),
+        rows: [
+          {
+            list: "features",
+            // The sheet sums Speed and Darkvision over the rows, so a lineage's row carries what it adds.
+            values: compactObject({
+              name: lineage.label,
+              text: lineage.text.slice(0, 700),
+              speed: lineage.speed ? lineage.speed - speed : undefined,
+              darkvision: lineage.darkvision ? lineage.darkvision - darkvision : undefined,
+            }),
+          },
+        ],
+        filters: { parent: id, race: [name, lineage.label], subrace: lineage.label },
+      });
+    }
   }
 
   await writeCatalog("races.json", "races", entries);
+}
+
+const SIZE_SCALE = { T: 1, S: 2, M: 3, L: 4, H: 5, G: 6 };
+const speedOf = (speed) => (typeof speed === "number" ? speed : speed?.walk);
+
+/** A species' lineages, legacies or ancestries: `_versions` named "Species; Lineage Name", or an
+ *  `_abstract` with `_implementations` (the Dragonborn's colors). */
+function speciesLineages(race, parentId) {
+  const lineages = [];
+  for (const version of race._versions ?? []) {
+    if (version._implementations) {
+      for (const implementation of version._implementations) {
+        const label = Object.values(implementation._variables ?? {})[0];
+        if (!label) continue;
+        const resist = (implementation.resist ?? []).join(", ");
+        lineages.push({
+          id: toCatalogId(`${parentId}-${label}`),
+          label: `${label} ${race.name}`,
+          text: resist ? `Damage resistance: ${resist}.` : "",
+        });
+      }
+      continue;
+    }
+    const label = String(version.name ?? "")
+      .split(";")
+      .at(-1)
+      .replace(/\b(Lineage|Legacy|Ancestry)\b/u, "")
+      .trim();
+    if (!label) continue;
+    // `_mod.entries` replaces the species' lineage section: its `items` are ordinary entries.
+    const mods = [version._mod?.entries ?? []].flat();
+    const text = render5eEntries(mods.flatMap((mod) => [mod.items ?? []].flat()));
+    lineages.push({
+      id: toCatalogId(`${parentId}-${label}`),
+      label,
+      text,
+      speed: speedOf(version.speed),
+      darkvision: version.darkvision,
+    });
+  }
+  return lineages;
 }
 
 async function buildBackgrounds(dataDir, ownedSources) {

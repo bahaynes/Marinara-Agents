@@ -5,1401 +5,3007 @@
   {
    "id": "aarakocra",
    "label": "Aarakocra",
-   "summary": "Speed 20 ft., Size M.",
+   "summary": "Speed 20 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Aarakocra Traits",
-      "text": "",
-      "speed": 20
+      "text": "**Dive Attack.** If you are flying and dive at least 30 ft. straight toward a target and then hit it with a melee weapon attack, the attack deals an extra 1d6 damage to the target.\n\n**Talons.** You are proficient with your unarmed strikes, which deal 1d4 slashing damage on a hit.\n\n**Language.** You can speak, read, and write Auran.",
+      "speed": 20,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Aarakocra"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "aasimar",
    "label": "Aasimar",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Aasimar Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Celestial Resistance.** You have Resistance to Necrotic damage and Radiant damage.\n\n**Darkvision.** You have Darkvision with a range of 60 feet.\n\n**Healing Hands.** As a Magic action, you touch a creature and roll a number of d4s equal to your Proficiency Bonus. The creature regains a number of Hit Points equal to the total rolled. Once you use this trait, you can't use it again until you finish a Long Rest.\n\n**Light Bearer.** You know the Light cantrip. Charisma is your spellcasting ability for it.\n\n**Celestial Revelation.** When you reach character level 3, you can transform as a Bonus Action using one of the options below (choose the option each time you transform). The transformation l",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Aasimar"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "astral-elf",
    "label": "Astral Elf",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Astral Elf Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are a Humanoid. You are also considered an elf for any prerequisite or effect that requires you to be an elf.\n\n**Astral Fire.** You know one of the following cantrips of your choice: dancing lights, light, or sacred flame. Intelligence, Wisdom, or Charisma is your spellcasting ability for it (choose when you select this race).\n\n**Darkvision.** You can see in dim light within 60 feet of yourself as if it were bright light, and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Fey Ancestry.** You have advantage on saving throws you make to avoid or end the charmed condition on yourself.\n\n**Keen Senses.** You have proficie",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Astral Elf"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "autognome",
    "label": "Autognome",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 2
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Autognome Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are a Construct.\n\n**Armored Casing.** You are encased in thin metal or some other durable material. While you aren't wearing armor, your base Armor Class is 13 + your Dexterity modifier.\n\n**Built for Success.** You can add a d4 to one attack roll, ability check, or saving throw you make, and you can do so after seeing the d20 roll but before the effects of the roll are resolved. You can use this trait a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.\n\n**Healing Machine.** If the mending spell is cast on you, you can spend a Hit Die, roll it, and regain a number of hit points equal to the roll plus your Cons",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Autognome"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "bugbear",
    "label": "Bugbear",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Bugbear Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Age.** Bugbears reach adulthood at age 16 and live up to 80 years.\n\n**Alignment.** Bugbears live on the fringes of society even in Darguun, where they value self-sufficiency and violence. They are generally chaotic, organizing in loose tribes under charismatic and powerful leaders.\n\n**Size.** Your size is Medium.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Long-Limbed.** When you make a melee attack on your turn, your reach for it is 5 feet greater than normal.\n\n**Powerful Build.** You count as one size larger when determining your carrying c",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Bugbear"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "bullywug",
    "label": "Bullywug",
-   "summary": "Speed 20 ft., Size M.",
+   "summary": "Speed 20 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Bullywug Traits",
-      "text": "",
-      "speed": 20
+      "text": "**Amphibious.** You can breathe air and water.\n\n**Speak with Frogs and Toads.** You can communicate simple concepts to frogs and toads when you speak in Bullywug.\n\n**Swamp Camouflage.** You have advantage on Dexterity (Stealth) checks made to hide in swampy terrain.\n\n**Standing Leap.** Your long jump is up to 20 feet and your high jump is up to 10 feet, with or without a running start.\n\n**Languages.** You can speak, read, and write Bullywug.",
+      "speed": 20,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Bullywug"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "centaur",
    "label": "Centaur",
-   "summary": "Speed 40 ft., Size M.",
+   "summary": "Speed 40 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "animal_handling",
+        "medicine",
+        "nature",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Centaur Traits",
-      "text": "",
-      "speed": 40
+      "text": "**Age.** Centaurs mature and age at about the same rate as humans.\n\n**Alignment.** Centaurs are inclined toward neutrality. Those who join the Selesnya are more often neutral good, while those who join the Gruul are typically chaotic neutral.\n\n**Size.** Centaurs stand between 6 and 7 feet tall, with their equine bodies reaching about 4 feet at the withers. Your size is Medium.\n\n**Fey.** Your creature type is fey, rather than humanoid.\n\n**Charge.** If you move at least 30 feet straight toward a target and then hit it with a melee weapon attack on the same turn, you can immediately follow that attack with a bonus action, making one attack against the target with your hooves.\n\n**Hooves.** Your ",
+      "speed": 40,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Centaur"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "changeling",
    "label": "Changeling",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "deception",
+        "insight",
+        "intimidation",
+        "performance",
+        "persuasion"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Changeling Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Changeling Instincts.** Thanks to your connection to the fey realm, you gain proficiency in two of the following skills of your choice: Deception, Insight, Intimidation, Performance, or Persuasion.\n\n**Shape-Shifter.** As an action, you can shape-shift to change your appearance and your voice. You determine the specifics of the changes, including your coloration, hair length, and sex. You can also adjust your height and weight and can change your size between Medium and Small. You can make yourself appear as a member of another playable species, though none of your game statistics change. You can't duplicate the appearance of an individual you've never seen, and you must adopt a form that h",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Changeling"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "custom-lineage",
    "label": "Custom Lineage",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft. Pick a lineage too.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "acrobatics",
+        "animal_handling",
+        "arcana",
+        "athletics",
+        "deception",
+        "history",
+        "insight",
+        "intimidation",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "performance",
+        "persuasion",
+        "religion",
+        "sleight_of_hand",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Custom Lineage Traits",
-      "text": "Instead of choosing one of the game's races for your character at 1st level, you can use the following traits to represent your character's lineage, giving you full control over how your character's origin shaped them:",
-      "speed": 30
+      "text": "Instead of choosing one of the game's races for your character at 1st level, you can use the following traits to represent your character's lineage, giving you full control over how your character's origin shaped them:\n\n**Creature Type.** You are a humanoid. You determine your appearance and whether you resemble any of your kin.\n\n**Size.** You are Small or Medium (your choice).\n\n**Feat.** You gain one feat of your choice for which you qualify.\n\n**Variable Trait.** You gain one of the following options of your choice: (a) darkvision with a range of 60 feet or (b) proficiency in one skill of your choice.\n\n**Languages.** You can speak, read, and write Common and one other language that you and ",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
-     "Custom Lineage"
-    ]
+     "Custom Lineage",
+     "Darkvision",
+     "Skill Proficiency"
+    ],
+    "subrace": "Base race"
+   }
+  },
+  {
+   "id": "custom-lineage-darkvision",
+   "label": "Darkvision",
+   "summary": "Darkvision: a Custom Lineage lineage. Its traits add to the Custom Lineage's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Darkvision",
+      "text": "**Variable Trait; Darkvision.** You gain darkvision with a range of 60 feet."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "custom-lineage",
+    "race": [
+     "Custom Lineage",
+     "Darkvision"
+    ],
+    "subrace": "Darkvision"
+   }
+  },
+  {
+   "id": "custom-lineage-skill-proficiency",
+   "label": "Skill Proficiency",
+   "summary": "Skill Proficiency: a Custom Lineage lineage. Its traits add to the Custom Lineage's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Skill Proficiency",
+      "text": "**Variable Trait; Skill Proficiency.** You gain proficiency in one skill of your choice."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "custom-lineage",
+    "race": [
+     "Custom Lineage",
+     "Skill Proficiency"
+    ],
+    "subrace": "Skill Proficiency"
    }
   },
   {
    "id": "deep-gnome",
    "label": "Deep Gnome",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 120 ft.",
+   "grants": {
+    "sets": {
+     "size": 2
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Deep Gnome Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are a Humanoid. You are also considered a gnome for any prerequisite or effect that requires you to be a gnome.\n\n**Darkvision.** You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Gift of the Svirfneblin.** Starting at 3rd level, you can cast the disguise self spell with this trait. Starting at 5th level, you can also cast the nondetection spell with it, without requiring a material component. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast these usin",
+      "speed": 30,
+      "darkvision": 120
      }
     }
    ],
    "filters": {
     "race": [
      "Deep Gnome"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "dhampir",
    "label": "Dhampir",
-   "summary": "Speed 35 ft., Size S.",
+   "summary": "Speed 35 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Dhampir Traits",
-      "text": "",
-      "speed": 35
+      "text": "**Size.** You are Medium or Small. You choose the size when you gain this lineage.\n\n**Ancestral Legacy.** If you replace a race with this lineage, you can keep the following elements of that race: any skill proficiencies you gained from it and any climbing, flying, or swimming speed you gained from it.\n\nIf you don't keep any of those elements or you choose this lineage at character creation, you gain proficiency in two skills of your choice.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness as shades of gray.\n\n**Deathless Nature.** You don't need to breathe.\n\n**Spider Climb.*",
+      "speed": 35,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Dhampir"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "dragonborn",
    "label": "Dragonborn",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft. Pick a lineage too.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Dragonborn Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Draconic Ancestry.** Your lineage stems from a dragon progenitor. Choose the kind of dragon from the Draconic Ancestors table. Your choice affects your Breath Weapon and Damage Resistance traits as well as your appearance.\n\n| Dragon | Damage Type |\n| --- | --- |\n| Black | Acid |\n| Blue | Lightning |\n| Brass | Fire |\n| Bronze | Lightning |\n| Copper | Acid |\n| Gold | Fire |\n| Green | Poison |\n| Red | Fire |\n| Silver | Cold |\n| White | Cold |\n\n\n**Breath Weapon.** When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of magical energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide (choose the shape each time). Each creature in that",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
-     "Dragonborn"
-    ]
+     "Dragonborn",
+     "Black Dragonborn",
+     "Blue Dragonborn",
+     "Brass Dragonborn",
+     "Bronze Dragonborn",
+     "Copper Dragonborn",
+     "Gold Dragonborn",
+     "Green Dragonborn",
+     "Red Dragonborn",
+     "Silver Dragonborn",
+     "White Dragonborn"
+    ],
+    "subrace": "Base race"
+   }
+  },
+  {
+   "id": "dragonborn-black",
+   "label": "Black Dragonborn",
+   "summary": "Black Dragonborn: a Dragonborn lineage. Its traits add to the Dragonborn's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Black Dragonborn",
+      "text": "Damage resistance: acid."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn",
+    "race": [
+     "Dragonborn",
+     "Black Dragonborn"
+    ],
+    "subrace": "Black Dragonborn"
+   }
+  },
+  {
+   "id": "dragonborn-blue",
+   "label": "Blue Dragonborn",
+   "summary": "Blue Dragonborn: a Dragonborn lineage. Its traits add to the Dragonborn's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Blue Dragonborn",
+      "text": "Damage resistance: lightning."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn",
+    "race": [
+     "Dragonborn",
+     "Blue Dragonborn"
+    ],
+    "subrace": "Blue Dragonborn"
+   }
+  },
+  {
+   "id": "dragonborn-brass",
+   "label": "Brass Dragonborn",
+   "summary": "Brass Dragonborn: a Dragonborn lineage. Its traits add to the Dragonborn's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Brass Dragonborn",
+      "text": "Damage resistance: fire."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn",
+    "race": [
+     "Dragonborn",
+     "Brass Dragonborn"
+    ],
+    "subrace": "Brass Dragonborn"
+   }
+  },
+  {
+   "id": "dragonborn-bronze",
+   "label": "Bronze Dragonborn",
+   "summary": "Bronze Dragonborn: a Dragonborn lineage. Its traits add to the Dragonborn's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Bronze Dragonborn",
+      "text": "Damage resistance: lightning."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn",
+    "race": [
+     "Dragonborn",
+     "Bronze Dragonborn"
+    ],
+    "subrace": "Bronze Dragonborn"
+   }
+  },
+  {
+   "id": "dragonborn-copper",
+   "label": "Copper Dragonborn",
+   "summary": "Copper Dragonborn: a Dragonborn lineage. Its traits add to the Dragonborn's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Copper Dragonborn",
+      "text": "Damage resistance: acid."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn",
+    "race": [
+     "Dragonborn",
+     "Copper Dragonborn"
+    ],
+    "subrace": "Copper Dragonborn"
    }
   },
   {
    "id": "dragonborn-gem",
    "label": "Dragonborn (Gem)",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft. Pick a lineage too.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Dragonborn (Gem) Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Gem Ancestry.** You have a gem dragon ancestor, granting you a special magical affinity. Choose one kind of dragon from the Gem Ancestry table. This determines the damage type for your other traits, as shown in the table.\n\n| Dragon | Damage Type |\n| --- | --- |\n| Amethyst | Force |\n| Crystal | Radiant |\n| Emerald | Psychic |\n| Sapphire | Thunder |\n| Topaz | Necrotic |\n\n\n**Breath Weapon.** When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of magical energy in a 15-foot cone. Each creature in that area must make a Dexterity saving throw (DC = 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes 1d10 ",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
-     "Dragonborn (Gem)"
-    ]
+     "Dragonborn (Gem)",
+     "Amethyst Dragonborn (Gem)",
+     "Crystal Dragonborn (Gem)",
+     "Emerald Dragonborn (Gem)",
+     "Sapphire Dragonborn (Gem)",
+     "Topaz Dragonborn (Gem)"
+    ],
+    "subrace": "Base race"
+   }
+  },
+  {
+   "id": "dragonborn-gem-amethyst",
+   "label": "Amethyst Dragonborn (Gem)",
+   "summary": "Amethyst Dragonborn (Gem): a Dragonborn (Gem) lineage. Its traits add to the Dragonborn (Gem)'s.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Amethyst Dragonborn (Gem)",
+      "text": "Damage resistance: force."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn-gem",
+    "race": [
+     "Dragonborn (Gem)",
+     "Amethyst Dragonborn (Gem)"
+    ],
+    "subrace": "Amethyst Dragonborn (Gem)"
+   }
+  },
+  {
+   "id": "dragonborn-gem-crystal",
+   "label": "Crystal Dragonborn (Gem)",
+   "summary": "Crystal Dragonborn (Gem): a Dragonborn (Gem) lineage. Its traits add to the Dragonborn (Gem)'s.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Crystal Dragonborn (Gem)",
+      "text": "Damage resistance: radiant."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn-gem",
+    "race": [
+     "Dragonborn (Gem)",
+     "Crystal Dragonborn (Gem)"
+    ],
+    "subrace": "Crystal Dragonborn (Gem)"
+   }
+  },
+  {
+   "id": "dragonborn-gem-emerald",
+   "label": "Emerald Dragonborn (Gem)",
+   "summary": "Emerald Dragonborn (Gem): a Dragonborn (Gem) lineage. Its traits add to the Dragonborn (Gem)'s.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Emerald Dragonborn (Gem)",
+      "text": "Damage resistance: psychic."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn-gem",
+    "race": [
+     "Dragonborn (Gem)",
+     "Emerald Dragonborn (Gem)"
+    ],
+    "subrace": "Emerald Dragonborn (Gem)"
+   }
+  },
+  {
+   "id": "dragonborn-gem-sapphire",
+   "label": "Sapphire Dragonborn (Gem)",
+   "summary": "Sapphire Dragonborn (Gem): a Dragonborn (Gem) lineage. Its traits add to the Dragonborn (Gem)'s.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Sapphire Dragonborn (Gem)",
+      "text": "Damage resistance: thunder."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn-gem",
+    "race": [
+     "Dragonborn (Gem)",
+     "Sapphire Dragonborn (Gem)"
+    ],
+    "subrace": "Sapphire Dragonborn (Gem)"
+   }
+  },
+  {
+   "id": "dragonborn-gem-topaz",
+   "label": "Topaz Dragonborn (Gem)",
+   "summary": "Topaz Dragonborn (Gem): a Dragonborn (Gem) lineage. Its traits add to the Dragonborn (Gem)'s.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Topaz Dragonborn (Gem)",
+      "text": "Damage resistance: necrotic."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn-gem",
+    "race": [
+     "Dragonborn (Gem)",
+     "Topaz Dragonborn (Gem)"
+    ],
+    "subrace": "Topaz Dragonborn (Gem)"
+   }
+  },
+  {
+   "id": "dragonborn-gold",
+   "label": "Gold Dragonborn",
+   "summary": "Gold Dragonborn: a Dragonborn lineage. Its traits add to the Dragonborn's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Gold Dragonborn",
+      "text": "Damage resistance: fire."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn",
+    "race": [
+     "Dragonborn",
+     "Gold Dragonborn"
+    ],
+    "subrace": "Gold Dragonborn"
+   }
+  },
+  {
+   "id": "dragonborn-green",
+   "label": "Green Dragonborn",
+   "summary": "Green Dragonborn: a Dragonborn lineage. Its traits add to the Dragonborn's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Green Dragonborn",
+      "text": "Damage resistance: poison."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn",
+    "race": [
+     "Dragonborn",
+     "Green Dragonborn"
+    ],
+    "subrace": "Green Dragonborn"
+   }
+  },
+  {
+   "id": "dragonborn-red",
+   "label": "Red Dragonborn",
+   "summary": "Red Dragonborn: a Dragonborn lineage. Its traits add to the Dragonborn's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Red Dragonborn",
+      "text": "Damage resistance: fire."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn",
+    "race": [
+     "Dragonborn",
+     "Red Dragonborn"
+    ],
+    "subrace": "Red Dragonborn"
+   }
+  },
+  {
+   "id": "dragonborn-silver",
+   "label": "Silver Dragonborn",
+   "summary": "Silver Dragonborn: a Dragonborn lineage. Its traits add to the Dragonborn's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Silver Dragonborn",
+      "text": "Damage resistance: cold."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn",
+    "race": [
+     "Dragonborn",
+     "Silver Dragonborn"
+    ],
+    "subrace": "Silver Dragonborn"
+   }
+  },
+  {
+   "id": "dragonborn-white",
+   "label": "White Dragonborn",
+   "summary": "White Dragonborn: a Dragonborn lineage. Its traits add to the Dragonborn's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "White Dragonborn",
+      "text": "Damage resistance: cold."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "dragonborn",
+    "race": [
+     "Dragonborn",
+     "White Dragonborn"
+    ],
+    "subrace": "White Dragonborn"
    }
   },
   {
    "id": "duergar",
    "label": "Duergar",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 120 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Duergar Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are a Humanoid. You are also considered a dwarf for any prerequisite or effect that requires you to be a dwarf.\n\n**Darkvision.** You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Duergar Magic.** Starting at 3rd level, you can cast the enlarge/reduce spell on yourself with this trait, without requiring a material component. Starting at 5th level, you can also cast the invisibility spell on yourself with this trait, without requiring a material component. Once you cast either of these spells with this trait, you can't cast that spell with it a",
+      "speed": 30,
+      "darkvision": 120
      }
     }
    ],
    "filters": {
     "race": [
      "Duergar"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "dwarf",
    "label": "Dwarf",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 120 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Dwarf Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Darkvision.** You have Darkvision with a range of 120 feet.\n\n**Dwarven Resilience.** You have Resistance to Poison damage. You also have Advantage on saving throws you make to avoid or end the Poisoned condition.\n\n**Dwarven Toughness.** Your Hit Point maximum increases by 1, and it increases by 1 again whenever you gain a level.\n\n**Stonecunning.** As a Bonus Action, you gain Tremorsense with a range of 60 feet for 10 minutes. You must be on a stone surface or touching a stone surface to use this Tremorsense. The stone can be natural or worked.\n\nYou can use this Bonus Action a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+      "speed": 30,
+      "darkvision": 120
      }
     }
    ],
    "filters": {
     "race": [
      "Dwarf"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "eladrin",
    "label": "Eladrin",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Eladrin Traits",
-      "text": "*Choose your eladrin's season: autumn, winter, spring, or summer. When finishing a long rest, you can change your season. See the \"Info\" tab for more information.*",
-      "speed": 30
+      "text": "*Choose your eladrin's season: autumn, winter, spring, or summer. When finishing a long rest, you can change your season. See the \"Info\" tab for more information.*\n\n**Creature Type.** You are a Humanoid. You are also considered an elf for any prerequisite or effect that requires you to be an elf.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Fey Ancestry.** You have advantage on saving throws you make to avoid or end the charmed condition on yourself.\n\n**Fey Step.** As a bonus action, you can magically teleport up to 30 feet to an unoccupied spa",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Eladrin"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "elf",
    "label": "Elf",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft. Pick a lineage too.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "insight",
+        "perception",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Elf Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Darkvision.** You have Darkvision with a range of 60 feet.\n\n**Elven Lineage.** You are part of a lineage that grants you supernatural abilities. Choose a lineage from the Elven Lineages table. You gain the level 1 benefit of that lineage.\n\nWhen you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ab",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
-     "Elf"
-    ]
+     "Elf",
+     "Drow",
+     "High Elf",
+     "Wood Elf"
+    ],
+    "subrace": "Base race"
+   }
+  },
+  {
+   "id": "elf-drow",
+   "label": "Drow",
+   "summary": "Drow: a Elf lineage. Its traits add to the Elf's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Drow",
+      "text": "**Elven Lineage (Drow).** You are part of a lineage that grants you supernatural abilities. The range of your Darkvision increases to 120 feet. You also know the Dancing Lights cantrip.\n\nWhen you reach character level 3, you learn the Faerie Fire spell. When you reach character level 5, you also learn the Darkness spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for the sp",
+      "darkvision": 60
+     }
+    }
+   ],
+   "filters": {
+    "parent": "elf",
+    "race": [
+     "Elf",
+     "Drow"
+    ],
+    "subrace": "Drow"
+   }
+  },
+  {
+   "id": "elf-high-elf",
+   "label": "High Elf",
+   "summary": "High Elf: a Elf lineage. Its traits add to the Elf's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "High Elf",
+      "text": "**Elven Lineage (High Elf).** You are part of a lineage that grants you supernatural abilities. You know the Prestidigitation cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Wizard spell list.\n\nWhen you reach character level 3, you learn the Detect Magic spell. When you reach character level 5, you also learn the Misty Step spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level.\n\nIntell"
+     }
+    }
+   ],
+   "filters": {
+    "parent": "elf",
+    "race": [
+     "Elf",
+     "High Elf"
+    ],
+    "subrace": "High Elf"
+   }
+  },
+  {
+   "id": "elf-wood-elf",
+   "label": "Wood Elf",
+   "summary": "Wood Elf: a Elf lineage. Its traits add to the Elf's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Wood Elf",
+      "text": "**Elven Lineage (Wood Elf).** You are part of a lineage that grants you supernatural abilities. Your Speed increases to 35 feet. You also know the Druidcraft cantrip.\n\nWhen you reach character level 3, you learn the Longstrider spell. When you reach character level 5, you also learn the Pass without Trace spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for the spells you ",
+      "speed": 5
+     }
+    }
+   ],
+   "filters": {
+    "parent": "elf",
+    "race": [
+     "Elf",
+     "Wood Elf"
+    ],
+    "subrace": "Wood Elf"
    }
   },
   {
    "id": "fairy",
    "label": "Fairy",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 2
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Fairy Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are a Fey.\n\n**Fairy Magic.** You know the druidcraft cantrip. Starting at 3rd level, you can cast the faerie fire spell with this trait. Starting at 5th level, you can also cast the enlarge/reduce spell with this trait. Once you cast faerie fire or enlarge/reduce with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).\n\n**Flight.** Because of your wings, you have a flying speed equal to your wa",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Fairy"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "firbolg",
    "label": "Firbolg",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Firbolg Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Firbolg Magic.** You can cast detect magic and disguise self spells with this trait. When you use this version of disguise self, you can seem up to 3 feet shorter or taller. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast these spells using any spell slots you have.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).\n\n**Hidden Step.** As a bonus action, you can magically turn invisible until the start of your next turn or until you attack, make a damage roll, or force someone to make a saving throw.",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Firbolg"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "genasi",
    "label": "Genasi",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Genasi Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Size.** You are Medium or Small. You choose the size when you select this race.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Genasi"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "giff",
    "label": "Giff",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Giff Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Astral Spark.** Your psychic connection to the Astral Plane enables you to mystically access a spark of divine power, which you can channel through your weapons. When you hit a target with a simple or martial weapon, you can cause the target to take extra force damage equal to your proficiency bonus.\n\nYou can use this trait a number of times equal to your proficiency bonus, but you can use it no more than once per turn. You regain all expended uses when you finish a long rest.\n\n**Firearms Mastery.** You have a mystical connection to firearms that traces back to the gods of the giff, who delighted in such weapons. You have proficiency with all firearms and ignore the loading property of any",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Giff"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "gith",
    "label": "Gith",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Gith Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Age.** Gith reach adulthood in their late teens and live for about a century.\n\n**Size.** Gith are taller and leaner than humans, with most a slender 6 feet in height.\n\n**Languages.** You can speak, read, and write Common and Gith.",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Gith"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "githyanki",
    "label": "Githyanki",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "acrobatics",
+        "animal_handling",
+        "arcana",
+        "athletics",
+        "deception",
+        "history",
+        "insight",
+        "intimidation",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "performance",
+        "persuasion",
+        "religion",
+        "sleight_of_hand",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Githyanki Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Astral Knowledge.** You can mystically access a reservoir of experiences of entities connected to the Astral Plane. Whenever you finish a long rest, you gain proficiency in one skill of your choice and with one weapon or tool of your choice, selected from the Player's Handbook, as you momentarily project your consciousness into the Astral Plane. These proficiencies last until the end of your next long rest.\n\n**Githyanki Psionics.** You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\n\nStarting at 3rd level, you can cast the jump spell with this trait. Starting at 5th level, you can also cast misty step with it. Once you cast jump or misty ste",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Githyanki"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "githzerai",
    "label": "Githzerai",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Githzerai Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Githzerai Psionics.** You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\n\nStarting at 3rd level, you can cast the shield spell with this trait. Starting at 5th level, you can also cast the detect thoughts spell with it. Once you cast shield or detect thoughts spell with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race). None of these spells require spell components",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Githzerai"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "gnoll",
    "label": "Gnoll",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Gnoll Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Bite.** Your fanged maw is a natural weapon, which you can use to make unarmed strikes. If you hit with it, you deal piercing damage equal to 1d4 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Rampage.** When you reduce a creature to 0 hit points with a melee attack on your turn, you can take a bonus action to move up to half your speed and make a bite attack.",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Gnoll"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "gnome",
    "label": "Gnome",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft. Pick a lineage too.",
+   "grants": {
+    "sets": {
+     "size": 2
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Gnome Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Darkvision.** You have Darkvision with a range of 60 feet.\n\n**Gnomish Cunning.** You have Advantage on Intelligence, Wisdom, and Charisma saving throws.\n\n**Gnomish Lineage.** You are part of a lineage that grants you supernatural abilities. Choose one of the following options; whichever one you choose, Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage):\n\n- \n- ",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
-     "Gnome"
-    ]
+     "Gnome",
+     "Forest Gnome",
+     "Rock Gnome"
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "gnome-deep",
    "label": "Gnome (Deep)",
-   "summary": "Speed 20 ft., Size S.",
+   "summary": "Speed 20 ft., darkvision 120 ft.",
+   "grants": {
+    "sets": {
+     "size": 2
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Gnome (Deep) Traits",
-      "text": "",
-      "speed": 20
+      "text": "**Innate Spellcasting.** You have an innate ability to cast the following spells, requiring no material components:\n\n- nondetection (self only)\n- blindness/deafness, blur, disguise self\n\nIntelligence is your spellcasting ability for these spells.\n\n**Stone Camouflage.** You have advantage on Dexterity (Stealth) checks to hide in rocky terrain.\n\n**Gnome Cunning.** You have advantage on Intelligence, Wisdom, and Charisma saving throws against magic.\n\n**Superior Darkvision.** Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern col",
+      "speed": 20,
+      "darkvision": 120
      }
     }
    ],
    "filters": {
     "race": [
      "Gnome (Deep)"
-    ]
+    ],
+    "subrace": "Base race"
+   }
+  },
+  {
+   "id": "gnome-forest-gnome",
+   "label": "Forest Gnome",
+   "summary": "Forest Gnome: a Gnome lineage. Its traits add to the Gnome's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Forest Gnome",
+      "text": "**Gnomish Lineage (Forest Gnome).** You know the Minor Illusion cantrip. You also always have the Speak with Animals spell prepared. You can cast it without a spell slot a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. You can also use any spell slots you have to cast the spell."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "gnome",
+    "race": [
+     "Gnome",
+     "Forest Gnome"
+    ],
+    "subrace": "Forest Gnome"
+   }
+  },
+  {
+   "id": "gnome-rock-gnome",
+   "label": "Rock Gnome",
+   "summary": "Rock Gnome: a Gnome lineage. Its traits add to the Gnome's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Rock Gnome",
+      "text": "**Gnomish Lineage (Rock Gnome).** You know the Mending and Prestidigitation cantrips. In addition, you can spend 10 minutes casting Prestidigitation to create a Tiny clockwork device (AC 5, 1 HP), such as a toy, fire starter, or music box. When you create the device, you determine its function by choosing one effect from Prestidigitation; the device produces that effect whenever you or another creature takes a Bonus Action to activate it with a touch. If the chosen effect has options within it, you choose one of those options for the device when you create it. For example, if you choose the spell's ignite-extinguish effect, you determine whether the device ignites or extinguishes fire; the d"
+     }
+    }
+   ],
+   "filters": {
+    "parent": "gnome",
+    "race": [
+     "Gnome",
+     "Rock Gnome"
+    ],
+    "subrace": "Rock Gnome"
    }
   },
   {
    "id": "goblin",
    "label": "Goblin",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 2
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Goblin Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Nimble Escape.** You can take the Disengage or Hide action as a bonus action on each of your turns.\n\n**Darkvision.** Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Languages.** You can speak, read, and write Common and Goblin.",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Goblin"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "goliath",
    "label": "Goliath",
-   "summary": "Speed 35 ft., Size M.",
+   "summary": "Speed 35 ft. Pick a lineage too.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Goliath Traits",
-      "text": "",
-      "speed": 35
+      "text": "**Giant Ancestry.** You are descended from Giants. Choose one of the following benefits—a supernatural boon from your ancestry; you can use the chosen benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest:\n\n- \n- \n- \n- \n- \n- \n\n**Large Form.** Starting at character level 5, you can change your size to Large as a Bonus Action if you're in a big enough space. This transformation lasts for 10 minutes or until you end it (no action required). For that duration, you have Advantage on Strength checks, and your Speed increases by 10 feet. Once you use this trait, you can't use it again until you finish a Long Rest.\n\n**Powerful Build.**",
+      "speed": 35,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
-     "Goliath"
-    ]
+     "Goliath",
+     "Cloud Giant",
+     "Fire Giant",
+     "Frost Giant",
+     "Hill Giant",
+     "Stone Giant",
+     "Storm Giant"
+    ],
+    "subrace": "Base race"
+   }
+  },
+  {
+   "id": "goliath-cloud-giant",
+   "label": "Cloud Giant",
+   "summary": "Cloud Giant: a Goliath lineage. Its traits add to the Goliath's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Cloud Giant",
+      "text": "**Giant Ancestry (Cloud).** You are descended from Giants, granting you a supernatural boon; you can use this boon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest:\n\n- "
+     }
+    }
+   ],
+   "filters": {
+    "parent": "goliath",
+    "race": [
+     "Goliath",
+     "Cloud Giant"
+    ],
+    "subrace": "Cloud Giant"
+   }
+  },
+  {
+   "id": "goliath-fire-giant",
+   "label": "Fire Giant",
+   "summary": "Fire Giant: a Goliath lineage. Its traits add to the Goliath's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Fire Giant",
+      "text": "**Giant Ancestry (Fire).** You are descended from Giants, granting you a supernatural boon; you can use this boon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest:\n\n- "
+     }
+    }
+   ],
+   "filters": {
+    "parent": "goliath",
+    "race": [
+     "Goliath",
+     "Fire Giant"
+    ],
+    "subrace": "Fire Giant"
+   }
+  },
+  {
+   "id": "goliath-frost-giant",
+   "label": "Frost Giant",
+   "summary": "Frost Giant: a Goliath lineage. Its traits add to the Goliath's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Frost Giant",
+      "text": "**Giant Ancestry (Frost).** You are descended from Giants, granting you a supernatural boon; you can use this boon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest:\n\n- "
+     }
+    }
+   ],
+   "filters": {
+    "parent": "goliath",
+    "race": [
+     "Goliath",
+     "Frost Giant"
+    ],
+    "subrace": "Frost Giant"
+   }
+  },
+  {
+   "id": "goliath-hill-giant",
+   "label": "Hill Giant",
+   "summary": "Hill Giant: a Goliath lineage. Its traits add to the Goliath's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Hill Giant",
+      "text": "**Giant Ancestry (Hill).** You are descended from Giants, granting you a supernatural boon; you can use this boon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest:\n\n- "
+     }
+    }
+   ],
+   "filters": {
+    "parent": "goliath",
+    "race": [
+     "Goliath",
+     "Hill Giant"
+    ],
+    "subrace": "Hill Giant"
+   }
+  },
+  {
+   "id": "goliath-stone-giant",
+   "label": "Stone Giant",
+   "summary": "Stone Giant: a Goliath lineage. Its traits add to the Goliath's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Stone Giant",
+      "text": "**Giant Ancestry (Stone).** You are descended from Giants, granting you a supernatural boon; you can use this boon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest:\n\n- "
+     }
+    }
+   ],
+   "filters": {
+    "parent": "goliath",
+    "race": [
+     "Goliath",
+     "Stone Giant"
+    ],
+    "subrace": "Stone Giant"
+   }
+  },
+  {
+   "id": "goliath-storm-giant",
+   "label": "Storm Giant",
+   "summary": "Storm Giant: a Goliath lineage. Its traits add to the Goliath's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Storm Giant",
+      "text": "**Giant Ancestry (Storm).** You are descended from Giants, granting you a supernatural boon; you can use this boon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest:\n\n- "
+     }
+    }
+   ],
+   "filters": {
+    "parent": "goliath",
+    "race": [
+     "Goliath",
+     "Storm Giant"
+    ],
+    "subrace": "Storm Giant"
    }
   },
   {
    "id": "grimlock",
    "label": "Grimlock",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Grimlock Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Blindsight.** You have no eyes, and cannot be blinded. You can perceive your surroundings within 30 ft., or 10 ft. while deafened. You are considered blind beyond this radius.\n\n**Keen Hearing and Smell.** You have advantage on Wisdom (Perception) checks that rely on hearing or smell.\n\n**Stone Camouflage.** You have advantage on Dexterity (Stealth) checks made to hide in rocky terrain.\n\n**Languages.** You can speak, read, and write Undercommon.",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Grimlock"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "hadozee",
    "label": "Hadozee",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Hadozee Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Size.** You are Medium or Small. You choose the size when you select this race.\n\n**Dexterous Feet.** As a bonus action, you can use your feet to manipulate an object, open or close a door or container, or pick up or set down a Tiny object.\n\n**Glide.** When you fall at least 10 feet above the ground, you can use your reaction to extend your skin membranes to glide horizontally a number of feet equal to your walking speed, and you take 0 damage from the fall. You determine the direction of the glide.\n\n**Hadozee Dodge.** The magic that runs in your veins heightens your natural defenses. When you take damage, you can use your reaction to roll a d6. Add your proficiency bonus to the number roll",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Hadozee"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "half-elf",
    "label": "Half-Elf",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "acrobatics",
+        "animal_handling",
+        "arcana",
+        "athletics",
+        "deception",
+        "history",
+        "insight",
+        "intimidation",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "performance",
+        "persuasion",
+        "religion",
+        "sleight_of_hand",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Half-Elf Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Age.** Half-elves mature at the same rate humans do and reach adulthood around the age of 20. They live much longer than humans, however, often exceeding 180 years.\n\n**Size.** Half-elves are about the same size as humans, ranging from 5 to 6 feet tall. Your size is Medium.\n\n**Darkvision.** Thanks to your elf blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Fey Ancestry.** You have advantage on saving throws against being charmed, and magic can't put you to sleep.\n\n**Skill Versatility.** You gain proficien",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Half-Elf"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "half-orc",
    "label": "Half-Orc",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Half-Orc Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Age.** Half-orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years.\n\n**Size.** Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall. Your size is Medium.\n\n**Darkvision.** Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Menacing.** You gain proficiency in the Intimidation skill.\n\n**Relentless Endurance.** When you are reduced to 0 hit points but not killed",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Half-Orc"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "halfling",
    "label": "Halfling",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 2
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Halfling Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Brave.** You have Advantage on saving throws you make to avoid or end the Frightened condition.\n\n**Halfling Nimbleness.** You can move through the space of any creature that is a size larger than you, but you can't stop in the same space.\n\n**Luck.** When you roll a 1 on the d20 of a D20 Test, you can reroll the die, and you must use the new roll.\n\n**Naturally Stealthy.** You can take the Hide action even when you are obscured only by a creature that is at least one size larger than you.",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Halfling"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "harengon",
    "label": "Harengon",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Harengon Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Size.** You are Medium or Small. You choose the size when you select this race.\n\n**Hare-Trigger.** You can add your proficiency bonus to your initiative rolls.\n\n**Leporine Senses.** You have proficiency in the Perception skill.\n\n**Lucky Footwork.** When you fail a Dexterity saving throw, you can use your reaction to roll a d4 and add it to the save, potentially turning the failure into a success. You can't use this reaction if you're prone or your speed is 0.\n\n**Rabbit Hop.** As a bonus action, you can jump a number of feet equal to five times your proficiency bonus, without provoking opportunity attacks. You can use this trait only if your speed is greater than 0. You can use it a number ",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Harengon"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "hexblood",
    "label": "Hexblood",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "acrobatics",
+        "animal_handling",
+        "arcana",
+        "athletics",
+        "deception",
+        "history",
+        "insight",
+        "intimidation",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "performance",
+        "persuasion",
+        "religion",
+        "sleight_of_hand",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Hexblood Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are a Fey.\n\n**Size.** You are Medium or Small. You choose the size when you gain this lineage.\n\n**Ancestral Legacy.** If you replace a race with this lineage, you can keep the following elements of that race: any skill proficiencies you gained from it and any climbing, flying, or swimming speed you gained from it.\n\nIf you don't keep any of those elements or you choose this lineage at character creation, you gain proficiency in two skills of your choice.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness as shades of gray.\n\n**Eerie Token.** As a bonus act",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Hexblood"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "hobgoblin",
    "label": "Hobgoblin",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Hobgoblin Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Martial Advantage.** Once per turn, you can deal an extra 2d6 damage to a creature you hit with a weapon attack if that creature is within 5 ft. of an ally of yours that isn't incapacitated.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Languages.** You can speak, read, and write Common and Goblin.",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Hobgoblin"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "human",
    "label": "Human",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "acrobatics",
+        "animal_handling",
+        "arcana",
+        "athletics",
+        "deception",
+        "history",
+        "insight",
+        "intimidation",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "performance",
+        "persuasion",
+        "religion",
+        "sleight_of_hand",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    },
+    "entries": {
+     "choose": [
+      {
+       "catalog": "features",
+       "count": 1,
+       "filters": {
+        "kind": "origin_feat"
+       }
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Human Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Resourceful.** You gain Heroic Inspiration whenever you finish a Long Rest.\n\n**Skillful.** You gain proficiency in one skill of your choice.\n\n**Versatile.** You gain an Origin feat of your choice (see 5). Skilled is recommended.",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Human"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "kalashtar",
    "label": "Kalashtar",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Kalashtar Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Dual Mind.** You have Advantage on Wisdom and Charisma saving throws.\n\n**Mental Discipline.** You have Resistance to Psychic damage.\n\n**Mind Link.** You have telepathy with a range in feet equal to 10 times your level. When you're using this trait to speak telepathically to a creature, you can take a Magic action to give that creature the ability to speak telepathically with you for 1 hour or until you take another Magic action to end this effect.\n\n**Severed from Dreams.** You can't be the target of the Dream spell. In addition, when you finish a Long Rest, you gain proficiency in one skill of your choice. This proficiency lasts until you finish another Long Rest.",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Kalashtar"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "kender",
    "label": "Kender",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 2
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "insight",
+        "investigation",
+        "sleight_of_hand",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Kender Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Fearless.** You have advantage on saving throws you make to avoid or end the frightened condition on yourself. When you fail a saving throw to avoid or end the frightened condition on yourself, you can choose to succeed instead. Once you succeed on a saving throw in this way, you can't do so again until you finish a long rest.\n\n**Kender Curiosity.** Thanks to the mystical origin of your people, you gain proficiency with one of the following skills of your choice: Insight, Investigation, Sleight of Hand, Stealth, or Survival.\n\n**Taunt.** You have an extraordinary ability to fluster creatures. As a bonus action, you can unleash a string of provoking words at a creature within 60 feet of your",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Kender"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "kenku",
    "label": "Kenku",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Kenku Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Ambusher.** In the first round of a combat, you have advantage on attack rolls against any creature who is surprised.\n\n**Mimicry.** You can mimic any sounds you have heard, including voices. A creature that hears the sounds can tell they are imitations with a successful DC 14 Wisdom (Insight) check.\n\n**Languages.** You can read and write Common and Auran, but you can only speak using your Mimicry trait.",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Kenku"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "khoravar",
    "label": "Khoravar",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Khoravar Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Darkvision.** You have Darkvision with a range of 60 feet.\n\n**Fey Ancestry.** You have Advantage on saving throws you make to avoid or end the Charmed condition.\n\n**Fey Gift.** You know the Friends cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Cleric, Druid, or Wizard spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for it (choose the ability when you select this species).\n\n**Lethargy Resilience.** When you fail a saving throw to avoid or end the Unconscious condition, you can succeed instead. Once you use this trait, you can't do so again until you finish 1d4 Long Rests.\n\n**Skill Versatility.** You gain p",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Khoravar"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "kobold",
    "label": "Kobold",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 2
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Kobold Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Pack Tactics.** You have advantage on an attack roll against a creature if at least one of your allies is within 5 feet of the creature and the ally isn't incapacitated.\n\n**Sunlight Sensitivity.** You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.\n\n**Darkvision.** Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Languages.** You can speak, read",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Kobold"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "kuo-toa",
    "label": "Kuo-Toa",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 120 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Kuo-Toa Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Amphibious.** You can breathe air and water.\n\n**Otherworldly Perception.** You can sense the presence of any creature within 30 feet of you that is invisible or on the Ethereal Plane. You can pinpoint such a creature that is moving.\n\n**Slippery.** You have advantage on ability checks and saving throws made to escape a grapple.\n\n**Sunlight Sensitivity.** While in sunlight, you have disadvantage on attack rolls, as well as on Wisdom (Perception) checks that rely on sight.\n\n**Superior Darkvision.** You have superior vision in dark and dim conditions. You can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in ",
+      "speed": 30,
+      "darkvision": 120
      }
     }
    ],
    "filters": {
     "race": [
      "Kuo-Toa"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "leonin",
    "label": "Leonin",
-   "summary": "Speed 35 ft., Size M.",
+   "summary": "Speed 35 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "athletics",
+        "intimidation",
+        "perception",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Leonin Traits",
-      "text": "",
-      "speed": 35
+      "text": "**Age.** Leonin mature and age at about the same rate as humans.\n\n**Alignment.** Leonin tend toward good alignments. Leonin who are focused on the pride lean toward lawful good.\n\n**Size.** Leonin are typically over 6 feet tall, with some standing over 7 feet. Your size is Medium.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Claws.** Your claws are natural weapons, which you can use to make unarmed strikes. If you hit with them, you can deal slashing damage equal to 1d4 + your Strength modifier, instead of the bludgeoning damage normal for an unar",
+      "speed": 35,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Leonin"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "lizardfolk",
    "label": "Lizardfolk",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Lizardfolk Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Hold Breath.** You can hold your breath for up to 15 minutes at a time.\n\n**Natural Armor.** Your scales function as natural armor, granting you a +3 bonus to Armor Class.\n\n**Languages.** You can speak, read, and write Draconic.",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Lizardfolk"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "loxodon",
    "label": "Loxodon",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Loxodon Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Age.** Loxodons physically mature at the same rate as humans, but they live about 450 years. They highly value the weight of wisdom and experience and are considered young until they reach the age of 60.\n\n**Alignment.** Most loxodons are lawful, believing in the value of a peaceful, ordered life. They also tend toward good.\n\n**Size.** Loxodons stand between 7 and 8 feet tall. Their massive bodies weigh between 300 and 400 pounds. Your size is Medium.\n\n**Powerful Build.** You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.\n\n**Loxodon Serenity.** You have advantage on saving throws against being charmed or frightened.\n\n**Natural Ar",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Loxodon"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "merfolk",
    "label": "Merfolk",
-   "summary": "Speed 10 ft., Size M.",
+   "summary": "Speed 10 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Merfolk Traits",
-      "text": "",
-      "speed": 10
+      "text": "**Amphibious.** You can breathe air and water.\n\n**Languages.** You can speak, read, and write Common and Aquan.",
+      "speed": 10,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Merfolk"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "minotaur",
    "label": "Minotaur",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "intimidation",
+        "persuasion"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Minotaur Traits",
-      "text": "",
-      "speed": 30
+      "text": "Note: These traits are also suitable for minotaurs in other D&D worlds where these people have avoided the demonic influence of Baphomet.\n\n**Age.** Minotaurs enter adulthood at around the age of 17 and can live up to 150 years.\n\n**Alignment.** Most minotaurs who join the Boros Legion lean toward lawful alignments, while those associated with the Cult of Rakdos or the Gruul Clans tend toward chaotic alignments.\n\n**Size.** Minotaurs average over 6 feet in height, and they have stocky builds. Your size is Medium.\n\n**Horns.** Your horns are natural melee weapons, which you can use to make unarmed strikes. If you hit with them, you deal piercing damage equal to 1d6 + your Strength modifier, inste",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Minotaur"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "orc",
    "label": "Orc",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 120 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Orc Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Adrenaline Rush.** You can take the Dash action as a Bonus Action. When you do so, you gain a number of Temporary Hit Points equal to your Proficiency Bonus.\n\nYou can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest.\n\n**Darkvision.** You have Darkvision with a range of 120 feet.\n\n**Relentless Endurance.** When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead. Once you use this trait, you can't do so again until you finish a Long Rest.",
+      "speed": 30,
+      "darkvision": 120
      }
     }
    ],
    "filters": {
     "race": [
      "Orc"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "owlin",
    "label": "Owlin",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 120 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Owlin Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Size.** You are Medium or Small. You choose the size when you select this race.\n\n**Darkvision.** You can see in dim light within 120 feet of yourself as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Flight.** Thanks to your wings, you have a flying speed equal to your walking speed. You can't use this flying speed if you're wearing medium or heavy armor.\n\n**Silent Feathers.** You have proficiency in the Stealth skill.",
+      "speed": 30,
+      "darkvision": 120
      }
     }
    ],
    "filters": {
     "race": [
      "Owlin"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "plasmoid",
    "label": "Plasmoid",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Plasmoid Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are an Ooze.\n\n**Size.** You are Medium or Small. You choose the size when you select this race.\n\n**Amorphous.** You can squeeze through a space as narrow as 1 inch wide, provided you are wearing and carrying nothing. You have advantage on ability checks you make to initiate or escape a grapple.\n\n**Darkvision.** You can see in dim light within 60 feet of yourself as if it were bright light, and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Hold Breath.** You can hold your breath for 1 hour.\n\n**Natural Resilience.** You have resistance to acid and poison damage, and you have advantage on saving throws against being po",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Plasmoid"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "reborn",
    "label": "Reborn",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Reborn Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Size.** You are Medium or Small. You choose the size when you gain this lineage.\n\n**Ancestral Legacy.** If you replace a race with this lineage, you can keep the following elements of that race: any skill proficiencies you gained from it and any climbing, flying, or swimming speed you gained from it.\n\nIf you don't keep any of those elements or you choose this lineage at character creation, you gain proficiency in two skills of your choice.\n\n**Deathless Nature.** You have escaped death, a fact represented by the following benefits:\n\n- You have advantage on saving throws against disease and being poisoned, and you have resistance to poison damage.\n- You have advantage on death saving throws.",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Reborn"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "satyr",
    "label": "Satyr",
-   "summary": "Speed 35 ft., Size M.",
+   "summary": "Speed 35 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Satyr Traits",
-      "text": "",
-      "speed": 35
+      "text": "**Age.** Satyrs mature and age at about the same rate as humans.\n\n**Alignment.** Satyrs delight in living a life free of the mantle of law. They gravitate toward being good, but some have devious streaks and enjoy causing dismay.\n\n**Size.** Satyrs range from just under 5 feet to about 6 feet in height, with generally slender builds. Your size is Medium.\n\n**Fey.** Your creature type is fey, rather than humanoid.\n\n**Ram.** You can use your head and horns to make unarmed strikes. If you hit with them, you deal bludgeoning damage equal to 1d4 + your Strength modifier.\n\n**Magic Resistance.** You have advantage on saving throws against spells and other magical effects.\n\n**Mirthful Leaps.** Wheneve",
+      "speed": 35,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Satyr"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "sea-elf",
    "label": "Sea Elf",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Sea Elf Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are a Humanoid. You are also considered an elf for any prerequisite or effect that requires you to be an elf.\n\n**Speed.** Your walking speed is 30 feet, and you have a swimming speed equal to your walking speed.\n\n**Child of the Sea.** You can breathe air and water, and you have resistance to cold damage.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Fey Ancestry.** You have advantage on saving throws you make to avoid or end the charmed condition on yourself.\n\n**Friend of the Sea.** Aquatic animals have an extraordinary af",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Sea Elf"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "shadar-kai",
    "label": "Shadar-Kai",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Shadar-Kai Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are a Humanoid. You are also considered an elf for any prerequisite or effect that requires you to be an elf.\n\n**Blessing of the Raven Queen.** As a bonus action, you can magically teleport up to 30 feet to an unoccupied space you can see. You can use this trait a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.\n\nStarting at 3rd level, you also gain resistance to all damage when you teleport using this trait. The resistance lasts until the start of your next turn. During that time, you appear ghostly and translucent.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light a",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Shadar-Kai"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "shifter",
    "label": "Shifter",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft. Pick a lineage too.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "acrobatics",
+        "athletics",
+        "intimidation",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Shifter Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Bestial Instincts.** Channeling the beast within, you gain proficiency in one of the following skills of your choice: Acrobatics, Athletics, Intimidation, or Survival.\n\n**Darkvision.** You have Darkvision with a range of 60 feet.\n\n**Shifting.** As a Bonus Action, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a Bonus Action. When you shift, you gain Temporary Hit Points equal to 2 times your Proficiency Bonus. You can shift a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.\n\nWhenever you shift, you gain the benefit of one of the fol",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
-     "Shifter"
-    ]
+     "Shifter",
+     "Beasthide",
+     "Longtooth",
+     "Swiftstride",
+     "Wildhunt"
+    ],
+    "subrace": "Base race"
+   }
+  },
+  {
+   "id": "shifter-beasthide",
+   "label": "Beasthide",
+   "summary": "Beasthide: a Shifter lineage. Its traits add to the Shifter's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Beasthide",
+      "text": "**Shifting (Beasthide).** As a Bonus Action, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a Bonus Action. When you shift, you gain Temporary Hit Points equal to 2 times your Proficiency Bonus. You can shift a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.\n\nWhenever you shift, you gain 1d6 additional Temporary Hit Points. While shifted, you have a +1 bonus to your Armor Class."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "shifter",
+    "race": [
+     "Shifter",
+     "Beasthide"
+    ],
+    "subrace": "Beasthide"
+   }
+  },
+  {
+   "id": "shifter-longtooth",
+   "label": "Longtooth",
+   "summary": "Longtooth: a Shifter lineage. Its traits add to the Shifter's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Longtooth",
+      "text": "**Shifting (Longtooth).** As a Bonus Action, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a Bonus Action. When you shift, you gain Temporary Hit Points equal to 2 times your Proficiency Bonus. You can shift a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.\n\nWhen you shift and as a Bonus Action on your other turns while shifted, you can use your elongated fangs to make an Unarmed Strike. If you hit with this Unarmed Strike and deal damage, you can deal Piercing damage equal to 1d6 plus your Strength modifier, instead of the normal d"
+     }
+    }
+   ],
+   "filters": {
+    "parent": "shifter",
+    "race": [
+     "Shifter",
+     "Longtooth"
+    ],
+    "subrace": "Longtooth"
+   }
+  },
+  {
+   "id": "shifter-swiftstride",
+   "label": "Swiftstride",
+   "summary": "Swiftstride: a Shifter lineage. Its traits add to the Shifter's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Swiftstride",
+      "text": "**Shifting (Swiftstride).** As a Bonus Action, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a Bonus Action. When you shift, you gain Temporary Hit Points equal to 2 times your Proficiency Bonus. You can shift a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.\n\nWhile you are shifted, your Speed increases by 10 feet. Additionally, you can move up to 10 feet as a Reaction when a creature ends its turn within 5 feet of you. This reactive movement doesn't provoke Opportunity Attacks."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "shifter",
+    "race": [
+     "Shifter",
+     "Swiftstride"
+    ],
+    "subrace": "Swiftstride"
+   }
+  },
+  {
+   "id": "shifter-wildhunt",
+   "label": "Wildhunt",
+   "summary": "Wildhunt: a Shifter lineage. Its traits add to the Shifter's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Wildhunt",
+      "text": "**Shifting (Wildhunt).** As a Bonus Action, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a Bonus Action. When you shift, you gain Temporary Hit Points equal to 2 times your Proficiency Bonus. You can shift a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.\n\nWhile shifted, you have Advantage on Wisdom checks. Additionally, no creature within 30 feet of you can have Advantage on an attack roll against you unless you have the Incapacitated condition."
+     }
+    }
+   ],
+   "filters": {
+    "parent": "shifter",
+    "race": [
+     "Shifter",
+     "Wildhunt"
+    ],
+    "subrace": "Wildhunt"
    }
   },
   {
    "id": "simic-hybrid",
    "label": "Simic Hybrid",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Simic Hybrid Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Age.** Hybrids begin their lives as adult humans, elves, or vedalken. They age at a slightly accelerated rate, so their maximum life spans are probably reduced somewhat. The Guardian Project has not been operating long enough to observe the full effect of this phenomenon.\n\n**Alignment.** Most hybrids share the generally neutral outlook of the Simic Combine. They are more interested in scientific research and the standing of their guild than in moral or ethical questions. Those who leave the Combine, however, often do so because their philosophical outlook and alignment are more in line with a different guild's.\n\n**Size.** Your size is Medium, within the normal range of your humanoid base r",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Simic Hybrid"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "skeleton",
    "label": "Skeleton",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Skeleton Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are Undead.\n\n**Brittle Bones.** You are vulnerable to bludgeoning damage.\n\n**Undead Nature.** You are immune to poison damage and exhaustion, and you can't be poisoned. You don't require air, food, drink, or sleep.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Languages.** You can't speak, but you can understand the languages you knew in life.",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Skeleton"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "tabaxi",
    "label": "Tabaxi",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Tabaxi Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Size.** You are Medium or Small. You choose the size when you select this race.\n\n**Speed.** Your walking speed is 30 feet, and you have a climbing speed equal to your walking speed.\n\n**Cat's Claws.** You can use your claws to make unarmed strikes. When you hit with them, the strike deals 1d6 + your Strength modifier slashing damage, instead of the bludgeoning damage normal for an unarmed strike.\n\n**Cat's Talent.** You have proficiency in the Perception and Stealth skills.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Feline Agility.** Your ref",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Tabaxi"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "thri-kreen",
    "label": "Thri-kreen",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Thri-kreen Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are a Monstrosity.\n\n**Size.** You are Medium or Small. You choose the size when you select this race.\n\n**Chameleon Carapace.** While you aren't wearing armor, your carapace gives you a base Armor Class of 13 + your Dexterity modifier.\n\nAs an action, you can change the color of your carapace to match the color and texture of your surroundings, giving you advantage on Dexterity (Stealth) checks made to hide in those surroundings.\n\n**Darkvision.** You can see in dim light within 60 feet of yourself as if it were bright light, and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Secondary Arms.** You have two slightly smal",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Thri-kreen"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "tiefling",
    "label": "Tiefling",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft. Pick a lineage too.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Tiefling Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Darkvision.** You have Darkvision with a range of 60 feet.\n\n**Fiendish Legacy.** You are the recipient of a legacy that grants you supernatural abilities. Choose a legacy from the Fiendish Legacies table. You gain the level 1 benefit of the chosen legacy.\n\nWhen you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trai",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
-     "Tiefling"
-    ]
+     "Tiefling",
+     "Abyssal",
+     "Chthonic",
+     "Infernal"
+    ],
+    "subrace": "Base race"
+   }
+  },
+  {
+   "id": "tiefling-abyssal",
+   "label": "Abyssal",
+   "summary": "Abyssal: a Tiefling lineage. Its traits add to the Tiefling's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Abyssal",
+      "text": "**Fiendish Legacy (Abyssal).** You are the recipient of a legacy that grants you supernatural abilities. You have Resistance to Poison damage. You also know the Poison Spray cantrip.\n\nWhen you reach character level 3, you learn the Ray of Sickness spell. When you reach character level 5, you also learn the Hold Person spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for th",
+      "darkvision": 60
+     }
+    }
+   ],
+   "filters": {
+    "parent": "tiefling",
+    "race": [
+     "Tiefling",
+     "Abyssal"
+    ],
+    "subrace": "Abyssal"
+   }
+  },
+  {
+   "id": "tiefling-chthonic",
+   "label": "Chthonic",
+   "summary": "Chthonic: a Tiefling lineage. Its traits add to the Tiefling's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Chthonic",
+      "text": "**Fiendish Legacy (Chthonic).** You are the recipient of a legacy that grants you supernatural abilities. You have Resistance to Necrotic damage. You also know the Chill Touch cantrip.\n\nWhen you reach character level 3, you learn the False Life spell. When you reach character level 5, you also learn the Ray of Enfeeblement spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability f"
+     }
+    }
+   ],
+   "filters": {
+    "parent": "tiefling",
+    "race": [
+     "Tiefling",
+     "Chthonic"
+    ],
+    "subrace": "Chthonic"
+   }
+  },
+  {
+   "id": "tiefling-infernal",
+   "label": "Infernal",
+   "summary": "Infernal: a Tiefling lineage. Its traits add to the Tiefling's.",
+   "rows": [
+    {
+     "list": "features",
+     "values": {
+      "name": "Infernal",
+      "text": "**Fiendish Legacy (Infernal).** You are the recipient of a legacy that grants you supernatural abilities. You have Resistance to Fire damage. You also know the Fire Bolt cantrip.\n\nWhen you reach character level 3, you learn the Hellish Rebuke spell. When you reach character level 5, you also learn the Darkness spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for the spells"
+     }
+    }
+   ],
+   "filters": {
+    "parent": "tiefling",
+    "race": [
+     "Tiefling",
+     "Infernal"
+    ],
+    "subrace": "Infernal"
    }
   },
   {
    "id": "tortle",
    "label": "Tortle",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "animal_handling",
+        "medicine",
+        "nature",
+        "perception",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Tortle Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Size.** You are Medium or Small. You choose the size when you select this race.\n\n**Claws.** You have claws that you can use to make unarmed strikes. When you hit with them, the strike deals 1d6 + your Strength modifier slashing damage, instead of the bludgeoning damage normal for an unarmed strike.\n\n**Hold Breath.** You can hold your breath for up to 1 hour.\n\n**Natural Armor.** Your shell provides you a base AC of 17 (your Dexterity modifier doesn't affect this number). You can't wear light, medium, or heavy armor, but if you are using a shield, you can apply the shield's bonus as normal.\n\n**Nature's Intuition.** Thanks to your mystical connection to nature, you gain proficiency with one o",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Tortle"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "triton",
    "label": "Triton",
-   "summary": "Speed 30 ft., Size medium.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Triton Traits",
       "text": "",
-      "speed": 30
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Triton"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "troglodyte",
    "label": "Troglodyte",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Troglodyte Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Chameleon Skin.** You have advantage on Dexterity (Stealth) checks made to hide.\n\n**Stench.** Any creature other than a troglodyte that starts its turn within 5 ft. of you must succeed on a DC 12 Constitution saving throw or be poisoned until the start of the creature's next turn. On a successful saving throw, the creature is immune to the stench of all troglodytes for 1 hour.\n\n**Sunlight Sensitivity.** While in sunlight, you have disadvantage on attack rolls, as well as on Wisdom (Perception) checks that rely on sight.\n\n**Natural Armor.** Your thick hide grants you a +1 bonus to Armor Class.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light, and in",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Troglodyte"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "vedalken",
    "label": "Vedalken",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "arcana",
+        "history",
+        "investigation",
+        "medicine",
+        "performance",
+        "sleight_of_hand"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Vedalken Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Age.** Vedalken mature slower than humans do, reaching maturity around age 40. Their life span is typically 350 years, with some living to the age of 500.\n\n**Alignment.** Vedalken are usually lawful and non-evil.\n\n**Size.** Tall and slender, Vedalken stand 6 to 6½ feet tall on average and usually weigh less than 200 pounds. Your size is Medium.\n\n**Vedalken Dispassion.** You have advantage on all Intelligence, Wisdom, and Charisma saving throws.\n\n**Tireless Precision.** You are proficient in one of the following skills of your choice: Arcana, History, Investigation, Medicine, Performance, or Sleight of Hand. You are also proficient with one 5 of your choice.\n\nWhenever you make an ability ch",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Vedalken"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "warforged",
    "label": "Warforged",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    },
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "acrobatics",
+        "animal_handling",
+        "arcana",
+        "athletics",
+        "deception",
+        "history",
+        "insight",
+        "intimidation",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "performance",
+        "persuasion",
+        "religion",
+        "sleight_of_hand",
+        "stealth",
+        "survival"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Warforged Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Construct Resilience.** You have Resistance to Poison damage. You also have Advantage on saving throws to avoid or end the Poisoned condition.\n\n**Integrated Protection.** You gain a +1 bonus to your Armor Class. In addition, armor you have donned can't be removed against your will while you're alive.\n\n**Sentry's Rest.** You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 6 hours if you spend those hours in an inactive, motionless state. During this time, you appear inert but remain conscious.\n\n**Specialized Design.** You gain one skill proficiency and one tool proficiency of your choice.\n\n**Tireless.** You don't gain Exhaustion levels from dehydration, ",
+      "speed": 30,
+      "darkvision": 0
      }
     }
    ],
    "filters": {
     "race": [
      "Warforged"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "yuan-ti",
    "label": "Yuan-Ti",
-   "summary": "Speed 30 ft., Size S.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Yuan-Ti Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Size.** You are Medium or Small. You choose the size when you select this race.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n\n**Magic Resistance.** You have advantage on saving throws against spells.\n\n**Poison Resilience.** You have advantage on saving throws you make to avoid or end the poisoned condition on yourself. You also have resistance to poison damage.\n\n**Serpentine Spellcasting.** You know the poison spray cantrip. You can cast animal friendship an unlimited number of times with this trait, but you can target only snakes with it. Start",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Yuan-Ti"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "yuan-ti-pureblood",
    "label": "Yuan-ti Pureblood",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Yuan-ti Pureblood Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Age.** Purebloods mature at the same rate as humans and have lifespans similar in length to theirs.\n\n**Size.** Purebloods match humans in average size and weight. Your size is Medium.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Innate Spellcasting.** You know the poison spray cantrip. You can cast animal friendship an unlimited number of times with this trait, but you can target only snakes with it. Starting at 3rd level, you can also cast suggestion with this trait. Once you cast it, you can't do so again until you finish a long rest. Charis",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Yuan-ti Pureblood"
-    ]
+    ],
+    "subrace": "Base race"
    }
   },
   {
    "id": "zombie",
    "label": "Zombie",
-   "summary": "Speed 30 ft., Size M.",
+   "summary": "Speed 30 ft., darkvision 60 ft.",
+   "grants": {
+    "sets": {
+     "size": 3
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Zombie Traits",
-      "text": "",
-      "speed": 30
+      "text": "**Creature Type.** You are Undead.\n\n**Undead Fortitude.** If damage reduces you to 0 hit points, you must make a Constitution saving throw with a DC of 5+the damage taken, unless the damage is radiant or from a critical hit. On a success, you drop to 1 hit point instead.\n\n**Undead Nature.** You are immune to poison damage, and you can't be poisoned. You don't require air, food, drink, or sleep.\n\n**Darkvision.** You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n\n**Languages.** You can't speak, but you can understand the languages you knew in life.",
+      "speed": 30,
+      "darkvision": 60
      }
     }
    ],
    "filters": {
     "race": [
      "Zombie"
-    ]
+    ],
+    "subrace": "Base race"
    }
   }
  ]
