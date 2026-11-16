@@ -652,7 +652,7 @@
   {
    "id": "dwarven-thrower",
    "label": "Dwarven Thrower",
-   "summary": "You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. It has T|XPHB|Thrown with a normal range of 20 feet and a long range of 60 feet. When you hit with a ranged attack using this weapon, it deals an extra 1d8 Force damage, or an extra 2d8 Force damage if the target is a ",
+   "summary": "You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. It has Thrown with a normal range of 20 feet and a long range of 60 feet. When you hit with a ranged attack using this weapon, it deals an extra 1d8 Force damage, or an extra 2d8 Force damage if the target is a Giant. ",
    "rows": [
     {
      "list": "attacks",
@@ -760,7 +760,7 @@
   {
    "id": "enspelled-staff-level-1",
    "label": "Enspelled Staff (Level 1)",
-   "summary": "Bound into this staff is a level 1 spell|spells|level=1. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
+   "summary": "Bound into this staff is a level 1 spell. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last ch",
    "rows": [
     {
      "list": "attacks",
@@ -787,7 +787,7 @@
   {
    "id": "enspelled-staff-level-2",
    "label": "Enspelled Staff (Level 2)",
-   "summary": "Bound into this staff is a level 2 spell|spells|level=2. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
+   "summary": "Bound into this staff is a level 2 spell. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last ch",
    "rows": [
     {
      "list": "attacks",
@@ -814,7 +814,7 @@
   {
    "id": "enspelled-staff-level-3",
    "label": "Enspelled Staff (Level 3)",
-   "summary": "Bound into this staff is a level 3 spell|spells|level=3. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
+   "summary": "Bound into this staff is a level 3 spell. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last ch",
    "rows": [
     {
      "list": "attacks",
@@ -841,7 +841,7 @@
   {
    "id": "enspelled-staff-level-4",
    "label": "Enspelled Staff (Level 4)",
-   "summary": "Bound into this staff is a level 4 spell|spells|level=4. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
+   "summary": "Bound into this staff is a level 4 spell. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last ch",
    "rows": [
     {
      "list": "attacks",
@@ -868,7 +868,7 @@
   {
    "id": "enspelled-staff-level-5",
    "label": "Enspelled Staff (Level 5)",
-   "summary": "Bound into this staff is a level 5 spell|spells|level=5. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
+   "summary": "Bound into this staff is a level 5 spell. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last ch",
    "rows": [
     {
      "list": "attacks",
@@ -895,7 +895,7 @@
   {
    "id": "enspelled-staff-level-6",
    "label": "Enspelled Staff (Level 6)",
-   "summary": "Bound into this staff is a level 6 spell|spells|level=6. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
+   "summary": "Bound into this staff is a level 6 spell. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last ch",
    "rows": [
     {
      "list": "attacks",
@@ -922,7 +922,7 @@
   {
    "id": "enspelled-staff-level-7",
    "label": "Enspelled Staff (Level 7)",
-   "summary": "Bound into this staff is a level 7 spell|spells|level=7. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
+   "summary": "Bound into this staff is a level 7 spell. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last ch",
    "rows": [
     {
      "list": "attacks",
@@ -949,7 +949,7 @@
   {
    "id": "enspelled-staff-level-8",
    "label": "Enspelled Staff (Level 8)",
-   "summary": "Bound into this staff is a level 8 spell|spells|level=8. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the ",
+   "summary": "Bound into this staff is a level 8 spell. The spell is determined when the staff is created and can be of any school of magic. The staff has 6 charges and regains 1d6 expended charges daily at dawn. While holding the staff, you can expend 1 charge to cast its spell. If you expend the staff's last ch",
    "rows": [
     {
      "list": "attacks",
@@ -1866,7 +1866,7 @@
   {
    "id": "lute-of-thunderous-thumping",
    "label": "Lute of Thunderous Thumping",
-   "summary": "This reinforced XPHB can be wielded as a magic Club that deals an extra 2d8 Thunder damage on a hit. Mastery: Slow.",
+   "summary": "This reinforced lute can be wielded as a magic Club that deals an extra 2d8 Thunder damage on a hit. Mastery: Slow.",
    "rows": [
     {
      "list": "attacks",
@@ -1920,7 +1920,7 @@
   {
    "id": "mace-of-disruption",
    "label": "Mace of Disruption",
-   "summary": "When you hit a Fiend or an Undead with this magic weapon, that creature takes an extra 2d6 Radiant damage. If the target has 25 Hit Points|XPHB or fewer after taking this damage, it must succeed on a DC 15 Wisdom saving throw or be destroyed. On a successful save, the creature has the XPHB condition",
+   "summary": "When you hit a Fiend or an Undead with this magic weapon, that creature takes an extra 2d6 Radiant damage. If the target has 25 Hit Points or fewer after taking this damage, it must succeed on a DC 15 Wisdom saving throw or be destroyed. On a successful save, the creature has the Frightened conditio",
    "rows": [
     {
      "list": "attacks",
@@ -1974,7 +1974,7 @@
   {
    "id": "mace-of-terror",
    "label": "Mace of Terror",
-   "summary": "This magic weapon has 3 charges and regains 1d3 expended charges daily at dawn. While holding the weapon, you can take a XPHB action and expend 1 charge to release a wave of terror from it. Each creature of your choice within 30 feet of you must succeed on a DC 15 Wisdom saving throw or have the XPH",
+   "summary": "This magic weapon has 3 charges and regains 1d3 expended charges daily at dawn. While holding the weapon, you can take a Magic action and expend 1 charge to release a wave of terror from it. Each creature of your choice within 30 feet of you must succeed on a DC 15 Wisdom saving throw or have the Fr",
    "rows": [
     {
      "list": "attacks",
@@ -2594,7 +2594,7 @@
   {
    "id": "scimitar-of-speed",
    "label": "Scimitar of Speed",
-   "summary": "You gain a +2 bonus to attack rolls and damage rolls made with this magic weapon. In addition, you can make one attack with it as a Bonus Action|XPHB on each of your turns. Mastery: Nick.",
+   "summary": "You gain a +2 bonus to attack rolls and damage rolls made with this magic weapon. In addition, you can make one attack with it as a Bonus Action on each of your turns. Mastery: Nick.",
    "rows": [
     {
      "list": "attacks",
@@ -2970,7 +2970,7 @@
   {
    "id": "staff-of-birdcalls",
    "label": "Staff of Birdcalls",
-   "summary": "This wooden staff is decorated with bird carvings. It has 10 charges. While holding it, you can take a XPHB action to expend 1 charge from the staff and cause it to create one of the following sounds, which can be heard out to 120 feet: a finch's chirp, a raven's caw, a duck's quack, a chicken's clu",
+   "summary": "This wooden staff is decorated with bird carvings. It has 10 charges. While holding it, you can take a Magic action to expend 1 charge from the staff and cause it to create one of the following sounds, which can be heard out to 120 feet: a finch's chirp, a raven's caw, a duck's quack, a chicken's cl",
    "rows": [
     {
      "list": "attacks",
@@ -3050,7 +3050,7 @@
   {
    "id": "staff-of-fire",
    "label": "Staff of Fire",
-   "summary": "You have Resistance|XPHB to Fire damage while you hold this staff. Mastery: Topple.",
+   "summary": "You have Resistance to Fire damage while you hold this staff. Mastery: Topple.",
    "rows": [
     {
      "list": "attacks",
@@ -3077,7 +3077,7 @@
   {
    "id": "staff-of-flowers",
    "label": "Staff of Flowers",
-   "summary": "This wooden staff has 10 charges. While holding it, you can take a XPHB action to expend 1 charge from the staff and cause a flower to sprout from a patch of earth or soil within 5 feet of yourself, or from the staff itself. Unless you choose a specific kind of flower, the staff creates a mild-scent",
+   "summary": "This wooden staff has 10 charges. While holding it, you can take a Magic action to expend 1 charge from the staff and cause a flower to sprout from a patch of earth or soil within 5 feet of yourself, or from the staff itself. Unless you choose a specific kind of flower, the staff creates a mild-scen",
    "rows": [
     {
      "list": "attacks",
@@ -3104,7 +3104,7 @@
   {
    "id": "staff-of-frost",
    "label": "Staff of Frost",
-   "summary": "You have Resistance|XPHB to Cold damage while you hold this staff. Mastery: Topple.",
+   "summary": "You have Resistance to Cold damage while you hold this staff. Mastery: Topple.",
    "rows": [
     {
      "list": "attacks",
@@ -3158,7 +3158,7 @@
   {
    "id": "staff-of-power",
    "label": "Staff of Power",
-   "summary": "This staff has 20 charges and can be wielded as a magic Quarterstaff that grants a +2 bonus to attack rolls and damage rolls made with it. While holding it, you gain a +2 bonus to Armor Class|XPHB, saving throws, and spell attack rolls. Mastery: Topple.",
+   "summary": "This staff has 20 charges and can be wielded as a magic Quarterstaff that grants a +2 bonus to attack rolls and damage rolls made with it. While holding it, you gain a +2 bonus to Armor Class, saving throws, and spell attack rolls. Mastery: Topple.",
    "rows": [
     {
      "list": "attacks",
@@ -3239,7 +3239,7 @@
   {
    "id": "staff-of-the-adder",
    "label": "Staff of the Adder",
-   "summary": "As a Bonus Action|XPHB, you can turn the head of this staff into that of an animate, venomous snake for 1 minute or revert the staff to its inanimate form. Mastery: Topple.",
+   "summary": "As a Bonus Action, you can turn the head of this staff into that of an animate, venomous snake for 1 minute or revert the staff to its inanimate form. Mastery: Topple.",
    "rows": [
     {
      "list": "attacks",
@@ -3319,7 +3319,7 @@
   {
    "id": "staff-of-the-python",
    "label": "Staff of the Python",
-   "summary": "As a XPHB action, you can throw this staff so that it lands in an unoccupied space within 10 feet of you, causing the staff to become a XMM in that space. The snake is under your control and shares your Initiative|XPHB count, taking its turn immediately after yours. Mastery: Topple.",
+   "summary": "As a Magic action, you can throw this staff so that it lands in an unoccupied space within 10 feet of you, causing the staff to become a Giant Constrictor Snake in that space. The snake is under your control and shares your Initiative count, taking its turn immediately after yours. Mastery: Topple.",
    "rows": [
     {
      "list": "attacks",
@@ -3560,7 +3560,7 @@
   {
    "id": "sword-of-answering",
    "label": "Sword of Answering",
-   "summary": "You gain a +3 bonus to attack rolls and damage rolls made with this sword. In addition, while you hold the sword, you can take a Reaction|XPHB to make one melee attack with it against any creature in your reach that deals damage to you. You have Advantage|XPHB on the attack roll, and any damage deal",
+   "summary": "You gain a +3 bonus to attack rolls and damage rolls made with this sword. In addition, while you hold the sword, you can take a Reaction to make one melee attack with it against any creature in your reach that deals damage to you. You have Advantage on the attack roll, and any damage dealt with thi",
    "rows": [
     {
      "list": "attacks",
@@ -3587,7 +3587,7 @@
   {
    "id": "sword-of-kas",
    "label": "Sword of Kas",
-   "summary": "Kas was a powerful warrior who served Vecna|XDMG|8|Vecna and whose loyalty was rewarded with this sword. As Kas's power grew, so did his hubris. The sword urged Kas to destroy Vecna and usurp his throne. Legend says Vecna's destruction came at Kas's hand, but Vecna also wrought his rebellious lieute",
+   "summary": "Kas was a powerful warrior who served 8 and whose loyalty was rewarded with this sword. As Kas's power grew, so did his hubris. The sword urged Kas to destroy Vecna and usurp his throne. Legend says Vecna's destruction came at Kas's hand, but Vecna also wrought his rebellious lieutenant's doom, leav",
    "rows": [
     {
      "list": "attacks",
@@ -3749,7 +3749,7 @@
   {
    "id": "topaz-annihilator",
    "label": "Topaz Annihilator",
-   "summary": "This magic ranged weapon resembles a DMG, but in lieu of any ammunition, it holds a glowing yellow scale from a topaz dragon in its heart.",
+   "summary": "This magic ranged weapon resembles a musket, but in lieu of any ammunition, it holds a glowing yellow scale from a topaz dragon in its heart.",
    "rows": [
     {
      "list": "attacks",
@@ -3802,7 +3802,7 @@
   {
    "id": "trident-of-fish-command",
    "label": "Trident of Fish Command",
-   "summary": "This magic weapon has 3 charges, and it regains 1d3 expended charges daily at dawn. While you carry it, you can expend 1 charge to cast XPHB (save DC 15) from it on a Beast that has a Swim Speed|XPHB. Mastery: Topple.",
+   "summary": "This magic weapon has 3 charges, and it regains 1d3 expended charges daily at dawn. While you carry it, you can expend 1 charge to cast Dominate Beast (save DC 15) from it on a Beast that has a Swim Speed. Mastery: Topple.",
    "rows": [
     {
      "list": "attacks",
@@ -3882,7 +3882,7 @@
   {
    "id": "wand-of-orcus",
    "label": "Wand of Orcus",
-   "summary": "Crafted and wielded by MPMM, this ghastly wand slips from the demon lord's grasp from time to time. When it does, it magically appears wherever the demon lord senses an opportunity to achieve some fell goal. Mastery: Sap.",
+   "summary": "Crafted and wielded by Orcus, this ghastly wand slips from the demon lord's grasp from time to time. When it does, it magically appears wherever the demon lord senses an opportunity to achieve some fell goal. Mastery: Sap.",
    "rows": [
     {
      "list": "attacks",
