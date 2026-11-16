@@ -10,7 +10,7 @@
   },
   "id": "ruleset-5e-2024",
   "name": "5e (2024 Edition)",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Play Game Mode by the 2024 revised 5e rules: updated character progression, 13 classes including Artificer, Level-1 half-caster spell progression, 2024 species and backgrounds with Origin Feats, 2024 Weapon Masteries, updated Exhaustion, bonus-action potions, and extensive monster bestiaries built from your owned 5etools library. After installing, choose it under Rules in the Game Mode setup wizard when you create a new game.",
   "engine": {
     "min": "2.5.1",
@@ -44,48 +44,48 @@
   "files": [
     {
       "path": "ruleset.json",
-      "sha256": "d70c5f61b359af1a046df728d7d11281ab270f17524aa8ff8099ba5304edef53",
-      "bytes": 380330
+      "sha256": "9226c24824cc9cdeccb5415478ad0e5f279a8b20a3a66b1b96fe6e797b8f7a79",
+      "bytes": 391717
     },
     {
       "path": "catalogs/spells.json",
-      "sha256": "10c01de3d1ada0348cf351f4b0973b183ecb5d21ac10c25e1d0537b7544ce20c",
-      "bytes": 844932
+      "sha256": "f9124bdde3552664c8a8ebc275f43648d68e86b40c6ef1e4049df4a3e45c7b8b",
+      "bytes": 837563
     },
     {
       "path": "catalogs/features.json",
-      "sha256": "3c3542d1ddb497f597ef62dbef2e5c4c582f54e2c3f1e706b427159aabf88ce8",
-      "bytes": 1088382
+      "sha256": "fe6c721a5ac2c80fe149686654c5e70cd469dc46d86a62d5f4148424a9079e83",
+      "bytes": 1391465
     },
     {
       "path": "catalogs/races.json",
-      "sha256": "41353ec7442b53bb489d4842270a91a707a6f14369b014ede4e7eabefe6117cb",
-      "bytes": 21283
+      "sha256": "8fea46ec892a196fce441a6a4d2f7c644384c4de0151d17a3b5f9ee673480d52",
+      "bytes": 101943
     },
     {
       "path": "catalogs/creatures.json",
-      "sha256": "96528512cd3cfa8cb795d38381277977a82a162fd1659246e1c7d691c5f2a512",
-      "bytes": 1215405
+      "sha256": "91933e0606cd2ff2d7706694a6ca01200d2a2478698da996de19fa4a95886fba",
+      "bytes": 1196280
     },
     {
       "path": "catalogs/equipment.json",
-      "sha256": "90aadad7051084b44505605dad3101161112ce78bc719c6b918e60179833d04d",
-      "bytes": 215341
+      "sha256": "dcd63dee3be0514a3e607dbb39b0ef1816f4e402155c649fc44508e68ac72af0",
+      "bytes": 215494
     },
     {
       "path": "catalogs/magic_items.json",
-      "sha256": "46c6418962d053079a639294bdbb15356f68855e46c4132609cd3fde030326fd",
-      "bytes": 280577
+      "sha256": "57db771f26860f30921191529c6aad310f08d93623c127aed55e5871ee4ca505",
+      "bytes": 280692
     },
     {
       "path": "catalogs/classes.json",
-      "sha256": "2842bad594199336d75119153cb2329410ea2e0a1cac1dad80741fee43ea4a11",
-      "bytes": 4309
+      "sha256": "b5d22e6a609c9688e93b155c167f9f575925e05290f6ae26c29d3afb24a1192c",
+      "bytes": 35521
     },
     {
       "path": "catalogs/backgrounds.json",
-      "sha256": "689d9d3ec6bf904f43d93a49ac6d10c0aeb6129585d855398d2c304d388a29a2",
-      "bytes": 26726
+      "sha256": "1eb66a9a21bd33f4c4b69970a5d0d2c062cb3dddcfcdf04fd15ecfda41bb415a",
+      "bytes": 117348
     },
     {
       "path": "catalogs/languages.json",
@@ -99,12 +99,12 @@
     },
     {
       "path": "catalogs/fighting_styles.json",
-      "sha256": "a60f63d45e29cb19bd8b535e0d2efff632f16074a876b5a0bd8e6e0b0f9ecfab",
-      "bytes": 6710
+      "sha256": "756ddaa779695662a94482413a89586f4383d3f7894238ea7356c6368983ee09",
+      "bytes": 6580
     },
     {
       "path": "catalogs/weapons.json",
-      "sha256": "604a0f284dd2769068bbed19a4fd4fb1ac2c82f23e985fcabd5780f2c5630c42",
+      "sha256": "e69389ef954bb59c83ee846792ea4399e802adbe0b8c8ca76a09c3f569cebb1a",
       "bytes": 100472
     }
   ]

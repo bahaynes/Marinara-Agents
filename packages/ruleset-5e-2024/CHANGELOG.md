@@ -1,5 +1,15 @@
 # 5e (2024 Edition)
 
+## 1.1.0 - 2026-11-15
+
+- The guided builder builds a 2024 character; before, the catalogs carried no grants.
+- Classes grant level, saves, skill choices, hit die, weapon training and casting ability, with multiclass entries gated on 13. The Artificer (EFA) is a full 13th class.
+- Class features arrive by level. Subclass is a pick at 3rd level. A Feats step asks for a general feat at each feat level, and feats apply their +1.
+- Species set size, speed and darkvision, with lineages and their cantrips. Backgrounds give +2/+1, skills, origin feat and tools.
+- Spells sit on their class's own list, with a wizard spellbook.
+- Each class lists its ability priority, for a suggested build.
+- Fixed "XPHB" in text, and 2014 entries beside their 2024 reprints.
+
 ## 1.0.6 - 2026-11-12
 
 - Restored the base Armor of Vulnerability magic item: the 2024 catalogs carried only the three typed variants, but `ruleset.json`'s fences_odd_lot loot table (and its low-magic layer copy) references the base item, which failed package install with `No item "armor-of-vulnerability" in catalog "magic_items"`.

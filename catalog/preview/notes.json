@@ -192,6 +192,12 @@
     "ruleset-5e-2024": {
       "versions": [
         {
+          "version": "1.1.0",
+          "date": "2026-11-15",
+          "notes": "- The guided builder builds a 2024 character; before, the catalogs carried no grants.\n- Classes grant level, saves, skill choices, hit die, weapon training and casting ability, with multiclass entries gated on 13. The Artificer (EFA) is a full 13th class.\n- Class features arrive by level. Subclass is a pick at 3rd level. A Feats step asks for a general feat at each feat level, and feats apply their +1.\n- Species set size, speed and darkvision, with lineages and their cantrips. Backgrounds give +2/+1, skills, origin feat and tools.\n- Spells sit on their class's own list, with a wizard spellbook.\n- Each class lists its ability priority, for a suggested build.\n- Fixed \"XPHB\" in text, and 2014 entries beside their 2024 reprints.",
+          "highlight": true
+        },
+        {
           "version": "1.0.6",
           "date": "2026-11-12",
           "notes": "- Restored the base Armor of Vulnerability magic item: the 2024 catalogs carried only the three typed variants, but `ruleset.json`'s fences_odd_lot loot table (and its low-magic layer copy) references the base item, which failed package install with `No item \"armor-of-vulnerability\" in catalog \"magic_items\"`.\n- Carried the base item over from the 2014 SRD catalog during the 2024 build (added to `specialMiIds`), with the 2014-only seller-theater fields (`passesFor`, `tells`, `foolsReveal`) removed so the package honesty check passes; the 2024 package has no `armor-of-resistance-plate` for the fake to pass for.\n- Bumped to 1.0.6.",
