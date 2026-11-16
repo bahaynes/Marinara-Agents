@@ -1316,7 +1316,11 @@ async function buildItems(dataDir, ownedSources, options) {
     const existingMiIds = new Set(magicItems.map((e) => e.id));
     for (const mi of srdMagicItems) {
       if (specialMiIds.has(mi.id) && !existingMiIds.has(mi.id)) {
-        magicItems.push(mi);
+        // The 2014 seller theater names items the 2024 package lacks (a fake that passes for
+        // armor-of-resistance-plate), which fails the package's seller-honesty check.
+        const item = { ...mi.item };
+        for (const key of ["passesFor", "tells", "foolsReveal"]) delete item[key];
+        magicItems.push({ ...mi, item });
         existingMiIds.add(mi.id);
       }
     }
