@@ -36,6 +36,16 @@
    "grants": {
     "sets": {
      "size": 3
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "light"
+       ]
+      }
+     ]
     }
    },
    "rows": [
@@ -63,6 +73,18 @@
    "grants": {
     "sets": {
      "size": 3
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "dancing-lights",
+        "light",
+        "sacred-flame"
+       ]
+      }
+     ]
     }
    },
    "rows": [
@@ -929,6 +951,18 @@
    "id": "elf-drow",
    "label": "Drow",
    "summary": "Drow: a Elf lineage. Its traits add to the Elf's.",
+   "grants": {
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "dancing-lights"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
@@ -974,6 +1008,18 @@
    "id": "elf-wood-elf",
    "label": "Wood Elf",
    "summary": "Wood Elf: a Elf lineage. Its traits add to the Elf's.",
+   "grants": {
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "druidcraft"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
@@ -1000,6 +1046,16 @@
    "grants": {
     "sets": {
      "size": 2
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "druidcraft"
+       ]
+      }
+     ]
     }
    },
    "rows": [
@@ -1163,6 +1219,16 @@
        ]
       }
      ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "mage-hand"
+       ]
+      }
+     ]
     }
    },
    "rows": [
@@ -1190,6 +1256,16 @@
    "grants": {
     "sets": {
      "size": 3
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "mage-hand"
+       ]
+      }
+     ]
     }
    },
    "rows": [
@@ -1273,6 +1349,19 @@
    "grants": {
     "sets": {
      "size": 2
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "nondetection",
+        "blindness-deafness",
+        "blur",
+        "disguise-self"
+       ]
+      }
+     ]
     }
    },
    "rows": [
@@ -1297,6 +1386,18 @@
    "id": "gnome-forest-gnome",
    "label": "Forest Gnome",
    "summary": "Forest Gnome: a Gnome lineage. Its traits add to the Gnome's.",
+   "grants": {
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "minor-illusion"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
@@ -1319,6 +1420,19 @@
    "id": "gnome-rock-gnome",
    "label": "Rock Gnome",
    "summary": "Rock Gnome: a Gnome lineage. Its traits add to the Gnome's.",
+   "grants": {
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "mending",
+        "prestidigitation"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
@@ -1751,6 +1865,17 @@
         "sleight_of_hand",
         "stealth",
         "survival"
+       ]
+      }
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "disguise-self",
+        "hex"
        ]
       }
      ]
@@ -2669,6 +2794,19 @@
    "id": "tiefling-abyssal",
    "label": "Abyssal",
    "summary": "Abyssal: a Tiefling lineage. Its traits add to the Tiefling's.",
+   "grants": {
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "thaumaturgy",
+        "poison-spray"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
@@ -2692,6 +2830,19 @@
    "id": "tiefling-chthonic",
    "label": "Chthonic",
    "summary": "Chthonic: a Tiefling lineage. Its traits add to the Tiefling's.",
+   "grants": {
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "thaumaturgy",
+        "chill-touch"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
@@ -2714,6 +2865,19 @@
    "id": "tiefling-infernal",
    "label": "Infernal",
    "summary": "Infernal: a Tiefling lineage. Its traits add to the Tiefling's.",
+   "grants": {
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "thaumaturgy",
+        "fire-bolt"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
@@ -2934,6 +3098,16 @@
    "grants": {
     "sets": {
      "size": 3
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "poison-spray"
+       ]
+      }
+     ]
     }
    },
    "rows": [
@@ -2961,6 +3135,16 @@
    "grants": {
     "sets": {
      "size": 3
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "spells",
+       "ids": [
+        "poison-spray"
+       ]
+      }
+     ]
     }
    },
    "rows": [
