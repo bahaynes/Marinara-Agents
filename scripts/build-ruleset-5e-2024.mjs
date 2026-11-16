@@ -50,6 +50,14 @@ async function main() {
   // 3-4. The Artificer as a 13th class wherever the twelve are listed.
   await addArtificerClass(doc);
 
+  // 1.0.5's fixes, made here so a rebuild keeps them. The 2014 Detect Poison and Disease sees through
+  // its potion-of-poison fake, which the 2024 catalogs do not make a fake (install refuses it), and
+  // 2014's ritualNeeds feature requirements go: 2024 lets every prepared caster cast rituals.
+  for (const way of doc.items?.revealsFakes ?? []) {
+    if (way.id === "detect_poison_and_disease") delete way.items;
+  }
+  delete doc.sheet.lists.find((l) => l.id === "spells").ritualNeeds;
+
   // 5. Update Caster Level & Multiclassing
   // 2024 Half Casters (Paladin, Ranger, Artificer) gain spellcasting at L1 and round UP:
   // Step table: [[1, 1], [3, 2], [5, 3], [7, 4], [9, 5], [11, 6], [13, 7], [15, 8], [17, 9], [19, 10]]
