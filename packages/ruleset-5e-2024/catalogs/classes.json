@@ -5,18 +5,201 @@
   {
    "id": "artificer",
    "label": "Artificer",
-   "summary": "Hit die d8. 2024 class progression.",
+   "filters": {
+    "kind": "class",
+    "spell_class": "artificer"
+   },
+   "exclusive": "first_class",
+   "summary": "Hit die d8. Saving throws: CON and INT.",
+   "grants": {
+    "trained": {
+     "saves": [
+      "con_save",
+      "int_save"
+     ],
+     "skills": [
+      "thieves_tools"
+     ],
+     "choose": [
+      {
+       "what": "skills",
+       "count": 2,
+       "from": [
+        "arcana",
+        "history",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "sleight_of_hand"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_artificer": 1,
+     "first_class": "artificer",
+     "class": "Artificer",
+     "hp_first_die": "d8",
+     "weapon_training": "simple",
+     "spellcasting_ability": "int"
+    }
+   },
    "rows": [
     {
      "list": "proficiencies",
      "values": {
-      "name": "Artificer Class"
+      "name": "Armor: Light armor, Medium armor, Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Weapons: simple"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Thieves' Tools"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: Tinker's Tools"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tools: one type of Artisan's Tools of your choice"
      }
     }
-   ],
+   ]
+  },
+  {
+   "id": "artificer-multiclass",
+   "label": "Artificer (second class)",
+   "summary": "A second class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
    "filters": {
-    "kind": "class"
-   }
+    "kind": "multiclass",
+    "spell_class": "artificer"
+   },
+   "exclusive": "second_class",
+   "offeredWhen": {
+    "derived": "mc_ok_artificer"
+   },
+   "grants": {
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "arcana",
+        "history",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "sleight_of_hand"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_artificer": 1,
+     "second_class": "artificer"
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tinker's Tools"
+     }
+    }
+   ]
+  },
+  {
+   "id": "artificer-third-class",
+   "label": "Artificer (third class)",
+   "summary": "A third class: needs 13 in its primary ability and the other classes' own minimums. No saving throws.",
+   "filters": {
+    "kind": "multiclass",
+    "spell_class": "artificer"
+   },
+   "exclusive": "third_class",
+   "offeredWhen": {
+    "derived": "mc3_ok_artificer"
+   },
+   "grants": {
+    "trained": {
+     "choose": [
+      {
+       "what": "skills",
+       "count": 1,
+       "from": [
+        "arcana",
+        "history",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "sleight_of_hand"
+       ]
+      }
+     ]
+    },
+    "sets": {
+     "level_artificer": 1
+    }
+   },
+   "rows": [
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Light armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Medium armor"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Shields"
+     }
+    },
+    {
+     "list": "proficiencies",
+     "values": {
+      "name": "Tinker's Tools"
+     }
+    }
+   ]
   },
   {
    "id": "barbarian",
@@ -60,31 +243,13 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Armor: Light armor"
+      "name": "Armor: Light armor, Medium armor, Shields"
      }
     },
     {
      "list": "proficiencies",
      "values": {
-      "name": "Armor: Medium armor"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Armor: Shields"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Weapons: simple"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Weapons: martial"
+      "name": "Weapons: simple, martial"
      }
     }
    ]
@@ -389,19 +554,7 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Armor: Light armor"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Armor: Medium armor"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Armor: Shields"
+      "name": "Armor: Light armor, Medium armor, Shields"
      }
     },
     {
@@ -534,13 +687,7 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Armor: Light armor"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Armor: Shields"
+      "name": "Armor: Light armor, Shields"
      }
     },
     {
@@ -666,37 +813,13 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Armor: Light armor"
+      "name": "Armor: Light armor, Medium armor, Heavy armor, Shields"
      }
     },
     {
      "list": "proficiencies",
      "values": {
-      "name": "Armor: Medium armor"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Armor: Heavy armor"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Armor: Shields"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Weapons: simple"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Weapons: martial"
+      "name": "Weapons: simple, martial"
      }
     }
    ]
@@ -832,13 +955,7 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Weapons: simple"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Weapons: Martial weapons that have the Light property"
+      "name": "Weapons: simple, Martial weapons that have the Light property"
      }
     },
     {
@@ -927,37 +1044,13 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Armor: Light armor"
+      "name": "Armor: Light armor, Medium armor, Heavy armor, Shields"
      }
     },
     {
      "list": "proficiencies",
      "values": {
-      "name": "Armor: Medium armor"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Armor: Heavy armor"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Armor: Shields"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Weapons: simple"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Weapons: martial"
+      "name": "Weapons: simple, martial"
      }
     }
    ]
@@ -1098,31 +1191,13 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Armor: Light armor"
+      "name": "Armor: Light armor, Medium armor, Shields"
      }
     },
     {
      "list": "proficiencies",
      "values": {
-      "name": "Armor: Medium armor"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Armor: Shields"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Weapons: simple"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Weapons: martial"
+      "name": "Weapons: simple, martial"
      }
     }
    ]
@@ -1308,13 +1383,7 @@
     {
      "list": "proficiencies",
      "values": {
-      "name": "Weapons: simple"
-     }
-    },
-    {
-     "list": "proficiencies",
-     "values": {
-      "name": "Weapons: Martial weapons that have the Finesse or Light property"
+      "name": "Weapons: simple, Martial weapons that have the Finesse or Light property"
      }
     },
     {

@@ -342,25 +342,12 @@ async function buildClasses(dataDir, ownedSources) {
     // The builder's classes are the player classes the sheet has a level field for; sidekicks are not.
     if (!STANDARD_5E_CLASSES.includes(name)) continue;
     const hitDie = cls.hd ? `d${cls.hd.faces}` : "d8";
-    if (!CLASS_GRANTS_READY.has(name)) {
-      entries.push({
-        id,
-        label: name,
-        summary: `Hit die ${hitDie}. 2024 class progression.`.slice(0, 300),
-        rows: [{ list: "proficiencies", values: { name: `${name} Class` } }],
-        filters: { kind: "class" },
-      });
-      continue;
-    }
     entries.push(...classEntries(cls, id, hitDie));
   }
 
   await writeCatalog("classes.json", "classes", entries);
 }
 
-// The classes whose grants the ruleset can hold: its first_class and second_class enums and its levels
-// step name these twelve. The Artificer joins once the ruleset knows it.
-const CLASS_GRANTS_READY = new Set(STANDARD_5E_CLASSES.filter((name) => name !== "Artificer"));
 const SKILL_ID = (name) => name.toLowerCase().replace(/ /g, "_");
 const ALL_SKILLS = [
   "acrobatics",
@@ -425,9 +412,14 @@ function classEntries(cls, id, hitDie) {
   const armor = (start.armor ?? []).map((kind) => ARMOR_NAMES[kind] ?? strip5eTags(String(kind)));
   const weapons = (start.weapons ?? []).map((weapon) => strip5eTags(String(weapon)));
   const tools = (start.tools ?? []).map((tool) => strip5eTags(String(tool)));
-  // One row per item: a joined line passes the proficiencies list's 80-character name limit.
-  const proficiencyRows = (label, list) =>
-    list.map((item) => ({ list: "proficiencies", values: { name: `${label}: ${item}`.slice(0, 80) } }));
+  // One row per category while it fits the proficiencies list's 80-character name, else one per item
+  // (an entry holds 6 rows: the Artificer's armor, weapons and tools are 7 items).
+  const proficiencyRows = (label, list) => {
+    if (!list.length) return [];
+    const joined = `${label}: ${list.join(", ")}`;
+    if (joined.length <= 80) return [{ list: "proficiencies", values: { name: joined } }];
+    return list.map((item) => ({ list: "proficiencies", values: { name: `${label}: ${item}`.slice(0, 80) } }));
+  };
   const first = {
     id,
     label: name,

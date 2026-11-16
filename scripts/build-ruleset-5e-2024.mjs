@@ -47,21 +47,8 @@ async function main() {
     doc.sheet.fields.splice(wizardIdx + 1, 0, artificerField);
   }
 
-  // 3. Update Hit Dice Sums (d8 includes Artificer)
-  const d8Field = doc.sheet.derived.find((d) => d.id === "hit_dice_d8");
-  if (d8Field && d8Field.sum) {
-    if (!d8Field.sum.some((s) => s.field === "level_artificer")) {
-      d8Field.sum.push({ field: "level_artificer" });
-    }
-  }
-
-  // 4. Update Character Level Sum
-  const charLevel = doc.sheet.derived.find((d) => d.id === "character_level");
-  if (charLevel && charLevel.sum) {
-    if (!charLevel.sum.some((s) => s.field === "level_artificer")) {
-      charLevel.sum.push({ field: "level_artificer" });
-    }
-  }
+  // 3-4. The Artificer as a 13th class wherever the twelve are listed.
+  await addArtificerClass(doc);
 
   // 5. Update Caster Level & Multiclassing
   // 2024 Half Casters (Paladin, Ranger, Artificer) gain spellcasting at L1 and round UP:
@@ -347,12 +334,9 @@ const BUILDER_CLASSES = [
 /** The levels each class's own table gives a general feat, read from the 5etools class data's
  *  "Ability Score Improvement|<Class>|<source>|<level>" entries (XPHB first). */
 async function featLevels() {
-  const config = JSON.parse(await readFile(join(repoRoot, "fork/config/5e-2024-sources.json"), "utf8"));
-  const dataDir = process.env.FIVE_E_TOOLS_DATA_DIR || config.dataDir;
   const levels = {};
   for (const cls of BUILDER_CLASSES) {
-    const data = JSON.parse(await readFile(join(dataDir, `class/class-${cls}.json`), "utf8"));
-    const own = (data.class || []).find((c) => c.source === "XPHB") ?? data.class?.[0];
+    const own = await ownClass(cls);
     levels[cls] = (own?.classFeatures || [])
       .map((ref) => (typeof ref === "string" ? ref : ref.classFeature))
       .filter((ref) => ref?.startsWith("Ability Score Improvement|"))
@@ -360,6 +344,112 @@ async function featLevels() {
       .filter(Boolean);
   }
   return levels;
+}
+
+/** A class's 2024 entry in the 5etools data: the Player's Handbook's, or for the Artificer, Eberron's (EFA). */
+async function ownClass(cls) {
+  const config = JSON.parse(await readFile(join(repoRoot, "fork/config/5e-2024-sources.json"), "utf8"));
+  const dataDir = process.env.FIVE_E_TOOLS_DATA_DIR || config.dataDir;
+  const data = JSON.parse(await readFile(join(dataDir, `class/class-${cls}.json`), "utf8"));
+  const classes = data.class || [];
+  return classes.find((c) => c.source === "XPHB") ?? classes.find((c) => c.source === "EFA") ?? classes[0];
+}
+
+/** A 5etools per-level progression ([2, 2, ..., 3, ...] for levels 1-20) as a stepTable from level 0. */
+function progressionTable(progression) {
+  const table = [[0, 0]];
+  progression.forEach((value, index) => {
+    if (value !== table.at(-1)[1]) table.push([index + 1, value]);
+  });
+  return table;
+}
+
+/** The Artificer where the twelve classes are listed: the class enums, the level and hit-die sums,
+ *  the levels step, the multiclass gates, cantrips known and spells prepared. Each per-class node is
+ *  the Wizard's, renamed, since both multiclass on Intelligence 13; the counts are EFA's own tables. */
+async function addArtificerClass(doc) {
+  const { fields, derived } = doc.sheet;
+  if (derived.some((d) => d.id === "mc_ok_artificer")) return;
+  const byId = (id) => derived.find((d) => d.id === id);
+  const insertAfter = (id, node) => derived.splice(derived.findIndex((d) => d.id === id) + 1, 0, node);
+  const efa = await ownClass("artificer");
+
+  for (const id of ["first_class", "second_class"]) {
+    const field = fields.find((f) => f.id === id);
+    field.values.push("artificer");
+    if (field.valueLabels) field.valueLabels.artificer = "Artificer";
+  }
+  byId("hit_dice_d8").of.push({ field: "level_artificer" });
+  const levels = doc.sheet.builder.steps.find((s) => s.id === "levels");
+  levels.fields.splice(levels.fields.indexOf("level_other"), 0, "level_artificer");
+  levels.shownWhen.level_artificer = { derived: "shows_level_artificer" };
+  for (const total of doc.sheet.totals ?? []) {
+    if (total.fields?.includes("level_wizard"))
+      total.fields.splice(total.fields.indexOf("level_other"), 0, "level_artificer");
+  }
+  const spellClass = doc.sheet.lists.find((l) => l.id === "spells").columns.find((c) => c.id === "class");
+  spellClass.values.push("artificer");
+  if (spellClass.valueLabels) spellClass.valueLabels.artificer = "Artificer";
+
+  // Every table over the classes: the Artificer reads as the Wizard does (Intelligence is its only
+  // prerequisite), except in a table about the Wizard itself, where it is simply another class.
+  for (const node of derived) {
+    if (node.op !== "enumTable" || !(node.from?.field in { first_class: 1, second_class: 1 })) continue;
+    if (!("wizard" in node.table) || "artificer" in node.table) continue;
+    if (node.id.endsWith("_wizard")) {
+      if (Object.keys(node.table).length > 2) node.table.artificer = 1;
+    } else node.table.artificer = node.table.wizard;
+  }
+
+  const rename = (node) =>
+    JSON.parse(JSON.stringify(node).replaceAll("wizard", "artificer").replaceAll("Wizard", "Artificer"));
+  for (const id of ["mc_not_first_wizard", "mc_not_second_wizard"]) {
+    const node = rename(byId(id));
+    node.table.wizard = 1;
+    node.table.artificer = 0;
+    insertAfter(id, node);
+  }
+  for (const id of [
+    "level_is_first_wizard",
+    "level_is_second_wizard",
+    "shows_level_wizard",
+    "mc_ok_wizard",
+    "mc3_ok_wizard",
+  ]) {
+    insertAfter(id, rename(byId(id)));
+  }
+
+  insertAfter("cantrips_known_wizard", {
+    id: "cantrips_known_artificer",
+    label: "Cantrips known (Artificer)",
+    op: "stepTable",
+    from: { field: "level_artificer" },
+    table: progressionTable(efa.cantripProgression),
+    section: "spellcasting",
+    hideWhen: { field: "level_artificer", equals: 0 },
+  });
+  insertAfter("spells_prepared_wizard", {
+    id: "spells_prepared_artificer",
+    label: "Spells prepared (Artificer)",
+    op: "stepTable",
+    from: { field: "level_artificer" },
+    table: progressionTable(efa.preparedSpellsProgression),
+    section: "spellcasting",
+    hideWhen: { field: "level_artificer", equals: 0 },
+  });
+  // The builder sums sit before the per-class counts they read only if moved: put them after.
+  for (const [sumId, termId] of [
+    ["builder_cantrips", "cantrips_known_artificer"],
+    ["builder_spells", "spells_prepared_artificer"],
+  ]) {
+    const sum = byId(sumId);
+    sum.of.push({ derived: termId });
+    const sumIndex = derived.indexOf(sum);
+    if (sumIndex < derived.findIndex((d) => d.id === termId)) {
+      derived.splice(sumIndex, 1);
+      insertAfter(termId, sum);
+    }
+  }
 }
 
 async function patchSubclassesAndFeats(doc) {
