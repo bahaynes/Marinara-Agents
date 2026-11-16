@@ -5,13 +5,61 @@
   {
    "id": "aberrant-heir",
    "label": "Aberrant Heir",
-   "summary": "Aberrant Heir",
+   "summary": "Abilities: STR, CON, CHA. Skills: history, intimidation. Feat: aberrant dragonmark.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "con",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "con",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "history",
+      "intimidation"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "aberrant-dragonmark"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "disguise-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Aberrant Heir",
-      "text": ""
+      "text": "- Strength, Constitution, Charisma\n- Aberrant Dragonmark\n- History and Intimidation\n- Disguise Kit\n- Choose A or B: (A) Dagger, Disguise Kit, Costume, Traveler's Clothes, 16 GP; or (B) 50 GP"
      }
     }
    ]
@@ -19,13 +67,61 @@
   {
    "id": "acolyte",
    "label": "Acolyte",
-   "summary": "Acolyte",
+   "summary": "Abilities: INT, WIS, CHA. Skills: insight, religion. Feat: magic initiate.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "int",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "int",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "insight",
+      "religion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "magic-initiate"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "calligraphers-supplies"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Acolyte",
-      "text": ""
+      "text": "- Intelligence, Wisdom, Charisma\n- Magic Initiate (Cleric)\n- Insight, Religion\n- Calligrapher's Supplies\n- Choose A or B: (A) Calligrapher's Supplies, Book (prayers), Holy Symbol, Parchment (10 sheets), Robe, 8 GP; or (B) 50 GP"
      }
     }
    ]
@@ -33,13 +129,61 @@
   {
    "id": "archaeologist",
    "label": "Archaeologist",
-   "summary": "Archaeologist",
+   "summary": "Abilities: DEX, INT, WIS. Skills: history, survival. Feat: skilled.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "history",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "skilled"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "cartographers-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Archaeologist",
-      "text": ""
+      "text": "- Dexterity, Intelligence, Wisdom\n- Skilled\n- History and Survival\n- Cartographer's Tools\n- Choose A or B: (A) Cartographer's Tools, Bullseye Lantern, Map, Map or Scroll Case, Shovel, Tent, Traveler's Clothes, 17 GP; or (B) 50 GP"
      }
     }
    ]
@@ -47,13 +191,55 @@
   {
    "id": "artisan",
    "label": "Artisan",
-   "summary": "Artisan",
+   "summary": "Abilities: STR, DEX, INT. Skills: investigation, persuasion. Feat: crafter.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "dex",
+        "int"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "dex",
+        "int"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "investigation",
+      "persuasion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "crafter"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Artisan",
-      "text": ""
+      "text": "- Strength, Dexterity, Intelligence\n- Crafter\n- Investigation, Persuasion\n- Choose one kind of Artisan's Tools\n- Choose A or B: (A) Artisan's Tools (same as above), 2 Pouches, Traveler's Clothes, 32 GP; or (B) 50 GP"
      }
     }
    ]
@@ -61,13 +247,31 @@
   {
    "id": "astral-drifter",
    "label": "Astral Drifter",
-   "summary": "Astral Drifter",
+   "summary": "Skills: insight, religion. Feat: magic initiate.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "insight",
+      "religion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "magic-initiate"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Astral Drifter",
-      "text": ""
+      "text": "- Insight, Religion\n- Two of your choice (Celestial or Gith recommended)\n- A set of traveler's clothes, a diary, an ink pen, a bottle of ink, and a pouch containing 10 gp\n\n**Longevity.** You are 20d6 years older than you look, because you have spent that much time in the Astral Sea without aging.\n\n**Feature: Divine Contact.** You gain the Magic Initiate feat from the Player's Handbook and must choose cleric for the feat.\n\nIn the Astral Sea, you crossed paths with a wandering deity. The encounter was brief and nonviolent, yet it made a lasting impression on you. This deity saw fit to share one secret or obscure bit of cosmic lore with you. Work with your DM to determine the details of this kn"
      }
     }
    ]
@@ -75,13 +279,21 @@
   {
    "id": "athlete",
    "label": "Athlete",
-   "summary": "Athlete",
+   "summary": "Skills: acrobatics, athletics. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "acrobatics",
+      "athletics"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Athlete",
-      "text": ""
+      "text": "- Acrobatics, Athletics\n- One of your choice\n- Vehicles (land)\n- A bronze discus or leather ball, a lucky charm or past trophy, a set of traveler's clothes, and a pouch containing 10 gp\n\n**Feature: Echoes of Victory.** You have attracted admiration among spectators, fellow athletes, and trainers in the region that hosted your past athletic victories. When visiting any settlement within 100 miles of where you grew up, there is a 50% chance you can find someone there who admires you and is willing to provide information or temporary shelter.\n\nBetween adventures, you might compete in athletic events sufficient enough to maintain a comfortable lifestyle, as per the \"8\" downtime activity in chapt"
      }
     }
    ]
@@ -103,13 +315,21 @@
   {
    "id": "azorius-functionary",
    "label": "Azorius Functionary",
-   "summary": "Azorius Functionary",
+   "summary": "Skills: insight, intimidation. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "insight",
+      "intimidation"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Azorius Functionary",
-      "text": ""
+      "text": "- Insight, Intimidation\n- Two of your choice\n- An Azorius insignia, a scroll containing the text of a law important to you, a bottle of blue ink, a pen, a set of fine clothes, and a belt pouch containing 10 gp (Azorius-minted 1-zino coins)\n\n**Feature: Legal Authority.** You have the authority to enforce the laws of Ravnica, and that status inspires a certain amount of respect and even fear in the populace. People mind their manners in your presence and avoid drawing your attention; they assume you have the right to be wherever you are. Showing your Azorius insignia gets you an audience with anyone you want to talk to (though it might cause more problems than it solves when you're dealing wit"
      }
     }
    ]
@@ -117,13 +337,21 @@
   {
    "id": "boros-legionnaire",
    "label": "Boros Legionnaire",
-   "summary": "Boros Legionnaire",
+   "summary": "Skills: athletics, intimidation. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "athletics",
+      "intimidation"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Boros Legionnaire",
-      "text": ""
+      "text": "- Athletics, Intimidation\n- One type of gaming set\n- Choose one of Celestial, Draconic, Goblin, or Minotaur\n- A Boros insignia, a feather from an angel's wing, a tattered piece of a Boros banner (a souvenir from a famous battle), a set of common clothes, and a belt pouch containing 2 gp (Boros-minted 1-zino coins)\n\n**Feature: Legion Station.** You have an established place in the hierarchy of the Boros Legion. You can requisition simple equipment for temporary use, and you can gain access to any Boros garrison in Ravnica, where you can rest in safety and receive the attention of medics. You are also paid a salary of 1 gp (a Boros-minted 1-zino coin) per week, which (combined with free lodgin"
      }
     }
    ]
@@ -131,13 +359,61 @@
   {
    "id": "charlatan",
    "label": "Charlatan",
-   "summary": "Charlatan",
+   "summary": "Abilities: DEX, CON, CHA. Skills: deception, sleight of hand. Feat: skilled.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "con",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "con",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "deception",
+      "sleight_of_hand"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "skilled"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "forgery-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Charlatan",
-      "text": ""
+      "text": "- Dexterity, Constitution, Charisma\n- Skilled\n- Deception, Sleight of Hand\n- Forgery Kit\n- Choose A or B: (A) Forgery Kit, Costume, Fine Clothes, 15 GP; or (B) 50 GP"
      }
     }
    ]
@@ -145,13 +421,61 @@
   {
    "id": "chondathan-freebooter",
    "label": "Chondathan Freebooter",
-   "summary": "Chondathan Freebooter",
+   "summary": "Abilities: STR, DEX, WIS. Skills: athletics, sleight of hand. Feat: skilled.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "dex",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "dex",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "athletics",
+      "sleight_of_hand"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "skilled"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "weavers-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Chondathan Freebooter",
-      "text": ""
+      "text": "- Strength, Dexterity, Wisdom\n- Skilled\n- Athletics and Sleight of Hand\n- Weaver's Tools\n- Choose A or B: (A) Dagger, Weaver's Tools, Backpack, Ball Bearings, Basket, Bedroll, Bucket, Rations (3 days' worth), Rope, Signal Whistle, Traveler's Clothes, 38 GP; or (B) 50 GP"
      }
     }
    ]
@@ -159,13 +483,21 @@
   {
    "id": "city-watch",
    "label": "City Watch",
-   "summary": "City Watch",
+   "summary": "Skills: athletics, insight. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "athletics",
+      "insight"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: City Watch",
-      "text": ""
+      "text": "- Athletics, Insight\n- Any two of your choice\n- A uniform in the style of your unit and indicative of your rank, a horn with which to summon help, a set of manacles, and a pouch containing 10 gp\n\n**Feature: Watcher's Eye.** Your experience in enforcing the law, and dealing with lawbreakers, gives you a feel for local laws and criminals. You can easily find the local outpost of the watch or a similar organization, and just as easily pick out the dens of criminal activity in a community, although you're more likely to be welcome in the former locations rather than the latter.\n\n**Suggested Characteristics.** Use the tables for the soldier background in the Player's Handbook as the basis for you"
      }
     }
    ]
@@ -173,13 +505,21 @@
   {
    "id": "clan-crafter",
    "label": "Clan Crafter",
-   "summary": "Clan Crafter",
+   "summary": "Skills: history, insight. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "history",
+      "insight"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Clan Crafter",
-      "text": ""
+      "text": "- History, Insight\n- One type of artisan's tools\n- Dwarvish or one of your choice if you already speak Dwarvish\n- A set of artisan's tools with which you are proficient, a maker's mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from, a set of traveler's clothes, and a pouch containing 5 gp and a gem worth 10 gp\n\n**Feature: Respect of the Stout Folk.** As well respected as clan crafters are among outsiders, no one esteems them quite so highly as dwarves do. You always have free room and board in any place where shield dwarves or gold dwarves dwell, and the individuals in such a settlement might vie among themselves to determine who can of"
      }
     }
    ]
@@ -187,13 +527,20 @@
   {
    "id": "cloistered-scholar",
    "label": "Cloistered Scholar",
-   "summary": "Cloistered Scholar",
+   "summary": "Skills: history. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "history"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Cloistered Scholar",
-      "text": ""
+      "text": "- History, plus your choice of one from among Arcana, Nature, and Religion\n- any two of your choice\n- The scholar's robes of your cloister, a writing kit (small pouch with a quill, ink, folded parchment, and a small penknife), a borrowed book on the subject of your current study, and a pouch containing 10 gp\n\n**Feature: Library Access.** Though others must often endure extensive interviews and significant fees to gain access to even the most common archives in your library, you have free and easy access to the majority of the library, though it might also have repositories of lore that are too valuable, magical, or secret to permit anyone immediate access.\n\nYou have a working knowledge of yo"
      }
     }
    ]
@@ -215,13 +562,21 @@
   {
    "id": "courtier",
    "label": "Courtier",
-   "summary": "Courtier",
+   "summary": "Skills: insight, persuasion. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "insight",
+      "persuasion"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Courtier",
-      "text": ""
+      "text": "- Insight, Persuasion\n- Any two of your choice\n- A set of fine clothes and a pouch containing 5 gp\n\n**Feature: Court Functionary.** Your knowledge of how bureaucracies function lets you gain access to the records and inner workings of any noble court or government you encounter. You know who the movers and shakers are, whom to go to for the favors you seek, and what the current intrigues of interest in the group are.\n\n**Suggested Characteristics.** Use the tables for the guild artisan background in the Player's Handbook as the basis for your traits and motivations, modifying the entries when appropriate to suit your identity as a courtier.\n\nThe noble court or bureaucratic organization where "
      }
     }
    ]
@@ -229,13 +584,61 @@
   {
    "id": "criminal",
    "label": "Criminal",
-   "summary": "Criminal",
+   "summary": "Abilities: DEX, CON, INT. Skills: sleight of hand, stealth. Feat: alert.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "con",
+        "int"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "con",
+        "int"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "sleight_of_hand",
+      "stealth"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "alert"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "thieves-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Criminal",
-      "text": ""
+      "text": "- Dexterity, Constitution, Intelligence\n- Alert\n- Sleight of Hand, Stealth\n- Thieves' Tools\n- Choose A or B: (A) 2 Daggers, Thieves' Tools, Crowbar, 2 Pouches, Traveler's Clothes, 16 GP; or (B) 50 GP"
      }
     }
    ]
@@ -249,7 +652,7 @@
      "list": "features",
      "values": {
       "name": "Background: Custom Background",
-      "text": ""
+      "text": "- Two of your choice\n- Two of your choice\n- The equipment package from any background\n\n**Feature: Choose a Feature.** Choose a feature from any background.\n\n**Suggested Characteristics.** Use the suggested characteristics from any background.\n\nNote: See the section on 4 for more information.}"
      }
     }
    ]
@@ -257,13 +660,61 @@
   {
    "id": "dead-magic-dweller",
    "label": "Dead Magic Dweller",
-   "summary": "Dead Magic Dweller",
+   "summary": "Abilities: STR, CON, WIS. Skills: medicine, survival. Feat: healer.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "con",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "con",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "medicine",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "healer"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "leatherworkers-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Dead Magic Dweller",
-      "text": ""
+      "text": "- Strength, Constitution, Wisdom\n- Healer\n- Medicine and Survival\n- Leatherworker's Tools\n- Choose A or B: (A) Greatclub, Leatherworker's Tools, Bedroll, Blanket, Healer's Kit, Pole, Rations (3 days' worth), Tent, Tinderbox, 5 Torches, Traveler's Clothes, Waterskin, 32 GP; or (B) 50 GP"
      }
     }
    ]
@@ -271,13 +722,31 @@
   {
    "id": "dimir-operative",
    "label": "Dimir Operative",
-   "summary": "Dimir Operative",
+   "summary": "Skills: deception, stealth. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "deception",
+      "stealth"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "tools",
+       "ids": [
+        "disguise-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Dimir Operative",
-      "text": ""
+      "text": "- Deception, Stealth\n- Disguise kit\n- One of your choice\n- A Dimir insignia, three small knives, a set of dark-colored common clothes, and the starting equipment of the background described in this chapter for your secondary guild\n\n**Feature: False Identity.** You have more than one identity. The one you wear most of the time makes you appear to be a member of a guild other than House Dimir. You have documentation, established acquaintances, and disguises that allow you to assume that persona and fit into the secondary guild.\n\nWhenever you choose, you can drop this identity and blend into the guildless masses of the city.\n\nConsider why you're embedded in the secondary guild. Create a story w"
      }
     }
    ]
@@ -285,13 +754,61 @@
   {
    "id": "dragon-cultist",
    "label": "Dragon Cultist",
-   "summary": "Dragon Cultist",
+   "summary": "Abilities: DEX, CON, INT. Skills: deception, stealth. Feat: cult of the dragon initiate.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "con",
+        "int"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "con",
+        "int"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "deception",
+      "stealth"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "cult-of-the-dragon-initiate"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "calligraphers-supplies"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Dragon Cultist",
-      "text": ""
+      "text": "- Dexterity, Constitution, Intelligence\n- Cult of the Dragon Initiate\n- Deception and Stealth\n- Calligrapher's Supplies\n- Choose A or B: (A) Calligrapher's Supplies, Dagger, Glass Bottle, Lamp, Manacles, Oil (5 flasks), 2 Pouches, Robe, Rope, 30 GP; or (B) 50 GP"
      }
     }
    ]
@@ -299,13 +816,61 @@
   {
    "id": "emerald-enclave-caretaker",
    "label": "Emerald Enclave Caretaker",
-   "summary": "Emerald Enclave Caretaker",
+   "summary": "Abilities: CON, INT, WIS. Skills: nature, survival. Feat: emerald enclave fledgling.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "con",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "con",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "nature",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "emerald-enclave-fledgling"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "herbalism-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Emerald Enclave Caretaker",
-      "text": ""
+      "text": "- Constitution, Intelligence, Wisdom\n- Emerald Enclave Fledgling\n- Nature and Survival\n- Herbalism Kit\n- Choose A or B: (A) Shortbow, 20 Arrows, Herbalism Kit, Bedroll, Blanket, Pouch, Tent, Traveler's Clothes, 13 GP; or (B) 50 GP"
      }
     }
    ]
@@ -313,13 +878,55 @@
   {
    "id": "entertainer",
    "label": "Entertainer",
-   "summary": "Entertainer",
+   "summary": "Abilities: STR, DEX, CHA. Skills: acrobatics, performance. Feat: musician.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "dex",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "dex",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "acrobatics",
+      "performance"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "musician"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Entertainer",
-      "text": ""
+      "text": "- Strength, Dexterity, Charisma\n- Musician\n- Acrobatics, Performance\n- Choose one kind of Musical Instrument\n- Choose A or B: (A) Musical Instrument (same as above), 2 Costumes, Mirror, Perfume, Traveler's Clothes, 11 GP; or (B) 50 GP"
      }
     }
    ]
@@ -327,13 +934,20 @@
   {
    "id": "faction-agent",
    "label": "Faction Agent",
-   "summary": "Faction Agent",
+   "summary": "Skills: insight. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "insight"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Faction Agent",
-      "text": ""
+      "text": "- Insight and one Intelligence, Wisdom, or Charisma skill of your choice, as appropriate to your faction\n- Any two of your choice\n- Badge or emblem of your faction, a copy of a seminal faction text (or code-book for a covert faction), a set of common clothes, and a pouch containing 15 gp\n\n**Feature: Safe Haven.** As a faction agent, you have access to a secret network of supporters and operatives who can provide assistance on your adventures. You know a set of secret signs and passwords you can use to identify such operatives, who can provide you with access to a hidden safe house, free room and board, or assistance in finding information. These agents never risk their lives for you or risk "
      }
     }
    ]
@@ -341,13 +955,21 @@
   {
    "id": "far-traveler",
    "label": "Far Traveler",
-   "summary": "Far Traveler",
+   "summary": "Skills: insight, perception. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "insight",
+      "perception"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Far Traveler",
-      "text": ""
+      "text": "- Insight, Perception\n- Any one musical instrument or gaming set of your choice, likely something native to your homeland\n- Any one of your choice\n- One set of traveler's clothes, any one musical instrument or gaming set you are proficient with, poorly wrought maps from your homeland that depict where you are in Faerûn, a small piece of jewelry worth 10 gp in the style of your homeland's craftsmanship, and a pouch containing 5 gp\n\n**Feature: All Eyes on You.** Your accent, mannerisms, figures of speech, and perhaps even your appearance all mark you as foreign. Curious glances are directed your way wherever you go, which can be a nuisance, but you also gain the friendly interest of scholars a"
      }
     }
    ]
@@ -355,13 +977,61 @@
   {
    "id": "farmer",
    "label": "Farmer",
-   "summary": "Farmer",
+   "summary": "Abilities: STR, CON, WIS. Skills: animal handling, nature. Feat: tough.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "con",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "con",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "animal_handling",
+      "nature"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "tough"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "carpenters-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Farmer",
-      "text": ""
+      "text": "- Strength, Constitution, Wisdom\n- Tough\n- Animal Handling, Nature\n- Carpenter's Tools\n- Choose A or B: (A) Sickle, Carpenter's Tools, Healer's Kit, Iron Pot, Shovel, Traveler's Clothes, 30 GP; or (B) 50 GP"
      }
     }
    ]
@@ -369,13 +1039,61 @@
   {
    "id": "flaming-fist-mercenary",
    "label": "Flaming Fist Mercenary",
-   "summary": "Flaming Fist Mercenary",
+   "summary": "Abilities: STR, CON, CHA. Skills: intimidation, perception. Feat: tough.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "con",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "con",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "intimidation",
+      "perception"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "tough"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "smiths-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Flaming Fist Mercenary",
-      "text": ""
+      "text": "- Strength, Constitution, Charisma\n- Tough\n- Intimidation and Perception\n- Smith's Tools\n- Choose A or B: (A) Mace, Smith's Tools, Fine Clothes, Manacles, Portable Ram, 4 GP; or (B) 50 GP"
      }
     }
    ]
@@ -383,13 +1101,21 @@
   {
    "id": "folk-hero",
    "label": "Folk Hero",
-   "summary": "Folk Hero",
+   "summary": "Skills: animal handling, survival. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "animal_handling",
+      "survival"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Folk Hero",
-      "text": ""
+      "text": "- Animal Handling, Survival\n- One type of artisan's tools, vehicles (land)\n- A set of artisan's tools (one of your choice), a shovel, an iron pot, a set of common clothes, and a belt pouch containing 10 gp\n\n**Feature: Rustic Hospitality.** Since you come from the ranks of the common folk, you fit in among them with ease. You can find a place to hide, rest, or recuperate among other commoners, unless you have shown yourself to be a danger to them. They will shield you from the law or anyone else searching for you, though they will not risk their lives for you.\n\n**Specialty.** You previously pursued a simple profession among the peasantry, perhaps as a farmer, miner, servant, shepherd, woodcut"
      }
     }
    ]
@@ -397,13 +1123,31 @@
   {
    "id": "gate-warden",
    "label": "Gate Warden",
-   "summary": "Gate Warden",
+   "summary": "Skills: persuasion, survival. Feat: scion of the outer planes.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "persuasion",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "scion-of-the-outer-planes"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Gate Warden",
-      "text": ""
+      "text": "- Persuasion, Survival\n- Two of your choice (Abyssal, Celestial, or Infernal recommended)\n- A ring of keys to unknown locks, a blank book, an ink pen or quill, a bottle of black ink, a set of traveler's clothes, and a pouch containing 10 gp\n\n**Feature: Planar Infusion.** Living in a gate-town or a similar location steeped you in planar energy. You gain the Scion of the Outer Planes feat. In addition, you know where to find free, modest lodging and food in the community you grew up in.\n\n**Suggested Characteristics.** The influence of an Outer Plane shapes your perspective. The Gate Warden Personality Traits table suggests traits you might adopt for your character.\n\n| d6 | Personality Trait |\n"
      }
     }
    ]
@@ -411,13 +1155,55 @@
   {
    "id": "genie-touched",
    "label": "Genie Touched",
-   "summary": "Genie Touched",
+   "summary": "Abilities: DEX, WIS, CHA. Skills: perception, persuasion. ",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "perception",
+      "persuasion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "tools",
+       "ids": [
+        "glassblowers-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Genie Touched",
-      "text": ""
+      "text": "- Dexterity, Wisdom, Charisma\n- Magic Initiate (Wizard)\n- Perception and Persuasion\n- Glassblower's Tools\n- Choose A or B: (A) Light Hammer, Glassblower's Tools, Fine Clothes, Lamp, Oil (3 flasks), Waterskin, 2 GP; or (B) 50 GP"
      }
     }
    ]
@@ -425,13 +1211,31 @@
   {
    "id": "giant-foundling",
    "label": "Giant Foundling",
-   "summary": "Giant Foundling",
+   "summary": "Skills: intimidation, survival. Feat: strike of the giants.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "intimidation",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "strike-of-the-giants"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Giant Foundling",
-      "text": ""
+      "text": "- Intimidation, Survival\n- Giant and one other language of your choice\n- A backpack, a set of traveler's clothes, a small stone or sprig that reminds you of home, and a pouch containing 10 gp\n\n**Origin Stories.** How you came to live among colossal creatures is up to you to determine, but the Foundling Origin table suggests a variety of possibilities.\n\n| d6 | Origin |\n| --- | --- |\n| 1 | You were found as a baby by a family of nomadic giants who raised you as one of their own. |\n| 2 | A family of stone giants rescued you when you fell into a mountain chasm, and you have lived with them underground ever since. |\n| 3 | You were lost or abandoned as a child in a jungle that teemed with ravenous"
      }
     }
    ]
@@ -439,13 +1243,31 @@
   {
    "id": "golgari-agent",
    "label": "Golgari Agent",
-   "summary": "Golgari Agent",
+   "summary": "Skills: nature, survival. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "nature",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "tools",
+       "ids": [
+        "poisoners-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Golgari Agent",
-      "text": ""
+      "text": "- Nature, Survival\n- Poisoner's kit\n- Choose one of Elvish, Giant, or Kraul\n- A Golgari insignia, a poisoner's kit, a pet beetle or spider, a set of common clothes, and a belt pouch containing 10 gp worth of mixed coins\n\n**Feature: Undercity Paths.** You know hidden, underground pathways that you can use to bypass crowds, obstacles, and observation as you move through the city. When you aren't in combat, you and companions you lead can travel between any two locations in the city twice as fast as your speed would normally allow. The paths of the undercity are haunted by dangers that rarely brave the light of the surface world, so your journey isn't guaranteed to be safe.\n\n**Golgari Guild Spe"
      }
     }
    ]
@@ -453,13 +1275,31 @@
   {
    "id": "grinner",
    "label": "Grinner",
-   "summary": "Grinner",
+   "summary": "Skills: deception, performance. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "deception",
+      "performance"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "tools",
+       "ids": [
+        "thieves-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Grinner",
-      "text": ""
+      "text": "- Deception, Performance\n- One type of musical instrument, thieves' tools\n- A set of fine clothes, a disguise kit, a musical instrument of your choice, a gold-plated ring depicting a smiling face, and a pouch containing 15 gp\n\n**Feature: Ballad of the Grinning Fool.** Like every Grinner, you know how to find a hideout. In any city of 10,000 people or more on the Menagerie Coast or in the lands of the Dwendalian Empire, you can play the \"Ballad of the Grinning Fool\" in a major tavern or inn. A member of the Golden Grin will find you and give shelter to you and any companions you vouch for. This shelter might be discontinued if it becomes too dangerous to hide you, at the DM's discretion.\n\nThi"
      }
     }
    ]
@@ -467,13 +1307,31 @@
   {
    "id": "gruul-anarch",
    "label": "Gruul Anarch",
-   "summary": "Gruul Anarch",
+   "summary": "Skills: animal handling, athletics. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "animal_handling",
+      "athletics"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "tools",
+       "ids": [
+        "herbalism-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Gruul Anarch",
-      "text": ""
+      "text": "- Animal Handling, Athletics\n- Herbalism kit\n- Choose one of Draconic, Giant, Goblin, or Sylvan\n- A Gruul insignia, a hunting trap, an herbalism kit, the skull of a boar, a beast-hide cloak, a set of traveler's clothes, and a belt pouch containing 10 gp (Azorius 1-zino coins)\n\n**Feature: Rubblebelt Refuge.** You are intimately familiar with areas of the city that most people shun: ruined neighborhoods where wurms rampaged, overgrown parks that no hand has tended in decades, and the vast, sprawling rubblebelts of broken terrain that civilized folk have long abandoned. You can find a suitable place for you and your allies to hide or rest in these areas. In addition, you can find food and fresh"
      }
     }
    ]
@@ -481,13 +1339,55 @@
   {
    "id": "guard",
    "label": "Guard",
-   "summary": "Guard",
+   "summary": "Abilities: STR, INT, WIS. Skills: athletics, perception. Feat: alert.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "athletics",
+      "perception"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "alert"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Guard",
-      "text": ""
+      "text": "- Strength, Intelligence, Wisdom\n- Alert\n- Athletics, Perception\n- Choose one kind of Gaming Set\n- Choose A or B: (A) Spear, Light Crossbow, 20 Bolts, Gaming Set (same as above), Hooded Lantern, Manacles, Quiver, Traveler's Clothes, 12 GP; or (B) 50 GP"
      }
     }
    ]
@@ -495,13 +1395,61 @@
   {
    "id": "guide",
    "label": "Guide",
-   "summary": "Guide",
+   "summary": "Abilities: DEX, CON, WIS. Skills: stealth, survival. Feat: magic initiate.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "con",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "con",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "stealth",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "magic-initiate"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "cartographers-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Guide",
-      "text": ""
+      "text": "- Dexterity, Constitution, Wisdom\n- Magic Initiate (Druid)\n- Stealth, Survival\n- Cartographer's Tools\n- Choose A or B: (A) Shortbow, 20 Arrows, Cartographer's Tools, Bedroll, Quiver, Tent, Traveler's Clothes, 3 GP; or (B) 50 GP"
      }
     }
    ]
@@ -509,13 +1457,21 @@
   {
    "id": "guild-artisan",
    "label": "Guild Artisan",
-   "summary": "Guild Artisan",
+   "summary": "Skills: insight, persuasion. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "insight",
+      "persuasion"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Guild Artisan",
-      "text": ""
+      "text": "- Insight, Persuasion\n- One type of artisan's tools\n- One of your choice\n- A set of artisan's tools (one of your choice), a letter of introduction from your guild, a set of traveler's clothes, and a belt pouch containing 15 gp\n\n**Feature: Guild Membership.** As an established and respected member of a guild, you can rely on certain benefits that membership provides. Your fellow guild members will provide you with lodging and food if necessary, and pay for your funeral if needed. In some cities and towns, a guildhall offers a central place to meet other members of your profession, which can be a good place to meet potential patrons, allies, or hirelings.\n\nGuilds often wield tremendous politic"
      }
     }
    ]
@@ -523,13 +1479,61 @@
   {
    "id": "harper",
    "label": "Harper",
-   "summary": "Harper",
+   "summary": "Abilities: DEX, INT, CHA. Skills: performance, sleight of hand. Feat: harper agent.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "performance",
+      "sleight_of_hand"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "harper-agent"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "disguise-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Harper",
-      "text": ""
+      "text": "- Dexterity, Intelligence, Charisma\n- Harper Agent\n- Performance and Sleight of Hand\n- Disguise Kit\n- Choose A or B: (A) Disguise Kit, Bedroll, Costume, Grappling Hook, Rope, Traveler's Clothes, 14 GP; or (B) 50 GP"
      }
     }
    ]
@@ -543,7 +1547,7 @@
      "list": "features",
      "values": {
       "name": "Background: Haunted One",
-      "text": ""
+      "text": "- Choose two from among Arcana, Investigation, Religion, or Survival\n- Choose two, one of which must be Abyssal, Celestial, Deep Speech, Draconic, Infernal, Primordial, Sylvan, or Undercommon\n- Monster hunter's pack (containing a chest, a crowbar, a hammer, three wooden stakes, a holy symbol, a flask of holy water, a set of manacles, a steel mirror, a flask of oil, a tinderbox, and 3 torches), a set of common clothes, one trinket of special significance (choose one or roll on the Horror Trinkets table), and 1 sp\n\n**Feature: Heart of Darkness.** Those who look into your eyes can see that you have faced unimaginable horror and that you are no stranger to darkness. Though they might fear you, c"
      }
     }
    ]
@@ -551,13 +1555,61 @@
   {
    "id": "hermit",
    "label": "Hermit",
-   "summary": "Hermit",
+   "summary": "Abilities: CON, WIS, CHA. Skills: medicine, religion. Feat: healer.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "con",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "con",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "medicine",
+      "religion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "healer"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "herbalism-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Hermit",
-      "text": ""
+      "text": "- Constitution, Wisdom, Charisma\n- Healer\n- Medicine, Religion\n- Herbalism Kit\n- Choose A or B: (A) Quarterstaff, Herbalism Kit, Bedroll, Book (philosophy), Lamp, Oil (3 flasks), Traveler's Clothes, 16 GP; or (B) 50 GP"
      }
     }
    ]
@@ -565,13 +1617,55 @@
   {
    "id": "house-agent",
    "label": "House Agent",
-   "summary": "House Agent",
+   "summary": "Abilities: STR, INT, CHA. Skills: investigation, persuasion. Feat: lucky.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "investigation",
+      "persuasion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "lucky"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Agent",
-      "text": ""
+      "text": "- Strength, Intelligence, Charisma\n- Lucky\n- Investigation and Persuasion\n- Choose one kind of Artisan's Tools\n- Choose A or B: (A) Artisan's Tools (same as above), Fine Clothes, 20 GP; or (B) 50 GP"
      }
     }
    ]
@@ -579,13 +1673,55 @@
   {
    "id": "house-cannith-heir",
    "label": "House Cannith Heir",
-   "summary": "House Cannith Heir",
+   "summary": "Abilities: STR, DEX, INT. Skills: investigation, sleight of hand. Feat: mark of making.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "dex",
+        "int"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "dex",
+        "int"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "investigation",
+      "sleight_of_hand"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-making"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Cannith Heir",
-      "text": ""
+      "text": "- Strength, Dexterity, Intelligence\n- Mark of Making\n- Investigation and Sleight of Hand\n- Choose one kind of Artisan's Tools\n- Choose A or B: (A) Artisan's Tools (same as above), Crowbar, Fine Clothes, 2 Pouches, 17 GP; or (B) 50 GP"
      }
     }
    ]
@@ -593,13 +1729,55 @@
   {
    "id": "house-deneith-heir",
    "label": "House Deneith Heir",
-   "summary": "House Deneith Heir",
+   "summary": "Abilities: STR, CON, WIS. Skills: insight, perception. Feat: mark of sentinel.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "con",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "con",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "insight",
+      "perception"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-sentinel"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Deneith Heir",
-      "text": ""
+      "text": "- Strength, Constitution, Wisdom\n- Mark of Sentinel\n- Insight and Perception\n- Choose one kind of Gaming Set\n- Choose A or B: (A) Spear, Shortbow, 20 Arrows, Gaming Set (same as above), Fine Clothes, Healer's Kit, Quiver, 1 GP; or (B) 50 GP"
      }
     }
    ]
@@ -607,13 +1785,61 @@
   {
    "id": "house-ghallanda-heir",
    "label": "House Ghallanda Heir",
-   "summary": "House Ghallanda Heir",
+   "summary": "Abilities: DEX, WIS, CHA. Skills: insight, persuasion. Feat: mark of hospitality.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "insight",
+      "persuasion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-hospitality"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "cooks-utensils"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Ghallanda Heir",
-      "text": ""
+      "text": "- Dexterity, Wisdom, Charisma\n- Mark of Hospitality\n- Insight and Persuasion\n- Cook's Utensils\n- Choose A or B: (A) Cook's Utensils, Fine Clothes, Iron Pot, Lamp, Oil (5 flasks), Perfume, 26 GP; or (B) 50 GP"
      }
     }
    ]
@@ -621,13 +1847,61 @@
   {
    "id": "house-jorasco-heir",
    "label": "House Jorasco Heir",
-   "summary": "House Jorasco Heir",
+   "summary": "Abilities: DEX, CON, WIS. Skills: medicine, stealth. Feat: mark of healing.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "con",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "con",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "medicine",
+      "stealth"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-healing"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "herbalism-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Jorasco Heir",
-      "text": ""
+      "text": "- Dexterity, Constitution, Wisdom\n- Mark of Healing\n- Medicine and Stealth\n- Herbalism Kit\n- Choose A or B: (A) Herbalism Kit, Fine Clothes, Healer's Kit, 25 GP; or (B) 50 GP"
      }
     }
    ]
@@ -635,13 +1909,61 @@
   {
    "id": "house-kundarak-heir",
    "label": "House Kundarak Heir",
-   "summary": "House Kundarak Heir",
+   "summary": "Abilities: STR, CON, INT. Skills: arcana, investigation. Feat: mark of warding.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "con",
+        "int"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "con",
+        "int"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "arcana",
+      "investigation"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-warding"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "thieves-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Kundarak Heir",
-      "text": ""
+      "text": "- Strength, Constitution, Intelligence\n- Mark of Warding\n- Arcana and Investigation\n- Thieves' Tools\n- Choose A or B: (A) Thieves' Tools, Fine Clothes, 10 GP; or (B) 50 GP"
      }
     }
    ]
@@ -649,13 +1971,61 @@
   {
    "id": "house-lyrandar-heir",
    "label": "House Lyrandar Heir",
-   "summary": "House Lyrandar Heir",
+   "summary": "Abilities: STR, DEX, CHA. Skills: acrobatics, nature. Feat: mark of storm.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "dex",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "dex",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "acrobatics",
+      "nature"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-storm"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "navigators-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Lyrandar Heir",
-      "text": ""
+      "text": "- Strength, Dexterity, Charisma\n- Mark of Storm\n- Acrobatics and Nature\n- Navigator's Tools\n- Choose A or B: (A) Navigator's Tools, Fine Clothes, 10 GP; or (B) 50 GP"
      }
     }
    ]
@@ -663,13 +2033,61 @@
   {
    "id": "house-medani-heir",
    "label": "House Medani Heir",
-   "summary": "House Medani Heir",
+   "summary": "Abilities: DEX, INT, WIS. Skills: insight, investigation. Feat: mark of detection.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "insight",
+      "investigation"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-detection"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "disguise-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Medani Heir",
-      "text": ""
+      "text": "- Dexterity, Intelligence, Wisdom\n- Mark of Detection\n- Insight and Investigation\n- Disguise Kit\n- Choose A or B: (A) Disguise Kit, Fine Clothes, 10 GP; or (B) 50 GP"
      }
     }
    ]
@@ -677,13 +2095,61 @@
   {
    "id": "house-orien-heir",
    "label": "House Orien Heir",
-   "summary": "House Orien Heir",
+   "summary": "Abilities: DEX, CON, INT. Skills: acrobatics, athletics. Feat: mark of passage.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "con",
+        "int"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "con",
+        "int"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "acrobatics",
+      "athletics"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-passage"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "cartographers-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Orien Heir",
-      "text": ""
+      "text": "- Dexterity, Constitution, Intelligence\n- Mark of Passage\n- Acrobatics and Athletics\n- Cartographer's Tools\n- Choose A or B: (A) Cartographer's Tools, Fine Clothes, Map, Map or Scroll Case, 18 GP; or (B) 50 GP"
      }
     }
    ]
@@ -691,13 +2157,61 @@
   {
    "id": "house-phiarlan-heir",
    "label": "House Phiarlan Heir",
-   "summary": "House Phiarlan Heir",
+   "summary": "Abilities: DEX, WIS, CHA. Skills: deception, stealth. Feat: mark of shadow.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "deception",
+      "stealth"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-shadow"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "disguise-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Phiarlan Heir",
-      "text": ""
+      "text": "- Dexterity, Wisdom, Charisma\n- Mark of Shadow\n- Deception and Stealth\n- Disguise Kit\n- Choose A or B: (A) Disguise Kit, Fine Clothes, 10 GP; or (B) 50 GP"
      }
     }
    ]
@@ -705,13 +2219,61 @@
   {
    "id": "house-sivis-heir",
    "label": "House Sivis Heir",
-   "summary": "House Sivis Heir",
+   "summary": "Abilities: INT, WIS, CHA. Skills: history, perception. Feat: mark of scribing.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "int",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "int",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "history",
+      "perception"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-scribing"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "calligraphers-supplies"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Sivis Heir",
-      "text": ""
+      "text": "- Intelligence, Wisdom, Charisma\n- Mark of Scribing\n- History and Perception\n- Calligrapher's Supplies\n- Choose A or B: (A) Calligrapher's Supplies, Fine Clothes, Ink, 5 Ink Pens, Paper (30 sheets), Parchment (9 sheets), 8 GP; or (B) 50 GP"
      }
     }
    ]
@@ -719,13 +2281,55 @@
   {
    "id": "house-tharashk-heir",
    "label": "House Tharashk Heir",
-   "summary": "House Tharashk Heir",
+   "summary": "Abilities: CON, INT, WIS. Skills: perception, survival. Feat: mark of finding.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "con",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "con",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "perception",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-finding"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Tharashk Heir",
-      "text": ""
+      "text": "- Constitution, Intelligence, Wisdom\n- Mark of Finding\n- Perception and Survival\n- Choose one kind of Gaming Set\n- Choose A or B: (A) Gaming Set (same as above), Climber's Kit, Fine Clothes, Hunting Trap, Manacles, 2 GP; or (B) 50 GP"
      }
     }
    ]
@@ -733,13 +2337,55 @@
   {
    "id": "house-thuranni-heir",
    "label": "House Thuranni Heir",
-   "summary": "House Thuranni Heir",
+   "summary": "Abilities: DEX, INT, CHA. Skills: performance, stealth. Feat: mark of shadow.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "performance",
+      "stealth"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-shadow"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Thuranni Heir",
-      "text": ""
+      "text": "- Dexterity, Intelligence, Charisma\n- Mark of Shadow\n- Performance and Stealth\n- Choose one kind of Musical Instrument\n- Choose A or B: (A) Musical Instrument (same as above), Costume, Fine Clothes, 13 GP; or (B) 50 GP"
      }
     }
    ]
@@ -747,13 +2393,61 @@
   {
    "id": "house-vadalis-heir",
    "label": "House Vadalis Heir",
-   "summary": "House Vadalis Heir",
+   "summary": "Abilities: CON, WIS, CHA. Skills: animal handling, nature. Feat: mark of handling.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "con",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "con",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "animal_handling",
+      "nature"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "mark-of-handling"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "herbalism-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: House Vadalis Heir",
-      "text": ""
+      "text": "- Constitution, Wisdom, Charisma\n- Mark of Handling\n- Animal Handling and Nature\n- Herbalism Kit\n- Choose A or B: (A) Herbalism Kit, Fine Clothes, Net, 29 GP; or (B) 50 GP"
      }
     }
    ]
@@ -761,13 +2455,61 @@
   {
    "id": "ice-fisher",
    "label": "Ice Fisher",
-   "summary": "Ice Fisher",
+   "summary": "Abilities: STR, DEX, CON. Skills: animal handling, athletics. Feat: alert.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "dex",
+        "con"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "dex",
+        "con"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "animal_handling",
+      "athletics"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "alert"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "woodcarvers-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Ice Fisher",
-      "text": ""
+      "text": "- Strength, Dexterity, Constitution\n- Alert\n- Animal Handling and Athletics\n- Woodcarver's Tools\n- Choose A or B: (A) Woodcarver's Tools, Basket, Block and Tackle, Chain, Hunting Trap, Net, Pole, Rations (3 days' worth), Traveler's Clothes, 32 GP; or (B) 50 GP"
      }
     }
    ]
@@ -775,13 +2517,20 @@
   {
    "id": "inheritor",
    "label": "Inheritor",
-   "summary": "Inheritor",
+   "summary": "Skills: survival. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "survival"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Inheritor",
-      "text": ""
+      "text": "- Survival, plus one from among Arcana, History, and Religion\n- Any one of your choice\n- Your choice of a gaming set or a musical instrument\n- Your inheritance, a set of traveler's clothes, the tool you choose for this background's tool proficiency (gaming set or musical instrument), and a pouch containing 15 gp\n\n**Feature: Inheritance.** Choose or randomly determine your inheritance from the possibilities in the table below. Work with your Dungeon Master to come up with details: Why is your inheritance so important, and what is its full story? You might prefer for the DM to invent these details as part of the game, allowing you to learn more about your inheritance as your character does.\n\nT"
      }
     }
    ]
@@ -789,13 +2538,61 @@
   {
    "id": "inquisitive",
    "label": "Inquisitive",
-   "summary": "Inquisitive",
+   "summary": "Abilities: CON, INT, CHA. Skills: insight, investigation. Feat: alert.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "con",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "con",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "insight",
+      "investigation"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "alert"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "thieves-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Inquisitive",
-      "text": ""
+      "text": "- Constitution, Intelligence, Charisma\n- Alert\n- Insight and Investigation\n- Thieves' Tools\n- Choose A or B: (A) Thieves' Tools, Bullseye Lantern, Crowbar, Oil (10 flasks), Traveler's Clothes, 10 GP; or (B) 50 GP"
      }
     }
    ]
@@ -804,12 +2601,25 @@
    "id": "investigator",
    "label": "Investigator",
    "summary": "Investigator",
+   "grants": {
+    "entries": {
+     "add": [
+      {
+       "catalog": "tools",
+       "ids": [
+        "disguise-kit",
+        "thieves-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Investigator",
-      "text": ""
+      "text": "- Choose two from among Insight, Investigation, or Perception\n- Disguise kit, Thieves' tools\n- A magnifying glass, evidence from a past case (choose one or roll for a trinket from the Horror Trinkets later in this chapter), a set of common clothes, and 10 gp\n\n**Feature: Official Inquiry.** You're experienced at gaining access to people and places to get the information you need. Through a combination of fast-talking, determination, and official-looking documentation, you can gain access to a place or an individual related to a crime you're investigating. Those who aren't involved in your investigation avoid impeding you or pass along your requests. Additionally, local law enforcement has fir"
      }
     }
    ]
@@ -817,13 +2627,21 @@
   {
    "id": "izzet-engineer",
    "label": "Izzet Engineer",
-   "summary": "Izzet Engineer",
+   "summary": "Skills: arcana, investigation. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "arcana",
+      "investigation"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Izzet Engineer",
-      "text": ""
+      "text": "- Arcana, Investigation\n- One type of artisan's tools\n- Choose one of Draconic, Goblin, or Vedalken\n- An Izzet insignia, one set of artisan's tools, the charred and twisted remains of a failed experiment, a hammer, a block and tackle, a set of common clothes, and a belt pouch containing 5 gp (Azorius 1-zino coins)\n\n**Feature: Urban Infrastructure.** The popular conception of the Izzet League is based on mad inventions, dangerous experiments, and explosive blasts. Much of that perception is accurate, but the league is also involved with mundane tasks of construction and architecture—primarily in crafting the infrastructure that allows Ravnicans to enjoy running water, levitating platforms, an"
      }
     }
    ]
@@ -831,13 +2649,31 @@
   {
    "id": "knight-of-solamnia",
    "label": "Knight of Solamnia",
-   "summary": "Knight of Solamnia",
+   "summary": "Skills: athletics, survival. Feat: squire of solamnia.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "athletics",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "squire-of-solamnia"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Knight of Solamnia",
-      "text": ""
+      "text": "- Athletics, Survival\n- Two of your choice\n- An insignia of rank, a deck of cards, a set of common clothes, and a pouch containing 10 gp\n\n**Feature: Squire of Solamnia.** You gain the Squire of Solamnia feat.\n\nIn addition, the Knights of Solamnia provide you free, modest lodging and food at any of their fortresses or encampments.\n\n**Building a Knight of Solamnia Character.** Any class that has martial prowess can be a good fit in the Knights of Solamnia. Fighters and paladins make up the bulk of the knighthood's forces. Clerics (often with the War domain) can also be found among the knights' ranks.\n\nFor a more unusual take on a Knight of Solamnia character, consider playing a bard of the Col"
      }
     }
    ]
@@ -845,13 +2681,61 @@
   {
    "id": "knight-of-the-gauntlet",
    "label": "Knight of the Gauntlet",
-   "summary": "Knight of the Gauntlet",
+   "summary": "Abilities: STR, INT, WIS. Skills: athletics, medicine. Feat: tyro of the gauntlet.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "athletics",
+      "medicine"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "tyro-of-the-gauntlet"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "smiths-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Knight of the Gauntlet",
-      "text": ""
+      "text": "- Strength, Intelligence, Wisdom\n- Tyro of the Gauntlet\n- Athletics and Medicine\n- Smith's Tools\n- Choose A or B: (A) Spear, Smith's Tools, Bullseye Lantern, Holy Symbol, Manacles, Oil (5 flasks), Tinderbox, Traveler's Clothes, 9 GP; or (B) 50 GP"
      }
     }
    ]
@@ -859,13 +2743,20 @@
   {
    "id": "knight-of-the-order",
    "label": "Knight of the Order",
-   "summary": "Knight of the Order",
+   "summary": "Skills: persuasion. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "persuasion"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Knight of the Order",
-      "text": ""
+      "text": "- Persuasion, plus one from among Arcana, History, Nature, and Religion, as appropriate for your order\n- Your choice of a gaming set or a musical instrument\n- Any one of your choice\n- One set of traveler's clothes, a signet, banner, or seal representing your place or rank in the order, and a pouch containing 10 gp\n\n**Feature: Knightly Regard.** You receive shelter and succor from members of your knightly order and those who are sympathetic to its aims. If your order is a religious one, you can gain aid from temples and other religious communities of your deity. Knights of civic orders can get help from the community—whether a lone settlement or a great nation—that they serve, and knights of "
      }
     }
    ]
@@ -873,13 +2764,61 @@
   {
    "id": "lords-alliance-vassal",
    "label": "Lords' Alliance Vassal",
-   "summary": "Lords' Alliance Vassal",
+   "summary": "Abilities: STR, INT, CHA. Skills: insight, persuasion. Feat: lords alliance agent.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "insight",
+      "persuasion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "lords-alliance-agent"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "calligraphers-supplies"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Lords' Alliance Vassal",
-      "text": ""
+      "text": "- Strength, Intelligence, Charisma\n- Lords' Alliance Agent\n- Insight and Persuasion\n- Calligrapher's Supplies\n- Choose A or B: (A) 2 Javelins, Calligrapher's Supplies, Fine Clothes, Ink, 5 Ink Pens, Parchment (9 sheets), 13 GP; or (B) 50 GP"
      }
     }
    ]
@@ -887,13 +2826,31 @@
   {
    "id": "lorehold-student",
    "label": "Lorehold Student",
-   "summary": "Lorehold Student",
+   "summary": "Skills: history, religion. Feat: strixhaven initiate.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "history",
+      "religion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "strixhaven-initiate"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Lorehold Student",
-      "text": ""
+      "text": "- History, Religion\n- Two of your choice\n- A bottle of black ink, an ink pen, a hammer, a hooded lantern, a tinderbox, a tome of history, a school uniform, and a pouch containing 15 gp\n\n**Feature: Lorehold Initiate.** You gain the Strixhaven Initiate feat and must choose Lorehold within it.\n\nIn addition, if you have the Spellcasting or Pact Magic feature, the spells on the Lorehold Spells table are added to the spell list of your spellcasting class. (If you are a multiclass character with multiple spell lists, these spells are added to all of them.)\n\n| Spell Level | Spells |\n| --- | --- |\n| 1st | Comprehend Languages, Identify |\n| 2nd | Borrowed Knowledge, Locate Object |\n| 3rd | Speak with "
      }
     }
    ]
@@ -915,13 +2872,31 @@
   {
    "id": "mage-of-high-sorcery",
    "label": "Mage of High Sorcery",
-   "summary": "Mage of High Sorcery",
+   "summary": "Skills: arcana, history. Feat: initiate of high sorcery.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "arcana",
+      "history"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "initiate-of-high-sorcery"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Mage of High Sorcery",
-      "text": ""
+      "text": "- Arcana, History\n- Two of your choice\n- A bottle of colored ink, an ink pen, a set of common clothes, and a pouch containing 10 gp\n\n**Feature: Initiate of High Sorcery.** You gain the Initiate of High Sorcery feat.\n\nIn addition, the Mages of High Sorcery provide you with free, modest lodging and food indefinitely at any occupied Tower of High Sorcery and for one night at the home of an organization member.\n\n**Building a Mage of High Sorcery Character.** Mages of High Sorcery are typically sorcerers, warlocks, or wizards and might have any subclass. Spellcasters who gain their magic through devotion are less likely to be welcomed among the traditionalist mages. Nevertheless, the Mages of Hig"
      }
     }
    ]
@@ -929,13 +2904,21 @@
   {
    "id": "mercenary-veteran",
    "label": "Mercenary Veteran",
-   "summary": "Mercenary Veteran",
+   "summary": "Skills: athletics, persuasion. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "athletics",
+      "persuasion"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Mercenary Veteran",
-      "text": ""
+      "text": "- Athletics, Persuasion\n- One type of gaming set, vehicles (land)\n- A uniform of your company (traveler's clothes in quality), an insignia of your rank, a gaming set of your choice, and a pouch containing the remainder of your last wages (10 gp).\n\n**Feature: Mercenary Life.** You know the mercenary life as only someone who has experienced it can. You are able to identify mercenary companies by their emblems, and you know a little about any such company, including who has hired them recently. You can find the taverns and festhalls where mercenaries abide in any area, as long as you speak the language. You can find mercenary work between adventures sufficient to maintain a comfortable lifestyl"
      }
     }
    ]
@@ -943,13 +2926,61 @@
   {
    "id": "merchant",
    "label": "Merchant",
-   "summary": "Merchant",
+   "summary": "Abilities: CON, INT, CHA. Skills: animal handling, persuasion. Feat: lucky.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "con",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "con",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "animal_handling",
+      "persuasion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "lucky"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "navigators-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Merchant",
-      "text": ""
+      "text": "- Constitution, Intelligence, Charisma\n- Lucky\n- Animal Handling, Persuasion\n- Navigator's Tools\n- Choose A or B: (A) Navigator's Tools, 2 Pouches, Traveler's Clothes, 22 GP; or (B) 50 GP"
      }
     }
    ]
@@ -957,13 +2988,61 @@
   {
    "id": "moonwell-pilgrim",
    "label": "Moonwell Pilgrim",
-   "summary": "Moonwell Pilgrim",
+   "summary": "Abilities: CON, WIS, CHA. Skills: nature, performance. Feat: magic initiate.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "con",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "con",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "nature",
+      "performance"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "magic-initiate"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "painters-supplies"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Moonwell Pilgrim",
-      "text": ""
+      "text": "- Constitution, Wisdom, Charisma\n- Magic Initiate (Druid)\n- Nature and Performance\n- Painter's Supplies\n- Choose A or B: (A) Quarterstaff, Painter's Supplies, Bedroll, Bell, Pouch, Robe, String, Traveler's Clothes, Waterskin, 38 GP; or (B) 50 GP"
      }
     }
    ]
@@ -971,13 +3050,61 @@
   {
    "id": "mulhorandi-tomb-raider",
    "label": "Mulhorandi Tomb Raider",
-   "summary": "Mulhorandi Tomb Raider",
+   "summary": "Abilities: DEX, CON, INT. Skills: investigation, religion. Feat: lucky.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "con",
+        "int"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "con",
+        "int"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "investigation",
+      "religion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "lucky"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "masons-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Mulhorandi Tomb Raider",
-      "text": ""
+      "text": "- Dexterity, Constitution, Intelligence\n- Lucky\n- Investigation and Religion\n- Mason's Tools\n- Choose A or B: (A) Dagger, Light Hammer, Mason's Tools, Backpack, Bedroll, Crowbar, Ladder, Pole, 2 Pouches, Rope, String, Tinderbox, 5 Torches, Traveler's Clothes, Waterskin 26 GP; or (B) 50 GP"
      }
     }
    ]
@@ -999,13 +3126,61 @@
   {
    "id": "mythalkeeper",
    "label": "Mythalkeeper",
-   "summary": "Mythalkeeper",
+   "summary": "Abilities: INT, WIS, CHA. Skills: arcana, history. Feat: crafter.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "int",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "int",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "arcana",
+      "history"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "crafter"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "jewelers-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Mythalkeeper",
-      "text": ""
+      "text": "- Intelligence, Wisdom, Charisma\n- Crafter\n- Arcana and History\n- Jeweler's Tools\n- Choose A or B: (A) Quarterstaff, Jeweler's Tools, Perfume, Pouch, Robe, Shovel, String, Waterskin, 16 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1013,13 +3188,55 @@
   {
    "id": "noble",
    "label": "Noble",
-   "summary": "Noble",
+   "summary": "Abilities: STR, INT, CHA. Skills: history, persuasion. Feat: skilled.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "history",
+      "persuasion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "skilled"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Noble",
-      "text": ""
+      "text": "- Strength, Intelligence, Charisma\n- Skilled\n- History, Persuasion\n- Choose one kind of Gaming Set\n- Choose A or B: (A) Gaming Set (same as above), Fine Clothes, Perfume, 29 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1027,13 +3244,21 @@
   {
    "id": "orzhov-representative",
    "label": "Orzhov Representative",
-   "summary": "Orzhov Representative",
+   "summary": "Skills: intimidation, religion. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "intimidation",
+      "religion"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Orzhov Representative",
-      "text": ""
+      "text": "- Intimidation, Religion\n- Two of your choice\n- An Orzhov insignia, a foot-long chain made of ten gold coins, vestments, a set of fine clothes, and a belt pouch containing 1 pp (an Orzhov-minted 10-zino coin)\n\n**Feature: Leverage.** You can exert leverage over one or more individuals below you in the guild's hierarchy and demand their help as needs warrant. For example, you can have a message carried across a neighborhood, procure a short carriage ride without paying, or have others clean up a bloody mess you left in an alley. The DM decides if your demands are reasonable and if there are subordinates available to fulfill them. As your status in the guild improves, you gain influence over mo"
      }
     }
    ]
@@ -1041,13 +3266,21 @@
   {
    "id": "outlander",
    "label": "Outlander",
-   "summary": "Outlander",
+   "summary": "Skills: athletics, survival. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "athletics",
+      "survival"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Outlander",
-      "text": ""
+      "text": "- Athletics, Survival\n- One type of musical instrument\n- One of your choice\n- A staff, a hunting trap, a trophy from an animal you killed, a set of traveler's clothes, and a belt pouch containing 10 gp\n\n**Feature: Wanderer.** You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features around you. In addition, you can find food and fresh water for yourself and up to five other people each day, provided that the land offers berries, small game, water, and so forth.\n\n**Specialty.** You've been to strange places and seen things that others cannot begin to fathom. Consider some of the distant lands you have visited,"
      }
     }
    ]
@@ -1055,13 +3288,30 @@
   {
    "id": "planar-philosopher",
    "label": "Planar Philosopher",
-   "summary": "Planar Philosopher",
+   "summary": "Skills: arcana. Feat: scion of the outer planes.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "arcana"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "scion-of-the-outer-planes"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Planar Philosopher",
-      "text": ""
+      "text": "- Arcana, the skill associated with your faction (see the Sigil Faction Affinities table) or one skill of your choice\n- Two of your choice\n- A portal key (such as a bag of golden tea leaves or the tooth of a planar beast), a manifesto of your guiding philosophy, a set of common clothes in your faction's style, and a pouch containing 10 gp worth of coins from different worlds and planes\n\n| Faction | Skill |\n| --- | --- |\n| Athar | Religion |\n| Bleak Cabal | Insight |\n| Doomguard | Nature |\n| Fated | Intimidation |\n| Fraternity of Order | History |\n| Hands of Havoc | Stealth |\n| Harmonium | Perception |\n| Heralds of Dust | Medicine |\n| Mercykillers | Survival |\n| Mind's Eye | Persuasion |\n| So"
      }
     }
    ]
@@ -1069,13 +3319,31 @@
   {
    "id": "prismari-student",
    "label": "Prismari Student",
-   "summary": "Prismari Student",
+   "summary": "Skills: acrobatics, performance. Feat: strixhaven initiate.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "acrobatics",
+      "performance"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "strixhaven-initiate"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Prismari Student",
-      "text": ""
+      "text": "- Acrobatics, Performance\n- One type of musical instrument or artisan's tools\n- One of your choice\n- A bottle of black ink, an ink pen, a set of artisan's tools or a musical instrument (one of your choice), a school uniform, and a pouch containing 10 gp\n\n**Feature: Prismari Initiate.** You gain the Strixhaven Initiate feat and must choose Prismari within it.\n\nIn addition, if you have the Spellcasting or Pact Magic feature, the spells on the Prismari Spells table are added to the spell list of your spellcasting class. (If you are a multiclass character with multiple spell lists, these spells are added to all of them.)\n\n| Spell Level | Spells |\n| --- | --- |\n| 1st | Chromatic Orb, Thunderwave "
      }
     }
    ]
@@ -1083,13 +3351,61 @@
   {
    "id": "purple-dragon-squire",
    "label": "Purple Dragon Squire",
-   "summary": "Purple Dragon Squire",
+   "summary": "Abilities: STR, WIS, CHA. Skills: animal handling, insight. Feat: purple dragon rook.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "animal_handling",
+      "insight"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "purple-dragon-rook"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "navigators-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Purple Dragon Squire",
-      "text": ""
+      "text": "- Strength, Wisdom, Charisma\n- Purple Dragon Rook\n- Animal Handling and Insight\n- Navigator's Tools\n- Choose A or B: (A) Spear, Navigator's Tools, Fine Clothes, 9 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1097,13 +3413,31 @@
   {
    "id": "quandrix-student",
    "label": "Quandrix Student",
-   "summary": "Quandrix Student",
+   "summary": "Skills: arcana, nature. Feat: strixhaven initiate.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "arcana",
+      "nature"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "strixhaven-initiate"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Quandrix Student",
-      "text": ""
+      "text": "- Arcana, Nature\n- One type of artisan's tools\n- One of your choice\n- A bottle of black ink, an ink pen, an abacus, a book of arcane theory, a school uniform, and a pouch containing 15 gp\n\n**Feature: Quandrix Initiate.** You gain the Strixhaven Initiate feat and must choose Quandrix within it.\n\nIn addition, if you have the Spellcasting or Pact Magic feature, the spells on the Quandrix Spells table are added to the spell list of your spellcasting class. (If you are a multiclass character with multiple spell lists, these spells are added to all of them.)\n\n| Spell Level | Spells |\n| --- | --- |\n| 1st | Entangle, Guiding Bolt |\n| 2nd | Enlarge/Reduce, Vortex Warp |\n| 3rd | Aura of Vitality, Hast"
      }
     }
    ]
@@ -1111,13 +3445,21 @@
   {
    "id": "rakdos-cultist",
    "label": "Rakdos Cultist",
-   "summary": "Rakdos Cultist",
+   "summary": "Skills: acrobatics, performance. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "acrobatics",
+      "performance"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Rakdos Cultist",
-      "text": ""
+      "text": "- Acrobatics, Performance\n- One type of musical instrument\n- Choose either Abyssal or Giant\n- A Rakdos insignia, a musical instrument (one of your choice), a costume, a hooded lantern made of wrought iron, a 10-foot length of chain with sharply spiked links, a tinderbox, 10 torches, a set of common clothes, a belt pouch containing 10 gp (a mix of Azorius and Boros 1-zino coins), and a bottle of sweet, red juice\n\n**A Flair for the Dramatic.** Rakdos performance styles typically fuse standard circus-style acrobatics with fire, wrought-iron spikes and hooks, and monsters. You can roll a d8 or choose from the options in the Performance Options table to determine your preferred style of performan"
      }
     }
    ]
@@ -1125,13 +3467,61 @@
   {
    "id": "rashemi-wanderer",
    "label": "Rashemi Wanderer",
-   "summary": "Rashemi Wanderer",
+   "summary": "Abilities: STR, CON, CHA. Skills: intimidation, perception. Feat: tough.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "con",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "con",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "intimidation",
+      "perception"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "tough"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "cartographers-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Rashemi Wanderer",
-      "text": ""
+      "text": "- Strength, Constitution, Charisma\n- Tough\n- Intimidation and Perception\n- Cartographer's Tools\n- Choose A or B: (A) Cartographer's Tools, Backpack, Bedroll, Hooded Lantern, Oil (3 flasks), Rope, Tinderbox, Traveler's Clothes, Waterskin, 23 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1153,13 +3543,33 @@
   {
    "id": "rewarded",
    "label": "Rewarded",
-   "summary": "Rewarded",
+   "summary": "Skills: insight, persuasion. Feat: lucky, magic initiate, skilled.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "insight",
+      "persuasion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "lucky",
+        "magic-initiate",
+        "skilled"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Rewarded",
-      "text": ""
+      "text": "- Insight, Persuasion\n- One of your choice\n- A bottle of black ink, an ink pen, five sheets of paper, a gaming set (matching your chosen proficiency), a signet ring, a set of fine clothes, and a pouch containing 18 gp\n- \n\n**Feature: Fortune's Favor.** Your unexpected good fortune is reflected by a minor boon. You gain the Lucky, Magic Initiate, or Skilled feat (your choice). Your choice of feat reflects the transformation that changed your life. An encounter with a genie who gave you three wishes might have resulted in magical powers represented by Magic Initiate. If you paid off all your family debts with a fortuitous round of three-dragon ante, you might be Lucky instead. Alternatively, yo"
      }
     }
    ]
@@ -1167,13 +3577,33 @@
   {
    "id": "ruined",
    "label": "Ruined",
-   "summary": "Ruined",
+   "summary": "Skills: stealth, survival. Feat: alert, skilled, tough.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "stealth",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "alert",
+        "skilled",
+        "tough"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Ruined",
-      "text": ""
+      "text": "- Stealth, Survival\n- One of your choice\n- A cracked hourglass, a set of rusty manacles, a half-empty bottle, a hunting trap, a gaming set (matching your chosen proficiency), a set of traveler's clothes, and a pouch containing 13 gp\n- \n\n**Feature: Still Standing.** You have weathered ruinous misfortune, and you possess hidden reserves others don't expect. You gain the Alert, Skilled, or Tough feat (your choice). Your choice of feat reflects how you've dealt with the terrible loss that changed your life forever. If you've kept your senses sharp for every opportunity and climbed your way out of misery by seizing the tiniest scrap of hope, choose Alert. If you've redoubled your efforts to recla"
      }
     }
    ]
@@ -1181,13 +3611,31 @@
   {
    "id": "rune-carver",
    "label": "Rune Carver",
-   "summary": "Rune Carver",
+   "summary": "Skills: history, perception. Feat: rune shaper.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "history",
+      "perception"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "rune-shaper"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Rune Carver",
-      "text": ""
+      "text": "- History, Perception\n- One set of artisan's tools\n- Giant\n- A set of artisan's tools (one of your choice), a small knife, a whetstone, a set of common clothes, and a pouch containing 10 gp\n\n**Rune Styles.** Each rune carver has a unique style and preferred medium. To determine how you make your runes, you can roll on the Rune Style table.\n\n| d6 | Style |\n| --- | --- |\n| 1 | You inscribe runes in wax or clay with a fine metal needle. |\n| 2 | You whittle pieces of wood into small figurines you mark with runes. |\n| 3 | You engrave runes onto glass beads and thread them onto necklaces and bracelets. |\n| 4 | You stitch runes into the hems of clothing. |\n| 5 | You carve runes on a set of animal b"
      }
     }
    ]
@@ -1195,13 +3643,61 @@
   {
    "id": "sage",
    "label": "Sage",
-   "summary": "Sage",
+   "summary": "Abilities: CON, INT, WIS. Skills: arcana, history. Feat: magic initiate.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "con",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "con",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "arcana",
+      "history"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "magic-initiate"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "calligraphers-supplies"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Sage",
-      "text": ""
+      "text": "- Constitution, Intelligence, Wisdom\n- Magic Initiate (Wizard)\n- Arcana, History\n- Calligrapher's Supplies\n- Choose A or B: (A) Quarterstaff, Calligrapher's Supplies, Book (history), Parchment (8 sheets), Robe, 8 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1209,13 +3705,61 @@
   {
    "id": "sailor",
    "label": "Sailor",
-   "summary": "Sailor",
+   "summary": "Abilities: STR, DEX, WIS. Skills: acrobatics, perception. Feat: tavern brawler.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "dex",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "dex",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "acrobatics",
+      "perception"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "tavern-brawler"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "navigators-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Sailor",
-      "text": ""
+      "text": "- Strength, Dexterity, Wisdom\n- Tavern Brawler\n- Acrobatics, Perception\n- Navigator's Tools\n- Choose A or B: (A) Dagger, Navigator's Tools, Rope, Traveler's Clothes, 20 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1223,13 +3767,61 @@
   {
    "id": "scribe",
    "label": "Scribe",
-   "summary": "Scribe",
+   "summary": "Abilities: DEX, INT, WIS. Skills: investigation, perception. Feat: skilled.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "int",
+        "wis"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "investigation",
+      "perception"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "skilled"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "calligraphers-supplies"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Scribe",
-      "text": ""
+      "text": "- Dexterity, Intelligence, Wisdom\n- Skilled\n- Investigation, Perception\n- Calligrapher's Supplies\n- Choose A or B: (A) Calligrapher's Supplies, Fine Clothes, Lamp, Oil (3 flasks), Parchment (12 sheets), 23 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1237,13 +3829,21 @@
   {
    "id": "selesnya-initiate",
    "label": "Selesnya Initiate",
-   "summary": "Selesnya Initiate",
+   "summary": "Skills: nature, persuasion. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "nature",
+      "persuasion"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Selesnya Initiate",
-      "text": ""
+      "text": "- Nature, Persuasion\n- One type of artisan's tools or one musical instrument\n- Choose one of Elvish, Loxodon, or Sylvan\n- A Selesnya insignia, a healer's kit, robes, a set of common clothes, and a belt pouch containing 5 gp (Azorius 1-zino coins)\n\n**Feature: Conclave's Shelter.** As a member of the Selesnya Conclave, you can count on your guild mates to provide shelter and aid. You and your companions can find a place to hide or rest in any Selesnya enclave in the city, unless you have proven to be a danger to them. The members of the enclave will shield you from the law or anyone else searching for you, though they will not risk their lives in this effort.\n\nIn addition, as a guild member yo"
      }
     }
    ]
@@ -1251,13 +3851,61 @@
   {
    "id": "shadowmasters-exile",
    "label": "Shadowmasters Exile",
-   "summary": "Shadowmasters Exile",
+   "summary": "Abilities: DEX, INT, CHA. Skills: acrobatics, stealth. Feat: savage attacker.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "acrobatics",
+      "stealth"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "savage-attacker"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "thieves-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Shadowmasters Exile",
-      "text": ""
+      "text": "- Dexterity, Intelligence, Charisma\n- Savage Attacker\n- Acrobatics and Stealth\n- Thieves' Tools\n- Choose A or B: (A) 2 Daggers, Thieves' Tools, Caltrops, Costume, Grappling Hook, Iron Spikes, Mirror, 2 Pouches, Rope, Traveler's Clothes, 3 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1265,13 +3913,31 @@
   {
    "id": "silverquill-student",
    "label": "Silverquill Student",
-   "summary": "Silverquill Student",
+   "summary": "Skills: intimidation, persuasion. Feat: strixhaven initiate.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "intimidation",
+      "persuasion"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "strixhaven-initiate"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Silverquill Student",
-      "text": ""
+      "text": "- Intimidation, Persuasion\n- Two of your choice\n- A bottle of black ink, an ink pen, a book of poetry, a school uniform, and a pouch containing 15 gp\n\n**Feature: Silverquill Initiate.** You gain the Strixhaven Initiate feat and must choose Silverquill within it.\n\nIn addition, if you have the Spellcasting or Pact Magic feature, the spells on the Silverquill Spells table are added to the spell list of your spellcasting class. (If you are a multiclass character with multiple spell lists, these spells are added to all of them.)\n\n| Spell Level | Spells |\n| --- | --- |\n| 1st | Dissonant Whispers, Silvery Barbs |\n| 2nd | Calm Emotions, Darkness |\n| 3rd | Beacon of Hope, Daylight |\n| 4th | Compulsio"
      }
     }
    ]
@@ -1279,13 +3945,21 @@
   {
    "id": "simic-scientist",
    "label": "Simic Scientist",
-   "summary": "Simic Scientist",
+   "summary": "Skills: arcana, medicine. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "arcana",
+      "medicine"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Simic Scientist",
-      "text": ""
+      "text": "- Arcana, Medicine\n- Two of your choice\n- A Simic insignia, a set of commoner's clothes, a book of research notes, an ink pen, a bottle of squid ink, a flask of oil (made from blubber), a vial of acid (derived from digestive juices), a vial of fish scales, a vial of seaweed, a vial of jellyfish stingers, a glass bottle of unidentified slime, and a belt pouch containing 10 gp (Azorius 1-zino coins)\n\n**Clades and Projects.** As a Simic researcher, you are part of a clade—a diverse group of individuals combining disparate talents in pursuit of a common goal—or a researcher on a specialized, short-term project focused on addressing an immediate need. You can roll a d6 or choose from the options "
      }
     }
    ]
@@ -1293,13 +3967,55 @@
   {
    "id": "soldier",
    "label": "Soldier",
-   "summary": "Soldier",
+   "summary": "Abilities: STR, DEX, CON. Skills: athletics, intimidation. Feat: savage attacker.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "dex",
+        "con"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "dex",
+        "con"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "athletics",
+      "intimidation"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "savage-attacker"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Soldier",
-      "text": ""
+      "text": "- Strength, Dexterity, Constitution\n- Savage Attacker\n- Athletics, Intimidation\n- Choose one kind of Gaming Set\n- Choose A or B: (A) Spear, Shortbow, 20 Arrows, Gaming Set (same as above), Healer's Kit, Quiver, Traveler's Clothes, 14 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1307,13 +4023,55 @@
   {
    "id": "spellfire-initiate",
    "label": "Spellfire Initiate",
-   "summary": "Spellfire Initiate",
+   "summary": "Abilities: CON, INT, CHA. Skills: arcana, perception. Feat: spellfire spark.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "con",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "con",
+        "int",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "arcana",
+      "perception"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "spellfire-spark"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Spellfire Initiate",
-      "text": ""
+      "text": "- Constitution, Intelligence, Charisma\n- Spellfire Spark\n- Arcana and Perception\n- Choose one kind of Gaming Set\n- Choose A or B: (A) Gaming Set (same as above), Arcane Focus (Crystal or Wand), 2 Pouches, Traveler's Clothes, 36 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1327,7 +4085,7 @@
      "list": "features",
      "values": {
       "name": "Background: Urban Bounty Hunter",
-      "text": ""
+      "text": "- Choose two from among Deception, Insight, Persuasion, and Stealth\n- Choose two from among one type of gaming set, one musical instrument, and thieves' tools\n- A set of clothes appropriate to your duties and a pouch containing 20 gp\n\n**Feature: Ear to the Ground.** You are in frequent contact with people in the segment of society that your chosen quarries move through. These people might be associated with the criminal underworld, the rough-and-tumble folk of the streets, or members of high society. This connection comes in the form of a contact in any city you visit, a person who provides information about the people and places of the local area.\n\n**Suggested Characteristics.** Use the tab"
      }
     }
    ]
@@ -1335,13 +4093,32 @@
   {
    "id": "urchin",
    "label": "Urchin",
-   "summary": "Urchin",
+   "summary": "Skills: sleight of hand, stealth. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "sleight_of_hand",
+      "stealth"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "tools",
+       "ids": [
+        "disguise-kit",
+        "thieves-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Urchin",
-      "text": ""
+      "text": "- Sleight of Hand, Stealth\n- Disguise kit, Thieves' tools\n- A small knife, a map of the city you grew up in, a pet mouse, a token to remember your parents by, a set of common clothes, and a belt pouch containing 10 gp\n\n**Feature: City Secrets.** You know the secret patterns and flow to cities and can find passages through the urban sprawl that others would miss. When you are not in combat, you (and companions you lead) can travel between any two locations in the city twice as fast as your speed would normally allow.\n\n**Suggested Characteristics.** Urchins are shaped by lives of desperate poverty, for good and for ill. They tend to be driven either by a commitment to the people with whom they"
      }
     }
    ]
@@ -1349,13 +4126,21 @@
   {
    "id": "uthgardt-tribe-member",
    "label": "Uthgardt Tribe Member",
-   "summary": "Uthgardt Tribe Member",
+   "summary": "Skills: athletics, survival. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "athletics",
+      "survival"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Uthgardt Tribe Member",
-      "text": ""
+      "text": "- Athletics, Survival\n- Any one of your choice\n- One type of musical instrument or artisan's tools\n- A hunting trap, a totemic token or set of tattoos marking your loyalty to Uthgar and your tribal totem, a set of traveler's clothes, and a pouch containing 10 gp\n\n**Feature: Uthgardt Heritage.** You have an excellent knowledge of not only your tribe's territory, but also the terrain and natural resources of the rest of the North. You are familiar enough with any wilderness area that you can find twice as much food and water as you normally would when you forage there.\n\nAdditionally, you can call upon the hospitality of your people, and those allied with your tribe, often including members of "
      }
     }
    ]
@@ -1363,13 +4148,21 @@
   {
    "id": "variant-city-watch-investigator",
    "label": "Variant City Watch (Investigator)",
-   "summary": "Variant City Watch (Investigator)",
+   "summary": "Skills: insight, investigation. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "insight",
+      "investigation"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Variant City Watch (Investigator)",
-      "text": ""
+      "text": "- Insight, Investigation\n- Any two of your choice\n- A uniform in the style of your unit and indicative of your rank, a horn with which to summon help, a set of manacles, and a pouch containing 10 gp\n\n**Feature: Watcher's Eye.** Your experience in enforcing the law, and dealing with lawbreakers, gives you a feel for local laws and criminals. You can easily find the local outpost of the watch or a similar organization, and just as easily pick out the dens of criminal activity in a community, although you're more likely to be welcome in the former locations rather than the latter.\n\n**Suggested Characteristics.** Use the tables for the soldier background in the Player's Handbook as the basis for"
      }
     }
    ]
@@ -1405,7 +4198,15 @@
   {
    "id": "variant-guild-artisan-guild-merchant",
    "label": "Variant Guild Artisan (Guild Merchant)",
-   "summary": "Variant Guild Artisan (Guild Merchant)",
+   "summary": "Skills: insight, persuasion. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "insight",
+      "persuasion"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
@@ -1461,13 +4262,31 @@
   {
    "id": "volstrucker-agent",
    "label": "Volstrucker Agent",
-   "summary": "Volstrucker Agent",
+   "summary": "Skills: deception, stealth. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "deception",
+      "stealth"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "tools",
+       "ids": [
+        "poisoners-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Volstrucker Agent",
-      "text": ""
+      "text": "- Deception, Stealth\n- Poisoner's kit\n- One of your choice\n- A set of common clothes, a black cloak with a hood, a poisoner's kit, and a pouch containing 10 gp\n\n**Feature: Shadow Network.** You have access to the Volstrucker shadow network, which allows you to communicate with other members of the order over long distances. If you write a letter in a special arcane ink, address it to a member of the Volstrucker, and cast it into a fire, the letter will burn to cinders and materialize whole again on the person of the agent you addressed it to.\n\nThe ink used to send a letter across the shadow network is the same as that used by a wizard to scribe spells in a spellbook. Writing a letter in this"
      }
     }
    ]
@@ -1475,13 +4294,21 @@
   {
    "id": "waterdhavian-noble",
    "label": "Waterdhavian Noble",
-   "summary": "Waterdhavian Noble",
+   "summary": "Skills: history, persuasion. ",
+   "grants": {
+    "trained": {
+     "skills": [
+      "history",
+      "persuasion"
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Waterdhavian Noble",
-      "text": ""
+      "text": "- History, Persuasion\n- Any one of your choice\n- One type of gaming set or musical instrument\n- A set of fine clothes, a signet ring or brooch, a scroll of pedigree, a skin of fine zzar or wine, and a purse containing 20 gp\n\n**Feature: Kept in Style.** While you are in Waterdeep or elsewhere in the North, your house sees to your everyday needs. Your name and signet are sufficient to cover most of your expenses; the inns, taverns, and festhalls you frequent are glad to record your debt and send an accounting to your family's estate in Waterdeep to settle what you owe.\n\nThis advantage enables you to live a comfortable lifestyle without having to pay 2 gp a day for it, or reduces the cost of a "
      }
     }
    ]
@@ -1489,13 +4316,61 @@
   {
    "id": "wayfarer",
    "label": "Wayfarer",
-   "summary": "Wayfarer",
+   "summary": "Abilities: DEX, WIS, CHA. Skills: insight, stealth. Feat: lucky.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "dex",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "dex",
+        "wis",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "insight",
+      "stealth"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "lucky"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "thieves-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Wayfarer",
-      "text": ""
+      "text": "- Dexterity, Wisdom, Charisma\n- Lucky\n- Insight, Stealth\n- Thieves' Tools\n- Choose A or B: (A) 2 Daggers, Thieves' Tools, Gaming Set (any), Bedroll, 2 Pouches, Traveler's Clothes, 16 GP; or (B) 50 GP"
      }
     }
    ]
@@ -1503,13 +4378,37 @@
   {
    "id": "wildspacer",
    "label": "Wildspacer",
-   "summary": "Wildspacer",
+   "summary": "Skills: athletics, survival. Feat: tough.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "athletics",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "tough"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "navigators-tools"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Wildspacer",
-      "text": ""
+      "text": "- Athletics, Survival\n- Navigator's tools, vehicles (space)\n- A belaying pin (club), a set of traveler's clothes, a grappling hook, 50 feet of hempen rope, and a pouch containing 10 gp\n\n**Close Encounter.** You had a harrowing encounter with one of Wildspace's many terrors. You escaped with your life, but the encounter left you with a scar or two, or perhaps a recurring nightmare. Roll on the Close Encounter table to determine which creature nearly got the best of you. Creatures marked with an asterisk appear in Boo's Astral Menagerie; the others are described in the Monster Manual.\n\n| d10 | Creature |\n| --- | --- |\n| 1 | Beholder |\n| 2 | Cosmic horror* |\n| 3 | Feyr* |\n| 4 | Lunar dragon* |\n"
      }
     }
    ]
@@ -1517,13 +4416,37 @@
   {
    "id": "witherbloom-student",
    "label": "Witherbloom Student",
-   "summary": "Witherbloom Student",
+   "summary": "Skills: nature, survival. Feat: strixhaven initiate.",
+   "grants": {
+    "trained": {
+     "skills": [
+      "nature",
+      "survival"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "strixhaven-initiate"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "herbalism-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Witherbloom Student",
-      "text": ""
+      "text": "- Nature, Survival\n- Herbalism kit\n- One of your choice\n- A bottle of black ink, an ink pen, a book about plant identification, an iron pot, an herbalism kit, a school uniform, and a pouch containing 15 gp\n\n**Feature: Witherbloom Initiate.** You gain the Strixhaven Initiate feat and must choose Witherbloom within it.\n\nIn addition, if you have the Spellcasting or Pact Magic feature, the spells on the Witherbloom Spells table are added to the spell list of your spellcasting class. (If you are a multiclass character with multiple spell lists, these spells are added to all of them.)\n\n| Spell Level | Spells |\n| --- | --- |\n| 1st | Cure Wounds, Inflict Wounds |\n| 2nd | Lesser Restoration, Wither a"
      }
     }
    ]
@@ -1531,13 +4454,61 @@
   {
    "id": "zhentarim-mercenary",
    "label": "Zhentarim Mercenary",
-   "summary": "Zhentarim Mercenary",
+   "summary": "Abilities: STR, DEX, CHA. Skills: intimidation, perception. Feat: zhentarim ruffian.",
+   "grants": {
+    "abilities": {
+     "choose": [
+      {
+       "count": 1,
+       "amount": 2,
+       "from": [
+        "str",
+        "dex",
+        "cha"
+       ],
+       "upTo": 20
+      },
+      {
+       "count": 1,
+       "amount": 1,
+       "from": [
+        "str",
+        "dex",
+        "cha"
+       ],
+       "upTo": 20
+      }
+     ]
+    },
+    "trained": {
+     "skills": [
+      "intimidation",
+      "perception"
+     ]
+    },
+    "entries": {
+     "add": [
+      {
+       "catalog": "features",
+       "ids": [
+        "zhentarim-ruffian"
+       ]
+      },
+      {
+       "catalog": "tools",
+       "ids": [
+        "forgery-kit"
+       ]
+      }
+     ]
+    }
+   },
    "rows": [
     {
      "list": "features",
      "values": {
       "name": "Background: Zhentarim Mercenary",
-      "text": ""
+      "text": "- Strength, Dexterity, Charisma\n- Zhentarim Ruffian\n- Intimidation and Perception\n- Forgery Kit\n- Choose A or B: (A) Club, Dagger, Forgery Kit, Fine Clothes, Hooded Lantern, Oil (3 flasks), 2 Pouches, String, Tinderbox, 11 GP; or (B) 50 GP"
      }
     }
    ]

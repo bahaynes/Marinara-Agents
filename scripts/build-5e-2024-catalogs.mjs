@@ -43,6 +43,10 @@ async function main() {
   console.log("\nBuilding species (races) catalog...");
   await buildSpecies(dataDir, ownedSources);
 
+  // Languages and tools come before backgrounds, which name the tools they give.
+  console.log("\nBuilding languages and tools catalogs...");
+  await buildLanguagesAndTools(dataDir, ownedSources);
+
   // 4. Backgrounds
   console.log("\nBuilding backgrounds catalog...");
   await buildBackgrounds(dataDir, ownedSources);
@@ -62,10 +66,6 @@ async function main() {
   // 8. Creatures (Bestiary)
   console.log("\nBuilding creatures catalog...");
   await buildCreatures(dataDir, ownedSources, config.options);
-
-  // 9. Languages & Tools
-  console.log("\nBuilding languages and tools catalogs...");
-  await buildLanguagesAndTools(dataDir, ownedSources);
 
   console.log("\nDone! All 12 catalogs emitted to", outputDir);
 }
@@ -558,28 +558,65 @@ async function buildBackgrounds(dataDir, ownedSources) {
   const deduped = deduplicate2024First(allBg, ownedSources);
   const entries = [];
 
+  const toolIds = new Set(
+    JSON.parse(await readFile(join(outputDir, "tools.json"), "utf8")).entries.map((entry) => entry.id),
+  );
   for (const bg of deduped.values()) {
     const name = bg.name;
     const id = toCatalogId(name);
-    const desc = strip5eTags(bg.entries?.[0] || "");
-
+    const desc = render5eEntries(bg.entries || []);
+    const abilities = backgroundAbilities(bg.ability);
+    const skills = (bg.skillProficiencies ?? []).flatMap((set) =>
+      Object.keys(set)
+        .filter((key) => set[key] === true)
+        .map(SKILL_ID),
+    );
+    const tools = (bg.toolProficiencies ?? []).flatMap((set) => Object.keys(set).filter((key) => set[key] === true));
+    const knownTools = tools.map(toCatalogId).filter((toolId) => toolIds.has(toolId));
+    // "magic initiate; cleric|xphb" names the feat before any ";" or "|".
+    const feats = (bg.feats ?? []).flatMap((set) => Object.keys(set).map((key) => toCatalogId(key.split(/[;|]/u)[0])));
+    // ponytail: the origin feat and tools are added as rows; the feat's own grants (Skilled's skills,
+    // Tough's hit points) are not applied, because only a catalog step's picks apply grants.
+    // Upgrade: an Origin feat catalog step taking the background's feat.
+    const adds = [
+      ...(feats.length ? [{ catalog: "features", ids: feats }] : []),
+      ...(knownTools.length ? [{ catalog: "tools", ids: knownTools }] : []),
+    ];
+    const grants = compactObject({
+      abilities: abilities ? { choose: abilities.choose } : undefined,
+      trained: skills.length ? { skills } : undefined,
+      entries: adds.length ? { add: adds } : undefined,
+    });
     entries.push({
       id,
       label: name,
-      summary: desc.slice(0, 300) || name,
-      rows: [
-        {
-          list: "features",
-          values: {
-            name: `Background: ${name}`,
-            text: desc.slice(0, 700),
-          },
-        },
-      ],
+      summary:
+        (abilities ? `Abilities: ${abilities.from.map((a) => a.toUpperCase()).join(", ")}. ` : "") +
+          (skills.length ? `Skills: ${skills.join(", ").replace(/_/g, " ")}. ` : "") +
+          (feats.length ? `Feat: ${feats.join(", ").replace(/-/g, " ")}.` : "") || name,
+      ...(Object.keys(grants).length ? { grants } : {}),
+      rows: [{ list: "features", values: { name: `Background: ${name}`, text: desc.slice(0, 700) } }],
     });
   }
 
   await writeCatalog("backgrounds.json", "backgrounds", entries);
+}
+
+/** A 2024 background's ability increase: +2 to one of its three abilities and +1 to another. The book
+ *  also allows +1 to all three; the sheet's grants hold one form, and +2/+1 is the one a build uses.
+ *  ponytail: the builder lets the +1 land on the +2's ability (+3 to one, which the rules forbid): a
+ *  grant's choices do not exclude each other. The suggested build never picks that. Upgrade: an Engine
+ *  `distinctFrom` on ability choices, or +1/+1/+1 ({count:3, amount:1}) when exactness matters more. */
+function backgroundAbilities(ability) {
+  const from = ability?.[0]?.choose?.weighted?.from?.filter((key) => ABILITIES.includes(key));
+  if (!from?.length) return undefined;
+  return {
+    from,
+    choose: [
+      { count: 1, amount: 2, from, upTo: 20 },
+      { count: 1, amount: 1, from, upTo: 20 },
+    ],
+  };
 }
 
 // 5etools stores a feat's category as a code: O origin, G general, FS fighting style (FS:P, FS:R), EB boon.
