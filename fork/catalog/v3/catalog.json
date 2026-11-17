@@ -1328,7 +1328,7 @@
         },
         "id": "gacha-forge",
         "name": "Gacha Forge",
-        "version": "1.27.5",
+        "version": "1.27.6",
         "description": "A complete gacha game mode. Describe a world and Gacha Forge builds the rest: banners to pull on, a cast the model writes and paints for you, story chapters told by a visual-novel narrator, and the battles, gear and events that grow around them. Install it, restart Marinara Engine when prompted, then open Home → Gacha Forge.",
         "engine": {
           "min": "2.5.1",
@@ -1617,8 +1617,8 @@
           },
           {
             "path": "client.js",
-            "sha256": "08eeacb2f5ee583e532fbfadeef3263ca2aef90531d63b23a85daf548a4c94af",
-            "bytes": 1921764
+            "sha256": "423c6b5b8b2212339e1d51c9c816403303ef758e7a12372ed485c5edaf8f260e",
+            "bytes": 1921902
           },
           {
             "path": "farm-asc.webp",
@@ -2092,8 +2092,8 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "6e99135da7e14959257860002a4478b2414cb245ebb35af5d77636120d2b23fa",
-            "bytes": 1033225
+            "sha256": "c1aec88696f1493205644d73875deb8dd963b3702f2d620b05482793e5f88f2e",
+            "bytes": 1036502
           },
           {
             "path": "skill-aoe_damage-dark.webp",
@@ -2945,9 +2945,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/gacha-forge.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/gacha-forge-1.27.5.zip",
-        "sha256": "a3a1581cb1d80e95ec491b57a64c7b8067120232c55051be68dab15d07849a0d",
-        "bytes": 9187385
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/gacha-forge-1.27.6.zip",
+        "sha256": "724e8ddd09593f56ad09a781a3602c6754e3a2a98db47566e45b45b197f0bd30",
+        "bytes": 9190800
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/gacha-forge/README.md"
     },
@@ -4041,7 +4041,7 @@
         },
         "id": "otome-forge",
         "name": "Otome Hearth",
-        "version": "0.34.2",
+        "version": "0.34.8",
         "description": "An otome game in its own Home tab, made from your own characters: love interests who remember what you chose, their messages to you, dates and mini-games, and wishes for outfits and memories paid for only with Starlight you earn. Install it, restart Marinara Engine when prompted, then open Home → Otome Hearth.",
         "engine": {
           "min": "2.5.1",
@@ -4075,13 +4075,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "f2b11c5fdc6fac9bc5ceca46a0ef72c5428c1433da594410df129082cef9e936",
-            "bytes": 731935
+            "sha256": "fe6561dec6715fb501c7be127fbe2e4373f3b02780f207c7c2253843f9b73bcd",
+            "bytes": 735499
           },
           {
             "path": "client.js",
-            "sha256": "fe0f6a951d94d0cd6cd14b5103c0e705e0dd75cca3b2b15a10b6bc2fc4eee3ec",
-            "bytes": 1416043
+            "sha256": "e4a571f3b43f6e985a94b5cb155197a149e65686a23df1ca95a1793d380833f4",
+            "bytes": 1416562
           },
           {
             "path": "otome-hearth-icon.png",
@@ -4110,9 +4110,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/otome-forge.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.34.2.zip",
-        "sha256": "5540374061f6c2f882507be5a9d411c87f089e3ceb91638f701cdb2a9dc3c0bc",
-        "bytes": 2299645
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.34.8.zip",
+        "sha256": "bd94b4ce425a8705c5453ec88723e1522226219e3003b2738234551a94a0c6b1",
+        "bytes": 2303728
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/otome-forge/README.md"
     },
@@ -5179,7 +5179,7 @@
         },
         "id": "slurp2",
         "name": "Slurp",
-        "version": "0.4.22",
+        "version": "0.4.24",
         "description": "A private social app for your characters. Turn characters and personas into Creators, post public or locked photos, and watch a simulated audience follow, subscribe, unlock, comment, and message them. By default, it is tuned for an adult experience. Install it, restart Marinara Engine when prompted, then open Home → Slurp.",
         "localizations": {
           "de": {
@@ -5248,13 +5248,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "f304880feaded0499c0c2fec857952d3cb99a58c4a63d731ee9a7a3a59fcb989",
-            "bytes": 2161890
+            "sha256": "6f1875f8ebc85cb973a2a8f6541a5a261d29e6a6b5dee2737f5d33590770b0b8",
+            "bytes": 2163855
           },
           {
             "path": "client.js",
-            "sha256": "771492fddb0eaa3163cf2313447f3017d4d9485ee9c5afe3a12be682393711a5",
-            "bytes": 2923360
+            "sha256": "c398fba05e316e4a333ba3ca302dcf930cbc28eed420b5cc5532ed5478441514",
+            "bytes": 2924165
           },
           {
             "path": "slurp2-logo.png",
@@ -5278,18 +5278,18 @@
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/de.json",
-            "sha256": "394c4b1e384b0f1082e56712718313bc7632231739c778e5e9902b6920b7c878",
-            "bytes": 245377
+            "sha256": "701032ef6c53c4a108fcc16080b62423eb2b0c9381f9605fd0d74c84920d8b5b",
+            "bytes": 245444
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/ko.json",
-            "sha256": "9f79272cadf3a149dac4732280aa6f56578aed696d836973f868e01aa2c430f6",
-            "bytes": 343233
+            "sha256": "9b1e3f8dc36b758be04228253c34c1c7f651f4d223367142e0770c5bbc2db5c0",
+            "bytes": 343297
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/pl.json",
-            "sha256": "c857473b5e9dad9063f8404a6c053ecd8ee87fbc686316fc3745dbebf3b2db08",
-            "bytes": 246995
+            "sha256": "1204e07bdaf5ff7e0a3a1408c86e9a55fb5673b9f392dded7eb672ef32ed9ef6",
+            "bytes": 247063
           }
         ],
         "permissions": [
@@ -5308,9 +5308,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/slurp2.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/slurp2-0.4.22.zip",
-        "sha256": "bce0c1553d690124c2b55cb9e8d621307ba10526ee9f1a13df8e883dbfa22ad6",
-        "bytes": 6152890
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/slurp2-0.4.24.zip",
+        "sha256": "683e2e459edb38beedb285af6691fa9d4f3eeb5628c54e3b9ab780ffb289cdfc",
+        "bytes": 6155859
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/slurp2/README.md"
     },
