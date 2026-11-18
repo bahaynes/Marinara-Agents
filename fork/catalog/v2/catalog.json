@@ -1328,7 +1328,7 @@
         },
         "id": "gacha-forge",
         "name": "Gacha Forge",
-        "version": "1.27.6",
+        "version": "1.27.7",
         "description": "A complete gacha game mode. Describe a world and Gacha Forge builds the rest: banners to pull on, a cast the model writes and paints for you, story chapters told by a visual-novel narrator, and the battles, gear and events that grow around them. Install it, restart Marinara Engine when prompted, then open Home → Gacha Forge.",
         "engine": {
           "min": "2.5.1",
@@ -1617,8 +1617,8 @@
           },
           {
             "path": "client.js",
-            "sha256": "423c6b5b8b2212339e1d51c9c816403303ef758e7a12372ed485c5edaf8f260e",
-            "bytes": 1921902
+            "sha256": "56dd4dc71a4a8500957b8d9749bce6c7734a4db2a9ab9d908ad327ce9aa5739b",
+            "bytes": 1922146
           },
           {
             "path": "farm-asc.webp",
@@ -2092,8 +2092,8 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "c1aec88696f1493205644d73875deb8dd963b3702f2d620b05482793e5f88f2e",
-            "bytes": 1036502
+            "sha256": "196d9c1870ee0d7996ae31d86d1f79c73f3f960e3e5c049ece7dfcfecb57e678",
+            "bytes": 1039673
           },
           {
             "path": "skill-aoe_damage-dark.webp",
@@ -2945,9 +2945,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/gacha-forge.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/gacha-forge-1.27.6.zip",
-        "sha256": "724e8ddd09593f56ad09a781a3602c6754e3a2a98db47566e45b45b197f0bd30",
-        "bytes": 9190800
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/gacha-forge-1.27.7.zip",
+        "sha256": "f278ae4c44a899b943c9ae16176fa99cd9c879043172137949e7b0b340caee7e",
+        "bytes": 9194215
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/gacha-forge/README.md"
     },
@@ -3690,7 +3690,7 @@
         },
         "id": "modern-life-sim",
         "name": "Modern Life Sim",
-        "version": "0.3.2",
+        "version": "0.3.3",
         "description": "A modern life sim in its own Home tab: a town on a clock, a job, rent and needs, and a cast drawn from your character cards whose relationships grow scene by scene, with a visual-novel narrator for the scenes that matter. Install it, restart Marinara Engine when prompted, then open Home → Life Sim.",
         "engine": {
           "min": "2.4.4",
@@ -3729,8 +3729,8 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "d5672272a8267f205537f524a3ab2d52cc0531f4567ea624c06de1e67f95c890",
-            "bytes": 1285097
+            "sha256": "782374460dcf682d4f8824b20c0d8efc566a0cabebaa6eef2bd3f492b2a99404",
+            "bytes": 1288127
           },
           {
             "path": "life-sim-icon.png",
@@ -3749,9 +3749,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/modern-life-sim.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/modern-life-sim-0.3.2.zip",
-        "sha256": "3d273253836209e5ecde45e4d4ec1c1e07744faaecf7d5685890338483aa51fb",
-        "bytes": 2255359
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/modern-life-sim-0.3.3.zip",
+        "sha256": "56fbea2deb717d357a79dee653bea719ac71c68d64b42f720923302fe5e94de9",
+        "bytes": 2258389
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/staging/packages/modern-life-sim/README.md"
     },
@@ -3844,15 +3844,15 @@
         "schemaVersion": 2,
         "capabilityApi": {
           "major": 1,
-          "minor": 826
+          "minor": 830
         },
         "builtAgainst": {
           "engineVersion": "2.5.2",
-          "engineCommit": "a690a029df73c9e68db4c2f746529a555a091b1e"
+          "engineCommit": "611557bc28a57e63dc634742f59f1769cc1c261c"
         },
         "id": "noodle",
         "name": "Noodle",
-        "version": "1.5.18",
+        "version": "1.5.19",
         "description": "A pretend social network where your characters post, share photos, and talk about your chats. Install it, restart Marinara Engine when prompted, then open Home → Noodle.",
         "localizations": {
           "de": {
@@ -3940,8 +3940,8 @@
           },
           {
             "path": "client.js",
-            "sha256": "aa858dbc33b8b848f65c191d444e0e95fa8a42f6969a22b4d02049c569cbc256",
-            "bytes": 840986
+            "sha256": "f395d52456b5e19af4fcd50949449ab775e165e7150082118bc925e8402fede1",
+            "bytes": 733953
           },
           {
             "path": "noodle-klusek.png",
@@ -3962,9 +3962,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/noodle.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/noodle-1.5.18.zip",
-        "sha256": "adc79d16e77816c1359ad31137994120197a4db29578821d15986e8113a0868d",
-        "bytes": 1406992
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/noodle-1.5.19.zip",
+        "sha256": "c4745727126d1014f0b74f7d4f27debd5bd84b2deca4427ffb194be59352e9f1",
+        "bytes": 1299959
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/noodle/README.md"
     },
@@ -4041,7 +4041,7 @@
         },
         "id": "otome-forge",
         "name": "Otome Hearth",
-        "version": "0.34.8",
+        "version": "0.36.2",
         "description": "An otome game in its own Home tab, made from your own characters: love interests who remember what you chose, their messages to you, dates and mini-games, and wishes for outfits and memories paid for only with Starlight you earn. Install it, restart Marinara Engine when prompted, then open Home → Otome Hearth.",
         "engine": {
           "min": "2.5.1",
@@ -4065,6 +4065,30 @@
             "iconPaths": [
               "otome-hearth-tab-heart.png"
             ]
+          },
+          "assets": {
+            "paths": [
+              "kitty/rose-1.webp",
+              "kitty/rose-2.webp",
+              "kitty/rose-3.webp",
+              "kitty/rose-4.webp",
+              "kitty/rose-5.webp",
+              "kitty/sky-1.webp",
+              "kitty/sky-2.webp",
+              "kitty/sky-3.webp",
+              "kitty/sky-4.webp",
+              "kitty/sky-5.webp",
+              "kitty/lemon-1.webp",
+              "kitty/lemon-2.webp",
+              "kitty/lemon-3.webp",
+              "kitty/lemon-4.webp",
+              "kitty/lemon-5.webp",
+              "kitty/mint-1.webp",
+              "kitty/mint-2.webp",
+              "kitty/mint-3.webp",
+              "kitty/mint-4.webp",
+              "kitty/mint-5.webp"
+            ]
           }
         },
         "files": [
@@ -4075,13 +4099,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "fe6561dec6715fb501c7be127fbe2e4373f3b02780f207c7c2253843f9b73bcd",
-            "bytes": 735499
+            "sha256": "939a38b5c11bc53f12d189494ccccd04fe0417c6ece56d4b8490cb8b9e54a272",
+            "bytes": 751492
           },
           {
             "path": "client.js",
-            "sha256": "e4a571f3b43f6e985a94b5cb155197a149e65686a23df1ca95a1793d380833f4",
-            "bytes": 1416562
+            "sha256": "4d0c70afdf0a6e1763bea62b6a0a6e680d10621a6c2eda8e1eb5d1b6211fae76",
+            "bytes": 1477986
           },
           {
             "path": "otome-hearth-icon.png",
@@ -4097,6 +4121,106 @@
             "path": "fonts/OFL.txt",
             "sha256": "42a08de2370044e2966c8158770a86c67a8b343c9422a1b30b8599d25c05dd5f",
             "bytes": 4558
+          },
+          {
+            "path": "kitty/rose-1.webp",
+            "sha256": "a8fff2369db54346e5ad83bfa149e5aa65e18480e454b88fc70bfa562197a62c",
+            "bytes": 36508
+          },
+          {
+            "path": "kitty/rose-2.webp",
+            "sha256": "b8537625617a05351f188d059322837db14db6c2fbf9007f0740f91c4ca9d38b",
+            "bytes": 43428
+          },
+          {
+            "path": "kitty/rose-3.webp",
+            "sha256": "6e548203b6ed43a3732479d14aef08d8da9cde9b8845ebbcc74fe6520581fa3f",
+            "bytes": 41082
+          },
+          {
+            "path": "kitty/rose-4.webp",
+            "sha256": "d175f4d5ba50fe335f7d5701befc03f42513ff09cb39cd60fc5d95b91ee5af12",
+            "bytes": 43380
+          },
+          {
+            "path": "kitty/rose-5.webp",
+            "sha256": "568e86876a38c03bd8dcad0fa693ee3b9b3505d6e89ea2eebbbfe7b8a1481772",
+            "bytes": 54750
+          },
+          {
+            "path": "kitty/sky-1.webp",
+            "sha256": "4fd419365acd42721100d99fdd452e58230347ef4ac9ed75f73955ece3a6e120",
+            "bytes": 37706
+          },
+          {
+            "path": "kitty/sky-2.webp",
+            "sha256": "34d2a9ad8075e4f3ec24c28f71cb1613cb0ef0052f7ffba76d89e8a2156eec07",
+            "bytes": 55588
+          },
+          {
+            "path": "kitty/sky-3.webp",
+            "sha256": "66388fc99f893ec21ef41e4f6bd8de9b1ec1422da3f5535296b41864e13ff2fc",
+            "bytes": 34736
+          },
+          {
+            "path": "kitty/sky-4.webp",
+            "sha256": "92d3bd3b31b027b9f7940b2678c3f97ac8a7b51d7d8e825c1f09512276214ed0",
+            "bytes": 40424
+          },
+          {
+            "path": "kitty/sky-5.webp",
+            "sha256": "e226f99949208c635c37d9a2fec61ce4d0f17122e42bcf48115d2ec457792cb8",
+            "bytes": 49598
+          },
+          {
+            "path": "kitty/lemon-1.webp",
+            "sha256": "af1fd6a8ca19b74990fa866719195f81152cd70d59b7c0d94145d8d66f5f83f8",
+            "bytes": 48394
+          },
+          {
+            "path": "kitty/lemon-2.webp",
+            "sha256": "31b1e30278b43b65a240912d322eb4a2e0ba68fce32bcb67cb967ac167e597da",
+            "bytes": 54832
+          },
+          {
+            "path": "kitty/lemon-3.webp",
+            "sha256": "bfa3c28ea0ffe4321760fa96087684534640afde94664229256b52020da921c5",
+            "bytes": 44764
+          },
+          {
+            "path": "kitty/lemon-4.webp",
+            "sha256": "17b60fd4a2d61a96ae9e561ab5e1cb0266915d0e28cb37856a0f2a53fd727ed5",
+            "bytes": 52402
+          },
+          {
+            "path": "kitty/lemon-5.webp",
+            "sha256": "97b76569a0dc3020d0a00ada4ef2c992f64732dd6a7f4f6f9712787b03cab3bc",
+            "bytes": 47516
+          },
+          {
+            "path": "kitty/mint-1.webp",
+            "sha256": "162946eb9004f60c328dcc8b0597356dd620906572cfffb70f013efb660b7a15",
+            "bytes": 55180
+          },
+          {
+            "path": "kitty/mint-2.webp",
+            "sha256": "49f524b3a190188b3092a62c0b5a06097d48fb2d22569c152efbc372fde8f301",
+            "bytes": 43578
+          },
+          {
+            "path": "kitty/mint-3.webp",
+            "sha256": "7a582bb5734c5fbd889e2e64f19f5be5b9922bf4b83d5ab044a57e9cd4112af5",
+            "bytes": 42108
+          },
+          {
+            "path": "kitty/mint-4.webp",
+            "sha256": "c8c51e33cc1bfaaa86b0f5377531971b3d323ae4e3063d8683622716c40aa915",
+            "bytes": 43720
+          },
+          {
+            "path": "kitty/mint-5.webp",
+            "sha256": "7567f0005de7ff1826e18f7bf114bcb833a1794c1e9d498f80deed74ac28cd51",
+            "bytes": 45000
           }
         ],
         "permissions": [
@@ -4110,9 +4234,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/otome-forge.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.34.8.zip",
-        "sha256": "bd94b4ce425a8705c5453ec88723e1522226219e3003b2738234551a94a0c6b1",
-        "bytes": 2303728
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.36.2.zip",
+        "sha256": "e4fa01ce05cc1167c0329fe4de9401d66e5376dcbf958574f4a1a035ed273549",
+        "bytes": 3301726
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/otome-forge/README.md"
     },
@@ -4290,7 +4414,7 @@
         },
         "id": "quartermaster",
         "name": "Quartermaster",
-        "version": "0.1.33",
+        "version": "0.1.34",
         "description": "An RPG character sheet and inventory for Roleplay: equip gear around your persona's portrait, save outfits, get AI art for items, and let it keep everything in step with the story. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay mode.",
         "engine": {
           "min": "2.4.6",
@@ -4318,13 +4442,13 @@
           },
           {
             "path": "client.js",
-            "sha256": "bb328e5d0887e067d2a2b554be19149875453b944aadc7ed5e7b761575a227fc",
+            "sha256": "e9347282a5d298ef8d5bb105602e0527d2e51e6bfc92f65e11dadfce82efab04",
             "bytes": 356554
           },
           {
             "path": "server.mjs",
-            "sha256": "8bbb7bc59705d9f0a57095920548c6d7a000aa7ecd6d8dcac06e8dd4f0be9ec0",
-            "bytes": 163277
+            "sha256": "a3ccf6fbf1e330c0b37be9ec42504ca71240612c8fb2dcb234db479bfef2feab",
+            "bytes": 164995
           },
           {
             "path": "icons/armor_legs.webp",
@@ -4448,9 +4572,9 @@
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/quartermaster.png",
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/quartermaster/README.md",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/quartermaster-0.1.33.zip",
-        "sha256": "c660f91a28d7db6a8ce3f968682e66ea8e96affac4aaf72c1fac83e1d4d50d82",
-        "bytes": 564311
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/quartermaster-0.1.34.zip",
+        "sha256": "e1cab4837e77753f088393eef1d4dffbb3ff84a381a0086c895343f70dc2de59",
+        "bytes": 566029
       }
     },
     {
@@ -5171,15 +5295,15 @@
         "schemaVersion": 2,
         "capabilityApi": {
           "major": 1,
-          "minor": 819
+          "minor": 830
         },
         "builtAgainst": {
           "engineVersion": "2.5.2",
-          "engineCommit": "c18c1af639cd2c253c13f8ca392ac450065025d3"
+          "engineCommit": "611557bc28a57e63dc634742f59f1769cc1c261c"
         },
         "id": "slurp2",
         "name": "Slurp",
-        "version": "0.4.24",
+        "version": "0.4.27",
         "description": "A private social app for your characters. Turn characters and personas into Creators, post public or locked photos, and watch a simulated audience follow, subscribe, unlock, comment, and message them. By default, it is tuned for an adult experience. Install it, restart Marinara Engine when prompted, then open Home → Slurp.",
         "localizations": {
           "de": {
@@ -5248,13 +5372,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "6f1875f8ebc85cb973a2a8f6541a5a261d29e6a6b5dee2737f5d33590770b0b8",
-            "bytes": 2163855
+            "sha256": "dc21938eb041caf555d46e662c171152b6e3d8c8c58a447d17722d8774124717",
+            "bytes": 2163180
           },
           {
             "path": "client.js",
-            "sha256": "c398fba05e316e4a333ba3ca302dcf930cbc28eed420b5cc5532ed5478441514",
-            "bytes": 2924165
+            "sha256": "9d6384a84244de07f96c44f3fb3d455e0bdfd9d3ee93040cd7700a5b57be623e",
+            "bytes": 2920581
           },
           {
             "path": "slurp2-logo.png",
@@ -5278,18 +5402,18 @@
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/de.json",
-            "sha256": "701032ef6c53c4a108fcc16080b62423eb2b0c9381f9605fd0d74c84920d8b5b",
-            "bytes": 245444
+            "sha256": "fd1e46cedc64ee2194140c35a66cfc0c05e829e8fbc17faf3da02bfc149b6490",
+            "bytes": 247119
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/ko.json",
-            "sha256": "9b1e3f8dc36b758be04228253c34c1c7f651f4d223367142e0770c5bbc2db5c0",
-            "bytes": 343297
+            "sha256": "59bf6207a623f2eeff40f5f5304501b5303b09e87499d64ca2ef7e8e62c0029d",
+            "bytes": 344807
           },
           {
             "path": "src/engine/packages/client/src/slp/locales/pl.json",
-            "sha256": "1204e07bdaf5ff7e0a3a1408c86e9a55fb5673b9f392dded7eb672ef32ed9ef6",
-            "bytes": 247063
+            "sha256": "bafc238a0079bc8aee56d2a13a91b41b42205eaf7d25956feaee565cbe9933c3",
+            "bytes": 249403
           }
         ],
         "permissions": [
@@ -5308,9 +5432,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/slurp2.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/slurp2-0.4.24.zip",
-        "sha256": "683e2e459edb38beedb285af6691fa9d4f3eeb5628c54e3b9ab780ffb289cdfc",
-        "bytes": 6155859
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/slurp2-0.4.27.zip",
+        "sha256": "e4a5a192c98783b69359f9b9d5e0538dc64db643e055b4ce795a819a9289bc85",
+        "bytes": 6157125
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/slurp2/README.md"
     },
@@ -5368,7 +5492,7 @@
         },
         "id": "story-writer",
         "name": "Story Writer",
-        "version": "0.2.0",
+        "version": "0.4.0",
         "description": "A co-writing book. Pick a connection, your characters, personas and lorebooks, describe the story, and the model writes it chapter by chapter while you guide it with an author's note and edit anything on the page. Install it, restart Marinara Engine when prompted, then open Home → Story Writer.",
         "engine": {
           "min": "2.5.1",
@@ -5410,13 +5534,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "51b0d291c248e9f0eca322233ad1a57de6a2fe69e592b4a1fbfbda053eb05d98",
-            "bytes": 14027
+            "sha256": "b8df69c5523aa01bcccb70e9f9c47a5734d05ec35cad362f11b86b68c8a3afd9",
+            "bytes": 14140
           },
           {
             "path": "client.js",
-            "sha256": "c16ce04d42c33c3aa28ff58e78a4a4ea4f451d395a92b960dac87ba76656353a",
-            "bytes": 219920
+            "sha256": "17d72288934a66b2909e7b07eb9d8ba81352ec710caca7aa0ab4880d043bb4ee",
+            "bytes": 241913
           },
           {
             "path": "story-writer-icon.png",
@@ -5454,9 +5578,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/story-writer.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/story-writer-0.2.0.zip",
-        "sha256": "af14d99ff9780d9d344fc83c7d73b304c355e9125df4fa7e3f73b4c68ed821ba",
-        "bytes": 624271
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/story-writer-0.4.0.zip",
+        "sha256": "1c17b22f5a8165532e4e950b9d676bef43011a04777784c35f78804d109d4efc",
+        "bytes": 646377
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/story-writer/README.md"
     },
@@ -5848,7 +5972,7 @@
         },
         "id": "hierarchical-maps",
         "name": "World Maps",
-        "version": "1.8.0",
+        "version": "1.8.1",
         "description": "Adds world maps to Roleplay and Game, from whole regions down to single rooms, with art and travel between places. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
         "engine": {
           "min": "2.5.1",
@@ -5884,13 +6008,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "08bad852d9b2193d0106305330e2c92475f854c9ffd0bf11e74bc8abdaeb4646",
-            "bytes": 137268
+            "sha256": "48d18d55d23e1e42070c20efbe3f5521c79d69ec6ec231b106aab5e6d5f84d0e",
+            "bytes": 137872
           },
           {
             "path": "client.js",
-            "sha256": "94f946e904c6e6570a9f6a0cdf852d132ba1b878079352dc441c883ea9b9e09b",
-            "bytes": 444643
+            "sha256": "1faef7f5833ac25bdd22d25ff4d7abe08c91d65b8eeedf9e3c70493b3b8942bf",
+            "bytes": 444679
           }
         ],
         "permissions": [
@@ -5908,9 +6032,9 @@
       "category": "tracker",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/hierarchical-maps.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/hierarchical-maps-1.8.0.zip",
-        "sha256": "20a4f7304221ef895ce98997200b3f0e411b085d3fd3ebdf3704da305a797a78",
-        "bytes": 584427
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/hierarchical-maps-1.8.1.zip",
+        "sha256": "7439a62f0a6d3e26af50bba9967dec910f3955d63e1d39679833652ba463b7cd",
+        "bytes": 585067
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Engine/blob/main/docs/agents/hierarchical-maps.md"
     },
