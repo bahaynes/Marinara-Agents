@@ -3330,7 +3330,7 @@
         },
         "id": "long-term-memory",
         "name": "Long-Term Memory",
-        "version": "1.6.3",
+        "version": "1.6.4",
         "description": "Remembers important things from your chats, characters, and lorebooks, and brings them back when they matter. Enable it per chat from Chat Settings → Agents → Long-Term Memory. In Roleplay and Game, you can also add it from Chat Settings → Agents → Misc Agents.",
         "engine": {
           "min": "2.5.2",
@@ -3397,13 +3397,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "1cdba8e406420daab8be9b15fc3d158a82ca0bf4c21f12e2eb8ef14a7db3ec11",
-            "bytes": 562095
+            "sha256": "0c5bd85dc921a64f2359442177cc36c0b35234a7dfebfb27253f71f4c6fa4efd",
+            "bytes": 562311
           },
           {
             "path": "client.js",
-            "sha256": "d652ea83de8fcfc4addbd96aa981fa30d032b65809e52377d0033165528d01d4",
-            "bytes": 1071083
+            "sha256": "59362be6dbf3bd8cfa20a434a495019315460f0016e199e9752a92be20c0e69d",
+            "bytes": 1072025
           },
           {
             "path": "assets/onboarding/activity-log-small.webp",
@@ -3559,9 +3559,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/long-term-memory.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/long-term-memory-1.6.3.zip",
-        "sha256": "a1e42513e49749d0e7bbb200b14add3bc1ec3f1d80c17c1da97e53e540581d6e",
-        "bytes": 3520417
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/long-term-memory-1.6.4.zip",
+        "sha256": "fb1faf855861bf6079998c122737a314b51d88e624416c8b5ffa61624f091541",
+        "bytes": 3521575
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents#long-term-memory"
     },
@@ -4041,7 +4041,7 @@
         },
         "id": "otome-forge",
         "name": "Otome Hearth",
-        "version": "0.36.2",
+        "version": "0.36.8",
         "description": "An otome game in its own Home tab, made from your own characters: love interests who remember what you chose, their messages to you, dates and mini-games, and wishes for outfits and memories paid for only with Starlight you earn. Install it, restart Marinara Engine when prompted, then open Home → Otome Hearth.",
         "engine": {
           "min": "2.5.1",
@@ -4099,13 +4099,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "939a38b5c11bc53f12d189494ccccd04fe0417c6ece56d4b8490cb8b9e54a272",
-            "bytes": 751492
+            "sha256": "f6d543bf009b049bf3db1cb3d06c0cd1a205cf070cd91f059e852a621b5e87e1",
+            "bytes": 754485
           },
           {
             "path": "client.js",
-            "sha256": "4d0c70afdf0a6e1763bea62b6a0a6e680d10621a6c2eda8e1eb5d1b6211fae76",
-            "bytes": 1477986
+            "sha256": "b71ae328ec87e4d9ba8df15fbeda3eb9de4cb69bceb2aa92d81098dba5dc9e29",
+            "bytes": 1478002
           },
           {
             "path": "otome-hearth-icon.png",
@@ -4234,9 +4234,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/otome-forge.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.36.2.zip",
-        "sha256": "e4fa01ce05cc1167c0329fe4de9401d66e5376dcbf958574f4a1a035ed273549",
-        "bytes": 3301726
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.36.8.zip",
+        "sha256": "b5c9556562a13e8adb67c3cc2ce64fd2a3bb6ad0f8bfab4859d93a5a95d3224c",
+        "bytes": 3304735
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/otome-forge/README.md"
     },
