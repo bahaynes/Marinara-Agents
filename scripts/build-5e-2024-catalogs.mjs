@@ -12,6 +12,23 @@ import { fileURLToPath } from "node:url";
 import { loadOwnedConfig, deduplicate2024First, toCatalogId } from "./lib/5etools-loader.mjs";
 import { strip5eTags, render5eEntries, extract5eMechanics } from "./lib/5etools-tags.mjs";
 
+/** The 5e damage types, as a creature attack's `damage.type` names them. */
+const DAMAGE_TYPES = new Set([
+  "acid",
+  "bludgeoning",
+  "cold",
+  "fire",
+  "force",
+  "lightning",
+  "necrotic",
+  "piercing",
+  "poison",
+  "psychic",
+  "radiant",
+  "slashing",
+  "thunder",
+]);
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, "..");
 const configPath = join(repoRoot, "fork/config/5e-2024-sources.json");
@@ -1396,13 +1413,26 @@ async function buildCreatures(dataDir, ownedSources, options) {
         seenActionIds.add(actId);
 
         const hitMatch = JSON.stringify(act).match(/\{@hit\s+(\d+)\}/i);
-        const dmgMatch = JSON.stringify(act).match(/\{@damage\s+([1-9]\d{0,2}d[2-9]\d*(?:[+-]\d+)?)\}/i);
+        // 5etools writes the bonus spaced ("{@damage 1d4 + 3}") and the type after it ("Piercing damage").
+        const dmgMatch = JSON.stringify(act).match(
+          /\{@damage\s+([1-9]\d{0,2}d(?:[2-9]|[1-9]\d{1,2}))(?:\s*([+-])\s*(\d+))?\}\)?\s*([A-Za-z]+)?/i,
+        );
+        const dmgFlat = dmgMatch?.[3] ? parseInt(dmgMatch[3], 10) * (dmgMatch[2] === "-" ? -1 : 1) : 0;
+        const dmgType = dmgMatch?.[4]?.toLowerCase();
         actions.push({
           id: actId,
           name: actName,
           budget: "action",
           ...(hitMatch ? { toHit: parseInt(hitMatch[1], 10) } : {}),
-          ...(dmgMatch ? { damage: { dice: dmgMatch[1].replace(/\s+/g, "") } } : {}),
+          ...(dmgMatch
+            ? {
+                damage: {
+                  dice: dmgMatch[1],
+                  ...(dmgFlat ? { flat: dmgFlat } : {}),
+                  ...(dmgType && DAMAGE_TYPES.has(dmgType) ? { type: dmgType } : {}),
+                },
+              }
+            : {}),
         });
       }
     }
