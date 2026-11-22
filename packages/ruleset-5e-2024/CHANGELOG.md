@@ -1,5 +1,9 @@
 # 5e (2024 Edition)
 
+## 1.1.2 - 2026-11-21
+
+- The narrator is told it plays the 2024 rules (SRD 5.2.1), not SRD 5.1.
+
 ## 1.1.1 - 2026-11-15
 
 - Fixed install: 1.1.0 again had Detect Poison and Disease see through a potion-of-poison fake this ruleset doesn't make, and 2014's ritualNeeds. The 1.0.5 fixes are now part of the build.
