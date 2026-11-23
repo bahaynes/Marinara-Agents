@@ -2,6 +2,9 @@
 
 Status: **draft for review, nothing built.** Written 2026-10-25 after reviewing the Engine and `fork/packages`.
 
+> **2026-11-22:** memory and continuity work now starts from `plan/continuity-ledger/` (index, TODO, spec). This doc
+> remains the source for chronology (4.2), sealed storage and the leak check (12.4), and the story bible.
+>
 > **Superseded in part, 2026-11-01 (Ben).** Thread, seed and knowledge tracking moves into one new plugin, specified in
 > `minecraftdocker/docs/llm/story-threads-plan.md`. As a result:
 > - `foreshadow-vault`, `directors-whisper` and `narrative-architect` are **deleted**, not kept, merged or extended
