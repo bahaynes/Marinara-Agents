@@ -1,6 +1,6 @@
 # Continuity Ledger: plan index
 
-**Priority one** for memory and continuity work. Status: spec v1.2, waiting on Ben's phase choice (Q0) (Ben, 2026-11-22). Start here. Do not start a new design or eval in
+**Priority one** for memory and continuity work. Status: spec v1.2, decisions in; G2 in progress (Ben, 2026-11-22). Start here. Do not start a new design or eval in
 this area without first updating this folder (memory: `build_dont_rederive`).
 
 - `spec.md`: what we build (P1 = who knows what, on Gemma 4).
@@ -18,12 +18,13 @@ this area without first updating this folder (memory: `build_dont_rederive`).
 - [x] Audit agents, package API and player corrections (2026-11-22).
 - [x] Spec v1, red team, spec v1.1 (2026-11-22).
 - [x] G1 first pass: 19 personal notes classified by hand (`red-team.md`). Who-knows-what covers 1 of 8 continuity notes.
-- [ ] **Ben: Q0, choose the first phase** (spec section 7). Also Q1, Q2 and the gate bars (Q4).
+- [x] Ben decided Q0–Q4 (2026-11-22, spec 7): relationships and knowledge first; persona and named NPCs are cast; bar = automated improvement over baseline.
 - [ ] Keep writing personal notes; re-run G1 at about 50 notes.
 - [ ] Edit records: small Engine change keeping pre-edit text on hand edits (spec 1), own commit, after Ben's go-ahead.
 - [ ] Verify Erin's live AM recall in Loki; then she can stop pasting the chapter archive (spec 1.1, her call).
-- [ ] If who-knows-what: G2 leak A/B (hand-written blocks, main model), then G3 Gemma classifier, then build (spec 4).
-- [ ] Before any build: trace whether post-processing agents run on impersonate turns.
+- [ ] G2: re-runnable leak test script, fixed scene set from Erin's chat (read-only), hand-written blocks vs none.
+- [ ] G3: same test with Gemma-built blocks. Then build (spec 4).
+- [ ] Blocker before build: trace whether post-processing agents run on impersonate turns (Q2).
 - [ ] Each later phase gets its own spec, in the order G1 gives.
 
 ## Evidence and results

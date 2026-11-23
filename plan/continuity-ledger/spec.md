@@ -1,6 +1,6 @@
 # Continuity Ledger: spec v1.2
 
-Status: **red-teamed; waiting on Ben's phase decision (Q0).** v1 2026-11-22; v1.1 after `red-team.md`; v1.2 adds edit records and Erin's codex gap (1.1).
+Status: **Q0–Q4 decided; G2 leak test in progress.** v1 2026-11-22; v1.1 after `red-team.md`; v1.2 adds edit records and Erin's codex gap (1.1).
 Index, TODO and links: `README.md`.
 
 ## 1. Goal
@@ -155,15 +155,25 @@ partly, because most of those are names reused across stories, not inside one.
 Scene logic (the narrator misreading the current scene, ignoring input or inventing a choice for the persona) is the
 largest group in Ben's notes, but it is broad and is not a tracker problem. It stays out of this plan.
 
-## 7. Open questions for Ben
+## 7. Decisions (Ben, 2026-11-22)
 
-The main decision is Q0, which phase goes first. The recommendation, from section 1.1, is relationships and
-knowledge, because that is the one part of Erin's codex nothing in Marinara produces, and the archive and current
-scene are covered or covered by config. The gates still apply: the G2 leak test and the G3 Gemma test, run on
-Erin-style scenes from her chat (read-only).
+**Q0: relationships and knowledge go first.** The work starts with the G2 leak test on scenes from Erin's chat.
 
-Q1 is whether absent characters' ignorance of openly discussed events is tracked. Q2 is whether the persona counts as
-cast: the 11-01 rule keeps the persona out of the gate, but Erin plays by impersonate, so the model writes the
-persona's lines as well. Q4 is the bar for G2 and G3, set before each run. Two config steps for Erin's chat (turning
-on world state, and a constant rules entry) and the edit-record Engine change each need Ben's go-ahead, and anything
-on Erin's instance needs Erin to want it.
+**Q1: absent characters' ignorance of open talk is not tracked.** It overlaps with what Advanced Memory already
+recalls, and it does not scale: every absent character would need a "does not know" line for every open event.
+The decision also has a consequence for "cast". Villains and other important figures are usually not cards, so cast
+means the characters, the persona *and* named NPCs (npc-registry when present, otherwise names the extractor sees on
+the page). Card-only membership would miss most of the people who keep secrets.
+
+**Q2: the persona counts as cast.** Impersonate is a first-class way to play. The persona can know, not know, tell
+and be told like anyone else. Whether post-processing agents run on impersonate turns becomes a blocker to check
+before building, not a nice-to-have.
+
+**Q4: the bar is any automated, measured improvement over the baseline.** There is no fixed threshold. G2 passes if
+hand-written blocks lower the leak rate against no block, judged automatically. G3 passes if Gemma-built blocks do
+the same. Gemma's output is judged by its effect on leaks, not by its agreement with hand labels. Later versions must
+beat the previous version on the same automated test. That needs the leak test to be a re-runnable script with a
+fixed scene set, not a one-off.
+
+Still open: the two config steps for Erin's chat (world state on, a constant rules entry) and the edit-record Engine
+change each need Ben's go-ahead, and anything on Erin's instance needs Erin to want it.
