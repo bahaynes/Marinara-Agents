@@ -1,13 +1,43 @@
-# Continuity Ledger: spec v1.1
+# Continuity Ledger: spec v1.2
 
-Status: **red-teamed; waiting on Ben's phase decision (Q0).** v1 2026-11-22, v1.1 same day after `red-team.md`.
+Status: **red-teamed; waiting on Ben's phase decision (Q0).** v1 2026-11-22; v1.1 after `red-team.md`; v1.2 adds edit records and Erin's codex gap (1.1).
 Index, TODO and links: `README.md`.
 
 ## 1. Goal
 
-Fewer continuity breaks that a player notices and has to fix. The measure is the player's own flags: Ben's personal
-notes (`message.extra.privateNote`), classified by hand. Fact-coverage scores from model-made fact lists are not
-the measure.
+Fewer continuity breaks that a player notices and has to fix, and, concretely, **Erin no longer hand-maintaining a
+ChatGPT codex** to keep her story straight (section 1.1).
+
+The measure is what players actually had to do: personal notes (`message.extra.privateNote`), classified by hand,
+and hand edits of generated messages, which we want as few as possible. Today an edit leaves no trace: the Engine
+overwrites the message and its stored swipe, so 11-22 found zero detectable edits in Erin's chat. Recording them needs
+one small, generic Engine change, kept in its own commit: on a user edit of a generated message, keep the pre-edit
+text and a timestamp in the message's `extra`. That is an edit record, not tracker code, so it fits P4. Fact-coverage
+scores from model-made fact lists are not the measure.
+
+### 1.1 What Erin's codex does that Marinara does not
+
+Erin rebuilds a codex in ChatGPT and imports two things by hand. The first is a lorebook of five entries: the current
+scene (constant), a relationship map, character profiles, world and mysteries, and continuity rules. The second is a
+chapter archive she pastes section by section into a vector lorebook. Set against what runs in her chat today
+(character tracker, persona stats, quest, Lorebook Keeper, CYOA, illustrator, aside):
+
+The chapter archive is what Advanced Memory's scene records already are. After her 11-22 re-scan they are 33 scenes
+of about 15 messages, and they scored well above her codex on the same facts. Whether the live recall works for her
+is still unverified (the Loki check in the TODO). Once it is, she can stop pasting the archive.
+
+The current-scene entry is mostly tracker state: place, time and who is present (world state, which she does not
+run, plus the character tracker), and open threads (quest). Its value over the trackers is that it is *correct*.
+Her own canon audit lists stale tracker and Keeper entries ("Current Scene" entries from places she left days ago).
+The fix there is retiring stale entries, not a new tracker.
+
+The continuity rules (a minor's age, what a magical bond does not imply, which secrets are card-only) are per-chat
+rules she writes once. A constant entry in the chat's own lorebook already does this; no build needed.
+
+That leaves the relationship map and the who-knows-what table: her codex file 07, which carries a "do not assume"
+column on every row. Nothing in Marinara produces either with message-cited "since" and "not yet" lines. Her play
+style, where the narrator runs conversations between characters, often with private telepathy, is exactly the case
+where the 11-01 plan found knowledge gating matters. **For Erin, relationships and knowledge are the gap.**
 
 ## 2. Decided principles
 
@@ -26,11 +56,12 @@ the measure.
 
 ## 3. Gates (in order)
 
-**G1: choose the phase from the notes.** Classify every personal note by cause, by hand (not GLM: its reroll labels
-were 3 of 4 wrong). The phase that addresses the most frequent cause a package can fix goes first.
-State on 2026-11-22 (19 notes; detail in `red-team.md`): 8 continuity notes, of which on-page who-knows-what covers
-1. Scene-logic failures (3), tropes (4, a separate category) and one each of intent, hidden-plot use, injury and place.
-**On this evidence, P1 below does not lead.** Q0 is Ben's.
+**G1: choose the phase from what players had to fix.** Classify every personal note and edit record by cause, by
+hand (not GLM: its reroll labels were 3 of 4 wrong). Ben's 19 notes so far (detail in `red-team.md`) are mostly
+scene-logic slips and recurring tropes, and only 1 of 8 continuity notes is about who knows what. But they come from
+Ben's chats and play style. Erin's need is documented by her codex (1.1), and it points at relationships and
+knowledge. The two sources disagree because the players differ, so the phase choice is a product decision (Q0), not a
+count.
 
 **G2: leak A/B, only if who-knows-what is chosen.** It costs nothing to build. Hand-written blocks on the main model,
 15–20 scenes where a present character lacks a fact, n ≥ 10 samples per arm. The arms are no block; a block naming
@@ -104,27 +135,35 @@ the G2 winner.
 
 Deferred until P1 shows value. When built, it needs the permissions `routes`, `ui`, `chat-read` and `storage`.
 
-## 5. Unaddressed leak paths (known, out of P1)
+## 5. Leak paths this does not close
 
-- Card and lorebook secrets the narrator always sees.
-- Advanced Memory summaries, Long-Term Memory and Lorebook Keeper re-inject facts with no witness record.
-- A narrator that knows everything: the block tells it who doesn't know, but cannot make it not know. The real fix
-  is separate cards with per-character history (`coherent-narrative.md`, "Separate cards").
+The narrator still sees everything on the cards and in the lorebooks, and Advanced Memory summaries, Long-Term Memory
+and Lorebook Keeper all re-inject facts with no record of who witnessed them. The ledger can tell the narrator who
+does not know something, but it cannot make the narrator not know it. The real fix for that is separate cards with
+per-character history ("Separate cards" in `coherent-narrative.md`), which is out of scope here. The G2 leak test
+measures how much the block helps despite this.
 
-## 6. Later phases (each needs its own spec; order from G1)
+## 6. Later phases
 
-- **Scene logic:** the narrator misreads the current scene, ignores input, or invents persona choices. The notes'
-  largest continuity group. Probably prompt or model work rather than a tracker; needs its own investigation.
-- **Tropes:** recurring names and props across stories. Not continuity; 4 of 19 notes.
-- **Conditions:** injuries with since M# and healing state.
-- **Money ledger:** transactions as ops, code keeps the balance.
-- **Relationship milestones:** decide against the parked relationship-tracker redesign.
-- **Cast:** npc-registry aliases rendered for present characters.
+Each later phase gets its own spec, in the order G1 and Q0 give. If relationships and knowledge go first for Erin,
+the relationship part folds into the same log rather than a second tracker: milestones with "since M#" and a
+"not yet" ceiling, which is the parked relationship-tracker redesign. Conditions such as injuries and healing, and a
+money ledger where code keeps the balance from reported transactions, are the next state pieces her codex tracks by
+hand. Rendering npc-registry aliases for present characters would cut the trope and naming slips in Ben's notes only
+partly, because most of those are names reused across stories, not inside one.
+
+Scene logic (the narrator misreading the current scene, ignoring input or inventing a choice for the persona) is the
+largest group in Ben's notes, but it is broad and is not a tracker problem. It stays out of this plan.
 
 ## 7. Open questions for Ben
 
-- **Q0:** which phase goes first, given G1 (P1 does not lead on 19 notes)?
-- **Q1:** track absent characters' ignorance of openly discussed events?
-- **Q2:** persona as a cast member? The 11-01 rule keeps the persona out of the gate; Erin plays by impersonate, so
-  the model writes the persona too.
-- **Q4:** the G2 and G3 bars, set before the runs.
+The main decision is Q0, which phase goes first. The recommendation, from section 1.1, is relationships and
+knowledge, because that is the one part of Erin's codex nothing in Marinara produces, and the archive and current
+scene are covered or covered by config. The gates still apply: the G2 leak test and the G3 Gemma test, run on
+Erin-style scenes from her chat (read-only).
+
+Q1 is whether absent characters' ignorance of openly discussed events is tracked. Q2 is whether the persona counts as
+cast: the 11-01 rule keeps the persona out of the gate, but Erin plays by impersonate, so the model writes the
+persona's lines as well. Q4 is the bar for G2 and G3, set before each run. Two config steps for Erin's chat (turning
+on world state, and a constant rules entry) and the edit-record Engine change each need Ben's go-ahead, and anything
+on Erin's instance needs Erin to want it.
