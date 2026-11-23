@@ -20,7 +20,8 @@ this area without first updating this folder (memory: `build_dont_rederive`).
 - [x] G1 first pass: 19 personal notes classified by hand (`red-team.md`). Who-knows-what covers 1 of 8 continuity notes.
 - [x] Ben decided Q0–Q4 (2026-11-22, spec 7): relationships and knowledge first; persona and named NPCs are cast; bar = automated improvement over baseline.
 - [ ] Keep writing personal notes; re-run G1 at about 50 notes.
-- [ ] Edit records: small Engine change keeping pre-edit text on hand edits (spec 1), own commit, after Ben's go-ahead.
+- [x] Edit records: `extra.handEdit {original, count, lastAt}` on hand edits (Engine fixup 135bd51d8e into the cache-report commit, 2026-11-22; not pushed).
+- [x] Continuity rules: Aside 0.9.0 "show to narrator" notes as author's notes (b7d758d1a; not pushed or installed).
 - [ ] Verify Erin's live AM recall in Loki; then she can stop pasting the chapter archive (spec 1.1, her call).
 - [ ] G2: re-runnable leak test script, fixed scene set from Erin's chat (read-only), hand-written blocks vs none.
 - [ ] G3: same test with Gemma-built blocks. Then build (spec 4).

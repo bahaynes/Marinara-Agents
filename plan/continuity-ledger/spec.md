@@ -32,7 +32,7 @@ Her own canon audit lists stale tracker and Keeper entries ("Current Scene" entr
 The fix there is retiring stale entries, not a new tracker.
 
 The continuity rules (a minor's age, what a magical bond does not imply, which secrets are card-only) are per-chat
-rules she writes once. A constant entry in the chat's own lorebook already does this; no build needed.
+rules she writes once. Aside 0.9.0 does this: a note toggled "show to narrator" becomes an author's note in every story turn (built 2026-11-22, Ben's suggestion).
 
 That leaves the relationship map and the who-knows-what table: her codex file 07, which carries a "do not assume"
 column on every row. Nothing in Marinara produces either with message-cited "since" and "not yet" lines. Her play
@@ -175,5 +175,5 @@ the same. Gemma's output is judged by its effect on leaks, not by its agreement 
 beat the previous version on the same automated test. That needs the leak test to be a re-runnable script with a
 fixed scene set, not a one-off.
 
-Still open: the two config steps for Erin's chat (world state on, a constant rules entry) and the edit-record Engine
-change each need Ben's go-ahead, and anything on Erin's instance needs Erin to want it.
+Still open: turning on world state in Erin's chat and installing Aside 0.9.0 there need Ben's go-ahead and Erin
+wanting them. The edit records and Aside's "show to narrator" are built (README TODO).
