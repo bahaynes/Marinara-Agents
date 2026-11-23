@@ -1,6 +1,6 @@
 # Continuity Ledger: plan index
 
-**Priority one** for memory and continuity work. Status: spec v1.3, evaluation in flight; next is the minimal build (Ben, 2026-11-22). Start here. Do not start a new design or eval in
+**Priority one** for memory and continuity work. Status: spec v1.3; package 0.1.0 built and Gemma-checked; next is installing it on one of Ben's chats (Ben, 2026-11-22). Start here. Do not start a new design or eval in
 this area without first updating this folder (memory: `build_dont_rederive`).
 
 - `spec.md`: what we build (P1 = who knows what, on Gemma 4).
@@ -24,11 +24,15 @@ this area without first updating this folder (memory: `build_dont_rederive`).
 - [x] Continuity rules: Aside 0.9.0 "show to narrator" notes as author's notes (b7d758d1a; not pushed or installed).
 - [ ] Verify Erin's live AM recall in Loki; then she can stop pasting the chapter archive (spec 1.1, her call).
 - [x] Offline A/B dropped: too expensive on the subscription (Ben, 2026-11-22). Evaluation is in flight (spec 3).
-- [ ] Minimal ledger build: extractor, store, block, Thompson assignment logged on the reply, Gemma leak judge. No panel.
-- [ ] Check the pieces on local Gemma (judge, rendering, at-risk detection) before any chat sees them.
-- [ ] Posterior report script for the matrix (by narrator model; partial pooling across chats).
-- [ ] Ben: agree a `know:` label prefix; set the clip and decision thresholds.
-- [ ] Blocker before build: trace whether post-processing agents run on impersonate turns (Q2).
+- [x] Minimal ledger package `fork/packages/continuity-ledger` 0.1.0 (d87d5647c + fixups; not pushed, not installed).
+- [x] Gemma checks (2026-11-22, Erin's M220-300 replay, `~/codex-eval/dartalia/ledger_replay_220_300_v2.json`):
+  80/80 valid JSON; tighter definitions cut 55 entries to 14. A judge folded into the extractor missed every
+  probe contradiction, so the judge is separate yes/no questions (two wordings per milestone; 6/6 probes each way).
+- [x] Posterior script `scripts/posterior.mjs` (Gibbs; validated on synthetic data). Pooling by narrator model: not yet.
+- [ ] Install on one of Ben's chats (needs Ben); add it as a matrix row; read the posterior at each matrix check.
+- [ ] Known gaps: near-duplicate entries (two wordings of one milestone); with agents blocked on impersonate, "secrets" everyone present shares (21 entries vs 14 on the M220-300 replay, `~/codex-eval/dartalia/ledger_replay_220_300_blocked.json`).
+- [ ] Ben: set the pOn floor/ceiling (placeholders 0.2/0.8) and the keep/switch-off thresholds. Labels: classified by reading, no prefix (Ben 11-22).
+- [x] Impersonate traced (11-22): post-processing runs on impersonated turns unless "Block agents" is ticked, and Ben and Erin both tick it (Erin: 1127 of 1245 impersonated turns since 11-01; agents ran on 117 of the 118 unblocked). The extractor now reads those messages as `player_turn` on the next reply; blocked-mode replay still caught every milestone.
 - [ ] Each later phase gets its own spec, in the order G1 gives.
 
 ## Evidence and results
