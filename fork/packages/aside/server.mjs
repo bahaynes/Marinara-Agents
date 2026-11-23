@@ -9,6 +9,7 @@ import {
   changeTurn,
   cleanSettings,
   emptyChat,
+  narratorNotesBlock,
   newNote,
   newTurn,
   reorderNotes,
@@ -142,6 +143,30 @@ export const deleteNote = (store, chatId, noteId) =>
     data.notes = data.notes.filter((n) => n.id !== noteId);
   });
 
+const MODES = new Set(["roleplay", "game"]);
+const parseMeta = (meta) => {
+  if (meta && typeof meta === "object") return meta;
+  try {
+    return JSON.parse(meta || "{}");
+  } catch {
+    return {};
+  }
+};
+/** Only chats that have Aside added as an agent get its notes in the prompt. */
+const isActive = (meta, mode) => {
+  const m = parseMeta(meta);
+  return MODES.has(mode) && m.enableAgents === true && Array.isArray(m.activeAgentIds) && m.activeAgentIds.includes(PACKAGE_ID);
+};
+
+/** Prompt-context contributor: the chat's "show to narrator" notes as author's notes. Read-only. */
+export function narratorContext(store) {
+  return async (request) => {
+    if (!request?.chatId || !isActive(request.chatMeta, request.mode)) return null;
+    const { data } = await store.load(request.chatId);
+    return narratorNotesBlock(data.notes);
+  };
+}
+
 export async function activate(context) {
   const runtime = context.api.runtime;
   const store = createStore(runtime.persistence.documents);
@@ -170,7 +195,9 @@ export async function activate(context) {
     },
     { prefix: `/api/${PACKAGE_ID}` },
   );
+  const releaseContext = context.api.registerPromptContext(narratorContext(store));
   return async () => {
+    await releaseContext();
     await release();
   };
 }

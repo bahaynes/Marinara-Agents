@@ -26,15 +26,16 @@ const newId = () => `${Date.now().toString(36)}${Math.random().toString(36).slic
 export function newNote(text, source = "user") {
   const clean = String(text ?? "").trim().slice(0, MAX_NOTE_CHARS);
   if (!clean) return null;
-  return { id: newId(), text: clean, pinned: false, source: source === "aside" ? "aside" : "user", createdAt: new Date().toISOString() };
+  return { id: newId(), text: clean, pinned: false, narrator: false, source: source === "aside" ? "aside" : "user", createdAt: new Date().toISOString() };
 }
 
-/** Apply `{text?, pinned?}` to a note; returns the notes list. Null when the note does not exist. */
+/** Apply `{text?, pinned?, narrator?}` to a note; returns the notes list. Null when the note does not exist. */
 export function changeNote(notes, id, patch) {
   const note = notes.find((n) => n.id === id);
   if (!note) return null;
   if (typeof patch.text === "string" && patch.text.trim()) note.text = patch.text.trim().slice(0, MAX_NOTE_CHARS);
   if (typeof patch.pinned === "boolean") note.pinned = patch.pinned;
+  if (typeof patch.narrator === "boolean") note.narrator = patch.narrator;
   return notes;
 }
 
@@ -98,4 +99,14 @@ export function asideUserMessage({ notes, thread, question, settings }) {
   if (earlier.length) parts.push(`<earlier_asides>\n${earlier.join("\n\n")}\n</earlier_asides>`);
   parts.push(`The player's question: ${String(question)}`, CLOSING);
   return parts.join("\n\n");
+}
+
+/**
+ * Notes the player switched to "show to narrator": a standing author's note in every story turn, in the player's
+ * order. Null when there are none, so the chat's prompt is unchanged.
+ */
+export function narratorNotesBlock(notes) {
+  const lines = notes.filter((n) => n.narrator === true).map((n) => `- ${n.text}`);
+  if (!lines.length) return null;
+  return `<author_notes>\nThe player's standing notes for this story. Keep to them in every reply:\n${lines.join("\n")}\n</author_notes>`;
 }

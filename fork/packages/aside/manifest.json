@@ -10,8 +10,8 @@
   },
   "id": "aside",
   "name": "Aside",
-  "version": "0.8.0",
-  "description": "Per-chat Notes and a /btw-style side chat with the narrator. Ask the narrator a question out of character, using the story so far and your pinned notes, without anything being added to the story. Add it in Chat Settings → Agents, then use the Aside button in the chat toolbar.",
+  "version": "0.9.0",
+  "description": "Per-chat Notes and a /btw-style side chat with the narrator. Ask the narrator a question out of character, using the story so far and your pinned notes, without anything being added to the story. Notes you switch to \"show to narrator\" become author's notes in every story turn. Add it in Chat Settings → Agents, then use the Aside button in the chat toolbar.",
   "engine": {
     "min": "2.5.1",
     "maxExclusive": "4.0.0"
@@ -32,6 +32,7 @@
   },
   "permissions": [
     "chat-read",
+    "prompt-context",
     "routes",
     "storage",
     "ui"
@@ -45,18 +46,18 @@
     },
     {
       "path": "aside.mjs",
-      "sha256": "482a65cf425909ead8eec675413601a0ace0b71fa0b96073276fb664e19b4bd1",
-      "bytes": 5069
+      "sha256": "e4d5ba8b43688cc536d2192b91ebbdd01c5c4e45e4149db4c01da233277fd85d",
+      "bytes": 5669
     },
     {
       "path": "client.js",
-      "sha256": "d545fbeecb46fddb52a6108fdbe93a5caabf0cac812e2709b69f4c85a0832879",
-      "bytes": 29843
+      "sha256": "baca1228d9cd6bcfc32d7ff50671e651dd23110cafd322029ffd598bbedc293e",
+      "bytes": 30590
     },
     {
       "path": "server.mjs",
-      "sha256": "34a504ff9401c7044652b9feeefc8b8518e366d16729e62b9c6e4682a6091e8f",
-      "bytes": 7348
+      "sha256": "12f40770ffe18dd56299c4b953add67dd3581e3a729b41a31803998e36d30328",
+      "bytes": 8329
     }
   ]
 }

@@ -98,3 +98,22 @@ test("side-thread messages can be edited and deleted", async () => {
   assert.deepEqual(left.thread.map((t) => t.text), ["fixed"]);
   assert.match((await prepare(store, "c", { question: "next" })).userMessage, /You answered: fixed/);
 });
+
+test("show to narrator: only flagged notes, in order, as author's notes; none means no block", async () => {
+  const { narratorNotesBlock } = await import("../aside.mjs");
+  const { narratorContext } = await import("../server.mjs");
+  const notes = [newNote("rule one"), newNote("loose"), newNote("rule two")];
+  changeNote(notes, notes[0].id, { narrator: true });
+  changeNote(notes, notes[2].id, { narrator: true });
+  const block = narratorNotesBlock(notes);
+  assert.match(block, /<author_notes>/);
+  assert.ok(block.indexOf("rule one") < block.indexOf("rule two"));
+  assert.doesNotMatch(block, /loose/);
+  assert.equal(narratorNotesBlock([newNote("x")]), null);
+
+  const store = { load: async () => ({ data: { notes } }) };
+  const on = { enableAgents: true, activeAgentIds: ["aside"] };
+  assert.match(await narratorContext(store)({ chatId: "c", chatMeta: on, mode: "roleplay" }), /rule one/);
+  assert.equal(await narratorContext(store)({ chatId: "c", chatMeta: { ...on, activeAgentIds: [] }, mode: "roleplay" }), null);
+  assert.equal(await narratorContext(store)({ chatId: "c", chatMeta: JSON.stringify(on), mode: "conversation" }), null);
+});
