@@ -186,7 +186,17 @@ largest group in Ben's notes, but it is broad and is not a tracker problem. It s
 
 ## 7. Decisions (Ben, 2026-11-22)
 
-**Q0: relationships and knowledge go first.** The work starts with the G2 leak test on scenes from Erin's chat.
+**Q0: relationships and knowledge go first.** Erin's most annoying continuity failures (Ben, 2026-11-22) are
+relationship ones, and they share one shape: the narrator does not know *since when* something has been true.
+A lover confessed only recently talks about the time before they met as if they had been dating all along. A
+character feels at home in an apartment they just moved into. The overarching goal is forgotten. Each is fixed by
+a dated entry: "since M412 (30 messages ago): A and B became lovers; before that they were not." These three are
+P1's target cases. The ledger therefore records **milestones** (a dated change for named people: became lovers,
+moved in, took on a goal) as well as **secrets** (a private fact and who knows it), and renders both with their
+age in messages.
+
+Labels: Ben would rather have accurate prefixes but forgets them. Until there are check boxes (an Engine change,
+later), notes are classified by reading them, not by prefix. The work starts with the G2 leak test on scenes from Erin's chat.
 
 **Q1: absent characters' ignorance of open talk is not tracked.** It overlaps with what Advanced Memory already
 recalls, and it does not scale: every absent character would need a "does not know" line for every open event.
