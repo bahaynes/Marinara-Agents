@@ -188,7 +188,21 @@ function parseFeaturesText(featureBlocks) {
     flush();
   }
 
-  return features;
+  return features.flatMap(splitChoiceFeature);
+}
+
+// D&D Beyond prints a class's chosen options (invocations, metamagic) as `| Name • source` sub-entries inside
+// one feature. Split them into their own rows so each choice is a feature of its own; the parent keeps its intro.
+const CHOICE_FEATURES = /^(eldritch invocations|metamagic|maneuvers?)$/i;
+function splitChoiceFeature(feature) {
+  if (!CHOICE_FEATURES.test(feature.name)) return [feature];
+  const parts = feature.text.split(/^\s*\|\s*(.+?)\s*•[^\n]*\n/m);
+  if (parts.length < 3) return [feature];
+  const rows = [{ ...feature, text: parts[0].trim() }];
+  for (let i = 1; i < parts.length; i += 2) {
+    rows.push({ name: parts[i].trim(), class: feature.class, text: (parts[i + 1] || "").trim() });
+  }
+  return rows;
 }
 
 export async function importDndBeyondPdf(pdfPath, options = {}) {
@@ -385,6 +399,13 @@ export async function importDndBeyondPdf(pdfPath, options = {}) {
 
   // 12. Features list
   const features = parseFeaturesText(featBlocks);
+  // The "<Class> Subclass" feature names the real subclass ("| Celestial Patron"); the regex above only guesses.
+  const subclassFeature = features.find((f) => /\bsubclass$/i.test(f.name) && /^\s*\|\s*\S/.test(f.text));
+  if (subclassFeature)
+    detectedSubclass = subclassFeature.text
+      .replace(/^\s*\|\s*/, "")
+      .split("\n")[0]
+      .trim();
 
   // 13. Proficiencies list
   const proficiencies = [];
