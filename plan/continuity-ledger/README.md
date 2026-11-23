@@ -1,6 +1,6 @@
 # Continuity Ledger: plan index
 
-**Priority one** for memory and continuity work. Status: spec v1.2, decisions in; G2 in progress (Ben, 2026-11-22). Start here. Do not start a new design or eval in
+**Priority one** for memory and continuity work. Status: spec v1.3, evaluation in flight; next is the minimal build (Ben, 2026-11-22). Start here. Do not start a new design or eval in
 this area without first updating this folder (memory: `build_dont_rederive`).
 
 - `spec.md`: what we build (P1 = who knows what, on Gemma 4).
@@ -23,8 +23,11 @@ this area without first updating this folder (memory: `build_dont_rederive`).
 - [x] Edit records: `extra.handEdit {original, count, lastAt}` on hand edits (Engine fixup 135bd51d8e into the cache-report commit, 2026-11-22; not pushed).
 - [x] Continuity rules: Aside 0.9.0 "show to narrator" notes as author's notes (b7d758d1a; not pushed or installed).
 - [ ] Verify Erin's live AM recall in Loki; then she can stop pasting the chapter archive (spec 1.1, her call).
-- [ ] G2: re-runnable leak test script, fixed scene set from Erin's chat (read-only), hand-written blocks vs none.
-- [ ] G3: same test with Gemma-built blocks. Then build (spec 4).
+- [x] Offline A/B dropped: too expensive on the subscription (Ben, 2026-11-22). Evaluation is in flight (spec 3).
+- [ ] Minimal ledger build: extractor, store, block, Thompson assignment logged on the reply, Gemma leak judge. No panel.
+- [ ] Check the pieces on local Gemma (judge, rendering, at-risk detection) before any chat sees them.
+- [ ] Posterior report script for the matrix (by narrator model; partial pooling across chats).
+- [ ] Ben: agree a `know:` label prefix; set the clip and decision thresholds.
 - [ ] Blocker before build: trace whether post-processing agents run on impersonate turns (Q2).
 - [ ] Each later phase gets its own spec, in the order G1 gives.
 

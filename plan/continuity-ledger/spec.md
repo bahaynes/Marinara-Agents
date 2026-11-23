@@ -1,6 +1,6 @@
-# Continuity Ledger: spec v1.2
+# Continuity Ledger: spec v1.3
 
-Status: **Q0–Q4 decided; G2 leak test in progress.** v1 2026-11-22; v1.1 after `red-team.md`; v1.2 adds edit records and Erin's codex gap (1.1).
+Status: **Q0–Q4 decided; evaluation is in flight with Bayesian updating (section 3); next is the minimal ledger build.** v1 2026-11-22; v1.1 after `red-team.md`; v1.2 adds edit records and Erin's codex gap (1.1).
 Index, TODO and links: `README.md`.
 
 ## 1. Goal
@@ -63,16 +63,45 @@ Ben's chats and play style. Erin's need is documented by her codex (1.1), and it
 knowledge. The two sources disagree because the players differ, so the phase choice is a product decision (Q0), not a
 count.
 
-**G2: leak A/B, only if who-knows-what is chosen.** It costs nothing to build. Hand-written blocks on the main model,
-15–20 scenes where a present character lacks a fact, n ≥ 10 samples per arm. The arms are no block; a block naming
-the fact; and a block saying only "A does not know about <topic>". A blind judge; Ben confirms a sample. Report the
-base leak rate too. No headroom or no reduction means stop.
+**G2 and G3 run in flight, not in a lab (Ben, 2026-11-22).** A clean offline A/B on the main model would cost
+hundreds of narrator generations on the Claude subscription, which is out of budget. The test runs instead on real
+chats that are being played and read, as rows of the narration matrix (memory `narration_matrix`). Local Gemma can
+check that the pieces work (the judge, the rendering, at-risk detection) before any chat sees them. It cannot stand
+in for the narrator, because leaking is a property of the narrator model.
 
-**G3: Gemma classifier.** Labelled exchanges (Ben labels ~50). Gemma answers one closed question per exchange: did
-someone learn something privately or keep something hidden, and who? Report precision and recall against the labels,
-on the real connection path (prompt-only JSON, see 5.2). The bar is set before the run.
+The ledger runs in **shadow mode** from the start. It extracts on every turn and always knows when a turn is
+*at risk*: a present cast member does not know an open item. Only at-risk turns count, which concentrates the data
+where the effect can show. On each at-risk turn, code decides whether to inject the block by **Thompson sampling**.
+It draws a leak rate for each arm from its current posterior and shows the block if the "on" draw is lower. The
+probability is clipped to a floor and ceiling (settings) so both arms keep collecting data. As evidence builds, the
+better arm is used more, which limits how often a worse arm reaches a story. The assignment is stored on the reply
+(`extra`, beside the edit record), so the matrix can read it later.
 
-Only after G2 and G3 pass: build sections 4–6.
+Each at-risk reply gets an outcome from three sources of different reliability:
+- **The player's flags:** personal notes and matrix bookmarks with a knowledge label (a `know:` prefix alongside
+  `cont:`, if Ben agrees). These are sparse but are the ground truth.
+- **Hand edits and rerolls of that reply:** these are recorded now, and are a weak signal.
+- **A local Gemma judge:** one closed question per (item, present non-knower) pair: "Does C show knowledge of X in
+  this reply?" It is free and automatic, but noisy.
+
+The model is a small Bayesian one, computed in code by grid or Gibbs sampling, with no library:
+- Each arm has a leak rate with a Beta prior.
+- The Gemma judge has a sensitivity and a specificity, each with its own Beta prior. They are learned from the
+  replies where a player flag exists or that Ben spot-checks, so a noisy judge still contributes in proportion to how
+  far it can be trusted.
+- The output is the posterior probability that the block lowers the leak rate, and by how much.
+- Chats are pooled by narrator model (Opus behaves differently from GLM), with partial pooling across chats on the
+  same model.
+
+There is no fixed sample size. The posterior is read whenever the matrix row is checked. The decision thresholds
+(keep the block when P(better) is high enough, switch it off when P(worse) is) are settings Ben sets. Per Q4, any
+automated, measured improvement counts, and each later version of the extractor or block wording must win the same
+in-flight comparison against the current one. Extractor quality (old G3) is measured the same way, through its
+effect on leaks rather than its agreement with hand labels.
+
+This reverses the red team's order on purpose. A minimal ledger (extractor, store, block, assignment logging; no
+panel) has to exist before anything can be measured, because only it can say which turns are at risk. The budget
+makes that the cheaper risk.
 
 ## 4. P1 knowledge ledger (built only if G1–G3 pass)
 
@@ -169,7 +198,7 @@ the page). Card-only membership would miss most of the people who keep secrets.
 and be told like anyone else. Whether post-processing agents run on impersonate turns becomes a blocker to check
 before building, not a nice-to-have.
 
-**Q4: the bar is any automated, measured improvement over the baseline.** There is no fixed threshold. G2 passes if
+**Q4: the bar is any automated, measured improvement over the baseline, measured in flight (section 3).** There is no fixed threshold. G2 passes if
 hand-written blocks lower the leak rate against no block, judged automatically. G3 passes if Gemma-built blocks do
 the same. Gemma's output is judged by its effect on leaks, not by its agreement with hand labels. Later versions must
 beat the previous version on the same automated test. That needs the leak test to be a re-runnable script with a
