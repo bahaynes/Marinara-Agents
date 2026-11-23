@@ -1,5 +1,9 @@
 # 5e (2024 Edition)
 
+## 1.1.4 - 2026-11-22
+
+- Added check-tag examples to the GM check guidance for skill checks (`Stealth`), saving throws (`Dexterity save`, noting bare `Dexterity` rolls an ability check), ability checks (`Strength`), and tool checks (`Thieves' tools` with `Dexterity`).
+
 ## 1.1.3 - 2026-11-21
 
 - Bestiary attacks keep their damage: 2,057 of 2,089 now carry dice, bonus and damage type, up from 678. A bonus written with spaces ("1d4 + 3") or a d10/d12/d100 die lost the damage, and some attacks took a rider's die as their own.
