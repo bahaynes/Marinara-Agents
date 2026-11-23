@@ -1,0 +1,36 @@
+[
+  {
+    "id": "continuity-ledger",
+    "name": "Continuity Ledger",
+    "description": "Dated milestones (became lovers, moved in, took on a goal) and secrets with who knows them, so the narrator knows since when something is true and who knows what.",
+    "author": "custom-mods",
+    "phase": "post_processing",
+    "enabledByDefault": false,
+    "defaultInjectAsSection": false,
+    "category": "tracker",
+    "modeAllowlist": [
+      "roleplay",
+      "game"
+    ],
+    "defaultTools": [],
+    "defaultSettings": {
+      "resultType": "context_injection",
+      "jsonContextOutput": true,
+      "contextSize": 4,
+      "maxTokens": 600,
+      "temperature": 0,
+      "contextSources": {
+        "chatHistory": true,
+        "characters": false,
+        "persona": false,
+        "activatedLorebookEntries": false,
+        "chatSummary": false,
+        "authorNotes": false,
+        "trackerData": false,
+        "recalledMemories": false
+      }
+    },
+    "execution": "pipeline",
+    "defaultPromptTemplate": "You keep the story ledger: dated facts the story must not get wrong about time and knowledge.\n\nRead the newly completed turn: the player's message(s) in player_turn (when present) and the reply in <assistant_response>. Use recent chat history only to understand who is meant; record nothing that only appears in history.\n\n<agent_runtime_context> holds:\n- entries: open ledger entries as [id, kind, people, text]\n- cast: main characters and the user's persona (named NPCs count as people too)\n- player_turn (optional): the player's message(s) this reply answers; they are part of the turn\n\nReturn ONLY one JSON object: {\"ops\": [...]}\n\nOperations:\n- {\"op\":\"milestone\",\"who\":[\"Name\",\"Name\"],\"text\":\"...\"} ONLY for these changes, which later turns must date: two people become a couple, get engaged, marry or break up; someone moves into or leaves a home; someone takes on, completes or gives up a major goal; someone is badly hurt, recovers, is captured or freed. Text is the new state in a few words (\"became lovers\", \"moved into the flat above the bakery\"). Not a milestone: nicknames and titles, small steps of progress, moods, promises, plans, conversations.\n- {\"op\":\"secret\",\"who\":[\"Name\"],\"text\":\"...\"} ONLY when this turn shows something kept from a named person: a whisper, a telepathic exchange, a lie, a hidden identity, something told to some people and not others, or something overheard. who = everyone who knows it after this turn. Text is the fact in one sentence. Not a secret: feelings, plans or facts the people present all share.\n- {\"op\":\"tell\",\"item\":\"<id>\",\"who\":[\"Name\"]} when someone learns an existing secret in this turn.\n- {\"op\":\"end\",\"item\":\"<id>\"} when an existing entry stops being true or a secret becomes known to everyone.\n\nRules:\n- Use people's names as the story writes them.\n- Most turns change nothing; then return {\"ops\": []}.\n- Never output reasoning, markdown, or text outside the JSON."
+  }
+]
