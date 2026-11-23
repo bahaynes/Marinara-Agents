@@ -1,5 +1,9 @@
 # 5e (2024 Edition)
 
+## 1.1.5 - 2026-11-22
+
+- Fixed `Poison Spray` in the spells catalog: removed the leftover 2014 Constitution save and set its range to 30 ft for the 2024 ranged spell attack.
+
 ## 1.1.4 - 2026-11-22
 
 - Added check-tag examples to the GM check guidance for skill checks (`Stealth`), saving throws (`Dexterity save`, noting bare `Dexterity` rolls an ability check), ability checks (`Strength`), and tool checks (`Thieves' tools` with `Dexterity`).
