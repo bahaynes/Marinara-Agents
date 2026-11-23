@@ -1161,7 +1161,7 @@
         },
         "id": "continuity-ledger",
         "name": "Continuity Ledger",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "Keeps dated milestones and secrets for each chat and shows the ones for the people in the scene to the story model, so a new couple does not talk as if they had always been together and nobody knows what they were never told. Entries follow the message swipe that produced them. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
         "engine": {
           "min": "2.5.0",
@@ -1189,8 +1189,8 @@
           },
           {
             "path": "ledger.mjs",
-            "sha256": "14922c4c4cebadc9efee80548665bb7b5a306f018e6cb25e781ecb7593d4c13d",
-            "bytes": 10264
+            "sha256": "fb981ec822dcb5cc9981c55a50dec0673a49d6b24d625b54303ec42a975c215e",
+            "bytes": 10383
           },
           {
             "path": "scripts/posterior.mjs",
@@ -1206,9 +1206,9 @@
       },
       "category": "tracker",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/continuity-ledger-0.1.0.zip",
-        "sha256": "520bfc0a142e7c2c64d228bbcfb9be006cba656628de9d269e88c355a9947f69",
-        "bytes": 28381
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/fork/artifacts/continuity-ledger-0.1.1.zip",
+        "sha256": "134873960a89121465b962359f068c5ce8aaff8a34dcfccf6c5a8ef6d44f5149",
+        "bytes": 28500
       },
       "documentationUrl": "https://github.com/bahaynes/Marinara-Agents/blob/custom-mods/fork/packages/continuity-ledger/README.md"
     },

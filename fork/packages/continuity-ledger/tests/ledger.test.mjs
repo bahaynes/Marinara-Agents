@@ -144,7 +144,7 @@ test("prompt contributor is gated on the agent and agrees with the logged arm", 
   const on = { enableAgents: true, activeAgentIds: ["continuity-ledger"] };
   const text = await contribute({ chatId: "c2", chatMeta: on, mode: "roleplay" });
   assert.equal(text !== null, blockShown("c2", "a1", 0.5));
-  if (text) assert.match(text, /<story_ledger>/);
+  if (text) assert.match(text, /<dated_facts>/);
   assert.equal(await contribute({ chatId: "c2", chatMeta: { ...on, activeAgentIds: [] }, mode: "roleplay" }), null);
 });
 

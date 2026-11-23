@@ -172,7 +172,10 @@ export function inScene(items, messages, settings = DEFAULTS) {
     .slice(0, settings.maxPrompt);
 }
 
-/** The narrator block. `now` is the number of the newest message. */
+/**
+ * The narrator block. `now` is the number of the newest message. Never says "ledger": a word chats ban in
+ * narration (Prose Guardian banned words), so the block must not prime it.
+ */
 export function render(items, now) {
   if (!items.length) return null;
   const ago = (since) => (since ? `M${since}, ${Math.max(0, now - since)} messages ago` : "earlier");
@@ -182,10 +185,10 @@ export function render(items, now) {
       : `- Known only to ${item.who.join(", ")} (since ${ago(item.since)}): ${item.text}`,
   );
   return [
-    "<story_ledger>",
+    "<dated_facts>",
     "Dated facts for the people in this scene. Something is true only from its message on; everyone not listed for a secret does not know it.",
     ...lines,
-    "</story_ledger>",
+    "</dated_facts>",
   ].join("\n");
 }
 
