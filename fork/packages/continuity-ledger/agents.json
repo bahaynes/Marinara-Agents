@@ -15,7 +15,6 @@
     "defaultTools": [],
     "defaultSettings": {
       "resultType": "context_injection",
-      "jsonContextOutput": true,
       "contextSize": 4,
       "maxTokens": 600,
       "temperature": 0,

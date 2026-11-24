@@ -10,7 +10,7 @@
   },
   "id": "continuity-ledger",
   "name": "Continuity Ledger",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Keeps dated milestones and secrets for each chat and shows the ones for the people in the scene to the story model, so a new couple does not talk as if they had always been together and nobody knows what they were never told. Entries follow the message swipe that produced them. Add the Agent in Chat Settings → Agents → Tracker Agents for Roleplay and Game modes.",
   "engine": {
     "min": "2.5.0",
@@ -33,8 +33,8 @@
   "files": [
     {
       "path": "agents.json",
-      "sha256": "c9c14ba6414387ab458612731f1dde35e2b2674bd866b2ff59b79ad803be5b2d",
-      "bytes": 3022
+      "sha256": "23538cf5f369f2ddf5e1d1e0a85737fd9e6a58fea4250911748747e6308af264",
+      "bytes": 2989
     },
     {
       "path": "ledger.mjs",
