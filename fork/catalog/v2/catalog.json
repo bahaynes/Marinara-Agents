@@ -4106,7 +4106,7 @@
         },
         "id": "otome-forge",
         "name": "Otome Hearth",
-        "version": "0.47.1",
+        "version": "0.47.2",
         "description": "An otome game in its own Home tab, made from your own characters: love interests who remember what you chose, their messages to you, dates and mini-games, and wishes for outfits and memories paid for only with Starlight you earn. Install it, restart Marinara Engine when prompted, then open Home → Otome Hearth.",
         "engine": {
           "min": "2.5.1",
@@ -4164,8 +4164,8 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "826f77da0aa7990bec3a554d3e78cc056947749e5abee6565dfc5ae56d487284",
-            "bytes": 835471
+            "sha256": "e16e3fe8b007269025cc8cc8b53ff471f34d163ae91c5fae3d8c2fe89f0fa4b2",
+            "bytes": 835867
           },
           {
             "path": "client.js",
@@ -4299,9 +4299,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/otome-forge.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.47.1.zip",
-        "sha256": "45ed9532e87d7bb7b40ce946484830a4704b74db2916cc0efc98d548797a20de",
-        "bytes": 3441397
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/otome-forge-0.47.2.zip",
+        "sha256": "87a43c488a2e1b22fd09c4e53cf4fe5ce3efd3ffffd5fa3eeb1e39968108ce8b",
+        "bytes": 3441793
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/otome-forge/README.md"
     },
@@ -5557,7 +5557,7 @@
         },
         "id": "story-writer",
         "name": "Story Writer",
-        "version": "0.6.0",
+        "version": "0.7.0",
         "description": "A co-writing book. Pick a connection, your characters, personas and lorebooks, describe the story, and the model writes it chapter by chapter while you guide it with an author's note and edit anything on the page. Install it, restart Marinara Engine when prompted, then open Home → Story Writer.",
         "engine": {
           "min": "2.5.1",
@@ -5599,13 +5599,13 @@
           },
           {
             "path": "server.mjs",
-            "sha256": "acbe888fef31158bd563061a83227097b58e80284b46f79ab4e292446fd2fb81",
-            "bytes": 22587
+            "sha256": "76dd70a5af49a54cc15b6454374030bbfd35c1bf41f3e23034f4f533a994a43d",
+            "bytes": 25030
           },
           {
             "path": "client.js",
-            "sha256": "06c338d0fee62babe72c776436bed6ef9b324ad6024a7c8a8f184427b1e7b317",
-            "bytes": 267463
+            "sha256": "b8bd269620968e2fd7035b0f205b6ce6cac927f80966d0fd2761292402d0f7ed",
+            "bytes": 269428
           },
           {
             "path": "story-writer-icon.png",
@@ -5643,9 +5643,9 @@
       "category": "misc",
       "iconUrl": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artwork/agent-covers/story-writer.png",
       "artifact": {
-        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/story-writer-0.6.0.zip",
-        "sha256": "a0e84a959eed1cb43536342bfbea7e9a663c789e00579f3e9594e124e84af509",
-        "bytes": 680374
+        "url": "https://raw.githubusercontent.com/bahaynes/Marinara-Agents/custom-mods/artifacts/story-writer-0.7.0.zip",
+        "sha256": "2af1455a1a89d7f0974884b7ddea7029c79f46c48973285c29ac409eee53be6e",
+        "bytes": 684782
       },
       "documentationUrl": "https://github.com/Pasta-Devs/Marinara-Agents/blob/main/packages/story-writer/README.md"
     },
